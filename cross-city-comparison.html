@@ -23,14 +23,9 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    padding: 24px;
-    line-height: 1.5;
+    background: var(--bg); color: var(--text); padding: 24px; line-height: 1.5;
   }
   .container { max-width: 1400px; margin: 0 auto; }
-
-  /* Header */
   header {
     display: flex; justify-content: space-between; align-items: center;
     margin-bottom: 28px; flex-wrap: wrap; gap: 12px;
@@ -38,37 +33,26 @@
   header h1 {
     font-size: 24px; font-weight: 600;
     background: linear-gradient(135deg, var(--blue), var(--green));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   }
   header p { color: var(--text-dim); font-size: 14px; margin-top: 4px; }
   .controls {
     display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
   }
   .controls label {
-    font-size: 13px; color: var(--text-dim); display: flex;
-    align-items: center; gap: 6px;
+    font-size: 13px; color: var(--text-dim); display: flex; align-items: center; gap: 6px;
   }
   .controls select, .controls input {
     background: var(--surface2); border: 1px solid var(--border);
-    color: var(--text); padding: 6px 10px; border-radius: 6px;
-    font-size: 13px; cursor: pointer;
+    color: var(--text); padding: 6px 10px; border-radius: 6px; font-size: 13px; cursor: pointer;
   }
-  .controls select:focus, .controls input:focus {
-    outline: none; border-color: var(--blue);
-  }
+  .controls select:focus, .controls input:focus { outline: none; border-color: var(--blue); }
   .controls .btn {
     background: var(--accent); color: #fff; border: none;
-    padding: 6px 14px; border-radius: 6px; font-size: 13px;
-    cursor: pointer; transition: opacity .15s;
+    padding: 6px 14px; border-radius: 6px; font-size: 13px; cursor: pointer; transition: opacity .15s;
   }
   .controls .btn:hover { opacity: .85; }
-  .controls .btn-secondary {
-    background: var(--surface2); color: var(--text);
-    border: 1px solid var(--border);
-  }
-
-  /* Stats bar */
+  .controls .btn-secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
   .stats {
     display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;
   }
@@ -81,15 +65,12 @@
   .stat-card .value.green { color: var(--green); }
   .stat-card .value.red { color: var(--red); }
   .stat-card .city { font-size: 12px; color: var(--text-dim); }
-
-  /* Table */
   .table-wrap {
     background: var(--surface); border: 1px solid var(--border);
     border-radius: 8px; overflow: hidden; overflow-x: auto;
   }
   table {
-    width: 100%; border-collapse: collapse; font-size: 13px;
-    white-space: nowrap;
+    width: 100%; border-collapse: collapse; font-size: 13px; white-space: nowrap;
   }
   thead th {
     background: var(--surface2); padding: 10px 12px;
@@ -107,8 +88,7 @@
   }
   thead th:first-child:hover { color: inherit; }
   td {
-    padding: 8px 12px; text-align: center; border-bottom: 1px solid var(--border);
-    position: relative;
+    padding: 8px 12px; text-align: center; border-bottom: 1px solid var(--border); position: relative;
   }
   td:first-child {
     text-align: left; font-weight: 500;
@@ -117,56 +97,27 @@
   tr:hover td { background: rgba(88,166,255,0.04); }
   tr:hover td:first-child { background: rgba(88,166,255,0.04); }
   tr:last-child td { border-bottom: none; }
-
-  /* Cell value with bar */
-  .cell-value {
-    display: flex; align-items: center; justify-content: center; gap: 8px;
-  }
+  .cell-value { display: flex; align-items: center; justify-content: center; gap: 8px; }
   .cell-value .num { font-weight: 500; font-variant-numeric: tabular-nums; min-width: 36px; }
-  .bar-wrap {
-    width: 40px; height: 4px; border-radius: 2px;
-    background: var(--border); overflow: hidden; flex-shrink: 0;
-  }
-  .bar-fill {
-    height: 100%; border-radius: 2px; transition: width .3s;
-  }
-
-  /* Highlighting */
+  .bar-wrap { width: 40px; height: 4px; border-radius: 2px; background: var(--border); overflow: hidden; flex-shrink: 0; }
+  .bar-fill { height: 100%; border-radius: 2px; transition: width .3s; }
   .cheapest { background: var(--green-bg) !important; }
   .cheapest .num { color: var(--green); font-weight: 700; }
   .most-expensive { background: var(--red-bg) !important; }
   .most-expensive .num { color: var(--red); font-weight: 700; }
   tr:hover .cheapest { background: #0f6b28 !important; }
   tr:hover .most-expensive { background: #8b2522 !important; }
-
-  /* Summary row */
   .summary-row td {
-    border-top: 2px solid var(--border); font-weight: 600;
-    background: var(--surface2) !important;
+    border-top: 2px solid var(--border); font-weight: 600; background: var(--surface2) !important;
   }
   .summary-row td:first-child { color: var(--yellow); }
-
-  /* Sort indicator */
   th.asc .sort-icon::after { content: '▲'; }
   th.desc .sort-icon::after { content: '▼'; }
   th:not(.asc):not(.desc) .sort-icon::after { content: '⇅'; opacity: .3; }
-
-  /* Filter tag */
-  .filter-tag {
-    display: inline-flex; align-items: center; gap: 4px;
-    background: var(--accent); color: #fff; padding: 2px 8px;
-    border-radius: 12px; font-size: 11px; margin-right: 4px;
-  }
-  .filter-tag button { background: none; border: none; color: #fff; cursor: pointer; font-size: 14px; padding: 0; line-height: 1; }
-
-  /* Legend */
+  .city-count { font-size: 12px; color: var(--text-dim); margin-top: 8px; }
   .legend { display: flex; gap: 16px; margin-top: 16px; font-size: 12px; color: var(--text-dim); align-items: center; }
   .legend .swatch { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 4px; vertical-align: middle; }
-
-  /* Footer */
   footer { margin-top: 24px; text-align: center; font-size: 12px; color: var(--text-dim); }
-
-  /* Responsive */
   @media (max-width: 768px) {
     body { padding: 12px; }
     header h1 { font-size: 18px; }
@@ -182,7 +133,7 @@
   <header>
     <div>
       <h1>Mietspiegel Cross-City Comparison</h1>
-      <p>Compare official rent index values (€/m² Mittelwert) across German cities</p>
+      <p>Compare official rent index values across German cities — Mittelwert in €/m²</p>
     </div>
     <div class="controls">
       <label>
@@ -219,6 +170,7 @@
       <tbody id="tableBody"></tbody>
     </table>
   </div>
+  <div class="city-count" id="cityCount"></div>
 
   <div class="legend">
     <span><span class="swatch" style="background:var(--green)"></span> Günstigste Stadt</span>
@@ -227,44 +179,50 @@
   </div>
 
   <footer>
-    Daten aus offiziellen Mietspiegeln der Städte (2024–2025). Mittelwerte pro m² in mittlerer Wohnlage.
-    <br>Quellen: <span id="sourceList"></span>
+    Daten aus offiziellen Mietspiegeln der Städte. Mittelwerte aus allen Wohnungsgrößen gemittelt.
+    <br>Quelle: <code>data/processed/cities.json</code>
   </footer>
 </div>
 
 <script>
 async function loadData() {
-  const resp = await fetch('data/processed/mietspiegel_katalog.json');
-  const raw = await resp.json();
-  return { meta: raw.meta, cities: raw.cities };
+  const resp = await fetch('data/processed/cities.json');
+  return await resp.json();
 }
 
-function buildBaujahrPeriods(meta) {
-  return meta.baujahr_periods;
+function getMeanForCity(cityData, lage, baujahrGroup) {
+  const tables = cityData.tables || [];
+  const found = tables.find(t => t.lage === lage && t.baujahr_group === baujahrGroup);
+  if (!found || !found.size_rows || found.size_rows.length === 0) return null;
+  const vals = found.size_rows.map(r => r.mittelwert).filter(v => v != null);
+  return vals.length ? vals.reduce((a,b) => a+b, 0) / vals.length : null;
 }
 
-function buildTable(data, lage, filterBaujahr, sortCol, sortDir) {
-  const meta = data.meta;
-  const periods = meta.baujahr_periods;
-  let activePeriods = (filterBaujahr === 'all') ? periods : [filterBaujahr];
+function getAllBaujahrGroups(cities) {
+  const set = new Set();
+  cities.forEach(c => {
+    (c.categories?.baujahr_groups || []).forEach(g => set.add(g));
+  });
+  return Array.from(set);
+}
 
-  // Compute average across all cities for each period
+function render(data, lage, filterBaujahr, sortCol, sortDir) {
+  const cities = data.filter(c => c.tables && c.tables.length > 0);
+  const allPeriods = getAllBaujahrGroups(cities);
+  const activePeriods = (filterBaujahr === 'all') ? allPeriods : [filterBaujahr];
+
   const avgPerPeriod = {};
-  for (const p of periods) {
-    const vals = data.cities.map(c => c.data[lage]?.[p]?.mean).filter(v => v != null);
+  for (const p of allPeriods) {
+    const vals = cities.map(c => getMeanForCity(c, lage, p)).filter(v => v != null);
     avgPerPeriod[p] = vals.length ? vals.reduce((a,b) => a+b, 0) / vals.length : null;
   }
 
-  // Prepare rows
-  let rows = data.cities.map(city => {
+  let rows = cities.map(city => {
     const row = { city, values: {} };
-    periods.forEach(p => {
-      row.values[p] = city.data[lage]?.[p]?.mean ?? null;
-    });
+    allPeriods.forEach(p => { row.values[p] = getMeanForCity(city, lage, p); });
     return row;
   });
 
-  // Sort if requested
   if (sortCol && activePeriods.includes(sortCol)) {
     rows.sort((a, b) => {
       const va = a.values[sortCol] ?? -Infinity;
@@ -273,17 +231,13 @@ function buildTable(data, lage, filterBaujahr, sortCol, sortDir) {
     });
   }
 
-  // Find min/max per active period
   const minMax = {};
   for (const p of activePeriods) {
     const vals = rows.map(r => r.values[p]).filter(v => v != null);
-    if (vals.length) {
-      minMax[p] = { min: Math.min(...vals), max: Math.max(...vals) };
-    }
+    if (vals.length) minMax[p] = { min: Math.min(...vals), max: Math.max(...vals) };
   }
 
-  // Global value range for bar width scaling
-  const allVals = rows.flatMap(r => periods.map(p => r.values[p])).filter(v => v != null);
+  const allVals = rows.flatMap(r => allPeriods.map(p => r.values[p])).filter(v => v != null);
   const globalMin = Math.min(...allVals);
   const globalMax = Math.max(...allVals);
   const range = globalMax - globalMin || 1;
@@ -294,8 +248,7 @@ function buildTable(data, lage, filterBaujahr, sortCol, sortDir) {
   const headRow = document.createElement('tr');
   const cityTh = document.createElement('th');
   cityTh.textContent = 'Stadt';
-  const sortIcon = document.createElement('span');
-  sortIcon.className = 'sort-icon';
+  const sortIcon = document.createElement('span'); sortIcon.className = 'sort-icon';
   cityTh.appendChild(sortIcon);
   headRow.appendChild(cityTh);
 
@@ -306,8 +259,7 @@ function buildTable(data, lage, filterBaujahr, sortCol, sortDir) {
     const label = document.createElement('span');
     label.textContent = p;
     th.appendChild(label);
-    const icon = document.createElement('span');
-    icon.className = 'sort-icon';
+    const icon = document.createElement('span'); icon.className = 'sort-icon';
     th.appendChild(icon);
     const avgLabel = document.createElement('div');
     const avg = avgPerPeriod[p];
@@ -317,19 +269,17 @@ function buildTable(data, lage, filterBaujahr, sortCol, sortDir) {
     th.addEventListener('click', () => {
       const newDir = (sortCol === p && sortDir === 'asc') ? 'desc' : 'asc';
       document.getElementById('sortSelect').value = p;
-      render(lage, filterBaujahr, p, newDir);
+      render(data, lage, filterBaujahr, p, newDir);
     });
     headRow.appendChild(th);
   });
   thead.appendChild(headRow);
 
-  // Render body
   const tbody = document.getElementById('tableBody');
   tbody.innerHTML = '';
 
-  rows.forEach((row, idx) => {
+  rows.forEach(row => {
     const tr = document.createElement('tr');
-    // City cell
     const cityTd = document.createElement('td');
     const citySpan = document.createElement('span');
     citySpan.textContent = row.city.city;
@@ -344,48 +294,35 @@ function buildTable(data, lage, filterBaujahr, sortCol, sortDir) {
       const td = document.createElement('td');
       const val = row.values[p];
       const mm = minMax[p];
-
       if (val != null) {
         if (mm && val === mm.min && val !== mm.max) td.classList.add('cheapest');
         if (mm && val === mm.max && val !== mm.min) td.classList.add('most-expensive');
-        if (mm && val === mm.min && val === mm.max && activePeriods.length === 1) {
-          // All same value — no highlight
-        }
-
-        const wrapper = document.createElement('div');
-        wrapper.className = 'cell-value';
-
-        const num = document.createElement('span');
-        num.className = 'num';
+        const wrapper = document.createElement('div'); wrapper.className = 'cell-value';
+        const num = document.createElement('span'); num.className = 'num';
         num.textContent = val.toFixed(2);
         wrapper.appendChild(num);
-
-        const barW = document.createElement('div');
-        barW.className = 'bar-wrap';
-        const barF = document.createElement('div');
-        barF.className = 'bar-fill';
+        const barW = document.createElement('div'); barW.className = 'bar-wrap';
+        const barF = document.createElement('div'); barF.className = 'bar-fill';
         const pct = ((val - globalMin) / range) * 100;
         barF.style.width = Math.max(8, Math.min(100, pct)) + '%';
-        barF.style.background = `linear-gradient(90deg, ${lerpColor('#3fb950', '#f85149', pct/100)})`;
+        const r = Math.round(63 + (248 - 63) * (pct / 100));
+        const g = Math.round(185 - (185 - 81) * (pct / 100));
+        const b = Math.round(80 - (80 - 73) * (pct / 100));
+        barF.style.background = `rgb(${r},${g},${b})`;
         barW.appendChild(barF);
         wrapper.appendChild(barW);
-
         td.appendChild(wrapper);
       } else {
-        td.textContent = '—';
-        td.style.color = 'var(--text-dim)';
+        td.textContent = '—'; td.style.color = 'var(--text-dim)';
       }
       tr.appendChild(td);
     });
-
     tbody.appendChild(tr);
   });
 
   // Summary row
-  const sumTr = document.createElement('tr');
-  sumTr.className = 'summary-row';
-  const sumTd = document.createElement('td');
-  sumTd.textContent = 'Ø Deutschland';
+  const sumTr = document.createElement('tr'); sumTr.className = 'summary-row';
+  const sumTd = document.createElement('td'); sumTd.textContent = 'Ø Deutschland';
   sumTr.appendChild(sumTd);
   activePeriods.forEach(p => {
     const td = document.createElement('td');
@@ -396,129 +333,67 @@ function buildTable(data, lage, filterBaujahr, sortCol, sortDir) {
   });
   tbody.appendChild(sumTr);
 
-  // Update stats
-  updateStats(data, lage, filterBaujahr);
-  updateSources(data);
+  updateStats(data, lage, filterBaujahr, rows, activePeriods, avgPerPeriod);
+  document.getElementById('cityCount').textContent = `${rows.length} Städte`;
 }
 
-function lerpColor(c1, c2, t) {
-  // Simple hex lerp for the gradient bar
-  const r1 = parseInt(c1.slice(1,3),16), g1 = parseInt(c1.slice(3,5),16), b1 = parseInt(c1.slice(5,7),16);
-  const r2 = parseInt(c2.slice(1,3),16), g2 = parseInt(c2.slice(3,5),16), b2 = parseInt(c2.slice(5,7),16);
-  const r = Math.round(r1 + (r2-r1)*t), g = Math.round(g1 + (g2-g1)*t), b = Math.round(b1 + (b2-b1)*t);
-  return `rgb(${r},${g},${b})`;
-}
-
-function updateStats(data, lage, filterBaujahr) {
-  const cities = data.cities;
-  const periods = data.meta.baujahr_periods;
-  const activePeriods = filterBaujahr === 'all' ? periods : [filterBaujahr];
-
-  // Collect all values
+function updateStats(data, lage, filterBaujahr, rows, activePeriods, avgPerPeriod) {
   const allVals = [];
-  cities.forEach(c => {
+  rows.forEach(r => {
     activePeriods.forEach(p => {
-      const v = c.data[lage]?.[p]?.mean;
-      if (v != null) allVals.push({ city: c.city, period: p, value: v, state: c.state });
+      const v = r.values[p];
+      if (v != null) allVals.push({ city: r.city.city, period: p, value: v, state: r.city.state });
     });
   });
-
   if (!allVals.length) { document.getElementById('statsBar').innerHTML = ''; return; }
-
   allVals.sort((a,b) => a.value - b.value);
   const cheapest = allVals[0];
   const mostExp = allVals[allVals.length-1];
   const avg = allVals.reduce((a,b) => a+b.value, 0) / allVals.length;
-
-  const allPeriodsAvg = {};
-  periods.forEach(p => {
-    const vals = cities.map(c => c.data[lage]?.[p]?.mean).filter(v => v != null);
-    if (vals.length) allPeriodsAvg[p] = vals.reduce((a,b) => a+b,0) / vals.length;
-  });
-
   const bars = document.getElementById('statsBar');
+  const filterLabel = filterBaujahr === 'all' ? 'alle Baujahre' : filterBaujahr;
   bars.innerHTML = `
     <div class="stat-card">
       <div class="label">Günstigster Mietspiegel</div>
       <div class="value green">${cheapest.value.toFixed(2)} €/m²</div>
-      <div class="city">${cheapest.city}${cheapest.period !== (filterBaujahr === 'all' ? '' : cheapest.period) ? ` (${cheapest.period})` : ''}</div>
+      <div class="city">${cheapest.city} (${cheapest.period})</div>
     </div>
     <div class="stat-card">
       <div class="label">Teuerster Mietspiegel</div>
       <div class="value red">${mostExp.value.toFixed(2)} €/m²</div>
-      <div class="city">${mostExp.city}${mostExp.period !== (filterBaujahr === 'all' ? '' : mostExp.period) ? ` (${mostExp.period})` : ''}</div>
+      <div class="city">${mostExp.city} (${mostExp.period})</div>
     </div>
     <div class="stat-card">
-      <div class="label">Ø Alle Städte (${filterBaujahr === 'all' ? 'alle Baujahre' : filterBaujahr})</div>
+      <div class="label">Ø Alle Städte</div>
       <div class="value">${avg.toFixed(2)} €/m²</div>
-      <div class="city">${cities.length} Städte · Wohnlage: ${lage}</div>
+      <div class="city">${rows.length} Städte · ${filterLabel} · Wohnlage: ${lage}</div>
     </div>
     <div class="stat-card">
-      <div class="label">Spanne (günstigste – teuerste)</div>
+      <div class="label">Spanne</div>
       <div class="value">${(mostExp.value - cheapest.value).toFixed(2)} €</div>
       <div class="city">${cheapest.value.toFixed(2)} – ${mostExp.value.toFixed(2)} €/m²</div>
     </div>
   `;
 }
 
-function updateSources(data) {
-  const list = data.cities.map(c => c.city).join(', ');
-  document.getElementById('sourceList').textContent = list;
-}
-
-async function render(lage, filterBaujahr, sortCol, sortDir) {
-  const data = window._mietData;
-  if (!data) return;
-  buildTable(data, lage, filterBaujahr, sortCol, sortDir);
-}
-
 async function init() {
   const data = await loadData();
-  window._mietData = data;
-  const meta = data.meta;
+  const allPeriods = getAllBaujahrGroups(data);
 
-  // Populate Baujahr filter
   const bFilter = document.getElementById('baujahrFilter');
   bFilter.innerHTML = '<option value="all">Alle Baujahre</option>';
-  meta.baujahr_periods.forEach(p => {
-    const opt = document.createElement('option');
-    opt.value = p; opt.textContent = p;
-    bFilter.appendChild(opt);
-  });
+  allPeriods.forEach(p => { const o = document.createElement('option'); o.value = p; o.textContent = p; bFilter.appendChild(o); });
 
-  // Populate sort dropdown
   const sSelect = document.getElementById('sortSelect');
   sSelect.innerHTML = '<option value="">— Keine Sortierung —</option>';
-  meta.baujahr_periods.forEach(p => {
-    const opt = document.createElement('option');
-    opt.value = p; opt.textContent = p;
-    sSelect.appendChild(opt);
-  });
+  allPeriods.forEach(p => { const o = document.createElement('option'); o.value = p; o.textContent = p; sSelect.appendChild(o); });
 
   let state = { lage: 'mittel', filterBaujahr: 'all', sortCol: '', sortDir: 'asc' };
+  function reRender() { render(data, state.lage, state.filterBaujahr, state.sortCol || null, state.sortDir); }
 
-  function reRender() {
-    render(state.lage, state.filterBaujahr, state.sortCol || null, state.sortDir);
-  }
-
-  document.getElementById('lageSelect').addEventListener('change', (e) => {
-    state.lage = e.target.value;
-    reRender();
-  });
-
-  document.getElementById('baujahrFilter').addEventListener('change', (e) => {
-    state.filterBaujahr = e.target.value;
-    state.sortCol = ''; // reset sort when filter changes
-    document.getElementById('sortSelect').value = '';
-    reRender();
-  });
-
-  document.getElementById('sortSelect').addEventListener('change', (e) => {
-    state.sortCol = e.target.value;
-    state.sortDir = 'asc';
-    reRender();
-  });
-
+  document.getElementById('lageSelect').addEventListener('change', e => { state.lage = e.target.value; reRender(); });
+  document.getElementById('baujahrFilter').addEventListener('change', e => { state.filterBaujahr = e.target.value; state.sortCol = ''; document.getElementById('sortSelect').value = ''; reRender(); });
+  document.getElementById('sortSelect').addEventListener('change', e => { state.sortCol = e.target.value; state.sortDir = 'asc'; reRender(); });
   document.getElementById('resetBtn').addEventListener('click', () => {
     state = { lage: 'mittel', filterBaujahr: 'all', sortCol: '', sortDir: 'asc' };
     document.getElementById('lageSelect').value = 'mittel';
@@ -527,8 +402,7 @@ async function init() {
     reRender();
   });
 
-  // Initial render
-  buildTable(data, state.lage, state.filterBaujahr, null, 'asc');
+  render(data, state.lage, state.filterBaujahr, null, 'asc');
 }
 
 document.addEventListener('DOMContentLoaded', init);
