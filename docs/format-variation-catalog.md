@@ -65,16 +65,16 @@
 
 | # | City | Format | Differences from Standard |
 |---|------|--------|--------------------------|
-| 31 | Freiburg | TBD | |
-| 32 | Krefeld | TBD | |
-| 33 | Mainz | TBD | |
-| 34 | Lübeck | TBD | |
-| 35 | Erfurt | TBD | |
-| 36 | Oberhausen | TBD | |
-| 37 | Rostock | TBD | |
-| 38 | Kassel | TBD | |
-| 39 | Hagen | TBD | |
-| 40 | Potsdam | TBD | |
+| 31 | Freiburg | TBD | PDF source not found; website blocked curl |
+| 32 | Krefeld | TBD | Mietspiegel section on krefeld.de (needs browser interaction to expand) |
+| 33 | Mainz | ✅ Extracted | No Wohnlage differentiation — single combined table. Uses Median + 2/3-Spannweite instead of untere/obere Spanne. 8 Bauperiods × 4 size groups. |
+| 34 | Lübeck | ✅ Extracted | Single base table for 'mittlere Wohnlage' with Zu-/Abschläge für gute (+0.44) and einfache (-0.47) Wohnlage. 10 Bauperiods × 4 size groups. Mittelwert + 2/3-Preisspanne. |
+| 35 | Erfurt | TBD | erfurt.de → Leben → Wohnen → Mietspiegel page returned no content |
+| 36 | Oberhausen | TBD | oberhausen.de returned HTML but needs parsing |
+| 37 | Rostock | ✅ Extracted | Berechnungsmietspiegel (calculation-based). Table 1: base rent by size (20-150 m²). Table 2: Zu-/Abschläge for Baujahr, equipment, Wohnlage. No discrete table; formula-based. |
+| 38 | Kassel | TBD | kassel.de → Mietspiegel → 404 error |
+| 39 | Hagen | TBD | Not yet researched |
+| 40 | Potsdam | TBD | potsdam.de → Mietspiegel returned no data |
 
 ## Cities 41-50 (Tier 2d — to be documented)
 
@@ -110,7 +110,25 @@
 - **Simplified:** Some cities use only 3 size groups (`bis 60`, `60-90`, `über 90`)
 - **Single value:** Some cities publish a single €/m² number per Baujahr/Lage cell without size differentiation
 
-### Value column variations
+### No Wohnlage differentiation
+- **Mainz-style:** Single table for all Wohnlagen. No differentiation by location quality. All rent values are aggregates across all location categories.
+- **When encountered:** Mainz (2025)
+
+### Berechnungsmietspiegel (calculation-based)
+- **Rostock-style:** Instead of a discrete Baujahr × Größe × Lage table, the Mietspiegel provides:
+  1. A base rent per m² determined ONLY by apartment size (continuous, every m² from 20-150)
+  2. Adjustments (Zu-/Abschläge) for Baujahr, Wohnlage, equipment features, etc.
+- **Formula:** Ortsübliche Vergleichsmiete = Base[size] + Baujahr_adj + Wohnlage_adj + equipment_adj
+- **When encountered:** Rostock (2026)
+
+### Single Wohnlage table with simple adjustments
+- **Lübeck-style:** One base table for "mittlere Wohnlage" only. Other Wohnlagen are calculated via simple flat additions/deductions (+0.44 for gut, -0.47 for einfach).
+- **When encountered:** Lübeck (2025)
+
+### Value formats
+- **Median + 2/3-Spannweite:** Mainz uses median instead of mean (Mittelwert), with 2/3-spread (untere/obere Spanne covering the middle 2/3 of values)
+- **Mittelwert + 2/3-Preisspanne:** Lübeck uses arithmetic mean with 2/3 spread
+- **Single value (no range):** Rostock's base table provides only a single value per size, no span
 - **No range:** Some cities publish only `Mittelwert` without `untere/obere Spanne`
 - **Tabellenmietspiegel:** A single specific value per cell instead of a range
 - **Spanneneinordnung:** Some provide additional adjustment factors for specific features (bad, kitchen, etc.)

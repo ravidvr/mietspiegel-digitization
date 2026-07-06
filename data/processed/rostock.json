@@ -1,0 +1,115 @@
+{
+  "$schema": "https://raw.githubusercontent.com/ravidvr/mietspiegel-digitization/main/docs/schema.json",
+  "meta": {
+    "schema_version": "1.0.0",
+    "extracted_at": "2026-07-06T14:55:00Z",
+    "extracted_by": "pdfplumber + manual validation",
+    "extraction_notes": "Rostock uses a calculation-based Mietspiegel (Berechnungsmietspiegel). Table 1 provides base rent by apartment size (20-150 m²). Table 2 provides Zu-/Abschläge for Baujahr, Wohnlage, and equipment features. Final rent = base + adjustments. Only size-based base rents and Baujahr adjustments are included here; full Wohnlage and equipment adjustments require the street directory.",
+    "quality": {
+      "status": "validated",
+      "confidence": 0.95,
+      "issues": []
+    }
+  },
+  "city": {
+    "name": "Rostock",
+    "slug": "rostock",
+    "state": "Mecklenburg-Vorpommern",
+    "region": "Mecklenburg-Vorpommern",
+    "population": 209000,
+    "coordinates": {
+      "lat": 54.0924,
+      "lng": 12.0991
+    }
+  },
+  "source": {
+    "title": "Qualifizierter Mietspiegel 2026 der Hansestadt Rostock",
+    "type": "qualifiziert",
+    "year": 2026,
+    "effective_from": "2026-05-01",
+    "effective_until": "2028-04-30",
+    "publisher": "Hanse- und Universitätsstadt Rostock, Bauamt",
+    "url": "https://rathaus.rostock.de/de/wirtschaft_verkehr/wohnen/mietspiegel/249767",
+    "pdf_url": "https://rathaus.rostock.de/media/rostock_01.a.4984.de/datei/Qualifizierter%20Mietspiegel%20der%20Hanse-und%20Universit%C3%A4tsstadt%20Rostock%202026.477517.PDF",
+    "local_pdf": "data/raw/rostock-2026.pdf",
+    "pages": [8, 10],
+    "retrieved_at": "2026-07-06T14:50:00Z"
+  },
+  "matrix": {
+    "description": "Rostock uses a unique calculation model. Base rent (Table 1) is determined purely by apartment size (20-150 m²). Additional adjustments (Table 2) are added for Baujahr, Wohnlage, equipment, etc. This data file contains the base rents and the Baujahr adjustments. Full rent = Base[size] + Baujahr_adjustment + Wohnlage_adjustment + equipment_adjustments.",
+    "table_type": "berechnungsmietspiegel",
+    "base_by_size": {
+      "description": "Tabelle 1: Basis-Nettokaltmiete by Wohnfläche (monthly €/m²)",
+      "size_range": { "min": 20, "max": 150, "unit": "m²" },
+      "values": [
+        {"size": 20, "value": 8.32}, {"size": 21, "value": 8.26}, {"size": 22, "value": 8.22},
+        {"size": 23, "value": 8.16}, {"size": 24, "value": 8.12}, {"size": 25, "value": 8.07},
+        {"size": 26, "value": 8.02}, {"size": 27, "value": 7.98}, {"size": 28, "value": 7.94},
+        {"size": 29, "value": 7.89}, {"size": 30, "value": 7.85}, {"size": 31, "value": 7.82},
+        {"size": 32, "value": 7.77}, {"size": 33, "value": 7.74}, {"size": 34, "value": 7.70},
+        {"size": 35, "value": 7.67}, {"size": 36, "value": 7.63}, {"size": 37, "value": 7.59},
+        {"size": 38, "value": 7.56}, {"size": 39, "value": 7.52}, {"size": 40, "value": 7.50},
+        {"size": 41, "value": 7.47}, {"size": 42, "value": 7.44}, {"size": 43, "value": 7.41},
+        {"size": 44, "value": 7.38}, {"size": 45, "value": 7.35}, {"size": 46, "value": 7.33},
+        {"size": 47, "value": 7.31}, {"size": 48, "value": 7.28}, {"size": 49, "value": 7.25},
+        {"size": 50, "value": 7.23}, {"size": 51, "value": 7.21}, {"size": 52, "value": 7.19},
+        {"size": 53, "value": 7.17}, {"size": 54, "value": 7.15}, {"size": 55, "value": 7.13},
+        {"size": 56, "value": 7.11}, {"size": 57, "value": 7.09}, {"size": 58, "value": 7.08},
+        {"size": 59, "value": 7.06}, {"size": 60, "value": 7.05}, {"size": 61, "value": 7.03},
+        {"size": 62, "value": 7.02}, {"size": 63, "value": 7.01}, {"size": 64, "value": 6.98},
+        {"size": 65, "value": 6.97}, {"size": 66, "value": 6.96}, {"size": 67, "value": 6.95},
+        {"size": 68, "value": 6.94}, {"size": 69, "value": 6.93}, {"size": 70, "value": 6.92},
+        {"size": 71, "value": 6.91}, {"size": 72, "value": 6.91}, {"size": 73, "value": 6.90},
+        {"size": 74, "value": 6.89}, {"size": 75, "value": 6.88}, {"size": 76, "value": 6.88},
+        {"size": 77, "value": 6.86}, {"size": 78, "value": 6.85}, {"size": 79, "value": 6.85},
+        {"size": 80, "value": 6.84}, {"size": 81, "value": 6.84}, {"size": 82, "value": 6.84},
+        {"size": 83, "value": 6.83}, {"size": 84, "value": 6.83}, {"size": 85, "value": 6.82},
+        {"size": 86, "value": 6.82}, {"size": 87, "value": 6.82}, {"size": 88, "value": 6.82},
+        {"size": 89, "value": 6.81}, {"size": 90, "value": 6.81}, {"size": 91, "value": 6.81},
+        {"size": 92, "value": 6.81}, {"size": 93, "value": 6.81}, {"size": 94, "value": 6.80},
+        {"size": 95, "value": 6.80}, {"size": 96, "value": 6.80}, {"size": 97, "value": 6.80},
+        {"size": 98, "value": 6.80}, {"size": 99, "value": 6.80}, {"size": 100, "value": 6.80},
+        {"size": 101, "value": 6.80}, {"size": 102, "value": 6.80}, {"size": 103, "value": 6.80},
+        {"size": 104, "value": 6.80}, {"size": 105, "value": 6.80}, {"size": 106, "value": 6.80},
+        {"size": 107, "value": 6.80}, {"size": 108, "value": 6.80}, {"size": 109, "value": 6.80},
+        {"size": 110, "value": 6.80}, {"size": 111, "value": 6.80}, {"size": 112, "value": 6.80},
+        {"size": 113, "value": 6.80}, {"size": 114, "value": 6.80}, {"size": 115, "value": 6.80},
+        {"size": 116, "value": 6.80}, {"size": 117, "value": 6.80}, {"size": 118, "value": 6.80},
+        {"size": 119, "value": 6.80}, {"size": 120, "value": 6.80}, {"size": 121, "value": 6.80},
+        {"size": 122, "value": 6.80}, {"size": 123, "value": 6.79}, {"size": 124, "value": 6.79},
+        {"size": 125, "value": 6.79}, {"size": 126, "value": 6.79}, {"size": 127, "value": 6.79},
+        {"size": 128, "value": 6.78}, {"size": 129, "value": 6.78}, {"size": 130, "value": 6.78},
+        {"size": 131, "value": 6.78}, {"size": 132, "value": 6.77}, {"size": 133, "value": 6.77},
+        {"size": 134, "value": 6.77}, {"size": 135, "value": 6.76}, {"size": 136, "value": 6.76},
+        {"size": 137, "value": 6.75}, {"size": 138, "value": 6.75}, {"size": 139, "value": 6.73},
+        {"size": 140, "value": 6.73}, {"size": 141, "value": 6.72}, {"size": 142, "value": 6.71},
+        {"size": 143, "value": 6.71}, {"size": 144, "value": 6.70}, {"size": 145, "value": 6.69},
+        {"size": 146, "value": 6.68}, {"size": 147, "value": 6.67}, {"size": 148, "value": 6.66},
+        {"size": 149, "value": 6.65}, {"size": 150, "value": 6.64}
+      ]
+    },
+    "adjustments": {
+      "description": "Tabelle 2: Zu- und Abschläge based on Baujahr (add to base rent)",
+      "baujahr": [
+        {"period": "bis 1918", "value": 0.68},
+        {"period": "1919-1945", "value": 0.57},
+        {"period": "1946-1959", "value": 0.34},
+        {"period": "1960-1990", "value": 0.00},
+        {"period": "1991-2009", "value": 1.04},
+        {"period": "2010-2015", "value": 1.83},
+        {"period": "2016-2020", "value": 2.86},
+        {"period": "2021-2022", "value": 4.14}
+      ],
+      "equipment": [
+        {"feature": "Maisonette-Wohnung", "value": 0.34},
+        {"feature": "Handtuchheizkörper im Badezimmer", "value": 0.14},
+        {"feature": "Fußbodenheizung im Badezimmer", "value": 0.77},
+        {"feature": "Dusche und Badewanne im Badezimmer", "value": 0.18},
+        {"feature": "Komplette Einbauküche", "value": 0.55},
+        {"feature": "Hochwertiger Fußbodenbelag", "value": 0.14},
+        {"feature": "Abstellraum in der Wohnung", "value": 0.14},
+        {"feature": "Aufzug (Gebäude bis 6 Geschosse)", "value": 0.41}
+      ]
+    }
+  }
+}
