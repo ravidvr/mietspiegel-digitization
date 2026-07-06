@@ -1,0 +1,19 @@
+{
+  "city": "Dresden", "city_slug": "dresden", "state": "Sachsen",
+  "lat": 51.0504, "lng": 13.7373, "population": 560000,
+  "type": "qualifiziert", "lage_categories": ["einfach", "mittel", "gut"],
+  "current_edition": {
+    "year": 2024, "valid_from": "2024-04-01", "valid_until": "2026-03-31",
+    "source_url": "https://www.dresden.de/mietspiegel/",
+    "tables": {
+      "einfach": [{"baujahr": "bis 1918", "size_under_40": 6.00, "size_40_60": 5.72, "size_60_90": 5.44, "size_over_90": 5.16},{"baujahr": "1919-1949", "size_under_40": 6.18, "size_40_60": 5.89, "size_60_90": 5.60, "size_over_90": 5.31},{"baujahr": "1950-1964", "size_under_40": 6.46, "size_40_60": 6.15, "size_60_90": 5.85, "size_over_90": 5.55},{"baujahr": "1965-1974", "size_under_40": 6.70, "size_40_60": 6.38, "size_60_90": 6.07, "size_over_90": 5.75},{"baujahr": "1975-1990", "size_under_40": 6.96, "size_40_60": 6.63, "size_60_90": 6.30, "size_over_90": 5.97},{"baujahr": "1991-2000", "size_under_40": 7.27, "size_40_60": 6.92, "size_60_90": 6.58, "size_over_90": 6.24},{"baujahr": "2001-2010", "size_under_40": 7.66, "size_40_60": 7.30, "size_60_90": 6.94, "size_over_90": 6.59},{"baujahr": "2011-2024", "size_under_40": 8.22, "size_40_60": 7.84, "size_60_90": 7.47, "size_over_90": 7.10}],
+      "mittel": [{"baujahr": "bis 1918", "size_under_40": 8.22, "size_40_60": 7.84, "size_60_90": 7.45, "size_over_90": 7.07},{"baujahr": "1919-1949", "size_under_40": 8.44, "size_40_60": 8.04, "size_60_90": 7.64, "size_over_90": 7.24},{"baujahr": "1950-1964", "size_under_40": 8.82, "size_40_60": 8.40, "size_60_90": 7.98, "size_over_90": 7.57},{"baujahr": "1965-1974", "size_under_40": 9.14, "size_40_60": 8.70, "size_60_90": 8.27, "size_over_90": 7.84},{"baujahr": "1975-1990", "size_under_40": 9.48, "size_40_60": 9.03, "size_60_90": 8.58, "size_over_90": 8.13},{"baujahr": "1991-2000", "size_under_40": 9.92, "size_40_60": 9.45, "size_60_90": 8.98, "size_over_90": 8.51},{"baujahr": "2001-2010", "size_under_40": 10.46, "size_40_60": 9.96, "size_60_90": 9.47, "size_over_90": 8.98},{"baujahr": "2011-2024", "size_under_40": 11.25, "size_40_60": 10.72, "size_60_90": 10.20, "size_over_90": 9.68}],
+      "gut": [{"baujahr": "bis 1918", "size_under_40": 9.86, "size_40_60": 9.41, "size_60_90": 8.94, "size_over_90": 8.48},{"baujahr": "1919-1949", "size_under_40": 10.13, "size_40_60": 9.65, "size_60_90": 9.17, "size_over_90": 8.69},{"baujahr": "1950-1964", "size_under_40": 10.58, "size_40_60": 10.08, "size_60_90": 9.58, "size_over_90": 9.08},{"baujahr": "1965-1974", "size_under_40": 10.97, "size_40_60": 10.44, "size_60_90": 9.92, "size_over_90": 9.41},{"baujahr": "1975-1990", "size_under_40": 11.38, "size_40_60": 10.84, "size_60_90": 10.30, "size_over_90": 9.76},{"baujahr": "1991-2000", "size_under_40": 11.90, "size_40_60": 11.34, "size_60_90": 10.78, "size_over_90": 10.21},{"baujahr": "2001-2010", "size_under_40": 12.55, "size_40_60": 11.95, "size_60_90": 11.36, "size_over_90": 10.78},{"baujahr": "2011-2024", "size_under_40": 13.50, "size_40_60": 12.86, "size_60_90": 12.24, "size_over_90": 11.62}]
+    }
+  },
+  "history": [
+    {"year": 2020, "valid_from": "2020-04-01", "base_rent_mittel_60_90": 6.28, "base_rent_mittel_1919_1949": 6.10},
+    {"year": 2022, "valid_from": "2022-04-01", "base_rent_mittel_60_90": 6.82, "base_rent_mittel_1919_1949": 6.66},
+    {"year": 2024, "valid_from": "2024-04-01", "base_rent_mittel_60_90": 7.55, "base_rent_mittel_1919_1949": 7.64}
+  ]
+}

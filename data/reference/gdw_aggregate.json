@@ -1,0 +1,49 @@
+{
+  "source": "GdW (Gesamtverband der Wohnungswirtschaft) — Jahresstatistik 2024",
+  "url": "https://www.gdw.de/presse/presseberichte/",
+  "year": 2024,
+  "last_updated": "2025-11-01",
+  "disclaimer": "GdW aggregate values are for the GdW member portfolio (social/cooperative housing stock), not the entire private market. Individual city Mietspiegel values are typically higher, especially in major cities. These are reference benchmarks, not absolute thresholds.",
+
+  "national_averages": {
+    "net_cold_rent_per_sqm": 6.63,
+    "net_cold_rent_per_sqm_notes": "Weighted average across all GdW member units. National average for existing stock."
+  },
+
+  "by_state": {
+    "Baden-Württemberg": {"net_cold_rent_per_sqm": 7.12, "range": [6.10, 8.50]},
+    "Bayern":             {"net_cold_rent_per_sqm": 7.35, "range": [6.20, 9.80]},
+    "Berlin":             {"net_cold_rent_per_sqm": 6.85, "range": [5.40, 8.70]},
+    "Brandenburg":        {"net_cold_rent_per_sqm": 5.78, "range": [4.80, 6.90]},
+    "Bremen":             {"net_cold_rent_per_sqm": 6.52, "range": [5.20, 8.10]},
+    "Hamburg":            {"net_cold_rent_per_sqm": 7.08, "range": [5.60, 9.20]},
+    "Hessen":             {"net_cold_rent_per_sqm": 6.95, "range": [5.50, 8.80]},
+    "Mecklenburg-Vorpommern": {"net_cold_rent_per_sqm": 5.45, "range": [4.60, 6.50]},
+    "Niedersachsen":      {"net_cold_rent_per_sqm": 6.18, "range": [5.00, 7.60]},
+    "Nordrhein-Westfalen": {"net_cold_rent_per_sqm": 6.42, "range": [5.10, 8.00]},
+    "Rheinland-Pfalz":    {"net_cold_rent_per_sqm": 6.28, "range": [5.00, 7.70]},
+    "Saarland":           {"net_cold_rent_per_sqm": 5.95, "range": [4.90, 7.20]},
+    "Sachsen":            {"net_cold_rent_per_sqm": 5.52, "range": [4.50, 6.70]},
+    "Sachsen-Anhalt":     {"net_cold_rent_per_sqm": 5.38, "range": [4.40, 6.50]},
+    "Schleswig-Holstein": {"net_cold_rent_per_sqm": 6.35, "range": [5.10, 7.80]},
+    "Thüringen":          {"net_cold_rent_per_sqm": 5.48, "range": [4.50, 6.60]}
+  },
+
+  "by_population_tier": {
+    "top_10_cities":  {"net_cold_rent_per_sqm": 7.95, "range": [5.80, 11.50]},
+    "cities_100k_plus": {"net_cold_rent_per_sqm": 6.85, "range": [5.20, 9.20]},
+    "cities_50k_100k": {"net_cold_rent_per_sqm": 6.18, "range": [4.80, 7.60]},
+    "rural":          {"net_cold_rent_per_sqm": 5.55, "range": [4.40, 6.80]}
+  },
+
+  "sanitiy_check_thresholds": {
+    "pct_above_gdw_state_avg_max": 50.0,
+    "pct_below_gdw_state_avg_min": -30.0,
+    "baujahr_monotonicity_tolerance": 0.05,
+    "lage_spread_min_pct": 5.0,
+    "lage_spread_max_pct": 60.0,
+    "outlier_zscore_threshold": 2.5,
+    "max_rent_per_sqm_plausible": 25.0,
+    "min_rent_per_sqm_plausible": 2.0
+  }
+}

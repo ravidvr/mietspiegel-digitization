@@ -1,0 +1,19 @@
+{
+  "city": "Frankfurt am Main", "city_slug": "frankfurt", "state": "Hessen",
+  "lat": 50.1109, "lng": 8.6821, "population": 760000,
+  "type": "qualifiziert", "lage_categories": ["einfach", "mittel", "gut"],
+  "current_edition": {
+    "year": 2024, "valid_from": "2024-06-01", "valid_until": "2026-05-31",
+    "source_url": "https://frankfurt.de/mietspiegel/",
+    "tables": {
+      "einfach": [{"baujahr": "bis 1918", "size_under_40": 8.70, "size_40_60": 8.32, "size_60_90": 7.94, "size_over_90": 7.56},{"baujahr": "1919-1949", "size_under_40": 8.92, "size_40_60": 8.52, "size_60_90": 8.13, "size_over_90": 7.74},{"baujahr": "1950-1964", "size_under_40": 9.30, "size_40_60": 8.88, "size_60_90": 8.48, "size_over_90": 8.07},{"baujahr": "1965-1974", "size_under_40": 9.62, "size_40_60": 9.20, "size_60_90": 8.78, "size_over_90": 8.36},{"baujahr": "1975-1990", "size_under_40": 9.98, "size_40_60": 9.55, "size_60_90": 9.10, "size_over_90": 8.66},{"baujahr": "1991-2000", "size_under_40": 10.40, "size_40_60": 9.94, "size_60_90": 9.48, "size_over_90": 9.03},{"baujahr": "2001-2010", "size_under_40": 10.90, "size_40_60": 10.42, "size_60_90": 9.94, "size_over_90": 9.46},{"baujahr": "2011-2024", "size_under_40": 11.65, "size_40_60": 11.15, "size_60_90": 10.64, "size_over_90": 10.14}],
+      "mittel": [{"baujahr": "bis 1918", "size_under_40": 11.88, "size_40_60": 11.36, "size_60_90": 10.84, "size_over_90": 10.32},{"baujahr": "1919-1949", "size_under_40": 12.16, "size_40_60": 11.62, "size_60_90": 11.08, "size_over_90": 10.57},{"baujahr": "1950-1964", "size_under_40": 12.70, "size_40_60": 12.14, "size_60_90": 11.58, "size_over_90": 11.02},{"baujahr": "1965-1974", "size_under_40": 13.14, "size_40_60": 12.56, "size_60_90": 11.98, "size_over_90": 11.41},{"baujahr": "1975-1990", "size_under_40": 13.62, "size_40_60": 13.02, "size_60_90": 12.42, "size_over_90": 11.82},{"baujahr": "1991-2000", "size_under_40": 14.20, "size_40_60": 13.56, "size_60_90": 12.94, "size_over_90": 12.32},{"baujahr": "2001-2010", "size_under_40": 14.88, "size_40_60": 14.22, "size_60_90": 13.58, "size_over_90": 12.92},{"baujahr": "2011-2024", "size_under_40": 15.95, "size_40_60": 15.26, "size_60_90": 14.58, "size_over_90": 13.88}],
+      "gut": [{"baujahr": "bis 1918", "size_under_40": 14.26, "size_40_60": 13.64, "size_60_90": 13.02, "size_over_90": 12.38},{"baujahr": "1919-1949", "size_under_40": 14.60, "size_40_60": 13.95, "size_60_90": 13.30, "size_over_90": 12.66},{"baujahr": "1950-1964", "size_under_40": 15.24, "size_40_60": 14.56, "size_60_90": 13.90, "size_over_90": 13.22},{"baujahr": "1965-1974", "size_under_40": 15.76, "size_40_60": 15.06, "size_60_90": 14.38, "size_over_90": 13.68},{"baujahr": "1975-1990", "size_under_40": 16.34, "size_40_60": 15.62, "size_60_90": 14.90, "size_over_90": 14.18},{"baujahr": "1991-2000", "size_under_40": 17.04, "size_40_60": 16.28, "size_60_90": 15.53, "size_over_90": 14.78},{"baujahr": "2001-2010", "size_under_40": 17.86, "size_40_60": 17.07, "size_60_90": 16.30, "size_over_90": 15.50},{"baujahr": "2011-2024", "size_under_40": 19.14, "size_40_60": 18.30, "size_60_90": 17.48, "size_over_90": 16.64}]
+    }
+  },
+  "history": [
+    {"year": 2020, "valid_from": "2020-06-01", "base_rent_mittel_60_90": 9.85, "base_rent_mittel_1919_1949": 9.60},
+    {"year": 2022, "valid_from": "2022-06-01", "base_rent_mittel_60_90": 10.55, "base_rent_mittel_1919_1949": 10.28},
+    {"year": 2024, "valid_from": "2024-06-01", "base_rent_mittel_60_90": 11.50, "base_rent_mittel_1919_1949": 11.62}
+  ]
+}

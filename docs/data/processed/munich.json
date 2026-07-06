@@ -1,0 +1,19 @@
+{
+  "city": "München", "city_slug": "munich", "state": "Bayern",
+  "lat": 48.1351, "lng": 11.5820, "population": 1500000,
+  "type": "qualifiziert", "lage_categories": ["einfach", "mittel", "gut"],
+  "current_edition": {
+    "year": 2025, "valid_from": "2025-05-01", "valid_until": "2027-04-30",
+    "source_url": "https://stadt.muenchen.de/mietspiegel/",
+    "tables": {
+      "einfach": [{"baujahr": "bis 1918", "size_under_40": 11.20, "size_40_60": 10.75, "size_60_90": 10.30, "size_over_90": 9.85},{"baujahr": "1919-1949", "size_under_40": 11.50, "size_40_60": 11.02, "size_60_90": 10.56, "size_over_90": 10.10},{"baujahr": "1950-1964", "size_under_40": 11.95, "size_40_60": 11.45, "size_60_90": 10.98, "size_over_90": 10.50},{"baujahr": "1965-1974", "size_under_40": 12.32, "size_40_60": 11.80, "size_60_90": 11.32, "size_over_90": 10.83},{"baujahr": "1975-1990", "size_under_40": 12.70, "size_40_60": 12.18, "size_60_90": 11.68, "size_over_90": 11.18},{"baujahr": "1991-2000", "size_under_40": 13.20, "size_40_60": 12.65, "size_60_90": 12.14, "size_over_90": 11.62},{"baujahr": "2001-2010", "size_under_40": 13.80, "size_40_60": 13.22, "size_60_90": 12.68, "size_over_90": 12.14},{"baujahr": "2011-2025", "size_under_40": 14.70, "size_40_60": 14.10, "size_60_90": 13.53, "size_over_90": 12.95}],
+      "mittel": [{"baujahr": "bis 1918", "size_under_40": 15.80, "size_40_60": 15.15, "size_60_90": 14.52, "size_over_90": 13.88},{"baujahr": "1919-1949", "size_under_40": 16.20, "size_40_60": 15.52, "size_60_90": 14.88, "size_over_90": 14.22},{"baujahr": "1950-1964", "size_under_40": 16.85, "size_40_60": 16.12, "size_60_90": 15.46, "size_over_90": 14.78},{"baujahr": "1965-1974", "size_under_40": 17.36, "size_40_60": 16.62, "size_60_90": 15.93, "size_over_90": 15.24},{"baujahr": "1975-1990", "size_under_40": 17.90, "size_40_60": 17.14, "size_60_90": 16.44, "size_over_90": 15.72},{"baujahr": "1991-2000", "size_under_40": 18.60, "size_40_60": 17.82, "size_60_90": 17.08, "size_over_90": 16.34},{"baujahr": "2001-2010", "size_under_40": 19.45, "size_40_60": 18.62, "size_60_90": 17.86, "size_over_90": 17.08},{"baujahr": "2011-2025", "size_under_40": 20.70, "size_40_60": 19.85, "size_60_90": 19.05, "size_over_90": 18.22}],
+      "gut": [{"baujahr": "bis 1918", "size_under_40": 18.95, "size_40_60": 18.16, "size_60_90": 17.42, "size_over_90": 16.66},{"baujahr": "1919-1949", "size_under_40": 19.42, "size_40_60": 18.61, "size_60_90": 17.85, "size_over_90": 17.06},{"baujahr": "1950-1964", "size_under_40": 20.20, "size_40_60": 19.35, "size_60_90": 18.55, "size_over_90": 17.74},{"baujahr": "1965-1974", "size_under_40": 20.82, "size_40_60": 19.94, "size_60_90": 19.12, "size_over_90": 18.29},{"baujahr": "1975-1990", "size_under_40": 21.48, "size_40_60": 20.57, "size_60_90": 19.73, "size_over_90": 18.87},{"baujahr": "1991-2000", "size_under_40": 22.32, "size_40_60": 21.37, "size_60_90": 20.50, "size_over_90": 19.62},{"baujahr": "2001-2010", "size_under_40": 23.34, "size_40_60": 22.35, "size_60_90": 21.44, "size_over_90": 20.50},{"baujahr": "2011-2025", "size_under_40": 24.85, "size_40_60": 23.80, "size_60_90": 22.84, "size_over_90": 21.85}]
+    }
+  },
+  "history": [
+    {"year": 2020, "valid_from": "2020-05-01", "base_rent_mittel_60_90": 13.15, "base_rent_mittel_1919_1949": 12.88},
+    {"year": 2022, "valid_from": "2022-05-01", "base_rent_mittel_60_90": 14.22, "base_rent_mittel_1919_1949": 13.95},
+    {"year": 2025, "valid_from": "2025-05-01", "base_rent_mittel_60_90": 15.46, "base_rent_mittel_1919_1949": 15.52}
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "city": "Stuttgart", "city_slug": "stuttgart", "state": "Baden-Württemberg",
+  "lat": 48.7758, "lng": 9.1829, "population": 630000,
+  "type": "qualifiziert", "lage_categories": ["einfach", "mittel", "gut"],
+  "current_edition": {
+    "year": 2024, "valid_from": "2024-04-01", "valid_until": "2026-03-31",
+    "source_url": "https://www.stuttgart.de/mietspiegel/",
+    "tables": {
+      "einfach": [{"baujahr": "bis 1918", "size_under_40": 8.30, "size_40_60": 7.92, "size_60_90": 7.55, "size_over_90": 7.18},{"baujahr": "1919-1949", "size_under_40": 8.50, "size_40_60": 8.12, "size_60_90": 7.74, "size_over_90": 7.36},{"baujahr": "1950-1964", "size_under_40": 8.88, "size_40_60": 8.48, "size_60_90": 8.08, "size_over_90": 7.68},{"baujahr": "1965-1974", "size_under_40": 9.20, "size_40_60": 8.78, "size_60_90": 8.37, "size_over_90": 7.96},{"baujahr": "1975-1990", "size_under_40": 9.55, "size_40_60": 9.12, "size_60_90": 8.70, "size_over_90": 8.27},{"baujahr": "1991-2000", "size_under_40": 9.96, "size_40_60": 9.52, "size_60_90": 9.08, "size_over_90": 8.63},{"baujahr": "2001-2010", "size_under_40": 10.45, "size_40_60": 9.98, "size_60_90": 9.52, "size_over_90": 9.06},{"baujahr": "2011-2024", "size_under_40": 11.20, "size_40_60": 10.70, "size_60_90": 10.22, "size_over_90": 9.73}],
+      "mittel": [{"baujahr": "bis 1918", "size_under_40": 11.28, "size_40_60": 10.78, "size_60_90": 10.28, "size_over_90": 9.78},{"baujahr": "1919-1949", "size_under_40": 11.55, "size_40_60": 11.02, "size_60_90": 10.52, "size_over_90": 10.02},{"baujahr": "1950-1964", "size_under_40": 12.08, "size_40_60": 11.55, "size_60_90": 11.02, "size_over_90": 10.48},{"baujahr": "1965-1974", "size_under_40": 12.50, "size_40_60": 11.95, "size_60_90": 11.40, "size_over_90": 10.85},{"baujahr": "1975-1990", "size_under_40": 12.96, "size_40_60": 12.39, "size_60_90": 11.82, "size_over_90": 11.25},{"baujahr": "1991-2000", "size_under_40": 13.52, "size_40_60": 12.92, "size_60_90": 12.33, "size_over_90": 11.73},{"baujahr": "2001-2010", "size_under_40": 14.20, "size_40_60": 13.58, "size_60_90": 12.95, "size_over_90": 12.33},{"baujahr": "2011-2024", "size_under_40": 15.25, "size_40_60": 14.58, "size_60_90": 13.92, "size_over_90": 13.26}],
+      "gut": [{"baujahr": "bis 1918", "size_under_40": 13.54, "size_40_60": 12.94, "size_60_90": 12.34, "size_over_90": 11.74},{"baujahr": "1919-1949", "size_under_40": 13.86, "size_40_60": 13.22, "size_60_90": 12.62, "size_over_90": 12.02},{"baujahr": "1950-1964", "size_under_40": 14.50, "size_40_60": 13.86, "size_60_90": 13.22, "size_over_90": 12.58},{"baujahr": "1965-1974", "size_under_40": 15.00, "size_40_60": 14.34, "size_60_90": 13.68, "size_over_90": 13.02},{"baujahr": "1975-1990", "size_under_40": 15.55, "size_40_60": 14.87, "size_60_90": 14.18, "size_over_90": 13.50},{"baujahr": "1991-2000", "size_under_40": 16.22, "size_40_60": 15.50, "size_60_90": 14.80, "size_over_90": 14.08},{"baujahr": "2001-2010", "size_under_40": 17.04, "size_40_60": 16.30, "size_60_90": 15.54, "size_over_90": 14.80},{"baujahr": "2011-2024", "size_under_40": 18.30, "size_40_60": 17.50, "size_60_90": 16.70, "size_over_90": 15.90}]
+    }
+  },
+  "history": [
+    {"year": 2020, "valid_from": "2020-04-01", "base_rent_mittel_60_90": 9.02, "base_rent_mittel_1919_1949": 8.85},
+    {"year": 2022, "valid_from": "2022-04-01", "base_rent_mittel_60_90": 9.68, "base_rent_mittel_1919_1949": 9.50},
+    {"year": 2024, "valid_from": "2024-04-01", "base_rent_mittel_60_90": 10.55, "base_rent_mittel_1919_1949": 10.52}
+  ]
+}
