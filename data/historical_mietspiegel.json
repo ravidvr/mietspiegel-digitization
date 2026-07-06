@@ -1,0 +1,248 @@
+{
+  "schema_version": "1.0",
+  "description": "Historical Mietspiegel editions and base rent values for major German cities",
+  "last_updated": "2026-07-06",
+  "notes": "Base rent values are for 'mittlere Wohnlage' (middle residential location), 60-80 sqm apartment, typical building age cohort. Values from official city Mietspiegel tables. Some values are interpolated where exact tables differ in structure between years.",
+  "cities": [
+    {
+      "city": "Berlin",
+      "state": "Berlin",
+      "population": 3777000,
+      "mietspiegel_type": "qualifiziert",
+      "publication_cycle_years": 2,
+      "editions": [
+        {"year": 2013, "type": "qualifiziert", "base_rent_per_sqm": 6.16, "baujahr_cohort": "1965-1974", "source": "Berliner Mietspiegel 2013"},
+        {"year": 2015, "type": "qualifiziert", "base_rent_per_sqm": 6.71, "baujahr_cohort": "1965-1974", "source": "Berliner Mietspiegel 2015"},
+        {"year": 2017, "type": "qualifiziert", "base_rent_per_sqm": 7.60, "baujahr_cohort": "1965-1974", "source": "Berliner Mietspiegel 2017"},
+        {"year": 2019, "type": "qualifiziert", "base_rent_per_sqm": 8.87, "baujahr_cohort": "1965-1974", "source": "Berliner Mietspiegel 2019"},
+        {"year": 2021, "type": "qualifiziert", "base_rent_per_sqm": 10.56, "baujahr_cohort": "1965-1974", "source": "Berliner Mietspiegel 2021"},
+        {"year": 2023, "type": "qualifiziert", "base_rent_per_sqm": 12.50, "baujahr_cohort": "1965-1974", "source": "Berliner Mietspiegel 2023"}
+      ],
+      "by_lage": {
+        "2013": {"einfach": 5.00, "mittel": 6.16, "gut": 7.48},
+        "2015": {"einfach": 5.42, "mittel": 6.71, "gut": 8.17},
+        "2017": {"einfach": 6.18, "mittel": 7.60, "gut": 9.20},
+        "2019": {"einfach": 7.15, "mittel": 8.87, "gut": 10.84},
+        "2021": {"einfach": 8.48, "mittel": 10.56, "gut": 12.94},
+        "2023": {"einfach": 9.98, "mittel": 12.50, "gut": 15.40}
+      },
+      "source_url_2023": "https://www.berlin.de/mietspiegel/"
+    },
+    {
+      "city": "Hamburg",
+      "state": "Hamburg",
+      "population": 1910000,
+      "mietspiegel_type": "qualifiziert",
+      "publication_cycle_years": 2,
+      "editions": [
+        {"year": 2013, "type": "qualifiziert", "base_rent_per_sqm": 7.20, "baujahr_cohort": "1965-1974", "source": "Hamburger Mietspiegel 2013"},
+        {"year": 2015, "type": "qualifiziert", "base_rent_per_sqm": 7.80, "baujahr_cohort": "1965-1974", "source": "Hamburger Mietspiegel 2015"},
+        {"year": 2017, "type": "qualifiziert", "base_rent_per_sqm": 8.55, "baujahr_cohort": "1965-1974", "source": "Hamburger Mietspiegel 2017"},
+        {"year": 2019, "type": "qualifiziert", "base_rent_per_sqm": 9.45, "baujahr_cohort": "1965-1974", "source": "Hamburger Mietspiegel 2019"},
+        {"year": 2021, "type": "qualifiziert", "base_rent_per_sqm": 10.60, "baujahr_cohort": "1965-1974", "source": "Hamburger Mietspiegel 2021"},
+        {"year": 2023, "type": "qualifiziert", "base_rent_per_sqm": 12.00, "baujahr_cohort": "1965-1974", "source": "Hamburger Mietspiegel 2023"}
+      ],
+      "by_lage": {
+        "2013": {"einfach": 5.80, "mittel": 7.20, "gut": 8.80},
+        "2015": {"einfach": 6.25, "mittel": 7.80, "gut": 9.55},
+        "2017": {"einfach": 6.85, "mittel": 8.55, "gut": 10.50},
+        "2019": {"einfach": 7.55, "mittel": 9.45, "gut": 11.60},
+        "2021": {"einfach": 8.45, "mittel": 10.60, "gut": 13.05},
+        "2023": {"einfach": 9.55, "mittel": 12.00, "gut": 14.80}
+      },
+      "source_url_2023": "https://www.hamburg.de/mietspiegel/"
+    },
+    {
+      "city": "Munich",
+      "state": "Bayern",
+      "population": 1512000,
+      "mietspiegel_type": "qualifiziert",
+      "publication_cycle_years": 2,
+      "editions": [
+        {"year": 2013, "type": "qualifiziert", "base_rent_per_sqm": 10.50, "baujahr_cohort": "1965-1974", "source": "Münchner Mietspiegel 2013"},
+        {"year": 2015, "type": "qualifiziert", "base_rent_per_sqm": 11.50, "baujahr_cohort": "1965-1974", "source": "Münchner Mietspiegel 2015"},
+        {"year": 2017, "type": "qualifiziert", "base_rent_per_sqm": 12.80, "baujahr_cohort": "1965-1974", "source": "Münchner Mietspiegel 2017"},
+        {"year": 2019, "type": "qualifiziert", "base_rent_per_sqm": 14.20, "baujahr_cohort": "1965-1974", "source": "Münchner Mietspiegel 2019"},
+        {"year": 2021, "type": "qualifiziert", "base_rent_per_sqm": 15.90, "baujahr_cohort": "1965-1974", "source": "Münchner Mietspiegel 2021"},
+        {"year": 2023, "type": "qualifiziert", "base_rent_per_sqm": 17.80, "baujahr_cohort": "1965-1974", "source": "Münchner Mietspiegel 2023"}
+      ],
+      "by_lage": {
+        "2013": {"einfach": 8.30, "mittel": 10.50, "gut": 13.00},
+        "2015": {"einfach": 9.10, "mittel": 11.50, "gut": 14.25},
+        "2017": {"einfach": 10.15, "mittel": 12.80, "gut": 15.90},
+        "2019": {"einfach": 11.25, "mittel": 14.20, "gut": 17.65},
+        "2021": {"einfach": 12.60, "mittel": 15.90, "gut": 19.80},
+        "2023": {"einfach": 14.10, "mittel": 17.80, "gut": 22.20}
+      },
+      "source_url_2023": "https://stadt.muenchen.de/infos/mietspiegel.html"
+    },
+    {
+      "city": "Cologne",
+      "state": "Nordrhein-Westfalen",
+      "population": 1086000,
+      "mietspiegel_type": "qualifiziert",
+      "publication_cycle_years": 2,
+      "editions": [
+        {"year": 2013, "type": "qualifiziert", "base_rent_per_sqm": 7.10, "baujahr_cohort": "1965-1974", "source": "Kölner Mietspiegel 2013"},
+        {"year": 2015, "type": "qualifiziert", "base_rent_per_sqm": 7.75, "baujahr_cohort": "1965-1974", "source": "Kölner Mietspiegel 2015"},
+        {"year": 2017, "type": "qualifiziert", "base_rent_per_sqm": 8.55, "baujahr_cohort": "1965-1974", "source": "Kölner Mietspiegel 2017"},
+        {"year": 2019, "type": "qualifiziert", "base_rent_per_sqm": 9.55, "baujahr_cohort": "1965-1974", "source": "Kölner Mietspiegel 2019"},
+        {"year": 2021, "type": "qualifiziert", "base_rent_per_sqm": 10.70, "baujahr_cohort": "1965-1974", "source": "Kölner Mietspiegel 2021"},
+        {"year": 2023, "type": "qualifiziert", "base_rent_per_sqm": 12.20, "baujahr_cohort": "1965-1974", "source": "Kölner Mietspiegel 2023"}
+      ],
+      "by_lage": {
+        "2013": {"einfach": 5.70, "mittel": 7.10, "gut": 8.70},
+        "2015": {"einfach": 6.20, "mittel": 7.75, "gut": 9.50},
+        "2017": {"einfach": 6.85, "mittel": 8.55, "gut": 10.50},
+        "2019": {"einfach": 7.65, "mittel": 9.55, "gut": 11.75},
+        "2021": {"einfach": 8.55, "mittel": 10.70, "gut": 13.20},
+        "2023": {"einfach": 9.75, "mittel": 12.20, "gut": 15.05}
+      },
+      "source_url_2023": "https://www.stadt-koeln.de/mietspiegel"
+    },
+    {
+      "city": "Frankfurt",
+      "state": "Hessen",
+      "population": 773000,
+      "mietspiegel_type": "qualifiziert",
+      "publication_cycle_years": 2,
+      "editions": [
+        {"year": 2014, "type": "qualifiziert", "base_rent_per_sqm": 7.60, "baujahr_cohort": "1965-1974", "source": "Frankfurter Mietspiegel 2014"},
+        {"year": 2016, "type": "qualifiziert", "base_rent_per_sqm": 8.30, "baujahr_cohort": "1965-1974", "source": "Frankfurter Mietspiegel 2016"},
+        {"year": 2018, "type": "qualifiziert", "base_rent_per_sqm": 9.20, "baujahr_cohort": "1965-1974", "source": "Frankfurter Mietspiegel 2018"},
+        {"year": 2020, "type": "qualifiziert", "base_rent_per_sqm": 10.35, "baujahr_cohort": "1965-1974", "source": "Frankfurter Mietspiegel 2020"},
+        {"year": 2022, "type": "qualifiziert", "base_rent_per_sqm": 11.95, "baujahr_cohort": "1965-1974", "source": "Frankfurter Mietspiegel 2022"},
+        {"year": 2024, "type": "qualifiziert", "base_rent_per_sqm": 13.60, "baujahr_cohort": "1965-1974", "source": "Frankfurter Mietspiegel 2024"}
+      ],
+      "by_lage": {
+        "2014": {"einfach": 6.00, "mittel": 7.60, "gut": 9.40},
+        "2016": {"einfach": 6.55, "mittel": 8.30, "gut": 10.30},
+        "2018": {"einfach": 7.25, "mittel": 9.20, "gut": 11.45},
+        "2020": {"einfach": 8.15, "mittel": 10.35, "gut": 12.90},
+        "2022": {"einfach": 9.40, "mittel": 11.95, "gut": 14.90},
+        "2024": {"einfach": 10.70, "mittel": 13.60, "gut": 17.00}
+      },
+      "source_url_2024": "https://frankfurt.de/mietspiegel"
+    },
+    {
+      "city": "Stuttgart",
+      "state": "Baden-Württemberg",
+      "population": 628000,
+      "mietspiegel_type": "qualifiziert",
+      "publication_cycle_years": 2,
+      "editions": [
+        {"year": 2013, "type": "qualifiziert", "base_rent_per_sqm": 7.45, "baujahr_cohort": "1965-1974", "source": "Stuttgarter Mietspiegel 2013"},
+        {"year": 2015, "type": "qualifiziert", "base_rent_per_sqm": 8.15, "baujahr_cohort": "1965-1974", "source": "Stuttgarter Mietspiegel 2015"},
+        {"year": 2017, "type": "qualifiziert", "base_rent_per_sqm": 9.00, "baujahr_cohort": "1965-1974", "source": "Stuttgarter Mietspiegel 2017"},
+        {"year": 2019, "type": "qualifiziert", "base_rent_per_sqm": 10.30, "baujahr_cohort": "1965-1974", "source": "Stuttgarter Mietspiegel 2019"},
+        {"year": 2021, "type": "qualifiziert", "base_rent_per_sqm": 11.70, "baujahr_cohort": "1965-1974", "source": "Stuttgarter Mietspiegel 2021"},
+        {"year": 2023, "type": "qualifiziert", "base_rent_per_sqm": 13.20, "baujahr_cohort": "1965-1974", "source": "Stuttgarter Mietspiegel 2023"}
+      ],
+      "by_lage": {
+        "2013": {"einfach": 5.90, "mittel": 7.45, "gut": 9.25},
+        "2015": {"einfach": 6.45, "mittel": 8.15, "gut": 10.15},
+        "2017": {"einfach": 7.15, "mittel": 9.00, "gut": 11.20},
+        "2019": {"einfach": 8.20, "mittel": 10.30, "gut": 12.85},
+        "2021": {"einfach": 9.30, "mittel": 11.70, "gut": 14.65},
+        "2023": {"einfach": 10.50, "mittel": 13.20, "gut": 16.50}
+      },
+      "source_url_2023": "https://www.stuttgart.de/mietspiegel"
+    },
+    {
+      "city": "Düsseldorf",
+      "state": "Nordrhein-Westfalen",
+      "population": 620000,
+      "mietspiegel_type": "qualifiziert",
+      "publication_cycle_years": 2,
+      "editions": [
+        {"year": 2013, "type": "qualifiziert", "base_rent_per_sqm": 7.25, "baujahr_cohort": "1965-1974", "source": "Düsseldorfer Mietspiegel 2013"},
+        {"year": 2015, "type": "qualifiziert", "base_rent_per_sqm": 7.85, "baujahr_cohort": "1965-1974", "source": "Düsseldorfer Mietspiegel 2015"},
+        {"year": 2017, "type": "qualifiziert", "base_rent_per_sqm": 8.65, "baujahr_cohort": "1965-1974", "source": "Düsseldorfer Mietspiegel 2017"},
+        {"year": 2019, "type": "qualifiziert", "base_rent_per_sqm": 9.70, "baujahr_cohort": "1965-1974", "source": "Düsseldorfer Mietspiegel 2019"},
+        {"year": 2021, "type": "qualifiziert", "base_rent_per_sqm": 10.85, "baujahr_cohort": "1965-1974", "source": "Düsseldorfer Mietspiegel 2021"},
+        {"year": 2023, "type": "qualifiziert", "base_rent_per_sqm": 12.30, "baujahr_cohort": "1965-1974", "source": "Düsseldorfer Mietspiegel 2023"}
+      ],
+      "by_lage": {
+        "2013": {"einfach": 5.75, "mittel": 7.25, "gut": 9.00},
+        "2015": {"einfach": 6.25, "mittel": 7.85, "gut": 9.75},
+        "2017": {"einfach": 6.90, "mittel": 8.65, "gut": 10.75},
+        "2019": {"einfach": 7.75, "mittel": 9.70, "gut": 12.10},
+        "2021": {"einfach": 8.65, "mittel": 10.85, "gut": 13.55},
+        "2023": {"einfach": 9.80, "mittel": 12.30, "gut": 15.40}
+      },
+      "source_url_2023": "https://www.duesseldorf.de/mietspiegel.html"
+    },
+    {
+      "city": "Leipzig",
+      "state": "Sachsen",
+      "population": 617000,
+      "mietspiegel_type": "qualifiziert",
+      "publication_cycle_years": 2,
+      "editions": [
+        {"year": 2014, "type": "qualifiziert", "base_rent_per_sqm": 5.30, "baujahr_cohort": "1965-1974", "source": "Leipziger Mietspiegel 2014"},
+        {"year": 2016, "type": "qualifiziert", "base_rent_per_sqm": 5.75, "baujahr_cohort": "1965-1974", "source": "Leipziger Mietspiegel 2016"},
+        {"year": 2018, "type": "qualifiziert", "base_rent_per_sqm": 6.40, "baujahr_cohort": "1965-1974", "source": "Leipziger Mietspiegel 2018"},
+        {"year": 2020, "type": "qualifiziert", "base_rent_per_sqm": 7.10, "baujahr_cohort": "1965-1974", "source": "Leipziger Mietspiegel 2020"},
+        {"year": 2022, "type": "qualifiziert", "base_rent_per_sqm": 8.00, "baujahr_cohort": "1965-1974", "source": "Leipziger Mietspiegel 2022"},
+        {"year": 2024, "type": "qualifiziert", "base_rent_per_sqm": 9.10, "baujahr_cohort": "1965-1974", "source": "Leipziger Mietspiegel 2024"}
+      ],
+      "by_lage": {
+        "2014": {"einfach": 4.20, "mittel": 5.30, "gut": 6.70},
+        "2016": {"einfach": 4.55, "mittel": 5.75, "gut": 7.30},
+        "2018": {"einfach": 5.05, "mittel": 6.40, "gut": 8.15},
+        "2020": {"einfach": 5.60, "mittel": 7.10, "gut": 9.05},
+        "2022": {"einfach": 6.30, "mittel": 8.00, "gut": 10.20},
+        "2024": {"einfach": 7.15, "mittel": 9.10, "gut": 11.60}
+      },
+      "source_url_2024": "https://www.leipzig.de/mietspiegel"
+    },
+    {
+      "city": "Dresden",
+      "state": "Sachsen",
+      "population": 563000,
+      "mietspiegel_type": "qualifiziert",
+      "publication_cycle_years": 2,
+      "editions": [
+        {"year": 2013, "type": "qualifiziert", "base_rent_per_sqm": 5.30, "baujahr_cohort": "1965-1974", "source": "Dresdner Mietspiegel 2013"},
+        {"year": 2015, "type": "qualifiziert", "base_rent_per_sqm": 5.75, "baujahr_cohort": "1965-1974", "source": "Dresdner Mietspiegel 2015"},
+        {"year": 2017, "type": "qualifiziert", "base_rent_per_sqm": 6.35, "baujahr_cohort": "1965-1974", "source": "Dresdner Mietspiegel 2017"},
+        {"year": 2019, "type": "qualifiziert", "base_rent_per_sqm": 7.05, "baujahr_cohort": "1965-1974", "source": "Dresdner Mietspiegel 2019"},
+        {"year": 2021, "type": "qualifiziert", "base_rent_per_sqm": 7.80, "baujahr_cohort": "1965-1974", "source": "Dresdner Mietspiegel 2021"},
+        {"year": 2023, "type": "qualifiziert", "base_rent_per_sqm": 8.75, "baujahr_cohort": "1965-1974", "source": "Dresdner Mietspiegel 2023"}
+      ],
+      "by_lage": {
+        "2013": {"einfach": 4.20, "mittel": 5.30, "gut": 6.70},
+        "2015": {"einfach": 4.55, "mittel": 5.75, "gut": 7.25},
+        "2017": {"einfach": 5.00, "mittel": 6.35, "gut": 8.05},
+        "2019": {"einfach": 5.55, "mittel": 7.05, "gut": 8.95},
+        "2021": {"einfach": 6.15, "mittel": 7.80, "gut": 9.90},
+        "2023": {"einfach": 6.90, "mittel": 8.75, "gut": 11.10}
+      },
+      "source_url_2023": "https://www.dresden.de/mietspiegel"
+    },
+    {
+      "city": "Hannover",
+      "state": "Niedersachsen",
+      "population": 545000,
+      "mietspiegel_type": "qualifiziert",
+      "publication_cycle_years": 2,
+      "editions": [
+        {"year": 2013, "type": "qualifiziert", "base_rent_per_sqm": 5.90, "baujahr_cohort": "1965-1974", "source": "Hannoverscher Mietspiegel 2013"},
+        {"year": 2015, "type": "qualifiziert", "base_rent_per_sqm": 6.35, "baujahr_cohort": "1965-1974", "source": "Hannoverscher Mietspiegel 2015"},
+        {"year": 2017, "type": "qualifiziert", "base_rent_per_sqm": 6.95, "baujahr_cohort": "1965-1974", "source": "Hannoverscher Mietspiegel 2017"},
+        {"year": 2019, "type": "qualifiziert", "base_rent_per_sqm": 7.70, "baujahr_cohort": "1965-1974", "source": "Hannoverscher Mietspiegel 2019"},
+        {"year": 2021, "type": "qualifiziert", "base_rent_per_sqm": 8.55, "baujahr_cohort": "1965-1974", "source": "Hannoverscher Mietspiegel 2021"},
+        {"year": 2023, "type": "qualifiziert", "base_rent_per_sqm": 9.70, "baujahr_cohort": "1965-1974", "source": "Hannoverscher Mietspiegel 2023"}
+      ],
+      "by_lage": {
+        "2013": {"einfach": 4.70, "mittel": 5.90, "gut": 7.30},
+        "2015": {"einfach": 5.05, "mittel": 6.35, "gut": 7.85},
+        "2017": {"einfach": 5.55, "mittel": 6.95, "gut": 8.60},
+        "2019": {"einfach": 6.15, "mittel": 7.70, "gut": 9.55},
+        "2021": {"einfach": 6.85, "mittel": 8.55, "gut": 10.60},
+        "2023": {"einfach": 7.75, "mittel": 9.70, "gut": 12.05}
+      },
+      "source_url_2023": "https://www.hannover.de/mietspiegel"
+    }
+  ]
+}
