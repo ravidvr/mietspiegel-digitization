@@ -1,0 +1,152 @@
+{
+  "city": "Halle (Saale)",
+  "city_slug": "halle",
+  "slug": "halle",
+  "state": "Sachsen-Anhalt",
+  "lat": 51.4828,
+  "lng": 11.97,
+  "population": 240000,
+  "year": 2026,
+  "type": "qualifiziert",
+  "lage_categories": [
+    "einfach",
+    "mittel",
+    "gut"
+  ],
+  "baujahr_groups": [
+    "aktuell"
+  ],
+  "size_categories": [
+    "bis 40 m²",
+    "40-60 m²",
+    "60-90 m²",
+    "über 90 m²"
+  ],
+  "source_url": "https://halle.de/leben-in-halle/bauen-und-wohnen/mietspiegel",
+  "tables": [
+    {
+      "lage": "einfach",
+      "rows": [
+        {
+          "baujahr": "aktuell",
+          "bis_40": 7.86,
+          "40_60": 7.86,
+          "60_90": 7.86,
+          "ueber_90": 7.86
+        },
+        {
+          "baujahr": "aktuell",
+          "bis_40": 7.53,
+          "40_60": 7.53,
+          "60_90": 7.53,
+          "ueber_90": 7.53
+        },
+        {
+          "baujahr": "aktuell",
+          "bis_40": 7.24,
+          "40_60": 7.24,
+          "60_90": 7.24,
+          "ueber_90": 7.24
+        },
+        {
+          "baujahr": "aktuell",
+          "bis_40": 7.03,
+          "40_60": 7.03,
+          "60_90": 7.03,
+          "ueber_90": 7.03
+        },
+        {
+          "baujahr": "aktuell",
+          "bis_40": 6.83,
+          "40_60": 6.83,
+          "60_90": 6.83,
+          "ueber_90": 6.83
+        },
+        {
+          "baujahr": "aktuell",
+          "bis_40": 6.67,
+          "40_60": 6.67,
+          "60_90": 6.67,
+          "ueber_90": 6.67
+        },
+        {
+          "baujahr": "aktuell",
+          "bis_40": 6.55,
+          "40_60": 6.55,
+          "60_90": 6.55,
+          "ueber_90": 6.55
+        },
+        {
+          "baujahr": "aktuell",
+          "bis_40": 6.43,
+          "40_60": 6.43,
+          "60_90": 6.43,
+          "ueber_90": 6.43
+        },
+        {
+          "baujahr": "aktuell",
+          "bis_40": 6.34,
+          "40_60": 6.34,
+          "60_90": 6.34,
+          "ueber_90": 6.34
+        },
+        {
+          "baujahr": "aktuell",
+          "bis_40": 6.26,
+          "40_60": 6.26,
+          "60_90": 6.26,
+          "ueber_90": 6.26
+        },
+        {
+          "baujahr": "aktuell",
+          "bis_40": 6.19,
+          "40_60": 6.19,
+          "60_90": 6.19,
+          "ueber_90": 6.19
+        },
+        {
+          "baujahr": "aktuell",
+          "bis_40": 6.14,
+          "40_60": 6.14,
+          "60_90": 6.14,
+          "ueber_90": 6.14
+        },
+        {
+          "baujahr": "aktuell",
+          "bis_40": 6.14,
+          "40_60": 6.14,
+          "60_90": 6.14,
+          "ueber_90": 6.14
+        },
+        {
+          "baujahr": "aktuell",
+          "bis_40": 6.05,
+          "40_60": 6.05,
+          "60_90": 6.05,
+          "ueber_90": 6.05
+        },
+        {
+          "baujahr": "aktuell",
+          "bis_40": 6.02,
+          "40_60": 6.02,
+          "60_90": 6.02,
+          "ueber_90": 6.02
+        },
+        {
+          "baujahr": "aktuell",
+          "bis_40": 5.99,
+          "40_60": 5.99,
+          "60_90": 5.99,
+          "ueber_90": 5.99
+        },
+        {
+          "baujahr": "aktuell",
+          "bis_40": 5.97,
+          "40_60": 5.97,
+          "60_90": 5.97,
+          "ueber_90": 5.97
+        }
+      ]
+    }
+  ]
+}

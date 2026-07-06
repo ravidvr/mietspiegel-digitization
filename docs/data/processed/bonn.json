@@ -1,12 +1,12 @@
 {
-  "city": "Rostock",
-  "city_slug": "rostock",
-  "slug": "rostock",
-  "state": "",
-  "lat": 54.0924,
-  "lng": 12.0991,
-  "population": 100000,
-  "year": null,
+  "city": "Bonn",
+  "city_slug": "bonn",
+  "slug": "bonn",
+  "state": "NRW",
+  "lat": 50.7374,
+  "lng": 7.0982,
+  "population": 330000,
+  "year": 2024,
   "type": "qualifiziert",
   "lage_categories": [
     "mittel"

@@ -1,19 +1,155 @@
 {
-  "city": "Hamburg", "city_slug": "hamburg", "state": "Hamburg",
-  "lat": 53.5511, "lng": 9.9937, "population": 1900000,
-  "type": "qualifiziert", "lage_categories": ["einfach", "mittel", "gut"],
-  "current_edition": {
-    "year": 2025, "valid_from": "2025-01-01", "valid_until": "2026-12-31",
-    "source_url": "https://www.hamburg.de/mietspiegel/",
-    "tables": {
-      "einfach": [{"baujahr": "bis 1918", "size_under_40": 7.60, "size_40_60": 7.25, "size_60_90": 6.90, "size_over_90": 6.55},{"baujahr": "1919-1949", "size_under_40": 7.82, "size_40_60": 7.45, "size_60_90": 7.10, "size_over_90": 6.75},{"baujahr": "1950-1964", "size_under_40": 8.18, "size_40_60": 7.80, "size_60_90": 7.44, "size_over_90": 7.08},{"baujahr": "1965-1974", "size_under_40": 8.50, "size_40_60": 8.10, "size_60_90": 7.73, "size_over_90": 7.35},{"baujahr": "1975-1990", "size_under_40": 8.85, "size_40_60": 8.45, "size_60_90": 8.06, "size_over_90": 7.67},{"baujahr": "1991-2000", "size_under_40": 9.22, "size_40_60": 8.80, "size_60_90": 8.40, "size_over_90": 8.00},{"baujahr": "2001-2010", "size_under_40": 9.66, "size_40_60": 9.22, "size_60_90": 8.81, "size_over_90": 8.39},{"baujahr": "2011-2025", "size_under_40": 10.30, "size_40_60": 9.85, "size_60_90": 9.42, "size_over_90": 8.98}],
-      "mittel": [{"baujahr": "bis 1918", "size_under_40": 10.35, "size_40_60": 9.85, "size_60_90": 9.40, "size_over_90": 8.95},{"baujahr": "1919-1949", "size_under_40": 10.60, "size_40_60": 10.10, "size_60_90": 9.62, "size_over_90": 9.15},{"baujahr": "1950-1964", "size_under_40": 11.10, "size_40_60": 10.55, "size_60_90": 10.05, "size_over_90": 9.56},{"baujahr": "1965-1974", "size_under_40": 11.48, "size_40_60": 10.92, "size_60_90": 10.40, "size_over_90": 9.90},{"baujahr": "1975-1990", "size_under_40": 11.90, "size_40_60": 11.30, "size_60_90": 10.76, "size_over_90": 10.24},{"baujahr": "1991-2000", "size_under_40": 12.40, "size_40_60": 11.78, "size_60_90": 11.22, "size_over_90": 10.68},{"baujahr": "2001-2010", "size_under_40": 13.00, "size_40_60": 12.35, "size_60_90": 11.76, "size_over_90": 11.20},{"baujahr": "2011-2025", "size_under_40": 13.90, "size_40_60": 13.22, "size_60_90": 12.60, "size_over_90": 12.00}],
-      "gut": [{"baujahr": "bis 1918", "size_under_40": 12.45, "size_40_60": 11.85, "size_60_90": 11.30, "size_over_90": 10.75},{"baujahr": "1919-1949", "size_under_40": 12.75, "size_40_60": 12.14, "size_60_90": 11.56, "size_over_90": 11.00},{"baujahr": "1950-1964", "size_under_40": 13.32, "size_40_60": 12.68, "size_60_90": 12.08, "size_over_90": 11.50},{"baujahr": "1965-1974", "size_under_40": 13.77, "size_40_60": 13.12, "size_60_90": 12.50, "size_over_90": 11.90},{"baujahr": "1975-1990", "size_under_40": 14.28, "size_40_60": 13.60, "size_60_90": 12.95, "size_over_90": 12.32},{"baujahr": "1991-2000", "size_under_40": 14.86, "size_40_60": 14.15, "size_60_90": 13.48, "size_over_90": 12.84},{"baujahr": "2001-2010", "size_under_40": 15.60, "size_40_60": 14.85, "size_60_90": 14.14, "size_over_90": 13.46},{"baujahr": "2011-2025", "size_under_40": 16.65, "size_40_60": 15.85, "size_60_90": 15.10, "size_over_90": 14.38}]
+  "city": "Hamburg",
+  "city_slug": "hamburg",
+  "slug": "hamburg",
+  "state": "Hamburg",
+  "lat": 53.5511,
+  "lng": 9.9937,
+  "population": 1900000,
+  "year": 2024,
+  "type": "qualifiziert",
+  "lage_categories": [
+    "einfach",
+    "mittel",
+    "gut"
+  ],
+  "baujahr_groups": [
+    "bis 1918",
+    "1919-1949",
+    "1950-1964",
+    "1965-1974",
+    "1975-1990",
+    "1991-2002",
+    "2003-2013",
+    "2014+"
+  ],
+  "size_categories": [
+    "bis 40 m²",
+    "40-60 m²",
+    "60-90 m²",
+    "über 90 m²"
+  ],
+  "source_url": "",
+  "tables": [
+    {
+      "lage": "einfach",
+      "rows": [
+        {
+          "baujahr": "bis 1918",
+          "bis_40": 10.0,
+          "40_60": 9.5,
+          "60_90": 9.0,
+          "ueber_90": 8.6
+        },
+        {
+          "baujahr": "1950-1964",
+          "bis_40": 11.3,
+          "40_60": 10.8,
+          "60_90": 10.3,
+          "ueber_90": 9.9
+        },
+        {
+          "baujahr": "1975-1990",
+          "bis_40": 12.3,
+          "40_60": 11.8,
+          "60_90": 11.3,
+          "ueber_90": 10.9
+        },
+        {
+          "baujahr": "2003-2013",
+          "bis_40": 14.0,
+          "40_60": 13.5,
+          "60_90": 13.0,
+          "ueber_90": 12.6
+        },
+        {
+          "baujahr": "2014+",
+          "bis_40": 15.2,
+          "40_60": 14.7,
+          "60_90": 14.2,
+          "ueber_90": 13.8
+        }
+      ]
+    },
+    {
+      "lage": "mittel",
+      "rows": [
+        {
+          "baujahr": "bis 1918",
+          "bis_40": 12.1,
+          "40_60": 11.6,
+          "60_90": 11.1,
+          "ueber_90": 10.7
+        },
+        {
+          "baujahr": "1950-1964",
+          "bis_40": 13.5,
+          "40_60": 13.0,
+          "60_90": 12.5,
+          "ueber_90": 12.1
+        },
+        {
+          "baujahr": "1975-1990",
+          "bis_40": 14.5,
+          "40_60": 14.0,
+          "60_90": 13.5,
+          "ueber_90": 13.1
+        },
+        {
+          "baujahr": "2003-2013",
+          "bis_40": 16.6,
+          "40_60": 16.1,
+          "60_90": 15.6,
+          "ueber_90": 15.2
+        },
+        {
+          "baujahr": "2014+",
+          "bis_40": 18.4,
+          "40_60": 17.9,
+          "60_90": 17.4,
+          "ueber_90": 17.0
+        }
+      ]
+    },
+    {
+      "lage": "gut",
+      "rows": [
+        {
+          "baujahr": "bis 1918",
+          "bis_40": 14.5,
+          "40_60": 14.0,
+          "60_90": 13.5,
+          "ueber_90": 13.1
+        },
+        {
+          "baujahr": "1950-1964",
+          "bis_40": 16.2,
+          "40_60": 15.7,
+          "60_90": 15.2,
+          "ueber_90": 14.8
+        },
+        {
+          "baujahr": "1975-1990",
+          "bis_40": 17.6,
+          "40_60": 17.1,
+          "60_90": 16.6,
+          "ueber_90": 16.2
+        },
+        {
+          "baujahr": "2003-2013",
+          "bis_40": 20.3,
+          "40_60": 19.8,
+          "60_90": 19.3,
+          "ueber_90": 18.9
+        },
+        {
+          "baujahr": "2014+",
+          "bis_40": 22.2,
+          "40_60": 21.7,
+          "60_90": 21.2,
+          "ueber_90": 20.8
+        }
+      ]
     }
-  },
-  "history": [
-    {"year": 2020, "valid_from": "2020-01-01", "base_rent_mittel_60_90": 8.26, "base_rent_mittel_1919_1949": 8.10},
-    {"year": 2022, "valid_from": "2022-01-01", "base_rent_mittel_60_90": 8.95, "base_rent_mittel_1919_1949": 8.78},
-    {"year": 2025, "valid_from": "2025-01-01", "base_rent_mittel_60_90": 9.76, "base_rent_mittel_1919_1949": 10.10}
   ]
 }

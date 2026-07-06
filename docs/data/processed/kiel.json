@@ -1,0 +1,25 @@
+{
+  "city": "Kiel",
+  "city_slug": "kiel",
+  "slug": "kiel",
+  "state": "Schleswig-Holstein",
+  "lat": 54.3233,
+  "lng": 10.1228,
+  "population": 250000,
+  "year": 2025,
+  "type": "qualifiziert",
+  "lage_categories": [
+    "mittel"
+  ],
+  "baujahr_groups": [
+    "aktuell"
+  ],
+  "size_categories": [
+    "bis 40 m²",
+    "40-60 m²",
+    "60-90 m²",
+    "über 90 m²"
+  ],
+  "source_url": "https://www.kiel.de/de/kiel_zukunft/wohnen/mietspiegel.php",
+  "tables": []
+}

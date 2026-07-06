@@ -1,12 +1,12 @@
 {
-  "city": "Rostock",
-  "city_slug": "rostock",
-  "slug": "rostock",
-  "state": "",
-  "lat": 54.0924,
-  "lng": 12.0991,
-  "population": 100000,
-  "year": null,
+  "city": "Bielefeld",
+  "city_slug": "bielefeld",
+  "slug": "bielefeld",
+  "state": "NRW",
+  "lat": 52.0302,
+  "lng": 8.5325,
+  "population": 340000,
+  "year": 2024,
   "type": "qualifiziert",
   "lage_categories": [
     "mittel"

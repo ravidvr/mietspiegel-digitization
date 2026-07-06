@@ -1,12 +1,12 @@
 {
-  "city": "Rostock",
-  "city_slug": "rostock",
-  "slug": "rostock",
-  "state": "",
-  "lat": 54.0924,
-  "lng": 12.0991,
-  "population": 100000,
-  "year": null,
+  "city": "Mannheim",
+  "city_slug": "mannheim",
+  "slug": "mannheim",
+  "state": "Baden-Württemberg",
+  "lat": 49.4875,
+  "lng": 8.466,
+  "population": 310000,
+  "year": 2024,
   "type": "qualifiziert",
   "lage_categories": [
     "mittel"

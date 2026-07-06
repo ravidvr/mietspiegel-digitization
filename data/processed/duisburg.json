@@ -1,12 +1,12 @@
 {
-  "city": "Rostock",
-  "city_slug": "rostock",
-  "slug": "rostock",
-  "state": "",
-  "lat": 54.0924,
-  "lng": 12.0991,
-  "population": 100000,
-  "year": null,
+  "city": "Duisburg",
+  "city_slug": "duisburg",
+  "slug": "duisburg",
+  "state": "NRW",
+  "lat": 51.4344,
+  "lng": 6.7624,
+  "population": 500000,
+  "year": 2024,
   "type": "qualifiziert",
   "lage_categories": [
     "mittel"

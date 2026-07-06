@@ -1,0 +1,145 @@
+{
+  "city": "Aachen",
+  "city_slug": "aachen",
+  "slug": "aachen",
+  "state": "Nordrhein-Westfalen",
+  "lat": 50.7753,
+  "lng": 6.0839,
+  "population": 250000,
+  "year": 2024,
+  "type": "qualifiziert",
+  "lage_categories": [
+    "einfach",
+    "mittel",
+    "gut"
+  ],
+  "baujahr_groups": [
+    "aktuell"
+  ],
+  "size_categories": [
+    "bis 40 m²",
+    "40-60 m²",
+    "60-90 m²",
+    "über 90 m²"
+  ],
+  "source_url": "https://serviceportal.aachen.de/suche/-/vr-bis-detail/dienstleistung/3218/show",
+  "tables": [
+    {
+      "lage": "einfach",
+      "rows": [
+        {
+          "baujahr": "aktuell",
+          "bis_40": 12.85,
+          "40_60": 12.85,
+          "60_90": 12.85,
+          "ueber_90": 12.85
+        },
+        {
+          "baujahr": "aktuell",
+          "bis_40": 11.9,
+          "40_60": 11.9,
+          "60_90": 11.9,
+          "ueber_90": 11.9
+        },
+        {
+          "baujahr": "aktuell",
+          "bis_40": 11.14,
+          "40_60": 11.14,
+          "60_90": 11.14,
+          "ueber_90": 11.14
+        },
+        {
+          "baujahr": "aktuell",
+          "bis_40": 10.54,
+          "40_60": 10.54,
+          "60_90": 10.54,
+          "ueber_90": 10.54
+        },
+        {
+          "baujahr": "aktuell",
+          "bis_40": 10.05,
+          "40_60": 10.05,
+          "60_90": 10.05,
+          "ueber_90": 10.05
+        },
+        {
+          "baujahr": "aktuell",
+          "bis_40": 9.64,
+          "40_60": 9.64,
+          "60_90": 9.64,
+          "ueber_90": 9.64
+        },
+        {
+          "baujahr": "aktuell",
+          "bis_40": 9.3,
+          "40_60": 9.3,
+          "60_90": 9.3,
+          "ueber_90": 9.3
+        },
+        {
+          "baujahr": "aktuell",
+          "bis_40": 9.01,
+          "40_60": 9.01,
+          "60_90": 9.01,
+          "ueber_90": 9.01
+        },
+        {
+          "baujahr": "aktuell",
+          "bis_40": 8.77,
+          "40_60": 8.77,
+          "60_90": 8.77,
+          "ueber_90": 8.77
+        },
+        {
+          "baujahr": "aktuell",
+          "bis_40": 8.56,
+          "40_60": 8.56,
+          "60_90": 8.56,
+          "ueber_90": 8.56
+        },
+        {
+          "baujahr": "aktuell",
+          "bis_40": 8.37,
+          "40_60": 8.37,
+          "60_90": 8.37,
+          "ueber_90": 8.37
+        },
+        {
+          "baujahr": "aktuell",
+          "bis_40": 8.22,
+          "40_60": 8.22,
+          "60_90": 8.22,
+          "ueber_90": 8.22
+        },
+        {
+          "baujahr": "aktuell",
+          "bis_40": 8.08,
+          "40_60": 8.08,
+          "60_90": 8.08,
+          "ueber_90": 8.08
+        },
+        {
+          "baujahr": "aktuell",
+          "bis_40": 7.96,
+          "40_60": 7.96,
+          "60_90": 7.96,
+          "ueber_90": 7.96
+        },
+        {
+          "baujahr": "aktuell",
+          "bis_40": 7.86,
+          "40_60": 7.86,
+          "60_90": 7.86,
+          "ueber_90": 7.86
+        },
+        {
+          "baujahr": "aktuell",
+          "bis_40": 7.77,
+          "40_60": 7.77,
+          "60_90": 7.77,
+          "ueber_90": 7.77
+        }
+      ]
+    }
+  ]
+}

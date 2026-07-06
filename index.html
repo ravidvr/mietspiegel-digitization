@@ -443,7 +443,7 @@ table.compare-table .header-cell .city-state { font-size: 10px; color: var(--tex
 
 <script>
 // State
-const CITIES_INDEX = 'data/processed/cities.json';
+const CITIES_INDEX = 'data/processed/cities_index.json';
 const CITY_DATA_PATH = 'data/processed/';
 let cities = [];
 let cityDataCache = {};
@@ -524,7 +524,17 @@ async function showCityDetail(slug) {
 
   const meta = cities.find(c => c.slug === slug);
   const panel = document.getElementById('panel-detail');
+  
+  // Pick first available lage if 'mittel' not present
   let currentLage = 'mittel';
+  if (!data.tables || data.tables.length === 0) {
+    panel.innerHTML = `<div class="select-city-msg"><div>📊 ${data.city}<br><span style="font-size:12px;color:var(--text-dim);">Data extracted — detailed table view not yet available for this city.</span></div></div>`;
+    return;
+  }
+  const hasLage = data.tables.find(t => t.lage === currentLage);
+  if (!hasLage && data.tables.length > 0) {
+    currentLage = data.tables[0].lage;
+  }
   renderDetail(slug, data, meta, currentLage);
   window._detailData = { slug, data, meta };
 
