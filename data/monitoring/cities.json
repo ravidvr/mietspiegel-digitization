@@ -2,7 +2,7 @@
   "_meta": {
     "description": "Registry of German cities tracked for Mietspiegel updates",
     "last_updated": "2026-07-06",
-    "notes": "Add cities via PR. Each entry must have: slug, name, state, page_url. Optionally: known_editions (years already captured), pdf_pattern (regex for PDF detection)."
+    "notes": "Add cities via PR. Each entry must have: slug, name, state, page_url. Optionally: known_editions, url_status, publication_frequency_years."
   },
   "cities": [
     {
@@ -11,8 +11,9 @@
       "state": "Berlin",
       "page_url": "https://www.berlin.de/sen/wohnen/service/mietspiegel/",
       "known_editions": [2024],
+      "url_status": "reachable",
       "publication_frequency_years": 2,
-      "notes": "Berlin has both Mietspiegel 2024 (online calculator) and PDF. Page recently restructured."
+      "notes": "Uses online calculator. Page reachable but no direct PDFs exposed. Check for new PDF publications periodically."
     },
     {
       "slug": "hamburg",
@@ -20,8 +21,9 @@
       "state": "Hamburg",
       "page_url": "https://www.hamburg.de/mietspiegel/",
       "known_editions": [],
+      "url_status": "broken_404",
       "publication_frequency_years": 2,
-      "notes": "Site restructured — URL may have changed. Search via hamburg.de/suche/?q=mietspiegel as fallback."
+      "notes": "Site restructured — all known URL patterns return 404. Need manual search to find new Mietspiegel page."
     },
     {
       "slug": "munich",
@@ -29,8 +31,9 @@
       "state": "Bayern",
       "page_url": "https://stadt.muenchen.de/infos/mietspiegel.html",
       "known_editions": [],
+      "url_status": "reachable",
       "publication_frequency_years": 2,
-      "notes": "Munich has both a PDF Mietspiegel and an online Mietpreisrechner."
+      "notes": "Has both PDF Mietspiegel and online Mietpreisrechner. Monitor detected edition 2023 from Informatio-nen zum Mietspiegel 2025 Durchschnittsmieten.pdf."
     },
     {
       "slug": "cologne",
@@ -38,8 +41,9 @@
       "state": "Nordrhein-Westfalen",
       "page_url": "https://www.stadt-koeln.de/leben-in-koeln/wohnen/mietspiegel",
       "known_editions": [],
+      "url_status": "broken_404",
       "publication_frequency_years": 2,
-      "notes": ""
+      "notes": "URL returns 404. Site likely restructured."
     },
     {
       "slug": "frankfurt",
@@ -47,17 +51,19 @@
       "state": "Hessen",
       "page_url": "https://frankfurt.de/themen/wohnen/mieten/mietspiegel",
       "known_editions": [],
+      "url_status": "broken_403",
       "publication_frequency_years": 2,
-      "notes": ""
+      "notes": "Returns 403 (Cloudflare). Need alternative access method."
     },
     {
       "slug": "stuttgart",
       "name": "Stuttgart",
       "state": "Baden-Württemberg",
-      "page_url": "https://www.stuttgart.de/wohnen/mietspiegel.php",
-      "known_editions": [],
+      "page_url": "https://www.stuttgart.de/mietspiegel",
+      "known_editions": [2025],
+      "url_status": "reachable",
       "publication_frequency_years": 2,
-      "notes": ""
+      "notes": "Confirmed PDF: mietspiegel_2025_2026.pdf (8.85 MB). Edition covers 2025-2026. Page updated 03.06.2026."
     },
     {
       "slug": "duesseldorf",
@@ -65,8 +71,9 @@
       "state": "Nordrhein-Westfalen",
       "page_url": "https://www.duesseldorf.de/mietspiegel",
       "known_editions": [],
+      "url_status": "broken_404",
       "publication_frequency_years": 2,
-      "notes": ""
+      "notes": "All known URL patterns return 404. Need manual search."
     },
     {
       "slug": "leipzig",
@@ -74,8 +81,9 @@
       "state": "Sachsen",
       "page_url": "https://www.leipzig.de/wohnen/mietspiegel",
       "known_editions": [],
+      "url_status": "broken_404",
       "publication_frequency_years": 2,
-      "notes": ""
+      "notes": "URL returns 404. Site likely restructured."
     },
     {
       "slug": "dresden",
@@ -83,8 +91,9 @@
       "state": "Sachsen",
       "page_url": "https://www.dresden.de/de/leben/wohnen/mietspiegel.php",
       "known_editions": [],
+      "url_status": "broken_404",
       "publication_frequency_years": 2,
-      "notes": ""
+      "notes": "URL returns 404. Site likely restructured."
     },
     {
       "slug": "hannover",
@@ -92,8 +101,9 @@
       "state": "Niedersachsen",
       "page_url": "https://www.hannover.de/Leben-in-der-Region-Hannover/Verwaltungen-Kommunen/Die-Verwaltung-der-Landeshauptstadt-Hannover/Dezernate-und-Fachbereiche-der-LHH/Soziales-und-Wohnen/Fachbereich-Wohnungswesen/Mietspiegel",
       "known_editions": [],
+      "url_status": "broken_404",
       "publication_frequency_years": 2,
-      "notes": ""
+      "notes": "Long URL returns 404. Site likely restructured."
     },
     {
       "slug": "nuremberg",
@@ -101,6 +111,7 @@
       "state": "Bayern",
       "page_url": "https://www.nuernberg.de/internet/wohnen/mietspiegel.html",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -110,6 +121,7 @@
       "state": "Bremen",
       "page_url": "https://www.bauumwelt.bremen.de/mietspiegel-6096",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -119,6 +131,7 @@
       "state": "Nordrhein-Westfalen",
       "page_url": "https://www.duisburg.de/rathaus/rathausbuergerservice/mietspiegel.php",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -128,6 +141,7 @@
       "state": "Nordrhein-Westfalen",
       "page_url": "https://www.bochum.de/Ordnungs-und-Verwaltungsamt/Mietspiegel",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -137,6 +151,7 @@
       "state": "Nordrhein-Westfalen",
       "page_url": "https://www.wuppertal.de/rathaus/onlinedienste/mietspiegel/",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -146,6 +161,7 @@
       "state": "Nordrhein-Westfalen",
       "page_url": "https://www.bielefeld.de/mietspiegel.html",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -155,6 +171,7 @@
       "state": "Nordrhein-Westfalen",
       "page_url": "https://www.bonn.de/themen-entdecken/wohnen/mietspiegel.php",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -164,6 +181,7 @@
       "state": "Nordrhein-Westfalen",
       "page_url": "https://www.stadt-muenster.de/wohnen/mietspiegel.html",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -173,6 +191,7 @@
       "state": "Baden-Württemberg",
       "page_url": "https://www.mannheim.de/de/stadt-gestalten/planen/mietspiegel",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -182,6 +201,7 @@
       "state": "Baden-Württemberg",
       "page_url": "https://www.karlsruhe.de/bauen/mietspiegel",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -191,6 +211,7 @@
       "state": "Bayern",
       "page_url": "https://www.augsburg.de/wohnen-und-bauen/mietspiegel",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -200,6 +221,7 @@
       "state": "Hessen",
       "page_url": "https://www.wiesbaden.de/leben-in-wiesbaden/wohnen/mietspiegel/",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -209,6 +231,7 @@
       "state": "Nordrhein-Westfalen",
       "page_url": "https://www.moenchengladbach.de/de/leben-in-mg/wohnen/mietspiegel",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -218,6 +241,7 @@
       "state": "Nordrhein-Westfalen",
       "page_url": "https://www.gelsenkirchen.de/de/wohnen/mietspiegel.aspx",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -227,6 +251,7 @@
       "state": "Nordrhein-Westfalen",
       "page_url": "https://www.aachen.de/de/stadt_buerger/wohnen/mietspiegel/index.html",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -236,6 +261,7 @@
       "state": "Niedersachsen",
       "page_url": "https://www.braunschweig.de/leben/wohnen/mietspiegel.php",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -245,6 +271,7 @@
       "state": "Schleswig-Holstein",
       "page_url": "https://www.kiel.de/de/leben/wohnen/mietspiegel.php",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -254,6 +281,7 @@
       "state": "Sachsen",
       "page_url": "https://www.chemnitz.de/chemnitz/de/unsere-stadt/wohnen/mietspiegel/",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -263,6 +291,7 @@
       "state": "Sachsen-Anhalt",
       "page_url": "https://halle.de/leben-in-halle/wohnen-und-immobilien/mietspiegel/",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -272,6 +301,7 @@
       "state": "Sachsen-Anhalt",
       "page_url": "https://www.magdeburg.de/leben/wohnen/mietspiegel/",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -281,6 +311,7 @@
       "state": "Baden-Württemberg",
       "page_url": "https://www.freiburg.de/pb/1168002.html",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -290,6 +321,7 @@
       "state": "Nordrhein-Westfalen",
       "page_url": "https://www.krefeld.de/de/wohnen/mietspiegel/",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -299,6 +331,7 @@
       "state": "Rheinland-Pfalz",
       "page_url": "https://www.mainz.de/wohnen-und-umwelt/mietspiegel.php",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -308,6 +341,7 @@
       "state": "Schleswig-Holstein",
       "page_url": "https://www.luebeck.de/de/leben/wohnen/mietspiegel/",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -317,6 +351,7 @@
       "state": "Thüringen",
       "page_url": "https://www.erfurt.de/ef/de/leben/wohnen/mietspiegel/",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -326,6 +361,7 @@
       "state": "Nordrhein-Westfalen",
       "page_url": "https://www.oberhausen.de/wohnen/mietspiegel.php",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -335,6 +371,7 @@
       "state": "Mecklenburg-Vorpommern",
       "page_url": "https://rathaus.rostock.de/de/mietspiegel/",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -344,6 +381,7 @@
       "state": "Hessen",
       "page_url": "https://www.kassel.de/buerger/wohnen_und_immobilien/mietspiegel/",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -353,6 +391,7 @@
       "state": "Nordrhein-Westfalen",
       "page_url": "https://www.hagen.de/web/de/wohnen/mietspiegel/",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -362,6 +401,7 @@
       "state": "Brandenburg",
       "page_url": "https://www.potsdam.de/wohnen/mietspiegel",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -371,6 +411,7 @@
       "state": "Saarland",
       "page_url": "https://www.saarbruecken.de/leben_in_saarbruecken/wohnen/mietspiegel",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -380,6 +421,7 @@
       "state": "Nordrhein-Westfalen",
       "page_url": "https://www.hamm.de/wohnen/mietspiegel",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -389,6 +431,7 @@
       "state": "Rheinland-Pfalz",
       "page_url": "https://www.ludwigshafen.de/buergernah/wohnen/mietspiegel/",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -398,6 +441,7 @@
       "state": "Niedersachsen",
       "page_url": "https://www.oldenburg.de/startseite/leben-wohnen/wohnen/mietspiegel.html",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -407,6 +451,7 @@
       "state": "Niedersachsen",
       "page_url": "https://www.osnabrueck.de/wohnen/mietspiegel/",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -416,6 +461,7 @@
       "state": "Nordrhein-Westfalen",
       "page_url": "https://www.leverkusen.de/leben-in-leverkusen/wohnen/mietspiegel/",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -425,6 +471,7 @@
       "state": "Baden-Württemberg",
       "page_url": "https://www.heidelberg.de/wohnen/mietspiegel.html",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -434,6 +481,7 @@
       "state": "Hessen",
       "page_url": "https://www.darmstadt.de/leben-in-darmstadt/wohnen/mietspiegel/",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -443,6 +491,7 @@
       "state": "Nordrhein-Westfalen",
       "page_url": "https://www.solingen.de/de/leben/wohnen/mietspiegel/",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     },
@@ -452,6 +501,7 @@
       "state": "Bayern",
       "page_url": "https://www.regensburg.de/leben/wohnen/mietspiegel",
       "known_editions": [],
+      "url_status": "untested",
       "publication_frequency_years": 2,
       "notes": ""
     }

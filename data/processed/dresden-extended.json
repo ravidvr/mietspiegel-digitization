@@ -1,0 +1,906 @@
+{
+  "$schema": "https://raw.githubusercontent.com/ravidvr/mietspiegel-digitization/main/docs/schema.json",
+  "meta": {
+    "schema_version": "1.0.0",
+    "extracted_at": "2026-07-06T14:49:38Z",
+    "extracted_by": "manual (PDF text extraction)",
+    "extraction_notes": "Dresden uses a factor-based Mietspiegel (Tabelle 1: Basismiete by size; Tabelle 2: Baualter factors; Tabelle 3: Wohnlage factors; Tabelle 4-8: Ausstattung factors). The unified matrix values are computed as Base_Rent(size) × F_baujahr × F_lage using representative sizes per bracket. See model_type=faktor-basiert for the original factor data.",
+    "quality": {
+      "status": "validated",
+      "confidence": 0.99,
+      "issues": []
+    }
+  },
+  "city": {
+    "name": "Dresden",
+    "slug": "dresden",
+    "state": "Sachsen",
+    "region": "Sächsisches Elbland",
+    "population": 556000,
+    "coordinates": {
+      "lat": 51.0504,
+      "lng": 13.7373
+    }
+  },
+  "source": {
+    "title": "Dresdner Mietspiegel 2025",
+    "type": "qualifiziert",
+    "year": 2025,
+    "effective_from": "2025-01-01",
+    "effective_until": "2026-12-31",
+    "publisher": "Landeshauptstadt Dresden, Sozialamt",
+    "url": "https://www.dresden.de/mietspiegel",
+    "pdf_url": "https://www.dresden.de/media/pdf/sozialamt/Mietspiegel_Dresden_2025.pdf",
+    "local_pdf": "data/raw/dresden-2025.pdf",
+    "pages": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "retrieved_at": "2026-07-06T16:50:00Z"
+  },
+  "model_type": "faktor-basiert",
+  "model_components": {
+    "base_rent_table": {
+      "description": "Basismiete in Abhängigkeit von der Wohnfläche (Tabelle 1)",
+      "unit": "€/m² Nettokaltmiete",
+      "type": "continuous_by_size_m2",
+      "min_size_m2": 25,
+      "max_size_m2": 150,
+      "values": {
+        "25": 8.64,
+        "26": 8.51,
+        "27": 8.38,
+        "28": 8.27,
+        "29": 8.17,
+        "30": 8.08,
+        "31": 7.99,
+        "32": 7.91,
+        "33": 7.84,
+        "34": 7.77,
+        "35": 7.71,
+        "36": 7.66,
+        "37": 7.6,
+        "38": 7.56,
+        "39": 7.51,
+        "40": 7.47,
+        "41": 7.43,
+        "42": 7.4,
+        "43": 7.37,
+        "44": 7.34,
+        "45": 7.31,
+        "46": 7.29,
+        "47": 7.26,
+        "48": 7.24,
+        "49": 7.22,
+        "50": 7.2,
+        "51": 7.18,
+        "52": 7.17,
+        "53": 7.15,
+        "54": 7.14,
+        "55": 7.13,
+        "56": 7.11,
+        "57": 7.1,
+        "58": 7.09,
+        "59": 7.08,
+        "60": 7.07,
+        "61": 7.07,
+        "62": 7.06,
+        "63": 7.05,
+        "64": 7.04,
+        "65": 7.04,
+        "66": 7.03,
+        "67": 7.02,
+        "68": 7.02,
+        "69": 7.01,
+        "70": 7.01,
+        "71": 7.0,
+        "72": 6.99,
+        "73": 6.99,
+        "74": 6.98,
+        "75": 6.98,
+        "76": 6.97,
+        "77": 6.97,
+        "78": 6.96,
+        "79": 6.96,
+        "80": 6.95,
+        "81": 6.95,
+        "82": 6.94,
+        "83": 6.94,
+        "84": 6.93,
+        "85": 6.93,
+        "86": 6.92,
+        "87": 6.92,
+        "88": 6.91,
+        "89": 6.91,
+        "90": 6.9,
+        "91": 6.9,
+        "92": 6.89,
+        "93": 6.88,
+        "94": 6.88,
+        "95": 6.87,
+        "96": 6.86,
+        "97": 6.86,
+        "98": 6.85,
+        "99": 6.84,
+        "100": 6.83,
+        "101": 6.83,
+        "102": 6.82,
+        "103": 6.81,
+        "104": 6.8,
+        "105": 6.8,
+        "106": 6.79,
+        "107": 6.78,
+        "108": 6.77,
+        "109": 6.76,
+        "110": 6.75,
+        "111": 6.74,
+        "112": 6.73,
+        "113": 6.72,
+        "114": 6.71,
+        "115": 6.7,
+        "116": 6.69,
+        "117": 6.68,
+        "118": 6.67,
+        "119": 6.66,
+        "120": 6.65,
+        "121": 6.64,
+        "122": 6.63,
+        "123": 6.62,
+        "124": 6.61,
+        "125": 6.6,
+        "126": 6.59,
+        "127": 6.58,
+        "128": 6.57,
+        "129": 6.56,
+        "130": 6.55,
+        "131": 6.53,
+        "132": 6.52,
+        "133": 6.51,
+        "134": 6.5,
+        "135": 6.49,
+        "136": 6.48,
+        "137": 6.47,
+        "138": 6.46,
+        "139": 6.44,
+        "140": 6.43,
+        "141": 6.42,
+        "142": 6.41,
+        "143": 6.4,
+        "144": 6.39,
+        "145": 6.38,
+        "146": 6.37,
+        "147": 6.35,
+        "148": 6.34,
+        "149": 6.33,
+        "150": 6.32
+      }
+    },
+    "bauperiod_factors": {
+      "description": "Faktoren für Zu- und Abschläge in Abhängigkeit vom Baualter (Tabelle 2)",
+      "values": {
+        "bis 1969": 1.0,
+        "1970 bis 1990": 0.93,
+        "1991 bis 2009": 1.0,
+        "2010 bis 2015": 1.14,
+        "2016 bis 2023": 1.23
+      }
+    },
+    "lage_factors": {
+      "description": "Faktoren für Zu- und Abschläge in Abhängigkeit von der Wohnlage (Tabelle 3)",
+      "values": {
+        "einfach": 0.98,
+        "mittel": 1.0,
+        "gut": 1.03
+      }
+    }
+  },
+  "matrix": {
+    "lage_categories": [
+      {
+        "id": "einfach",
+        "label": "einfache Wohnlage",
+        "aliases": [
+          "einfach",
+          "einfache Wohnlage"
+        ]
+      },
+      {
+        "id": "mittel",
+        "label": "mittlere Wohnlage",
+        "aliases": [
+          "mittel",
+          "mittlere Wohnlage",
+          "normale Wohnlage"
+        ]
+      },
+      {
+        "id": "gut",
+        "label": "gute Wohnlage",
+        "aliases": [
+          "gut",
+          "gute Wohnlage"
+        ]
+      }
+    ],
+    "bauperiods": [
+      {
+        "id": "bis_1969",
+        "label": "bis 1969",
+        "range": {
+          "min": null,
+          "max": 1969
+        }
+      },
+      {
+        "id": "1970_1990",
+        "label": "1970–1990",
+        "range": {
+          "min": 1970,
+          "max": 1990
+        }
+      },
+      {
+        "id": "1991_2009",
+        "label": "1991–2009",
+        "range": {
+          "min": 1991,
+          "max": 2009
+        }
+      },
+      {
+        "id": "2010_2015",
+        "label": "2010–2015",
+        "range": {
+          "min": 2010,
+          "max": 2015
+        }
+      },
+      {
+        "id": "2016_2023",
+        "label": "2016–2023",
+        "range": {
+          "min": 2016,
+          "max": 2023
+        }
+      }
+    ],
+    "size_groups": [
+      {
+        "id": "bis_40",
+        "label": "unter 40 m²",
+        "range": {
+          "min": 0,
+          "max": 39.99
+        }
+      },
+      {
+        "id": "40_60",
+        "label": "40–60 m²",
+        "range": {
+          "min": 40,
+          "max": 59.99
+        }
+      },
+      {
+        "id": "60_90",
+        "label": "60–90 m²",
+        "range": {
+          "min": 60,
+          "max": 89.99
+        }
+      },
+      {
+        "id": "ab_90",
+        "label": "ab 90 m²",
+        "range": {
+          "min": 90,
+          "max": null
+        }
+      }
+    ],
+    "values": [
+      {
+        "lage_id": "einfach",
+        "bauperiod_id": "bis_1969",
+        "size_id": "bis_40",
+        "value": {
+          "untere_spanne": 6.5,
+          "obere_spanne": 8.69,
+          "mittelwert": 7.56
+        }
+      },
+      {
+        "lage_id": "einfach",
+        "bauperiod_id": "bis_1969",
+        "size_id": "40_60",
+        "value": {
+          "untere_spanne": 6.07,
+          "obere_spanne": 8.12,
+          "mittelwert": 7.06
+        }
+      },
+      {
+        "lage_id": "einfach",
+        "bauperiod_id": "bis_1969",
+        "size_id": "60_90",
+        "value": {
+          "untere_spanne": 5.88,
+          "obere_spanne": 7.87,
+          "mittelwert": 6.84
+        }
+      },
+      {
+        "lage_id": "einfach",
+        "bauperiod_id": "bis_1969",
+        "size_id": "ab_90",
+        "value": {
+          "untere_spanne": 5.75,
+          "obere_spanne": 7.69,
+          "mittelwert": 6.69
+        }
+      },
+      {
+        "lage_id": "einfach",
+        "bauperiod_id": "1970_bis_1990",
+        "size_id": "bis_40",
+        "value": {
+          "untere_spanne": 6.05,
+          "obere_spanne": 8.08,
+          "mittelwert": 7.03
+        }
+      },
+      {
+        "lage_id": "einfach",
+        "bauperiod_id": "1970_bis_1990",
+        "size_id": "40_60",
+        "value": {
+          "untere_spanne": 5.64,
+          "obere_spanne": 7.54,
+          "mittelwert": 6.56
+        }
+      },
+      {
+        "lage_id": "einfach",
+        "bauperiod_id": "1970_bis_1990",
+        "size_id": "60_90",
+        "value": {
+          "untere_spanne": 5.47,
+          "obere_spanne": 7.31,
+          "mittelwert": 6.36
+        }
+      },
+      {
+        "lage_id": "einfach",
+        "bauperiod_id": "1970_bis_1990",
+        "size_id": "ab_90",
+        "value": {
+          "untere_spanne": 5.35,
+          "obere_spanne": 7.15,
+          "mittelwert": 6.22
+        }
+      },
+      {
+        "lage_id": "einfach",
+        "bauperiod_id": "1991_bis_2009",
+        "size_id": "bis_40",
+        "value": {
+          "untere_spanne": 6.5,
+          "obere_spanne": 8.69,
+          "mittelwert": 7.56
+        }
+      },
+      {
+        "lage_id": "einfach",
+        "bauperiod_id": "1991_bis_2009",
+        "size_id": "40_60",
+        "value": {
+          "untere_spanne": 6.07,
+          "obere_spanne": 8.12,
+          "mittelwert": 7.06
+        }
+      },
+      {
+        "lage_id": "einfach",
+        "bauperiod_id": "1991_bis_2009",
+        "size_id": "60_90",
+        "value": {
+          "untere_spanne": 5.88,
+          "obere_spanne": 7.87,
+          "mittelwert": 6.84
+        }
+      },
+      {
+        "lage_id": "einfach",
+        "bauperiod_id": "1991_bis_2009",
+        "size_id": "ab_90",
+        "value": {
+          "untere_spanne": 5.75,
+          "obere_spanne": 7.69,
+          "mittelwert": 6.69
+        }
+      },
+      {
+        "lage_id": "einfach",
+        "bauperiod_id": "2010_bis_2015",
+        "size_id": "bis_40",
+        "value": {
+          "untere_spanne": 7.4,
+          "obere_spanne": 9.9,
+          "mittelwert": 8.61
+        }
+      },
+      {
+        "lage_id": "einfach",
+        "bauperiod_id": "2010_bis_2015",
+        "size_id": "40_60",
+        "value": {
+          "untere_spanne": 6.91,
+          "obere_spanne": 9.25,
+          "mittelwert": 8.04
+        }
+      },
+      {
+        "lage_id": "einfach",
+        "bauperiod_id": "2010_bis_2015",
+        "size_id": "60_90",
+        "value": {
+          "untere_spanne": 6.71,
+          "obere_spanne": 8.97,
+          "mittelwert": 7.8
+        }
+      },
+      {
+        "lage_id": "einfach",
+        "bauperiod_id": "2010_bis_2015",
+        "size_id": "ab_90",
+        "value": {
+          "untere_spanne": 6.56,
+          "obere_spanne": 8.77,
+          "mittelwert": 7.63
+        }
+      },
+      {
+        "lage_id": "einfach",
+        "bauperiod_id": "2016_bis_2023",
+        "size_id": "bis_40",
+        "value": {
+          "untere_spanne": 7.99,
+          "obere_spanne": 10.68,
+          "mittelwert": 9.29
+        }
+      },
+      {
+        "lage_id": "einfach",
+        "bauperiod_id": "2016_bis_2023",
+        "size_id": "40_60",
+        "value": {
+          "untere_spanne": 7.46,
+          "obere_spanne": 9.98,
+          "mittelwert": 8.68
+        }
+      },
+      {
+        "lage_id": "einfach",
+        "bauperiod_id": "2016_bis_2023",
+        "size_id": "60_90",
+        "value": {
+          "untere_spanne": 7.23,
+          "obere_spanne": 9.67,
+          "mittelwert": 8.41
+        }
+      },
+      {
+        "lage_id": "einfach",
+        "bauperiod_id": "2016_bis_2023",
+        "size_id": "ab_90",
+        "value": {
+          "untere_spanne": 7.08,
+          "obere_spanne": 9.46,
+          "mittelwert": 8.23
+        }
+      },
+      {
+        "lage_id": "mittel",
+        "bauperiod_id": "bis_1969",
+        "size_id": "bis_40",
+        "value": {
+          "untere_spanne": 6.63,
+          "obere_spanne": 8.87,
+          "mittelwert": 7.71
+        }
+      },
+      {
+        "lage_id": "mittel",
+        "bauperiod_id": "bis_1969",
+        "size_id": "40_60",
+        "value": {
+          "untere_spanne": 6.19,
+          "obere_spanne": 8.28,
+          "mittelwert": 7.2
+        }
+      },
+      {
+        "lage_id": "mittel",
+        "bauperiod_id": "bis_1969",
+        "size_id": "60_90",
+        "value": {
+          "untere_spanne": 6.0,
+          "obere_spanne": 8.03,
+          "mittelwert": 6.98
+        }
+      },
+      {
+        "lage_id": "mittel",
+        "bauperiod_id": "bis_1969",
+        "size_id": "ab_90",
+        "value": {
+          "untere_spanne": 5.87,
+          "obere_spanne": 7.85,
+          "mittelwert": 6.83
+        }
+      },
+      {
+        "lage_id": "mittel",
+        "bauperiod_id": "1970_bis_1990",
+        "size_id": "bis_40",
+        "value": {
+          "untere_spanne": 6.17,
+          "obere_spanne": 8.25,
+          "mittelwert": 7.17
+        }
+      },
+      {
+        "lage_id": "mittel",
+        "bauperiod_id": "1970_bis_1990",
+        "size_id": "40_60",
+        "value": {
+          "untere_spanne": 5.76,
+          "obere_spanne": 7.7,
+          "mittelwert": 6.7
+        }
+      },
+      {
+        "lage_id": "mittel",
+        "bauperiod_id": "1970_bis_1990",
+        "size_id": "60_90",
+        "value": {
+          "untere_spanne": 5.58,
+          "obere_spanne": 7.46,
+          "mittelwert": 6.49
+        }
+      },
+      {
+        "lage_id": "mittel",
+        "bauperiod_id": "1970_bis_1990",
+        "size_id": "ab_90",
+        "value": {
+          "untere_spanne": 5.46,
+          "obere_spanne": 7.3,
+          "mittelwert": 6.35
+        }
+      },
+      {
+        "lage_id": "mittel",
+        "bauperiod_id": "1991_bis_2009",
+        "size_id": "bis_40",
+        "value": {
+          "untere_spanne": 6.63,
+          "obere_spanne": 8.87,
+          "mittelwert": 7.71
+        }
+      },
+      {
+        "lage_id": "mittel",
+        "bauperiod_id": "1991_bis_2009",
+        "size_id": "40_60",
+        "value": {
+          "untere_spanne": 6.19,
+          "obere_spanne": 8.28,
+          "mittelwert": 7.2
+        }
+      },
+      {
+        "lage_id": "mittel",
+        "bauperiod_id": "1991_bis_2009",
+        "size_id": "60_90",
+        "value": {
+          "untere_spanne": 6.0,
+          "obere_spanne": 8.03,
+          "mittelwert": 6.98
+        }
+      },
+      {
+        "lage_id": "mittel",
+        "bauperiod_id": "1991_bis_2009",
+        "size_id": "ab_90",
+        "value": {
+          "untere_spanne": 5.87,
+          "obere_spanne": 7.85,
+          "mittelwert": 6.83
+        }
+      },
+      {
+        "lage_id": "mittel",
+        "bauperiod_id": "2010_bis_2015",
+        "size_id": "bis_40",
+        "value": {
+          "untere_spanne": 7.56,
+          "obere_spanne": 10.11,
+          "mittelwert": 8.79
+        }
+      },
+      {
+        "lage_id": "mittel",
+        "bauperiod_id": "2010_bis_2015",
+        "size_id": "40_60",
+        "value": {
+          "untere_spanne": 7.06,
+          "obere_spanne": 9.44,
+          "mittelwert": 8.21
+        }
+      },
+      {
+        "lage_id": "mittel",
+        "bauperiod_id": "2010_bis_2015",
+        "size_id": "60_90",
+        "value": {
+          "untere_spanne": 6.85,
+          "obere_spanne": 9.15,
+          "mittelwert": 7.96
+        }
+      },
+      {
+        "lage_id": "mittel",
+        "bauperiod_id": "2010_bis_2015",
+        "size_id": "ab_90",
+        "value": {
+          "untere_spanne": 6.7,
+          "obere_spanne": 8.96,
+          "mittelwert": 7.79
+        }
+      },
+      {
+        "lage_id": "mittel",
+        "bauperiod_id": "2016_bis_2023",
+        "size_id": "bis_40",
+        "value": {
+          "untere_spanne": 8.15,
+          "obere_spanne": 10.9,
+          "mittelwert": 9.48
+        }
+      },
+      {
+        "lage_id": "mittel",
+        "bauperiod_id": "2016_bis_2023",
+        "size_id": "40_60",
+        "value": {
+          "untere_spanne": 7.62,
+          "obere_spanne": 10.19,
+          "mittelwert": 8.86
+        }
+      },
+      {
+        "lage_id": "mittel",
+        "bauperiod_id": "2016_bis_2023",
+        "size_id": "60_90",
+        "value": {
+          "untere_spanne": 7.39,
+          "obere_spanne": 9.88,
+          "mittelwert": 8.59
+        }
+      },
+      {
+        "lage_id": "mittel",
+        "bauperiod_id": "2016_bis_2023",
+        "size_id": "ab_90",
+        "value": {
+          "untere_spanne": 7.22,
+          "obere_spanne": 9.66,
+          "mittelwert": 8.4
+        }
+      },
+      {
+        "lage_id": "gut",
+        "bauperiod_id": "bis_1969",
+        "size_id": "bis_40",
+        "value": {
+          "untere_spanne": 6.83,
+          "obere_spanne": 9.13,
+          "mittelwert": 7.94
+        }
+      },
+      {
+        "lage_id": "gut",
+        "bauperiod_id": "bis_1969",
+        "size_id": "40_60",
+        "value": {
+          "untere_spanne": 6.38,
+          "obere_spanne": 8.53,
+          "mittelwert": 7.42
+        }
+      },
+      {
+        "lage_id": "gut",
+        "bauperiod_id": "bis_1969",
+        "size_id": "60_90",
+        "value": {
+          "untere_spanne": 6.18,
+          "obere_spanne": 8.27,
+          "mittelwert": 7.19
+        }
+      },
+      {
+        "lage_id": "gut",
+        "bauperiod_id": "bis_1969",
+        "size_id": "ab_90",
+        "value": {
+          "untere_spanne": 6.05,
+          "obere_spanne": 8.08,
+          "mittelwert": 7.03
+        }
+      },
+      {
+        "lage_id": "gut",
+        "bauperiod_id": "1970_bis_1990",
+        "size_id": "bis_40",
+        "value": {
+          "untere_spanne": 6.36,
+          "obere_spanne": 8.5,
+          "mittelwert": 7.39
+        }
+      },
+      {
+        "lage_id": "gut",
+        "bauperiod_id": "1970_bis_1990",
+        "size_id": "40_60",
+        "value": {
+          "untere_spanne": 5.93,
+          "obere_spanne": 7.93,
+          "mittelwert": 6.9
+        }
+      },
+      {
+        "lage_id": "gut",
+        "bauperiod_id": "1970_bis_1990",
+        "size_id": "60_90",
+        "value": {
+          "untere_spanne": 5.75,
+          "obere_spanne": 7.69,
+          "mittelwert": 6.69
+        }
+      },
+      {
+        "lage_id": "gut",
+        "bauperiod_id": "1970_bis_1990",
+        "size_id": "ab_90",
+        "value": {
+          "untere_spanne": 5.62,
+          "obere_spanne": 7.52,
+          "mittelwert": 6.54
+        }
+      },
+      {
+        "lage_id": "gut",
+        "bauperiod_id": "1991_bis_2009",
+        "size_id": "bis_40",
+        "value": {
+          "untere_spanne": 6.83,
+          "obere_spanne": 9.13,
+          "mittelwert": 7.94
+        }
+      },
+      {
+        "lage_id": "gut",
+        "bauperiod_id": "1991_bis_2009",
+        "size_id": "40_60",
+        "value": {
+          "untere_spanne": 6.38,
+          "obere_spanne": 8.53,
+          "mittelwert": 7.42
+        }
+      },
+      {
+        "lage_id": "gut",
+        "bauperiod_id": "1991_bis_2009",
+        "size_id": "60_90",
+        "value": {
+          "untere_spanne": 6.18,
+          "obere_spanne": 8.27,
+          "mittelwert": 7.19
+        }
+      },
+      {
+        "lage_id": "gut",
+        "bauperiod_id": "1991_bis_2009",
+        "size_id": "ab_90",
+        "value": {
+          "untere_spanne": 6.05,
+          "obere_spanne": 8.08,
+          "mittelwert": 7.03
+        }
+      },
+      {
+        "lage_id": "gut",
+        "bauperiod_id": "2010_bis_2015",
+        "size_id": "bis_40",
+        "value": {
+          "untere_spanne": 7.78,
+          "obere_spanne": 10.41,
+          "mittelwert": 9.05
+        }
+      },
+      {
+        "lage_id": "gut",
+        "bauperiod_id": "2010_bis_2015",
+        "size_id": "40_60",
+        "value": {
+          "untere_spanne": 7.27,
+          "obere_spanne": 9.72,
+          "mittelwert": 8.45
+        }
+      },
+      {
+        "lage_id": "gut",
+        "bauperiod_id": "2010_bis_2015",
+        "size_id": "60_90",
+        "value": {
+          "untere_spanne": 7.05,
+          "obere_spanne": 9.43,
+          "mittelwert": 8.2
+        }
+      },
+      {
+        "lage_id": "gut",
+        "bauperiod_id": "2010_bis_2015",
+        "size_id": "ab_90",
+        "value": {
+          "untere_spanne": 6.9,
+          "obere_spanne": 9.22,
+          "mittelwert": 8.02
+        }
+      },
+      {
+        "lage_id": "gut",
+        "bauperiod_id": "2016_bis_2023",
+        "size_id": "bis_40",
+        "value": {
+          "untere_spanne": 8.4,
+          "obere_spanne": 11.24,
+          "mittelwert": 9.77
+        }
+      },
+      {
+        "lage_id": "gut",
+        "bauperiod_id": "2016_bis_2023",
+        "size_id": "40_60",
+        "value": {
+          "untere_spanne": 7.84,
+          "obere_spanne": 10.49,
+          "mittelwert": 9.12
+        }
+      },
+      {
+        "lage_id": "gut",
+        "bauperiod_id": "2016_bis_2023",
+        "size_id": "60_90",
+        "value": {
+          "untere_spanne": 7.6,
+          "obere_spanne": 10.17,
+          "mittelwert": 8.84
+        }
+      },
+      {
+        "lage_id": "gut",
+        "bauperiod_id": "2016_bis_2023",
+        "size_id": "ab_90",
+        "value": {
+          "untere_spanne": 7.44,
+          "obere_spanne": 9.95,
+          "mittelwert": 8.65
+        }
+      }
+    ]
+  }
+}

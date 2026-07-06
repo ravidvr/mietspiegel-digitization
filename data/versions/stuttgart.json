@@ -1,0 +1,33 @@
+{
+  "city": "stuttgart",
+  "versions": [
+    {
+      "year": 2025,
+      "detected_at": "2026-07-06T14:48:28.528002+00:00",
+      "source": "https://www.stuttgart.de/medien/ibs/mietspiegel_2025_2026.pdf"
+    },
+    {
+      "year": 2025,
+      "detected_at": "2026-07-06T14:48:28.528013+00:00",
+      "source": "https://www.stuttgart.de/medien/ibs/methodenbericht_mietspiegel_2025-2026.pdf"
+    },
+    {
+      "year": 2023,
+      "detected_at": "2026-07-06T14:48:28.528015+00:00",
+      "source": "page_text"
+    },
+    {
+      "year": 2024,
+      "detected_at": "2026-07-06T14:48:28.528016+00:00",
+      "source": "year_hint_in_context"
+    },
+    {
+      "year": 2026,
+      "detected_at": "2026-07-06T14:48:28.528018+00:00",
+      "source": "year_hint_in_context"
+    }
+  ],
+  "first_seen": "2026-07-06T14:48:28.528019+00:00",
+  "last_check": "2026-07-06T14:49:25.597948+00:00",
+  "city_name": "Stuttgart"
+}

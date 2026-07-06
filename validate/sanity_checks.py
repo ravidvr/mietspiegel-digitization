@@ -75,7 +75,7 @@ def _baujahr_sort_key(baujahr_label: str) -> tuple:
     return (99, 0)
 
 
-def check_baujahr_monotonicity(tables: list, lage: str | None = None,
+def check_baujahr_monotonicity(tables: list, lage: Optional[str] = None,
                                  tolerance: float = 0.05) -> list:
     """
     For a given Lage (or across all if None), verify that rents

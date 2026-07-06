@@ -1,0 +1,128 @@
+{
+  "$schema": "https://raw.githubusercontent.com/ravidvr/mietspiegel-digitization/main/docs/schema.json",
+  "meta": {
+    "schema_version": "1.0.0",
+    "extracted_at": "2026-07-06T14:50:00Z",
+    "extracted_by": "pdfplumber + manual validation",
+    "extraction_notes": "Lübeck publishes a single base table for 'mittlere Wohnlage' (M). Gute Wohnlage (G): +0.44 €/m², Einfache Wohnlage (E): -0.47 €/m². Cells marked with * have limited reliability (10-29 data points). Empty cells have insufficient data. Table format: Mittelwert + 2/3-Preisspanne.",
+    "quality": {
+      "status": "validated",
+      "confidence": 0.95,
+      "issues": []
+    }
+  },
+  "city": {
+    "name": "Lübeck",
+    "slug": "luebeck",
+    "state": "Schleswig-Holstein",
+    "region": "Schleswig-Holstein",
+    "population": 216000,
+    "coordinates": {
+      "lat": 53.865467,
+      "lng": 10.686559
+    }
+  },
+  "source": {
+    "title": "Lübecker Mietspiegel 2025",
+    "type": "qualifiziert",
+    "year": 2025,
+    "effective_from": "2025-07-01",
+    "effective_until": "2027-06-30",
+    "publisher": "Hansestadt Lübeck, Fachbereich Wirtschaft und Soziales",
+    "url": "https://www.luebeck.de/de/stadtleben/wohnen-in-luebeck/mietspiegel/mietspiegel",
+    "pdf_url": "https://bekanntmachungen.luebeck.de/dokumente/d/1621/inline",
+    "local_pdf": "data/raw/luebeck-2025.pdf",
+    "pages": [7, 8],
+    "retrieved_at": "2026-07-06T14:30:00Z"
+  },
+  "matrix": {
+    "lage_categories": [
+      {
+        "id": "einfach",
+        "label": "einfache Wohnlage (E)",
+        "aliases": ["einfach", "E"],
+        "description": "Base table value minus 0.47 €/m²",
+        "extra": {
+          "normalized_from": "E",
+          "normalization_note": "Lübeck uses a single base table (mittlere Wohnlage) with Zu-/Abschläge: -0.47 €/m² for einfache Lage"
+        }
+      },
+      {
+        "id": "mittel",
+        "label": "mittlere Wohnlage (M)",
+        "aliases": ["mittel", "M", "normale Wohnlage"],
+        "description": "Base table for Lübeck Mietspiegel. All values are for mittlere Wohnlage."
+      },
+      {
+        "id": "gut",
+        "label": "gute Wohnlage (G)",
+        "aliases": ["gut", "G", "günstige Wohnlage"],
+        "description": "Base table value plus 0.44 €/m²",
+        "extra": {
+          "normalized_from": "G",
+          "normalization_note": "Lübeck uses a single base table (mittlere Wohnlage) with Zu-/Abschläge: +0.44 €/m² for gute Lage"
+        }
+      }
+    ],
+    "bauperiods": [
+      { "id": "bis_1918", "label": "bis 1918", "range": { "min": null, "max": 1918 } },
+      { "id": "1919_1948", "label": "1919–1948", "range": { "min": 1919, "max": 1948 } },
+      { "id": "1949_1957", "label": "1949–1957", "range": { "min": 1949, "max": 1957 } },
+      { "id": "1958_1968", "label": "1958–1968", "range": { "min": 1958, "max": 1968 } },
+      { "id": "1969_1978", "label": "1969–1978", "range": { "min": 1969, "max": 1978 } },
+      { "id": "1979_1990", "label": "1979–1990", "range": { "min": 1979, "max": 1990 } },
+      { "id": "1991_2001", "label": "1991–2001", "range": { "min": 1991, "max": 2001 } },
+      { "id": "2002_2013", "label": "2002–2013", "range": { "min": 2002, "max": 2013 } },
+      { "id": "2014_2020", "label": "2014–2020", "range": { "min": 2014, "max": 2020 } },
+      { "id": "2021_2025", "label": "2021–4/2025", "range": { "min": 2021, "max": 2025 } }
+    ],
+    "size_groups": [
+      { "id": "unter_45", "label": "25 bis unter 45 m²", "range": { "min": 25, "max": 44.99 } },
+      { "id": "45_65", "label": "45 bis unter 65 m²", "range": { "min": 45, "max": 64.99 } },
+      { "id": "65_85", "label": "65 bis unter 85 m²", "range": { "min": 65, "max": 84.99 } },
+      { "id": "ab_85", "label": "85 m² und mehr", "range": { "min": 85, "max": null } }
+    ],
+    "values": [
+      { "lage_id": "mittel", "bauperiod_id": "bis_1918", "size_id": "unter_45", "value": { "untere_spanne": 8.00, "obere_spanne": 12.00, "mittelwert": 10.08 } },
+      { "lage_id": "mittel", "bauperiod_id": "bis_1918", "size_id": "45_65", "value": { "untere_spanne": 7.18, "obere_spanne": 10.70, "mittelwert": 8.94 } },
+      { "lage_id": "mittel", "bauperiod_id": "bis_1918", "size_id": "65_85", "value": { "untere_spanne": 6.95, "obere_spanne": 10.29, "mittelwert": 8.78 } },
+      { "lage_id": "mittel", "bauperiod_id": "bis_1918", "size_id": "ab_85", "value": { "untere_spanne": 7.11, "obere_spanne": 10.33, "mittelwert": 8.71 } },
+      { "lage_id": "mittel", "bauperiod_id": "1919_1948", "size_id": "unter_45", "value": { "untere_spanne": 7.62, "obere_spanne": 11.50, "mittelwert": 9.46 } },
+      { "lage_id": "mittel", "bauperiod_id": "1919_1948", "size_id": "45_65", "value": { "untere_spanne": 6.90, "obere_spanne": 10.00, "mittelwert": 8.39 } },
+      { "lage_id": "mittel", "bauperiod_id": "1919_1948", "size_id": "65_85", "value": { "untere_spanne": 6.71, "obere_spanne": 9.38, "mittelwert": 8.08 } },
+      { "lage_id": "mittel", "bauperiod_id": "1919_1948", "size_id": "ab_85", "value": { "untere_spanne": 7.00, "obere_spanne": 10.14, "mittelwert": 8.42 } },
+      { "lage_id": "mittel", "bauperiod_id": "1949_1957", "size_id": "unter_45", "value": { "untere_spanne": 7.23, "obere_spanne": 11.00, "mittelwert": 8.99 } },
+      { "lage_id": "mittel", "bauperiod_id": "1949_1957", "size_id": "45_65", "value": { "untere_spanne": 6.78, "obere_spanne": 10.00, "mittelwert": 8.33 } },
+      { "lage_id": "mittel", "bauperiod_id": "1949_1957", "size_id": "65_85", "value": { "untere_spanne": 6.59, "obere_spanne": 9.96, "mittelwert": 8.35 } },
+      { "lage_id": "mittel", "bauperiod_id": "1949_1957", "size_id": "ab_85", "value": { "untere_spanne": 6.28, "obere_spanne": 9.80, "mittelwert": 7.91 } },
+      { "lage_id": "mittel", "bauperiod_id": "1958_1968", "size_id": "unter_45", "value": { "untere_spanne": 7.13, "obere_spanne": 10.30, "mittelwert": 8.76 } },
+      { "lage_id": "mittel", "bauperiod_id": "1958_1968", "size_id": "45_65", "value": { "untere_spanne": 6.47, "obere_spanne": 9.66, "mittelwert": 8.01 } },
+      { "lage_id": "mittel", "bauperiod_id": "1958_1968", "size_id": "65_85", "value": { "untere_spanne": 6.27, "obere_spanne": 9.31, "mittelwert": 7.85 } },
+      { "lage_id": "mittel", "bauperiod_id": "1958_1968", "size_id": "ab_85", "value": { "untere_spanne": 6.55, "obere_spanne": 10.65, "mittelwert": 8.31 } },
+      { "lage_id": "mittel", "bauperiod_id": "1969_1978", "size_id": "unter_45", "value": { "untere_spanne": 7.57, "obere_spanne": 10.89, "mittelwert": 9.25 } },
+      { "lage_id": "mittel", "bauperiod_id": "1969_1978", "size_id": "45_65", "value": { "untere_spanne": 7.20, "obere_spanne": 9.80, "mittelwert": 8.55 } },
+      { "lage_id": "mittel", "bauperiod_id": "1969_1978", "size_id": "65_85", "value": { "untere_spanne": 5.94, "obere_spanne": 8.95, "mittelwert": 7.40 } },
+      { "lage_id": "mittel", "bauperiod_id": "1969_1978", "size_id": "ab_85", "value": { "untere_spanne": 6.23, "obere_spanne": 9.08, "mittelwert": 7.47 } },
+      { "lage_id": "mittel", "bauperiod_id": "1979_1990", "size_id": "unter_45", "value": { "untere_spanne": 7.76, "obere_spanne": 11.11, "mittelwert": 9.14 } },
+      { "lage_id": "mittel", "bauperiod_id": "1979_1990", "size_id": "45_65", "value": { "untere_spanne": 7.12, "obere_spanne": 10.41, "mittelwert": 8.81 } },
+      { "lage_id": "mittel", "bauperiod_id": "1979_1990", "size_id": "65_85", "value": { "untere_spanne": 6.75, "obere_spanne": 9.85, "mittelwert": 8.02 } },
+      { "lage_id": "mittel", "bauperiod_id": "1979_1990", "size_id": "ab_85", "value": { "untere_spanne": 6.71, "obere_spanne": 10.48, "mittelwert": 7.99 } },
+      { "lage_id": "mittel", "bauperiod_id": "1991_2001", "size_id": "unter_45", "value": { "untere_spanne": 7.18, "obere_spanne": 11.11, "mittelwert": 9.51 } },
+      { "lage_id": "mittel", "bauperiod_id": "1991_2001", "size_id": "45_65", "value": { "untere_spanne": 7.67, "obere_spanne": 11.56, "mittelwert": 9.49 } },
+      { "lage_id": "mittel", "bauperiod_id": "1991_2001", "size_id": "65_85", "value": { "untere_spanne": 7.49, "obere_spanne": 9.98, "mittelwert": 8.70 } },
+      { "lage_id": "mittel", "bauperiod_id": "1991_2001", "size_id": "ab_85", "value": { "untere_spanne": 7.25, "obere_spanne": 10.63, "mittelwert": 8.92 } },
+      { "lage_id": "mittel", "bauperiod_id": "2002_2013", "size_id": "unter_45", "value": { "untere_spanne": 8.77, "obere_spanne": 10.69, "mittelwert": 9.84 } },
+      { "lage_id": "mittel", "bauperiod_id": "2002_2013", "size_id": "45_65", "value": { "untere_spanne": 8.00, "obere_spanne": 10.53, "mittelwert": 9.28 } },
+      { "lage_id": "mittel", "bauperiod_id": "2002_2013", "size_id": "65_85", "value": { "untere_spanne": null, "obere_spanne": null, "mittelwert": null } },
+      { "lage_id": "mittel", "bauperiod_id": "2002_2013", "size_id": "ab_85", "value": { "untere_spanne": 8.39, "obere_spanne": 13.07, "mittelwert": 10.40 } },
+      { "lage_id": "mittel", "bauperiod_id": "2014_2020", "size_id": "unter_45", "value": { "untere_spanne": 11.14, "obere_spanne": 11.90, "mittelwert": 11.56 } },
+      { "lage_id": "mittel", "bauperiod_id": "2014_2020", "size_id": "45_65", "value": { "untere_spanne": 9.78, "obere_spanne": 11.89, "mittelwert": 10.89 } },
+      { "lage_id": "mittel", "bauperiod_id": "2014_2020", "size_id": "65_85", "value": { "untere_spanne": 10.00, "obere_spanne": 13.99, "mittelwert": 12.01 } },
+      { "lage_id": "mittel", "bauperiod_id": "2014_2020", "size_id": "ab_85", "value": { "untere_spanne": 10.57, "obere_spanne": 13.72, "mittelwert": 12.01 } },
+      { "lage_id": "mittel", "bauperiod_id": "2021_2025", "size_id": "unter_45", "value": { "untere_spanne": 11.05, "obere_spanne": 18.33, "mittelwert": 14.75 } },
+      { "lage_id": "mittel", "bauperiod_id": "2021_2025", "size_id": "45_65", "value": { "untere_spanne": 13.33, "obere_spanne": 16.53, "mittelwert": 14.95 } },
+      { "lage_id": "mittel", "bauperiod_id": "2021_2025", "size_id": "65_85", "value": { "untere_spanne": 12.22, "obere_spanne": 15.08, "mittelwert": 13.31 } },
+      { "lage_id": "mittel", "bauperiod_id": "2021_2025", "size_id": "ab_85", "value": { "untere_spanne": 11.96, "obere_spanne": 16.73, "mittelwert": 14.46 } }
+    ]
+  }
+}

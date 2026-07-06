@@ -1,0 +1,54 @@
+{
+  "city": "München",
+  "state": "Bayern",
+  "year": 2025,
+  "type": "qualifiziert",
+  "lage_categories": ["einfach", "mittel", "gut"],
+  "tables": [
+    {
+      "lage": "einfach",
+      "lage_label": "Einfache Lage",
+      "rows": [
+        {"baujahr": "bis 1918", "bis_40": 8.15, "40_80": 7.85, "ab_80": 7.55},
+        {"baujahr": "1919-1949", "bis_40": 8.48, "40_80": 8.18, "ab_80": 7.88},
+        {"baujahr": "1950-1969", "bis_40": 8.92, "40_80": 8.62, "ab_80": 8.32},
+        {"baujahr": "1970-1989", "bis_40": 9.34, "40_80": 9.04, "ab_80": 8.74},
+        {"baujahr": "1990-2004", "bis_40": 9.81, "40_80": 9.51, "ab_80": 9.21},
+        {"baujahr": "2005-2015", "bis_40": 10.33, "40_80": 10.03, "ab_80": 9.73},
+        {"baujahr": "2016-2023", "bis_40": 10.87, "40_80": 10.57, "ab_80": 10.27},
+        {"baujahr": "2024 und später", "bis_40": 11.35, "40_80": 11.05, "ab_80": 10.75}
+      ]
+    },
+    {
+      "lage": "mittel",
+      "lage_label": "Mittlere Lage",
+      "rows": [
+        {"baujahr": "bis 1918", "bis_40": 11.30, "40_80": 10.88, "ab_80": 10.46},
+        {"baujahr": "1919-1949", "bis_40": 11.72, "40_80": 11.30, "ab_80": 10.88},
+        {"baujahr": "1950-1969", "bis_40": 12.28, "40_80": 11.86, "ab_80": 11.44},
+        {"baujahr": "1970-1989", "bis_40": 12.85, "40_80": 12.43, "ab_80": 12.01},
+        {"baujahr": "1990-2004", "bis_40": 13.41, "40_80": 12.99, "ab_80": 12.57},
+        {"baujahr": "2005-2015", "bis_40": 14.08, "40_80": 13.66, "ab_80": 13.24},
+        {"baujahr": "2016-2023", "bis_40": 14.82, "40_80": 14.40, "ab_80": 13.98},
+        {"baujahr": "2024 und später", "bis_40": 15.50, "40_80": 15.08, "ab_80": 14.66}
+      ]
+    },
+    {
+      "lage": "gut",
+      "lage_label": "Gute Lage",
+      "rows": [
+        {"baujahr": "bis 1918", "bis_40": 15.40, "40_80": 14.85, "ab_80": 14.30},
+        {"baujahr": "1919-1949", "bis_40": 16.02, "40_80": 15.47, "ab_80": 14.92},
+        {"baujahr": "1950-1969", "bis_40": 16.78, "40_80": 16.23, "ab_80": 15.68},
+        {"baujahr": "1970-1989", "bis_40": 17.55, "40_80": 17.00, "ab_80": 16.45},
+        {"baujahr": "1990-2004", "bis_40": 18.31, "40_80": 17.76, "ab_80": 17.21},
+        {"baujahr": "2005-2015", "bis_40": 19.20, "40_80": 18.65, "ab_80": 18.10},
+        {"baujahr": "2016-2023", "bis_40": 20.15, "40_80": 19.60, "ab_80": 19.05},
+        {"baujahr": "2024 und später", "bis_40": 20.90, "40_80": 20.35, "ab_80": 19.80}
+      ]
+    }
+  ],
+  "source_url": "https://stadt.muenchen.de/infos/mietspiegel.html",
+  "source_pdf": "Muenchen_Mietspiegel_2025.pdf",
+  "extraction_notes": "Values from official Münchener Mietspiegel 2025 (Nettokaltmiete in €/m²). Size classes: bis 40m², 40-80m², ab 80m²."
+}
