@@ -1,889 +1,186 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mietspiegel Dashboard — German Rent Index Map</title>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<style>
-:root {
-  --bg: #0f1117;
-  --card: #1a1d28;
-  --card-hover: #222639;
-  --border: #2a2e3e;
-  --text: #e4e6f0;
-  --text-dim: #8b8fa3;
-  --accent: #5b8def;
-  --accent2: #6c5ce7;
-  --green: #48bb78;
-  --yellow: #ecc94b;
-  --red: #f56565;
-  --orange: #ed8936;
-  --header-bg: #151821;
-}
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.5;
-  overflow-x: hidden;
-}
-
-/* Header */
-.header {
-  background: var(--header-bg);
-  border-bottom: 1px solid var(--border);
-  padding: 16px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.header h1 {
-  font-size: 20px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.header h1 span { color: var(--accent); }
-.header .subtitle { font-size: 13px; color: var(--text-dim); }
-.header .badge {
-  background: var(--accent);
-  color: #fff;
-  font-size: 11px;
-  padding: 3px 10px;
-  border-radius: 12px;
-  font-weight: 600;
-}
-
-/* Layout */
-.main-layout {
-  display: flex;
-  height: calc(100vh - 70px);
-}
-.map-panel {
-  flex: 1;
-  min-width: 0;
-  position: relative;
-}
-.side-panel {
-  width: 420px;
-  min-width: 320px;
-  max-width: 50vw;
-  background: var(--card);
-  border-left: 1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-#map { width: 100%; height: 100%; }
-
-/* Side panel */
-.panel-tabs {
-  display: flex;
-  border-bottom: 1px solid var(--border);
-  background: var(--header-bg);
-}
-.panel-tab {
-  flex: 1;
-  padding: 10px 12px;
-  text-align: center;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-dim);
-  cursor: pointer;
-  border-bottom: 2px solid transparent;
-  transition: 0.2s;
-}
-.panel-tab:hover { color: var(--text); }
-.panel-tab.active {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
-}
-.panel-content {
-  flex: 1;
-  overflow-y: auto;
-  padding: 16px;
-}
-
-/* Stadtinfo header */
-.city-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 12px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--border);
-}
-.city-header h2 { font-size: 22px; font-weight: 700; }
-.city-header .state { font-size: 13px; color: var(--text-dim); margin-top: 2px; }
-.city-header .pop { font-size: 12px; color: var(--text-dim); }
-.city-header .year-badge {
-  background: var(--accent2);
-  color: #fff;
-  font-size: 12px;
-  padding: 4px 12px;
-  border-radius: 6px;
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-/* Lage selector */
-.lage-selector {
-  display: flex;
-  gap: 6px;
-  margin-bottom: 12px;
-}
-.lage-btn {
-  padding: 6px 16px;
-  font-size: 12px;
-  font-weight: 600;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  background: var(--bg);
-  color: var(--text-dim);
-  cursor: pointer;
-  transition: 0.2s;
-}
-.lage-btn:hover { border-color: var(--accent); color: var(--text); }
-.lage-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
-
-/* Tables */
-.table-wrap {
-  overflow-x: auto;
-  margin-bottom: 12px;
-}
-table.miet-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 12px;
-}
-table.miet-table th, table.miet-table td {
-  padding: 6px 8px;
-  text-align: center;
-  border: 1px solid var(--border);
-  white-space: nowrap;
-}
-table.miet-table th {
-  background: var(--header-bg);
-  color: var(--text-dim);
-  font-weight: 600;
-  font-size: 11px;
-}
-table.miet-table td:first-child {
-  text-align: left;
-  font-weight: 600;
-  color: var(--text);
-}
-table.miet-table td { color: var(--text); }
-
-/* Legend */
-.map-legend {
-  position: absolute;
-  bottom: 24px;
-  left: 24px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 10px 14px;
-  font-size: 12px;
-  z-index: 1000;
-}
-.map-legend .row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin: 3px 0;
-}
-.map-legend .dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-}
-
-/* Comparison table */
-.comparison-table-wrap {
-  overflow-x: auto;
-}
-table.compare-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 12px;
-}
-table.compare-table th, table.compare-table td {
-  padding: 6px 8px;
-  text-align: center;
-  border: 1px solid var(--border);
-}
-table.compare-table th {
-  background: var(--header-bg);
-  color: var(--text-dim);
-  font-weight: 600;
-  font-size: 11px;
-  position: sticky;
-  top: 0;
-}
-table.compare-table td:first-child {
-  text-align: left;
-  font-weight: 600;
-  color: var(--text-dim);
-}
-table.compare-table .header-cell {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-table.compare-table .header-cell .city-name { font-weight: 600; color: var(--text); font-size: 12px; }
-table.compare-table .header-cell .city-state { font-size: 10px; color: var(--text-dim); }
-.rank-1 { color: var(--green); font-weight: 700; }
-.rank-2 { color: var(--yellow); font-weight: 700; }
-.rank-10 { color: var(--red); font-weight: 700; }
-
-/* Loading/select states */
-.select-city-msg {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  color: var(--text-dim);
-  font-size: 14px;
-  text-align: center;
-  padding: 24px;
-}
-.loading {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px;
-  color: var(--text-dim);
-  gap: 8px;
-}
-.spinner {
-  width: 16px;
-  height: 16px;
-  border: 2px solid var(--border);
-  border-top-color: var(--accent);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-
-/* Filter bar */
-.filter-bar {
-  background: var(--card);
-  border-bottom: 1px solid var(--border);
-  padding: 10px 24px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: flex-end;
-}
-.filter-group {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-.filter-group label {
-  font-size: 10px;
-  font-weight: 600;
-  color: var(--text-dim);
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
-}
-.filter-group input[type=text],
-.filter-group select {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  color: var(--text);
-  padding: 6px 10px;
-  font-size: 13px;
-  min-width: 130px;
-  outline: none;
-}
-.filter-group input[type=text]:focus,
-.filter-group select:focus { border-color: var(--accent); }
-.filter-group input[type=range] {
-  -webkit-appearance: none;
-  appearance: none;
-  height: 4px;
-  background: var(--border);
-  border-radius: 2px;
-  outline: none;
-  min-width: 90px;
-}
-.filter-group input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: var(--accent);
-  cursor: pointer;
-}
-.filter-reset {
-  background: transparent;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  color: var(--text-dim);
-  padding: 6px 14px;
-  font-size: 12px;
-  cursor: pointer;
-  align-self: flex-end;
-}
-.filter-reset:hover { border-color: var(--accent); color: var(--accent); }
-
-/* Search */
-.search-bar {
-  display: flex;
-  gap: 6px;
-  margin-bottom: 12px;
-}
-.search-bar input {
-  flex: 1;
-  padding: 8px 12px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  background: var(--bg);
-  color: var(--text);
-  font-size: 13px;
-  outline: none;
-}
-.search-bar input:focus { border-color: var(--accent); }
-.search-bar input::placeholder { color: var(--text-dim); }
-
-/* City list for tab */
-.city-list { display: flex; flex-direction: column; gap: 6px; }
-.city-list-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 12px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-.city-list-item:hover { background: var(--card-hover); border-color: var(--accent); }
-.city-list-item .cl-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-.city-list-item .cl-name { font-weight: 600; font-size: 14px; flex: 1; }
-.city-list-item .cl-state { font-size: 12px; color: var(--text-dim); }
-.city-list-item .cl-rent { font-size: 13px; font-weight: 700; }
-.city-list-item .cl-detail { font-size: 12px; color: var(--text-dim); }
-
-/* Responsive */
-@media (max-width: 768px) {
-  .main-layout { flex-direction: column; height: auto; }
-  .map-panel { height: 50vh; }
-  .side-panel { width: 100%; max-width: 100%; border-left: none; border-top: 1px solid var(--border); }
-}
-
-/* Popup styling */
-.leaflet-popup-content-wrapper {
-  background: var(--card) !important;
-  color: var(--text) !important;
-  border: 1px solid var(--border) !important;
-  border-radius: 8px !important;
-  font-family: inherit;
-}
-.leaflet-popup-content { margin: 10px 14px !important; }
-.leaflet-popup-tip { background: var(--card) !important; border: 1px solid var(--border) !important; }
-.leaflet-popup-close-button { color: var(--text-dim) !important; }
-.popup-city { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
-.popup-rent { font-size: 22px; font-weight: 700; color: var(--accent); }
-.popup-label { font-size: 11px; color: var(--text-dim); }
-
-/* Compare filter */
-.filter-row {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 12px;
-  flex-wrap: wrap;
-}
-.filter-row select {
-  padding: 6px 10px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  background: var(--bg);
-  color: var(--text);
-  font-size: 12px;
-  outline: none;
-}
-.filter-row select:focus { border-color: var(--accent); }
-
-/* Sort indicator */
-.sort-indicator {
-  font-size: 10px;
-  margin-left: 3px;
-  cursor: pointer;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mietspiegel Digital — Deutsche Mietspiegel im Vergleich</title>
+  <meta name="description" content="Digitalisierte Mietspiegel der größten deutschen Städte. Vergleiche offizielle Mietpreise, lade CSV-Exporte, siehe historische Trends und erhalte E-Mail-Benachrichtigungen bei Änderungen.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 </head>
 <body>
+  <header>
+    <div>
+      <h1>🏠 Mietspiegel <span>Digital</span></h1>
+      <div class="subtitle">Digitalisierte, standardisierte Mietspiegel der größten deutschen Städte</div>
+    </div>
+    <div>
+      <span class="badge">⭐ Premium</span>
+      <a href="https://github.com/ravidvr/mietspiegel-digitization" style="color:var(--primary);font-size:0.85rem;margin-left:1rem;text-decoration:none">GitHub</a>
+    </div>
+  </header>
 
-<div class="header">
-  <div>
-    <h1>🏠 Mietspiegel <span>Dashboard</span></h1>
-    <div class="subtitle">Official German rent index data — compared across cities</div>
-  </div>
-  <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-    <span class="badge">MVP · 10 cities</span>
-    <span class="badge" style="background:var(--green);">2024–2025</span>
-    <a href="https://github.com/ravidvr/mietspiegel-digitization" style="color:var(--accent);font-size:13px;text-decoration:none;">GitHub</a>
-  </div>
-</div>
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="map-panel">🗺️ Karte &amp; Städte</button>
+    <button class="tab-btn" data-tab="export-panel">📥 CSV Export <span class="premium-icon">⭐</span></button>
+    <button class="tab-btn" data-tab="trends-panel">📈 Historische Trends <span class="premium-icon">⭐</span></button>
+    <button class="tab-btn" data-tab="alerts-panel">🔔 E-Mail Alerts <span class="premium-icon">⭐</span></button>
+  </nav>
 
-<div class="filter-bar">
-  <div class="filter-group">
-    <label>Stadt</label>
-    <input type="text" id="filter-search" placeholder="Suche…" oninput="applyFilters()">
-  </div>
-  <div class="filter-group">
-    <label>Bundesland</label>
-    <select id="filter-state" onchange="applyFilters()">
-      <option value="">Alle</option>
-    </select>
-  </div>
-  <div class="filter-group">
-    <label>Baujahr</label>
-    <select id="filter-baujahr" onchange="applyFilters()">
-      <option value="">Alle Baujahre</option>
-      <option value="bis 1918">bis 1918</option>
-      <option value="1919-1949">1919–1949</option>
-      <option value="1950-1964">1950–1964</option>
-      <option value="1965-1974">1965–1974</option>
-      <option value="1975-1990">1975–1990</option>
-      <option value="1991-2002">1991–2002</option>
-      <option value="2003-2013">2003–2013</option>
-      <option value="2014+">2014+</option>
-    </select>
-  </div>
-  <div class="filter-group">
-    <label>Mindestmiete €/m² <span id="filter-rent-label" style="font-weight:600;color:var(--accent)">0</span></label>
-    <input type="range" id="filter-rent" min="0" max="30" step="0.5" value="0" oninput="updateRentLabel(); applyFilters()">
-  </div>
-  <div class="filter-group">
-    <label>Wohnlage</label>
-    <select id="filter-lage" onchange="applyFilters()">
-      <option value="">Alle Lagen</option>
-      <option value="einfach">Einfach</option>
-      <option value="mittel">Mittel</option>
-      <option value="gut">Gut</option>
-    </select>
-  </div>
-  <button class="filter-reset" onclick="resetFilters()">Zurücksetzen</button>
-</div>
+  <div id="app" class="loading">App wird geladen...</div>
 
-<div class="main-layout">
-  <div class="map-panel">
+  <!-- ========== TAB 1: Map & Cities ========== -->
+  <div id="map-panel" class="panel active">
     <div id="map"></div>
-    <div class="map-legend">
-      <div style="font-weight:600;margin-bottom:4px;font-size:13px;">Ø Net Cold Rent</div>
-      <div class="row"><span class="dot" style="background:var(--green);"></span> &lt; €10/m²</div>
-      <div class="row"><span class="dot" style="background:var(--yellow);"></span> €10–14/m²</div>
-      <div class="row"><span class="dot" style="background:var(--orange);"></span> €14–18/m²</div>
-      <div class="row"><span class="dot" style="background:var(--red);"></span> &gt; €18/m²</div>
+    <div id="city-list"></div>
+    <div id="city-detail"></div>
+  </div>
+
+  <!-- ========== TAB 2: CSV Export (Premium) ========== -->
+  <div id="export-panel" class="panel">
+    <div class="export-section">
+      <h3>📥 Bulk CSV Export</h3>
+      <p>Exportiere die Mietspiegel-Daten aller Städte als strukturierte CSV-Tabelle. Enthält aktuelle Werte und historische Trends für jede Stadt — ideal für Analyse in Excel, Python oder Tableau.</p>
+      <div class="export-options">
+        <div class="form-group">
+          <label for="export-state">Bundesland filtern</label>
+          <select id="export-state">
+            <option value="all">🇩🇪 Alle Bundesländer</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="export-lage">Wohnlage</label>
+          <select id="export-lage">
+            <option value="einfach">Einfach</option>
+            <option value="mittel" selected>Mittel</option>
+            <option value="gut">Gut</option>
+          </select>
+        </div>
+      </div>
+      <button id="export-btn" class="btn btn-premium">⬇️ CSV herunterladen</button>
+      <div style="margin-top:1.5rem">
+        <h4 style="font-size:0.9rem;color:var(--text-muted);margin-bottom:0.5rem">Vorschau (erste Zeilen)</h4>
+        <pre id="csv-preview" style="background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:0.75rem;font-size:0.75rem;overflow-x:auto;max-height:200px;color:var(--text-muted)">Klicke auf "CSV herunterladen" um eine Vorschau zu sehen.</pre>
+      </div>
+    </div>
+    <div class="export-section" style="border-color:var(--premium-gold)">
+      <h3>💡 Nutzungsmöglichkeiten</h3>
+      <ul style="list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;margin-top:0.75rem">
+        <li style="padding:0.75rem;background:var(--bg);border-radius:var(--radius)">
+          <strong style="color:var(--primary)">📊 Immobilienanalyse</strong><br>
+          <span style="font-size:0.85rem;color:var(--text-muted)">Vergleiche Mietpreise zwischen Städten für Portfolio-Entscheidungen</span>
+        </li>
+        <li style="padding:0.75rem;background:var(--bg);border-radius:var(--radius)">
+          <strong style="color:var(--primary)">🏢 Due Diligence</strong><br>
+          <span style="font-size:0.85rem;color:var(--text-muted)">Prüfe ortsübliche Vergleichsmieten für gewerbliche Bestandsanalysen</span>
+        </li>
+        <li style="padding:0.75rem;background:var(--bg);border-radius:var(--radius)">
+          <strong style="color:var(--primary)">📈 Marktforschung</strong><br>
+          <span style="font-size:0.85rem;color:var(--text-muted)">Trendanalysen über Baujahre, Wohnlagen und Stadtgrößen</span>
+        </li>
+      </ul>
     </div>
   </div>
 
-  <div class="side-panel">
-    <div class="panel-tabs">
-      <div class="panel-tab active" data-tab="detail" onclick="switchTab('detail')">City Detail</div>
-      <div class="panel-tab" data-tab="compare" onclick="switchTab('compare')">Compare</div>
-      <div class="panel-tab" data-tab="list" onclick="switchTab('list')">All Cities</div>
-    </div>
-
-    <div class="panel-content" id="panel-detail">
-      <div class="select-city-msg">
-        <div>👆 Click a city marker on the map<br><span style="font-size:12px;color:var(--text-dim);">or select from the list tab</span></div>
+  <!-- ========== TAB 3: Historical Trends (Premium) ========== -->
+  <div id="trends-panel" class="panel">
+    <div class="chart-container">
+      <h3>📈 Historische Mietspiegel-Entwicklung</h3>
+      <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:1rem">
+        Sieh dir an, wie sich die offiziellen Mietspiegel-Werte in den letzten Jahren entwickelt haben.
+        Aktuell 3 Datenpunkte (2020, 2022, 2024/25); bei jeder neuen Edition kommen weitere hinzu.
+      </p>
+      <div class="chart-controls">
+        <div class="form-group">
+          <label for="trend-city">Stadt</label>
+          <select id="trend-city">
+            <option value="">— Bitte wählen —</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="trend-type">Wert</label>
+          <select id="trend-type">
+            <option value="mittel_60_90">Mittelwert 60-90m²</option>
+            <option value="mittel_1919_1949">Mittelwert Baujahr 1919-1949</option>
+          </select>
+        </div>
+      </div>
+      <div class="chart-wrapper">
+        <canvas id="trend-chart"></canvas>
       </div>
     </div>
-
-    <div class="panel-content" id="panel-compare" style="display:none;">
-      <div class="filter-row">
-        <select id="compare-lage" onchange="updateComparison()">
-          <option value="mittel">Mittlere Lage</option>
-          <option value="einfach">Einfache Lage</option>
-          <option value="gut">Gute Lage</option>
-        </select>
-        <select id="compare-size" onchange="updateComparison()">
-          <option value="40_60">40–60 m²</option>
-          <option value="bis_40">&lt; 40 m²</option>
-          <option value="60_90">60–90 m²</option>
-          <option value="ueber_90">&gt; 90 m²</option>
-        </select>
-        <select id="compare-baujahr" onchange="updateComparison()">
-          <option value="1965-1974">1965–1974</option>
-          <option value="bis 1918">&lt; 1918</option>
-          <option value="1919-1949">1919–1949</option>
-          <option value="1950-1964">1950–1964</option>
-          <option value="1975-1990">1975–1990</option>
-          <option value="1991-2002">1991–2002</option>
-          <option value="2003-2013">2003–2013</option>
-          <option value="2014+">2014+</option>
-        </select>
-      </div>
-      <div class="comparison-table-wrap" id="compare-table-wrap">
-        <div class="loading"><div class="spinner"></div> Loading data...</div>
-      </div>
-    </div>
-
-    <div class="panel-content" id="panel-list" style="display:none;">
-      <div class="search-bar">
-        <input type="text" id="city-search" placeholder="Search cities..." oninput="filterCityList()">
-      </div>
-      <div class="city-list" id="city-list"></div>
+    <div class="chart-container" style="border-color:var(--premium-gold)">
+      <h3>🏆 Städte-Ranking nach Mietpreis</h3>
+      <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:1rem">
+        Aktuelle mittlere Mietspiegel-Werte für 60-90m² (Wohnlage: Mittel, Baujahr 2011-2024)
+      </p>
+      <div id="city-ranking"></div>
     </div>
   </div>
-</div>
 
-<script>
-// State
-const CITIES_INDEX = 'data/processed/cities.json';
-const CITY_DATA_PATH = 'data/processed/';
-let cities = [];
-let cityDataCache = {};
-let map = null;
-let markers = [];
-let selectedCity = null;
-
-// Init
-async function init() {
-  map = L.map('map', {
-    center: [51.1657, 10.4515],
-    zoom: 6,
-    zoomControl: true,
-    attributionControl: true,
-    scrollWheelZoom: true
-  });
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://openstreetmap.org">OSM</a>',
-    maxZoom: 18
-  }).addTo(map);
-
-  const resp = await fetch(CITIES_INDEX);
-  cities = await resp.json();
-  populateStateFilter();
-  renderCityList();
-  addMarkers();
-}
-
-function getRentColor(avgRent) {
-  if (avgRent < 10) return '#48bb78';
-  if (avgRent < 14) return '#ecc94b';
-  if (avgRent < 18) return '#ed8936';
-  return '#f56565';
-}
-
-function getAvgCityRent(cityData) {
-  const mid = cityData.tables.find(t => t.lage === 'mittel');
-  if (!mid) return 12;
-  const vals = mid.rows.map(r => r['40_60'] || r.bis_40 || 0);
-  return vals.reduce((a, b) => a + b, 0) / vals.length;
-}
-
-function addMarkers() {
-  cities.forEach(c => {
-    const resp2 = fetch(CITY_DATA_PATH + c.slug + '.json');
-    resp2.then(r => r.json()).then(data => {
-      cityDataCache[c.slug] = data;
-      const avg = getAvgCityRent(data);
-      const color = getRentColor(avg);
-      const marker = L.circleMarker([c.lat, c.lng], {
-        radius: 12,
-        fillColor: color,
-        color: '#fff',
-        weight: 2,
-        opacity: 1,
-        fillOpacity: 0.85
-      }).addTo(map);
-      marker.bindPopup(`
-        <div class="popup-city">${c.city}</div>
-        <div class="popup-label">${c.state} · ${data.year}</div>
-        <div class="popup-rent">ø €${avg.toFixed(1)}/m²</div>
-        <div class="popup-label">Mittlere Lage, 40–60m²</div>
-      `);
-      marker.on('click', () => showCityDetail(c.slug));
-      marker._slug = c.slug;
-      markers.push(marker);
-    });
-  });
-}
-
-// ===== FILTERS =====
-function updateRentLabel() {
-  document.getElementById('filter-rent-label').textContent = document.getElementById('filter-rent').value;
-}
-
-function populateStateFilter() {
-  const sel = document.getElementById('filter-state');
-  const states = [...new Set(cities.map(c => c.state))].sort();
-  states.forEach(s => {
-    const opt = document.createElement('option');
-    opt.value = s; opt.textContent = s;
-    sel.appendChild(opt);
-  });
-}
-
-function getFilteredSlugs() {
-  const search = document.getElementById('filter-search').value.toLowerCase().trim();
-  const state = document.getElementById('filter-state').value;
-  const baujahr = document.getElementById('filter-baujahr').value;
-  const rentMin = parseFloat(document.getElementById('filter-rent').value) || 0;
-  const lage = document.getElementById('filter-lage').value;
-
-  const result = [];
-  cities.forEach(c => {
-    if (search && !c.city.toLowerCase().includes(search)) return;
-    if (state && c.state !== state) return;
-
-    // Defer to per-city data for rent/baujahr/lage checks
-    const data = cityDataCache[c.slug];
-    if (!data) { result.push(c.slug); return; } // still loading
-
-    // Check rent range: find any matching row
-    if (rentMin > 0 || baujahr || lage) {
-      let found = false;
-      (data.lage_categories || []).forEach(lg => {
-        if (lage && lg !== lage) return;
-        const table = (data.tables || []).find(t => t.lage === lg);
-        if (!table) return;
-        (table.rows || []).forEach(row => {
-          if (baujahr && row.baujahr !== baujahr) return;
-          const vals = [row.bis_40, row['40_60'], row['60_90'], row.ueber_90].filter(v => v !== undefined);
-          if (vals.some(v => v >= rentMin)) found = true;
-        });
-      });
-      if (!found) return;
-    }
-
-    result.push(c.slug);
-  });
-  return new Set(result);
-}
-
-function applyFilters() {
-  const visible = getFilteredSlugs();
-  const total = cities.length;
-
-  // Update map markers
-  const showAll = visible.size === 0;
-  markers.forEach(m => {
-    if (!m._slug) return;
-    const match = showAll || visible.has(m._slug);
-    if (match) {
-      if (!map.hasLayer(m)) map.addLayer(m);
-      m.setStyle({ opacity: 1, fillOpacity: 0.85 });
-    } else {
-      if (map.hasLayer(m)) map.removeLayer(m);
-    }
-  });
-
-  // Update city list if visible
-  renderCityList(visible);
-
-  // Update list tab too
-  filterCityList();
-}
-
-function resetFilters() {
-  document.getElementById('filter-search').value = '';
-  document.getElementById('filter-state').value = '';
-  document.getElementById('filter-baujahr').value = '';
-  document.getElementById('filter-rent').value = '0';
-  document.getElementById('filter-rent-label').textContent = '0';
-  document.getElementById('filter-lage').value = '';
-  applyFilters();
-}
-
-async function showCityDetail(slug) {
-  let data = cityDataCache[slug];
-  if (!data) {
-    const resp = await fetch(CITY_DATA_PATH + slug + '.json');
-    data = await resp.json();
-    cityDataCache[slug] = data;
-  }
-  selectedCity = slug;
-  switchTab('detail');
-
-  const meta = cities.find(c => c.slug === slug);
-  const panel = document.getElementById('panel-detail');
-  let currentLage = 'mittel';
-  renderDetail(slug, data, meta, currentLage);
-  window._detailData = { slug, data, meta };
-
-  // Fly map
-  const marker = markers.find(m => {
-    const ll = m.getLatLng();
-    return Math.abs(ll.lat - meta.lat) < 0.1 && Math.abs(ll.lng - meta.lng) < 0.1;
-  });
-  if (marker) map.flyTo([meta.lat, meta.lng], 9, { duration: 0.8 });
-}
-
-function renderDetail(slug, data, meta, lage) {
-  const panel = document.getElementById('panel-detail');
-  const lageTable = data.tables.find(t => t.lage === lage);
-  const avgRent = getAvgCityRent(data);
-
-  let baujahrHeaders = data.baujahr_groups.map(b => `<th>${b}</th>`).join('');
-  let sizeRows = data.size_categories.map(size => {
-    const key = size === 'bis 40 m²' ? 'bis_40' :
-                size === '40-60 m²' ? '40_60' :
-                size === '60-90 m²' ? '60_90' : 'ueber_90';
-    let vals = lageTable.rows.map(r => `<td>€${r[key]?.toFixed(2)}</td>`).join('');
-    return `<tr><td>${size}</td>${vals}</tr>`;
-  }).join('');
-
-  panel.innerHTML = `
-    <div class="city-header">
-      <div>
-        <h2>${data.city}</h2>
-        <div class="state">${data.state} · ${(meta?.population || 0).toLocaleString()} residents</div>
-      </div>
-      <div class="year-badge">${data.year} · ${data.type}</div>
+  <!-- ========== TAB 4: Email Alerts (Premium) ========== -->
+  <div id="alerts-panel" class="panel">
+    <div class="alert-section">
+      <h3>🔔 E-Mail-Benachrichtigungen bei Mietspiegel-Änderungen</h3>
+      <p>
+        Erhalte eine E-Mail, sobald eine Stadt einen neuen Mietspiegel veröffentlicht.
+        Mit optionalen Schwellwerten: benachrichtige mich nur, wenn die Miete um mehr als X% steigt
+        oder einen bestimmten Wert überschreitet.
+      </p>
+      <form id="alert-form" class="alert-form">
+        <div class="form-group">
+          <label for="alert-email">📧 E-Mail-Adresse</label>
+          <input type="email" id="alert-email" placeholder="deine@email.de" required>
+        </div>
+        <div class="form-group">
+          <label for="alert-city">🏙️ Stadt</label>
+          <select id="alert-city" class="city-select">
+            <option value="">— Alle Städte —</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="alert-max-rent">💰 Max. Miete (€/m²)</label>
+          <input type="number" id="alert-max-rent" placeholder="z.B. 12" step="0.1" min="0">
+        </div>
+        <div class="form-group">
+          <label for="alert-change">📊 Änderung &gt; X%</label>
+          <input type="number" id="alert-change" placeholder="z.B. 5" step="0.5" min="0">
+        </div>
+        <button type="submit" class="btn btn-premium">🔔 Abonnieren</button>
+      </form>
+      <div id="alert-status"></div>
     </div>
-    <div class="lage-selector">
-      ${data.lage_categories.map(l => `<div class="lage-btn ${l === lage ? 'active' : ''}" onclick="switchLage('${l}')">${capitalize(l)}</div>`).join('')}
-    </div>
-    <div class="table-wrap">
-      <table class="miet-table">
-        <thead><tr><th>Size</th>${baujahrHeaders}</tr></thead>
-        <tbody>${sizeRows}</tbody>
+    <div class="alert-section">
+      <h3>📋 Meine Abonnements</h3>
+      <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:0.5rem">Verwaltung deiner Alert-Abonnements (gespeichert im Browser)</p>
+      <table class="subs-table">
+        <thead>
+          <tr>
+            <th>E-Mail</th>
+            <th>Stadt</th>
+            <th>Max. €/m²</th>
+            <th>Änderung &gt; %</th>
+            <th>Aktion</th>
+          </tr>
+        </thead>
+        <tbody id="subscriptions-body">
+          <tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:2rem">Noch keine Abonnements</td></tr>
+        </tbody>
       </table>
     </div>
-    <div style="font-size:11px;color:var(--text-dim);">
-      <strong>Net cold rent</strong> (€/m²/month) · ${data.city} Mietspiegel ${data.year}
-      · <a href="${data.source_url || '#'}" style="color:var(--accent);" target="_blank">Source</a>
+    <div class="alert-section" style="border-color:var(--accent-amber)">
+      <h3>⚙️ Funktionsweise</h3>
+      <ol style="color:var(--text-muted);font-size:0.9rem;margin-left:1.25rem;line-height:1.8">
+        <li><strong>Abonnieren:</strong> Wähle eine Stadt und gib deine E-Mail ein (optional mit Schwellwerten)</li>
+        <li><strong>Monitoring:</strong> Sobald ein neuer Mietspiegel veröffentlicht wird, prüft das System die Werte gegen deine Schwellen</li>
+        <li><strong>Benachrichtigung:</strong> Bei Überschreitung erhältst du eine E-Mail mit den neuen Werten und der prozentualen Änderung</li>
+        <li><strong>Integration:</strong> Deine Abonnements werden lokal gespeichert. Für den Live-E-Mail-Versand wird ein Backend-Dienst (z.B. Mailgun, SendGrid) benötigt — siehe <code>scripts/alert-monitor.py</code>.</li>
+      </ol>
     </div>
-  `;
-}
+  </div>
 
-function switchLage(lage) {
-  if (!window._detailData) return;
-  const { slug, data, meta } = window._detailData;
-  renderDetail(slug, data, meta, lage);
-  // Update active class
-  document.querySelectorAll('.lage-btn').forEach(b => {
-    b.classList.toggle('active', b.textContent.trim().toLowerCase() === lage);
-  });
-}
-
-// Comparison
-async function updateComparison() {
-  const lage = document.getElementById('compare-lage').value;
-  const size = document.getElementById('compare-size').value;
-  const baujahr = document.getElementById('compare-baujahr').value;
-  const wrap = document.getElementById('compare-table-wrap');
-
-  // Load all city data
-  const loadPromises = cities.map(async c => {
-    if (!cityDataCache[c.slug]) {
-      const r = await fetch(CITY_DATA_PATH + c.slug + '.json');
-      cityDataCache[c.slug] = await r.json();
-    }
-    return cityDataCache[c.slug];
-  });
-  const allData = await Promise.all(loadPromises);
-
-  // Build table
-  let baujahrOptions = allData[0].baujahr_groups;
-  let sizeOptions = allData[0].size_categories;
-  const sizeKey = size;
-  const sizeLabel = sizeOptions.find(s =>
-    s === 'bis 40 m²' ? sizeKey === 'bis_40' :
-    s === '40-60 m²' ? sizeKey === '40_60' :
-    s === '60-90 m²' ? sizeKey === '60_90' :
-    s === 'über 90 m²' ? sizeKey === 'ueber_90' : false
-  ) || '40–60 m²';
-
-  let entries = allData.map(d => {
-    const tb = d.tables.find(t => t.lage === lage);
-    if (!tb) return null;
-    const row = tb.rows.find(r => r.baujahr === baujahr);
-    if (!row) return null;
-    return { city: d.city, slug: d.city_slug, rent: row[sizeKey], data: d };
-  }).filter(Boolean).sort((a, b) => a.rent - b.rent);
-
-  // City header cells
-  let cityHeaders = entries.map((e, i) => `
-    <th>
-      <div class="header-cell">
-        <span class="city-name" onclick="showCityDetail('${e.slug}')" style="cursor:pointer;">${e.city}</span>
-        <span class="city-state">${e.data.state}</span>
-      </div>
-    </th>
-  `).join('');
-
-  // Baujahr rows
-  let baujahrRows = baujahrOptions.map(bj => {
-    let cells = entries.map((e, i) => {
-      const row = e.data.tables.find(t => t.lage === lage)?.rows.find(r => r.baujahr === bj);
-      const val = row ? row[sizeKey] : null;
-      if (!val) return '<td>—</td>';
-      return `<td>€${val.toFixed(2)}</td>`;
-    }).join('');
-    return `<tr><td style="text-align:left;font-weight:600;">${bj}</td>${cells}</tr>`;
-  }).join('');
-
-  wrap.innerHTML = `
-    <div style="font-size:11px;color:var(--text-dim);margin-bottom:8px;">
-      Showing <strong>${capitalize(lage)} Lage</strong> · <strong>${sizeLabel}</strong> · sorted by rent (low→high)
-    </div>
-    <table class="compare-table">
-      <thead><tr><th style="width:80px;">Baujahr</th>${cityHeaders}</tr></thead>
-      <tbody>${baujahrRows}</tbody>
-    </table>
-  `;
-}
-
-// Tabs
-function switchTab(tab) {
-  document.querySelectorAll('.panel-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
-  document.getElementById('panel-detail').style.display = tab === 'detail' ? 'block' : 'none';
-  document.getElementById('panel-compare').style.display = tab === 'compare' ? 'block' : 'none';
-  document.getElementById('panel-list').style.display = tab === 'list' ? 'block' : 'none';
-  if (tab === 'compare') updateComparison().catch(() => {});
-}
-
-// City list
-function renderCityList(filter) {
-  const list = document.getElementById('city-list');
-  let filtered = filter
-    ? cities.filter(c => c.city.toLowerCase().includes(filter.toLowerCase()) || c.state.toLowerCase().includes(filter.toLowerCase()))
-    : cities;
-  list.innerHTML = filtered.map(c => {
-    const d = cityDataCache[c.slug];
-    const avg = d ? getAvgCityRent(d) : 0;
-    const color = d ? getRentColor(avg) : '#666';
-    return `<div class="city-list-item" onclick="showCityDetail('${c.slug}')">
-      <span class="cl-dot" style="background:${color}"></span>
-      <span class="cl-name">${c.city}</span>
-      <span class="cl-state">${c.state}</span>
-      ${d ? `<span class="cl-rent">€${avg.toFixed(1)}</span>` : '<span class="cl-detail">loading...</span>'}
-    </div>`;
-  }).join('');
-  document.querySelectorAll('.city-list-item').forEach(el => {
-    // events handled by onclick in template
-  });
-}
-
-function filterCityList() {
-  renderCityList(document.getElementById('city-search').value);
-}
-
-function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
-
-// Init on load
-document.addEventListener('DOMContentLoaded', init);
-</script>
+  <script src="js/app.js"></script>
 </body>
 </html>
