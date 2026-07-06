@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/ravidvr/mietspiegel-digitization/main/docs/schema.json",
   "meta": {
     "schema_version": "1.0.0",
-    "extracted_at": "2026-07-06T14:49:38Z",
+    "extracted_at": "2026-07-06T14:54:07Z",
     "extracted_by": "manual (PDF text extraction)",
     "extraction_notes": "Dresden uses a factor-based Mietspiegel (Tabelle 1: Basismiete by size; Tabelle 2: Baualter factors; Tabelle 3: Wohnlage factors; Tabelle 4-8: Ausstattung factors). The unified matrix values are computed as Base_Rent(size) × F_baujahr × F_lage using representative sizes per bracket. See model_type=faktor-basiert for the original factor data.",
     "quality": {
