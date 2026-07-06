@@ -613,6 +613,7 @@ function addMarkers() {
         <div class="popup-label">Mittlere Lage, 40–60m²</div>
       `);
       marker.on('click', () => showCityDetail(c.slug));
+      marker._slug = c.slug;
       markers.push(marker);
     });
   });
