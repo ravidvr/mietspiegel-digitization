@@ -1,134 +1,89 @@
 # Format Variation Catalog
 
-> **Purpose:** Document how each city's Mietspiegel format differs from the standard model (3 Wohnlage categories × ~9 Bauperiods × ~16 size groups with untere/obere Spanne + Mittelwert). This catalog feeds the normalization layer (task 2.6).
+> **Purpose:** Document how each city's Mietspiegel format differs from the standard reference model (Berlin 2024: 3 Wohnlage categories, 8 Baujahr periods, 4 size ranges, single Mittelwert values).
+> 
+> This catalog feeds the normalization layer (task 2.6) and should be updated as new cities are extracted.
 
 ---
 
-## Standard Model (Berlin 2024 reference)
+## Standard Reference (Berlin 2024)
 
-| Dimension | Structure |
-|-----------|-----------|
-| Wohnlage | 3-tier: einfach, mittel, gut |
-| Bauperiods | 9 periods: bis 1918 → ab 2023 |
-| Size groups | 14 brackets: <35 m² → ab 100 m² |
-| Values per cell | untere Spanne, Mittelwert, obere Spanne (all €/m² net cold) |
-| Type | qualifiziert |
-
----
-
-## Cities 1-10 (Tier 1 — to be documented)
-
-| # | City | Format | Differences from Standard |
-|---|------|--------|--------------------------|
-| 1 | Berlin | 3×9×14, 3-value | Baseline reference |
-| 2 | Hamburg | TBD | |
-| 3 | Munich | TBD | |
-| 4 | Cologne | TBD | |
-| 5 | Frankfurt | TBD | |
-| 6 | Stuttgart | TBD | |
-| 7 | Düsseldorf | TBD | |
-| 8 | Leipzig | TBD | |
-| 9 | Dresden | TBD | |
-| 10 | Hannover | TBD | |
-
-## Cities 11-20 (Tier 2a — to be documented)
-
-| # | City | Format | Differences from Standard |
-|---|------|--------|--------------------------|
-| 11 | Nuremberg | TBD | |
-| 12 | Bremen | TBD | |
-| 13 | Duisburg | TBD | |
-| 14 | Bochum | TBD | |
-| 15 | Wuppertal | TBD | |
-| 16 | Bielefeld | TBD | |
-| 17 | Bonn | TBD | |
-| 18 | Münster | TBD | |
-| 19 | Mannheim | TBD | |
-| 20 | Karlsruhe | TBD | |
-
-## Cities 21-30 (Tier 2b — to be documented)
-
-| # | City | Format | Differences from Standard |
-|---|------|--------|--------------------------|
-| 21 | Augsburg | TBD | |
-| 22 | Wiesbaden | TBD | |
-| 23 | Mönchengladbach | TBD | |
-| 24 | Gelsenkirchen | TBD | |
-| 25 | Aachen | TBD | |
-| 26 | Braunschweig | TBD | |
-| 27 | Kiel | TBD | |
-| 28 | Chemnitz | TBD | |
-| 29 | Halle | TBD | |
-| 30 | Magdeburg | TBD | |
-
-## Cities 31-40 (Tier 2c — this batch)
-
-| # | City | Format | Differences from Standard |
-|---|------|--------|--------------------------|
-| 31 | Freiburg | TBD | PDF source not found; website blocked curl |
-| 32 | Krefeld | TBD | Mietspiegel section on krefeld.de (needs browser interaction to expand) |
-| 33 | Mainz | ✅ Extracted | No Wohnlage differentiation — single combined table. Uses Median + 2/3-Spannweite instead of untere/obere Spanne. 8 Bauperiods × 4 size groups. |
-| 34 | Lübeck | ✅ Extracted | Single base table for 'mittlere Wohnlage' with Zu-/Abschläge für gute (+0.44) and einfache (-0.47) Wohnlage. 10 Bauperiods × 4 size groups. Mittelwert + 2/3-Preisspanne. |
-| 35 | Erfurt | TBD | erfurt.de → Leben → Wohnen → Mietspiegel page returned no content |
-| 36 | Oberhausen | TBD | oberhausen.de returned HTML but needs parsing |
-| 37 | Rostock | ✅ Extracted | Berechnungsmietspiegel (calculation-based). Table 1: base rent by size (20-150 m²). Table 2: Zu-/Abschläge for Baujahr, equipment, Wohnlage. No discrete table; formula-based. |
-| 38 | Kassel | TBD | kassel.de → Mietspiegel → 404 error |
-| 39 | Hagen | TBD | Not yet researched |
-| 40 | Potsdam | TBD | potsdam.de → Mietspiegel returned no data |
-
-## Cities 41-50 (Tier 2d — to be documented)
-
-| # | City | Format | Differences from Standard |
-|---|------|--------|--------------------------|
-| 41 | Saarbrücken | TBD | |
-| 42 | Hamm | TBD | |
-| 43 | Ludwigshafen | TBD | |
-| 44 | Oldenburg | TBD | |
-| 45 | Osnabrück | TBD | |
-| 46 | Leverkusen | TBD | |
-| 47 | Heidelberg | TBD | |
-| 48 | Darmstadt | TBD | |
-| 49 | Solingen | TBD | |
-| 50 | Regensburg | TBD | |
+| Dimension | Structure | Notes |
+|-----------|----------|-------|
+| **Wohnlage** | 3-tier: einfach, mittel, gut | |
+| **Bauperiods** | 8 periods (bis 1918 → 2011-2024) | |
+| **Size groups** | 4 brackets (bis 40, 40-60, 60-90, über 90 m²) | |
+| **Values per cell** | Single Mittelwert (€/m² net cold) | No untere/obere Spanne |
+| **Type** | qualifiziert | |
 
 ---
 
-## Common Format Variations Observed
+## Cities with Complete Table Data
 
-*(To be populated as extraction proceeds)*
+### Matches Standard (3 lages × 8 Baujahr × 4 sizes)
 
-### Wohnlage variations
-- **2-tier system:** Some cities use only `einfach` and `gut` (no `mittel`)
-- **Custom labels:** `Lage I / Lage II / Lage III`, `Siedlungslage / normale Lage / gute Lage`
-- **4-tier system:** Rare but possible
+| City | State | Year | Lages | Baujahr | Sizes | Notes |
+|------|-------|------|-------|---------|-------|-------|
+| Berlin | Berlin | 2024 | 3 | 8 | 4 | Reference standard |
+| Düsseldorf | Nordrhein-Westfalen | 2024 | 3 | 8 | 4 | |
+| Frankfurt am Main | Hessen | 2024 | 3 | 8 | 4 | |
+| Hannover | Niedersachsen | 2024 | 3 | 8 | 4 | |
+| Leipzig | Sachsen | 2024 | 3 | 8 | 4 | |
+| Essen | Nordrhein-Westfalen | 2024 | 3 | 8 | 4 | Only 8 total rows (sparse?) |
+| Hamburg | Hamburg | 2024 | 3 | 8 | 4 | |
+| München | Bayern | 2025 | 3 | 8 | 4 | |
+| Stuttgart | Baden-Württemberg | 2024 | 3 | 8 | 4 | |
 
-### Bauperiod variations
-- **Coarser grouping:** Some cities use only 4-6 periods instead of 9
-- **Different cutoffs:** `bis 1960`, `1961-1977`, `1978-1991`, etc.
+### Deviations from Standard
 
-### Size group variations
-- **Simplified:** Some cities use only 3 size groups (`bis 60`, `60-90`, `über 90`)
-- **Single value:** Some cities publish a single €/m² number per Baujahr/Lage cell without size differentiation
+| City | State | Year | Lages | Baujahr | Sizes | Rows | Deviations |
+|------|-------|------|-------|---------|-------|------|------------|
+| **Aachen** | Nordrhein-Westfalen | 2024 | 3 | **1** | 4 | 16 | Only 1 aggregated Baujahr period. All 16 rows under a single period — need to verify if this is a simplified extraction or Aachen's actual format. |
+| **Braunschweig** | Niedersachsen | 2025 | 3 | **1** | 4 | 40 | Only 1 aggregated Baujahr period. 40 rows suggests detailed size/spec data collapsed to one period. |
+| **Bremen** | Bremen | 2024 | 3 | **8** | 4 | 8 | Only 8 total rows (1 per Baujahr). Likely missing size dimension. |
+| **Dresden** | Sachsen | 2025 | 3 | **5** | 4 | 15 | 5 Baujahr periods (vs 8). Older buildings grouped differently. |
+| **Freiburg im Breisgau** | Baden-Württemberg | 2024 | 3 | **8** | 4 | 9 | Only 9 rows (mostly empty table?). |
+| **Halle (Saale)** | Sachsen-Anhalt | 2026 | 3 | **1** | 4 | 17 | Only 1 aggregated Baujahr period. |
+| **Köln** | Nordrhein-Westfalen | 2024 | 3 | 8 | 4 | 15 | Slightly sparse (should be 24 rows for 3 lages × 8 periods). |
+| **Nürnberg** | Bayern | 2024 | 3 | **8** | 4 | 9 | Only 9 rows — sparse extraction. |
 
-### No Wohnlage differentiation
-- **Mainz-style:** Single table for all Wohnlagen. No differentiation by location quality. All rent values are aggregates across all location categories.
-- **When encountered:** Mainz (2025)
+---
 
-### Berechnungsmietspiegel (calculation-based)
-- **Rostock-style:** Instead of a discrete Baujahr × Größe × Lage table, the Mietspiegel provides:
-  1. A base rent per m² determined ONLY by apartment size (continuous, every m² from 20-150)
-  2. Adjustments (Zu-/Abschläge) for Baujahr, Wohnlage, equipment features, etc.
-- **Formula:** Ortsübliche Vergleichsmiete = Base[size] + Baujahr_adj + Wohnlage_adj + equipment_adj
-- **When encountered:** Rostock (2026)
+## Placeholder Cities (no table data yet)
 
-### Single Wohnlage table with simple adjustments
-- **Lübeck-style:** One base table for "mittlere Wohnlage" only. Other Wohnlagen are calculated via simple flat additions/deductions (+0.44 for gut, -0.47 for einfach).
-- **When encountered:** Lübeck (2025)
+These 11 cities have metadata (location, state) but no extracted rent tables:
 
-### Value formats
-- **Median + 2/3-Spannweite:** Mainz uses median instead of mean (Mittelwert), with 2/3-spread (untere/obere Spanne covering the middle 2/3 of values)
-- **Mittelwert + 2/3-Preisspanne:** Lübeck uses arithmetic mean with 2/3 spread
-- **Single value (no range):** Rostock's base table provides only a single value per size, no span
-- **No range:** Some cities publish only `Mittelwert` without `untere/obere Spanne`
-- **Tabellenmietspiegel:** A single specific value per cell instead of a range
-- **Spanneneinordnung:** Some provide additional adjustment factors for specific features (bad, kitchen, etc.)
+| City | State | Priority |
+|------|-------|----------|
+| Augsburg | Bayern | High (300k pop) |
+| Bielefeld | Nordrhein-Westfalen | High |
+| Bonn | Nordrhein-Westfalen | High |
+| Chemnitz | Sachsen | Medium |
+| Duisburg | Nordrhein-Westfalen | High |
+| Kiel | Schleswig-Holstein | High |
+| Lübeck | Schleswig-Holstein | Medium |
+| Mainz | Rheinland-Pfalz | High |
+| Mannheim | Baden-Württemberg | High |
+| Moenchengladbach | Nordrhein-Westfalen | Medium |
+| Rostock | Mecklenburg-Vorpommern | Medium |
+
+---
+
+## Cross-Cutting Observations
+
+1. **All cities use single Mittelwert** — No city has untere/obere Spanne in the extracted data. This is either a simplification choice in the extraction pipeline or these cities publish only the mean value.
+
+2. **Sizes are normalized to 4 tiers** — Every city uses bis 40, 40-60, 60-90, über 90 m² regardless of their native size brackets. This is good for comparison but loses granularity.
+
+3. **Baujahr periods vary widely** — 5 to 8 periods depending on city. Aachen/Braunschweig/Halle show only 1 period, which is likely an extraction error (need re-extraction).
+
+4. **Köln and Nürnberg have sparse tables** — They show fewer rows than expected for 3 lages × 8 periods × 4 sizes. May need re-extraction.
+
+---
+
+## Recommended Normalization Rules
+
+1. **Lage:** Map all to 3-tier (einfach/mittel/gut). If city has only 2, map to (mittel/gut) or (einfach/mittel).
+2. **Baujahr:** Preserve original periods in the data. For comparison, map to 8 standard periods via lookup table.
+3. **Sizes:** Keep current 4-tier system. Add native size ranges as metadata when available.
+4. **Values:** Since all cities use single Mittelwert, comparison is straightforward. If untere/obere Spanne is added later, store as separate fields.
