@@ -386,7 +386,7 @@ async function showCity(slug) {
   let l = 'mittel'; if (!d.tables.find(t=>t.lage===l)&&d.tables.length) l = d.tables[0].lage;
   rDet(slug,d,meta,l);
   const m = markers.find(m=>{const ll=m.getLatLng();return Math.abs(ll.lat-meta.lat)<.1&&Math.abs(ll.lng-meta.lng)<.1});
-  if(m) map.flyTo([meta.lat,meta.lng],9,{.6});
+  if(m) map.flyTo([meta.lat,meta.lng],9,{duration:.6});
 }
 
 function rDet(slug,d,meta,lage){
