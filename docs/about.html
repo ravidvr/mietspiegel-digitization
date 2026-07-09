@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Mietspiegel Dashboard</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; color: #333; min-height: 100vh; display: flex; flex-direction: column; }
+.container { max-width: 640px; margin: 0 auto; padding: 40px 24px; flex: 1; }
+.card { background: #fff; border-radius: 12px; padding: 32px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+h1 { font-size: 24px; margin-bottom: 6px; }
+.subtitle { color: #888; font-size: 14px; margin-bottom: 24px; }
+p { font-size: 15px; line-height: 1.6; margin-bottom: 16px; }
+a { color: #5b8def; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.badge { display: inline-block; background: #1a1a2e; color: #fff; padding: 10px 18px; border-radius: 8px; font-size: 14px; margin: 8px 4px 0 0; }
+.badge:hover { background: #5b8def; text-decoration: none; }
+.footer { text-align: center; padding: 20px; color: #999; font-size: 13px; }
+.footer a { color: #999; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="card">
+    <h1>📊 Mietspiegel Dashboard</h1>
+    <div class="subtitle">Official German rent index data — digitized, standardized, comparable</div>
+
+    <p>I built this because official Mietspiegel (rent index) data exists only as PDFs scattered across 600+ city websites. Nobody had put them all in one place, structured and comparable.</p>
+
+    <h2 style="font-size:16px;margin:20px 0 10px;color:#5b8def;">How the data was collected</h2>
+
+    <p><strong>City PDFs → table extraction → unified schema → interactive map.</strong></p>
+
+    <p>Each city publishes its Mietspiegel as a PDF. I download these, extract the rent tables using Python (camelot-py / pdfplumber), and map them to a unified schema that handles different Wohnlage categories, Baujahr periods, and size brackets across cities.</p>
+
+    <p>The core table shows the <strong>Net Cold Rent (Nettokaltmiete)</strong> in €/m² — the legally recognized rent index used for rent increases, Mietspiegelverfahren, and property valuation.</p>
+
+    <h2 style="font-size:16px;margin:20px 0 10px;color:#5b8def;">What you can do here</h2>
+    <p>• <strong>Browse</strong> the map — each circle is a city, colored by average rent</p>
+    <p>• <strong>Compare</strong> cities side-by-side — filter by Wohnlage, size, and Baujahr</p>
+    <p>• <strong>Search</strong> by city name or Bundesland</p>
+    <p>• <strong>Export</strong> the data as CSV for your own analysis</p>
+
+    <h2 style="font-size:16px;margin:20px 0 10px;color:#5b8def;">Legal status</h2>
+    <p style="font-size:13px;color:#999;border-left:3px solid #5b8def;padding-left:14px;">
+    Mietspiegel are "amtliche Werke" (§5(2) UrhG) — published by cities in the public interest, free of copyright. Source is cited per city. Data is extracted faithfully, not altered. See individual city pages for the official PDF source.
+    </p>
+
+    <p>The result: <strong>17 cities</strong> with complete table data so far — from Berlin to Stuttgart, Aachen to München. More cities added regularly.</p>
+
+    <p>I like playing with data, maps, and public-interest tools. This is one of those projects.</p>
+
+    <p>Corrections, suggestions, or want to contribute? Open an issue on GitHub.</p>
+
+    <a class="badge" href="https://github.com/ravidvr/mietspiegel-digitization" target="_blank">🐙 GitHub</a>
+
+    <p style="margin-top: 24px; font-size: 13px; color: #aaa;">
+      Data sourced from official city Mietspiegel. CC BY-SA 4.0 for the compiled dataset. Map is free.
+    </p>
+  </div>
+</div>
+<div class="footer">
+  <a href="/">← Back to the map</a>
+</div>
+</body>
+</html>
