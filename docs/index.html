@@ -365,7 +365,7 @@ function addMarkers(filter) {
     const d = cache[c.slug], a = avgRent(d);
     if (filter && filter(c,d,a)) return;
     const m = L.circleMarker([c.lat,c.lng],{radius:a?8:5,fillColor:color(a),color:'#fff',weight:1.5,fillOpacity:.85}).addTo(map);
-    if (a != null) m.bindPopup(`<div class="pp-c">${c.city}</div><div class="pp-l">${c.state} · ${d?.year||'?'}</div><div class="pp-r">ø €${a.toFixed(1)}/m²</div>${c.city === 'Berlin' ? '<div class="pp-l" style="margin-top:4px;color:var(--accent)">⬇ Click for district view</div>' : ''}`);
+    if (a != null) m.bindPopup(`<div class="pp-c">${c.city}</div><div class="pp-l">${c.state} · ${d?.year||'?'}</div><div class="pp-r">ø €${a.toFixed(1)}/m²</div>${c.city === 'Berlin' ? '<div class="pp-l" style="margin-top:4px;color:var(--accent)">⬇ Click to see 12 districts</div>' : ''}`);
     m.on('click', () => showCity(c.slug));
     markers.push(m);
   });
@@ -388,75 +388,96 @@ function applyFilters() {
 }
 
 // ─── Districts ───
-let districtMode = false, districtMarkers = [], districtData = null;
+let districtMode = false, districtLayer = null, districtData = null;
+
+function enterDistrictView() {
+  districtMode = true;
+  document.getElementById('district-btn').textContent = '🏙️ Cities';
+  document.getElementById('district-btn').style.background = 'var(--accent)';
+  document.getElementById('district-btn').style.color = '#fff';
+  markers.forEach(m => map.removeLayer(m));
+  showDistricts();
+}
+
+function exitDistrictView() {
+  districtMode = false;
+  document.getElementById('district-btn').textContent = '🗺️ Berlin Districts';
+  document.getElementById('district-btn').style.background = '';
+  document.getElementById('district-btn').style.color = '';
+  if (districtLayer) map.removeLayer(districtLayer);
+  addMarkers();
+  renderList();
+}
 
 function toggleDistricts() {
-  districtMode = !districtMode;
-  const btn = document.getElementById('district-btn');
-  if (districtMode) {
-    btn.textContent = '🏙️ Cities';
-    btn.style.background = 'var(--accent)';
-    btn.style.color = '#fff';
-    markers.forEach(m => map.removeLayer(m));
-    showDistricts();
-  } else {
-    btn.textContent = '🗺️ Berlin Districts';
-    btn.style.background = '';
-    btn.style.color = '';
-    districtMarkers.forEach(m => map.removeLayer(m));
-    addMarkers();
-    renderList();
-  }
+  districtMode ? exitDistrictView() : enterDistrictView();
 }
 
 async function showDistricts() {
   if (!districtData) {
     try {
-      const r = await fetch('data/processed/berlin-districts-geo.json');
+      const r = await fetch('data/processed/berlin-districts-choropleth.geojson');
       districtData = await r.json();
     } catch(e) { return; }
   }
 
-  districtMarkers.forEach(m => map.removeLayer(m));
-  districtMarkers = [];
+  if (districtLayer) map.removeLayer(districtLayer);
 
   if (!districtData || !districtData.features) return;
 
-  document.getElementById('p-detail').innerHTML = `<div class="es">🗺️ District view active — click a Berlin district</div>`;
+  document.getElementById('p-detail').innerHTML = `<div class="es">🗺️ District view — click a Berlin district</div>`;
   document.getElementById('cmp-wrap').innerHTML = '';
   switchTab('detail');
 
-  const maxAddrs = Math.max(...districtData.features.map(f => f.properties.total_addresses));
+  function getColor(avg) {
+    return avg < 10 ? '#48bb78' : avg < 11 ? '#86c97a' : avg < 11.5 ? '#ecc94b' : avg < 12 ? '#ed8936' : '#f56565';
+  }
 
-  districtData.features.forEach(f => {
-    const p = f.properties;
-    const [lng, lat] = f.geometry.coordinates;
-    const radius = 15 + (p.total_addresses / maxAddrs) * 35;
-    const color = p.avg_rent < 10.5 ? '#48bb78' : p.avg_rent < 11.5 ? '#ecc94b' : p.avg_rent < 12.5 ? '#ed8936' : '#f56565';
+  function style(f) {
+    const avg = f.properties.avg_rent || 12;
+    return {
+      fillColor: getColor(avg),
+      weight: 2,
+      opacity: 1,
+      color: '#fff',
+      fillOpacity: 0.75
+    };
+  }
 
-    const m = L.circleMarker([lat, lng], {
-      radius, fillColor: color, color: '#fff', weight: 2, fillOpacity: 0.7
-    }).addTo(map);
-
-    m.bindPopup(`
-      <div class="pp-c">${p.district}</div>
-      <div class="pp-r">ø €${p.avg_rent}/m²</div>
-      <div class="pp-l">${p.total_addresses.toLocaleString()} addresses</div>
-      <div class="pp-l">🟢 ${p.einfach_pct}% · 🟡 ${p.mittel_pct}% · 🔴 ${p.gut_pct}% gut</div>
-    `);
-    m.on('click', () => showDistrict(p));
-    districtMarkers.push(m);
-  });
+  districtLayer = L.geoJSON(districtData, {
+    style,
+    onEachFeature: (f, layer) => {
+      const p = f.properties;
+      layer.bindPopup(`
+        <div class="pp-c">${p.district}</div>
+        <div class="pp-r">ø €${p.avg_rent}/m²</div>
+        <div class="pp-l">${p.total_addresses.toLocaleString()} addresses</div>
+        <div class="pp-l">🟢 ${p.einfach_pct}% · 🟡 ${p.mittel_pct}% · 🔴 ${p.gut_pct}% gut</div>
+      `);
+      layer.on({
+        click: () => showDistrict(p),
+        mouseover: (e) => {
+          e.target.setStyle({ fillOpacity: 0.9, weight: 3 });
+        },
+        mouseout: (e) => {
+          e.target.setStyle({ fillOpacity: 0.75, weight: 2 });
+        }
+      });
+    }
+  }).addTo(map);
 
   // Fly to Berlin
-  map.flyTo([52.52, 13.40], 10, {duration: .8});
+  map.fitBounds(districtLayer.getBounds(), { padding: [20, 20], duration: .8 });
 }
 
 function showDistrict(p) {
   selected = 'berlin-districts';
   switchTab('detail');
   document.getElementById('p-detail').innerHTML = `
-    <div class="ci"><div><h2>${p.district}</h2><div class="s">Berlin · ${p.total_addresses.toLocaleString()} addresses</div></div><div class="yb">2026 · District</div></div>
+    <div class="ci">
+      <div><h2>${p.district}</h2><div class="s">Berlin · ${p.total_addresses.toLocaleString()} addresses</div></div>
+      <div class="yb">2026 · District</div>
+    </div>
     <div style="margin-bottom:8px">
       <div style="display:flex;align-items:center;gap:8px;margin:4px 0">
         <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#48bb78"></span>
@@ -472,10 +493,11 @@ function showDistrict(p) {
       </div>
     </div>
     <div style="padding:10px;background:var(--surface2);border-radius:6px;text-align:center">
-      <div style="font-size:22px;font-weight:700;color:${p.avg_rent < 10.5 ? '#48bb78' : p.avg_rent < 11.5 ? '#ecc94b' : p.avg_rent < 12.5 ? '#ed8936' : '#f56565'}">ø €${p.avg_rent}/m²</div>
+      <div style="font-size:22px;font-weight:700;color:${p.avg_rent < 10 ? '#48bb78' : p.avg_rent < 11.5 ? '#ecc94b' : p.avg_rent < 12.5 ? '#ed8936' : '#f56565'}">ø €${p.avg_rent}/m²</div>
       <div style="font-size:11px;color:var(--text-dim)">Estimated average net cold rent</div>
     </div>
-    <div style="margin-top:8px;font-size:10px;color:var(--text-dim)">
+    <div style="margin-top:8px;padding:6px;background:var(--accent);color:#fff;border-radius:6px;text-align:center;cursor:pointer;font-size:12px;font-weight:600" onclick="exitDistrictView()">← Back to all cities</div>
+    <div style="margin-top:6px;font-size:10px;color:var(--text-dim)">
       Based on Berliner Mietspiegel 2026 × address-level Wohnlage data (400K addresses).
       <a href="https://gdi.berlin.de/services/wfs/wohnlagenadr2026" style="color:var(--accent)" target="_blank">Source: GDI-BE</a>
     </div>
@@ -490,6 +512,7 @@ function clearFilters() {
 
 // ─── City detail ───
 async function showCity(slug) {
+  if (slug === 'berlin') { enterDistrictView(); return; }
   if (!cache[slug]) try { cache[slug] = await (await fetch(DATA+slug+'.json')).json(); } catch(e){return}
   selected = slug; switchTab('detail');
   const d = cache[slug], meta = cities.find(c=>c.slug===slug), panel = document.getElementById('p-detail');
@@ -511,8 +534,7 @@ function rDet(slug,d,meta,lage){
     <div class="ci"><div><h2>${d.city}</h2><div class="s">${d.state} · ${(meta?.population||'').toLocaleString()}</div></div><div class="yb">${d.year} · ${d.type||'Mietspiegel'}</div></div>
     <div class="ls">${lb}</div>
     <div class="tw"><table class="mt"><thead><tr><th>${lang==='en'?'Size':'Größe'}</th>${hd}</tr></thead><tbody>${bd}</tbody></table></div>
-    <div style="font-size:9px;color:var(--text-dim)">Net cold rent (€/m²/month) · ${d.city} Mietspiegel ${d.year} · <a href="${d.source_url||'#'}" style="color:var(--accent)" target="_blank">${t('src')}</a></div>
-    ${d.city === 'Berlin' ? `<div style="margin-top:8px;padding:8px;background:var(--accent);color:#fff;border-radius:6px;text-align:center;cursor:pointer;font-size:12px;font-weight:600" onclick="toggleDistricts()">🗺️ Show Berlin Districts →</div>` : ''}`;
+    <div style="font-size:9px;color:var(--text-dim)">Net cold rent (€/m²/month) · ${d.city} Mietspiegel ${d.year} · <a href="${d.source_url||'#'}" style="color:var(--accent)" target="_blank">${t('src')}</a></div>`;
 }
 function sL(slug,lage){const d=cache[slug];rDet(slug,d,cities.find(c=>c.slug===slug),lage);document.querySelectorAll('.ls div').forEach(b=>b.classList.toggle('a',b.textContent.trim().toLowerCase()===lage));}
 
