@@ -9,7 +9,7 @@
 <style>
 :root {
   --bg: #f8f9fa;
-  --surface: #ffffff;
+  --surface: #fff;
   --surface2: #f1f3f5;
   --border: #dee2e6;
   --text: #212529;
@@ -33,325 +33,257 @@
   --header-bg: #151821;
   --header-text: #e4e6f0;
 }
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.5;
-  overflow-x: hidden;
-  transition: background .2s, color .2s;
-}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;overflow-x:hidden;transition:background .2s,color .2s}
+
 /* Header */
-.header {
-  background: var(--header-bg);
-  border-bottom: 1px solid var(--border);
-  padding: 10px 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.header-left { display: flex; align-items: center; gap: 8px; }
-.header-left h1 { font-size: 17px; font-weight: 700; color: var(--header-text); }
-.header-left h1 span { color: var(--accent); }
-.header-left .subtitle { font-size: 12px; color: var(--text-dim); display: none; }
-.header-right { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-.header-btn {
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.15);
-  color: var(--header-text);
-  padding: 5px 10px;
-  border-radius: 6px;
-  font-size: 12px;
-  cursor: pointer;
-  transition: .2s;
-}
-.header-btn:hover { background: rgba(255,255,255,0.1); }
-.badge {
-  background: var(--accent);
-  color: #fff;
-  font-size: 10px;
-  padding: 2px 8px;
-  border-radius: 10px;
-  font-weight: 600;
-}
-/* Filter bar */
-.filter-bar {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  flex-wrap: wrap;
-}
-.filter-bar select, .filter-bar input {
-  padding: 5px 8px;
-  border: 1px solid var(--border);
-  border-radius: 5px;
-  background: var(--bg);
-  color: var(--text);
-  font-size: 12px;
-  outline: none;
-}
-.filter-bar select:focus, .filter-bar input:focus { border-color: var(--accent); }
-.filter-bar input[type="text"] { flex: 1; min-width: 120px; }
-.filter-btn {
-  padding: 5px 10px;
-  border: 1px solid var(--border);
-  border-radius: 5px;
-  background: var(--bg);
-  color: var(--text);
-  font-size: 12px;
-  cursor: pointer;
-  transition: .2s;
-}
-.filter-btn:hover { border-color: var(--accent); color: var(--accent); }
-.filter-btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
-.filter-btn.primary:hover { opacity: .85; }
+.header{background:var(--header-bg);border-bottom:1px solid var(--border);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.h-left{display:flex;align-items:center;gap:8px}
+.h-left h1{font-size:17px;font-weight:700;color:var(--header-text)}
+.h-left h1 span{color:var(--accent)}
+.h-left .sub{font-size:12px;color:var(--text-dim);display:none}
+.h-right{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.h-btn{background:transparent;border:1px solid rgba(255,255,255,.15);color:var(--header-text);padding:4px 9px;border-radius:5px;font-size:11px;cursor:pointer;transition:.2s;text-decoration:none}
+.h-btn:hover{background:rgba(255,255,255,.1)}
+.bdg{background:var(--accent);color:#fff;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600}
+.bdg.g{background:var(--green)}
+
+/* Filter */
+.fbar{display:flex;align-items:center;gap:5px;padding:7px 12px;background:var(--surface);border-bottom:1px solid var(--border);flex-wrap:wrap}
+.fbar select,.fbar input{padding:4px 7px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:11px;outline:none}
+.fbar select:focus,.fbar input:focus{border-color:var(--accent)}
+.fbar input[type=text]{flex:1;min-width:100px}
+.f-btn{padding:4px 8px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:11px;cursor:pointer;transition:.2s}
+.f-btn:hover{border-color:var(--accent);color:var(--accent)}
+.f-btn.p{background:var(--accent);color:#fff;border-color:var(--accent)}
+.f-btn.p:hover{opacity:.85}
+
 /* Layout */
-.main-layout { display: flex; height: calc(100vh - 96px); }
-.map-panel { flex: 1; min-width: 0; position: relative; }
-#map { width: 100%; height: 100%; }
-/* Legend */
-.map-legend {
-  position: absolute;
-  bottom: 24px;
-  left: 12px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 8px 12px;
-  font-size: 11px;
-  z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-.map-legend .row { display: flex; align-items: center; gap: 5px; margin: 2px 0; }
-.map-legend .dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
-/* Side panel */
-.side-panel {
-  width: 400px;
-  min-width: 320px;
-  max-width: 50vw;
-  background: var(--surface);
-  border-left: 1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-.panel-tabs {
-  display: flex;
-  border-bottom: 1px solid var(--border);
-  background: var(--surface2);
-}
-.panel-tab {
-  flex: 1;
-  padding: 8px 10px;
-  text-align: center;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-dim);
-  cursor: pointer;
-  border-bottom: 2px solid transparent;
-  transition: .2s;
-}
-.panel-tab:hover { color: var(--text); }
-.panel-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
-.panel-content { flex: 1; overflow-y: auto; padding: 12px; }
-.panel-content::-webkit-scrollbar { width: 4px; }
-.panel-content::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
-/* Empty state */
-.empty-state { display: flex; align-items: center; justify-content: center; height: 100%; color: var(--text-dim); font-size: 13px; text-align: center; padding: 20px; }
-/* City header */
-.city-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
-.city-header h2 { font-size: 18px; font-weight: 700; }
-.city-header .state { font-size: 12px; color: var(--text-dim); margin-top: 1px; }
-.city-header .year-badge { background: var(--accent2); color: #fff; font-size: 11px; padding: 3px 10px; border-radius: 5px; font-weight: 600; white-space: nowrap; }
-/* Lage selector */
-.lage-selector { display: flex; gap: 4px; margin-bottom: 10px; }
-.lage-btn {
-  padding: 4px 12px;
-  font-size: 11px;
-  font-weight: 600;
-  border: 1px solid var(--border);
-  border-radius: 5px;
-  background: var(--bg);
-  color: var(--text-dim);
-  cursor: pointer;
-  transition: .2s;
-}
-.lage-btn:hover { border-color: var(--accent); color: var(--text); }
-.lage-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
-/* Table */
-.table-wrap { overflow-x: auto; margin-bottom: 10px; }
-table.miet-table { width: 100%; border-collapse: collapse; font-size: 11px; }
-table.miet-table th, table.miet-table td { padding: 4px 6px; text-align: center; border: 1px solid var(--border); white-space: nowrap; }
-table.miet-table th { background: var(--surface2); color: var(--text-dim); font-weight: 600; font-size: 10px; }
-table.miet-table td:first-child { text-align: left; font-weight: 600; }
+.main{display:flex;height:calc(100vh - 89px)}
+#map{flex:1;min-width:0}
+.map-leg{position:absolute;bottom:20px;left:10px;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:7px 10px;font-size:10px;z-index:1000;box-shadow:0 1px 6px rgba(0,0,0,.1)}
+.map-leg .r{display:flex;align-items:center;gap:4px;margin:1px 0}
+.map-leg .d{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+/* Side */
+.sp{width:390px;min-width:300px;max-width:50vw;background:var(--surface);border-left:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
+.st{display:flex;border-bottom:1px solid var(--border);background:var(--surface2)}
+.st div{flex:1;padding:7px 9px;text-align:center;font-size:11px;font-weight:600;color:var(--text-dim);cursor:pointer;border-bottom:2px solid transparent;transition:.2s}
+.st div:hover{color:var(--text)}
+.st div.a{color:var(--accent);border-bottom-color:var(--accent)}
+.sc{flex:1;overflow-y:auto;padding:10px}
+.sc::-webkit-scrollbar{width:4px}
+.sc::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+.es{display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-dim);font-size:12px;text-align:center;padding:20px}
+
+/* City detail */
+.ci{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.ci h2{font-size:17px;font-weight:700}
+.ci .s{font-size:11px;color:var(--text-dim);margin-top:1px}
+.ci .yb{background:var(--accent2);color:#fff;font-size:10px;padding:2px 8px;border-radius:4px;font-weight:600;white-space:nowrap}
+.ls{display:flex;gap:3px;margin-bottom:8px}
+.ls div{padding:3px 10px;font-size:10px;font-weight:600;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text-dim);cursor:pointer;transition:.2s}
+.ls div:hover{border-color:var(--accent);color:var(--text)}
+.ls div.a{background:var(--accent);border-color:var(--accent);color:#fff}
+.tw{overflow-x:auto;margin-bottom:8px}
+table.mt{width:100%;border-collapse:collapse;font-size:10px}
+table.mt th,table.mt td{padding:3px 5px;text-align:center;border:1px solid var(--border);white-space:nowrap}
+table.mt th{background:var(--surface2);color:var(--text-dim);font-weight:600;font-size:9px}
+table.mt td:first-child{text-align:left;font-weight:600}
+
 /* Compare */
-.compare-filter { display: flex; gap: 5px; margin-bottom: 10px; flex-wrap: wrap; }
-.compare-filter select { padding: 4px 8px; border: 1px solid var(--border); border-radius: 5px; background: var(--bg); color: var(--text); font-size: 11px; outline: none; }
-.compare-filter select:focus { border-color: var(--accent); }
-table.compare-table { width: 100%; border-collapse: collapse; font-size: 11px; }
-table.compare-table th, table.compare-table td { padding: 4px 6px; text-align: center; border: 1px solid var(--border); }
-table.compare-table th { background: var(--surface2); color: var(--text-dim); font-weight: 600; font-size: 10px; position: sticky; top: 0; }
-table.compare-table td:first-child { text-align: left; font-weight: 600; color: var(--text-dim); }
-.city-name-head { font-weight: 600; color: var(--text); font-size: 11px; cursor: pointer; }
-.city-name-head:hover { color: var(--accent); }
-.city-state-head { font-size: 9px; color: var(--text-dim); }
-/* City list */
-.city-list { display: flex; flex-direction: column; gap: 4px; }
-.city-list-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 10px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  cursor: pointer;
-  transition: .2s;
-}
-.city-list-item:hover { background: var(--surface2); border-color: var(--accent); }
-.cl-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-.cl-name { font-weight: 600; font-size: 13px; flex: 1; }
-.cl-state { font-size: 11px; color: var(--text-dim); }
-.cl-rent { font-size: 12px; font-weight: 700; }
+.cf{display:flex;gap:4px;margin-bottom:8px;flex-wrap:wrap}
+.cf select{padding:3px 6px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:10px;outline:none}
+.cf select:focus{border-color:var(--accent)}
+table.ct{width:100%;border-collapse:collapse;font-size:10px}
+table.ct th,table.ct td{padding:3px 5px;text-align:center;border:1px solid var(--border)}
+table.ct th{background:var(--surface2);color:var(--text-dim);font-weight:600;font-size:9px;position:sticky;top:0}
+table.ct td:first-child{text-align:left;font-weight:600;color:var(--text-dim)}
+.cn{font-weight:600;color:var(--text);font-size:10px;cursor:pointer}
+.cn:hover{color:var(--accent)}
+.cs{font-size:8px;color:var(--text-dim)}
+
+/* List */
+.cl{display:flex;flex-direction:column;gap:3px}
+.cl>div{display:flex;align-items:center;gap:7px;padding:5px 8px;border:1px solid var(--border);border-radius:5px;cursor:pointer;transition:.2s}
+.cl>div:hover{background:var(--surface2);border-color:var(--accent)}
+.cld{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.cln{font-weight:600;font-size:12px;flex:1}
+.cls{font-size:10px;color:var(--text-dim)}
+.clr{font-size:11px;font-weight:700}
+
 /* Popup */
-.leaflet-popup-content-wrapper { background: var(--surface) !important; color: var(--text) !important; border: 1px solid var(--border) !important; border-radius: 8px !important; }
-.leaflet-popup-content { margin: 8px 12px !important; }
-.leaflet-popup-tip { background: var(--surface) !important; }
-.popup-city { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
-.popup-rent { font-size: 18px; font-weight: 700; color: var(--accent); }
-.popup-label { font-size: 10px; color: var(--text-dim); }
+.leaflet-popup-content-wrapper{background:var(--surface)!important;color:var(--text)!important;border:1px solid var(--border)!important;border-radius:6px!important}
+.leaflet-popup-content{margin:7px 10px!important}
+.leaflet-popup-tip{background:var(--surface)!important}
+.pp-c{font-size:13px;font-weight:700;margin-bottom:1px}
+.pp-r{font-size:16px;font-weight:700;color:var(--accent)}
+.pp-l{font-size:9px;color:var(--text-dim)}
+
 /* Modal */
-.modal-overlay {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.6);
-  display: flex; align-items: center; justify-content: center;
-  z-index: 9999; padding: 20px;
-}
-.modal {
-  background: var(--surface); border-radius: 12px;
-  max-width: 460px; width: 100%; padding: 28px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-}
-.modal h2 { font-size: 20px; margin-bottom: 4px; }
-.modal p { font-size: 13px; color: var(--text-dim); margin-bottom: 12px; line-height: 1.5; }
-.modal .color-row { display: flex; align-items: center; gap: 8px; margin: 4px 0; font-size: 12px; }
-.modal .color-dot { width: 10px; height: 10px; border-radius: 50%; }
-.modal .btn {
-  display: inline-block; margin-top: 8px; padding: 8px 20px;
-  background: var(--accent); color: #fff; border: none; border-radius: 6px;
-  font-size: 13px; font-weight: 600; cursor: pointer; transition: .2s;
-}
-.modal .btn:hover { opacity: .85; }
+.mo{position:fixed;inset:0;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;z-index:9999;padding:16px}
+.m{background:var(--surface);border-radius:10px;max-width:420px;width:100%;padding:24px;box-shadow:0 6px 24px rgba(0,0,0,.3)}
+.m h2{font-size:18px;margin-bottom:3px}
+.m p{font-size:12px;color:var(--text-dim);margin-bottom:8px;line-height:1.5}
+.m .cr{display:flex;align-items:center;gap:6px;margin:3px 0;font-size:11px}
+.m .cd{width:9px;height:9px;border-radius:50%}
+.m .btn{display:inline-block;margin-top:6px;padding:7px 18px;background:var(--accent);color:#fff;border:none;border-radius:5px;font-size:12px;font-weight:600;cursor:pointer;transition:.2s}
+.m .btn:hover{opacity:.85}
+
 /* Responsive */
-@media (max-width: 768px) {
-  .main-layout { flex-direction: column; height: auto; }
-  .map-panel { height: 50vh; }
-  .side-panel { width: 100%; max-width: 100%; border-left: none; border-top: 1px solid var(--border); }
-  .header .subtitle { display: none; }
+@media(max-width:768px){
+  .main{flex-direction:column;height:auto}
+  #map{height:50vh}
+  .sp{width:100%;max-width:100%;border-left:none;border-top:1px solid var(--border)}
+  .h-left .sub{display:none}
 }
 </style>
 </head>
 <body>
 
 <!-- Welcome Modal -->
-<div class="modal-overlay" id="welcome-modal">
-  <div class="modal">
-    <h2>📊 Mietspiegel Dashboard</h2>
-    <p>Official German rent index (Mietspiegel) data — digitized from city PDFs and put on a map so you can compare cities at a glance.</p>
-    <div class="color-row"><span class="color-dot" style="background:var(--green)"></span> &lt; €10/m²</div>
-    <div class="color-row"><span class="color-dot" style="background:var(--yellow)"></span> €10–14/m²</div>
-    <div class="color-row"><span class="color-dot" style="background:var(--orange)"></span> €14–18/m²</div>
-    <div class="color-row"><span class="color-dot" style="background:var(--red)"></span> &gt; €18/m²</div>
-    <p style="margin-top:10px;">Click any city on the map for the full Mietspiegel table. Use the Compare tab to see cities side by side.</p>
-    <button class="btn" onclick="dismissWelcome()">Got it! →</button>
+<div class="mo" id="welcome">
+  <div class="m">
+    <h2>📊 Mietspiegel-Dashboard</h2>
+    <p data-i18n="welcome_desc">Official German rent index (Mietspiegel) data — digitized from city PDFs. Click any city to see its full table, or use Compare for side-by-side view.</p>
+    <div class="cr"><span class="cd" style="background:var(--green)"></span> <span data-i18n="l_lt10">&lt; €10/m²</span></div>
+    <div class="cr"><span class="cd" style="background:var(--yellow)"></span> <span data-i18n="l_1014">€10–14/m²</span></div>
+    <div class="cr"><span class="cd" style="background:var(--orange)"></span> <span data-i18n="l_1418">€14–18/m²</span></div>
+    <div class="cr"><span class="cd" style="background:var(--red)"></span> <span data-i18n="l_gt18">&gt; €18/m²</span></div>
+    <p style="margin-top:6px;font-size:11px" data-i18n="welcome_tip">Tip: Use the <strong>Compare</strong> tab to sort cities by rent. Filter by state, price range, or building age.</p>
+    <button class="btn" onclick="dismissWelcome()"><span data-i18n="got_it">Got it! →</span></button>
   </div>
 </div>
 
 <!-- Header -->
 <div class="header">
-  <div class="header-left">
-    <h1>🏠 Mietspiegel <span>Dashboard</span></h1>
-    <span class="subtitle">German rent index data — compared across cities</span>
+  <div class="h-left">
+    <h1>🏠 Mietspiegel <span data-i18n="dash">Dashboard</span></h1>
+    <span class="sub" data-i18n="subtitle">German rent index data — compared across cities</span>
   </div>
-  <div class="header-right">
-    <span class="badge">17 cities</span>
-    <span class="badge" style="background:var(--green)">2024–2026</span>
-    <button class="header-btn" onclick="showWelcome()">ℹ How it works</button>
-    <button class="header-btn" onclick="toggleDark()" id="dark-toggle">🌙 Dark</button>
-    <a class="header-btn" href="about.html" style="text-decoration:none">About</a>
+  <div class="h-right">
+    <span class="bdg" id="city-count">17 cities</span>
+    <span class="bdg g">2024–2026</span>
+    <button class="h-btn" onclick="showWelcome()">ℹ <span data-i18n="how_it_works">How it works</span></button>
+    <button class="h-btn" onclick="toggleLang()" id="lang-btn">DE</button>
+    <button class="h-btn" onclick="toggleDark()" id="dark-btn">🌙 <span data-i18n="dark">Dark</span></button>
+    <a class="h-btn" href="about.html" data-i18n="about">About</a>
   </div>
 </div>
 
-<!-- Filter bar -->
-<div class="filter-bar">
-  <select id="filter-state" onchange="updateFilters()">
-    <option value="">All States</option>
-  </select>
-  <select id="filter-rent" onchange="updateFilters()">
-    <option value="">All Rents</option>
+<!-- Filter -->
+<div class="fbar">
+  <select id="f-state" onchange="applyFilters()"></select>
+  <select id="f-rent" onchange="applyFilters()">
+    <option value="" data-i18n="all_rents">All Rents</option>
     <option value="lt10">&lt; €10/m²</option>
     <option value="10-14">€10–14/m²</option>
     <option value="14-18">€14–18/m²</option>
     <option value="gt18">&gt; €18/m²</option>
   </select>
-  <select id="filter-baujahr" onchange="updateFilters()">
-    <option value="">All Periods</option>
-  </select>
-  <input type="text" id="filter-search" placeholder="Search city..." oninput="updateFilters()">
-  <button class="filter-btn" onclick="downloadCSV()">⬇ CSV</button>
-  <button class="filter-btn" onclick="clearFilters()">✕ Clear</button>
+  <select id="f-bau" onchange="applyFilters()"></select>
+  <input type="text" id="f-search" placeholder="🔍" oninput="applyFilters()">
+  <button class="f-btn" onclick="dlCSV()">⬇ CSV</button>
+  <button class="f-btn" onclick="clearFilters()">✕</button>
 </div>
 
-<!-- Main layout -->
-<div class="main-layout">
-  <div class="map-panel">
-    <div id="map"></div>
-    <div class="map-legend">
-      <div style="font-weight:600;margin-bottom:3px;font-size:12px">Ø Net Cold Rent</div>
-      <div class="row"><span class="dot" style="background:var(--green)"></span> &lt; €10/m²</div>
-      <div class="row"><span class="dot" style="background:var(--yellow)"></span> €10–14/m²</div>
-      <div class="row"><span class="dot" style="background:var(--orange)"></span> €14–18/m²</div>
-      <div class="row"><span class="dot" style="background:var(--red)"></span> &gt; €18/m²</div>
-    </div>
+<!-- Layout -->
+<div class="main">
+  <div id="map"></div>
+  <div class="map-leg">
+    <div style="font-weight:600;margin-bottom:2px;font-size:11px" data-i18n="avg_rent">Ø Net Cold Rent</div>
+    <div class="r"><span class="d" style="background:var(--green)"></span> <span data-i18n="l_lt10">&lt; €10/m²</span></div>
+    <div class="r"><span class="d" style="background:var(--yellow)"></span> <span data-i18n="l_1014">€10–14/m²</span></div>
+    <div class="r"><span class="d" style="background:var(--orange)"></span> <span data-i18n="l_1418">€14–18/m²</span></div>
+    <div class="r"><span class="d" style="background:var(--red)"></span> <span data-i18n="l_gt18">&gt; €18/m²</span></div>
   </div>
 
-  <div class="side-panel">
-    <div class="panel-tabs">
-      <div class="panel-tab active" data-tab="detail" onclick="switchTab('detail')">City Detail</div>
-      <div class="panel-tab" data-tab="compare" onclick="switchTab('compare')">Compare</div>
-      <div class="panel-tab" data-tab="list" onclick="switchTab('list')">All Cities</div>
+  <div class="sp">
+    <div class="st">
+      <div class="a" data-tab="detail" onclick="switchTab('detail')" data-i18n="city_detail">City Detail</div>
+      <div data-tab="compare" onclick="switchTab('compare')" data-i18n="compare">Compare</div>
+      <div data-tab="list" onclick="switchTab('list')" data-i18n="all_cities">All Cities</div>
     </div>
-
-    <div class="panel-content" id="panel-detail">
-      <div class="empty-state">👆 Click a city marker on the map<br><span style="font-size:11px">or select from the list tab</span></div>
-    </div>
-
-    <div class="panel-content" id="panel-compare" style="display:none">
-      <div class="compare-filter">
-        <select id="cmp-lage" onchange="updateComp()"></select>
-        <select id="cmp-size" onchange="updateComp()"></select>
-        <select id="cmp-baujahr" onchange="updateComp()"></select>
+    <div class="sc" id="p-detail"><div class="es">👆 <span data-i18n="click_hint">Click a city marker or select from the list tab</span></div></div>
+    <div class="sc" id="p-compare" style="display:none">
+      <div class="cf">
+        <select id="c-lage" onchange="updCmp()"></select>
+        <select id="c-size" onchange="updCmp()"></select>
+        <select id="c-bau" onchange="updCmp()"></select>
       </div>
-      <div class="table-wrap" id="cmp-wrap"><div class="empty-state">Loading data...</div></div>
+      <div class="tw" id="cmp-wrap"><div class="es" data-i18n="loading">Loading data...</div></div>
     </div>
-
-    <div class="panel-content" id="panel-list" style="display:none">
-      <div class="city-list" id="city-list"></div>
-    </div>
+    <div class="sc" id="p-list" style="display:none"><div class="cl" id="city-list"></div></div>
   </div>
 </div>
 
 <script>
-// State
+// ─── i18n ───
+const L = {
+  en: {
+    dash:'Dashboard', subtitle:'German rent index data — compared across cities',
+    how_it_works:'How it works', dark:'Dark', about:'About',
+    all_rents:'All Rents', all_states:'All States', all_periods:'All Periods',
+    city_detail:'City Detail', compare:'Compare', all_cities:'All Cities',
+    click_hint:'Click a city marker or select from the list tab',
+    loading:'Loading data...', no_data:'Data extracted — table view pending.',
+    no_match:'No matching cities', src:'Source',
+    welcome_desc:'Official German rent index (Mietspiegel) data — digitized from city PDFs. Click any city to see its full table, or use Compare for side-by-side view.',
+    welcome_tip:'Tip: Use the <strong>Compare</strong> tab to sort cities by rent. Filter by state, price range, or building age.',
+    got_it:'Got it! →',
+    l_lt10:'< €10/m²', l_1014:'€10–14/m²', l_1418:'€14–18/m²', l_gt18:'> €18/m²',
+    avg_rent:'Ø Net Cold Rent',
+    csv:'CSV', clear:'Clear',
+    einfach:'Simple', mittel:'Medium', gut:'Good',
+  },
+  de: {
+    dash:'Dashboard', subtitle:'Mietspiegel-Daten — Städte im Vergleich',
+    how_it_works:'So funktioniert\'s', dark:'Dunkel', about:'Über',
+    all_rents:'Alle Mieten', all_states:'Alle Bundesländer', all_periods:'Alle Baujahre',
+    city_detail:'Stadt-Detail', compare:'Vergleichen', all_cities:'Alle Städte',
+    click_hint:'Klicke auf einen Stadt-Marker oder wähle aus der Liste',
+    loading:'Lade Daten...', no_data:'Daten extrahiert — Tabellenansicht ausstehend.',
+    no_match:'Keine passenden Städte', src:'Quelle',
+    welcome_desc:'Offizielle Mietspiegel-Daten — aus PDFs digitalisiert. Klicke auf eine Stadt für die vollständige Tabelle oder nutze den Vergleich.',
+    welcome_tip:'Tipp: Nutze den <strong>Vergleichen</strong>-Tab, um Städte nach Miete zu sortieren. Filtere nach Bundesland, Preisspanne oder Baujahr.',
+    got_it:'Verstanden! →',
+    l_lt10:'< 10 €/m²', l_1014:'10–14 €/m²', l_1418:'14–18 €/m²', l_gt18:'> 18 €/m²',
+    avg_rent:'Ø Nettokaltmiete',
+    csv:'CSV', clear:'Zurücksetzen',
+    einfach:'Einfach', mittel:'Mittel', gut:'Gut',
+  }
+};
+let lang = localStorage.getItem('lang') || 'en';
+
+function t(key) { return L[lang][key] || key; }
+
+function applyLang() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (el.tagName === 'OPTION') el.textContent = t(key);
+    else el.innerHTML = t(key);
+  });
+  document.getElementById('lang-btn').textContent = lang === 'en' ? 'DE' : 'EN';
+  // Update dynamic text
+  document.getElementById('dark-btn').innerHTML = '🌙 ' + t('dark');
+  if (document.querySelector('.city-count')) document.querySelector('.city-count').textContent = cities.length + ' ' + (lang === 'en' ? 'cities' : 'Städte');
+}
+
+function toggleLang() {
+  lang = lang === 'en' ? 'de' : 'en';
+  localStorage.setItem('lang', lang);
+  applyLang();
+  // Re-render current view
+  if (selected) showCity(selected);
+  applyFilters();
+}
+
+// ─── State ───
 const INDEX = 'data/processed/cities_index.json';
 const DATA = 'data/processed/';
 let cities = [], cache = {}, map, markers = [], selected = null;
 
-// Init
+// ─── Init ───
 async function init() {
   map = L.map('map', { center: [51.1657, 10.4515], zoom: 6, scrollWheelZoom: true });
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -361,315 +293,151 @@ async function init() {
   const r = await fetch(INDEX);
   cities = await r.json();
 
-  // Populate filters
+  // States
   const states = [...new Set(cities.map(c => c.state).filter(Boolean).sort())];
-  const sel = document.getElementById('filter-state');
+  const sel = document.getElementById('f-state');
+  sel.innerHTML = '<option value="" data-i18n="all_states">All States</option>';
   states.forEach(s => { const o = document.createElement('option'); o.value = s; o.textContent = s; sel.appendChild(o); });
 
-  // Load all city data, add markers
-  const load = cities.map(async c => {
-    try {
-      const r = await fetch(DATA + c.slug + '.json');
-      cache[c.slug] = await r.json();
-    } catch(e) { cache[c.slug] = null; }
-  });
-  await Promise.all(load);
+  // Load all data
+  await Promise.all(cities.map(async c => {
+    try { cache[c.slug] = await (await fetch(DATA + c.slug + '.json')).json(); }
+    catch(e) { cache[c.slug] = null; }
+  }));
 
-  // Populate baujahr filter from first city with data
-  const first = Object.values(cache).find(d => d && d.baujahr_groups);
-  if (first) {
-    const bj = document.getElementById('filter-baujahr');
-    first.baujahr_groups.forEach(b => { const o = document.createElement('option'); o.value = b; o.textContent = b; bj.appendChild(o); });
-    // Populate compare filters
-    const cl = document.getElementById('cmp-lage');
-    first.lage_categories.forEach(l => { const o = document.createElement('option'); o.value = l; o.textContent = l.charAt(0).toUpperCase() + l.slice(1); cl.appendChild(o); });
-    const cs = document.getElementById('cmp-size');
-    first.size_categories.forEach(s => { const o = document.createElement('option'); o.value = s; o.textContent = s; cs.appendChild(o); });
-    const cb = document.getElementById('cmp-baujahr');
-    first.baujahr_groups.forEach(b => { const o = document.createElement('option'); o.value = b; o.textContent = b; cb.appendChild(o); });
+  // Baujahr filter: use Berlin (most complete) as reference
+  const ref = cache['berlin'];
+  if (ref && ref.baujahr_groups) {
+    const bj = document.getElementById('f-bau');
+    bj.innerHTML = '<option value="" data-i18n="all_periods">All Periods</option>';
+    ref.baujahr_groups.forEach(b => {
+      const o = document.createElement('option'); o.value = b; o.textContent = b; bj.appendChild(o);
+    });
+    // Compare filters
+    const cl = document.getElementById('c-lage');
+    ref.lage_categories.forEach(l => { const o = document.createElement('option'); o.value = l; o.textContent = l.charAt(0).toUpperCase()+l.slice(1); cl.appendChild(o); });
+    const cs = document.getElementById('c-size');
+    ref.size_categories.forEach(s => { const o = document.createElement('option'); o.value = s; o.textContent = s; cs.appendChild(o); });
+    const cb = document.getElementById('c-bau');
+    ref.baujahr_groups.forEach(b => { const o = document.createElement('option'); o.value = b; o.textContent = b; cb.appendChild(o); });
   }
+
+  // Update city count
+  const complete = Object.values(cache).filter(d => d && d.tables && d.tables.some(t => t.rows?.length)).length;
+  document.getElementById('city-count').textContent = complete + ' ' + (lang === 'en' ? 'cities' : 'Städte');
 
   addMarkers();
   renderList();
-  checkWelcome();
+  applyLang();
+  if (localStorage.getItem('mietspiegel-welcome') === '1') document.getElementById('welcome').style.display = 'none';
 }
 
-function getAvg(data) {
-  if (!data || !data.tables) return null;
-  const mid = data.tables.find(t => t.lage === 'mittel') || data.tables[0];
-  if (!mid) return null;
-  const vals = mid.rows.map(r => r['40_60'] || r.bis_40 || 0).filter(v => v > 0);
-  return vals.length ? vals.reduce((a,b) => a+b, 0) / vals.length : null;
+// ─── Helpers ───
+function avgRent(d) {
+  if (!d || !d.tables) return null;
+  const m = d.tables.find(t => t.lage === 'mittel') || d.tables[0];
+  if (!m) return null;
+  const v = m.rows.map(r => r['40_60'] || r.bis_40 || 0).filter(x => x > 0);
+  return v.length ? v.reduce((a,b)=>a+b,0)/v.length : null;
 }
+function color(a) { return a==null?'#666':a<10?'#48bb78':a<14?'#ecc94b':a<18?'#ed8936':'#f56565'; }
 
-function getColor(avg) {
-  if (avg == null) return '#666';
-  if (avg < 10) return '#48bb78';
-  if (avg < 14) return '#ecc94b';
-  if (avg < 18) return '#ed8936';
-  return '#f56565';
-}
-
+// ─── Markers ───
 function addMarkers(filter) {
-  markers.forEach(m => map.removeLayer(m));
-  markers = [];
-
+  markers.forEach(m => map.removeLayer(m)); markers = [];
   cities.forEach(c => {
-    const d = cache[c.slug];
-    const avg = getAvg(d);
-    if (filter && filter(c, d, avg)) return;
-
-    const color = getColor(avg);
-    const m = L.circleMarker([c.lat, c.lng], {
-      radius: avg ? 10 : 6, fillColor: color, color: '#fff', weight: 1.5, fillOpacity: .85
-    }).addTo(map);
-
-    if (avg != null) {
-      m.bindPopup(`<div class="popup-city">${c.city}</div><div class="popup-label">${c.state} · ${d?.year || '?'}</div><div class="popup-rent">ø €${avg.toFixed(1)}/m²</div>`);
-    }
+    const d = cache[c.slug], a = avgRent(d);
+    if (filter && filter(c,d,a)) return;
+    const m = L.circleMarker([c.lat,c.lng],{radius:a?8:5,fillColor:color(a),color:'#fff',weight:1.5,fillOpacity:.85}).addTo(map);
+    if (a != null) m.bindPopup(`<div class="pp-c">${c.city}</div><div class="pp-l">${c.state} · ${d?.year||'?'}</div><div class="pp-r">ø €${a.toFixed(1)}/m²</div>`);
     m.on('click', () => showCity(c.slug));
     markers.push(m);
   });
 }
 
-function updateFilters() {
-  const state = document.getElementById('filter-state').value;
-  const rent = document.getElementById('filter-rent').value;
-  const baujahr = document.getElementById('filter-baujahr').value;
-  const search = document.getElementById('filter-search').value.toLowerCase();
-
-  const fn = (c, d, avg) => {
-    if (state && c.state !== state) return true;
-    if (search && !c.city.toLowerCase().includes(search) && !c.state?.toLowerCase().includes(search)) return true;
-    if (avg == null) return false;
-    if (rent === 'lt10' && avg >= 10) return true;
-    if (rent === '10-14' && (avg < 10 || avg >= 14)) return true;
-    if (rent === '14-18' && (avg < 14 || avg >= 18)) return true;
-    if (rent === 'gt18' && avg < 18) return true;
-    if (baujahr && d) {
-      const has = d.tables?.some(t => t.rows?.some(r => r.baujahr === baujahr));
-      if (!has) return true;
-    }
-    return false;
-  };
-
-  addMarkers(fn);
-  renderList(fn);
+function applyFilters() {
+  const st = document.getElementById('f-state').value;
+  const rt = document.getElementById('f-rent').value;
+  const bj = document.getElementById('f-bau').value;
+  const sr = document.getElementById('f-search').value.toLowerCase();
+  addMarkers((c,d,a)=>{
+    if (st && c.state!==st) return 1;
+    if (sr && !c.city.toLowerCase().includes(sr) && !c.state?.toLowerCase().includes(sr)) return 1;
+    if (a==null) return 0;
+    if (rt==='lt10'&&a>=10||rt==='10-14'&&(a<10||a>=14)||rt==='14-18'&&(a<14||a>=18)||rt==='gt18'&&a<18) return 1;
+    if (bj && d) { const has = d.tables?.some(t=>t.rows?.some(r=>r.baujahr===bj)); if(!has) return 1; }
+    return 0;
+  });
+  renderList();
 }
 
 function clearFilters() {
-  document.getElementById('filter-state').value = '';
-  document.getElementById('filter-rent').value = '';
-  document.getElementById('filter-baujahr').value = '';
-  document.getElementById('filter-search').value = '';
-  updateFilters();
+  ['f-state','f-rent','f-bau'].forEach(id => document.getElementById(id).value='');
+  document.getElementById('f-search').value='';
+  applyFilters();
 }
 
+// ─── City detail ───
 async function showCity(slug) {
-  let d = cache[slug];
-  if (!d) { try { const r = await fetch(DATA + slug + '.json'); d = await r.json(); cache[slug] = d; } catch(e) { return; } }
-  selected = slug;
-  switchTab('detail');
-
-  const meta = cities.find(c => c.slug === slug);
-  const panel = document.getElementById('panel-detail');
-
-  if (!d.tables || !d.tables.length) {
-    panel.innerHTML = `<div class="empty-state"><div>📊 ${d.city}<br><span style="font-size:11px">Data extracted — table view pending.</span></div></div>`;
-    return;
-  }
-
-  let lage = 'mittel';
-  if (!d.tables.find(t => t.lage === lage) && d.tables.length) lage = d.tables[0].lage;
-  renderDetail(slug, d, meta, lage);
-
-  const marker = markers.find(m => {
-    const ll = m.getLatLng();
-    return Math.abs(ll.lat - meta.lat) < 0.1 && Math.abs(ll.lng - meta.lng) < 0.1;
-  });
-  if (marker) map.flyTo([meta.lat, meta.lng], 9, { duration: .6 });
+  if (!cache[slug]) try { cache[slug] = await (await fetch(DATA+slug+'.json')).json(); } catch(e){return}
+  selected = slug; switchTab('detail');
+  const d = cache[slug], meta = cities.find(c=>c.slug===slug), panel = document.getElementById('p-detail');
+  if (!d.tables||!d.tables.length) { panel.innerHTML=`<div class="es">📊 ${d.city}<br><span style="font-size:10px">${t('no_data')}</span></div>`; return; }
+  let l = 'mittel'; if (!d.tables.find(t=>t.lage===l)&&d.tables.length) l = d.tables[0].lage;
+  rDet(slug,d,meta,l);
+  const m = markers.find(m=>{const ll=m.getLatLng();return Math.abs(ll.lat-meta.lat)<.1&&Math.abs(ll.lng-meta.lng)<.1});
+  if(m) map.flyTo([meta.lat,meta.lng],9,{.6});
 }
 
-function renderDetail(slug, d, meta, lage) {
-  const panel = document.getElementById('panel-detail');
-  const tbl = d.tables.find(t => t.lage === lage);
-  if (!tbl) { panel.innerHTML = `<div class="empty-state">No data for ${lage} Lage</div>`; return; }
+function rDet(slug,d,meta,lage){
+  const panel=document.getElementById('p-detail'),tbl=d.tables.find(t=>t.lage===lage);
+  if(!tbl){panel.innerHTML=`<div class="es">${t('no_data')}</div>`;return;}
+  const szK=s=>s==='bis 40 m²'?'bis_40':s==='40-60 m²'?'40_60':s==='60-90 m²'?'60_90':'ueber_90';
+  const hd=(d.baujahr_groups||tbl.rows.map(r=>r.baujahr)).map(b=>`<th>${b}</th>`).join('');
+  const bd=(d.size_categories||['40-60 m²']).map(s=>{const k=szK(s);return`<tr><td>${s}</td>${tbl.rows.map(r=>`<td>${r[k]!=null?'€'+r[k].toFixed(2):'—'}</td>`).join('')}</tr>`;}).join('');
+  const lb=d.lage_categories.map(l=>`<div class="${l===lage?'a':''}" onclick="sL('${slug}','${l}')">${l.charAt(0).toUpperCase()+l.slice(1)}</div>`).join('');
+  panel.innerHTML=`
+    <div class="ci"><div><h2>${d.city}</h2><div class="s">${d.state} · ${(meta?.population||'').toLocaleString()}</div></div><div class="yb">${d.year} · ${d.type||'Mietspiegel'}</div></div>
+    <div class="ls">${lb}</div>
+    <div class="tw"><table class="mt"><thead><tr><th>${lang==='en'?'Size':'Größe'}</th>${hd}</tr></thead><tbody>${bd}</tbody></table></div>
+    <div style="font-size:9px;color:var(--text-dim)">Net cold rent (€/m²/month) · ${d.city} Mietspiegel ${d.year} · <a href="${d.source_url||'#'}" style="color:var(--accent)" target="_blank">${t('src')}</a></div>`;
+}
+function sL(slug,lage){const d=cache[slug];rDet(slug,d,cities.find(c=>c.slug===slug),lage);document.querySelectorAll('.ls div').forEach(b=>b.classList.toggle('a',b.textContent.trim().toLowerCase()===lage));}
 
-  const avg = getAvg(d);
-  const headers = (d.baujahr_groups || tbl.rows.map(r => r.baujahr)).map(b => `<th>${b}</th>`).join('');
-  const sizeKey = (s) => s === 'bis 40 m²' ? 'bis_40' : s === '40-60 m²' ? '40_60' : s === '60-90 m²' ? '60_90' : 'ueber_90';
-  const sizeLabel = (s) => s;
-  const body = (d.size_categories || ['40-60 m²']).map(sz => {
-    const key = sizeKey(sz);
-    const vals = tbl.rows.map(r => `<td>${r[key] != null ? '€' + r[key].toFixed(2) : '—'}</td>`).join('');
-    return `<tr><td>${sizeLabel(sz)}</td>${vals}</tr>`;
-  }).join('');
-
-  const lageBtns = d.lage_categories.map(l =>
-    `<div class="lage-btn ${l === lage ? 'active' : ''}" onclick="switchLage('${slug}','${l}')">${l.charAt(0).toUpperCase() + l.slice(1)}</div>`
-  ).join('');
-
-  panel.innerHTML = `
-    <div class="city-header">
-      <div><h2>${d.city}</h2><div class="state">${d.state} · ${(meta?.population || '').toLocaleString()} residents</div></div>
-      <div class="year-badge">${d.year} · ${d.type || 'Mietspiegel'}</div>
-    </div>
-    <div class="lage-selector">${lageBtns}</div>
-    <div class="table-wrap"><table class="miet-table"><thead><tr><th>Size</th>${headers}</tr></thead><tbody>${body}</tbody></table></div>
-    <div style="font-size:10px;color:var(--text-dim)">Net cold rent (€/m²/month) · ${d.city} Mietspiegel ${d.year} · <a href="${d.source_url || '#'}" style="color:var(--accent)" target="_blank">Source</a></div>
-  `;
+// ─── Compare ───
+async function updCmp() {
+  const lage=document.getElementById('c-lage').value||'mittel',size=document.getElementById('c-size').value||'40-60 m²',bau=document.getElementById('c-bau').value||'';
+  await Promise.all(cities.map(async c=>{if(!cache[c.slug])try{cache[c.slug]=await(await fetch(DATA+c.slug+'.json')).json()}catch(e){}}));
+  const szK=s=>s==='bis 40 m²'?'bis_40':s==='40-60 m²'?'40_60':s==='60-90 m²'?'60_90':'ueber_90';
+  const es=cities.map(c=>{const d=cache[c.slug];if(!d||!d.tables)return null;const tb=d.tables.find(t=>t.lage===lage);if(!tb)return null;if(bau){const r=tb.rows.find(r=>r.baujahr===bau);return r?{city:d.city,slug:d.city_slug||c.slug,rent:r[szK(size)],data:d}:null;}const v=tb.rows.map(r=>r[szK(size)]).filter(x=>x!=null),a=v.length?v.reduce((a,b)=>a+b,0)/v.length:null;return a!=null?{city:d.city,slug:d.city_slug||c.slug,rent:a,data:d}:null;}).filter(Boolean).sort((a,b)=>a.rent-b.rent);
+  if(!es.length){document.getElementById('cmp-wrap').innerHTML=`<div class="es">${t('no_match')}</div>`;return;}
+  const bg=es[0].data.baujahr_groups||[];
+  const ch=es.map((e,i)=>`<th><div class="cn" onclick="showCity('${e.slug}')">${e.city}</div><div class="cs">${e.data.state}</div></th>`).join('');
+  let rh='';
+  if(bau) rh=`<tr><td style="font-weight:600">${bau}</td>${es.map(e=>`<td>€${e.rent.toFixed(2)}</td>`).join('')}</tr>`;
+  else rh=bg.map(bj=>{const c=es.map(e=>{const r=e.data.tables.find(t=>t.lage===lage)?.rows.find(r=>r.baujahr===bj);return r?r[szK(size)]!=null?`<td>€${r[szK(size)].toFixed(2)}</td>`:'<td>—</td>':'<td>—</td>';}).join('');return`<tr><td style="font-weight:600;text-align:left">${bj}</td>${c}</tr>`;}).join('');
+  document.getElementById('cmp-wrap').innerHTML=`<div style="font-size:9px;color:var(--text-dim);margin-bottom:4px">${lage.charAt(0).toUpperCase()+lage.slice(1)} · ${size} · sorted by rent</div><table class="ct"><thead><tr><th style="width:60px">${lang==='en'?'Period':'Baujahr'}</th>${ch}</tr></thead><tbody>${rh}</tbody></table>`;
 }
 
-function switchLage(slug, lage) {
-  const d = cache[slug], meta = cities.find(c => c.slug === slug);
-  renderDetail(slug, d, meta, lage);
-  document.querySelectorAll('.lage-btn').forEach(b => b.classList.toggle('active', b.textContent.trim().toLowerCase() === lage));
-}
+// ─── Tabs ───
+function switchTab(t){document.querySelectorAll('.st div').forEach(x=>x.classList.toggle('a',x.dataset.tab===t));['detail','compare','list'].forEach(x=>document.getElementById('p-'+x).style.display=x===t?'block':'none');if(t==='compare')updCmp();}
 
-// Compare
-async function updateComp() {
-  const lage = document.getElementById('cmp-lage').value || 'mittel';
-  const sizeOpt = document.getElementById('cmp-size');
-  const size = sizeOpt.value || '40-60 m²';
-  const baujahr = document.getElementById('cmp-baujahr').value || '';
+// ─── List ───
+function renderList(fn){const list=document.getElementById('city-list');let f=cities;if(fn)f=cities.filter(c=>!fn(c,cache[c.slug],avgRent(cache[c.slug])));list.innerHTML=f.map(c=>{const d=cache[c.slug],a=avgRent(d);return`<div onclick="showCity('${c.slug}')"><span class="cld" style="background:${a!=null?color(a):'#666'}"></span><span class="cln">${c.city}</span><span class="cls">${c.state}</span>${a!=null?'<span class="clr">€'+a.toFixed(1)+'</span>':'<span class="clr" style="color:var(--text-dim)">...</span>'}</div>`;}).join('');}
 
-  // Load any missing data
-  await Promise.all(cities.map(async c => {
-    if (!cache[c.slug]) { try { const r = await fetch(DATA + c.slug + '.json'); cache[c.slug] = await r.json(); } catch(e) {} }
-  }));
+// ─── Dark ───
+function toggleDark(){const h=document.documentElement,d=h.getAttribute('data-theme')==='dark';h.setAttribute('data-theme',d?'':'dark');localStorage.setItem('theme',d?'':'dark');document.getElementById('dark-btn').innerHTML='🌙 '+(d?t('dark'):(lang==='en'?'Light':'Hell'));}
 
-  const entries = cities.map(c => {
-    const d = cache[c.slug];
-    if (!d || !d.tables) return null;
-    const tb = d.tables.find(t => t.lage === lage);
-    if (!tb) return null;
-    if (baujahr) {
-      const row = tb.rows.find(r => r.baujahr === baujahr);
-      return row ? { city: d.city, slug: d.city_slug || c.slug, rent: row[sizeKey(size)], data: d } : null;
-    }
-    // No baujahr filter: avg all
-    const vals = tb.rows.map(r => r[sizeKey(size)]).filter(v => v != null);
-    const avg = vals.length ? vals.reduce((a,b) => a+b, 0) / vals.length : null;
-    return avg != null ? { city: d.city, slug: d.city_slug || c.slug, rent: avg, data: d } : null;
-  }).filter(Boolean).sort((a, b) => a.rent - b.rent);
+// ─── Welcome ───
+function dismissWelcome(){localStorage.setItem('mietspiegel-welcome','1');document.getElementById('welcome').style.display='none';}
+function showWelcome(){document.getElementById('welcome').style.display='flex';}
 
-  const sizeKey = (s) => s === 'bis 40 m²' ? 'bis_40' : s === '40-60 m²' ? '40_60' : s === '60-90 m²' ? '60_90' : 'ueber_90';
+// ─── CSV ───
+function dlCSV(){const r=[['City','State','Year','Lage','Baujahr','Size','Rent (€/m²)']];cities.forEach(c=>{const d=cache[c.slug];if(!d||!d.tables)return;d.tables.forEach(t=>{(d.size_categories||[]).forEach(sz=>{const k=sz==='bis 40 m²'?'bis_40':sz==='40-60 m²'?'40_60':sz==='60-90 m²'?'60_90':'ueber_90';t.rows.forEach(row=>{if(row[k]!=null)r.push([d.city,d.state,d.year,t.lage,row.baujahr,sz,row[k]]);});});});});const csv=r.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n'),b=new Blob([csv],{type:'text/csv'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='mietspiegel-data.csv';a.click();}
 
-  if (!entries.length) { document.getElementById('cmp-wrap').innerHTML = '<div class="empty-state">No matching cities</div>'; return; }
-
-  // Show as table: each city is a column, show their full Baujahr rows
-  const baujahrGroups = entries[0].data.baujahr_groups || [];
-  const cityHeaders = entries.map((e, i) =>
-    `<th><div class="city-name-head" onclick="showCity('${e.slug}')">${e.city}</div><div class="city-state-head">${e.data.state}</div></th>`
-  ).join('');
-
-  let rowsHtml = '';
-  if (baujahr) {
-    // Single row
-    rowsHtml = entries.map(e => `<td>€${e.rent.toFixed(2)}</td>`).join('');
-    rowsHtml = `<tr><td style="font-weight:600">${baujahr}</td>${rowsHtml}</tr>`;
-  } else {
-    rowsHtml = baujahrGroups.map(bj => {
-      const cells = entries.map(e => {
-        const row = e.data.tables.find(t => t.lage === lage)?.rows.find(r => r.baujahr === bj);
-        const val = row ? row[sizeKey(size)] : null;
-        return val != null ? `<td>€${val.toFixed(2)}</td>` : '<td>—</td>';
-      }).join('');
-      return `<tr><td style="font-weight:600;text-align:left">${bj}</td>${cells}</tr>`;
-    }).join('');
-  }
-
-  const wrap = document.getElementById('cmp-wrap');
-  wrap.innerHTML = `
-    <div style="font-size:10px;color:var(--text-dim);margin-bottom:6px">
-      ${lage.charAt(0).toUpperCase() + lage.slice(1)} Lage · ${size} · sorted by rent ${baujahr ? '(' + baujahr + ')' : '(avg)'}
-    </div>
-    <table class="compare-table">
-      <thead><tr><th style="width:70px">Baujahr</th>${cityHeaders}</tr></thead>
-      <tbody>${rowsHtml}</tbody>
-    </table>
-  `;
-}
-
-// Tabs
-function switchTab(tab) {
-  document.querySelectorAll('.panel-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
-  ['detail','compare','list'].forEach(t => document.getElementById('panel-' + t).style.display = t === tab ? 'block' : 'none');
-  if (tab === 'compare') updateComp();
-}
-
-// City list
-function renderList(filterFn) {
-  const list = document.getElementById('city-list');
-  let filtered = cities;
-  if (filterFn) filtered = cities.filter(c => !filterFn(c, cache[c.slug], getAvg(cache[c.slug])));
-  list.innerHTML = filtered.map(c => {
-    const d = cache[c.slug];
-    const avg = getAvg(d);
-    const color = avg != null ? getColor(avg) : '#666';
-    return `<div class="city-list-item" onclick="showCity('${c.slug}')">
-      <span class="cl-dot" style="background:${color}"></span>
-      <span class="cl-name">${c.city}</span>
-      <span class="cl-state">${c.state}</span>
-      ${avg != null ? '<span class="cl-rent">€' + avg.toFixed(1) + '</span>' : '<span class="cl-rent" style="color:var(--text-dim)">...</span>'}
-    </div>`;
-  }).join('');
-}
-
-// Dark mode
-function toggleDark() {
-  const html = document.documentElement;
-  const isDark = html.getAttribute('data-theme') === 'dark';
-  html.setAttribute('data-theme', isDark ? '' : 'dark');
-  localStorage.setItem('theme', isDark ? '' : 'dark');
-  document.getElementById('dark-toggle').textContent = isDark ? '🌙 Dark' : '☀️ Light';
-}
-
-// Welcome
-function checkWelcome() {
-  if (localStorage.getItem('mietspiegel-welcome') === '1') {
-    document.getElementById('welcome-modal').style.display = 'none';
-  }
-}
-function dismissWelcome() {
-  localStorage.setItem('mietspiegel-welcome', '1');
-  document.getElementById('welcome-modal').style.display = 'none';
-}
-function showWelcome() {
-  document.getElementById('welcome-modal').style.display = 'flex';
-}
-
-// Init theme
+// ─── Init theme & lang ───
 const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'dark') {
-  document.documentElement.setAttribute('data-theme', 'dark');
-  document.getElementById('dark-toggle').textContent = '☀️ Light';
-}
-
-// CSV download
-function downloadCSV() {
-  const rows = [['City','State','Year','Lage','Baujahr','Size','Rent (€/m²)']];
-  cities.forEach(c => {
-    const d = cache[c.slug];
-    if (!d || !d.tables) return;
-    d.tables.forEach(t => {
-      (d.size_categories || []).forEach(sz => {
-        const key = sz === 'bis 40 m²' ? 'bis_40' : sz === '40-60 m²' ? '40_60' : sz === '60-90 m²' ? '60_90' : 'ueber_90';
-        t.rows.forEach(r => {
-          if (r[key] != null) rows.push([d.city, d.state, d.year, t.lage, r.baujahr, sz, r[key]]);
-        });
-      });
-    });
-  });
-  const csv = rows.map(r => r.map(v => '"' + String(v).replace(/"/g, '""') + '"').join(',')).join('\n');
-  const blob = new Blob([csv], { type: 'text/csv' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'mietspiegel-data.csv';
-  a.click();
-}
-
-// Init on load
+if (savedTheme === 'dark') { document.documentElement.setAttribute('data-theme','dark'); document.getElementById('dark-btn').innerHTML='🌙 '+(lang==='en'?'Light':'Hell'); }
 document.addEventListener('DOMContentLoaded', init);
 </script>
 </body>
