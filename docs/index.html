@@ -59,7 +59,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .f-btn.p:hover{opacity:.85}
 
 /* Layout */
-.main{display:flex;height:calc(100vh - 89px)}
+.main{display:flex;height:calc(100vh - 130px)}
 #map{flex:1;min-width:0}
 .map-leg{position:absolute;bottom:20px;left:10px;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:7px 10px;font-size:10px;z-index:1000;box-shadow:0 1px 6px rgba(0,0,0,.1)}
 .map-leg .r{display:flex;align-items:center;gap:4px;margin:1px 0}
@@ -218,6 +218,14 @@ table.ct td:first-child{text-align:left;font-weight:600;color:var(--text-dim)}
   </div>
 </div>
 
+<!-- Footer -->
+<div style="text-align:center;padding:10px;font-size:11px;color:var(--text-dim);border-top:1px solid var(--border);background:var(--surface)">
+  <a href="data/processed/cities_index.json" style="color:var(--accent);text-decoration:none" target="_blank" data-i18n="source_data">Source Data</a> ·
+  <a href="about.html" style="color:var(--accent);text-decoration:none" data-i18n="about">About</a> ·
+  <a href="https://github.com/ravidvr/mietspiegel-digitization" style="color:var(--accent);text-decoration:none" target="_blank">GitHub</a> ·
+  <span>CC BY-SA 4.0</span>
+</div>
+
 <script>
 // ─── i18n ───
 const I18N = {
@@ -236,6 +244,7 @@ const I18N = {
     avg_rent:'Ø Net Cold Rent',
     csv:'CSV', clear:'Clear',
     districts:'Berlin Districts', cities:'Cities',
+    source_data:'Source Data',
     einfach:'Simple', mittel:'Medium', gut:'Good',
   },
   de: {
@@ -253,6 +262,7 @@ const I18N = {
     avg_rent:'Ø Nettokaltmiete',
     csv:'CSV', clear:'Zurücksetzen',
     districts:'Berliner Bezirke', cities:'Städte',
+    source_data:'Datenquellen',
     einfach:'Einfach', mittel:'Mittel', gut:'Gut',
   }
 };
