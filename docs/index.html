@@ -365,7 +365,7 @@ function addMarkers(filter) {
     const d = cache[c.slug], a = avgRent(d);
     if (filter && filter(c,d,a)) return;
     const m = L.circleMarker([c.lat,c.lng],{radius:a?8:5,fillColor:color(a),color:'#fff',weight:1.5,fillOpacity:.85}).addTo(map);
-    if (a != null) m.bindPopup(`<div class="pp-c">${c.city}</div><div class="pp-l">${c.state} · ${d?.year||'?'}</div><div class="pp-r">ø €${a.toFixed(1)}/m²</div>`);
+    if (a != null) m.bindPopup(`<div class="pp-c">${c.city}</div><div class="pp-l">${c.state} · ${d?.year||'?'}</div><div class="pp-r">ø €${a.toFixed(1)}/m²</div>${c.city === 'Berlin' ? '<div class="pp-l" style="margin-top:4px;color:var(--accent)">⬇ Click for district view</div>' : ''}`);
     m.on('click', () => showCity(c.slug));
     markers.push(m);
   });
@@ -511,7 +511,8 @@ function rDet(slug,d,meta,lage){
     <div class="ci"><div><h2>${d.city}</h2><div class="s">${d.state} · ${(meta?.population||'').toLocaleString()}</div></div><div class="yb">${d.year} · ${d.type||'Mietspiegel'}</div></div>
     <div class="ls">${lb}</div>
     <div class="tw"><table class="mt"><thead><tr><th>${lang==='en'?'Size':'Größe'}</th>${hd}</tr></thead><tbody>${bd}</tbody></table></div>
-    <div style="font-size:9px;color:var(--text-dim)">Net cold rent (€/m²/month) · ${d.city} Mietspiegel ${d.year} · <a href="${d.source_url||'#'}" style="color:var(--accent)" target="_blank">${t('src')}</a></div>`;
+    <div style="font-size:9px;color:var(--text-dim)">Net cold rent (€/m²/month) · ${d.city} Mietspiegel ${d.year} · <a href="${d.source_url||'#'}" style="color:var(--accent)" target="_blank">${t('src')}</a></div>
+    ${d.city === 'Berlin' ? `<div style="margin-top:8px;padding:8px;background:var(--accent);color:#fff;border-radius:6px;text-align:center;cursor:pointer;font-size:12px;font-weight:600" onclick="toggleDistricts()">🗺️ Show Berlin Districts →</div>` : ''}`;
 }
 function sL(slug,lage){const d=cache[slug];rDet(slug,d,cities.find(c=>c.slug===slug),lage);document.querySelectorAll('.ls div').forEach(b=>b.classList.toggle('a',b.textContent.trim().toLowerCase()===lage));}
 
