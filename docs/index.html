@@ -573,8 +573,10 @@ async function showCityCard(slug) {
   let gapHtml = '';
   if (cm) {
     const gap = cm.gap_pct, gc = gap > 5 ? 'var(--red)' : gap > -5 ? 'var(--yellow)' : 'var(--green)';
-    gapHtml = `<div style="margin:8px 0;padding:6px;background:var(--surface2);border-radius:4px">
-      <div style="font-size:10px;color:var(--text-dim)">Market (Immoscout): €${cm.immoscout_avg}/m² · <span style="color:${gc};font-weight:600">${gap>0?'+':''}${gap}% vs official</span></div>
+    const gapText = gap > 0 ? `${gap.toFixed(0)}% above official index` : gap < 0 ? `${Math.abs(gap).toFixed(0)}% below official index` : 'matches official index';
+    gapHtml = `<div style="margin:8px 0;padding:8px;background:var(--surface2);border-radius:4px">
+      <div style="font-size:10px;color:var(--text-dim)">New listings on Immoscout24 average <b>€${cm.immoscout_avg}/m²</b></div>
+      <div style="font-size:10px;color:${gc};font-weight:600;margin-top:2px">That's <b>${gapText}</b></div>
     </div>`;
   }
 
