@@ -297,7 +297,7 @@ function buildHeatmap() {
   const pts = [];
   rwiGrids.grids.forEach(g => {
     if (!g.lat || !g.lng) return;
-    for (const y of [2025,2024,2023,2018,2013,2008]) {
+    for (const y of [2025,2024,2023,2022,2021]) {
       if (g['pi'+y] != null) { pts.push({ lat: g.lat, lng: g.lng, v: g['pi'+y], yr: y, n: g['n'+y]||0, g }); break; }
     }
   });
