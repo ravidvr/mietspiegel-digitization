@@ -175,7 +175,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     <option value="gt18">&gt; €18/m²</option>
   </select>
   <select id="f-bau" onchange="applyFilters()"></select>
-  <input type="text" id="f-search" placeholder="🔍" oninput="applyFilters()">
+  <input type="text" id="f-search" placeholder="🔍 Search address or city..." oninput="applyFilters()" onkeydown="if(event.key==='Enter')geocodeSearch()">
+  <button class="f-btn" onclick="geocodeSearch()" title="Search address">📍</button>
   <button class="f-btn" onclick="dlCSV()">⬇ CSV</button>
   <button class="f-btn" onclick="clearFilters()">✕</button>
 </div>
@@ -613,6 +614,40 @@ async function init() {
 }
 
 // ─── Utils ────────────────────────────────────────────────────
+async function geocodeSearch() {
+  const q = document.getElementById('f-search').value.trim();
+  if (!q || q.length < 2) return;
+  const input = document.getElementById('f-search');
+  input.style.background = 'var(--surface2)';
+  input.placeholder = '⏳ Searching...';
+
+  try {
+    const url = `https://nominatim.openstreetmap.org/search?format=json&limit=3&q=${encodeURIComponent(q)}&countrycodes=de&accept-language=de`;
+    const r = await fetch(url, { headers: { 'User-Agent': 'MietspiegelDashboard/1.0' } });
+    const results = await r.json();
+    if (!results.length) { input.placeholder = '❌ Not found'; return; }
+
+    const best = results[0];
+    const lat = parseFloat(best.lat), lng = parseFloat(best.lon);
+    map.flyTo([lat, lng], 16, { duration: 1.2 });
+
+    // Drop a temporary marker
+    const marker = L.circleMarker([lat, lng], { radius: 6, color: 'var(--accent)', fillColor: 'var(--accent)', fillOpacity: 0.6, weight: 2 }).addTo(map);
+    marker.bindPopup(`<b>${best.display_name.split(',')[0]}</b><br>${best.display_name.split(',').slice(1,3).join(',').trim()}`, { closeButton: false }).openPopup();
+    setTimeout(() => map.removeLayer(marker), 8000);
+
+    // Trigger heatmap click at this location
+    const fakeEvent = { latlng: { lat, lng }, originalEvent: { target: null } };
+    map.fire('click', fakeEvent);
+
+    input.placeholder = `📍 ${best.display_name.split(',')[0]}`;
+  } catch(e) {
+    input.placeholder = '❌ Search failed';
+    console.error('Geocode error:', e);
+  }
+  input.style.background = '';
+  setTimeout(() => { input.placeholder = '🔍 Search address or city...'; }, 3000);
+}
 function clearFilters() {
   ['f-state','f-rent','f-bau'].forEach(id => document.getElementById(id).value='');
   document.getElementById('f-search').value='';
