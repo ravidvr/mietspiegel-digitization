@@ -536,12 +536,12 @@ async function showRedxGrid() {
   switchTab('detail');
 
   const feats = redxData.features;
-  const vals = feats.map(f => f.properties.pi2025).filter(v => v != null);
+  const vals = feats.map(f => f.properties.pi).filter(v => v != null);
   const minV = Math.min(...vals), maxV = Math.max(...vals);
 
   redxLayer = L.geoJSON(redxData, {
     pointToLayer: (f, ll) => {
-      const v = f.properties.pi2025;
+      const v = f.properties.pi;
       return L.circleMarker(ll, {
         radius: v != null ? 4.5 : 2,
         fillColor: v != null ? redxColor(v, minV, maxV) : '#555',
@@ -553,7 +553,13 @@ async function showRedxGrid() {
     onEachFeature: (f, layer) => {
       const p = f.properties;
       const change = p.change_pct ? ` (${p.change_pct > 0 ? '+' : ''}${p.change_pct}% since 2008)` : '';
-      layer.bindPopup(`<div class="pp-c">Grid ${p.grid}</div><div class="pp-r">Index: €${p.pi2025}/m²</div><div class="pp-l">${p.pi2018 ? '2018: €'+p.pi2018.toFixed(1)+'/m²' : ''}${change}</div><div class="pp-l" style="margin-top:3px;color:var(--accent)">RWI-GEO-REDX PUF v16 · n=${p.n2025||'?'}</div>`);
+      const yrLabel = p.year ? ` (${p.year})` : '';
+      // Build timeseries tooltip from pi_all
+      let tsHtml = '';
+      if (p.pi_all) {
+        tsHtml = Object.entries(p.pi_all).sort((a,b) => a[0]-b[0]).map(([yr,v]) => `${yr}: €${v}`).join(' · ');
+      }
+      layer.bindPopup(`<div class="pp-c">Grid ${p.grid}${yrLabel}</div><div class="pp-r">€${p.pi}/m²</div>${tsHtml ? '<div class="pp-l" style="font-size:9px">'+tsHtml+'</div>' : ''}<div class="pp-l" style="margin-top:3px;color:var(--accent)">RWI-GEO-REDX PUF v16 · n=${p.n||'?'}</div>`);
     }
   }).addTo(map);
 
