@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Berlin Rent Map — Documentation</title>
+<style>
+:root{--bg:#0f1117;--surface:#1a1d28;--surface2:#222639;--border:#2a2e3e;--text:#e4e6f0;--text-dim:#8b8fa3;--accent:#5b8def;--green:#48bb78;--yellow:#ecc94b;--red:#f56565}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.8;max-width:900px;margin:0 auto;padding:40px 24px}
+h1{font-size:28px;font-weight:800;color:#fff;margin-bottom:4px}h1 span{color:var(--accent)}
+h2{font-size:20px;font-weight:700;margin:36px 0 10px;padding-bottom:4px;border-bottom:2px solid var(--border);color:#fff}
+h3{font-size:15px;font-weight:700;margin:18px 0 6px;color:var(--accent)}
+p,li{font-size:14px;color:var(--text-dim)}strong{color:var(--text)}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+ul,ol{padding-left:22px;margin:6px 0}li{margin:4px 0}
+code{background:var(--surface2);padding:1px 5px;border-radius:3px;font-size:12px;color:var(--accent)}
+pre{background:var(--surface2);padding:14px;border-radius:6px;overflow-x:auto;font-size:12px;line-height:1.6;margin:10px 0;border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13px}
+th,td{padding:7px 10px;text-align:left;border:1px solid var(--border)}
+th{background:var(--surface2);color:var(--text);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.5px}td{color:var(--text-dim)}
+.badge{display:inline-block;padding:1px 7px;border-radius:3px;font-size:10px;font-weight:600}
+.b-blue{background:#5b8def22;color:var(--accent)}.b-green{background:#48bb7822;color:var(--green)}
+</style>
+</head>
+<body>
+
+<h1>📊 Berlin <span>Rent Map</span> — Documentation</h1>
+<p>A standalone dashboard showing rent data for every Berlin district, block by block. All statistics use Berlin-local averages. No national data.</p>
+<p><a href="berlin.html">← Back to Berlin Map</a> · <a href="index.html">🇩🇪 Germany Dashboard</a></p>
+
+<h2>1. What This Shows</h2>
+
+<p>The Berlin Rent Map combines <strong>three independent data sources</strong> at the neighborhood level:</p>
+
+<table>
+  <tr><th>Layer</th><th>Source</th><th>What it measures</th><th>Coverage</th></tr>
+  <tr><td><strong>Heatmap</strong></td><td>Immoscout24 (RWI-GEO-REDX)</td><td>Asking rents on new listings, 2021–2025</td><td>393 grid cells across Berlin</td></tr>
+  <tr><td><strong>Census toggle</strong></td><td>Zensus 2022 (Destatis)</td><td>What residents actually pay — all existing contracts</td><td>1,142 grid cells across Berlin</td></tr>
+  <tr><td><strong>District overlay</strong></td><td>Berlin Senate (WFS + Mietspiegel)</td><td>Official rent index + Wohnlage classification</td><td>12 Bezirke, 400,505 addresses</td></tr>
+</table>
+
+<h2>2. Data Sources in Detail</h2>
+
+<h3>2.1 Immoscout24 Market Data (RWI-GEO-REDX PUF v16)</h3>
+<p>Hedonic price indices derived from Immoscout24 rental listings. Each 1km² grid cell represents the quality-adjusted asking rent for that area.</p>
+<table>
+  <tr><th>Metric</th><th>Value</th></tr>
+  <tr><td>Total cells (nationally)</td><td>9,405</td></tr>
+  <tr><td><strong>Berlin cells (filtered)</strong></td><td><strong>393</strong> (≥50 listings per cell)</td></tr>
+  <tr><td>Berlin mean rent</td><td><strong>€11.84/m²</strong></td></tr>
+  <tr><td>Berlin std dev</td><td>€3.10/m²</td></tr>
+  <tr><td>Berlin rent range</td><td>€5.90 – €21.90/m²</td></tr>
+  <tr><td>Time range</td><td>2021–2025 (most recent year per cell)</td></tr>
+  <tr><td>License</td><td>Public Use File — free, attribution required</td></tr>
+  <tr><td>DOI</td><td>10.7807/IMMO:REDX:PUF:V16</td></tr>
+</table>
+
+<p><strong>Berlin bounding box:</strong> lat 52.35–52.65, lng 13.05–13.75. This captures Berlin proper plus immediate suburbs (Potsdam, Falkensee).</p>
+
+<h3>2.2 Census Data (Zensus 2022)</h3>
+<p>Germany's official population and housing census. The <em>Durchschnittliche Nettokaltmiete</em> dataset provides average net cold rent at 100m grid resolution, aggregated to 1km for performance.</p>
+<table>
+  <tr><th>Metric</th><th>Value</th></tr>
+  <tr><td>Total cells (nationally)</td><td>1,287,342 (100m) → 113,295 (1km aggregated)</td></tr>
+  <tr><td><strong>Berlin cells (filtered)</strong></td><td><strong>1,142</strong> (1km, 3σ cleaned)</td></tr>
+  <tr><td>Berlin mean rent</td><td><strong>€7.93/m²</strong></td></tr>
+  <tr><td>Berlin std dev</td><td>€1.17/m²</td></tr>
+  <tr><td>License</td><td>Datenlizenz Deutschland – Namensnennung 2.0</td></tr>
+  <tr><td>Source</td><td>destatis.de — Zensus 2022 OpenData</td></tr>
+</table>
+
+<p><strong>Why the census shows lower rents:</strong> The census surveys <em>all existing rental contracts</em>, including those signed decades ago at lower rates. Immoscout only shows <em>new listings</em>. The gap between them is the most important insight this dashboard provides.</p>
+
+<h3>2.3 Berlin Mietspiegel & District Data</h3>
+<table>
+  <tr><th>Component</th><th>Source</th><th>Detail</th></tr>
+  <tr><td>District boundaries</td><td>m-hoerz/berlin-shapes</td><td>12 Bezirke GeoJSON</td></tr>
+  <tr><td>Wohnlage classification</td><td>Berlin Senate WFS (GDI-BE)</td><td>400,505 addresses → einfach/mittel/gut</td></tr>
+  <tr><td>Official rent index</td><td>Berlin Mietspiegel 2024</td><td>€/m² by Wohnlage, Baujahr, Größe</td></tr>
+  <tr><td>District averages</td><td>Computed</td><td>Weighted by address count per Wohnlage</td></tr>
+</table>
+
+<h2>3. How Calculations Work</h2>
+
+<h3>3.1 Z-Score (Color Scale)</h3>
+<p>Every grid cell gets a z-score relative to the <strong>Berlin average</strong> (not national):</p>
+<pre>z = (cell_rent - berlin_mean) / berlin_std</pre>
+<p>This is mapped to a 0–1 intensity for the heatmap gradient. The legend shows ±2σ bands around the Berlin mean (€11.84 for Immoscout, €7.93 for Zensus).</p>
+
+<h3>3.2 Market Premium</h3>
+<p>When you click a location, the tooltip compares the Immoscout value against the nearest Zensus cell:</p>
+<pre>premium = (immoscout_rent - census_rent) / census_rent × 100</pre>
+<p>A positive premium means new listings cost more than what existing tenants pay. In central Berlin this is often 50–80%.</p>
+
+<h3>3.3 Outlier Removal</h3>
+<p>Cells beyond 3 standard deviations from the Berlin mean are excluded. This removes ~0.5% of cells with anomalous values (largely grid cells with very low sample sizes at the edges of the bounding box).</p>
+
+<h2>4. Dashboard Architecture</h2>
+
+<h3>4.1 File Structure</h3>
+<pre>
+docs/berlin.html              ← Single-file dashboard (217 lines)
+docs/data/processed/
+  berlin_immoscout.json       ← 393 Immoscout cells, Berlin stats (56 KB)
+  berlin_zensus.json          ← 1,142 Zensus cells, Berlin stats (37 KB)
+  berlin-districts-choropleth.geojson ← 12 district polygons
+docs/BERLIN_PLAN.md           ← Implementation plan
+</pre>
+
+<h3>4.2 Tech Stack</h3>
+<table>
+  <tr><th>Component</th><th>Technology</th></tr>
+  <tr><td>Map</td><td>Leaflet.js 1.9.4</td></tr>
+  <tr><td>Heatmap</td><td>Leaflet.heat 0.2.0 (canvas)</td></tr>
+  <tr><td>Data</td><td>Static JSON, pre-filtered in Python</td></tr>
+  <tr><td>Deployment</td><td>GitHub Pages</td></tr>
+  <tr><td>Build tools</td><td>Python 3 (pyproj, shapely, scipy)</td></tr>
+</table>
+
+<h3>4.3 Design Decisions</h3>
+<ul>
+  <li><strong>Single HTML file, no framework</strong> — loads instantly, easy to audit</li>
+  <li><strong>Pre-computed Berlin-only JSON</strong> — dashboard never touches national data</li>
+  <li><strong>Full-screen map</strong> — no sidebar, maximum data visibility</li>
+  <li><strong>District panel</strong> — floating left panel, clickable, auto-populated from GeoJSON</li>
+  <li><strong>Zoom-sensitive heatmap</strong> — radius scales from 8 to 18 pixels based on zoom level</li>
+  <li><strong>Dual data toggle</strong> — switch between Immoscout (market) and Zensus (census) heatmap with one button</li>
+</ul>
+
+<h2>5. Key Numbers</h2>
+
+<table>
+  <tr><th>Metric</th><th>Immoscout (market)</th><th>Zensus 2022 (census)</th></tr>
+  <tr><td>Berlin average</td><td>€11.84/m²</td><td>€7.93/m²</td></tr>
+  <tr><td>Standard deviation</td><td>€3.10</td><td>€1.17</td></tr>
+  <tr><td>Grid cells</td><td>393</td><td>1,142</td></tr>
+  <tr><td>Grid resolution</td><td>1km²</td><td>100m → 1km aggregated</td></tr>
+  <tr><td>Rent range</td><td>€5.90 – €21.90</td><td>€5.20 – €11.70</td></tr>
+  <tr><td>Data year</td><td>2021–2025 (varied)</td><td>2022 (uniform)</td></tr>
+  <tr><td>Berli-wide gap</td><td colspan="2">Market rents are <strong>49% higher</strong> than census rents on average</td></tr>
+</table>
+
+<h2>6. District Data</h2>
+
+<table>
+  <tr><th>District</th><th>Avg Rent</th><th>Addresses</th><th>Einfach</th><th>Mittel</th><th>Gut</th></tr>
+  <tr><td>Neukölln</td><td>€9.79</td><td>27,382</td><td>23%</td><td>65%</td><td>12%</td></tr>
+  <tr><td>Marzahn-Hellersdorf</td><td>€9.87</td><td>22,153</td><td>18%</td><td>77%</td><td>5%</td></tr>
+  <tr><td>Spandau</td><td>€10.13</td><td>19,801</td><td>16%</td><td>70%</td><td>14%</td></tr>
+  <tr><td>Reinickendorf</td><td>€10.16</td><td>22,893</td><td>12%</td><td>74%</td><td>14%</td></tr>
+  <tr><td>Lichtenberg</td><td>€10.24</td><td>27,079</td><td>18%</td><td>67%</td><td>15%</td></tr>
+  <tr><td>Treptow-Köpenick</td><td>€10.47</td><td>24,125</td><td>9%</td><td>72%</td><td>19%</td></tr>
+  <tr><td>Pankow</td><td>€10.69</td><td>36,549</td><td>11%</td><td>68%</td><td>21%</td></tr>
+  <tr><td>Tempelhof-Schöneberg</td><td>€10.89</td><td>31,032</td><td>8%</td><td>71%</td><td>21%</td></tr>
+  <tr><td>Steglitz-Zehlendorf</td><td>€12.01</td><td>28,243</td><td>3%</td><td>63%</td><td>34%</td></tr>
+  <tr><td>Friedrichshain-Kreuzberg</td><td>€12.58</td><td>28,477</td><td>8%</td><td>60%</td><td>32%</td></tr>
+  <tr><td>Mitte</td><td>€13.34</td><td>35,547</td><td>6%</td><td>53%</td><td>41%</td></tr>
+  <tr><td>Charlottenburg-Wilmersdorf</td><td>€14.07</td><td>29,862</td><td>3%</td><td>52%</td><td>45%</td></tr>
+</table>
+
+<h2>7. Reproducibility</h2>
+
+<p>All Berlin data is generated from the national datasets using a bounding box filter. To rebuild:</p>
+<pre>
+# Filter Immoscout + Zensus to Berlin, recalculate stats
+python3 -c "
+import json, math
+BERLIN = (52.35, 13.05, 52.65, 13.75)
+# ... (see berlin.html source for full logic)
+"
+</pre>
+
+<p>The full build pipeline is documented in <code>docs/BERLIN_PLAN.md</code>.</p>
+
+<h2>8. License & Attribution</h2>
+<table>
+  <tr><th>Component</th><th>License</th></tr>
+  <tr><td>Dashboard code</td><td>CC BY-SA 4.0</td></tr>
+  <tr><td>RWI-GEO-REDX PUF v16</td><td>Public Use File — DOI: 10.7807/IMMO:REDX:PUF:V16</td></tr>
+  <tr><td>Zensus 2022</td><td>Datenlizenz Deutschland – Namensnennung 2.0</td></tr>
+  <tr><td>Berlin WFS</td><td>Datenlizenz Deutschland – Zero</td></tr>
+  <tr><td>Map tiles</td><td>OpenStreetMap (ODbL)</td></tr>
+</table>
+
+<p style="margin-top:40px;padding-top:20px;border-top:1px solid var(--border);font-size:12px;color:var(--text-dim)">
+  Built by <a href="https://github.com/ravidvr">Ravi DVR</a>. <a href="berlin.html">Berlin Rent Map</a> · <a href="index.html">Germany Dashboard</a> · <a href="about.html">About</a> · <a href="https://github.com/ravidvr/mietspiegel-digitization">GitHub</a>
+</p>
+
+</body>
+</html>

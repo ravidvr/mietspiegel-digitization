@@ -3,714 +3,260 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Berlin Rent Map — Mietspiegel Dashboard</title>
+<title>Berlin Rent Map</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
 <style>
-:root {
-  --bg: #f8f9fa;
-  --surface: #fff;
-  --surface2: #f1f3f5;
-  --border: #dee2e6;
-  --text: #212529;
-  --text-dim: #6c757d;
-  --accent: #5b8def;
-  --accent2: #6c5ce7;
-  --green: #48bb78;
-  --yellow: #ecc94b;
-  --orange: #ed8936;
-  --red: #f56565;
-  --header-bg: #1a1d28;
-  --header-text: #e4e6f0;
-}
-[data-theme="dark"] {
-  --bg: #0f1117;
-  --surface: #1a1d28;
-  --surface2: #222639;
-  --border: #2a2e3e;
-  --text: #e4e6f0;
-  --text-dim: #8b8fa3;
-  --header-bg: #151821;
-  --header-text: #e4e6f0;
-}
+:root{--bg:#0f1117;--surface:#1a1d28;--surface2:#222639;--border:#2a2e3e;--text:#e4e6f0;--text-dim:#8b8fa3;--accent:#5b8def;--green:#48bb78;--yellow:#ecc94b;--orange:#ed8936;--red:#f56565}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;overflow-x:hidden;transition:background .2s,color .2s}
-
-/* Header */
-.header{background:var(--header-bg);border-bottom:1px solid var(--border);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
-.h-left{display:flex;align-items:center;gap:8px}
-.h-left h1{font-size:17px;font-weight:700;color:var(--header-text)}
-.h-left h1 span{color:var(--accent)}
-.h-left .sub{font-size:12px;color:var(--text-dim);display:none}
-.h-right{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
-.h-btn{background:transparent;border:1px solid rgba(255,255,255,.15);color:var(--header-text);padding:4px 9px;border-radius:5px;font-size:11px;cursor:pointer;transition:.2s;text-decoration:none}
-.h-btn:hover{background:rgba(255,255,255,.1)}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden}
+.header{background:#151821;border-bottom:1px solid var(--border);padding:8px 14px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.header h1{font-size:16px;font-weight:700;color:#fff}.header h1 span{color:var(--accent)}
+.h-right{display:flex;align-items:center;gap:6px}
+.h-btn{background:transparent;border:1px solid rgba(255,255,255,.15);color:#e4e6f0;padding:4px 8px;border-radius:4px;font-size:11px;cursor:pointer}.h-btn:hover{background:rgba(255,255,255,.1)}
 .bdg{background:var(--accent);color:#fff;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600}
-.bdg.g{background:var(--green)}
 
-/* Filter */
-.fbar{display:flex;align-items:center;gap:5px;padding:7px 12px;background:var(--surface);border-bottom:1px solid var(--border);flex-wrap:wrap}
-.fbar select,.fbar input{padding:4px 7px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:11px;outline:none}
-.fbar select:focus,.fbar input:focus{border-color:var(--accent)}
-.fbar input[type=text]{flex:1;min-width:100px}
-.f-btn{padding:4px 8px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:11px;cursor:pointer;transition:.2s}
-.f-btn:hover{border-color:var(--accent);color:var(--accent)}
-.f-btn.p{background:var(--accent);color:#fff;border-color:var(--accent)}
+#map{width:100%;height:calc(100vh - 44px)}
 
-/* Layout */
-.main{display:flex;height:calc(100vh - 130px)}
-#map{flex:1;min-width:0}
-.map-leg{position:absolute;bottom:20px;left:10px;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:7px 10px;font-size:10px;z-index:1000;box-shadow:0 1px 6px rgba(0,0,0,.1)}
-.map-leg .r{display:flex;align-items:center;gap:4px;margin:1px 0}
-.map-leg .d{width:18px;height:4px;border-radius:2px;flex-shrink:0}
-.map-toggle{position:absolute;top:10px;right:10px;z-index:1000;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:16px;cursor:pointer;box-shadow:0 1px 6px rgba(0,0,0,.1)}
-.map-toggle:hover{background:var(--surface2)}
-.map-tooltip{position:absolute;top:70px;right:10px;max-width:380px;max-height:calc(100% - 100px);overflow-y:auto;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;z-index:1001;box-shadow:0 4px 16px rgba(0,0,0,.2);font-size:12px}
-.map-tooltip .close{float:right;background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:16px}
+.map-legend{position:absolute;bottom:16px;left:12px;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:8px 12px;font-size:10px;z-index:1000;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.map-legend .r{display:flex;align-items:center;gap:6px;margin:2px 0}
+.map-legend .d{width:16px;height:3px;border-radius:2px;flex-shrink:0}
 
-/* Side panel */
-.sp{width:390px;min-width:300px;max-width:50vw;background:var(--surface);border-left:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;transition:width .3s,margin .3s}
-.sp.hidden{display:none}
-.ss{font-size:11px;font-weight:700;color:var(--text-dim);padding:8px 10px;border-bottom:1px solid var(--border);background:var(--surface2);text-transform:uppercase;letter-spacing:.5px}
-.sc{flex:1;overflow-y:auto;padding:10px}
-.sc::-webkit-scrollbar{width:4px}
-.sc::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
-.es{display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-dim);font-size:12px;text-align:center;padding:20px}
+.map-tooltip{position:absolute;top:56px;right:10px;max-width:360px;max-height:calc(100% - 80px);overflow-y:auto;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px;z-index:1001;box-shadow:0 4px 16px rgba(0,0,0,.3);font-size:12px;display:none}
+.map-tooltip .close{float:right;background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:16px;padding:0 2px}
+.map-tooltip h3{font-size:14px;margin-bottom:4px}
+.map-tooltip .val{font-size:22px;font-weight:700;color:var(--accent)}
+.map-tooltip .sub{font-size:10px;color:var(--text-dim)}
+.map-tooltip .insight{font-size:11px;font-weight:600}
+.map-tooltip .row{display:flex;justify-content:space-between;font-size:10px;margin:1px 0}
 
-/* Comparison row */
-.cr{display:flex;align-items:center;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);font-size:11px;gap:8px}
-.cr:hover{background:var(--surface2)}
-.cr .cn{font-weight:600;flex:1;cursor:pointer}
-.cr .cn:hover{color:var(--accent)}
-.cr .cv{font-size:11px;font-weight:700;white-space:nowrap}
-.cr .cg{font-size:10px;min-width:45px;text-align:right;font-weight:600}
-.cr .bar{flex:1;max-width:80px;height:4px;background:var(--border);border-radius:2px;overflow:hidden}
-.cr .bar .fill{height:100%;border-radius:2px}
-
-/* Detail card */
-.dc{margin-top:8px;padding-top:8px;border-top:2px solid var(--accent)}
-.dc h3{font-size:14px;margin-bottom:4px}
-.dc .loc{font-size:11px;color:var(--text-dim)}
-.dc .val{font-size:24px;font-weight:700;color:var(--accent)}
-.dc .sub{font-size:10px;color:var(--text-dim)}
-.dc table{width:100%;border-collapse:collapse;font-size:10px;margin:6px 0}
-.dc table th,.dc table td{padding:2px 5px;text-align:center;border:1px solid var(--border)}
-.dc table th{background:var(--surface2);color:var(--text-dim);font-size:9px}
-.dc table td:first-child{text-align:left;font-weight:600}
-
-/* City label */
-.city-label{background:transparent!important;border:none!important;text-align:center}
-.city-label .cl-bg{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-size:10px;line-height:1.3;white-space:nowrap;box-shadow:0 1px 3px rgba(0,0,0,.15);opacity:.9;cursor:pointer;transition:transform .15s,opacity .15s}.city-label .cl-bg:hover{opacity:1;transform:scale(1.05)}
-.city-label .cl-n{font-weight:700;font-size:11px}
-.city-label .cl-r{font-size:10px;color:var(--text-dim)}
-
-/* Popup */
-.leaflet-popup-content-wrapper{background:var(--surface)!important;color:var(--text)!important;border:1px solid var(--border)!important;border-radius:6px!important}
-.leaflet-popup-content{margin:7px 10px!important}
-.leaflet-popup-tip{background:var(--surface)!important}
-
-/* Modal */
-.mo{position:fixed;inset:0;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;z-index:9999;padding:16px}
-.m{background:var(--surface);border-radius:10px;max-width:420px;width:100%;padding:24px;box-shadow:0 6px 24px rgba(0,0,0,.3)}
-.m h2{font-size:18px;margin-bottom:3px}
-.m p{font-size:12px;color:var(--text-dim);margin-bottom:8px;line-height:1.5}
-.m .cr2{display:flex;align-items:center;gap:6px;margin:3px 0;font-size:11px}
-.m .cd{width:9px;height:9px;border-radius:50%}
-.m .btn{display:inline-block;margin-top:6px;padding:7px 18px;background:var(--accent);color:#fff;border:none;border-radius:5px;font-size:12px;font-weight:600;cursor:pointer;transition:.2s}
-.m .btn:hover{opacity:.85}
+.district-panel{position:absolute;top:56px;left:12px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px;z-index:1000;box-shadow:0 2px 8px rgba(0,0,0,.3);max-height:calc(100% - 100px);overflow-y:auto;font-size:11px;max-width:200px}
+.district-panel h4{font-size:11px;font-weight:700;margin-bottom:6px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.5px}
+.district-panel .d-row{display:flex;justify-content:space-between;padding:3px 4px;border-radius:3px;cursor:pointer;margin:1px 0}
+.district-panel .d-row:hover{background:var(--surface2)}
+.district-panel .d-row .d-name{font-weight:600;font-size:10px}
+.district-panel .d-row .d-rent{color:var(--text-dim);font-size:10px}
 
 @media(max-width:768px){
-  .main{flex-direction:column;height:auto}
-  #map{height:70vh}
-  .sp{display:none}
-  .h-btn{font-size:14px;padding:8px 12px}
-  .fbar select,.fbar input{min-height:44px;font-size:16px}
-  .f-btn{padding:8px 12px;font-size:13px}
-  /* Floating detail card on mobile replaces sidebar */
-  .dc-mobile{position:fixed;bottom:0;left:0;right:0;max-height:50vh;overflow-y:auto;background:var(--surface);border-radius:12px 12px 0 0;box-shadow:0 -4px 16px rgba(0,0,0,.3);z-index:2000;padding:16px;transition:transform .3s}
-  .dc-mobile.hidden{transform:translateY(100%)}
+  .map-tooltip{top:auto;bottom:0;left:0;right:0;max-width:100%;border-radius:12px 12px 0 0;max-height:40vh}
+  .district-panel{display:none}
+  .map-legend{bottom:8px;left:4px;font-size:9px;padding:5px 8px}
 }
 </style>
 </head>
 <body>
 
-<!-- Welcome Modal -->
-<div class="mo" id="welcome" onclick="if(event.target===this)dismissWelcome()">
-  <div class="m">
-    <h2>📊 Mietspiegel-Dashboard</h2>
-    <p data-i18n="welcome_desc">Official German rent index data — digitized from city PDFs. Click anywhere on the map to see local rent data, or browse the city comparison table.</p>
-    <div class="cr2"><span class="cd" style="background:#00a550"></span> Below avg <span class="cd" style="background:#e0d040;margin-left:8px"></span> Average <span class="cd" style="background:#b01020;margin-left:8px"></span> Above avg</div>
-    <p style="margin-top:6px;font-size:11px" data-i18n="welcome_tip">Heatmap shows market rents (Immoscout24). Cities show official Mietspiegel. Click anywhere for details.</p>
-    <button class="btn" onclick="dismissWelcome()"><span data-i18n="got_it">Got it! →</span></button>
-  </div>
-</div>
-
-<!-- Header -->
 <div class="header">
-  <div class="h-left">
-    <h1>🏠 Berlin <span data-i18n="dash">Rent Map</span></h1>
-    <span class="sub" data-i18n="subtitle">Official rent index + market data for every Berlin district</span>
-  </div>
+  <h1>🏠 Berlin <span>Rent Map</span></h1>
   <div class="h-right">
-    <span class="bdg" id="city-count">23 cities</span>
-    <span class="bdg g">2024–2026</span>
-    <button class="h-btn" onclick="showWelcome()">ℹ</button>
-    <button class="h-btn" onclick="toggleLang()" id="lang-btn">DE</button>
-    <button class="h-btn" onclick="toggleDark()" id="dark-btn">🌙 <span data-i18n="dark">Dark</span></button>
-    <a class="h-btn" href="cross-city-comparison.html">📊 Compare</a>
-    <a class="h-btn" href="historical_trends.html">📈 Trends</a>
-    <a class="h-btn" href="about.html" data-i18n="about">About</a>
+    <span class="bdg" id="cell-count">...</span>
+    <button class="h-btn" id="zensus-btn" onclick="toggleSource()">📋 Census</button>
+    <a class="h-btn" href="index.html">🇩🇪 Germany</a>
+    <a class="h-btn" href="about.html">About</a>
   </div>
 </div>
 
-<!-- Filter -->
-<div class="fbar">
-  <input type="text" id="f-search" placeholder="🔍 Search Berlin address or PLZ..." oninput="applyFilters()" onkeydown="if(event.key==='Enter')geocodeSearch()">
-  <button class="f-btn" onclick="geocodeSearch()" title="Search address">📍</button>
-  <button class="f-btn" id="zensus-btn" onclick="toggleZensus()" title="Official census rent data">📋 Zensus 2022</button>
-  <button class="f-btn" onclick="clearFilters()">✕</button>
-</div>
-
-<!-- Layout -->
-<div class="main">
-  <div id="map">
-    <div class="map-leg" id="map-legend">
-      <div style="font-weight:600;margin-bottom:2px;font-size:11px">Heatmap (Immoscout24)</div>
-      <div class="r"><span class="d" style="background:#b01020"></span> +2σ above avg</div>
-      <div class="r"><span class="d" style="background:#e04030"></span> +1σ</div>
-      <div class="r"><span class="d" style="background:#e0d040"></span> Ø national avg</div>
-      <div class="r"><span class="d" style="background:#7fc440"></span> −1σ</div>
-      <div class="r"><span class="d" style="background:#00a550"></span> −2σ below avg</div>
-    </div>
-    <button class="map-toggle" onclick="toggleSidebar()" id="sidebar-toggle" title="Show comparison table">📊</button>
-    <div class="map-tooltip" id="map-tooltip" style="display:none"></div>
+<div id="map">
+  <div class="map-legend" id="legend">
+    <div style="font-weight:600;margin-bottom:3px">Berlin rent (Immoscout24)</div>
+    <div class="r"><span class="d" style="background:#b01020"></span> +2σ above Berlin avg</div>
+    <div class="r"><span class="d" style="background:#e04030"></span> +1σ</div>
+    <div class="r"><span class="d" style="background:#e0d040"></span> Berlin average</div>
+    <div class="r"><span class="d" style="background:#7fc440"></span> −1σ</div>
+    <div class="r"><span class="d" style="background:#00a550"></span> −2σ below Berlin avg</div>
   </div>
-
-  <div class="sp hidden" id="sidebar">
-    <div class="ss">📊 Official vs Market Rent <button style="float:right;background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:14px" onclick="toggleSidebar()">×</button></div>
-    <div class="sc" id="p-compare"></div>
-    <div class="sc" id="p-detail" style="display:none"></div>
-  </div>
-</div>
-
-<!-- Footer -->
-<div style="text-align:center;padding:10px;font-size:11px;color:var(--text-dim);border-top:1px solid var(--border);background:var(--surface)">
-  <a href="index.html" style="color:var(--accent);text-decoration:none">🇩🇪 All Germany</a> ·
-  <a href="cross-city-comparison.html" style="color:var(--accent);text-decoration:none">📊 Compare</a> ·
-  <a href="historical_trends.html" style="color:var(--accent);text-decoration:none">📈 Trends</a> ·
-  <a href="about.html" style="color:var(--accent);text-decoration:none" data-i18n="about">About</a> ·
-  <a href="https://github.com/ravidvr/mietspiegel-digitization" style="color:var(--accent);text-decoration:none" target="_blank">GitHub</a> ·
-  <span>CC BY-SA 4.0 · REDX: DOI 10.7807/IMMO:REDX:PUF:V16</span>
+  <div class="district-panel" id="dpanel"><h4>Districts</h4><div id="dlist">Loading...</div></div>
+  <div class="map-tooltip" id="tooltip"></div>
 </div>
 
 <script>
-// ─── i18n ─────────────────────────────────────────────────────
-const I18N = {
-  en: {
-    dash:'Dashboard', subtitle:'German rent index data — compared across cities',
-    how_it_works:'How it works', dark:'Dark', about:'About',
-    all_rents:'All Rents', all_states:'All States', all_periods:'All Periods',
-    loading:'Loading data...', no_data:'Data extracted — table view pending.',
-    no_match:'No matching cities', src:'Source',
-    welcome_desc:'Official German rent index data — digitized from city PDFs. Click anywhere on the map to see local rent data, or browse the city comparison table.',
-    welcome_tip:'Heatmap shows market rents (Immoscout24). Cities show official Mietspiegel. Click anywhere for details.',
-    got_it:'Got it! →',
-    csv:'CSV', clear:'Clear',
-    source_data:'Source Data',
-  },
-  de: {
-    dash:'Dashboard', subtitle:'Mietspiegel-Daten — Städte im Vergleich',
-    how_it_works:'So funktioniert\'s', dark:'Dunkel', about:'Über',
-    all_rents:'Alle Mieten', all_states:'Alle Bundesländer', all_periods:'Alle Baujahre',
-    loading:'Lade Daten...', no_data:'Daten extrahiert — Tabellenansicht ausstehend.',
-    no_match:'Keine passenden Städte', src:'Quelle',
-    welcome_desc:'Offizielle Mietspiegel-Daten — aus PDFs digitalisiert. Klicke auf eine beliebige Stelle auf der Karte für lokale Mietdaten.',
-    welcome_tip:'Heatmap zeigt Marktmieten (Immoscout24). Städte zeigen offizielle Mietspiegel. Klicke für Details.',
-    got_it:'Verstanden! →',
-    csv:'CSV', clear:'Zurücksetzen',
-    source_data:'Datenquellen',
-  }
-};
-let lang = localStorage.getItem('lang') || 'en';
-function t(key) { return I18N[lang][key] || key; }
+// ─── Data ──────────────────────────────────────────────────────
+let map, heatLayer, berlinLayer, distData = null;
+let immoMean = 0, immoStd = 0, immoGrids = [];
+let zensusMean = 0, zensusStd = 0, zensusCells = [];
+let useZensus = false;
 
-function applyLang() {
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.dataset.i18n;
-    if (el.tagName === 'OPTION') el.textContent = t(key);
-    else el.innerHTML = t(key);
-  });
-  document.getElementById('lang-btn').textContent = lang === 'en' ? 'DE' : 'EN';
-  if (document.getElementById('city-count')) document.getElementById('city-count').textContent = cities.length + ' cities';
-}
-function toggleLang() { lang = lang === 'en' ? 'de' : 'en'; localStorage.setItem('lang', lang); applyLang(); }
+function zScore(v, mean, std) { return std > 0 ? (v - mean) / std : 0; }
 
-// ─── State ────────────────────────────────────────────────────
-const DATA = 'data/processed/';
-let cities = [], cache = {}, cmpData = {}, map, rwiGrids = null;
-let heatLayer = null, berlinLayer = null, cityLabels = [];
-let rwiMean = 0, rwiStd = 0;
-let zensusMode = false, zensusData = null, zensusMean = 0, zensusStd = 0, zensusCells = [];
+function heatGradient(z) { return Math.max(0, Math.min(1, (z + 3) / 6)); }
 
-// ─── Normalization (unchanged) ────────────────────────────────
-const LAGE_MAP = { 'normal': 'mittel', 'sehr gut': 'gut' };
-function normLage(l) { return LAGE_MAP[l] || l; }
-const CANONICAL_BAUJAHR = ['bis 1918','1919-1949','1950-1964','1965-1974','1975-1990','1991-2002','2003-2013','2014+'];
-function normBaujahr(bj) {
-  if (!bj || bj === 'aktuell') return null;
-  const m = bj.match(/(\d{4})/g); if (!m) return null;
-  const s = parseInt(m[0]);
-  if (s <= 1918) return 'bis 1918'; if (s <= 1949) return '1919-1949';
-  if (s <= 1964) return '1950-1964'; if (s <= 1974) return '1965-1974';
-  if (s <= 1990) return '1975-1990'; if (s <= 2002) return '1991-2002';
-  if (s <= 2013) return '2003-2013'; return '2014+';
-}
-function avgRent(d) {
-  if (!d || !d.tables) return null;
-  const m = d.tables.find(t => t.lage === 'mittel') || d.tables[0];
-  if (!m) return null;
-  const v = m.rows.map(r => r['40_60'] || r.bis_40 || 0).filter(x => x > 0);
-  return v.length ? v.reduce((a,b)=>a+b,0)/v.length : null;
+function heatParams(z) {
+  if (z <= 11) return { radius: 18, blur: 10, minO: 0.2 };
+  if (z <= 13) return { radius: 12, blur: 6, minO: 0.25 };
+  if (z <= 15) return { radius: 8, blur: 4, minO: 0.30 };
+  return { radius: 14, blur: 3, minO: 0.35 };
 }
 
-// ─── Heatmap helpers ──────────────────────────────────────────
-function rwiZ(v) { return rwiStd > 0 ? (v - rwiMean) / rwiStd : 0; }
-function getHeatParams(z) {
-  if (z <= 7)  return { radius: 20, blur: 12, minOpacity: 0.15 };
-  if (z <= 10) return { radius: 14, blur: 8,  minOpacity: 0.20 };
-  if (z <= 13) return { radius: 10, blur: 6,  minOpacity: 0.25 };
-  if (z <= 15) return { radius: 8,  blur: 4,  minOpacity: 0.30 };
-  return { radius: 12, blur: 3, minOpacity: 0.35 }; // Larger at street level
-}
+// ─── Heatmap ───────────────────────────────────────────────────
+function buildHeat() {
+  if (heatLayer) map.removeLayer(heatLayer);
+  const cells = useZensus ? zensusCells : immoGrids;
+  const mean = useZensus ? zensusMean : immoMean;
+  const std  = useZensus ? zensusStd  : immoStd;
 
-function buildHeatmap() {
-  if (!rwiGrids || heatLayer) return;
-  const pts = [];
-  rwiGrids.grids.forEach(g => {
-    if (!g.lat || !g.lng) return;
-    for (const y of [2025,2024,2023,2022,2021]) {
-      if (g['pi'+y] != null) { pts.push({ lat: g.lat, lng: g.lng, v: g['pi'+y], yr: y, n: g['n'+y]||0, g }); break; }
-    }
-  });
-  const rawMean = pts.reduce((s,p)=>s+p.v,0)/pts.length;
-  const rawStd = Math.sqrt(pts.reduce((s,p)=>s+(p.v-rawMean)**2,0)/pts.length);
-  const clean = pts.filter(p => Math.abs(p.v - rawMean) <= 3 * rawStd);
-  rwiMean = clean.reduce((s,p)=>s+p.v,0)/clean.length;
-  rwiStd  = Math.sqrt(clean.reduce((s,p)=>s+(p.v-rwiMean)**2,0)/clean.length);
+  const data = useZensus
+    ? cells.map(c => [c[0], c[1], heatGradient(zScore(c[2], mean, std))])
+    : cells.map(g => [g.lat, g.lng, heatGradient(zScore(g.rent, mean, std))]);
 
-  const heatData = clean.map(p => {
-    const z = rwiZ(p.v);
-    return [p.lat, p.lng, Math.max(0, Math.min(1, (z + 3) / 6))];
-  });
-
-  const p = getHeatParams(map.getZoom());
-  heatLayer = L.heatLayer(heatData, {
-    radius: p.radius, blur: p.blur, max: 1.0, minOpacity: p.minOpacity,
-    gradient: { 0.0:'#00a550', 0.2:'#7fc440', 0.4:'#e0d040', 0.6:'#f09030', 0.8:'#e04030', 1.0:'#b01020' }
+  const p = heatParams(map.getZoom());
+  heatLayer = L.heatLayer(data, {
+    radius: p.radius, blur: p.blur, max: 1.0, minOpacity: p.minO,
+    gradient: {0:'#00a550',.2:'#7fc440',.4:'#e0d040',.6:'#f09030',.8:'#e04030',1:'#b01020'}
   }).addTo(map);
-
-  // Store clean points for click lookup
-  map._rwiClean = clean;
-
-  // Zoom scaling
-  map.on('zoomend', () => {
-    if (!heatLayer) return;
-    const zp = getHeatParams(map.getZoom());
-    heatLayer.setOptions({ radius: zp.radius, blur: zp.blur, minOpacity: zp.minOpacity });
-  });
 }
 
-// ─── Berlin district overlay ──────────────────────────────────
-async function loadBerlinDistricts() {
+// ─── Districts ─────────────────────────────────────────────────
+async function loadDistricts() {
   try {
-    const r = await fetch(DATA + 'berlin-districts-choropleth.geojson');
-    if (!r.ok) throw new Error(`HTTP ${r.status}`);
-    const gd = await r.json();
-    berlinLayer = L.geoJSON(gd, {
+    const r = await fetch('data/processed/berlin-districts-choropleth.geojson');
+    distData = await r.json();
+    berlinLayer = L.geoJSON(distData, {
       style: f => {
         const a = f.properties.avg_rent || 12;
-        const z = map.getZoom();
-        const opacity = z < 9 ? 0 : z < 11 ? 0.2 : 0.3;
-        const border = z >= 11;
-        return { fillColor: a<10?'#48bb78':a<11?'#86c97a':a<11.5?'#ecc94b':a<12?'#ed8936':'#f56565', fillOpacity: opacity, weight: border ? 1.5 : 0, color: border ? 'var(--text-dim)' : 'transparent', dashArray: border ? '4 2' : null };
+        return { fillColor: a<10?'#48bb78':a<11?'#86c97a':a<11.5?'#ecc94b':a<12?'#ed8936':'#f56565', fillOpacity: 0.2, weight: 1.5, color: 'var(--text-dim)', dashArray: '4 2' };
       },
       onEachFeature: (f, layer) => {
-        layer.bindTooltip(`${f.properties.district}<br>ø €${f.properties.avg_rent}/m²`, { sticky: true });
-        layer.on('click', () => showDistrictCard(f.properties));
+        layer.bindTooltip(`<b>${f.properties.district}</b><br>ø €${f.properties.avg_rent}/m²<br>${f.properties.total_addresses.toLocaleString()} addresses`, {sticky:true});
+        layer.on('click', () => showDistrict(f.properties));
       }
     }).addTo(map);
-    // Districts always visible in Berlin view
-    berlinLayer.setStyle({ fillOpacity: 0.25, weight: 1.5, color: 'var(--text-dim)', dashArray: '4 2' });
-  } catch(e) { console.error('Berlin districts failed:', e); }
+
+    // District list
+    const list = document.getElementById('dlist');
+    const districts = distData.features.map(f => f.properties).sort((a,b) => a.avg_rent - b.avg_rent);
+    list.innerHTML = districts.map(d => `
+      <div class="d-row" onclick="zoomToDistrict('${d.district}')">
+        <span class="d-name">${d.district}</span>
+        <span class="d-rent">€${d.avg_rent}</span>
+      </div>`).join('');
+  } catch(e) { console.error('Districts:', e); }
 }
 
-// ─── City labels ─────────────────────────────────────────────
-function buildCityLabels() {
-  cities.forEach(c => {
-    const d = cache[c.slug], a = avgRent(d);
-    if (!a) return;
-    const icon = L.divIcon({
-      className: 'city-label',
-      html: `<div class="cl-bg"><span class="cl-n">${c.city}</span><br><span class="cl-r">€${a.toFixed(1)}/m²</span></div>`,
-      iconSize: [0, 0], iconAnchor: [40, 10]
-    });
-    const m = L.marker([c.lat, c.lng], { icon, interactive: true, zIndexOffset: 100 }).addTo(map);
-    m.on('click', () => showCityCard(c.slug));
-    m._slug = c.slug; m._state = c.state;
-    cityLabels.push(m);
-  });
-}
-
-function filterCityLabels() {
-  const st = document.getElementById('f-state').value;
-  const rt = document.getElementById('f-rent').value;
-  const sr = document.getElementById('f-search').value.toLowerCase();
-  cityLabels.forEach(m => {
-    const c = cities.find(x => x.slug === m._slug);
-    if (!c) { m._icon.style.display = 'none'; return; }
-    const a = avgRent(cache[c.slug]);
-    if (st && c.state !== st) { m._icon.style.display = 'none'; return; }
-    if (sr && !c.city.toLowerCase().includes(sr) && !c.state?.toLowerCase().includes(sr)) { m._icon.style.display = 'none'; return; }
-    if (a == null) { m._icon.style.display = 'none'; return; }
-    if (rt==='lt10'&&a>=10||rt==='10-14'&&(a<10||a>=14)||rt==='14-18'&&(a<14||a>=18)||rt==='gt18'&&a<18) { m._icon.style.display = 'none'; return; }
-    m._icon.style.display = '';
-  });
-}
-function applyFilters() { 
-  filterCityLabels(); 
-  const visible = cityLabels.filter(m => m._icon && m._icon.style.display !== 'none').length;
-  const banner = document.getElementById('no-match-banner');
-  const st = document.getElementById('f-state').value;
-  const rt = document.getElementById('f-rent').value;
-  const sr = document.getElementById('f-search').value;
-  if (visible === 0 && (st || rt || sr)) {
-    if (!banner) {
-      const b = document.createElement('div'); b.id = 'no-match-banner'; b.className = 'es';
-      b.textContent = t('no_match');
-      document.getElementById('p-compare').insertBefore(b, document.getElementById('p-compare').firstChild);
-    }
-  } else { if (banner) banner.remove(); }
-}
-
-// ─── Zensus 2022 toggle (heatmap visual only) ─────────────────
-async function toggleZensus() {
-  const btn = document.getElementById('zensus-btn');
-  zensusMode = !zensusMode;
-  if (!zensusCells.length) { btn.textContent = '⏳ No data'; zensusMode = false; return; }
-
-  if (heatLayer) { map.removeLayer(heatLayer); heatLayer = null; }
-
-  if (zensusMode) {
-    const heatData = zensusCells.map(c => {
-      const z = zensusStd > 0 ? (c[2] - zensusMean) / zensusStd : 0;
-      return [c[0], c[1], Math.max(0, Math.min(1, (z + 3) / 6))];
-    });
-    const p = getHeatParams(map.getZoom());
-    heatLayer = L.heatLayer(heatData, { radius: p.radius, blur: p.blur, max: 1.0, minOpacity: p.minOpacity, gradient: { 0.0:'#00a550', 0.2:'#7fc440', 0.4:'#e0d040', 0.6:'#f09030', 0.8:'#e04030', 1.0:'#b01020' } }).addTo(map);
-    document.querySelector('#map-legend div:first-child').textContent = 'Zensus 2022 (Official)';
-    btn.style.background = 'var(--accent)'; btn.style.color = '#fff'; btn.textContent = '📋 Census ✓';
-  } else {
-    buildHeatmap();
-    document.querySelector('#map-legend div:first-child').textContent = 'Heatmap (Immoscout24)';
-    btn.style.background = ''; btn.style.color = ''; btn.textContent = '📋 Zensus 2022';
+function zoomToDistrict(name) {
+  const f = distData.features.find(f => f.properties.district === name);
+  if (!f) return;
+  const layer = Object.values(berlinLayer._layers).find(l => l.feature === f);
+  if (layer) {
+    map.fitBounds(layer.getBounds(), {padding:[30,30], maxZoom:14});
+    showDistrict(f.properties);
   }
 }
-function toggleSidebar() {
-  const sb = document.getElementById('sidebar');
-  sb.classList.toggle('hidden');
-  document.getElementById('sidebar-toggle').textContent = sb.classList.contains('hidden') ? '📊' : '✕';
-}
-function showDetail() {
-  // Show detail as floating tooltip overlay on map
-  const tip = document.getElementById('map-tooltip');
-  tip.style.display = 'block';
-  document.getElementById('p-compare').style.display = 'none';
-  document.getElementById('p-detail').style.display = 'none';
-}
-function showCompare() {
-  document.getElementById('map-tooltip').style.display = 'none';
-  document.getElementById('p-detail').style.display = 'none';
-  document.getElementById('p-compare').style.display = 'block';
-  renderComparison();
-}
-function setupClickHandler() {
-  map.on('click', e => {
-  // Don't override city label clicks
-  if (e.originalEvent && e.originalEvent.target && e.originalEvent.target.closest('.city-label')) return;
-  const { lat, lng } = e.latlng;
-  const clean = map._rwiClean;
-  if (!clean) return;
 
-  // Find nearest grid cell
-  let best = null, bestD = Infinity;
-  for (const p of clean) {
-    const d = (p.lat-lat)**2 + (p.lng-lng)**2;
-    if (d < bestD) { bestD = d; best = p; }
-  }
-  const threshold = 0.001 * Math.pow(2, 14 - map.getZoom());
-  if (!best || bestD > threshold) return;
-
-  // Find nearest city
-  let bestCity = null, bestCD = Infinity;
-  for (const c of cities) {
-    const d = (c.lat-lat)**2 + (c.lng-lng)**2;
-    if (d < bestCD) { bestCD = d; bestCity = c; }
-  }
-
-  const p = best;
-  const z = rwiZ(p.v);
-  const loc = p.g.location || p.g.plz ? `PLZ ${p.g.plz||'?'} · ${p.g.location||'Grid '+p.g.grid}` : `Grid ${p.g.grid}`;
-  const cm = bestCity ? cmpData[bestCity.city] : null;
-
-  // Find nearest Zensus cell
-  let zsRent = null, zsZ = null;
-  if (zensusCells.length) {
-    let zBest = null, zBestD = Infinity;
-    for (const zc of zensusCells) {
-      const d = (zc[0]-lat)**2 + (zc[1]-lng)**2;
-      if (d < zBestD) { zBestD = d; zBest = zc; }
-    }
-    if (zBest && zBestD < threshold) {
-      zsRent = zBest[2];
-      zsZ = zensusStd > 0 ? (zsRent - zensusMean) / zensusStd : 0;
-    }
-  }
-
-  // Market premium: how much more are new listings vs existing contracts?
-  const premium = zsRent ? ((p.v - zsRent) / zsRent * 100) : null;
-
-  let html = `<button class="close" onclick="this.parentElement.style.display='none'">×</button><div class="dc">
-    <h3>📍 ${loc}</h3>
-    <div class="val">€${p.v.toFixed(1)}/m² <span class="sub">(${p.yr})</span></div>
-    <div class="sub" style="margin-top:2px">Average rent for new listings on Immoscout24</div>`;
-
-  // Zensus row
-  if (zsRent) {
-    const pct = premium > 0 ? `${premium.toFixed(0)}% more` : `${Math.abs(premium).toFixed(0)}% less`;
-    const pc = premium > 20 ? 'var(--red)' : premium > 5 ? 'var(--orange)' : premium > -5 ? 'var(--yellow)' : 'var(--green)';
-    const rel = premium > 10 ? 'much more' : premium > 0 ? 'slightly more' : premium > -10 ? 'about the same as' : 'less than';
-    html += `<div style="margin-top:8px;padding:8px;background:var(--surface2);border-radius:4px">
-      <div style="font-size:11px;font-weight:600;margin-bottom:4px">📊 What people actually pay</div>
-      <div style="display:flex;justify-content:space-between;align-items:baseline">
-        <span style="font-size:10px;color:var(--text-dim)">Official census (2022)</span>
-        <span style="font-weight:700;font-size:15px">€${zsRent.toFixed(1)}/m²</span>
-      </div>
-      <div style="margin-top:3px;font-size:10px;color:${pc};font-weight:600">
-        New listings cost <b>${pct}</b> than what current tenants pay
-      </div>
-    </div>`;
-  } else {
-    html += `<div class="sub" style="margin-top:6px">${z>0?'Above':'Below'} German average (€${rwiMean.toFixed(1)}/m²)</div>`;
-  }
-
-  // City Mietspiegel row
-  if (cm) {
-    const gap = cm.gap_pct;
-    const gc = gap > 5 ? 'var(--red)' : gap > -5 ? 'var(--yellow)' : 'var(--green)';
-    const gapText = gap > 0 ? `${gap.toFixed(0)}% above official` : gap < 0 ? `${Math.abs(gap).toFixed(0)}% below official` : 'matches official';
-    html += `<div style="margin-top:6px;padding:8px;background:var(--surface2);border-radius:4px">
-      <div style="font-size:11px;font-weight:600;margin-bottom:4px">📋 Official rent index</div>
-      <div style="font-size:10px;color:var(--text-dim)">City of ${cm.city} (${cm.mietspiegel_year})</div>
-      <div style="display:flex;justify-content:space-between;margin-top:3px">
-        <span>Legal reference rent:</span>
-        <span style="font-weight:700">€${cm.mietspiegel_avg}/m²</span>
-      </div>
-      <div style="margin-top:2px;font-size:10px;color:${gc};font-weight:600">
-        Market listings are <b>${gapText}</b>
-      </div>
-    </div>`;
-  }
-
-  html += '</div>';
-
-  document.getElementById('map-tooltip').style.display = 'block';
-  document.getElementById('map-tooltip').innerHTML = html;
-  });
-}
-
-// ─── City detail card ─────────────────────────────────────────
-async function showCityCard(slug) {
-  if (!cache[slug]) try { cache[slug] = await (await fetch(DATA+slug+'.json')).json(); } catch(e) { return; }
-  const d = cache[slug], c = cities.find(x => x.slug === slug), cm = cmpData[c?.city];
-  showDetail();
-  if (c) map.flyTo([c.lat, c.lng], 11, { duration: 0.8 });
-  const panel = document.getElementById('map-tooltip');
-  panel.style.display = 'block';
-
-  if (!d || !d.tables || !d.tables.length) {
-    panel.innerHTML = '<button class="close" onclick="this.parentElement.style.display=\'none\'">×</button><div class="dc"><h3>${d?.city||c?.city}</h3><div class="sub">Data pending</div></div>';
-    return;
-  }
-  const l = d.tables.find(t => t.lage === 'mittel') || d.tables[0];
-  const szK = s => s==='bis 40 m²'?'bis_40':s==='40-60 m²'?'40_60':s==='60-90 m²'?'60_90':'ueber_90';
-  const hd = (d.baujahr_groups || l.rows.map(r => r.baujahr)).map(b => `<th>${b}</th>`).join('');
-  const bd = (d.size_categories || ['40-60 m²']).map(s => {
-    const k = szK(s);
-    return `<tr><td>${s}</td>${l.rows.map(r => `<td>${r[k]!=null?'€'+r[k].toFixed(2):'—'}</td>`).join('')}</tr>`;
-  }).join('');
-
-  let gapHtml = '';
-  if (cm) {
-    const gap = cm.gap_pct, gc = gap > 5 ? 'var(--red)' : gap > -5 ? 'var(--yellow)' : 'var(--green)';
-    const gapText = gap > 0 ? `${gap.toFixed(0)}% above official index` : gap < 0 ? `${Math.abs(gap).toFixed(0)}% below official index` : 'matches official index';
-    gapHtml = `<div style="margin:8px 0;padding:8px;background:var(--surface2);border-radius:4px">
-      <div style="font-size:10px;color:var(--text-dim)">New listings on Immoscout24 average <b>€${cm.immoscout_avg}/m²</b></div>
-      <div style="font-size:10px;color:${gc};font-weight:600;margin-top:2px">That's <b>${gapText}</b></div>
-    </div>`;
-  }
-
-  panel.innerHTML = '<button class="close" onclick="this.parentElement.style.display=\'none\'">×</button>' + `<div class="dc">
-    <h3>${d.city}</h3>
-    <div class="loc">${d.state} · ${(c?.population||'').toLocaleString()} · ${d.year} · ${d.type||'Mietspiegel'}</div>
-    ${gapHtml}
-    <table><thead><tr><th>Größe</th>${hd}</tr></thead><tbody>${bd}</tbody></table>
-    <div class="sub">Net cold rent (€/m²/month) · <a href="${d.source_url||'#'}" style="color:var(--accent)" target="_blank">Source</a></div>
-  </div>`;
-}
-
-// ─── District card ────────────────────────────────────────────
-function showDistrictCard(p) {
-  showDetail();
-  const panel = document.getElementById('map-tooltip');
-  panel.innerHTML = '<button class="close" onclick="this.parentElement.style.display=\'none\'">×</button>' + `<div class="dc">
+function showDistrict(p) {
+  document.getElementById('tooltip').innerHTML = `
+    <button class="close" onclick="this.parentElement.style.display='none'">×</button>
     <h3>${p.district}</h3>
-    <div class="loc">Berlin · ${p.total_addresses.toLocaleString()} addresses</div>
+    <div class="sub">${p.total_addresses.toLocaleString()} addresses</div>
     <div style="margin-top:8px">
-      <div>🟢 Einfach: <b>${p.einfach_pct}%</b> · ø €8.68/m²</div>
-      <div>🟡 Mittel: <b>${p.mittel_pct}%</b> · ø €11.73/m²</div>
-      <div>🔴 Gut: <b>${p.gut_pct}%</b> · ø €14.07/m²</div>
+      <div class="row"><span>🟢 Simple areas</span><b>${p.einfach_pct}%</b></div>
+      <div class="row"><span>🟡 Medium areas</span><b>${p.mittel_pct}%</b></div>
+      <div class="row"><span>🔴 Good areas</span><b>${p.gut_pct}%</b></div>
     </div>
-    <div style="margin-top:8px;padding:6px;background:var(--surface2);border-radius:4px;text-align:center">
+    <div style="margin-top:10px;padding:8px;background:var(--surface2);border-radius:4px;text-align:center">
       <div style="font-size:22px;font-weight:700;color:${p.avg_rent<10?'#48bb78':p.avg_rent<11.5?'#ecc94b':p.avg_rent<12.5?'#ed8936':'#f56565'}">ø €${p.avg_rent}/m²</div>
-      <div style="font-size:10px;color:var(--text-dim)">Estimated average net cold rent</div>
-    </div>
-  </div>`;
-}
-
-// ─── Comparison table ─────────────────────────────────────────
-function renderComparison() {
-  const panel = document.getElementById('p-compare');
-  const entries = Object.entries(cmpData).sort((a,b) => a[1].gap_pct - b[1].gap_pct);
-  if (!entries.length) { panel.innerHTML = '<div class="es">Loading comparison data...</div>'; return; }
-
-  panel.innerHTML = entries.map(([city, cm]) => {
-    const g = cm.gap_pct;
-    const gc = g > 5 ? 'var(--red)' : g > -5 ? 'var(--yellow)' : 'var(--green)';
-    const barW = Math.min(100, Math.abs(g) * 2.5);
-    const barC = g > 0 ? 'var(--red)' : 'var(--green)';
-    // Find the correct slug from cities array
-    const cityObj = cities.find(c => c.city === city);
-    const slug = cityObj ? cityObj.slug : '';
-    return `<div class="cr">
-      <span class="cn"${slug ? ` onclick="showCityCard('${slug}')"` : ''}>${city}</span>
-      <span class="cv">€${cm.mietspiegel_avg}</span>
-      <span style="font-size:10px;color:var(--text-dim)">→</span>
-      <span class="cv">€${cm.immoscout_avg}</span>
-      <span class="bar"><span class="fill" style="width:${barW}%;background:${barC}"></span></span>
-      <span class="cg" style="color:${gc}">${g>0?'+':''}${g}%</span>
+      <div class="sub">Estimated average net cold rent</div>
     </div>`;
-  }).join('');
+  document.getElementById('tooltip').style.display = 'block';
 }
 
-// ─── Init ─────────────────────────────────────────────────────
-async function init() {
-  document.getElementById('p-compare').innerHTML = '<div class="es">⏳ Loading data...</div>';
-  map = L.map('map', { center: [52.52, 13.405], zoom: 12, scrollWheelZoom: true });
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OSM', maxZoom: 18 }).addTo(map);
+// ─── Click ─────────────────────────────────────────────────────
+function setupClick() {
+  map.on('click', e => {
+    const {lat, lng} = e.latlng;
 
-  // Load Berlin city data + districts
-  const r = await fetch('data/processed/cities_index.json');
-  const allCities = await r.json();
-  cities = allCities.filter(c => c.slug === 'berlin');
-  await Promise.all(cities.map(async c => { try { cache[c.slug] = await (await fetch(DATA + c.slug + '.json')).json(); } catch(e) { cache[c.slug] = null; } }));
-  document.getElementById('city-count').textContent = '12 districts';
+    // Find nearest Immoscout cell
+    let ibest=null,ibestD=Infinity;
+    for (const g of immoGrids) {
+      const d=(g.lat-lat)**2+(g.lng-lng)**2;
+      if (d<ibestD){ibestD=d;ibest=g;}
+    }
+    const threshold = 0.001 * Math.pow(2, 14 - map.getZoom());
 
-  // Comparison data
-  try {
-    const cr = await fetch(DATA + 'cities_comparison.json?v=1');
-    (await cr.json()).cities.forEach(c => { cmpData[c.city] = c; });
-  } catch(e) {}
+    // Find nearest Zensus cell
+    let zbest=null,zbestD=Infinity;
+    for (const zc of zensusCells) {
+      const d=(zc[0]-lat)**2+(zc[1]-lng)**2;
+      if (d<zbestD){zbestD=d;zbest=zc;}
+    }
 
-  // Load Immoscout grid data
-  try {
-    const gr = await fetch(DATA + 'redx_grid_rent.json?v=3');
-    rwiGrids = await gr.json();
-  } catch(e) {}
+    if (!ibest || ibestD > threshold) return;
 
-  // Load Zensus 2022 data (always, for tooltips)
-  try {
-    const zr = await fetch(DATA + 'zensus2022_rent_1km.json?v=1');
-    zensusData = await zr.json();
-    zensusMean = zensusData.mean;
-    zensusStd = zensusData.std;
-    zensusCells = zensusData.cells_slim;  // [lat, lng, rent, n]
-  } catch(e) { console.error('Zensus load failed:', e); }
+    const loc = ibest.plz ? `PLZ ${ibest.plz} · ${ibest.location || 'Berlin'}` : 'Berlin';
+    const zi = zScore(ibest.rent, immoMean, immoStd);
+    const above = ibest.rent > immoMean;
 
-  // Build everything
-  buildCityLabels();
-  buildHeatmap();
-  loadBerlinDistricts();
-  setupClickHandler();
-  applyLang();
-  if (localStorage.getItem('mietspiegel-welcome') === '1') document.getElementById('welcome').style.display = 'none';
+    let html = `<button class="close" onclick="this.parentElement.style.display='none'">×</button>
+      <h3>📍 ${loc}</h3>
+      <div class="val">€${ibest.rent}/m² <span class="sub">(${ibest.year})</span></div>
+      <div class="insight" style="color:${above?'var(--red)':'var(--green)'};margin-top:4px">
+        ${above?'Above':'Below'} Berlin average (€${immoMean}/m²)
+      </div>`;
+
+    // Zensus comparison
+    if (zbest && zbestD < threshold) {
+      const zsRent = zbest[2];
+      const diff = ibest.rent - zsRent;
+      const pct = diff > 0 ? `${Math.round(diff/zsRent*100)}% more` : `${Math.round(Math.abs(diff)/zsRent*100)}% less`;
+      const pctColor = diff/zsRent > 0.2 ? 'var(--red)' : diff/zsRent > 0.05 ? 'var(--orange)' : 'var(--green)';
+      html += `<div style="margin-top:10px;padding:8px;background:var(--surface2);border-radius:4px">
+        <div style="font-weight:600;font-size:11px;margin-bottom:4px">📊 What residents actually pay</div>
+        <div class="row"><span>Official census (2022)</span><span style="font-weight:700;font-size:14px">€${zsRent}/m²</span></div>
+        <div style="margin-top:3px;font-size:10px;color:${pctColor};font-weight:600">
+          New listings cost <b>${pct}</b> than current rents
+        </div>
+      </div>`;
+    }
+
+    document.getElementById('tooltip').innerHTML = html;
+    document.getElementById('tooltip').style.display = 'block';
+  });
 }
 
-// ─── Utils ────────────────────────────────────────────────────
-async function geocodeSearch() {
-  const q = document.getElementById('f-search').value.trim();
-  if (!q || q.length < 2) return;
-  const input = document.getElementById('f-search');
-  input.style.background = 'var(--surface2)';
-  input.placeholder = '⏳ Searching...';
-
-  try {
-    const url = `https://nominatim.openstreetmap.org/search?format=json&limit=3&q=${encodeURIComponent(q)}&countrycodes=de&accept-language=de`;
-    const r = await fetch(url, { headers: { 'User-Agent': 'MietspiegelDashboard/1.0' } });
-    const results = await r.json();
-    if (!results.length) { input.placeholder = '❌ Not found'; return; }
-
-    const best = results[0];
-    const lat = parseFloat(best.lat), lng = parseFloat(best.lon);
-    map.flyTo([lat, lng], 16, { duration: 1.2 });
-
-    // Drop a temporary marker
-    const marker = L.circleMarker([lat, lng], { radius: 6, color: 'var(--accent)', fillColor: 'var(--accent)', fillOpacity: 0.6, weight: 2 }).addTo(map);
-    marker.bindPopup(`<b>${best.display_name.split(',')[0]}</b><br>${best.display_name.split(',').slice(1,3).join(',').trim()}`, { closeButton: false }).openPopup();
-    setTimeout(() => map.removeLayer(marker), 8000);
-
-    // Trigger heatmap click at this location
-    const fakeEvent = { latlng: { lat, lng }, originalEvent: { target: null } };
-    map.fire('click', fakeEvent);
-
-    input.placeholder = `📍 ${best.display_name.split(',')[0]}`;
-  } catch(e) {
-    input.placeholder = '❌ Search failed';
-    console.error('Geocode error:', e);
+// ─── Toggle data source ────────────────────────────────────────
+async function toggleSource() {
+  useZensus = !useZensus;
+  const btn = document.getElementById('zensus-btn');
+  const leg = document.querySelector('#legend div:first-child');
+  if (useZensus) {
+    btn.style.background='var(--accent)';btn.style.color='#fff';btn.textContent='📋 Census ✓';
+    leg.textContent = 'Berlin rent (Zensus 2022)';
+  } else {
+    btn.style.background='';btn.style.color='';btn.textContent='📋 Census';
+    leg.textContent = 'Berlin rent (Immoscout24)';
   }
-  input.style.background = '';
-  setTimeout(() => { input.placeholder = '🔍 Search address or city...'; }, 3000);
-}
-function clearFilters() {
-  ['f-state','f-rent','f-bau'].forEach(id => document.getElementById(id).value='');
-  document.getElementById('f-search').value='';
-  applyFilters();
-}
-function dismissWelcome() { localStorage.setItem('mietspiegel-welcome','1'); document.getElementById('welcome').style.display='none'; }
-function showWelcome() { document.getElementById('welcome').style.display='flex'; }
-function toggleDark() {
-  const h = document.documentElement, d = h.getAttribute('data-theme')==='dark';
-  h.setAttribute('data-theme', d?'':'dark'); localStorage.setItem('theme', d?'':'dark');
-}
-function dlCSV() {
-  const rows=[['City','State','Year','Lage','Baujahr','Size','Rent (€/m²)']];
-  cities.forEach(c=>{const d=cache[c.slug];if(!d||!d.tables)return;d.tables.forEach(t=>{(d.size_categories||[]).forEach(sz=>{const k=sz==='bis 40 m²'?'bis_40':sz==='40-60 m²'?'40_60':sz==='60-90 m²'?'60_90':'ueber_90';t.rows.forEach(r=>{if(r[k]!=null)rows.push([d.city,d.state,d.year,t.lage,r.baujahr,sz,r[k]]);});});});});
-  const csv=rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n');
-  const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);a.download='mietspiegel-data.csv';a.click();
+  buildHeat();
 }
 
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'dark') document.documentElement.setAttribute('data-theme','dark');
+// ─── Zoom ──────────────────────────────────────────────────────
+map.on('zoomend', () => { if (heatLayer) buildHeat(); });
+
+// ─── Init ──────────────────────────────────────────────────────
+async function init() {
+  map = L.map('map', {center:[52.52,13.405],zoom:12,scrollWheelZoom:true,zoomControl:false});
+  L.control.zoom({position:'bottomright'}).addTo(map);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution:'&copy; OSM',maxZoom:18}).addTo(map);
+
+  // Load Immoscout Berlin
+  try {
+    const r = await fetch('data/processed/berlin_immoscout.json?v=1');
+    const d = await r.json();
+    immoMean = d.mean; immoStd = d.std; immoGrids = d.grids;
+    document.getElementById('cell-count').textContent = d.clean + ' cells';
+  } catch(e) { console.error(e); }
+
+  // Load Zensus Berlin
+  try {
+    const r = await fetch('data/processed/berlin_zensus.json?v=1');
+    const d = await r.json();
+    zensusMean = d.mean; zensusStd = d.std; zensusCells = d.cells_slim;
+  } catch(e) { console.error(e); }
+
+  buildHeat();
+  loadDistricts();
+  setupClick();
+}
+
 document.addEventListener('DOMContentLoaded', init);
 </script>
 </body>
