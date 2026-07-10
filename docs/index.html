@@ -66,11 +66,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .map-leg .d{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 .map-toggle{position:absolute;top:10px;right:10px;z-index:1000;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:16px;cursor:pointer;box-shadow:0 1px 6px rgba(0,0,0,.1)}
 .map-toggle:hover{background:var(--surface2)}
-.map-tooltip{position:absolute;top:70px;right:10px;max-width:380px;max-height:calc(100% - 100px);overflow-y:auto;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;z-index:1000;box-shadow:0 4px 16px rgba(0,0,0,.2);font-size:12px}
+.map-tooltip{position:absolute;top:70px;right:10px;max-width:380px;max-height:calc(100% - 100px);overflow-y:auto;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;z-index:1001;box-shadow:0 4px 16px rgba(0,0,0,.2);font-size:12px}
 .map-tooltip .close{float:right;background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:16px}
 
 /* Side panel */
-.sp{width:390px;min-width:300px;max-width:50vw;background:var(--surface);border-left:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
+.sp{width:390px;min-width:300px;max-width:50vw;background:var(--surface);border-left:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;transition:width .3s,margin .3s}
 .sp.hidden{display:none}
 .ss{font-size:11px;font-weight:700;color:var(--text-dim);padding:8px 10px;border-bottom:1px solid var(--border);background:var(--surface2);text-transform:uppercase;letter-spacing:.5px}
 .sc{flex:1;overflow-y:auto;padding:10px}
@@ -136,11 +136,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 <body>
 
 <!-- Welcome Modal -->
-<div class="mo" id="welcome">
+<div class="mo" id="welcome" onclick="if(event.target===this)dismissWelcome()">
   <div class="m">
     <h2>📊 Mietspiegel-Dashboard</h2>
     <p data-i18n="welcome_desc">Official German rent index data — digitized from city PDFs. Click anywhere on the map to see local rent data, or browse the city comparison table.</p>
-    <div class="cr2"><span class="cd" style="background:#00a550"></span> Below avg <span class="cd" style="background:#e0d040" style="margin-left:8px"></span> Average <span class="cd" style="background:#b01020" style="margin-left:8px"></span> Above avg</div>
+    <div class="cr2"><span class="cd" style="background:#00a550"></span> Below avg <span class="cd" style="background:#e0d040;margin-left:8px"></span> Average <span class="cd" style="background:#b01020;margin-left:8px"></span> Above avg</div>
     <p style="margin-top:6px;font-size:11px" data-i18n="welcome_tip">Heatmap shows market rents (Immoscout24). Cities show official Mietspiegel. Click anywhere for details.</p>
     <button class="btn" onclick="dismissWelcome()"><span data-i18n="got_it">Got it! →</span></button>
   </div>
