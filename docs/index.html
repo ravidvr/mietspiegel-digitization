@@ -509,6 +509,7 @@ function exitRedxView() {
   document.getElementById('redx-btn').style.background = '';
   document.getElementById('redx-btn').style.color = '';
   if (redxHeat) { map.removeLayer(redxHeat); redxHeat = null; }
+  if (map._redxCleanup) { map._redxCleanup.forEach(fn => fn()); map._redxCleanup = []; }
   const el = document.getElementById('redx-legend'); if (el) el.remove();
   addMarkers();
   renderList();
@@ -525,12 +526,12 @@ async function showRedxHeat() {
   document.getElementById('p-detail').innerHTML = '<div class="es">🔥 National Rent Heatmap — ImmoScout24 1km² grid hedonic price indices (RWI-GEO-REDX PUF v16). Red = above national avg, green = below. Outliers (3σ) removed. <a href="https://fdz.rwi-essen.de" style="color:var(--accent)" target="_blank">Source: RWI Essen</a></div>';
   switchTab('detail');
 
-  // Collect points with values
+  // Collect points with values (all, not just clean)
   const pts = [];
   redxGrids.grids.forEach(g => {
     if (!g.lat || !g.lng) return;
     for (const y of [2025,2024,2023,2018,2013,2008]) {
-      if (g['pi'+y] != null) { pts.push({lat:g.lat,lng:g.lng,v:g['pi'+y]}); break; }
+      if (g['pi'+y] != null) { pts.push({lat:g.lat, lng:g.lng, v:g['pi'+y], yr:y, n:g['n'+y]||0, g:g}); break; }
     }
   });
 
@@ -549,12 +550,42 @@ async function showRedxHeat() {
 
   if (redxHeat) map.removeLayer(redxHeat);
   redxHeat = L.heatLayer(heatData, {
-    radius: 25, blur: 15, max: 1.0, minOpacity: 0.2,
+    radius: 18, blur: 10, max: 1.0, minOpacity: 0.15,
     gradient: {
       0.0: '#00a550', 0.2: '#7fc440', 0.4: '#e0d040',
       0.6: '#f09030', 0.8: '#e04030', 1.0: '#b01020'
     }
   }).addTo(map);
+
+  // ─── Tooltip on hover ──────────────────────────────────────
+  // Find nearest grid point to mouse cursor, show floating tooltip
+  const tip = document.getElementById('redx-tip') || (()=>{const d=document.createElement('div');d.id='redx-tip';d.style.cssText='position:absolute;background:var(--surface);color:var(--text);padding:6px 10px;border-radius:6px;font-size:11px;pointer-events:none;z-index:9999;box-shadow:0 2px 8px rgba(0,0,0,.25);display:none;white-space:nowrap';document.getElementById('map').appendChild(d);return d;})();
+
+  map.off('mousemove.redx');
+  map.on('mousemove.redx', e => {
+    const mx = e.latlng.lat, my = e.latlng.lng;
+    let best = null, bestD = Infinity;
+    // Simple nearest-neighbor scan — fast enough for ~7000 points
+    for (const p of clean) {
+      const d = (p.lat-mx)**2 + (p.lng-my)**2;
+      if (d < bestD) { bestD = d; best = p; }
+    }
+    const threshold = 0.0008; // ~90m at equator — hide tooltip when cursor is far
+    if (best && bestD < threshold) {
+      const z = redxZ(best.v);
+      tip.innerHTML = '<b>€'+best.v.toFixed(1)+'/m²</b> ('+best.yr+')' +
+        '<br><span style="color:var(--text-dim);font-size:10px">z='+z.toFixed(1)+'σ · n='+best.n+'</span>';
+      tip.style.display = 'block';
+      tip.style.left = (e.originalEvent.clientX + 18) + 'px';
+      tip.style.top  = (e.originalEvent.clientY - 40) + 'px';
+    } else {
+      tip.style.display = 'none';
+    }
+  });
+
+  // Cleanup on exit: store handler reference so exitRedxView can clean up
+  if (!map._redxCleanup) map._redxCleanup = [];
+  map._redxCleanup.push(() => { map.off('mousemove.redx'); if (document.getElementById('redx-tip')) document.getElementById('redx-tip').style.display='none'; });
 
   // Legend
   const lel = document.getElementById('redx-legend') || document.createElement('div');
@@ -562,7 +593,6 @@ async function showRedxHeat() {
   lel.innerHTML = '<div style="font-weight:600;margin-bottom:3px;font-size:10px">€/m² Net Cold Rent (z-score)</div>' +
     ['+2σ','+1σ','Ø avg','−1σ','−2σ'].map((label,i) => {
       const sv = redxMean + (2-i) * redxStd;
-      const si = [1.0,0.8,0.4,0.2,0.0][i];
       const sc = ['#b01020','#e04030','#e0d040','#7fc440','#00a550'][i];
       return '<div class="r"><span class="d" style="background:'+sc+'"></span> '+label+': €'+sv.toFixed(0)+'</div>';
     }).join('') +
