@@ -568,7 +568,8 @@ async function showRedxGrid() {
       } else if (p.pi2018) {
         tsHtml = `2018: €${p.pi2018.toFixed(1)}`;
       }
-      const loc = p.location || `Grid ${p.grid}`;
+      const plz = p.plz ? ` · PLZ ${p.plz}` : '';
+      const loc = (p.plz ? `PLZ ${p.plz} · ` : '') + (p.location || `Grid ${p.grid}`);
       layer.bindPopup(`<div class="pp-c">${loc}${yrLabel}</div><div class="pp-r">€${v}/m²</div>${tsHtml ? '<div class="pp-l" style="font-size:9px">'+tsHtml+change+'</div>' : ''}<div class="pp-l" style="margin-top:3px;color:var(--accent)">RWI-GEO-REDX PUF v16 · n=${n}</div>`);
     }
   }).addTo(map);
