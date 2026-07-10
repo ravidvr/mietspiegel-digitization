@@ -167,6 +167,8 @@ table.ct td:first-child{text-align:left;font-weight:600;color:var(--text-dim)}
     <button class="h-btn" onclick="showWelcome()">ℹ <span data-i18n="how_it_works">How it works</span></button>
     <button class="h-btn" onclick="toggleLang()" id="lang-btn">DE</button>
     <button class="h-btn" onclick="toggleDark()" id="dark-btn">🌙 <span data-i18n="dark">Dark</span></button>
+    <a class="h-btn" href="cross-city-comparison.html">📊 Compare</a>
+    <a class="h-btn" href="historical_trends.html">📈 Trends</a>
     <a class="h-btn" href="about.html" data-i18n="about">About</a>
   </div>
 </div>
@@ -184,6 +186,7 @@ table.ct td:first-child{text-align:left;font-weight:600;color:var(--text-dim)}
   <select id="f-bau" onchange="applyFilters()"></select>
   <input type="text" id="f-search" placeholder="🔍" oninput="applyFilters()">
   <button class="f-btn" onclick="toggleDistricts()" id="district-btn">🗺️ Berlin Districts</button>
+  <button class="f-btn" onclick="toggleRedxGrid()" id="redx-btn">🔥 ImmoScout Grid</button>
   <button class="f-btn" onclick="dlCSV()">⬇ CSV</button>
   <button class="f-btn" onclick="clearFilters()">✕</button>
 </div>
@@ -221,9 +224,11 @@ table.ct td:first-child{text-align:left;font-weight:600;color:var(--text-dim)}
 <!-- Footer -->
 <div style="text-align:center;padding:10px;font-size:11px;color:var(--text-dim);border-top:1px solid var(--border);background:var(--surface)">
   <a href="data/processed/cities_index.json" style="color:var(--accent);text-decoration:none" target="_blank" data-i18n="source_data">Source Data</a> ·
+  <a href="cross-city-comparison.html" style="color:var(--accent);text-decoration:none">📊 Compare</a> ·
+  <a href="historical_trends.html" style="color:var(--accent);text-decoration:none">📈 Trends</a> ·
   <a href="about.html" style="color:var(--accent);text-decoration:none" data-i18n="about">About</a> ·
   <a href="https://github.com/ravidvr/mietspiegel-digitization" style="color:var(--accent);text-decoration:none" target="_blank">GitHub</a> ·
-  <span>CC BY-SA 4.0</span>
+  <span>CC BY-SA 4.0 · REDX: DOI 10.7807/IMMO:REDX:PUF:V16</span>
 </div>
 
 <script>
@@ -299,6 +304,72 @@ const INDEX = 'data/processed/cities_index.json';
 const DATA = 'data/processed/';
 let cities = [], cache = {}, map, markers = [], selected = null;
 
+// ─── Normalization Layer ───
+// Maps non-standard lage categories to canonical einfach/mittel/gut
+const LAGE_MAP = {
+  'normal': 'mittel',
+  'sehr gut': 'gut', // merge "sehr gut" into "gut" for comparison
+};
+function normLage(l) { return LAGE_MAP[l] || l; }
+
+// Canonical baujahr periods (union of all cities, sorted chronologically)
+const CANONICAL_BAUJAHR = [
+  'bis 1918', '1919-1949', '1950-1964', '1965-1974',
+  '1975-1990', '1991-2002', '2003-2013', '2014+'
+];
+
+// Maps any baujahr string to a canonical period
+function normBaujahr(bj) {
+  if (!bj || bj === 'aktuell') return null; // cities with "aktuell" have no time periods
+  // Parse start year from various formats like "1919-1949", "2014+", "1970 bis 1990", "bis 1969"
+  const m = bj.match(/(\d{4})/g);
+  if (!m) return null;
+  const startYear = parseInt(m[0]);
+  // Map to canonical periods based on start year
+  if (startYear <= 1918) return 'bis 1918';
+  if (startYear <= 1949) return '1919-1949';
+  if (startYear <= 1964) return '1950-1964';
+  if (startYear <= 1974) return '1965-1974';
+  if (startYear <= 1990) return '1975-1990';
+  if (startYear <= 2002) return '1991-2002';
+  if (startYear <= 2013) return '2003-2013';
+  return '2014+';
+}
+
+// Get all canonical baujahr periods available across cities
+function getCanonicalBaujahrList() {
+  const set = new Set();
+  Object.values(cache).forEach(d => {
+    if (!d || !d.tables) return;
+    d.tables.forEach(t => {
+      (t.rows || []).forEach(r => {
+        const nb = normBaujahr(r.baujahr);
+        if (nb) set.add(nb);
+      });
+    });
+  });
+  return CANONICAL_BAUJAHR.filter(b => set.has(b));
+}
+
+// Get normalized rent for a city, lage, and canonical baujahr
+function getNormRent(cityData, lage, canonicalBaujahr, sizeKey) {
+  if (!cityData || !cityData.tables) return null;
+  // Try exact lage first, then normalized
+  let tb = cityData.tables.find(t => t.lage === lage);
+  if (!tb) {
+    tb = cityData.tables.find(t => normLage(t.lage) === lage);
+  }
+  if (!tb) tb = cityData.tables[0];
+  if (!tb || !tb.rows) return null;
+  // Find rows that normalize to this canonical period
+  const matchingRows = tb.rows.filter(r => normBaujahr(r.baujahr) === canonicalBaujahr);
+  if (!matchingRows.length) return null;
+  // Average across matching rows
+  const vals = matchingRows.map(r => r[sizeKey]).filter(v => v != null && v > 0);
+  if (!vals.length) return null;
+  return vals.reduce((a,b) => a+b, 0) / vals.length;
+}
+
 // ─── Init ───
 async function init() {
   map = L.map('map', { center: [51.1657, 10.4515], zoom: 6, scrollWheelZoom: true });
@@ -321,21 +392,25 @@ async function init() {
     catch(e) { cache[c.slug] = null; }
   }));
 
-  // Baujahr filter: use Berlin (most complete) as reference
-  const ref = cache['berlin'];
-  if (ref && ref.baujahr_groups) {
+  // Baujahr filter: use canonical periods from normalization layer
+  const canonBj = getCanonicalBaujahrList();
+  {
     const bj = document.getElementById('f-bau');
     bj.innerHTML = '<option value="" data-i18n="all_periods">All Periods</option>';
-    ref.baujahr_groups.forEach(b => {
+    canonBj.forEach(b => {
       const o = document.createElement('option'); o.value = b; o.textContent = b; bj.appendChild(o);
     });
     // Compare filters
-    const cl = document.getElementById('c-lage');
-    ref.lage_categories.forEach(l => { const o = document.createElement('option'); o.value = l; o.textContent = l.charAt(0).toUpperCase()+l.slice(1); cl.appendChild(o); });
-    const cs = document.getElementById('c-size');
-    ref.size_categories.forEach(s => { const o = document.createElement('option'); o.value = s; o.textContent = s; cs.appendChild(o); });
-    const cb = document.getElementById('c-bau');
-    ref.baujahr_groups.forEach(b => { const o = document.createElement('option'); o.value = b; o.textContent = b; cb.appendChild(o); });
+    const ref = cache['berlin'] || Object.values(cache).find(d => d && d.tables && d.tables.length);
+    if (ref) {
+      const cl = document.getElementById('c-lage');
+      ['einfach','mittel','gut'].forEach(l => { const o = document.createElement('option'); o.value = l; o.textContent = l.charAt(0).toUpperCase()+l.slice(1); cl.appendChild(o); });
+      const cs = document.getElementById('c-size');
+      ref.size_categories.forEach(s => { const o = document.createElement('option'); o.value = s; o.textContent = s; cs.appendChild(o); });
+      const cb = document.getElementById('c-bau');
+      cb.innerHTML = '<option value="">— Alle Baujahre —</option>';
+      canonBj.forEach(b => { const o = document.createElement('option'); o.value = b; o.textContent = b; cb.appendChild(o); });
+    }
   }
 
   // Update city count
@@ -411,6 +486,87 @@ function exitDistrictView() {
 
 function toggleDistricts() {
   districtMode ? exitDistrictView() : enterDistrictView();
+}
+
+// ─── REDX Grid Heatmap (ImmoScout24 1km² price indices) ───
+let redxMode = false, redxLayer = null, redxData = null;
+
+function redxColor(v, minV, maxV) {
+  // 7-color perceptually uniform scale: blue → cyan → green → yellow → orange → red → darkred
+  const t = (v - minV) / (maxV - minV);
+  if      (t < 0.15) return '#2c4c8c';  // dark blue: < €6
+  else if (t < 0.30) return '#3b7fc4';  // medium blue: €6-8
+  else if (t < 0.45) return '#48bb78';  // green: €8-10
+  else if (t < 0.60) return '#ecc94b';  // yellow: €10-12
+  else if (t < 0.75) return '#ed8936';  // orange: €12-16
+  else if (t < 0.90) return '#f56565';  // red: €16-20
+  else               return '#9b2c2c';  // dark red: > €20
+}
+
+async function toggleRedxGrid() {
+  if (redxMode) { exitRedxView(); return; }
+  redxMode = true;
+  document.getElementById('redx-btn').style.background = 'var(--accent)';
+  document.getElementById('redx-btn').style.color = '#fff';
+  markers.forEach(m => map.removeLayer(m));
+  if (districtMode) exitDistrictView();
+  await showRedxGrid();
+}
+
+function exitRedxView() {
+  redxMode = false;
+  document.getElementById('redx-btn').style.background = '';
+  document.getElementById('redx-btn').style.color = '';
+  if (redxLayer) { map.removeLayer(redxLayer); redxLayer = null; }
+  if (document.getElementById('redx-legend')) document.getElementById('redx-legend').remove();
+  addMarkers();
+  renderList();
+}
+
+async function showRedxGrid() {
+  if (!redxData) {
+    try {
+      const r = await fetch('data/processed/national-rent-grid.geojson');
+      redxData = await r.json();
+    } catch(e) { console.error('Failed to load REDX data', e); return; }
+  }
+  if (redxLayer) map.removeLayer(redxLayer);
+
+  document.getElementById('p-detail').innerHTML = '<div class="es">🔥 National Rent Map — ImmoScout24 1km² grid hedonic price indices (RWI-GEO-REDX PUF v16). Each dot = 1km² grid cell. <a href="https://fdz.rwi-essen.de" style="color:var(--accent)" target="_blank">Source: RWI Essen</a></div>';
+  switchTab('detail');
+
+  const feats = redxData.features;
+  const vals = feats.map(f => f.properties.pi2025).filter(v => v != null);
+  const minV = Math.min(...vals), maxV = Math.max(...vals);
+
+  redxLayer = L.geoJSON(redxData, {
+    pointToLayer: (f, ll) => {
+      const v = f.properties.pi2025;
+      return L.circleMarker(ll, {
+        radius: v != null ? 4.5 : 2,
+        fillColor: v != null ? redxColor(v, minV, maxV) : '#555',
+        color: 'rgba(0,0,0,0.15)',
+        weight: 0.5,
+        fillOpacity: 0.75
+      });
+    },
+    onEachFeature: (f, layer) => {
+      const p = f.properties;
+      const change = p.change_pct ? ` (${p.change_pct > 0 ? '+' : ''}${p.change_pct}% since 2008)` : '';
+      layer.bindPopup(`<div class="pp-c">Grid ${p.grid}</div><div class="pp-r">Index: €${p.pi2025}/m²</div><div class="pp-l">${p.pi2018 ? '2018: €'+p.pi2018.toFixed(1)+'/m²' : ''}${change}</div><div class="pp-l" style="margin-top:3px;color:var(--accent)">RWI-GEO-REDX PUF v16 · n=${p.n2025||'?'}</div>`);
+    }
+  }).addTo(map);
+
+  // Legend
+  const el = document.getElementById('redx-legend') || document.createElement('div');
+  el.id = 'redx-legend';
+  el.className = 'map-leg';
+  const breaks = [minV, 6, 8, 10, 12, 16, 20, maxV].sort((a,b)=>a-b);
+  el.innerHTML = `<div style="font-weight:600;margin-bottom:3px;font-size:10px">€/m² Net Cold Rent (2025)</div>` +
+    breaks.slice(1).map((b,i) => `<div class="r"><span class="d" style="background:${redxColor(breaks[i]+0.01,minV,maxV)}"></span> €${breaks[i].toFixed(0)}–${breaks[i+1]?.toFixed(0)||''}</div>`).join('');
+  document.getElementById('map').appendChild(el);
+
+  map.setView([51.1657, 10.4515], 6, { duration: 0.6 });
 }
 
 async function showDistricts() {
@@ -543,14 +699,37 @@ async function updCmp() {
   const lage=document.getElementById('c-lage').value||'mittel',size=document.getElementById('c-size').value||'40-60 m²',bau=document.getElementById('c-bau').value||'';
   await Promise.all(cities.map(async c=>{if(!cache[c.slug])try{cache[c.slug]=await(await fetch(DATA+c.slug+'.json')).json()}catch(e){}}));
   const szK=s=>s==='bis 40 m²'?'bis_40':s==='40-60 m²'?'40_60':s==='60-90 m²'?'60_90':'ueber_90';
-  const es=cities.map(c=>{const d=cache[c.slug];if(!d||!d.tables)return null;const tb=d.tables.find(t=>t.lage===lage);if(!tb)return null;if(bau){const r=tb.rows.find(r=>r.baujahr===bau);return r?{city:d.city,slug:d.city_slug||c.slug,rent:r[szK(size)],data:d}:null;}const v=tb.rows.map(r=>r[szK(size)]).filter(x=>x!=null),a=v.length?v.reduce((a,b)=>a+b,0)/v.length:null;return a!=null?{city:d.city,slug:d.city_slug||c.slug,rent:a,data:d}:null;}).filter(Boolean).sort((a,b)=>a.rent-b.rent);
+  const sizeKey=szK(size);
+  // Use canonical baujahr periods for comparison
+  const canonBj=getCanonicalBaujahrList();
+  const es=cities.map(c=>{
+    const d=cache[c.slug];if(!d||!d.tables)return null;
+    // For a specific baujahr filter, use normalized lookup
+    if(bau){
+      const r=getNormRent(d,lage,bau,sizeKey);
+      return r!=null?{city:d.city,slug:d.city_slug||c.slug,rent:r,data:d}:null;
+    }
+    // No baujahr filter: average across all canonical periods
+    const vals=canonBj.map(bj=>getNormRent(d,lage,bj,sizeKey)).filter(v=>v!=null);
+    const a=vals.length?vals.reduce((x,y)=>x+y,0)/vals.length:null;
+    return a!=null?{city:d.city,slug:d.city_slug||c.slug,rent:a,data:d}:null;
+  }).filter(Boolean).sort((a,b)=>a.rent-b.rent);
   if(!es.length){document.getElementById('cmp-wrap').innerHTML=`<div class="es">${t('no_match')}</div>`;return;}
-  const bg=es[0].data.baujahr_groups||[];
   const ch=es.map((e,i)=>`<th><div class="cn" onclick="showCity('${e.slug}')">${e.city}</div><div class="cs">${e.data.state}</div></th>`).join('');
+  // Build rows using canonical baujahr periods
   let rh='';
-  if(bau) rh=`<tr><td style="font-weight:600">${bau}</td>${es.map(e=>`<td>€${e.rent.toFixed(2)}</td>`).join('')}</tr>`;
-  else rh=bg.map(bj=>{const c=es.map(e=>{const r=e.data.tables.find(t=>t.lage===lage)?.rows.find(r=>r.baujahr===bj);return r?r[szK(size)]!=null?`<td>€${r[szK(size)].toFixed(2)}</td>`:'<td>—</td>':'<td>—</td>';}).join('');return`<tr><td style="font-weight:600;text-align:left">${bj}</td>${c}</tr>`;}).join('');
-  document.getElementById('cmp-wrap').innerHTML=`<div style="font-size:9px;color:var(--text-dim);margin-bottom:4px">${lage.charAt(0).toUpperCase()+lage.slice(1)} · ${size} · sorted by rent</div><table class="ct"><thead><tr><th style="width:60px">${lang==='en'?'Period':'Baujahr'}</th>${ch}</tr></thead><tbody>${rh}</tbody></table>`;
+  if(bau){
+    rh=`<tr><td style="font-weight:600">${bau}</td>${es.map(e=>`<td>€${e.rent.toFixed(2)}</td>`).join('')}</tr>`;
+  } else {
+    rh=canonBj.map(bj=>{
+      const cells=es.map(e=>{
+        const v=getNormRent(e.data,lage,bj,sizeKey);
+        return v!=null?`<td>€${v.toFixed(2)}</td>`:'<td>—</td>';
+      }).join('');
+      return`<tr><td style="font-weight:600;text-align:left">${bj}</td>${cells}</tr>`;
+    }).join('');
+  }
+  document.getElementById('cmp-wrap').innerHTML=`<div style="font-size:9px;color:var(--text-dim);margin-bottom:4px">${lage.charAt(0).toUpperCase()+lage.slice(1)} · ${size} · sorted by rent · normalized periods</div><table class="ct"><thead><tr><th style="width:60px">${lang==='en'?'Period':'Baujahr'}</th>${ch}</tr></thead><tbody>${rh}</tbody></table>`;
 }
 
 // ─── Tabs ───

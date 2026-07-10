@@ -28,16 +28,16 @@
     "slug": "bielefeld",
     "lat": 52.0302,
     "lng": 8.5325,
-    "state": "NRW",
-    "population": 340000
+    "state": "Nordrhein-Westfalen",
+    "population": 338000
   },
   {
     "city": "Bonn",
     "slug": "bonn",
     "lat": 50.7374,
     "lng": 7.0982,
-    "state": "NRW",
-    "population": 330000
+    "state": "Nordrhein-Westfalen",
+    "population": 336000
   },
   {
     "city": "Braunschweig",
@@ -53,7 +53,7 @@
     "lat": 53.0793,
     "lng": 8.8017,
     "state": "Bremen",
-    "population": 100000
+    "population": 567000
   },
   {
     "city": "Chemnitz",
@@ -61,7 +61,7 @@
     "lat": 50.8278,
     "lng": 12.9214,
     "state": "Sachsen",
-    "population": 245000
+    "population": 248000
   },
   {
     "city": "Dresden",
@@ -76,8 +76,8 @@
     "slug": "duisburg",
     "lat": 51.4344,
     "lng": 6.7624,
-    "state": "NRW",
-    "population": 500000
+    "state": "Nordrhein-Westfalen",
+    "population": 502000
   },
   {
     "city": "Düsseldorf",
@@ -93,7 +93,7 @@
     "lat": 51.4556,
     "lng": 7.0116,
     "state": "Nordrhein-Westfalen",
-    "population": 100000
+    "population": 583000
   },
   {
     "city": "Frankfurt am Main",
@@ -109,7 +109,7 @@
     "lat": 47.999,
     "lng": 7.8421,
     "state": "Baden-Württemberg",
-    "population": 100000
+    "population": 236000
   },
   {
     "city": "Halle (Saale)",
@@ -164,16 +164,16 @@
     "slug": "luebeck",
     "lat": 53.865467,
     "lng": 10.686559,
-    "state": "",
-    "population": 100000
+    "state": "Schleswig-Holstein",
+    "population": 217000
   },
   {
     "city": "Mainz",
     "slug": "mainz",
     "lat": 50.002543,
     "lng": 8.260962,
-    "state": "",
-    "population": 100000
+    "state": "Rheinland-Pfalz",
+    "population": 220000
   },
   {
     "city": "Mannheim",
@@ -181,7 +181,7 @@
     "lat": 49.4875,
     "lng": 8.466,
     "state": "Baden-Württemberg",
-    "population": 310000
+    "population": 315000
   },
   {
     "city": "Moenchengladbach",
@@ -189,7 +189,7 @@
     "lat": 51.1805,
     "lng": 6.4428,
     "state": "Nordrhein-Westfalen",
-    "population": 260000
+    "population": 261000
   },
   {
     "city": "München",
@@ -212,8 +212,8 @@
     "slug": "rostock",
     "lat": 54.0924,
     "lng": 12.0991,
-    "state": "",
-    "population": 100000
+    "state": "Mecklenburg-Vorpommern",
+    "population": 209000
   },
   {
     "city": "Stuttgart",

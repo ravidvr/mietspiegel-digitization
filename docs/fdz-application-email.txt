@@ -1,0 +1,50 @@
+Subject: RWI-GEO-RED Data Application — Independent Open-Source Researcher
+
+Dear FDZ Ruhr Team,
+
+I am writing to apply for access to the RWI-GEO-RED Real Estate Data (all waves, Scientific Use File). I am an independent researcher and open-source developer, not affiliated with a university, and I would like to confirm that my profile is eligible before submitting my formal application through the online portal.
+
+About my project:
+
+I have developed an open-source dashboard (github.com/ravidvr/mietspiegel-digitization) that digitizes official German Mietspiegel (rent index) data from city PDFs and makes it publicly accessible as structured, comparable data. The project currently covers 28 German cities, with 23 having complete rent tables, and includes features such as an interactive Leaflet map, cross-city comparison tools, historical trend analysis, and street-level Wohnlage data extracted from official city publications (including Hamburg's Wohnlagenverzeichnis with 25,786 street sections).
+
+The project is strictly non-commercial:
+- All data and code are published under CC BY-SA 4.0
+- The dashboard is freely accessible to everyone
+- No subscription, paywall, or registration is required to view the data
+- The project generates no revenue
+
+How I would use RWI-GEO-RED:
+
+I would like to use the RWI-GEO-RED Scientific Use File (1km² grid granularity) to add sub-city rent data to the dashboard, particularly for cities that do not publish a qualifizierter Mietspiegel or where the PDF data is only available at city-wide level. This would allow the dashboard to show neighborhood-level rent trends across all of Germany, not just the 28 cities currently covered.
+
+Specifically, I would:
+- Aggregate the 1km² grid data to neighborhood/district level for visualization
+- Compare ImmobilienScout24 listing data with official Mietspiegel values where both are available
+- Publish only aggregated, anonymized results (never raw SUF data) on the dashboard
+- Cite RWI-GEO-RED with its DOI in all publications and on the dashboard
+
+Data security commitments:
+- The raw SUF data will be stored only on my personal computer (encrypted, single-user)
+- No raw SUF data will be uploaded to GitHub, shared, or distributed
+- Only aggregated results (averages, indices) at grid or district level will be published
+- I will comply with all data protection requirements in the data usage agreement
+
+Requested format: CSV (for direct use with Python/pandas)
+
+I understand the standard contract term is 3 years and I am happy to comply with all reporting and publication requirements.
+
+Could you please confirm:
+1. Whether my non-academic, non-commercial profile is eligible for SUF access
+2. Whether there are any additional steps beyond the online application
+3. The expected processing time
+
+I am happy to provide any additional information or documentation needed. Thank you for your time and for making this valuable data available to researchers.
+
+Best regards,
+[Your name]
+[Your email]
+[Your LinkedIn profile — optional]
+
+Project: github.com/ravidvr/mietspiegel-digitization
+Live dashboard: ravidvr.github.io/mietspiegel-digitization/

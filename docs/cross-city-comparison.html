@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mietspiegel — Cross-City Comparison</title>
+<style>
+  :root {
+    --bg: #0f1117; --surface: #1a1d28; --surface2: #222639;
+    --border: #2a2e3e; --text: #e4e6f0; --text-dim: #8b8fa3;
+    --accent: #5b8def; --green: #48bb78; --yellow: #ecc94b;
+    --red: #f56565; --orange: #ed8936; --header-bg: #151821;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.5; padding: 0;
+  }
+  .header {
+    background: var(--header-bg); border-bottom: 1px solid var(--border);
+    padding: 12px 24px; display: flex; justify-content: space-between;
+    align-items: center; flex-wrap: wrap; gap: 10px;
+  }
+  .header h1 { font-size: 18px; font-weight: 700; }
+  .header h1 span { color: var(--accent); }
+  .header .nav a {
+    color: var(--text-dim); text-decoration: none; font-size: 12px;
+    padding: 4px 10px; border: 1px solid var(--border); border-radius: 5px;
+    transition: 0.2s;
+  }
+  .header .nav a:hover { color: var(--accent); border-color: var(--accent); }
+  .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+  .controls {
+    display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 16px;
+  }
+  .controls label {
+    font-size: 12px; color: var(--text-dim); display: flex; align-items: center; gap: 6px;
+  }
+  .controls select {
+    background: var(--surface2); border: 1px solid var(--border); color: var(--text);
+    padding: 5px 10px; border-radius: 5px; font-size: 12px; cursor: pointer; outline: none;
+  }
+  .controls select:focus { border-color: var(--accent); }
+  .controls button {
+    background: var(--accent); color: #fff; border: none;
+    padding: 5px 12px; border-radius: 5px; font-size: 12px; cursor: pointer;
+  }
+  .controls button:hover { opacity: 0.85; }
+  .stats { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+  .stat-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 10px 14px; flex: 1; min-width: 130px;
+  }
+  .stat-card .label { font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: .5px; }
+  .stat-card .value { font-size: 18px; font-weight: 700; margin-top: 2px; }
+  .stat-card .value.green { color: var(--green); }
+  .stat-card .value.red { color: var(--red); }
+  .stat-card .city { font-size: 11px; color: var(--text-dim); }
+  .table-wrap {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; overflow: auto; max-height: 70vh;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; white-space: nowrap; }
+  thead th {
+    background: var(--surface2); padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 11px; border-bottom: 2px solid var(--border);
+    position: sticky; top: 0; z-index: 2; cursor: pointer; user-select: none;
+  }
+  thead th:hover { color: var(--accent); }
+  thead th:first-child {
+    text-align: left; min-width: 140px; cursor: default;
+    position: sticky; left: 0; z-index: 3; background: var(--surface2);
+  }
+  thead th:first-child:hover { color: inherit; }
+  thead th.sorted { color: var(--accent); }
+  td {
+    padding: 6px 10px; text-align: center; border-bottom: 1px solid var(--border);
+  }
+  td:first-child {
+    text-align: left; font-weight: 600;
+    position: sticky; left: 0; z-index: 1; background: var(--surface);
+  }
+  tr:hover td { background: rgba(91,141,239,0.06); }
+  tr:hover td:first-child { background: rgba(91,141,239,0.06); }
+  tr:last-child td { border-bottom: none; }
+  .cheapest { background: rgba(72,187,120,0.15) !important; }
+  .cheapest .num { color: var(--green); font-weight: 700; }
+  .most-expensive { background: rgba(245,101,101,0.15) !important; }
+  .most-expensive .num { color: var(--red); font-weight: 700; }
+  .summary-row td {
+    border-top: 2px solid var(--border); font-weight: 700; background: var(--surface2) !important;
+  }
+  .summary-row td:first-child { color: var(--yellow); }
+  .num { font-variant-numeric: tabular-nums; }
+  .bar-wrap { width: 40px; height: 4px; border-radius: 2px; background: var(--border); overflow: hidden; display: inline-block; vertical-align: middle; margin-left: 4px; }
+  .bar-fill { height: 100%; border-radius: 2px; transition: width .3s; }
+  .city-count { font-size: 11px; color: var(--text-dim); margin-top: 8px; }
+  .loading { display: flex; align-items: center; justify-content: center; padding: 40px; color: var(--text-dim); gap: 8px; }
+  .spinner { width: 16px; height: 16px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  footer { margin-top: 20px; text-align: center; font-size: 11px; color: var(--text-dim); padding: 12px; }
+  footer a { color: var(--accent); text-decoration: none; }
+  @media (max-width: 768px) {
+    .container { padding: 10px; }
+    .controls { width: 100%; }
+    .controls select { flex: 1; }
+    td, th { padding: 5px 6px; font-size: 11px; }
+    thead th:first-child { min-width: 100px; }
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>📊 Mietspiegel <span>Cross-City Comparison</span></h1>
+  <div class="nav">
+    <a href="index.html">🗺️ Map</a>
+    <a href="historical_trends.html">📈 Trends</a>
+    <a href="about.html">About</a>
+  </div>
+</div>
+<div class="container">
+  <div class="controls">
+    <label>Wohnlage
+      <select id="lageSelect">
+        <option value="mittel">Mittel</option>
+        <option value="einfach">Einfach</option>
+        <option value="gut">Gut</option>
+      </select>
+    </label>
+    <label>Size
+      <select id="sizeSelect">
+        <option value="40_60">40–60 m²</option>
+        <option value="bis_40">&lt; 40 m²</option>
+        <option value="60_90">60–90 m²</option>
+        <option value="ueber_90">&gt; 90 m²</option>
+      </select>
+    </label>
+    <button onclick="resetFilters()">↺ Reset</button>
+  </div>
+  <div class="stats" id="statsBar"></div>
+  <div class="table-wrap" id="tableWrap">
+    <div class="loading"><div class="spinner"></div> Loading data...</div>
+  </div>
+  <div class="city-count" id="cityCount"></div>
+</div>
+<footer>
+  Data from official city Mietspiegel tables. Values are net cold rent in €/m²/month.
+  <br><a href="index.html">← Back to map</a> · <a href="https://github.com/ravidvr/mietspiegel-digitization">GitHub</a>
+</footer>
+<script>
+const INDEX = 'data/processed/cities_index.json';
+const DATA = 'data/processed/';
+let cities = [], cache = {};
+
+async function init() {
+  const r = await fetch(INDEX);
+  cities = await r.json();
+  await Promise.all(cities.map(async c => {
+    try { cache[c.slug] = await (await fetch(DATA + c.slug + '.json')).json(); }
+    catch(e) { cache[c.slug] = null; }
+  }));
+  document.getElementById('lageSelect').addEventListener('change', render);
+  document.getElementById('sizeSelect').addEventListener('change', render);
+  render();
+}
+
+function getRentForCity(cityData, lage, sizeKey) {
+  if (!cityData || !cityData.tables) return null;
+  const tb = cityData.tables.find(t => t.lage === lage) || cityData.tables[0];
+  if (!tb || !tb.rows) return null;
+  const vals = tb.rows.map(r => r[sizeKey]).filter(v => v != null && v > 0);
+  if (!vals.length) return null;
+  return vals.reduce((a,b) => a+b, 0) / vals.length;
+}
+
+function render() {
+  const lage = document.getElementById('lageSelect').value;
+  const sizeKey = document.getElementById('sizeSelect').value;
+  const sizeLabel = {'bis_40':'< 40 m²','40_60':'40–60 m²','60_90':'60–90 m²','ueber_90':'> 90 m²'}[sizeKey];
+
+  let rows = cities.map(c => {
+    const d = cache[c.slug];
+    const rent = getRentForCity(d, lage, sizeKey);
+    return { city: c.city, state: c.state, year: d?.year, rent };
+  }).filter(r => r.rent != null);
+
+  rows.sort((a, b) => a.rent - b.rent);
+
+  if (!rows.length) {
+    document.getElementById('tableWrap').innerHTML = '<div class="loading">No data available for these filters.</div>';
+    document.getElementById('statsBar').innerHTML = '';
+    document.getElementById('cityCount').textContent = '';
+    return;
+  }
+
+  const allRents = rows.map(r => r.rent);
+  const min = Math.min(...allRents);
+  const max = Math.max(...allRents);
+  const avg = allRents.reduce((a,b) => a+b, 0) / allRents.length;
+  const range = max - min || 1;
+
+  let html = '<table><thead><tr><th>Stadt</th><th>State</th><th>Year</th>';
+  html += '<th>Ø Rent (€/m²) <span id="sortIndicator"></span></th>';
+  html += '<th>vs Ø</th><th>Distribution</th></tr></thead><tbody>';
+
+  rows.forEach((r, i) => {
+    const isMin = r.rent === min && min !== max;
+    const isMax = r.rent === max && min !== max;
+    const diff = r.rent - avg;
+    const pct = ((r.rent - min) / range) * 100;
+    const barW = Math.max(5, Math.min(100, pct));
+    const r2 = Math.round(72 + (245 - 72) * (pct / 100));
+    const g2 = Math.round(187 - (187 - 101) * (pct / 100));
+    const b2 = Math.round(120 - (120 - 101) * (pct / 100));
+    const barColor = `rgb(${r2},${g2},${b2})`;
+    const cls = isMin ? 'cheapest' : isMax ? 'most-expensive' : '';
+    const diffStr = diff >= 0 ? `+${diff.toFixed(2)}` : diff.toFixed(2);
+    const diffColor = diff > 0 ? 'var(--red)' : 'var(--green)';
+
+    html += `<tr class="${cls}">`;
+    html += `<td><span class="num">${r.city}</span></td>`;
+    html += `<td style="font-weight:400;color:var(--text-dim)">${r.state || '—'}</td>`;
+    html += `<td style="font-weight:400;color:var(--text-dim)">${r.year || '—'}</td>`;
+    html += `<td><span class="num">${r.rent.toFixed(2)}</span></td>`;
+    html += `<td style="color:${diffColor};font-size:11px" class="num">${diffStr}</td>`;
+    html += `<td><span class="bar-wrap"><span class="bar-fill" style="width:${barW}%;background:${barColor}"></span></span></td>`;
+    html += `</tr>`;
+  });
+
+  html += `<tr class="summary-row"><td>Ø Deutschland</td><td></td><td></td><td>${avg.toFixed(2)}</td><td></td><td></td></tr>`;
+  html += '</tbody></table>';
+
+  document.getElementById('tableWrap').innerHTML = html;
+  document.getElementById('cityCount').textContent = `${rows.length} cities · ${lage} · ${sizeLabel}`;
+
+  const cheapest = rows[0];
+  const mostExp = rows[rows.length - 1];
+  document.getElementById('statsBar').innerHTML = `
+    <div class="stat-card">
+      <div class="label">Cheapest</div>
+      <div class="value green">${cheapest.rent.toFixed(2)} €/m²</div>
+      <div class="city">${cheapest.city}</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">Most Expensive</div>
+      <div class="value red">${mostExp.rent.toFixed(2)} €/m²</div>
+      <div class="city">${mostExp.city}</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">Ø All Cities</div>
+      <div class="value">${avg.toFixed(2)} €/m²</div>
+      <div class="city">${rows.length} cities</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">Range</div>
+      <div class="value">${(max - min).toFixed(2)} €</div>
+      <div class="city">${min.toFixed(2)} – ${max.toFixed(2)}</div>
+    </div>
+  `;
+}
+
+function resetFilters() {
+  document.getElementById('lageSelect').value = 'mittel';
+  document.getElementById('sizeSelect').value = '40_60';
+  render();
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>

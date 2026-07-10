@@ -1,0 +1,50 @@
+Betreff: Antrag auf Datenzugang RWI-GEO-RED — Unabhängiger Open-Source-Entwickler
+
+Sehr geehrtes Team des FDZ Ruhr,
+
+ich wende mich an Sie, um Zugang zu den RWI-GEO-RED Real Estate Data (alle Wellen, Scientific Use File) zu beantragen. Ich bin ein unabhängiger Forscher und Open-Source-Entwickler ohne universitäre Anbindung und möchte vorab klären, ob mein Profil für einen Zugang berechtigt ist, bevor ich den formellen Antrag über das Online-Portal einreiche.
+
+Über mein Projekt:
+
+Ich habe ein quelloffenes Dashboard (github.com/ravidvr/mietspiegel-digitization) entwickelt, das offizielle deutsche Mietspiegeldaten aus städtischen PDFs digitalisiert und als strukturierte, vergleichbare Daten öffentlich zugänglich macht. Das Projekt umfasst derzeit 28 deutsche Städte, davon 23 mit vollständigen Miettabellen, und bietet Funktionen wie eine interaktive Leaflet-Karte, einen Städtevergleich, historische Trendanalysen sowie auf Straßenebene aggregierte Wohnlagedaten aus offiziellen städtischen Veröffentlichungen (darunter das Hamburger Wohnlagenverzeichnis mit 25.786 Straßenabschnitten).
+
+Das Projekt ist streng nichtkommerziell:
+- Alle Daten und der Code stehen unter der Lizenz CC BY-SA 4.0
+- Das Dashboard ist für alle Nutzer frei zugänglich
+- Es gibt kein Abo, keine Paywall und keine Registrierungspflicht
+- Das Projekt erwirtschaftet keine Einnahmen
+
+Geplante Nutzung von RWI-GEO-RED:
+
+Ich möchte die Scientific Use File von RWI-GEO-RED (1-km²-Raster) nutzen, um unterstädtische Mietdaten in das Dashboard zu integrieren — insbesondere für Städte, die keinen qualifizierten Mietspiegel veröffentlichen oder deren PDF-Daten nur auf gesamtstädtischer Ebene vorliegen. Dadurch könnte das Dashboard Mietentwicklungen auf Quartiersebene für ganz Deutschland darstellen, nicht nur für die derzeit abgedeckten 28 Städte.
+
+Konkret möchte ich:
+- Die 1-km²-Rasterdaten auf Quartiers-/Bezirksebene aggregieren für die Visualisierung
+- Die ImmobilienScout24-Daten mit offiziellen Mietspiegelwerten vergleichen, wo beide verfügbar sind
+- Ausschließlich aggregierte, anonymisierte Ergebnisse (Durchschnitte, Indizes) auf Raster- oder Bezirksebene veröffentlichen — niemals die Rohdaten des SUF
+- RWI-GEO-RED in allen Veröffentlichungen und auf dem Dashboard unter Angabe der DOI zitieren
+
+Datenschutz- und Sicherheitszusagen:
+- Die Rohdaten des SUF werden ausschließlich auf meinem persönlichen Rechner gespeichert (verschlüsselt, Einzelzugang)
+- Keine Rohdaten des SUF werden auf GitHub hochgeladen, geteilt oder weitergegeben
+- Es werden nur aggregierte Ergebnisse (Durchschnitte, Indizes) auf Raster- oder Bezirksebene veröffentlicht
+- Ich werde alle Anforderungen der Nutzungsvereinbarung einhalten
+
+Gewünschtes Datenformat: CSV (zur direkten Verarbeitung mit Python/pandas)
+
+Ich verstehe, dass die reguläre Vertragslaufzeit 3 Jahre beträgt, und ich erkläre mich mit allen Berichts- und Veröffentlichungspflichten einverstanden.
+
+Könnten Sie mir bitte Folgendes bestätigen:
+1. Ob mein nichtakademisches, nichtkommerzielles Profil für den SUF-Zugang berechtigt ist
+2. Ob es über den Online-Antrag hinaus weitere Schritte gibt
+3. Die voraussichtliche Bearbeitungsdauer
+
+Ich gebe gerne jederzeit weitere Auskünfte oder Unterlagen. Vielen Dank für Ihre Zeit und dafür, dass Sie diese wertvollen Daten Forschenden zur Verfügung stellen.
+
+Mit freundlichen Grüßen,
+[Ihr Name]
+[Ihre E-Mail-Adresse]
+[Ihr LinkedIn-Profil — optional]
+
+Projekt: github.com/ravidvr/mietspiegel-digitization
+Dashboard: ravidvr.github.io/mietspiegel-digitization/

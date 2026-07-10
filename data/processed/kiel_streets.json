@@ -1,0 +1,3437 @@
+{
+  "city": "Kiel",
+  "source": "kiel.pdf",
+  "year": 2025,
+  "type": "street-level Wohnlage",
+  "total_streets": 857,
+  "streets": [
+    {
+      "street": "Aalborgring",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Aarhusstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Achterkamp",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Adalbertstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Adelheidstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Adolfplatz",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Adolfstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Ahlmannstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Albert-Schweitzer-Weg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Alfons-Huysmans-Ring",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Allgäuer Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Alsenstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Alte Chaussee",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Alte Dorfstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Alte Eichen",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Alte Feuerwache",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Alte Lübecker Chaussee",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Alte Ziegelei",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Altenrade",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Altenteichstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Alter Markt",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Alter Nienbrügger Weg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Am Blöcken",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Am Dorfplatz",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Am Forsthaus Wittland",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Am Germaniahafen",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Am Hofe",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Am Kirchberg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Am Russee",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Am Seefischmarkt",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Am Seeufer",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Am Wellsee",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Am Wiesenhof",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Amrumring",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Amselsteig",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "An den Birken",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "An der Halle 400",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "An der Holsatiamühle",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "An der Schanze",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Andreas-Gayk-Straße 1–11",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Andreas-Hofer-Platz",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Andresenstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Ankerplatz",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Annenstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Antipper",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Apenrader Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Arfrade",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Arkonastraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Arndtplatz",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Arnold-Heller-Straße 2–6",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Ascheberger Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Asmusstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Auberg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Aubrook",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Augustenstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "August-Sievers-Ring",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Bäckergang",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Bahnhofstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Bärenkrog",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Barkauer Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Bartelsallee",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Baumgartenstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Baumweg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Baustraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Bebelplatz",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Behmweg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Bellmannstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Bendixenstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Berchtesgadener Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Bergenring",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Bergstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Beselerallee 1–25",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Beselerallee 2–30",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Beselerallee 29–69a",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Beselerallee 32–70",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Bielenbergstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Bismarckallee",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Blaumeisenweg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Blitzstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Blocksberg",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Blücherplatz",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Blücherstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Bogenstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Boiestraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Boksberg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Boninstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Bornholmer Weg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Bothwellstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Brahmsweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Brammerkamp",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Brandkuhle",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Braunsberger Weg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Braustraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Bräutigamweg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Breiter Weg",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Bremerstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Britzweg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Brodersdorfer Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Brückenstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Brüggerfelde",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Brunnenweg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Brunsrade",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Brunswiker Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Brüttweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Bruxer Weg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Buernkrog",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Bugenhagenstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Bülowstraße 3–19",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Bülowstraße 4–16",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Bülowstraße 21–29",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Bülowstraße 22–26",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Bünsowstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Burgstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Buschblick",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Buschfeldstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Buschkoppel",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Bustorfer Weg 59–95",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Bustorfer Weg 64–98",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Calvinstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Caprivistraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Carl-Loewe-Weg",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Charles-Roß-Ring",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Chemnitzstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Christianistraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Christian-Kruse-Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Christianspries",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Clausewitzstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Dahlmannstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Dammstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Damperhofstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Danckwerthstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Danewerkstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Dänische Straße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Danziger Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Dehnckestraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Deliusstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Diekmissen",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Dieselweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Diesterwegstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Dietrichsdorfer Höhe",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Dithmarscher Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Dittmarweg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Dorf",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Dorfstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Dornbusch",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Dorotheenstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Drachenbahn",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Dreiecksplatz",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Droysenstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Dubenhorst",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Düppelstraße 1–63",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Düppelstraße 2–54",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Düppelstraße 58–88",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Düppelstraße 65–91",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Düsternbrooker Weg",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Düvelsbeker Weg",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Eckenerplatz",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Eckernförder Straße 11–31",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Eckernförder Straße 16–30",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Eckernförder Straße 32–462",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Eckernförder Straße 33–441",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Eduard-Adler-Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Eekberg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Eekbrook",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Egerstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Eggerstedtstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Eichenbergskamp",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Eichendorffstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Eichhofstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Eichkamp",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Elbenkamp",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Elendsredder",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Elisabethstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Ellerbeker Weg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Ellerkrug",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Elmschenhagener Allee 5–37a",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Erlenkamp",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Ernestinenstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Esbjergweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Esmarchstraße 1–19",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Esmarchstraße 2–28",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Esmarchstraße 21–91",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Esmarchstraße 42–94",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Eutiner Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Exerzierplatz",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Fabrikstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Faeschstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Falckensteiner Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Falckstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Fanöweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Fargauweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Faulmannweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Fehmarnwinkel",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Feldstraße 1–139",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Feldstraße 2–142",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Feldstraße 143–177",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Feldstraße 144–172",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Feldstraße 213–257",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Feldstraße 234–238",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Feuerbachstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Fichtestraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Flämische Straße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Fleethörn",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Flemhuder Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Flensburger Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Fliegender Holländer",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Flintbeker Straße 18–74a",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Flintbeker Straße 37–61",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Fockstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Fontanestraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Forstweg",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Franckestraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Franzensbader Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Franziusallee",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Freiligrathstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Frerich-Frerichs-Allee",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Frerichsstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Friedenstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Friedlander Weg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Friedrichsorter Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Friedrichsruher Weg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Fritz-Lau-Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Fritz-Reuter-Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Fröbelstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Fünenweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Funkstellenweg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Gabelsbergerstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Gablenzstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Gaffelweg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Gänsewiese",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Gartenstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Gärtnerstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Gaußstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Gazellestraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Gefionstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Geibelallee",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Geibelplatz",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Geigerstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Geldbeutel",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Gellertstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Georg-Pfingsten-Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Gerhardstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Glücksburger Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Gneisenaustraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Goerdelerring",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Goethestraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Gorch-Fock-Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Göteborgring",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Gotlandwinkel",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Grabastraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Graf-Luckner-Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Graf-Spee-Straße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Gravelottestraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Gravensteiner Straße 1–93",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Gravensteiner Straße 2–52",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Gravensteiner Straße 54–100",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Gravensteiner Straße 95–121a",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Grazer Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Grebiner Weg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Greifstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Grenzstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Griesingerstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Grillenberg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Grimmstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Groenhoffweg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Grönhorst",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Groß Ebbenkamp",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Groß Kielstein",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Große Ziegelstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Großer Kamp",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Grot Steenbusch",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Grüffkamp",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Gudegastkoppel",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Gurlittplatz",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Gurlittstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Gustav-Falke-Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Gustav-Schatz-Hof",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Gut Schwartenbek",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Gutenbergstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Haderslebener Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Hagener Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Hahnbusch",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Hamburger Chaussee",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Hangstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Hansaring",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Hansastraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Hanssenstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Hardenbergstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Harmsstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Harriesstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Haselbusch 9–11",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Hasseer Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Hasseldieksdammer Weg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Hasselmannstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Hasselteich 6–12",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Haßstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Hauptstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Hauskoppel",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Havemeisterstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Hayßenstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Hebbelstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Hecktstraße 3–27",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Hedinweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Heider Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Heikendorfer Weg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Heintzestraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Heischstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Helenenstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Helgolandstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Helmholtzstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Helsinkistraße 2–122",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Herderstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Hermann-Boßdorf-Weg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Hermannstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Hermann-Weigmann-Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Herthastraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Hertzstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Herzog-Friedrich-Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Hiddenseer Weg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Hinterkronsberg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Hof Hammer",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Hofholzallee 2–220",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Hofholzallee 7–223",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Hofholzallee 222–280",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Hofholzallee 225–275",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Hofkoppel",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Hofstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Hohenleuchte",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Hohenrade",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Hohwachter Weg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Hollmannstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Hollwisch",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Holstenstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Holtenauer Straße 1–17",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Holtenauer Straße 2–14",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Holtenauer Straße 16–234",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Holtenauer Straße 19–199",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Holtenauer Straße 203–327",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Holtenauer Straße 236–356",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Holtenauer Straße 331–353",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Holtenauer Straße 360–364",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Holunderbusch",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Homannstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Hopfenstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Hornheimer Weg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Howaldtstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Hügelstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Hultschiner Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Hummelwiese",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Husumer Weg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Illerweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Iltisstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Im Anscharpark",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Im Brauereiviertel",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Im Dorfe",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Im Waldwinkel",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Im Winkel",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Immelmannstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Innweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Insterburger Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Isarweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Itzehoer Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Ivensring",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Jachmannstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Jaegerallee",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Jägersberg",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Jägerstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Jahnstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Jensendamm",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Jeßstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Jettkorn",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Joachim-Mähl-Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Joachimsthaler Weg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Johannesstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Johann-Fleck-Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Johann-Sump-Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Julienluster Weg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Julienstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Julius-Brecht-Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Julius-Fürst-Weg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Julius-Leber-Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Jungfernstieg",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Jungmannstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Jütlandring",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Kaiserstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Kämpenstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Kanalstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Kappelner Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Karlsbader Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Karlstal",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Karolinenweg",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Karpfenteich",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Kastanienallee",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Kastanienstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Katharinenstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Kehdenstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Kehrwieder",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Kesselschmied",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Kieler Kamp",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Kieler Kuhle",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Kieler Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Kieler Weg 1–173",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Kieler Weg 2–166a",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Kieler Weg 175–185",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Kieler Weg 176–180",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Kiellinie",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Kirchenberg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Kirchenstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Kirchenweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Kirchhofallee",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Kirschberg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Kirunastraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Klagenfurter Weg 1–19",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Klausbrooker Weg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Klausdorfer Weg 2–272",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Klausdorfer Weg 19–277",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Klaus-Groth-Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Kleine Koppel",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Kleine Ziegelstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Klein-Ebbenkamp",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Kleiner Kuhberg",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Kleiststraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Klopstockstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Klosterkirchhof",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Klosterstraße 1–7",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Klosterstraße 4–10",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Klotzstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Klunkerwiese",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Knivsberg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Knooper Weg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Knorrstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Koldingstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Koloniestraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Kolonnenweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Königstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Königsweg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Konrad-Adenauer-Damm",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Kopenhagener Allee",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Kopperpahler Teich",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Körnerstraße 2–32",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Körnerstraße 3–31",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Krausstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Kreienbarg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Kreisauer Ring",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Kreisauer Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Kronshagener Weg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Krummbogen",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Krusenrotter Weg 1–31",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Krusenrotter Weg 2–24",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Krusenrotter Weg 32–102",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Krusenrotter Weg 41–127",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Kuchelstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Kuhlacker",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Kürkoppel",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Kurt-Schumacher-Platz",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Küterstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Landecker Weg 51–55a",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Landskroner Weg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Lange Reihe",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Langelandweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Langenbeckstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Langenfelde",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Langenkampweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Langensaal",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Langer Holm",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Langer Rehm",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Langer Segen",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Lantziusstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Lauenburger Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Lechweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Legienstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Lehmberg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Lensahner Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Lenschstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Lerchenstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Lessingplatz",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Leuschnerweg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Lilienthalstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Lindenallee",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Lindenstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Lindenweg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Lorentzendamm",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Lornsenstraße 1–13",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Lornsenstraße 2–14",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Lornsenstraße 18–60",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Lornsenstraße 21–65",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Lübscher Baum 4–6",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Lübscher Baum 17–23",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Lübscher Baum 18–32",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Lüdemannstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Lüderitzstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Luisenstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Lutherstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Lütjenburger Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Lütjohannstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Lütt Steenbusch",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Lützowstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Mählsweg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Malmöweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Mangoldtstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Marienbader Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Marienstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Marienwerderstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Martenshofweg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Marthastraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Maßmannstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Masurenring",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Mathildenstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Max-Planck-Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Maybachstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Medusastraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Meimersdorfer Moor 8",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Meimersdorfer Moor 29–31",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Meimersdorfer Weg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Melanchthonstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Melsdorfer Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Mensingstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Mercatorstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Metzstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Meyerhofstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Michelsenstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Minnastraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Mittelstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Möhrkestraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Möllenholt",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Möllingstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Moltkestraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Monsberg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Mönweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Moorblek",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Moorblöcken",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Moorkamp",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Mühlenbrook",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Mühlenkamp",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Mühlenstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Mühlenweg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Muhliusstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Nachtigalstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Nanthingasse",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Nehringweg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Nelkenweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Nettelbeckstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Neuenrade 1–19",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Neuenrade 2–14",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Niebuhrstraße 1–3",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Niebuhrstraße 5–61",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Niebuhrstraße 6–18",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Niebuhrstraße 24–58",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Niemannsweg",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Nienbrügger Weg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Nietzschestraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Niobeweg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Nissenstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Norddeutsche Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Nordseestraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Obere Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Odensestraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Olbrichtweg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Oldenburger Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Oldesloer Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Oldestraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Olshausenstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Osloring",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Ostpreußenweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Ostring",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Otto-Ernst-Weg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Ottomar-Enking-Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Papenkamp",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Pappelweg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Partenkirchener Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Passader Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Paul-Fleming-Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Paul-Fuß-Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Pestalozzistraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Peter-Hansen-Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Petersburger Weg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Philosophengang",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Pickertstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Pillauer Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Pinguinweg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Plöner Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Poggendörper Weg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Pommernweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Poppenbrügger Weg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Poppenrade",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Postillionweg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Poststraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Pottberghang",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Pötterweg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Preetzer Chaussee",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Preetzer Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Preußerstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Prieser Höhe",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Prieser Strand",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Prinzenstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Prinz-Heinrich-Straße 1–29",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Probsteier Platz",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Probsteier Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Projensdorfer Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Prüne",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Quinckestraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Quittenstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Raaschstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Radsredder",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Randersstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Rarsrott",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Rathausstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Redderkamp",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Redinskamp",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Reeperbahn",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Reichenberger Allee",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Reichweinweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Reinickendorfer Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Rendsburger Landstraße 7–225",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Rendsburger Landstraße 20–228",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "230–504",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "251–489",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Reventlouallee",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Richterstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Richthofenstraße 1–77",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Richthofenstraße 2–60a",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Richtweg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Ringelnatzstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Ringstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Ripener Weg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Robert-Koch-Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Roggestraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Röhbarg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Rohrsängerweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Rönner Weg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Röntgenstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Roonstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Roskilder Weg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Rungholtplatz",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Russeer Weg 1–91",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Russeer Weg 2–90b",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Russeer Weg 94–218",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Russeer Weg 111–237",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Rüsterstraße 2–30",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Rüsterstraße 3–29",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Rüsterstraße 31–37",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Rüsterstraße 44–50",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Rutkamp",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Saarbrückenstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Sachaustraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Saldernstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Salzburger Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Samlandweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Samwerstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Sanddornwinkel",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Sandkoppel",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Sandkrug",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Sandkuhle",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Scharnhorststraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Scharweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Schaßstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Schauenburgerstraße 1–51",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Schauenburgerstraße 10–60",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Schauenburgerstraße 57–93",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Schauenburgerstraße 62–116",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Schevenbrücke",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Schilkseer Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Schillerstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Schillstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Schlehenkamp 1–5",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Schlehenkamp 2–12",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Schleswiger Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Schleusenstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Schlieffenallee",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Schloßgarten 12–14",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Schlossplatz",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Schloßstraße 1–23",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Schloßstraße 2–10",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Schlüsbeker Weg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Schmiedekoppel",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Schönberger Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Schönkirchener Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Schönwohlder Weg 37–39",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Schönwohlder Weg 52–58",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Schreyweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Schuhmacherstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Schülperbaum",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Schulredder",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Schulstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Schulweg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Schurskamp",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Schusterkrug",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Schützenwall",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Schwanenseeplatz",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Schwedendamm",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Schweffelstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Schwentinestraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Schwester-Therese-Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Sedanstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Seeblick",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Seelandweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Segeberger Landstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Selenter Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Sibeliusweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Skagenweg 1–23",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Skagenweg 2–4",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Skagerrakufer",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Skandinaviendamm",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Sohststraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Sokratesplatz",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Solomit",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Sonderburger Platz",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Sonthofener Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Sophienblatt",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Sören",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Sörensenstraße 4–46",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Sörensenstraße 35–39",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Speckterweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Spichernstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Spitzenkamp",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Spreeallee",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Spritzengang",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Stadtfeldkamp",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Stadtrade",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Starnberger Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Starweg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Stauffenbergring",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Steenbeker Weg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Steinberg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Steindamm",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Steinfurther Weg 4–12a",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Steinkamp",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Steinstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Stephan-Heinzel-Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Sternstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Sternwartenweg",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Stettiner Platz",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Stiftstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Stiller Winkel",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Stockholmstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Stolzeweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Stormarnstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Stoschstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Strandstraße 1–15b",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Strandstraße 2",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Strandstraße 14",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Strandstraße 20–40",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Streitkamp",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Strohredder",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Stromeyerallee",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Stromeyerstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Sukoring",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Sylter Bogen",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Tauernweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Teichstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Teplitzer Allee",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Theodor-Heuss-Ring 49–159",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Theodor-Heuss-Ring 56–140",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Theodor-Storm-Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Tiefe Allee",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Timkestraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Timmerberg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Timm-Kröger-Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Tingleffer Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Tinnholz",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Tiroler Ring 1–113",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Tonberg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Tönniesstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Torfende",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Trautenauer Weg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Trenndiek",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Trenntrader Weg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Tromsöstraße 1–7",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Tröndelweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Troppauer Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Turnstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Uhlandstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Uhlenhorster Weg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Uhlenkrog 1–31",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Uhlenkrog 8–26",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Untere Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Ursinusweg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Vaasastraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Verdieckstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Viborgweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Vieburger Weg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Vinetaplatz",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Virchowstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Vogelhain",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Von-der-Goltz-Allee",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Von-der-Groeben-Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Von-der-Horst-Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Von-der-Tann-Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Von-der-Wisch-Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Vorderkronsberg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Wagnerring",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Wahlestraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Waisenhofstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Waitzstraße 1–17",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Waitzstraße 4–16",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Waitzstraße 19–75c",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Waitzstraße 20–70",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Waitzstraße 72–98",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Waitzstraße 77–101",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Waldeck",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Waldwiesenstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Walkerdamm 1–17",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Walkerdamm 2–24",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Wall",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Wassilystraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Weberstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Wehdenweg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Weinberg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Weißenburgstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Wellingdorfer Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Wellseer Weg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Werftstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Werner-Siemens-Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Wesselburener Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Westenhofstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Westring",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Weststraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Wetterbek",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Wichmannstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Wiener Allee",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Wiepenkrog",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Wiker Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Wikingerstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Wilhelm-Busch-Straße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Wilhelminenstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Wilhelm-Lobsien-Weg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Wilhelmplatz",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Wilhelm-Raabe-Weg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Wilhelmshavener Straße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Wilhelmstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Willestraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Willy-Jacob-Weg",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Winterbeker Weg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Wischhofstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Wißmannstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Wittenbrook",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Woermannstraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Wolperdingstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Woltersweg",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Wörthstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Wrangelstraße 3–21",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Wrangelstraße 4–16",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Wrangelstraße 25–61",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Wrangelstraße 28–62",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Wulfsbrook",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Wullestraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Yorckstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Zastrowstraße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Zehlendorfer Straße",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Zeppelinring",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Zeyestraße",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Ziegelteich",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Ziethenstraße",
+      "wohnlage": "gut"
+    },
+    {
+      "street": "Zum Brook",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Zum Dänischen Wohld",
+      "wohnlage": "einfach"
+    },
+    {
+      "street": "Zum Forst",
+      "wohnlage": "mittel"
+    },
+    {
+      "street": "Zur Helling",
+      "wohnlage": "mittel"
+    }
+  ]
+}
