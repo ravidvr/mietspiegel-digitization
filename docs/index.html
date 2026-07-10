@@ -63,7 +63,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 #map{flex:1;min-width:0}
 .map-leg{position:absolute;bottom:20px;left:10px;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:7px 10px;font-size:10px;z-index:1000;box-shadow:0 1px 6px rgba(0,0,0,.1)}
 .map-leg .r{display:flex;align-items:center;gap:4px;margin:1px 0}
-.map-leg .d{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.map-leg .d{width:18px;height:4px;border-radius:2px;flex-shrink:0}
 .map-toggle{position:absolute;top:10px;right:10px;z-index:1000;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:16px;cursor:pointer;box-shadow:0 1px 6px rgba(0,0,0,.1)}
 .map-toggle:hover{background:var(--surface2)}
 .map-tooltip{position:absolute;top:70px;right:10px;max-width:380px;max-height:calc(100% - 100px);overflow-y:auto;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;z-index:1001;box-shadow:0 4px 16px rgba(0,0,0,.2);font-size:12px}
@@ -416,10 +416,6 @@ function showDetail() {
   tip.style.display = 'block';
   document.getElementById('p-compare').style.display = 'none';
   document.getElementById('p-detail').style.display = 'none';
-  // On desktop, open sidebar if hidden
-  if (window.innerWidth > 768 && document.getElementById('sidebar').classList.contains('hidden')) {
-    toggleSidebar();
-  }
 }
 function showCompare() {
   document.getElementById('map-tooltip').style.display = 'none';
@@ -476,13 +472,8 @@ function setupClickHandler() {
 
   html += '</div>';
 
-  // Auto-dismiss: clicking map background hides tooltip
   document.getElementById('map-tooltip').style.display = 'block';
   document.getElementById('map-tooltip').innerHTML = html;
-  // Also show sidebar if hidden
-  if (window.innerWidth > 768 && document.getElementById('sidebar').classList.contains('hidden')) {
-    toggleSidebar();
-  }
   });
 }
 
