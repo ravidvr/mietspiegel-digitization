@@ -325,11 +325,6 @@ function buildHeatmap() {
     if (!heatLayer) return;
     const zp = getHeatParams(map.getZoom());
     heatLayer.setOptions({ radius: zp.radius, blur: zp.blur, minOpacity: zp.minOpacity });
-    // Fade Berlin districts at low zoom
-    if (berlinLayer) {
-      const z = map.getZoom();
-      berlinLayer.setStyle({ fillOpacity: z >= 10 ? 0.15 : 0, weight: z >= 10 ? 1 : 0 });
-    }
   });
 }
 
@@ -337,23 +332,34 @@ function buildHeatmap() {
 async function loadBerlinDistricts() {
   try {
     const r = await fetch(DATA + 'berlin-districts-choropleth.geojson');
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
     const gd = await r.json();
     berlinLayer = L.geoJSON(gd, {
       style: f => {
         const a = f.properties.avg_rent || 12;
-        return { fillColor: a<10?'#48bb78':a<11?'#86c97a':a<11.5?'#ecc94b':a<12?'#ed8936':'#f56565', fillOpacity: 0.15, weight: 0, color: 'transparent' };
+        const z = map.getZoom();
+        const opacity = z < 9 ? 0 : z < 11 ? 0.2 : 0.3;
+        const border = z >= 11;
+        return { fillColor: a<10?'#48bb78':a<11?'#86c97a':a<11.5?'#ecc94b':a<12?'#ed8936':'#f56565', fillOpacity: opacity, weight: border ? 1.5 : 0, color: border ? 'var(--text-dim)' : 'transparent', dashArray: border ? '4 2' : null };
       },
       onEachFeature: (f, layer) => {
+        layer.bindTooltip(`${f.properties.district}<br>ø €${f.properties.avg_rent}/m²`, { sticky: true });
         layer.on('click', () => showDistrictCard(f.properties));
       }
     }).addTo(map);
-    // Initially invisible (fades in at zoom >= 10)
-    berlinLayer.setStyle({ fillOpacity: 0, weight: 0 });
-    // Hint marker: subtle pulse at Berlin location, visible at low zoom
-    const berlinHint = L.circleMarker([52.52, 13.405], { radius: 8, color: 'var(--accent)', fillColor: 'var(--accent)', fillOpacity: 0.2, weight: 1.5, interactive: false }).addTo(map);
-    berlinHint.bindTooltip('🔍 Zoom in for Berlin districts', { permanent: true, direction: 'top', className: 'berlin-hint', offset: [0, -10] });
-    map.on('zoomend', () => { const z = map.getZoom(); berlinHint.setStyle({ opacity: z < 10 ? 1 : 0, fillOpacity: z < 10 ? 0.2 : 0 }); });
-  } catch(e) {}
+
+    // Hint: clickable, zooms to Berlin
+    const berlinHint = L.circleMarker([52.52, 13.405], { radius: 8, color: 'var(--accent)', fillColor: 'var(--accent)', fillOpacity: 0.3, weight: 2, interactive: true }).addTo(map);
+    berlinHint.bindTooltip('🔍 Click to see Berlin districts', { permanent: true, direction: 'top', offset: [0, -10] });
+    berlinHint.on('click', () => map.flyTo([52.52, 13.405], 11, { duration: 1 }));
+
+    map.on('zoomend', () => {
+      const z = map.getZoom();
+      berlinHint.setStyle({ opacity: z < 9 ? 1 : 0, fillOpacity: z < 9 ? 0.3 : 0 });
+      // Refresh district styles on zoom
+      if (berlinLayer) berlinLayer.eachLayer(l => { berlinLayer.resetStyle(l); });
+    });
+  } catch(e) { console.error('Berlin districts failed:', e); }
 }
 
 // ─── City labels ─────────────────────────────────────────────
