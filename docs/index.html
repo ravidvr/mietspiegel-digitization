@@ -487,8 +487,11 @@ function renderComparison() {
     const gc = g > 5 ? 'var(--red)' : g > -5 ? 'var(--yellow)' : 'var(--green)';
     const barW = Math.min(100, Math.abs(g) * 2.5);
     const barC = g > 0 ? 'var(--red)' : 'var(--green)';
+    // Find the correct slug from cities array
+    const cityObj = cities.find(c => c.city === city);
+    const slug = cityObj ? cityObj.slug : '';
     return `<div class="cr">
-      <span class="cn" onclick="showCityCard('${city.toLowerCase().replace(/[äöüß]/g,'')}')">${city}</span>
+      <span class="cn"${slug ? ` onclick="showCityCard('${slug}')"` : ''}>${city}</span>
       <span class="cv">€${cm.mietspiegel_avg}</span>
       <span style="font-size:10px;color:var(--text-dim)">→</span>
       <span class="cv">€${cm.immoscout_avg}</span>
