@@ -503,34 +503,41 @@ function setupClickHandler() {
   let html = `<button class="close" onclick="this.parentElement.style.display='none'">×</button><div class="dc">
     <h3>📍 ${loc}</h3>
     <div class="val">€${p.v.toFixed(1)}/m² <span class="sub">(${p.yr})</span></div>
-    <div class="sub" style="margin-top:4px">Immoscout market listings · z-score: ${z>0?'+':''}${z.toFixed(1)}σ vs avg (€${rwiMean.toFixed(1)}) · n=${p.n}</div>`;
+    <div class="sub" style="margin-top:2px">Average rent for new listings on Immoscout24</div>`;
 
   // Zensus row
   if (zsRent) {
-    const pct = premium > 0 ? `+${premium.toFixed(0)}%` : `${premium.toFixed(0)}%`;
+    const pct = premium > 0 ? `${premium.toFixed(0)}% more` : `${Math.abs(premium).toFixed(0)}% less`;
     const pc = premium > 20 ? 'var(--red)' : premium > 5 ? 'var(--orange)' : premium > -5 ? 'var(--yellow)' : 'var(--green)';
-    html += `<div style="margin-top:6px;padding:6px;background:var(--surface2);border-radius:4px">
-      <div style="display:flex;justify-content:space-between;align-items:center">
-        <span style="font-size:10px;color:var(--text-dim)">📊 Census 2022 (all contracts)</span>
-        <span style="font-weight:700;font-size:13px">€${zsRent.toFixed(1)}/m²</span>
+    const rel = premium > 10 ? 'much more' : premium > 0 ? 'slightly more' : premium > -10 ? 'about the same as' : 'less than';
+    html += `<div style="margin-top:8px;padding:8px;background:var(--surface2);border-radius:4px">
+      <div style="font-size:11px;font-weight:600;margin-bottom:4px">📊 What people actually pay</div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <span style="font-size:10px;color:var(--text-dim)">Official census (2022)</span>
+        <span style="font-weight:700;font-size:15px">€${zsRent.toFixed(1)}/m²</span>
       </div>
-      <div style="display:flex;justify-content:space-between;margin-top:2px">
-        <span style="font-size:9px;color:var(--text-dim)">z: ${zsZ>0?'+':''}${zsZ.toFixed(1)}σ vs €${zensusMean.toFixed(1)}</span>
-        <span style="font-size:11px;font-weight:700;color:${pc}">Market premium: ${pct}</span>
+      <div style="margin-top:3px;font-size:10px;color:${pc};font-weight:600">
+        New listings cost <b>${pct}</b> than what current tenants pay
       </div>
     </div>`;
+  } else {
+    html += `<div class="sub" style="margin-top:6px">${z>0?'Above':'Below'} German average (€${rwiMean.toFixed(1)}/m²)</div>`;
   }
 
   // City Mietspiegel row
   if (cm) {
     const gap = cm.gap_pct;
     const gc = gap > 5 ? 'var(--red)' : gap > -5 ? 'var(--yellow)' : 'var(--green)';
-    html += `<div style="margin-top:4px;padding:6px;background:var(--surface2);border-radius:4px">
-      <div style="font-size:10px;color:var(--text-dim)">${cm.city} Mietspiegel (${cm.mietspiegel_year})</div>
-      <div style="display:flex;justify-content:space-between;margin-top:2px">
-        <span>Official: <b>€${cm.mietspiegel_avg}/m²</b></span>
-        <span>Market: <b>€${cm.immoscout_avg}/m²</b></span>
-        <span style="color:${gc};font-weight:700">${gap>0?'+':''}${gap}%</span>
+    const gapText = gap > 0 ? `${gap.toFixed(0)}% above official` : gap < 0 ? `${Math.abs(gap).toFixed(0)}% below official` : 'matches official';
+    html += `<div style="margin-top:6px;padding:8px;background:var(--surface2);border-radius:4px">
+      <div style="font-size:11px;font-weight:600;margin-bottom:4px">📋 Official rent index</div>
+      <div style="font-size:10px;color:var(--text-dim)">City of ${cm.city} (${cm.mietspiegel_year})</div>
+      <div style="display:flex;justify-content:space-between;margin-top:3px">
+        <span>Legal reference rent:</span>
+        <span style="font-weight:700">€${cm.mietspiegel_avg}/m²</span>
+      </div>
+      <div style="margin-top:2px;font-size:10px;color:${gc};font-weight:600">
+        Market listings are <b>${gapText}</b>
       </div>
     </div>`;
   }
