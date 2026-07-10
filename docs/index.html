@@ -177,6 +177,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   <select id="f-bau" onchange="applyFilters()"></select>
   <input type="text" id="f-search" placeholder="🔍 Search address or city..." oninput="applyFilters()" onkeydown="if(event.key==='Enter')geocodeSearch()">
   <button class="f-btn" onclick="geocodeSearch()" title="Search address">📍</button>
+  <button class="f-btn" id="zensus-btn" onclick="toggleZensus()" title="Official census rent data">📋 Zensus 2022</button>
   <button class="f-btn" onclick="dlCSV()">⬇ CSV</button>
   <button class="f-btn" onclick="clearFilters()">✕</button>
 </div>
@@ -260,6 +261,7 @@ const DATA = 'data/processed/';
 let cities = [], cache = {}, cmpData = {}, map, rwiGrids = null;
 let heatLayer = null, berlinLayer = null, cityLabels = [];
 let rwiMean = 0, rwiStd = 0;
+let zensusMode = false, zensusData = null, zensusMean = 0, zensusStd = 0;
 
 // ─── Normalization (unchanged) ────────────────────────────────
 const LAGE_MAP = { 'normal': 'mittel', 'sehr gut': 'gut' };
@@ -411,7 +413,49 @@ function applyFilters() {
   } else { if (banner) banner.remove(); }
 }
 
-// ─── Panel toggle ────────────────────────────────────────────
+// ─── Zensus 2022 toggle ──────────────────────────────────────
+async function toggleZensus() {
+  const btn = document.getElementById('zensus-btn');
+  zensusMode = !zensusMode;
+
+  if (zensusMode) {
+    // Load Zensus data if needed
+    if (!zensusData) {
+      btn.textContent = '⏳ Loading...';
+      btn.style.background = 'var(--surface2)';
+      try {
+        const r = await fetch(DATA + 'zensus2022_rent_1km.json?v=1');
+        zensusData = await r.json();
+        zensusMean = zensusData.mean;
+        zensusStd = zensusData.std;
+      } catch(e) { console.error(e); btn.textContent = '❌ Failed'; zensusMode = false; return; }
+    }
+
+    // Build Zensus heatmap
+    if (heatLayer) { map.removeLayer(heatLayer); heatLayer = null; }
+    const heatData = zensusData.cells_slim.map(c => {
+      const z = zensusStd > 0 ? (c[2] - zensusMean) / zensusStd : 0;
+      return [c[0], c[1], Math.max(0, Math.min(1, (z + 3) / 6))];
+    });
+    const p = getHeatParams(map.getZoom());
+    heatLayer = L.heatLayer(heatData, {
+      radius: p.radius, blur: p.blur, max: 1.0, minOpacity: p.minOpacity,
+      gradient: { 0.0:'#00a550', 0.2:'#7fc440', 0.4:'#e0d040', 0.6:'#f09030', 0.8:'#e04030', 1.0:'#b01020' }
+    }).addTo(map);
+
+    // Update legend
+    document.querySelector('#map-legend div:first-child').textContent = 'Zensus 2022 (Official)';
+    btn.style.background = 'var(--accent)'; btn.style.color = '#fff';
+    btn.textContent = '📋 Zensus 2022 ✓';
+  } else {
+    // Switch back to Immoscout
+    if (heatLayer) { map.removeLayer(heatLayer); heatLayer = null; }
+    buildHeatmap();
+    document.querySelector('#map-legend div:first-child').textContent = 'Heatmap (Immoscout24)';
+    btn.style.background = ''; btn.style.color = '';
+    btn.textContent = '📋 Zensus 2022';
+  }
+}
 function toggleSidebar() {
   const sb = document.getElementById('sidebar');
   sb.classList.toggle('hidden');
