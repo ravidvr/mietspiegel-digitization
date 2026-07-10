@@ -304,6 +304,7 @@ function toggleLang() {
 const INDEX = 'data/processed/cities_index.json';
 const DATA = 'data/processed/';
 let cities = [], cache = {}, map, markers = [], selected = null;
+let cmpData = {};  // Mietspiegel vs Immoscout comparison data
 
 // ─── Normalization Layer ───
 // Maps non-standard lage categories to canonical einfach/mittel/gut
@@ -421,6 +422,14 @@ async function init() {
   addMarkers();
   renderList();
   applyLang();
+
+  // Load comparison data
+  try {
+    const cr = await fetch('data/processed/cities_comparison.json?v=1');
+    const cd = await cr.json();
+    (cd.cities||[]).forEach(c => { cmpData[c.city] = c; });
+  } catch(e) {}
+
   if (localStorage.getItem('mietspiegel-welcome') === '1') document.getElementById('welcome').style.display = 'none';
 }
 
@@ -441,7 +450,11 @@ function addMarkers(filter) {
     const d = cache[c.slug], a = avgRent(d);
     if (filter && filter(c,d,a)) return;
     const m = L.circleMarker([c.lat,c.lng],{radius:a?8:5,fillColor:color(a),color:'#fff',weight:1.5,fillOpacity:.85}).addTo(map);
-    if (a != null) m.bindPopup(`<div class="pp-c">${c.city}</div><div class="pp-l">${c.state} · ${d?.year||'?'}</div><div class="pp-r">ø €${a.toFixed(1)}/m²</div>${c.city === 'Berlin' ? '<div class="pp-l" style="margin-top:4px;color:var(--accent)">⬇ Click to see 12 districts</div>' : ''}`);
+    if (a != null) {
+      const cm = cmpData[c.city];
+      const gapHtml = cm ? `<div class="pp-l" style="margin-top:2px">Market (Immoscout): €${cm.immoscout_avg}/m² · <span style="color:${cm.gap_pct>0?'var(--red)':'var(--green)'}">${cm.gap_pct>0?'+':''}${cm.gap_pct}% vs official</span></div>` : '';
+      m.bindPopup(`<div class="pp-c">${c.city}</div><div class="pp-l">${c.state} · ${d?.year||'?'}</div><div class="pp-r">ø €${a.toFixed(1)}/m²</div>${gapHtml}${c.city === 'Berlin' ? '<div class="pp-l" style="margin-top:4px;color:var(--accent)">⬇ Click to see 12 districts</div>' : ''}`);
+    }
     m.on('click', () => showCity(c.slug));
     markers.push(m);
   });
@@ -523,7 +536,12 @@ async function showRedxHeat() {
     } catch(e) { return; }
   }
 
-  document.getElementById('p-detail').innerHTML = '<div class="es">🔥 National Rent Heatmap — ImmoScout24 1km² grid hedonic price indices (RWI-GEO-REDX PUF v16). Red = above national avg, green = below. Outliers (3σ) removed. <a href="https://fdz.rwi-essen.de" style="color:var(--accent)" target="_blank">Source: RWI Essen</a></div>';
+  document.getElementById('p-detail').innerHTML = '<div class="es">🔥 National Rent Heatmap — ImmoScout24 1km² grid (RWI-GEO-REDX PUF v16). Red = above national avg (€'+redxMean.toFixed(1)+'/m²), green = below. <a href="https://fdz.rwi-essen.de" style="color:var(--accent)" target="_blank">Source: RWI Essen</a></div>' +
+    '<div style="margin-top:12px;font-size:11px"><b>Mietspiegel vs Market</b><br>' +
+    Object.entries(cmpData).sort((a,b) => a[1].gap_pct - b[1].gap_pct).map(([city,cm]) => {
+      const g = cm.gap_pct, c = g > 5 ? 'var(--red)' : g > -5 ? 'var(--yellow)' : 'var(--green)';
+      return '<div style="display:flex;justify-content:space-between;padding:2px 0;border-bottom:1px solid var(--border)"><span>'+city+'</span><span style="color:'+c+'">'+(g>0?'+':'')+g+'%</span></div>';
+    }).join('') + '</div>';
   switchTab('detail');
 
   // Collect points with values (all, not just clean)
