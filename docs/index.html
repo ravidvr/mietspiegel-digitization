@@ -64,9 +64,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .map-leg{position:absolute;bottom:20px;left:10px;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:7px 10px;font-size:10px;z-index:1000;box-shadow:0 1px 6px rgba(0,0,0,.1)}
 .map-leg .r{display:flex;align-items:center;gap:4px;margin:1px 0}
 .map-leg .d{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.map-toggle{position:absolute;top:10px;right:10px;z-index:1000;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:16px;cursor:pointer;box-shadow:0 1px 6px rgba(0,0,0,.1)}
+.map-toggle:hover{background:var(--surface2)}
+.map-tooltip{position:absolute;top:70px;right:10px;max-width:380px;max-height:calc(100% - 100px);overflow-y:auto;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;z-index:1000;box-shadow:0 4px 16px rgba(0,0,0,.2);font-size:12px}
+.map-tooltip .close{float:right;background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:16px}
 
 /* Side panel */
 .sp{width:390px;min-width:300px;max-width:50vw;background:var(--surface);border-left:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
+.sp.hidden{display:none}
 .ss{font-size:11px;font-weight:700;color:var(--text-dim);padding:8px 10px;border-bottom:1px solid var(--border);background:var(--surface2);text-transform:uppercase;letter-spacing:.5px}
 .sc{flex:1;overflow-y:auto;padding:10px}
 .sc::-webkit-scrollbar{width:4px}
@@ -117,8 +122,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 
 @media(max-width:768px){
   .main{flex-direction:column;height:auto}
-  #map{height:50vh}
-  .sp{width:100%;max-width:100%;border-left:none;border-top:1px solid var(--border)}
+  #map{height:70vh}
+  .sp{display:none}
+  .h-btn{font-size:14px;padding:8px 12px}
+  .fbar select,.fbar input{min-height:44px;font-size:16px}
+  .f-btn{padding:8px 12px;font-size:13px}
+  /* Floating detail card on mobile replaces sidebar */
+  .dc-mobile{position:fixed;bottom:0;left:0;right:0;max-height:50vh;overflow-y:auto;background:var(--surface);border-radius:12px 12px 0 0;box-shadow:0 -4px 16px rgba(0,0,0,.3);z-index:2000;padding:16px;transition:transform .3s}
+  .dc-mobile.hidden{transform:translateY(100%)}
 }
 </style>
 </head>
@@ -180,10 +191,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
       <div class="r"><span class="d" style="background:#7fc440"></span> −1σ</div>
       <div class="r"><span class="d" style="background:#00a550"></span> −2σ below avg</div>
     </div>
+    <button class="map-toggle" onclick="toggleSidebar()" id="sidebar-toggle" title="Show comparison table">📊</button>
+    <div class="map-tooltip" id="map-tooltip" style="display:none"></div>
   </div>
 
-  <div class="sp">
-    <div class="ss">📊 Official vs Market Rent</div>
+  <div class="sp hidden" id="sidebar">
+    <div class="ss">📊 Official vs Market Rent <button style="float:right;background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:14px" onclick="toggleSidebar()">×</button></div>
     <div class="sc" id="p-compare"></div>
     <div class="sc" id="p-detail" style="display:none"></div>
   </div>
@@ -271,10 +284,11 @@ function avgRent(d) {
 // ─── Heatmap helpers ──────────────────────────────────────────
 function rwiZ(v) { return rwiStd > 0 ? (v - rwiMean) / rwiStd : 0; }
 function getHeatParams(z) {
-  if (z <= 7)  return { radius: 20, blur: 12 };
-  if (z <= 10) return { radius: 14, blur: 8 };
-  if (z <= 13) return { radius: 8,  blur: 5 };
-  return { radius: 4, blur: 2 };
+  if (z <= 7)  return { radius: 20, blur: 12, minOpacity: 0.15 };
+  if (z <= 10) return { radius: 14, blur: 8,  minOpacity: 0.20 };
+  if (z <= 13) return { radius: 10, blur: 6,  minOpacity: 0.25 };
+  if (z <= 15) return { radius: 8,  blur: 4,  minOpacity: 0.30 };
+  return { radius: 12, blur: 3, minOpacity: 0.35 }; // Larger at street level
 }
 
 function buildHeatmap() {
@@ -299,7 +313,7 @@ function buildHeatmap() {
 
   const p = getHeatParams(map.getZoom());
   heatLayer = L.heatLayer(heatData, {
-    radius: p.radius, blur: p.blur, max: 1.0, minOpacity: 0.15,
+    radius: p.radius, blur: p.blur, max: 1.0, minOpacity: p.minOpacity,
     gradient: { 0.0:'#00a550', 0.2:'#7fc440', 0.4:'#e0d040', 0.6:'#f09030', 0.8:'#e04030', 1.0:'#b01020' }
   }).addTo(map);
 
@@ -310,7 +324,7 @@ function buildHeatmap() {
   map.on('zoomend', () => {
     if (!heatLayer) return;
     const zp = getHeatParams(map.getZoom());
-    heatLayer.setOptions({ radius: zp.radius, blur: zp.blur });
+    heatLayer.setOptions({ radius: zp.radius, blur: zp.blur, minOpacity: zp.minOpacity });
     // Fade Berlin districts at low zoom
     if (berlinLayer) {
       const z = map.getZoom();
@@ -391,11 +405,24 @@ function applyFilters() {
 }
 
 // ─── Panel toggle ────────────────────────────────────────────
+function toggleSidebar() {
+  const sb = document.getElementById('sidebar');
+  sb.classList.toggle('hidden');
+  document.getElementById('sidebar-toggle').textContent = sb.classList.contains('hidden') ? '📊' : '✕';
+}
 function showDetail() {
+  // Show detail as floating tooltip overlay on map
+  const tip = document.getElementById('map-tooltip');
+  tip.style.display = 'block';
   document.getElementById('p-compare').style.display = 'none';
-  document.getElementById('p-detail').style.display = 'block';
+  document.getElementById('p-detail').style.display = 'none';
+  // On desktop, open sidebar if hidden
+  if (window.innerWidth > 768 && document.getElementById('sidebar').classList.contains('hidden')) {
+    toggleSidebar();
+  }
 }
 function showCompare() {
+  document.getElementById('map-tooltip').style.display = 'none';
   document.getElementById('p-detail').style.display = 'none';
   document.getElementById('p-compare').style.display = 'block';
   renderComparison();
@@ -448,7 +475,7 @@ function setupClickHandler() {
 
   html += '</div>';
   showDetail();
-  document.getElementById('p-detail').innerHTML = '<a href="#" onclick="showCompare();return false" style="font-size:11px;color:var(--accent)">← Back to comparison</a>' + html;
+  document.getElementById('map-tooltip').innerHTML = '<button class="close" onclick="this.parentElement.style.display=\'none\'">×</button>' + html;
   });
 }
 
@@ -456,12 +483,12 @@ function setupClickHandler() {
 async function showCityCard(slug) {
   if (!cache[slug]) try { cache[slug] = await (await fetch(DATA+slug+'.json')).json(); } catch(e) { return; }
   const d = cache[slug], c = cities.find(x => x.slug === slug), cm = cmpData[c?.city];
-  const panel = document.getElementById('p-detail');
   showDetail();
   if (c) map.flyTo([c.lat, c.lng], 11, { duration: 0.8 });
+  const panel = document.getElementById('map-tooltip');
 
   if (!d || !d.tables || !d.tables.length) {
-    panel.innerHTML = `<div class="dc"><h3>${d?.city||c?.city}</h3><div class="sub">Data pending</div></div>`;
+    panel.innerHTML = '<button class="close" onclick="this.parentElement.style.display=\'none\'">×</button><div class="dc"><h3>${d?.city||c?.city}</h3><div class="sub">Data pending</div></div>';
     return;
   }
   const l = d.tables.find(t => t.lage === 'mittel') || d.tables[0];
@@ -480,7 +507,7 @@ async function showCityCard(slug) {
     </div>`;
   }
 
-  panel.innerHTML = '<a href="#" onclick="showCompare();return false" style="font-size:11px;color:var(--accent)">← Back to comparison</a>' + `<div class="dc">
+  panel.innerHTML = '<button class="close" onclick="this.parentElement.style.display=\'none\'">×</button>' + `<div class="dc">
     <h3>${d.city}</h3>
     <div class="loc">${d.state} · ${(c?.population||'').toLocaleString()} · ${d.year} · ${d.type||'Mietspiegel'}</div>
     ${gapHtml}
@@ -493,7 +520,8 @@ async function showCityCard(slug) {
 function showDistrictCard(p) {
   const panel = document.getElementById('p-detail');
   showDetail();
-  panel.innerHTML = '<a href="#" onclick="showCompare();return false" style="font-size:11px;color:var(--accent)">← Back to comparison</a>' + `<div class="dc">
+  const panel = document.getElementById('map-tooltip');
+  panel.innerHTML = '<button class="close" onclick="this.parentElement.style.display=\'none\'">×</button>' + `<div class="dc">
     <h3>${p.district}</h3>
     <div class="loc">Berlin · ${p.total_addresses.toLocaleString()} addresses</div>
     <div style="margin-top:8px">
