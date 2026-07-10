@@ -453,10 +453,11 @@ function setupClickHandler() {
 
   const p = best;
   const z = rwiZ(p.v);
+  const loc = p.g.location || p.g.plz ? `PLZ ${p.g.plz||'?'} · ${p.g.location||'Grid '+p.g.grid}` : `Grid ${p.g.grid}`;
   const cm = bestCity ? cmpData[bestCity.city] : null;
 
-  let html = `<div class="dc">
-    <h3>📍 ${cm?.city || 'Grid '+p.g.grid}</h3>
+  let html = `<button class="close" onclick="this.parentElement.style.display='none'">×</button><div class="dc">
+    <h3>📍 ${loc}</h3>
     <div class="val">€${p.v.toFixed(1)}/m² <span class="sub">(${p.yr})</span></div>
     <div class="sub" style="margin-top:4px">z-score: ${z>0?'+':''}${z.toFixed(1)}σ vs national avg (€${rwiMean.toFixed(1)}) · n=${p.n}</div>`;
 
@@ -474,8 +475,14 @@ function setupClickHandler() {
   }
 
   html += '</div>';
-  showDetail();
-  document.getElementById('map-tooltip').innerHTML = '<button class="close" onclick="this.parentElement.style.display=\'none\'">×</button>' + html;
+
+  // Auto-dismiss: clicking map background hides tooltip
+  document.getElementById('map-tooltip').style.display = 'block';
+  document.getElementById('map-tooltip').innerHTML = html;
+  // Also show sidebar if hidden
+  if (window.innerWidth > 768 && document.getElementById('sidebar').classList.contains('hidden')) {
+    toggleSidebar();
+  }
   });
 }
 
