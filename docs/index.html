@@ -526,22 +526,25 @@ function exitRedxView() {
 async function showRedxGrid() {
   if (!redxData) {
     try {
-      const r = await fetch('data/processed/national-rent-grid.geojson');
+      const r = await fetch('data/processed/national-rent-grid.geojson?v=2');
       redxData = await r.json();
     } catch(e) { console.error('Failed to load REDX data', e); return; }
   }
   if (redxLayer) map.removeLayer(redxLayer);
 
-  document.getElementById('p-detail').innerHTML = '<div class="es">🔥 National Rent Map — ImmoScout24 1km² grid hedonic price indices (RWI-GEO-REDX PUF v16). Each dot = 1km² grid cell. <a href="https://fdz.rwi-essen.de" style="color:var(--accent)" target="_blank">Source: RWI Essen</a></div>';
+  document.getElementById('p-detail').innerHTML = '<div class="es">🔥 National Rent Map — ImmoScout24 1km² grid hedonic price indices (RWI-GEO-REDX PUF v16). Each dot = 1km² grid cell. Color = most recent available year. <a href="https://fdz.rwi-essen.de" style="color:var(--accent)" target="_blank">Source: RWI Essen</a></div>';
   switchTab('detail');
 
   const feats = redxData.features;
-  const vals = feats.map(f => f.properties.pi).filter(v => v != null);
+  // Handle both old (pi2025) and new (pi) formats
+  const getPi = (p) => p.pi ?? p.pi2025;
+  const getN   = (p) => p.n   ?? p.n2025 ?? '?';
+  const vals = feats.map(f => getPi(f.properties)).filter(v => v != null && v > 0);
   const minV = Math.min(...vals), maxV = Math.max(...vals);
 
   redxLayer = L.geoJSON(redxData, {
     pointToLayer: (f, ll) => {
-      const v = f.properties.pi;
+      const v = getPi(f.properties);
       return L.circleMarker(ll, {
         radius: v != null ? 4.5 : 2,
         fillColor: v != null ? redxColor(v, minV, maxV) : '#555',
@@ -552,14 +555,20 @@ async function showRedxGrid() {
     },
     onEachFeature: (f, layer) => {
       const p = f.properties;
-      const change = p.change_pct ? ` (${p.change_pct > 0 ? '+' : ''}${p.change_pct}% since 2008)` : '';
-      const yrLabel = p.year ? ` (${p.year})` : '';
-      // Build timeseries tooltip from pi_all
+      const v = getPi(p);
+      const n = getN(p);
+      const yr = p.year || '';
+      const yrLabel = yr ? ` (${yr})` : '';
+      const change = p.change_pct ? ` · ${p.change_pct > 0 ? '+' : ''}${p.change_pct}% since 2008` : '';
+      // Build timeseries from pi_all or fall back to single value
       let tsHtml = '';
-      if (p.pi_all) {
-        tsHtml = Object.entries(p.pi_all).sort((a,b) => a[0]-b[0]).map(([yr,v]) => `${yr}: €${v}`).join(' · ');
+      const all = p.pi_all;
+      if (all && typeof all === 'object' && Object.keys(all).length) {
+        tsHtml = Object.entries(all).sort((a,b) => +a[0]-+b[0]).map(([yr,v]) => `${yr}: €${v}`).join(' · ');
+      } else if (p.pi2018) {
+        tsHtml = `2018: €${p.pi2018.toFixed(1)}`;
       }
-      layer.bindPopup(`<div class="pp-c">Grid ${p.grid}${yrLabel}</div><div class="pp-r">€${p.pi}/m²</div>${tsHtml ? '<div class="pp-l" style="font-size:9px">'+tsHtml+'</div>' : ''}<div class="pp-l" style="margin-top:3px;color:var(--accent)">RWI-GEO-REDX PUF v16 · n=${p.n||'?'}</div>`);
+      layer.bindPopup(`<div class="pp-c">Grid ${p.grid}${yrLabel}</div><div class="pp-r">€${v}/m²</div>${tsHtml ? '<div class="pp-l" style="font-size:9px">'+tsHtml+change+'</div>' : ''}<div class="pp-l" style="margin-top:3px;color:var(--accent)">RWI-GEO-REDX PUF v16 · n=${n}</div>`);
     }
   }).addTo(map);
 
