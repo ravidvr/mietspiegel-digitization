@@ -373,7 +373,8 @@ function filterCityLabels() {
 function applyFilters() { filterCityLabels(); }
 
 // ─── Click handler ────────────────────────────────────────────
-map?.on('click', e => {
+function setupClickHandler() {
+  map.on('click', e => {
   const { lat, lng } = e.latlng;
   const clean = map._rwiClean;
   if (!clean) return;
@@ -419,7 +420,8 @@ map?.on('click', e => {
   html += '</div>';
   document.getElementById('p-detail').style.display = 'block';
   document.getElementById('p-detail').innerHTML = html;
-});
+  });
+}
 
 // ─── City detail card ─────────────────────────────────────────
 async function showCityCard(slug) {
@@ -533,6 +535,7 @@ async function init() {
   buildCityLabels();
   buildHeatmap();
   loadBerlinDistricts();
+  setupClickHandler();
   renderComparison();
   applyLang();
 
