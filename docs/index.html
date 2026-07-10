@@ -261,7 +261,7 @@ const DATA = 'data/processed/';
 let cities = [], cache = {}, cmpData = {}, map, rwiGrids = null;
 let heatLayer = null, berlinLayer = null, cityLabels = [];
 let rwiMean = 0, rwiStd = 0;
-let zensusMode = false, zensusData = null, zensusMean = 0, zensusStd = 0;
+let zensusMode = false, zensusData = null, zensusMean = 0, zensusStd = 0, zensusCells = [];
 
 // ─── Normalization (unchanged) ────────────────────────────────
 const LAGE_MAP = { 'normal': 'mittel', 'sehr gut': 'gut' };
@@ -413,47 +413,27 @@ function applyFilters() {
   } else { if (banner) banner.remove(); }
 }
 
-// ─── Zensus 2022 toggle ──────────────────────────────────────
+// ─── Zensus 2022 toggle (heatmap visual only) ─────────────────
 async function toggleZensus() {
   const btn = document.getElementById('zensus-btn');
   zensusMode = !zensusMode;
+  if (!zensusCells.length) { btn.textContent = '⏳ No data'; zensusMode = false; return; }
+
+  if (heatLayer) { map.removeLayer(heatLayer); heatLayer = null; }
 
   if (zensusMode) {
-    // Load Zensus data if needed
-    if (!zensusData) {
-      btn.textContent = '⏳ Loading...';
-      btn.style.background = 'var(--surface2)';
-      try {
-        const r = await fetch(DATA + 'zensus2022_rent_1km.json?v=1');
-        zensusData = await r.json();
-        zensusMean = zensusData.mean;
-        zensusStd = zensusData.std;
-      } catch(e) { console.error(e); btn.textContent = '❌ Failed'; zensusMode = false; return; }
-    }
-
-    // Build Zensus heatmap
-    if (heatLayer) { map.removeLayer(heatLayer); heatLayer = null; }
-    const heatData = zensusData.cells_slim.map(c => {
+    const heatData = zensusCells.map(c => {
       const z = zensusStd > 0 ? (c[2] - zensusMean) / zensusStd : 0;
       return [c[0], c[1], Math.max(0, Math.min(1, (z + 3) / 6))];
     });
     const p = getHeatParams(map.getZoom());
-    heatLayer = L.heatLayer(heatData, {
-      radius: p.radius, blur: p.blur, max: 1.0, minOpacity: p.minOpacity,
-      gradient: { 0.0:'#00a550', 0.2:'#7fc440', 0.4:'#e0d040', 0.6:'#f09030', 0.8:'#e04030', 1.0:'#b01020' }
-    }).addTo(map);
-
-    // Update legend
+    heatLayer = L.heatLayer(heatData, { radius: p.radius, blur: p.blur, max: 1.0, minOpacity: p.minOpacity, gradient: { 0.0:'#00a550', 0.2:'#7fc440', 0.4:'#e0d040', 0.6:'#f09030', 0.8:'#e04030', 1.0:'#b01020' } }).addTo(map);
     document.querySelector('#map-legend div:first-child').textContent = 'Zensus 2022 (Official)';
-    btn.style.background = 'var(--accent)'; btn.style.color = '#fff';
-    btn.textContent = '📋 Zensus 2022 ✓';
+    btn.style.background = 'var(--accent)'; btn.style.color = '#fff'; btn.textContent = '📋 Census ✓';
   } else {
-    // Switch back to Immoscout
-    if (heatLayer) { map.removeLayer(heatLayer); heatLayer = null; }
     buildHeatmap();
     document.querySelector('#map-legend div:first-child').textContent = 'Heatmap (Immoscout24)';
-    btn.style.background = ''; btn.style.color = '';
-    btn.textContent = '📋 Zensus 2022';
+    btn.style.background = ''; btn.style.color = ''; btn.textContent = '📋 Zensus 2022';
   }
 }
 function toggleSidebar() {
@@ -503,15 +483,49 @@ function setupClickHandler() {
   const loc = p.g.location || p.g.plz ? `PLZ ${p.g.plz||'?'} · ${p.g.location||'Grid '+p.g.grid}` : `Grid ${p.g.grid}`;
   const cm = bestCity ? cmpData[bestCity.city] : null;
 
+  // Find nearest Zensus cell
+  let zsRent = null, zsZ = null;
+  if (zensusCells.length) {
+    let zBest = null, zBestD = Infinity;
+    for (const zc of zensusCells) {
+      const d = (zc[0]-lat)**2 + (zc[1]-lng)**2;
+      if (d < zBestD) { zBestD = d; zBest = zc; }
+    }
+    if (zBest && zBestD < threshold) {
+      zsRent = zBest[2];
+      zsZ = zensusStd > 0 ? (zsRent - zensusMean) / zensusStd : 0;
+    }
+  }
+
+  // Market premium: how much more are new listings vs existing contracts?
+  const premium = zsRent ? ((p.v - zsRent) / zsRent * 100) : null;
+
   let html = `<button class="close" onclick="this.parentElement.style.display='none'">×</button><div class="dc">
     <h3>📍 ${loc}</h3>
     <div class="val">€${p.v.toFixed(1)}/m² <span class="sub">(${p.yr})</span></div>
-    <div class="sub" style="margin-top:4px">z-score: ${z>0?'+':''}${z.toFixed(1)}σ vs national avg (€${rwiMean.toFixed(1)}) · n=${p.n}</div>`;
+    <div class="sub" style="margin-top:4px">Immoscout market listings · z-score: ${z>0?'+':''}${z.toFixed(1)}σ vs avg (€${rwiMean.toFixed(1)}) · n=${p.n}</div>`;
 
+  // Zensus row
+  if (zsRent) {
+    const pct = premium > 0 ? `+${premium.toFixed(0)}%` : `${premium.toFixed(0)}%`;
+    const pc = premium > 20 ? 'var(--red)' : premium > 5 ? 'var(--orange)' : premium > -5 ? 'var(--yellow)' : 'var(--green)';
+    html += `<div style="margin-top:6px;padding:6px;background:var(--surface2);border-radius:4px">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span style="font-size:10px;color:var(--text-dim)">📊 Census 2022 (all contracts)</span>
+        <span style="font-weight:700;font-size:13px">€${zsRent.toFixed(1)}/m²</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:2px">
+        <span style="font-size:9px;color:var(--text-dim)">z: ${zsZ>0?'+':''}${zsZ.toFixed(1)}σ vs €${zensusMean.toFixed(1)}</span>
+        <span style="font-size:11px;font-weight:700;color:${pc}">Market premium: ${pct}</span>
+      </div>
+    </div>`;
+  }
+
+  // City Mietspiegel row
   if (cm) {
     const gap = cm.gap_pct;
     const gc = gap > 5 ? 'var(--red)' : gap > -5 ? 'var(--yellow)' : 'var(--green)';
-    html += `<div style="margin-top:8px;padding:6px;background:var(--surface2);border-radius:4px">
+    html += `<div style="margin-top:4px;padding:6px;background:var(--surface2);border-radius:4px">
       <div style="font-size:10px;color:var(--text-dim)">${cm.city} Mietspiegel (${cm.mietspiegel_year})</div>
       <div style="display:flex;justify-content:space-between;margin-top:2px">
         <span>Official: <b>€${cm.mietspiegel_avg}/m²</b></span>
@@ -638,6 +652,15 @@ async function init() {
     const gr = await fetch(DATA + 'redx_grid_rent.json?v=3');
     rwiGrids = await gr.json();
   } catch(e) {}
+
+  // Load Zensus 2022 data (always, for tooltips)
+  try {
+    const zr = await fetch(DATA + 'zensus2022_rent_1km.json?v=1');
+    zensusData = await zr.json();
+    zensusMean = zensusData.mean;
+    zensusStd = zensusData.std;
+    zensusCells = zensusData.cells_slim;  // [lat, lng, rent, n]
+  } catch(e) { console.error('Zensus load failed:', e); }
 
   // Build everything
   buildCityLabels();
