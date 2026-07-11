@@ -395,11 +395,24 @@ function setupClickHandler() {
     const std  = zensusMode ? zensusStd  : immoStd;
     const z = zScore(best.rent, mean, std);
     const loc = best.plz ? `PLZ ${best.plz} · ${best.location || 'Berlin'}` : 'Berlin';
+    const district3 = findDistrict(lat, lng);
 
     let html = `<button class="close" onclick="this.parentElement.style.display='none'">×</button><div class="dc">
       <h3>📍 ${loc}</h3>
       <div class="val">€${best.rent.toFixed ? best.rent.toFixed(1) : best.rent}/m²</div>
       <div class="sub" style="margin-top:2px">${zensusMode ? 'Official census rent (2022)' : 'Market rent for new listings (Immoscout24)'}</div>`;
+
+    if (district3 && !zensusMode) {
+      const dDiff = best.rent - district3.avg_rent;
+      const dPct = Math.round(Math.abs(dDiff) / district3.avg_rent * 100);
+      const dAbove = dDiff > 0;
+      const dc = dAbove ? 'var(--red)' : 'var(--green)';
+      html += '<div style="margin-top:6px;padding:6px 8px;background:var(--surface2);border-radius:4px;font-size:11px">' +
+        '<span style="color:var(--text-dim)">📍 ' + district3.district + ' \xF8:</span>' +
+        '<span style="font-weight:700;margin:0 4px">\u20AC' + district3.avg_rent + '/m\u00B2</span>' +
+        '<span style="color:' + dc + ';font-weight:600">\u2014 ' + dPct + '% ' + (dAbove ? 'above' : 'below') + ' Kiez</span>' +
+        '</div>';
+    }`;
 
     // If in Immoscout mode, also find nearest Zensus
     if (!zensusMode && zensusCells.length) {
@@ -457,6 +470,32 @@ function setupClickHandler() {
 }
 
 // ─── District detail card ─────────────────────────────────────
+function pointInPolygon(point, polygon) {
+  let inside = false;
+  for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+    const xi = polygon[i][0], yi = polygon[i][1];
+    const xj = polygon[j][0], yj = polygon[j][1];
+    const intersect = ((yi > point[1]) !== (yj > point[1]))
+      && (point[0] < (xj - xi) * (point[1] - yi) / (yj - yi) + xi);
+    if (intersect) inside = !inside;
+  }
+  return inside;
+}
+
+function findDistrict(lat, lng) {
+  if (!districtGeo || !districtGeo.features) return null;
+  for (const f of districtGeo.features) {
+    if (f.geometry.type === 'Polygon') {
+      if (pointInPolygon([lng, lat], f.geometry.coordinates[0])) return f.properties;
+    } else if (f.geometry.type === 'MultiPolygon') {
+      for (const poly of f.geometry.coordinates) {
+        if (pointInPolygon([lng, lat], poly[0])) return f.properties;
+      }
+    }
+  }
+  return null;
+}
+
 function showDistrictCard(p) {
   const panel = document.getElementById('map-tooltip');
   panel.style.display = 'block';
@@ -672,61 +711,3 @@ function flyToResult(result) {
 function escapeHtml(s) {
   const d = document.createElement('div'); d.textContent = s; return d.innerHTML;
 }
-
-document.addEventListener('click', e => {
-  if (!e.target.closest('.search-wrap')) hideSuggestions();
-});
-
-function clearFilters() {
-  document.getElementById('f-district').value='';
-  document.getElementById('f-rent').value='';
-  document.getElementById('f-search').value='';
-  applyFilters();
-}
-
-function dismissWelcome() { localStorage.setItem('mietspiegel-welcome','1'); document.getElementById('welcome').style.display='none'; }
-function showWelcome() { document.getElementById('welcome').style.display='flex'; }
-function toggleDark() {
-  const h = document.documentElement, d = h.getAttribute('data-theme')==='dark';
-  const newTheme = d ? '' : 'dark';
-  h.setAttribute('data-theme', newTheme); localStorage.setItem('theme', newTheme);
-  const dbtn = document.getElementById('dark-btn');
-  if (dbtn) dbtn.innerHTML = newTheme === 'dark' ? '☀️ <span>Light</span>' : '🌙 <span>Dark</span>';
-}
-
-function dlCSV() {
-  const rows=[['District','Avg_Rent','Einfach_Pct','Mittel_Pct','Gut_Pct','Total_Addresses','Gap_Pct_vs_Berlin_Avg']];
-  if (cmpData && cmpData.districts) {
-    cmpData.districts.forEach(d => {
-      rows.push([d.district, d.avg_rent, d.einfach_pct, d.mittel_pct, d.gut_pct, d.total_addresses, d.gap_pct]);
-    });
-  }
-  // Also export Mietspiegel table
-  if (berlinMietspiegel && berlinMietspiegel.tables) {
-    rows.push([]);
-    rows.push(['Berlin Mietspiegel ' + berlinMietspiegel.year]);
-    rows.push(['Lage','Baujahr','Size','Rent (€/m²)']);
-    const szK = s => s==='bis 40 m²'?'bis_40':s==='40-60 m²'?'40_60':s==='60-90 m²'?'60_90':'ueber_90';
-    berlinMietspiegel.tables.forEach(t => {
-      (berlinMietspiegel.size_categories || ['40-60 m²']).forEach(sz => {
-        const k = szK(sz);
-        t.rows.forEach(r => {
-          if (r[k] != null) rows.push([t.lage, r.baujahr, sz, r[k]]);
-        });
-      });
-    });
-  }
-  const csv=rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n');
-  const a=document.createElement('a'); a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv); a.download='berlin-mietspiegel.csv'; a.click();
-}
-
-const savedTheme = localStorage.getItem('theme') || 'dark';
-document.documentElement.setAttribute('data-theme', savedTheme);
-document.addEventListener('DOMContentLoaded', () => {
-  const dbtn = document.getElementById('dark-btn');
-  if (dbtn) dbtn.innerHTML = savedTheme === 'dark' ? '☀️ <span>Light</span>' : '🌙 <span>Dark</span>';
-});
-document.addEventListener('DOMContentLoaded', init);
-</script>
-</body>
-</html>

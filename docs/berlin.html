@@ -277,6 +277,60 @@ function showDistrict(p) {
   document.getElementById('tooltip').style.display = 'block';
 }
 
+// ─── Point-in-polygon for district lookup ─────────────────────
+function pointInPolygon(point, polygon) {
+  let inside = false;
+  for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+    const xi = polygon[i][0], yi = polygon[i][1];
+    const xj = polygon[j][0], yj = polygon[j][1];
+    const intersect = ((yi > point[1]) !== (yj > point[1]))
+      && (point[0] < (xj - xi) * (point[1] - yi) / (yj - yi) + xi);
+    if (intersect) inside = !inside;
+  }
+  return inside;
+}
+
+function findDistrict(lat, lng) {
+  if (!distData || !distData.features) return null;
+  for (const f of distData.features) {
+    if (f.geometry.type === 'Polygon') {
+      if (pointInPolygon([lng, lat], f.geometry.coordinates[0])) return f.properties;
+    } else if (f.geometry.type === 'MultiPolygon') {
+      for (const poly of f.geometry.coordinates) {
+        if (pointInPolygon([lng, lat], poly[0])) return f.properties;
+      }
+    }
+  }
+  return null;
+}
+
+// ─── Point-in-polygon for district lookup ─────────────────────
+function pointInPolygon(point, polygon) {
+  let inside = false;
+  for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+    const xi = polygon[i][0], yi = polygon[i][1];
+    const xj = polygon[j][0], yj = polygon[j][1];
+    const intersect = ((yi > point[1]) !== (yj > point[1]))
+      && (point[0] < (xj - xi) * (point[1] - yi) / (yj - yi) + xi);
+    if (intersect) inside = !inside;
+  }
+  return inside;
+}
+
+function findDistrict(lat, lng) {
+  if (!distData || !distData.features) return null;
+  for (const f of distData.features) {
+    if (f.geometry.type === 'Polygon') {
+      if (pointInPolygon([lng, lat], f.geometry.coordinates[0])) return f.properties;
+    } else if (f.geometry.type === 'MultiPolygon') {
+      for (const poly of f.geometry.coordinates) {
+        if (pointInPolygon([lng, lat], poly[0])) return f.properties;
+      }
+    }
+  }
+  return null;
+}
+
 // ─── Click ─────────────────────────────────────────────────────
 function setupClick() {
   map.on('click', e => {
@@ -302,6 +356,7 @@ function setupClick() {
     const loc = ibest.plz ? `PLZ ${ibest.plz} · ${ibest.location || 'Berlin'}` : 'Berlin';
     const zi = zScore(ibest.rent, immoMean, immoStd);
     const above = ibest.rent > immoMean;
+    const district2 = findDistrict(lat, lng);
 
     let html = `<button class="close" onclick="this.parentElement.style.display='none'">×</button>
       <h3>📍 ${loc}</h3>
@@ -309,6 +364,17 @@ function setupClick() {
       <div class="insight" style="color:${above?'var(--red)':'var(--green)'};margin-top:4px">
         ${above?'Above':'Below'} Berlin average (€${immoMean}/m²)
       </div>`;
+
+    if (district2) {
+      const dDiff = ibest.rent - district2.avg_rent;
+      const dPct = Math.round(Math.abs(dDiff) / district2.avg_rent * 100);
+      const dAbove = dDiff > 0;
+      html += '<div style="margin-top:8px;padding:6px 8px;background:var(--surface2);border-radius:4px;font-size:11px">' +
+        '<span style="color:var(--text-dim)">📍 ' + district2.district + ' \xF8:</span>' +
+        '<span style="font-weight:700;margin:0 4px">\u20AC' + district2.avg_rent + '/m\u00B2</span>' +
+        '<span style="color:' + (dAbove ? 'var(--red)' : 'var(--green)') + ';font-weight:600">\u2014 ' + dPct + '% ' + (dAbove ? 'above' : 'below') + ' Kiez</span>' +
+        '</div>';
+    }`;
 
     // Zensus comparison
     if (zbest && zbestD < threshold) {
