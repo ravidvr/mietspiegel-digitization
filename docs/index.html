@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Berlin Mietspiegel — Rent Map" />
-<meta property="og:description" content="Berlin rent data block by block: market rents (Immoscout24) vs census rents (2022) vs official Mietspiegel. 12 Bezirke, 467 grid cells." />
+<meta property="og:description" content="Berlin rent data block by block: market rents (Immoscout24) vs census rents (2022) vs official Mietspiegel. 12 Bezirke, 361 grid cells." />
 <meta property="og:image" content="https://ravidvr.github.io/mietspiegel-digitization/og-image.svg" />
 <meta property="og:url" content="https://ravidvr.github.io/mietspiegel-digitization/" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -135,7 +135,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 <div class="mo" id="welcome" onclick="if(event.target===this)dismissWelcome()">
   <div class="m">
     <h2>📊 Berlin Mietspiegel</h2>
-    <p data-i18n="welcome_desc">Berlin rent data — block by block. Market rents (Immoscout24), official census rents (2022), and the official Mietspiegel. Click anywhere on the map for local rent details.</p>
+    <p data-i18n="welcome_desc">Berlin rent data — block by block. Market rents (Immoscout24, €12.07/m²), official census rents (2022, €7.97/m²), and the official Mietspiegel. Click anywhere on the map for local rent details.</p>
     <div class="cr2"><span class="cd" style="background:#00a550"></span> Below Berlin avg <span class="cd" style="background:#e0d040;margin-left:8px"></span> Berlin average <span class="cd" style="background:#b01020;margin-left:8px"></span> Above Berlin avg</div>
     <p style="margin-top:6px;font-size:11px" data-i18n="welcome_tip">Heatmap shows market rents (Immoscout24). District labels show estimated average rent. Click anywhere for details.</p>
     <button class="btn" onclick="dismissWelcome()"><span data-i18n="got_it">Got it! →</span></button>
@@ -210,7 +210,7 @@ const I18N = {
     all_rents:'All Rents', all_districts:'All Districts',
     loading:'Loading data...', no_data:'Data pending.',
     no_match:'No matching districts',
-    welcome_desc:'Berlin rent data — block by block. Market rents (Immoscout24), official census rents (2022), and the official Mietspiegel. Click anywhere on the map for local rent details.',
+    welcome_desc:'Berlin rent data — block by block. Market rents (Immoscout24, €12.07/m²), official census rents (2022, €7.97/m²), and the official Mietspiegel. Click anywhere on the map for local rent details.',
     welcome_tip:'Heatmap shows market rents (Immoscout24). District labels show estimated average rent. Click anywhere for details.',
     got_it:'Got it! →', source_data:'Source Data',
   },
@@ -220,7 +220,7 @@ const I18N = {
     all_rents:'Alle Mieten', all_districts:'Alle Bezirke',
     loading:'Lade Daten...', no_data:'Daten ausstehend.',
     no_match:'Keine passenden Bezirke',
-    welcome_desc:'Berliner Mietdaten — Block für Block. Marktmieten (Immoscout24), offizielle Zensus-Mieten (2022) und der offizielle Mietspiegel. Klicke auf die Karte für lokale Mietdetails.',
+    welcome_desc:'Berliner Mietdaten — Block für Block. Marktmieten (Immoscout24, €12.07/m²), offizielle Zensus-Mieten (2022, €7.97/m²) und der offizielle Mietspiegel. Klicke auf die Karte für lokale Mietdetails.',
     welcome_tip:'Heatmap zeigt Marktmieten (Immoscout24). Bezirks-Labels zeigen geschätzte Durchschnittsmiete. Klicke für Details.',
     got_it:'Verstanden! →', source_data:'Datenquellen',
   }
