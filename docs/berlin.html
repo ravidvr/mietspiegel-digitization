@@ -25,7 +25,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .h-btn{background:transparent;border:1px solid rgba(255,255,255,.15);color:#e4e6f0;padding:4px 8px;border-radius:4px;font-size:11px;cursor:pointer}.h-btn:hover{background:rgba(255,255,255,.1)}
 .bdg{background:var(--accent);color:#fff;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600}
 
-#map{width:100%;height:calc(100vh - 44px)}
+/* Search bar */
+.searchbar{display:flex;align-items:center;gap:6px;padding:8px 14px;background:var(--surface2);border-bottom:1px solid var(--border)}
+.searchbar input[type=text]{flex:1;padding:8px 12px;border:2px solid var(--accent);border-radius:8px;background:var(--bg);color:var(--text);font-size:14px;outline:none}
+.searchbar input[type=text]:focus{box-shadow:0 0 0 3px rgba(91,141,239,.2)}
+.searchbar .s-btn{padding:8px 16px;border:none;border-radius:8px;background:var(--accent);color:#fff;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
+.searchbar .s-btn:hover{opacity:.85}
+
+#map{width:100%;height:calc(100vh - 96px)}
 
 .map-legend{position:absolute;bottom:16px;left:12px;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:8px 12px;font-size:10px;z-index:1000;box-shadow:0 2px 8px rgba(0,0,0,.3)}
 .map-legend .r{display:flex;align-items:center;gap:6px;margin:2px 0}
@@ -63,6 +70,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     <a class="h-btn" href="cross-city-comparison.html">📊 Compare</a>
     <a class="h-btn" href="about.html">About</a>
   </div>
+</div>
+
+<div class="searchbar">
+  <input type="text" id="addr-search" placeholder="🔍 Search by address, building name, or PLZ (e.g. Brandenburger Tor, 10115, Karl-Marx-Allee 43)..." onkeydown="if(event.key==='Enter')geocodeSearch()">
+  <button class="s-btn" onclick="geocodeSearch()">📍 Search</button>
 </div>
 
 <div id="map">
@@ -237,6 +249,34 @@ async function toggleSource() {
 }
 
 // ─── Zoom (handled inside init() after map is created) ──────
+
+// ─── Search ────────────────────────────────────────────────────
+async function geocodeSearch() {
+  const q = document.getElementById('addr-search').value.trim();
+  if (!q || q.length < 2) return;
+  const input = document.getElementById('addr-search');
+  input.style.background = 'var(--surface2)'; input.placeholder = '⏳ Searching...';
+  try {
+    const url = `https://nominatim.openstreetmap.org/search?format=json&limit=3&q=${encodeURIComponent(q + ', Berlin, Germany')}&countrycodes=de&accept-language=de&viewbox=13.0,52.7,13.8,52.3&bounded=1`;
+    const r = await fetch(url, { headers: { 'User-Agent': 'BerlinMietspiegel/1.0' } });
+    const results = await r.json();
+    if (!results.length) { input.placeholder = '❌ Not found — try again'; return; }
+    const best = results[0];
+    const lat = parseFloat(best.lat), lng = parseFloat(best.lon);
+    map.flyTo([lat, lng], 15, { duration: 1.2 });
+    const marker = L.circleMarker([lat, lng], { radius: 6, color: '#5b8def', fillColor: '#5b8def', fillOpacity: 0.6, weight: 2 }).addTo(map);
+    const safeName = document.createElement('div'); safeName.textContent = best.display_name.split(',')[0];
+    marker.bindPopup('<b>' + safeName.innerHTML + '</b>', { closeButton: false }).openPopup();
+    setTimeout(() => map.removeLayer(marker), 8000);
+    // Fire a click to show rent data at this location
+    map.fire('click', { latlng: { lat, lng }, originalEvent: { target: null } });
+    input.placeholder = `📍 ${best.display_name.split(',')[0]}`;
+  } catch(e) {
+    input.placeholder = '❌ Search failed';
+  }
+  input.style.background = '';
+  setTimeout(() => { input.placeholder = '🔍 Search by address, building name, or PLZ (e.g. Brandenburger Tor, 10115, Karl-Marx-Allee 43)...'; }, 3000);
+}
 
 // ─── Init ──────────────────────────────────────────────────────
 async function init() {
