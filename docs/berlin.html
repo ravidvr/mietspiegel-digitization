@@ -240,7 +240,13 @@ async function toggleSource() {
 
 // ─── Init ──────────────────────────────────────────────────────
 async function init() {
-  map = L.map('map', {center:[52.52,13.405],zoom:12,scrollWheelZoom:true,zoomControl:false});
+  // Berlin bounding box
+  const BERLIN_BOUNDS = [[52.32, 13.05], [52.70, 13.78]];
+  map = L.map('map', {
+    center:[52.52,13.405], zoom:12, scrollWheelZoom:true, zoomControl:false,
+    minZoom: 10, maxZoom: 18,
+    maxBounds: BERLIN_BOUNDS, maxBoundsViscosity: 1.0
+  });
   L.control.zoom({position:'bottomright'}).addTo(map);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution:'&copy; OSM',maxZoom:18}).addTo(map);
 

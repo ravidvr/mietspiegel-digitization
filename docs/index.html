@@ -479,7 +479,13 @@ function zoomToDistrict(name) {
 // ─── Init ─────────────────────────────────────────────────────
 async function init() {
   document.getElementById('p-compare').innerHTML = '<div class="es">⏳ Loading data...</div>';
-  map = L.map('map', { center: [52.52, 13.405], zoom: 11, scrollWheelZoom: true });
+  // Berlin bounding box (approx): south-west [52.32, 13.05] → north-east [52.70, 13.78]
+  const BERLIN_BOUNDS = [[52.32, 13.05], [52.70, 13.78]];
+  map = L.map('map', {
+    center: [52.52, 13.405], zoom: 11, scrollWheelZoom: true,
+    minZoom: 10, maxZoom: 18,
+    maxBounds: BERLIN_BOUNDS, maxBoundsViscosity: 1.0
+  });
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OSM', maxZoom: 18 }).addTo(map);
 
   // Load district index
