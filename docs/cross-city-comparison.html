@@ -70,10 +70,22 @@
   footer { margin-top: 20px; text-align: center; font-size: 11px; color: var(--text-dim); padding: 12px; }
   footer a { color: var(--accent); text-decoration: none; }
   @media (max-width: 768px) {
-    .container { padding: 10px; }
-    .controls { width: 100%; }
-    td, th { padding: 5px 6px; font-size: 11px; }
-    thead th:first-child { min-width: 120px; }
+    .container{padding:8px}
+    .header{padding:8px 12px}
+    .header h1{font-size:15px}
+    .header .nav a{font-size:11px;padding:6px 10px;min-height:36px;display:inline-flex;align-items:center}
+    .controls{width:100%;gap:8px}
+    .controls label{font-size:11px}
+    .controls select{font-size:14px;padding:8px 10px;min-height:40px}
+    .controls button{font-size:13px;padding:8px 14px;min-height:40px}
+    .stats{gap:6px}
+    .stat-card{padding:8px 10px;min-width:100px}
+    .stat-card .value{font-size:15px}
+    td,th{padding:5px 6px;font-size:11px}
+    thead th:first-child{min-width:100px}
+    .table-wrap{max-height:50vh;-webkit-overflow-scrolling:touch}
+    .section{padding:14px}
+    .mietspiegel-table{font-size:10px}
   }
 </style>
 </head>

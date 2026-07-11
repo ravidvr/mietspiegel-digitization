@@ -31,7 +31,14 @@ table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
 th,td{padding:8px 12px;text-align:left;border:1px solid var(--border)}
 th{background:var(--surface2);color:var(--text);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.5px}
 td{color:var(--text-dim)}
-.green{color:var(--green)} .red{color:var(--red)} .yellow{color:var(--yellow)}
+@media(max-width:600px){
+  body{padding:20px 16px}
+  h1{font-size:24px}
+  h2{font-size:18px}
+  p,li{font-size:14px}
+  table{font-size:12px;display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  th,td{padding:6px 8px}
+}
 </style>
 </head>
 <body>

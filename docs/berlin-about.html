@@ -28,7 +28,16 @@ table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13px}
 th,td{padding:7px 10px;text-align:left;border:1px solid var(--border)}
 th{background:var(--surface2);color:var(--text);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.5px}td{color:var(--text-dim)}
 .badge{display:inline-block;padding:1px 7px;border-radius:3px;font-size:10px;font-weight:600}
-.b-blue{background:#5b8def22;color:var(--accent)}.b-green{background:#48bb7822;color:var(--green)}
+@media(max-width:600px){
+  body{padding:24px 14px}
+  h1{font-size:22px}
+  h2{font-size:17px}
+  h3{font-size:14px}
+  p,li{font-size:13px}
+  table{font-size:11px;display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  th,td{padding:5px 7px}
+  pre{font-size:11px;padding:10px}
+}
 </style>
 </head>
 <body>

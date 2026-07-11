@@ -57,9 +57,19 @@
   footer { text-align: center; padding: 12px; font-size: 11px; color: #666680; }
   footer a { color: #5b8def; text-decoration: none; }
   @media (max-width: 768px) {
-    .summary-grid { grid-template-columns: repeat(2, 1fr); }
-    .growth-table { font-size: 11px; }
-    .edition-grid { grid-template-columns: 1fr; }
+    .header{padding:8px 12px}
+    .header h1{font-size:15px}
+    .header .nav a{font-size:11px;padding:6px 10px;min-height:36px;display:inline-flex;align-items:center}
+    .container{padding:10px}
+    .summary-grid{grid-template-columns:repeat(2,1fr);gap:6px}
+    .summary-card{padding:10px}
+    .summary-card .value{font-size:18px}
+    .section{padding:14px}
+    .growth-table{font-size:10px}
+    .growth-table th,.growth-table td{padding:4px 5px}
+    .edition-grid{grid-template-columns:1fr}
+    .chart-container{max-height:280px}
+    .chart-container canvas{max-height:260px}
   }
 </style>
 </head>
