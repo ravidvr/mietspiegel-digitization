@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Mietspiegel Historical Trends — Rent Development" />
+<meta property="og:description" content="Track German rent development over time. Growth rankings, historical editions, and annualized rates for 10 major cities." />
+<meta property="og:image" content="https://ravidvr.github.io/mietspiegel-digitization/og-image.svg" />
+<meta property="og:url" content="https://ravidvr.github.io/mietspiegel-digitization/docs/historical_trends.html" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Mietspiegel Historical Trends — Rent Development" />
+<meta name="twitter:description" content="Track German rent development over time. Growth rankings, historical editions, and annualized rates for 10 major cities." />
   <title>Mietspiegel Historical Trends — Rent Development Over Time</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
   <style>
@@ -132,7 +140,7 @@
 <script>
 let HISTORICAL_DATA = null;
 let mainChart = null;
-const COLORS = ['#5b8def','#48bb78','#ecc94b','#ed8936','#f56565','#6c5ce7','#48bb78','#e85555','#bb77dd','#66ccdd'];
+const COLORS = ['#5b8def','#48bb78','#ecc94b','#ed8936','#f56565','#6c5ce7','#00b894','#e85555','#bb77dd','#66ccdd','#fdcb6e','#a29bfe','#ff7675','#74b9ff','#55efc4','#ffeaa7','#dfe6e9','#fab1a0','#74b9ff','#a29bfe'];
 const cityColor = {};
 
 async function loadData() {

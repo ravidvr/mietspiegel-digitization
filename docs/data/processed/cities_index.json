@@ -24,14 +24,6 @@
     "population": 3700000
   },
   {
-    "city": "Bielefeld",
-    "slug": "bielefeld",
-    "lat": 52.0302,
-    "lng": 8.5325,
-    "state": "Nordrhein-Westfalen",
-    "population": 338000
-  },
-  {
     "city": "Bonn",
     "slug": "bonn",
     "lat": 50.7374,
@@ -56,28 +48,12 @@
     "population": 567000
   },
   {
-    "city": "Chemnitz",
-    "slug": "chemnitz",
-    "lat": 50.8278,
-    "lng": 12.9214,
-    "state": "Sachsen",
-    "population": 248000
-  },
-  {
     "city": "Dresden",
     "slug": "dresden",
     "lat": 51.0504,
     "lng": 13.7373,
     "state": "Sachsen",
     "population": 556000
-  },
-  {
-    "city": "Duisburg",
-    "slug": "duisburg",
-    "lat": 51.4344,
-    "lng": 6.7624,
-    "state": "Nordrhein-Westfalen",
-    "population": 502000
   },
   {
     "city": "Düsseldorf",
@@ -174,22 +150,6 @@
     "lng": 8.260962,
     "state": "Rheinland-Pfalz",
     "population": 220000
-  },
-  {
-    "city": "Mannheim",
-    "slug": "mannheim",
-    "lat": 49.4875,
-    "lng": 8.466,
-    "state": "Baden-Württemberg",
-    "population": 315000
-  },
-  {
-    "city": "Moenchengladbach",
-    "slug": "moenchengladbach",
-    "lat": 51.1805,
-    "lng": 6.4428,
-    "state": "Nordrhein-Westfalen",
-    "population": 261000
   },
   {
     "city": "München",

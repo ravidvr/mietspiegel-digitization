@@ -16,7 +16,7 @@ from shapely.geometry import Point, shape
 from shapely.strtree import STRtree
 from scipy.spatial import KDTree
 
-BASE = "/Users/ruhvee/mietspiegel-digitization"
+BASE = os.environ.get("MIETSPIEGEL_REPO", os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 INPUT = os.path.join(BASE, "data/processed/redx_grid_rent.json")
 KREISE = os.path.join(BASE, "data/external/germany-kreise.geojson")
 PLZ_CSV = os.path.join(BASE, "data/external/plz_centroids.csv")

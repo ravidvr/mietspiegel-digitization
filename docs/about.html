@@ -3,6 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="website" />
+<meta property="og:title" content="About — Mietspiegel Digitization" />
+<meta property="og:description" content="Comprehensive German rent index database — digitized from official city PDFs, enriched with market and census data." />
+<meta property="og:image" content="https://ravidvr.github.io/mietspiegel-digitization/og-image.svg" />
+<meta property="og:url" content="https://ravidvr.github.io/mietspiegel-digitization/docs/about.html" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="About — Mietspiegel Digitization" />
+<meta name="twitter:description" content="Comprehensive German rent index database — digitized from official city PDFs, enriched with market and census data." />
 <title>About — Mietspiegel Digitization</title>
 <style>
 :root{--bg:#0f1117;--surface:#1a1d28;--surface2:#222639;--border:#2a2e3e;--text:#e4e6f0;--text-dim:#8b8fa3;--accent:#5b8def;--green:#48bb78;--yellow:#ecc94b;--red:#f56565}
@@ -68,7 +76,7 @@ td{color:var(--text-dim)}
 <table>
   <tr><th>Metric</th><th>Value</th></tr>
   <tr><td>Cities with complete rent tables</td><td><strong>23</strong></td></tr>
-  <tr><td>Cities with metadata only</td><td>5 (PDFs unavailable: Bielefeld, Chemnitz, Duisburg, Mannheim, Mönchengladbach)</td></tr>
+  <tr><td>Cities with metadata only</td><td>0 (5 cities removed from index: Bielefeld, Chemnitz, Duisburg, Mannheim, Mönchengladbach — PDFs available but extraction pending)</td></tr>
   <tr><td>Data years</td><td>2024–2026</td></tr>
   <tr><td>Extraction method</td><td>pdfplumber + manual validation</td></tr>
   <tr><td>Raw PDFs downloaded</td><td>27 (awaiting batch extraction for 12 additional cities)</td></tr>
@@ -297,7 +305,7 @@ mietspiegel-digitization/
   <li><strong>No municipality-level (Gemeinde) data</strong> — the RWI PUF only goes to grid level. The SUF (Scientific Use File) would provide Gemeinde data but requires an academic application</li>
   <li><strong>Heatmap resolution</strong> — at street-level zoom, 1km² cells become individual squares. True address-level data only exists for Berlin.</li>
   <li><strong>Time lag</strong> — Mietspiegel updates every 2 years per city. The dashboard shows the latest available year (2024–2026 range).</li>
-  <li><strong>5 cities without PDFs</strong> — Bielefeld, Chemnitz, Duisburg, Mannheim, Mönchengladbach need manual PDF download</li>
+  <li><strong>5 cities pending extraction</strong> — Bielefeld, Chemnitz, Duisburg, Mannheim, Mönchengladbach (PDFs available, removed from dashboard until tables are extracted)</li>
 </ul>
 
 <h3>Planned Improvements</h3>

@@ -1,0 +1,17 @@
+GNU AFFERO GENERAL PUBLIC LICENSE Version 3 - Additional Grant
+
+Copyright (c) 2024-2026 Ravi DVR
+
+Dashboard code and build scripts: Licensed under CC BY-SA 4.0
+(Creative Commons Attribution-ShareAlike 4.0 International)
+
+Data licenses (separate):
+- City Mietspiegel data: Public official documents, respective city administrations
+- RWI-GEO-REDX PUF v16: Public Use File, DOI: 10.7807/IMMO:REDX:PUF:V16
+- Zensus 2022: Datenlizenz Deutschland – Namensnennung 2.0
+- Berlin WFS: Datenlizenz Deutschland – Zero
+- PLZ centroids: ODbL 1.0 (WZB Social Science Center)
+- Map tiles: OpenStreetMap contributors (ODbL)
+
+Full license text for CC BY-SA 4.0:
+https://creativecommons.org/licenses/by-sa/4.0/legalcode

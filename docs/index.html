@@ -3,6 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Mietspiegel Dashboard — German Rent Index Map" />
+<meta property="og:description" content="Official German rent index data — 28 cities digitized from PDFs, with Immoscout24 market data and Zensus 2022 census comparison." />
+<meta property="og:image" content="https://ravidvr.github.io/mietspiegel-digitization/og-image.svg" />
+<meta property="og:url" content="https://ravidvr.github.io/mietspiegel-digitization/docs/index.html" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Mietspiegel Dashboard — German Rent Index Map" />
+<meta name="twitter:description" content="Official German rent index data — 28 cities digitized from PDFs, with Immoscout24 market data and Zensus 2022 census comparison." />
 <title>Mietspiegel Dashboard — German Rent Index Map</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -127,9 +135,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   .h-btn{font-size:14px;padding:8px 12px}
   .fbar select,.fbar input{min-height:44px;font-size:16px}
   .f-btn{padding:8px 12px;font-size:13px}
-  /* Floating detail card on mobile replaces sidebar */
-  .dc-mobile{position:fixed;bottom:0;left:0;right:0;max-height:50vh;overflow-y:auto;background:var(--surface);border-radius:12px 12px 0 0;box-shadow:0 -4px 16px rgba(0,0,0,.3);z-index:2000;padding:16px;transition:transform .3s}
-  .dc-mobile.hidden{transform:translateY(100%)}
+  /* Floating tooltip acts as bottom sheet on mobile, replacing sidebar */
+  .map-tooltip{top:auto!important;bottom:0;left:0!important;right:0!important;max-width:100%!important;max-height:50vh;border-radius:12px 12px 0 0;box-shadow:0 -4px 16px rgba(0,0,0,.3)}
 }
 </style>
 </head>
@@ -147,20 +154,20 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 </div>
 
 <!-- Header -->
-<div class="header">
+<div class="header" role="banner">
   <div class="h-left">
     <h1>🏠 Mietspiegel <span data-i18n="dash">Dashboard</span></h1>
     <span class="sub" data-i18n="subtitle">German rent index data — compared across cities</span>
   </div>
   <div class="h-right">
-    <span class="bdg" id="city-count">23 cities</span>
+    <span class="bdg" id="city-count" aria-label="Number of cities with data">Cities</span>
     <span class="bdg g">2024–2026</span>
-    <button class="h-btn" onclick="showWelcome()">ℹ</button>
-    <button class="h-btn" onclick="toggleLang()" id="lang-btn">DE</button>
-    <button class="h-btn" onclick="toggleDark()" id="dark-btn">🌙 <span data-i18n="dark">Dark</span></button>
-    <a class="h-btn" href="cross-city-comparison.html">📊 Compare</a>
-    <a class="h-btn" href="historical_trends.html">📈 Trends</a>
-    <a class="h-btn" href="about.html" data-i18n="about">About</a>
+    <button class="h-btn" onclick="showWelcome()" aria-label="Show welcome guide">ℹ</button>
+    <button class="h-btn" onclick="toggleLang()" id="lang-btn" aria-label="Switch language">DE</button>
+    <button class="h-btn" onclick="toggleDark()" id="dark-btn" aria-label="Toggle dark mode">🌙 <span data-i18n="dark">Dark</span></button>
+    <a class="h-btn" href="cross-city-comparison.html" aria-label="Cross-city comparison table">📊 Compare</a>
+    <a class="h-btn" href="historical_trends.html" aria-label="Historical rent trends">📈 Trends</a>
+    <a class="h-btn" href="about.html" data-i18n="about" aria-label="About this project">About</a>
   </div>
 </div>
 
@@ -252,13 +259,14 @@ function applyLang() {
     else el.innerHTML = t(key);
   });
   document.getElementById('lang-btn').textContent = lang === 'en' ? 'DE' : 'EN';
-  if (document.getElementById('city-count')) document.getElementById('city-count').textContent = cities.length + ' cities';
+  document.getElementById('city-count').textContent = completeCities + ' cities';
 }
 function toggleLang() { lang = lang === 'en' ? 'de' : 'en'; localStorage.setItem('lang', lang); applyLang(); }
 
 // ─── State ────────────────────────────────────────────────────
 const DATA = 'data/processed/';
 let cities = [], cache = {}, cmpData = {}, map, rwiGrids = null;
+let completeCities = 0;
 let heatLayer = null, berlinLayer = null, cityLabels = [];
 let rwiMean = 0, rwiStd = 0;
 let zensusMode = false, zensusData = null, zensusMean = 0, zensusStd = 0, zensusCells = [];
@@ -343,7 +351,7 @@ async function loadBerlinDistricts() {
         const z = map.getZoom();
         const opacity = z < 9 ? 0 : z < 11 ? 0.2 : 0.3;
         const border = z >= 11;
-        return { fillColor: a<10?'#48bb78':a<11?'#86c97a':a<11.5?'#ecc94b':a<12?'#ed8936':'#f56565', fillOpacity: opacity, weight: border ? 1.5 : 0, color: border ? 'var(--text-dim)' : 'transparent', dashArray: border ? '4 2' : null };
+        return { fillColor: a<10?'#48bb78':a<11?'#86c97a':a<11.5?'#ecc94b':a<12?'#ed8936':'#f56565', fillOpacity: opacity, weight: border ? 1.5 : 0, color: border ? '#8b8fa3' : 'transparent', dashArray: border ? '4 2' : null };
       },
       onEachFeature: (f, layer) => {
         layer.bindTooltip(`${f.properties.district}<br>ø €${f.properties.avg_rent}/m²`, { sticky: true });
@@ -352,7 +360,7 @@ async function loadBerlinDistricts() {
     }).addTo(map);
 
     // Hint: clickable, zooms to Berlin
-    const berlinHint = L.circleMarker([52.52, 13.405], { radius: 8, color: 'var(--accent)', fillColor: 'var(--accent)', fillOpacity: 0.3, weight: 2, interactive: true }).addTo(map);
+    const berlinHint = L.circleMarker([52.52, 13.405], { radius: 8, color: '#5b8def', fillColor: '#5b8def', fillOpacity: 0.3, weight: 2, interactive: true }).addTo(map);
     berlinHint.bindTooltip('🔍 Click to see Berlin districts', { permanent: true, direction: 'top', offset: [0, -10] });
     berlinHint.on('click', () => map.flyTo([52.52, 13.405], 11, { duration: 1 }));
 
@@ -648,7 +656,8 @@ async function init() {
   states.forEach(s => { const o = document.createElement('option'); o.value = s; o.textContent = s; sel.appendChild(o); });
   await Promise.all(cities.map(async c => { try { cache[c.slug] = await (await fetch(DATA + c.slug + '.json')).json(); } catch(e) { cache[c.slug] = null; } }));
   const complete = Object.values(cache).filter(d => d && d.tables && d.tables.some(t => t.rows?.length)).length;
-  document.getElementById('city-count').textContent = complete + ' cities';
+  completeCities = complete;
+  document.getElementById('city-count').textContent = completeCities + ' cities';
 
   // Comparison data
   try {
@@ -708,8 +717,12 @@ async function geocodeSearch() {
     map.flyTo([lat, lng], 16, { duration: 1.2 });
 
     // Drop a temporary marker
-    const marker = L.circleMarker([lat, lng], { radius: 6, color: 'var(--accent)', fillColor: 'var(--accent)', fillOpacity: 0.6, weight: 2 }).addTo(map);
-    marker.bindPopup(`<b>${best.display_name.split(',')[0]}</b><br>${best.display_name.split(',').slice(1,3).join(',').trim()}`, { closeButton: false }).openPopup();
+    const marker = L.circleMarker([lat, lng], { radius: 6, color: '#5b8def', fillColor: '#5b8def', fillOpacity: 0.6, weight: 2 }).addTo(map);
+    const safeName = document.createElement('div');
+    safeName.textContent = best.display_name.split(',')[0];
+    const safeArea = document.createElement('div');
+    safeArea.textContent = best.display_name.split(',').slice(1,3).join(',').trim();
+    marker.bindPopup('<b>' + safeName.innerHTML + '</b><br>' + safeArea.innerHTML, { closeButton: false }).openPopup();
     setTimeout(() => map.removeLayer(marker), 8000);
 
     // Trigger heatmap click at this location
@@ -733,7 +746,11 @@ function dismissWelcome() { localStorage.setItem('mietspiegel-welcome','1'); doc
 function showWelcome() { document.getElementById('welcome').style.display='flex'; }
 function toggleDark() {
   const h = document.documentElement, d = h.getAttribute('data-theme')==='dark';
-  h.setAttribute('data-theme', d?'':'dark'); localStorage.setItem('theme', d?'':'dark');
+  const newTheme = d ? '' : 'dark';
+  h.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  const dbtn = document.getElementById('dark-btn');
+  if (dbtn) dbtn.innerHTML = newTheme === 'dark' ? '☀️ <span>Light</span>' : '🌙 <span>Dark</span>';
 }
 function dlCSV() {
   const rows=[['City','State','Year','Lage','Baujahr','Size','Rent (€/m²)']];
@@ -742,8 +759,13 @@ function dlCSV() {
   const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);a.download='mietspiegel-data.csv';a.click();
 }
 
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'dark') document.documentElement.setAttribute('data-theme','dark');
+const savedTheme = localStorage.getItem('theme') || 'dark';
+document.documentElement.setAttribute('data-theme', savedTheme);
+// Update dark button label on load
+document.addEventListener('DOMContentLoaded', () => {
+  const dbtn = document.getElementById('dark-btn');
+  if (dbtn) dbtn.innerHTML = savedTheme === 'dark' ? '☀️ <span>Light</span>' : '🌙 <span>Dark</span>';
+});
 document.addEventListener('DOMContentLoaded', init);
 </script>
 </body>

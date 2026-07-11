@@ -1,56 +1,132 @@
-# Historical Mietspiegel Tracking
+# Mietspiegel Digitization
 
-Tracks previous Mietspiegel editions for Germany's largest cities, showing rent development over time and highlighting cities with the fastest/slowest growth.
+Digitized, standardized, searchable database of official German city Mietspiegel (rent indexes) — extracted from PDFs into structured data with an interactive map dashboard.
 
-## Data
+**Live dashboard:** https://ravidvr.github.io/mietspiegel-digitization/
 
-**File:** `data/historical_mietspiegel.json`
+## What This Is
 
-Covers the 10 largest German cities (Berlin, Hamburg, Munich, Cologne, Frankfurt, Stuttgart, Düsseldorf, Leipzig, Dresden, Hannover) with Mietspiegel editions spanning 2013–2024.
+Germany has no unified national rent database. Each city publishes its Mietspiegel independently as a PDF — this project extracts, normalizes, and visualizes them all in one place.
 
-Each entry includes:
-- Edition year and type
-- Base rent per sqm (net cold) for "mittlere Wohnlage" (middle residential location)
-- Values by location category (einfach / mittel / gut)
-- Source references
+- **28 cities** of official rent index data (23 with complete tables)
+- **7,304 Immoscout24 market-rent grid cells** (RWI-GEO-REDX PUF v16)
+- **113K Zensus 2022 census rent cells** (100m resolution, aggregated to 1km)
+- **Berlin district overlay** (400,505 address-level classifications)
 
-## Dashboard
+## Dashboard Features
 
-**File:** `historical_trends.html`
+- Interactive heatmap with z-score normalization (zoom-sensitive radius/blur)
+- City labels with official Mietspiegel average rents
+- Click anywhere for multi-layer rent data (Immoscout vs Census vs Official)
+- Cross-city comparison table (filter by Wohnlage, size, Baujahr)
+- Historical trends (Chart.js line chart, growth ranking, edition tracking)
+- Berlin-only dashboard with district panel and dual-source toggle
+- DE/EN language toggle, dark mode, CSV export
+- Mobile-friendly with bottom-sheet tooltips
 
-Interactive visualization with:
-1. **Line chart** — rent development over time for all cities. Toggle cities via legend. Switch between Wohnlage categories (einfach/mittel/gut).
-2. **Growth ranking table** — cities ranked by total rent growth. Filter by period (total / last ~5 years / last ~3 years). Visual bars show relative growth.
-3. **Edition history cards** — per-city detail with edition-by-edition values and growth arrows.
-4. **Summary cards** — aggregate metrics: fastest/slowest growth, highest rent, total editions tracked.
+## Quick Start
 
-## Key Findings (as of 2024)
+```bash
+git clone https://github.com/ravidvr/mietspiegel-digitization.git
+cd mietspiegel-digitization
 
-| City | First | Latest | Total Growth | Annualized |
-|------|-------|--------|-------------|------------|
-| Berlin | €6.16 (2013) | €12.50 (2023) | +102.9% | +7.3%/yr |
-| Munich | €10.50 (2013) | €17.80 (2023) | +69.5% | +5.4%/yr |
-| Leipzig | €5.30 (2014) | €9.10 (2024) | +71.7% | +5.5%/yr |
-| Hannover | €5.90 (2013) | €9.70 (2023) | +64.4% | +5.1%/yr |
-| Frankfurt | €7.60 (2014) | €13.60 (2024) | +78.9% | +6.0%/yr |
+# Build the full dashboard (normalize data, build GeoJSON, process census)
+./scripts/build.sh
 
-## Sources
+# Or skip the heavy grid/census processing if data already exists:
+./scripts/build.sh --skip-grid --skip-zensus
 
-Official city Mietspiegel tables from each city's administration:
-- Berlin: berlin.de/mietspiegel
-- Hamburg: hamburg.de/mietspiegel  
-- Munich: stadt.muenchen.de/infos/mietspiegel.html
-- Cologne: stadt-koeln.de/mietspiegel
-- Frankfurt: frankfurt.de/mietspiegel
-- Stuttgart: stuttgart.de/mietspiegel
-- Düsseldorf: duesseldorf.de/mietspiegel.html
-- Leipzig: leipzig.de/mietspiegel
-- Dresden: dresden.de/mietspiegel
-- Hannover: hannover.de/mietspiegel
+# Serve locally:
+python3 -m http.server 8000 --directory docs
+# Open http://localhost:8000
+```
 
-## Notes
+### External Data Dependencies
 
-- Only "qualifizierte Mietspiegel" editions (legally recognized) are tracked
-- Values are for "mittlere Wohnlage", 60–80 sqm apartments, typical building-age cohort
-- Some cities publish in even years (Frankfurt, Leipzig), others in odd (Berlin, Munich)
-- Data will be refreshed as new editions are published
+The build pipeline references external datasets that are **not included in git** (too large).
+Download them separately:
+
+| Dataset | Source | How to get |
+|---------|--------|------------|
+| RWI-GEO-REDX PUF v16 | RWI Essen | https://doi.org/10.7807/IMMO:REDX:PUF:V16 |
+| Zensus 2022 (Nettokaltmiete) | Destatis | https://www.zensus2022.de |
+| German boundaries (Kreise/States) | GADM | https://gadm.org |
+| PLZ centroids | WZB | `data/external/plz_centroids.csv` |
+
+Place downloaded files under `data/external/`.
+
+## Project Structure
+
+```
+mietspiegel-digitization/
+├── docs/                          ← GitHub Pages deployment root
+│   ├── index.html                 ← Main dashboard (single-file, no framework)
+│   ├── cross-city-comparison.html ← Side-by-side comparison view
+│   ├── historical_trends.html     ← Rent development over time (Chart.js)
+│   ├── berlin.html                ← Berlin-only standalone dashboard
+│   ├── about.html                 ← Full project documentation
+│   ├── berlin-about.html          ← Berlin dashboard docs
+│   ├── schema.md                  ← Data schema reference
+│   └── data/processed/            ← All dashboard data (served statically)
+├── scripts/                       ← Build pipeline
+│   ├── build.sh                   ← Full pipeline orchestrator
+│   ├── compile_data.py            ← Normalize city data → dashboard JSON
+│   ├── build_national_choropleth.py ← RWI grids → GeoJSON with spatial joins
+│   ├── process_zensus2022.py      ← Zensus 100m → 1km aggregated JSON
+│   └── ...
+├── validate/                      ← Data quality framework
+│   ├── sanity_checks.py           ← Monotonicity, completeness, positivity
+│   ├── gdw_crossref.py            ← Cross-reference vs GdW benchmarks
+│   └── run_validations.py         ← CLI runner
+├── data/                          ← Source data (not tracked in git)
+│   ├── raw/                       ← Original Mietspiegel PDFs
+│   ├── external/                  ← RWI, Zensus, GADM downloads
+│   ├── processed/                 ← Build staging area
+│   └── versions/                  ← Historical edition snapshots
+└── .github/workflows/pages.yml    ← Auto-deploy to GitHub Pages
+```
+
+## Tech Stack
+
+- **Frontend:** Vanilla HTML/CSS/JS (no framework, no build step, no npm)
+- **Map:** Leaflet.js 1.9.4 + Leaflet.heat 0.2.0
+- **Charts:** Chart.js 4.4.7 (historical trends only)
+- **Data:** Static JSON files served by GitHub Pages
+- **Build:** Python 3 (pdfplumber, shapely, pyproj, scipy)
+- **Deployment:** GitHub Pages via GitHub Actions
+
+## Data Sources
+
+| Source | Coverage | License |
+|--------|----------|---------|
+| City Mietspiegel PDFs | 28 cities, 2024-2026 | Public official documents |
+| RWI-GEO-REDX PUF v16 | 7,304 grid cells nationwide | Public Use File (DOI: 10.7807/IMMO:REDX:PUF:V16) |
+| Zensus 2022 | 113K cells at 100m resolution | Datenlizenz Deutschland – Namensnennung 2.0 |
+| Berlin WFS | 400,505 addresses | Datenlizenz Deutschland – Zero |
+| OSM tiles | Map base | ODbL |
+
+See [docs/about.html](docs/about.html) for full documentation including methodology, limitations, and reproducibility instructions.
+
+## Validation
+
+```bash
+# Run all sanity checks on extracted city data
+python3 -m validate.run_validations
+
+# Single city
+python3 -m validate.run_validations --city berlin
+
+# JSON output
+python3 -m validate.run_validations --json
+```
+
+Checks: Baujahr monotonicity, Lage monotonicity, positive values, field completeness, GdW cross-reference.
+
+## License
+
+Dashboard code: **CC BY-SA 4.0**
+Data: See individual source licenses above.
+
+## Contributing
+
+Found a bug or have data for a new city? Open an issue or PR on [GitHub](https://github.com/ravidvr/mietspiegel-digitization).

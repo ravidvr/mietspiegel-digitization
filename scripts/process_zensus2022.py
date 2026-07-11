@@ -6,7 +6,7 @@ import csv, json, os, sys
 from collections import defaultdict
 from pyproj import Transformer
 
-BASE = "/Users/ruhvee/mietspiegel-digitization"
+BASE = os.environ.get("MIETSPIEGEL_REPO", os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 CSV_PATH = os.path.join(BASE, "data/external/Zensus2022_Durchschn_Nettokaltmiete_100m-Gitter.csv")
 OUT_PATH = os.path.join(BASE, "docs/data/processed/zensus2022_rent_1km.json")
 

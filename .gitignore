@@ -3,9 +3,25 @@ __pycache__/
 *.pyc
 .env
 venv/
-.venv/
+.venv
+.ruff_cache/
+
+# Raw PDFs (downloaded separately)
 data/raw/*
 !data/raw/.gitkeep
+!data/raw/extract_all_cities.py
+!data/raw/extract_pdf.py
 *.pdf
-data/external/*.csv
-data/external/*.zip
+
+# External datasets (download separately, not tracked in git)
+# RWI-GEO-REDX PUF v16: https://doi.org/10.7807/IMMO:REDX:PUF:V16
+# Zensus 2022: https://www.zensus2022.de
+# Boundaries: GADM (gadm.org)
+data/external/
+
+# Processed data lives in docs/data/processed/ (served by GitHub Pages)
+# data/processed/ is the build staging area — not tracked
+data/processed/
+
+# Large geojson files
+docs/data/germany-kreise.geojson

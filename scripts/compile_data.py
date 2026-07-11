@@ -16,7 +16,9 @@ import os
 import sys
 from pathlib import Path
 
-REPO_DATA = Path("/tmp/ms-repo/data/processed")
+# Allow override via environment or default to repo-relative path
+REPO_ROOT = Path(os.environ.get("MIETSPIEGEL_REPO", Path(__file__).resolve().parent.parent))
+REPO_DATA = Path(os.environ.get("MIETSPIEGEL_INPUT", REPO_ROOT / "data" / "processed"))
 
 # Known city coordinates for all cities in scope
 CITY_COORDS = {
@@ -43,7 +45,6 @@ CITY_COORDS = {
     "duisburg": (51.4344, 6.7624),
     "mannheim": (49.4875, 8.4660),
     "nuernberg": (49.4521, 11.0766),
-    "fehlerburg": (51.0, 10.0),
 }
 
 CITY_POPULATIONS = {
@@ -300,7 +301,7 @@ def normalize_city_data(city_entry, per_city_data=None):
 
 
 def main():
-    output_dir = Path("/Users/ruhvee/.hermes/kanban/boards/mietspiegel-digitization/workspaces/t_5d8fc893/data/processed")
+    output_dir = Path(os.environ.get("MIETSPIEGEL_OUTPUT", REPO_ROOT / "docs" / "data" / "processed"))
     output_dir.mkdir(parents=True, exist_ok=True)
     
     # 1. Load main cities.json
@@ -327,16 +328,14 @@ def main():
                 data = json.load(fh)
             if isinstance(data, dict) and "city" in data:
                 per_city[slug] = data
-        except:
+        except Exception:
             pass
     
     print(f"Loaded {len(per_city)} per-city data files")
     
-    # 3. Also check extraction workspace data
-    workspace_paths = [
-        Path("/Users/ruhvee/.hermes/kanban/boards/mietspiegel-digitization/workspaces/t_275a8410/data/processed"),
-        Path("/Users/ruhvee/.hermes/kanban/boards/mietspiegel-digitization/workspaces/t_b3ea9811/data/processed"),
-    ]
+    # 3. Also check workspace extraction data (configurable via env)
+    workspace_env = os.environ.get("MIETSPIEGEL_WORKSPACE", "")
+    workspace_paths = [Path(p) for p in workspace_env.split(":") if p]
     for wp in workspace_paths:
         if wp.exists():
             for f in sorted(wp.glob("*.json")):
@@ -349,7 +348,7 @@ def main():
                     if isinstance(data, dict) and "city" in data:
                         per_city[slug] = data
                         print(f"  Added from workspace: {slug}")
-                except:
+                except Exception:
                     pass
     
     # 4. Normalize all cities

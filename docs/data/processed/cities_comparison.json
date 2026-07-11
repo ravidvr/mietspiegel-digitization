@@ -47,20 +47,6 @@
       "gap_pct": 2.0
     },
     {
-      "city": "Bielefeld",
-      "mietspiegel_year": 2024,
-      "mietspiegel_avg": null,
-      "lat": 52.0302,
-      "lng": 8.5325,
-      "state": "Nordrhein-Westfalen",
-      "population": 338000,
-      "immoscout_radius_km": 30.7,
-      "immoscout_cells": 43,
-      "immoscout_avg": 8.06,
-      "immoscout_year_range": "2021-2025",
-      "gap_pct": null
-    },
-    {
       "city": "Bonn",
       "mietspiegel_year": 2026,
       "mietspiegel_avg": 10.08,
@@ -103,20 +89,6 @@
       "gap_pct": -15.1
     },
     {
-      "city": "Chemnitz",
-      "mietspiegel_year": 2025,
-      "mietspiegel_avg": null,
-      "lat": 50.8278,
-      "lng": 12.9214,
-      "state": "Sachsen",
-      "population": 248000,
-      "immoscout_radius_km": 29.9,
-      "immoscout_cells": 70,
-      "immoscout_avg": 5.31,
-      "immoscout_year_range": "2021-2025",
-      "gap_pct": null
-    },
-    {
       "city": "Dresden",
       "mietspiegel_year": 2025,
       "mietspiegel_avg": 7.63,
@@ -131,21 +103,7 @@
       "gap_pct": 6.2
     },
     {
-      "city": "Duisburg",
-      "mietspiegel_year": 2024,
-      "mietspiegel_avg": null,
-      "lat": 51.4344,
-      "lng": 6.7624,
-      "state": "Nordrhein-Westfalen",
-      "population": 502000,
-      "immoscout_radius_km": 31.6,
-      "immoscout_cells": 320,
-      "immoscout_avg": 8.87,
-      "immoscout_year_range": "2021-2025",
-      "gap_pct": null
-    },
-    {
-      "city": "D\u00fcsseldorf",
+      "city": "Düsseldorf",
       "mietspiegel_year": 2024,
       "mietspiegel_avg": 12.02,
       "lat": 51.2277,
@@ -192,7 +150,7 @@
       "mietspiegel_avg": 13.36,
       "lat": 47.999,
       "lng": 7.8421,
-      "state": "Baden-W\u00fcrttemberg",
+      "state": "Baden-Württemberg",
       "population": 236000,
       "immoscout_radius_km": 29.8,
       "immoscout_cells": 32,
@@ -257,7 +215,7 @@
       "gap_pct": 16.8
     },
     {
-      "city": "K\u00f6ln",
+      "city": "Köln",
       "mietspiegel_year": 2024,
       "mietspiegel_avg": 14.16,
       "lat": 50.9375,
@@ -285,7 +243,7 @@
       "gap_pct": -14.9
     },
     {
-      "city": "L\u00fcbeck",
+      "city": "Lübeck",
       "mietspiegel_year": 2025,
       "mietspiegel_avg": 9.56,
       "lat": 53.865467,
@@ -313,35 +271,7 @@
       "gap_pct": -3.2
     },
     {
-      "city": "Mannheim",
-      "mietspiegel_year": 2024,
-      "mietspiegel_avg": null,
-      "lat": 49.4875,
-      "lng": 8.466,
-      "state": "Baden-W\u00fcrttemberg",
-      "population": 315000,
-      "immoscout_radius_km": 30.5,
-      "immoscout_cells": 140,
-      "immoscout_avg": 10.27,
-      "immoscout_year_range": "2021-2025",
-      "gap_pct": null
-    },
-    {
-      "city": "Moenchengladbach",
-      "mietspiegel_year": 2026,
-      "mietspiegel_avg": null,
-      "lat": 51.1805,
-      "lng": 6.4428,
-      "state": "Nordrhein-Westfalen",
-      "population": 261000,
-      "immoscout_radius_km": 30.1,
-      "immoscout_cells": 88,
-      "immoscout_avg": 8.51,
-      "immoscout_year_range": "2021-2025",
-      "gap_pct": null
-    },
-    {
-      "city": "M\u00fcnchen",
+      "city": "München",
       "mietspiegel_year": 2025,
       "mietspiegel_avg": 19.86,
       "lat": 48.1351,
@@ -355,7 +285,7 @@
       "gap_pct": -15.2
     },
     {
-      "city": "N\u00fcrnberg",
+      "city": "Nürnberg",
       "mietspiegel_year": 2024,
       "mietspiegel_avg": 12.24,
       "lat": 49.4521,
@@ -388,7 +318,7 @@
       "mietspiegel_avg": 14.98,
       "lat": 48.7758,
       "lng": 9.1829,
-      "state": "Baden-W\u00fcrttemberg",
+      "state": "Baden-Württemberg",
       "population": 630000,
       "immoscout_radius_km": 32.2,
       "immoscout_cells": 278,
