@@ -27,8 +27,8 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Berlin bounding box (slightly padded)
 BBOX = {"lat_min": 52.35, "lat_max": 52.65, "lng_min": 13.05, "lng_max": 13.75}
 
-# Most recent year to pull from the RWI data
-YEARS = [2008, 2013, 2018, 2023, 2024, 2025]
+# Most recent year to pull from the RWI data (only last 5 years)
+YEARS = [2021, 2022, 2023, 2024, 2025]
 
 
 def in_berlin(lat, lng):

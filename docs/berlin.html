@@ -46,12 +46,27 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .map-tooltip .insight{font-size:11px;font-weight:600}
 .map-tooltip .row{display:flex;justify-content:space-between;font-size:10px;margin:1px 0}
 
-.district-panel{position:absolute;top:56px;left:12px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px;z-index:1000;box-shadow:0 2px 8px rgba(0,0,0,.3);max-height:calc(100% - 100px);overflow-y:auto;font-size:11px;max-width:200px}
-.district-panel h4{font-size:11px;font-weight:700;margin-bottom:6px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.5px}
-.district-panel .d-row{display:flex;justify-content:space-between;padding:3px 4px;border-radius:3px;cursor:pointer;margin:1px 0}
+.district-panel{position:absolute;top:56px;left:12px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px;z-index:1000;box-shadow:0 2px 8px rgba(0,0,0,.3);max-height:calc(100% - 100px);overflow-y:auto;font-size:12px;max-width:240px}
+.district-panel h4{font-size:12px;font-weight:700;margin-bottom:6px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.5px}
+.district-panel .d-row{display:flex;justify-content:space-between;padding:4px 5px;border-radius:3px;cursor:pointer;margin:1px 0;gap:6px}
 .district-panel .d-row:hover{background:var(--surface2)}
-.district-panel .d-row .d-name{font-weight:600;font-size:10px}
-.district-panel .d-row .d-rent{color:var(--text-dim);font-size:10px}
+.district-panel .d-row .d-name{font-weight:600;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.district-panel .d-row .d-rent{color:var(--text-dim);font-size:11px;flex-shrink:0}
+
+/* Leaflet tooltips — dark theme */
+.leaflet-tooltip{
+  background:var(--surface)!important;color:var(--text)!important;
+  border:1px solid var(--border)!important;border-radius:6px!important;
+  padding:6px 10px!important;font-size:12px!important;font-weight:500!important;
+  box-shadow:0 2px 8px rgba(0,0,0,.4)!important
+}
+.leaflet-tooltip b{color:#fff;font-size:13px}
+.leaflet-tooltip:before{border-top-color:var(--surface)!important}
+
+/* Leaflet popups */
+.leaflet-popup-content-wrapper{background:var(--surface)!important;color:var(--text)!important;border-radius:8px!important}
+.leaflet-popup-tip{background:var(--surface)!important}
+.leaflet-popup-close-button{color:var(--text-dim)!important}
 
 @media(max-width:768px){
   .map-tooltip{top:auto;bottom:0;left:0;right:0;max-width:100%;border-radius:12px 12px 0 0;max-height:40vh}
@@ -134,10 +149,12 @@ async function loadDistricts() {
     berlinLayer = L.geoJSON(distData, {
       style: f => {
         const a = f.properties.avg_rent || 12;
-        return { fillColor: a<10?'#48bb78':a<11?'#86c97a':a<11.5?'#ecc94b':a<12?'#ed8936':'#f56565', fillOpacity: 0.2, weight: 1.5, color: '#8b8fa3', dashArray: '4 2' };
+        return { fillColor: a<10?'#48bb78':a<11?'#86c97a':a<11.5?'#ecc94b':a<12?'#ed8936':'#f56565', fillOpacity: 0.25, weight: 2, color: '#5b6a8a', dashArray: '4 2' };
       },
       onEachFeature: (f, layer) => {
-        layer.bindTooltip(`<b>${f.properties.district}</b><br>ø €${f.properties.avg_rent}/m²<br>${f.properties.total_addresses.toLocaleString()} addresses`, {sticky:true});
+        layer.bindTooltip(`<b>${f.properties.district}</b><br>ø €${f.properties.avg_rent}/m²<br>${f.properties.total_addresses.toLocaleString()} addresses`, {sticky:true, className:'district-label'});
+        layer.on('mouseover', function(){ this.setStyle({fillOpacity:0.45, weight:3, color:'#7b8fbf'}); });
+        layer.on('mouseout', function(){ this.setStyle({fillOpacity:0.25, weight:2, color:'#5b6a8a'}); });
         layer.on('click', () => showDistrict(f.properties));
       }
     }).addTo(map);
