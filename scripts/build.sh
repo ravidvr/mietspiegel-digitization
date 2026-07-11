@@ -35,6 +35,11 @@ rsync -a --delete data/processed/ docs/data/processed/ 2>/dev/null || \
 echo "  Synced $(ls docs/data/processed/*.json 2>/dev/null | wc -l | tr -d ' ') files"
 echo ""
 
+# ─── Berlin-specific data ───────────────────────────
+echo "▶ Step 2b/5: Building Berlin-only data files..."
+python3 scripts/build_berlin_data.py || echo "  ⚠ Skipped (missing source data)"
+echo ""
+
 # ─── 3. Build national choropleth (optional) ────────
 if [ "$SKIP_GRID" = false ] && [ -f data/processed/redx_grid_rent.json ]; then
   echo "▶ Step 3/4: Building national rent grid GeoJSON..."

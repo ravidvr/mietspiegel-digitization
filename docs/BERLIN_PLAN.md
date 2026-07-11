@@ -7,11 +7,17 @@ A standalone Berlin rent dashboard with ALL calculations based on Berlin-local a
 - Centers map on Berlin ✓
 - Only loads Berlin city JSON ✓
 - Shows 12 districts ✓
-- BUT: still loads ALL national Immoscout + Zensus data
-- BUT: z-scores use national averages (€9.93, €6.35)
-- BUT: heatmap shows entire country
+- Loads Berlin-only Immoscout data (467 cells, ø €10.79/m²) ✓
+- Loads Berlin-only Zensus data (1,155 cells, ø €7.97/m²) ✓
+- Heatmap uses Berlin-only z-scores ✓
+- Legend says "Berlin average" ✓
+- Tooltips show Berlin context ✓
+- No national data loaded ✓
+- No sidebar (full-screen map) ✓
+- District list in floating panel ✓
+- Clickable districts zoom on map ✓
 
-## Tasks
+## Tasks (all completed)
 
 ### T1: Filter Immoscout data to Berlin
 - **What:** Filter `redx_grid_rent.json` grid cells to Berlin bounding box

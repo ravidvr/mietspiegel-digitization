@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0",
+  "description": "Historical Berlin Mietspiegel editions and base rent values by Wohnlage",
+  "last_updated": "2026-07-06",
+  "city": "Berlin",
+  "cities": [
+    {
+      "city": "Berlin",
+      "state": "Berlin",
+      "population": 3777000,
+      "mietspiegel_type": "qualifiziert",
+      "publication_cycle_years": 2,
+      "editions": [
+        {
+          "year": 2013,
+          "type": "qualifiziert",
+          "base_rent_per_sqm": 6.16,
+          "baujahr_cohort": "1965-1974",
+          "source": "Berliner Mietspiegel 2013"
+        },
+        {
+          "year": 2015,
+          "type": "qualifiziert",
+          "base_rent_per_sqm": 6.71,
+          "baujahr_cohort": "1965-1974",
+          "source": "Berliner Mietspiegel 2015"
+        },
+        {
+          "year": 2017,
+          "type": "qualifiziert",
+          "base_rent_per_sqm": 7.6,
+          "baujahr_cohort": "1965-1974",
+          "source": "Berliner Mietspiegel 2017"
+        },
+        {
+          "year": 2019,
+          "type": "qualifiziert",
+          "base_rent_per_sqm": 8.87,
+          "baujahr_cohort": "1965-1974",
+          "source": "Berliner Mietspiegel 2019"
+        },
+        {
+          "year": 2021,
+          "type": "qualifiziert",
+          "base_rent_per_sqm": 10.56,
+          "baujahr_cohort": "1965-1974",
+          "source": "Berliner Mietspiegel 2021"
+        },
+        {
+          "year": 2023,
+          "type": "qualifiziert",
+          "base_rent_per_sqm": 12.5,
+          "baujahr_cohort": "1965-1974",
+          "source": "Berliner Mietspiegel 2023"
+        }
+      ],
+      "by_lage": {
+        "2013": {
+          "einfach": 5.0,
+          "mittel": 6.16,
+          "gut": 7.48
+        },
+        "2015": {
+          "einfach": 5.42,
+          "mittel": 6.71,
+          "gut": 8.17
+        },
+        "2017": {
+          "einfach": 6.18,
+          "mittel": 7.6,
+          "gut": 9.2
+        },
+        "2019": {
+          "einfach": 7.15,
+          "mittel": 8.87,
+          "gut": 10.84
+        },
+        "2021": {
+          "einfach": 8.48,
+          "mittel": 10.56,
+          "gut": 12.94
+        },
+        "2023": {
+          "einfach": 9.98,
+          "mittel": 12.5,
+          "gut": 15.4
+        }
+      },
+      "source_url_2023": "https://www.berlin.de/mietspiegel/"
+    }
+  ]
+}

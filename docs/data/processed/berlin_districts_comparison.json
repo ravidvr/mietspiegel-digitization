@@ -1,0 +1,116 @@
+{
+  "description": "Berlin district rent comparison",
+  "berlin_avg_immoscout": 10.79,
+  "berlin_avg_zensus": 7.97,
+  "berlin_avg_official": 11.73,
+  "districts": [
+    {
+      "district": "Neukölln",
+      "avg_rent": 9.79,
+      "einfach_pct": 63.7,
+      "mittel_pct": 36.3,
+      "gut_pct": 0.0,
+      "total_addresses": 31092,
+      "gap_pct": -9.3
+    },
+    {
+      "district": "Treptow-Köpenick",
+      "avg_rent": 10.54,
+      "einfach_pct": 43.0,
+      "mittel_pct": 51.9,
+      "gut_pct": 5.1,
+      "total_addresses": 48991,
+      "gap_pct": -2.3
+    },
+    {
+      "district": "Spandau",
+      "avg_rent": 10.6,
+      "einfach_pct": 47.5,
+      "mittel_pct": 38.7,
+      "gut_pct": 13.7,
+      "total_addresses": 33994,
+      "gap_pct": -1.8
+    },
+    {
+      "district": "Lichtenberg",
+      "avg_rent": 10.82,
+      "einfach_pct": 34.5,
+      "mittel_pct": 59.5,
+      "gut_pct": 6.0,
+      "total_addresses": 23030,
+      "gap_pct": 0.3
+    },
+    {
+      "district": "Reinickendorf",
+      "avg_rent": 11.08,
+      "einfach_pct": 35.7,
+      "mittel_pct": 45.3,
+      "gut_pct": 19.0,
+      "total_addresses": 41608,
+      "gap_pct": 2.7
+    },
+    {
+      "district": "Mitte",
+      "avg_rent": 11.09,
+      "einfach_pct": 49.6,
+      "mittel_pct": 13.1,
+      "gut_pct": 37.3,
+      "total_addresses": 17636,
+      "gap_pct": 2.8
+    },
+    {
+      "district": "Tempelhof-Schöneberg",
+      "avg_rent": 11.1,
+      "einfach_pct": 27.8,
+      "mittel_pct": 62.9,
+      "gut_pct": 9.3,
+      "total_addresses": 35308,
+      "gap_pct": 2.9
+    },
+    {
+      "district": "Marzahn-Hellersdorf",
+      "avg_rent": 11.7,
+      "einfach_pct": 20.1,
+      "mittel_pct": 54.9,
+      "gut_pct": 25.0,
+      "total_addresses": 39753,
+      "gap_pct": 8.4
+    },
+    {
+      "district": "Friedrichshain-Kreuzberg",
+      "avg_rent": 11.71,
+      "einfach_pct": 27.5,
+      "mittel_pct": 37.3,
+      "gut_pct": 35.2,
+      "total_addresses": 11485,
+      "gap_pct": 8.5
+    },
+    {
+      "district": "Pankow",
+      "avg_rent": 11.76,
+      "einfach_pct": 10.8,
+      "mittel_pct": 73.9,
+      "gut_pct": 15.3,
+      "total_addresses": 48557,
+      "gap_pct": 9.0
+    },
+    {
+      "district": "Steglitz-Zehlendorf",
+      "avg_rent": 12.78,
+      "einfach_pct": 1.4,
+      "mittel_pct": 51.9,
+      "gut_pct": 46.7,
+      "total_addresses": 46291,
+      "gap_pct": 18.4
+    },
+    {
+      "district": "Charlottenburg-Wilmersdorf",
+      "avg_rent": 12.8,
+      "einfach_pct": 9.5,
+      "mittel_pct": 32.5,
+      "gut_pct": 58.0,
+      "total_addresses": 22760,
+      "gap_pct": 18.6
+    }
+  ]
+}

@@ -1,1 +1,4689 @@
-{"source": "RWI-GEO-REDX PUF v16 (Berlin subset, 2021-2025)", "total": 395, "clean": 393, "mean": 11.84, "std": 3.1, "grids": [{"lat": 52.38315, "lng": 13.05577, "rent": 11.6, "year": 2025, "n": 71, "grid": "4529_3257", "location": "Potsdam, Brandenburg", "plz": "14473"}, {"lat": 52.39213, "lng": 13.05639, "rent": 9.8, "year": 2025, "n": 116, "grid": "4529_3258", "location": "Potsdam, Brandenburg", "plz": "14467"}, {"lat": 52.40111, "lng": 13.05701, "rent": 14.2, "year": 2025, "n": 108, "grid": "4529_3259", "location": "Potsdam, Brandenburg", "plz": "14467"}, {"lat": 52.55373, "lng": 13.06759, "rent": 11.5, "year": 2025, "n": 83, "grid": "4529_3276", "location": "Havelland, Brandenburg", "plz": "14612"}, {"lat": 52.38277, "lng": 13.07045, "rent": 9.7, "year": 2025, "n": 94, "grid": "4530_3257", "location": "Potsdam, Brandenburg", "plz": "14467"}, {"lat": 52.39175, "lng": 13.07107, "rent": 8.8, "year": 2025, "n": 65, "grid": "4530_3258", "location": "Potsdam, Brandenburg", "plz": "14467"}, {"lat": 52.55335, "lng": 13.08232, "rent": 10.6, "year": 2024, "n": 84, "grid": "4530_3276", "location": "Havelland, Brandenburg", "plz": "14612"}, {"lat": 52.35546, "lng": 13.08325, "rent": 8.0, "year": 2024, "n": 62, "grid": "4531_3254", "location": "Potsdam, Brandenburg", "plz": "14478"}, {"lat": 52.36444, "lng": 13.08387, "rent": 9.6, "year": 2025, "n": 83, "grid": "4531_3255", "location": "Potsdam, Brandenburg", "plz": "14478"}, {"lat": 52.37342, "lng": 13.0845, "rent": 6.7, "year": 2024, "n": 64, "grid": "4531_3256", "location": "Potsdam, Brandenburg", "plz": "14478"}, {"lat": 52.38239, "lng": 13.08512, "rent": 10.4, "year": 2025, "n": 124, "grid": "4531_3257", "location": "Potsdam, Brandenburg", "plz": "14478"}, {"lat": 52.39137, "lng": 13.08575, "rent": 11.0, "year": 2025, "n": 69, "grid": "4531_3258", "location": "Potsdam, Brandenburg", "plz": "14482"}, {"lat": 52.38201, "lng": 13.0998, "rent": 9.9, "year": 2025, "n": 114, "grid": "4532_3257", "location": "Potsdam, Brandenburg", "plz": "14482"}, {"lat": 52.39099, "lng": 13.10043, "rent": 11.4, "year": 2023, "n": 51, "grid": "4532_3258", "location": "Potsdam, Brandenburg", "plz": "14482"}, {"lat": 52.37265, "lng": 13.11384, "rent": 8.7, "year": 2025, "n": 50, "grid": "4533_3256", "location": "Potsdam, Brandenburg", "plz": "14480"}, {"lat": 52.52527, "lng": 13.12461, "rent": 12.6, "year": 2024, "n": 72, "grid": "4533_3273", "location": "Berlin", "plz": "13591"}, {"lat": 52.35431, "lng": 13.12725, "rent": 9.3, "year": 2024, "n": 69, "grid": "4534_3254", "location": "Potsdam, Brandenburg", "plz": "14480"}, {"lat": 52.36329, "lng": 13.12788, "rent": 10.0, "year": 2025, "n": 100, "grid": "4534_3255", "location": "Potsdam, Brandenburg", "plz": "14480"}, {"lat": 52.37227, "lng": 13.12851, "rent": 9.5, "year": 2024, "n": 81, "grid": "4534_3256", "location": "Potsdam, Brandenburg", "plz": "14480"}, {"lat": 52.38124, "lng": 13.12915, "rent": 9.2, "year": 2024, "n": 63, "grid": "4534_3257", "location": "Potsdam, Brandenburg", "plz": "14480"}, {"lat": 52.52488, "lng": 13.13933, "rent": 8.4, "year": 2024, "n": 197, "grid": "4534_3273", "location": "Berlin", "plz": "13591"}, {"lat": 52.46165, "lng": 13.14956, "rent": 13.9, "year": 2024, "n": 57, "grid": "4535_3266", "location": "Berlin", "plz": "14089"}, {"lat": 52.51551, "lng": 13.15341, "rent": 7.1, "year": 2025, "n": 96, "grid": "4535_3272", "location": "Potsdam-Mittelmark, Brandenburg", "plz": "13593"}, {"lat": 52.54244, "lng": 13.15533, "rent": 7.6, "year": 2024, "n": 60, "grid": "4535_3275", "location": "Berlin", "plz": "13591"}, {"lat": 52.55142, "lng": 13.15598, "rent": 7.5, "year": 2024, "n": 64, "grid": "4535_3276", "location": "Berlin", "plz": "13589"}, {"lat": 52.51512, "lng": 13.16813, "rent": 8.4, "year": 2024, "n": 123, "grid": "4536_3272", "location": "Berlin", "plz": "13593"}, {"lat": 52.5241, "lng": 13.16877, "rent": 10.9, "year": 2024, "n": 60, "grid": "4536_3273", "location": "Berlin", "plz": "13593"}, {"lat": 52.53308, "lng": 13.16942, "rent": 8.7, "year": 2024, "n": 156, "grid": "4536_3274", "location": "Berlin", "plz": "13593"}, {"lat": 52.54205, "lng": 13.17006, "rent": 7.5, "year": 2025, "n": 52, "grid": "4536_3275", "location": "Berlin", "plz": "13583"}, {"lat": 52.55103, "lng": 13.17071, "rent": 6.7, "year": 2024, "n": 55, "grid": "4536_3276", "location": "Berlin", "plz": "13583"}, {"lat": 52.51473, "lng": 13.18284, "rent": 10.2, "year": 2025, "n": 70, "grid": "4537_3272", "location": "Berlin", "plz": "13595"}, {"lat": 52.52371, "lng": 13.18349, "rent": 11.0, "year": 2025, "n": 148, "grid": "4537_3273", "location": "Berlin", "plz": "13581"}, {"lat": 52.53268, "lng": 13.18414, "rent": 11.3, "year": 2025, "n": 52, "grid": "4537_3274", "location": "Berlin", "plz": "13581"}, {"lat": 52.54166, "lng": 13.18479, "rent": 9.7, "year": 2025, "n": 65, "grid": "4537_3275", "location": "Berlin", "plz": "13583"}, {"lat": 52.55064, "lng": 13.18544, "rent": 10.0, "year": 2024, "n": 56, "grid": "4537_3276", "location": "Berlin", "plz": "13583"}, {"lat": 52.63143, "lng": 13.19129, "rent": 7.8, "year": 2024, "n": 82, "grid": "4537_3285", "location": "Oberhavel, Brandenburg", "plz": "16761"}, {"lat": 52.37969, "lng": 13.18784, "rent": 12.9, "year": 2024, "n": 53, "grid": "4538_3257", "location": "Potsdam-Mittelmark, Brandenburg", "plz": "14532"}, {"lat": 52.42457, "lng": 13.19107, "rent": 14.3, "year": 2025, "n": 87, "grid": "4538_3262", "location": "Berlin", "plz": "14129"}, {"lat": 52.50536, "lng": 13.19691, "rent": 9.8, "year": 2024, "n": 84, "grid": "4538_3271", "location": "Berlin", "plz": "13595"}, {"lat": 52.52331, "lng": 13.19821, "rent": 9.3, "year": 2024, "n": 81, "grid": "4538_3273", "location": "Berlin", "plz": "13581"}, {"lat": 52.53229, "lng": 13.19886, "rent": 11.7, "year": 2024, "n": 53, "grid": "4538_3274", "location": "Berlin", "plz": "13581"}, {"lat": 52.54127, "lng": 13.19951, "rent": 11.7, "year": 2025, "n": 142, "grid": "4538_3275", "location": "Berlin", "plz": "13585"}, {"lat": 52.55024, "lng": 13.20017, "rent": 14.0, "year": 2025, "n": 104, "grid": "4538_3276", "location": "Berlin", "plz": "13585"}, {"lat": 52.55922, "lng": 13.20082, "rent": 10.7, "year": 2025, "n": 106, "grid": "4538_3277", "location": "Berlin", "plz": "13585"}, {"lat": 52.43315, "lng": 13.20641, "rent": 10.0, "year": 2024, "n": 62, "grid": "4539_3263", "location": "Berlin", "plz": "14129"}, {"lat": 52.50497, "lng": 13.21163, "rent": 10.3, "year": 2024, "n": 134, "grid": "4539_3271", "location": "Berlin", "plz": "13595"}, {"lat": 52.54985, "lng": 13.2149, "rent": 9.7, "year": 2025, "n": 74, "grid": "4539_3276", "location": "Berlin", "plz": "13585"}, {"lat": 52.55882, "lng": 13.21555, "rent": 9.4, "year": 2024, "n": 63, "grid": "4539_3277", "location": "Berlin", "plz": "13585"}, {"lat": 52.54047, "lng": 13.22897, "rent": 9.2, "year": 2025, "n": 114, "grid": "4540_3275", "location": "Berlin", "plz": "13599"}, {"lat": 52.5674, "lng": 13.23094, "rent": 17.2, "year": 2025, "n": 153, "grid": "4540_3278", "location": "Berlin", "plz": "13599"}, {"lat": 52.43236, "lng": 13.23579, "rent": 11.6, "year": 2024, "n": 56, "grid": "4541_3263", "location": "Berlin", "plz": "14163"}, {"lat": 52.50417, "lng": 13.24105, "rent": 14.7, "year": 2024, "n": 77, "grid": "4541_3271", "location": "Berlin", "plz": "14055"}, {"lat": 52.51314, "lng": 13.24171, "rent": 17.8, "year": 2025, "n": 73, "grid": "4541_3272", "location": "Berlin", "plz": "14055"}, {"lat": 52.54007, "lng": 13.24369, "rent": 10.4, "year": 2025, "n": 66, "grid": "4541_3275", "location": "Berlin", "plz": "13599"}, {"lat": 52.39605, "lng": 13.24785, "rent": 10.2, "year": 2025, "n": 69, "grid": "4542_3259", "location": "Potsdam-Mittelmark, Brandenburg", "plz": "14165"}, {"lat": 52.40503, "lng": 13.24851, "rent": 9.3, "year": 2024, "n": 154, "grid": "4542_3260", "location": "Potsdam-Mittelmark, Brandenburg", "plz": "14165"}, {"lat": 52.414, "lng": 13.24916, "rent": 15.4, "year": 2025, "n": 58, "grid": "4542_3261", "location": "", "plz": "14165"}, {"lat": 52.43196, "lng": 13.25048, "rent": 12.0, "year": 2024, "n": 105, "grid": "4542_3263", "location": "Berlin", "plz": "14165"}, {"lat": 52.50377, "lng": 13.25577, "rent": 13.9, "year": 2024, "n": 108, "grid": "4542_3271", "location": "Berlin", "plz": "14052"}, {"lat": 52.51274, "lng": 13.25643, "rent": 11.3, "year": 2025, "n": 79, "grid": "4542_3272", "location": "Berlin", "plz": "14052"}, {"lat": 52.5307, "lng": 13.25776, "rent": 8.9, "year": 2024, "n": 110, "grid": "4542_3274", "location": "Berlin", "plz": "13629"}, {"lat": 52.53967, "lng": 13.25842, "rent": 10.8, "year": 2025, "n": 70, "grid": "4542_3275", "location": "Berlin", "plz": "13629"}, {"lat": 52.57558, "lng": 13.26108, "rent": 6.1, "year": 2024, "n": 72, "grid": "4542_3279", "location": "Berlin", "plz": "13507"}, {"lat": 52.62943, "lng": 13.26507, "rent": 8.9, "year": 2024, "n": 74, "grid": "4542_3285", "location": "Oberhavel, Brandenburg", "plz": "13465"}, {"lat": 52.39565, "lng": 13.26252, "rent": 11.5, "year": 2024, "n": 73, "grid": "4543_3259", "location": "Potsdam-Mittelmark, Brandenburg", "plz": "14513"}, {"lat": 52.43155, "lng": 13.26517, "rent": 13.5, "year": 2025, "n": 66, "grid": "4543_3263", "location": "Berlin", "plz": "14169"}, {"lat": 52.44951, "lng": 13.2665, "rent": 15.2, "year": 2024, "n": 107, "grid": "4543_3265", "location": "Berlin", "plz": "14169"}, {"lat": 52.47644, "lng": 13.26849, "rent": 13.2, "year": 2024, "n": 101, "grid": "4543_3268", "location": "Berlin", "plz": "14199"}, {"lat": 52.48541, "lng": 13.26915, "rent": 18.0, "year": 2024, "n": 62, "grid": "4543_3269", "location": "Berlin", "plz": "10711"}, {"lat": 52.49439, "lng": 13.26982, "rent": 7.3, "year": 2023, "n": 53, "grid": "4543_3270", "location": "Berlin", "plz": "14057"}, {"lat": 52.50336, "lng": 13.27048, "rent": 14.6, "year": 2025, "n": 94, "grid": "4543_3271", "location": "Berlin", "plz": "14052"}, {"lat": 52.51234, "lng": 13.27115, "rent": 12.2, "year": 2024, "n": 51, "grid": "4543_3272", "location": "Berlin", "plz": "14050"}, {"lat": 52.52132, "lng": 13.27181, "rent": 15.3, "year": 2024, "n": 87, "grid": "4543_3273", "location": "Berlin", "plz": "14050"}, {"lat": 52.53029, "lng": 13.27248, "rent": 12.0, "year": 2024, "n": 62, "grid": "4543_3274", "location": "Berlin", "plz": "14050"}, {"lat": 52.57517, "lng": 13.27581, "rent": 10.0, "year": 2025, "n": 71, "grid": "4543_3279", "location": "Berlin", "plz": "13507"}, {"lat": 52.58415, "lng": 13.27648, "rent": 11.8, "year": 2025, "n": 128, "grid": "4543_3280", "location": "Berlin", "plz": "13507"}, {"lat": 52.4132, "lng": 13.27853, "rent": 15.8, "year": 2025, "n": 87, "grid": "4544_3261", "location": "Berlin", "plz": "14167"}, {"lat": 52.44013, "lng": 13.28053, "rent": 11.7, "year": 2024, "n": 100, "grid": "4544_3264", "location": "Berlin", "plz": "14169"}, {"lat": 52.46705, "lng": 13.28253, "rent": 14.8, "year": 2024, "n": 105, "grid": "4544_3267", "location": "Berlin", "plz": "14195"}, {"lat": 52.47603, "lng": 13.28319, "rent": 14.6, "year": 2025, "n": 126, "grid": "4544_3268", "location": "Berlin", "plz": "14199"}, {"lat": 52.48501, "lng": 13.28386, "rent": 14.9, "year": 2025, "n": 111, "grid": "4544_3269", "location": "Berlin", "plz": "14199"}, {"lat": 52.49398, "lng": 13.28453, "rent": 15.5, "year": 2025, "n": 229, "grid": "4544_3270", "location": "Berlin", "plz": "10711"}, {"lat": 52.50296, "lng": 13.2852, "rent": 17.4, "year": 2025, "n": 288, "grid": "4544_3271", "location": "Berlin", "plz": "14057"}, {"lat": 52.51194, "lng": 13.28586, "rent": 12.7, "year": 2025, "n": 191, "grid": "4544_3272", "location": "Berlin", "plz": "14057"}, {"lat": 52.52091, "lng": 13.28653, "rent": 15.4, "year": 2025, "n": 211, "grid": "4544_3273", "location": "Berlin", "plz": "14059"}, {"lat": 52.52989, "lng": 13.2872, "rent": 7.4, "year": 2024, "n": 160, "grid": "4544_3274", "location": "Berlin", "plz": "14059"}, {"lat": 52.57477, "lng": 13.29055, "rent": 9.0, "year": 2024, "n": 92, "grid": "4544_3279", "location": "Berlin", "plz": "13509"}, {"lat": 52.58374, "lng": 13.29122, "rent": 12.0, "year": 2025, "n": 100, "grid": "4544_3280", "location": "Berlin", "plz": "13509"}, {"lat": 52.59272, "lng": 13.29189, "rent": 16.5, "year": 2025, "n": 73, "grid": "4544_3281", "location": "Berlin", "plz": "13509"}, {"lat": 52.61067, "lng": 13.29324, "rent": 10.8, "year": 2024, "n": 61, "grid": "4544_3283", "location": "Berlin", "plz": "13467"}, {"lat": 52.61965, "lng": 13.29391, "rent": 10.0, "year": 2024, "n": 73, "grid": "4544_3284", "location": "Berlin", "plz": "13467"}, {"lat": 52.41279, "lng": 13.29321, "rent": 11.4, "year": 2025, "n": 56, "grid": "4545_3261", "location": "Berlin", "plz": "12207"}, {"lat": 52.43074, "lng": 13.29455, "rent": 10.2, "year": 2024, "n": 146, "grid": "4545_3263", "location": "Berlin", "plz": "12205"}, {"lat": 52.43972, "lng": 13.29522, "rent": 14.0, "year": 2025, "n": 59, "grid": "4545_3264", "location": "Berlin", "plz": "12205"}, {"lat": 52.45767, "lng": 13.29656, "rent": 20.6, "year": 2024, "n": 249, "grid": "4545_3266", "location": "Berlin", "plz": "14195"}, {"lat": 52.46665, "lng": 13.29723, "rent": 16.8, "year": 2025, "n": 75, "grid": "4545_3267", "location": "Berlin", "plz": "14199"}, {"lat": 52.47562, "lng": 13.2979, "rent": 20.1, "year": 2025, "n": 76, "grid": "4545_3268", "location": "Berlin", "plz": "14199"}, {"lat": 52.4846, "lng": 13.29857, "rent": 11.0, "year": 2025, "n": 56, "grid": "4545_3269", "location": "Berlin", "plz": "14199"}, {"lat": 52.49358, "lng": 13.29924, "rent": 18.3, "year": 2025, "n": 389, "grid": "4545_3270", "location": "Berlin", "plz": "10709"}, {"lat": 52.50255, "lng": 13.29991, "rent": 17.7, "year": 2025, "n": 437, "grid": "4545_3271", "location": "Berlin", "plz": "10629"}, {"lat": 52.51153, "lng": 13.30058, "rent": 14.1, "year": 2025, "n": 251, "grid": "4545_3272", "location": "Berlin", "plz": "10627"}, {"lat": 52.52051, "lng": 13.30125, "rent": 12.5, "year": 2025, "n": 163, "grid": "4545_3273", "location": "Berlin", "plz": "10585"}, {"lat": 52.52948, "lng": 13.30192, "rent": 11.7, "year": 2025, "n": 63, "grid": "4545_3274", "location": "Berlin", "plz": "10589"}, {"lat": 52.53846, "lng": 13.3026, "rent": 6.4, "year": 2024, "n": 54, "grid": "4545_3275", "location": "Berlin", "plz": "13627"}, {"lat": 52.56539, "lng": 13.30461, "rent": 12.2, "year": 2025, "n": 125, "grid": "4545_3278", "location": "Berlin", "plz": "13405"}, {"lat": 52.57436, "lng": 13.30529, "rent": 9.0, "year": 2025, "n": 64, "grid": "4545_3279", "location": "Berlin", "plz": "13403"}, {"lat": 52.58334, "lng": 13.30596, "rent": 8.7, "year": 2024, "n": 54, "grid": "4545_3280", "location": "Berlin", "plz": "13509"}, {"lat": 52.62822, "lng": 13.30934, "rent": 10.1, "year": 2024, "n": 59, "grid": "4545_3285", "location": "Berlin", "plz": "13467"}, {"lat": 52.41238, "lng": 13.3079, "rent": 10.5, "year": 2025, "n": 80, "grid": "4546_3261", "location": "Berlin", "plz": "12207"}, {"lat": 52.42136, "lng": 13.30857, "rent": 13.2, "year": 2024, "n": 64, "grid": "4546_3262", "location": "Berlin", "plz": "12207"}, {"lat": 52.43034, "lng": 13.30924, "rent": 11.8, "year": 2024, "n": 65, "grid": "4546_3263", "location": "Berlin", "plz": "12207"}, {"lat": 52.43931, "lng": 13.30991, "rent": 12.4, "year": 2025, "n": 60, "grid": "4546_3264", "location": "Berlin", "plz": "12203"}, {"lat": 52.44829, "lng": 13.31058, "rent": 13.8, "year": 2025, "n": 94, "grid": "4546_3265", "location": "Berlin", "plz": "12203"}, {"lat": 52.45726, "lng": 13.31126, "rent": 12.7, "year": 2025, "n": 144, "grid": "4546_3266", "location": "Berlin", "plz": "12165"}, {"lat": 52.46624, "lng": 13.31193, "rent": 11.9, "year": 2025, "n": 127, "grid": "4546_3267", "location": "Berlin", "plz": "14197"}, {"lat": 52.47522, "lng": 13.3126, "rent": 12.4, "year": 2025, "n": 151, "grid": "4546_3268", "location": "Berlin", "plz": "14197"}, {"lat": 52.48419, "lng": 13.31327, "rent": 14.6, "year": 2025, "n": 251, "grid": "4546_3269", "location": "Berlin", "plz": "10713"}, {"lat": 52.49317, "lng": 13.31395, "rent": 19.1, "year": 2025, "n": 285, "grid": "4546_3270", "location": "Berlin", "plz": "10707"}, {"lat": 52.50214, "lng": 13.31462, "rent": 19.9, "year": 2025, "n": 237, "grid": "4546_3271", "location": "Berlin", "plz": "10625"}, {"lat": 52.51112, "lng": 13.3153, "rent": 14.5, "year": 2025, "n": 145, "grid": "4546_3272", "location": "Berlin", "plz": "10625"}, {"lat": 52.5201, "lng": 13.31597, "rent": 12.6, "year": 2025, "n": 203, "grid": "4546_3273", "location": "Berlin", "plz": "10587"}, {"lat": 52.52907, "lng": 13.31665, "rent": 11.7, "year": 2025, "n": 125, "grid": "4546_3274", "location": "Berlin", "plz": "10553"}, {"lat": 52.556, "lng": 13.31867, "rent": 10.6, "year": 2024, "n": 88, "grid": "4546_3277", "location": "Berlin", "plz": "13405"}, {"lat": 52.56498, "lng": 13.31935, "rent": 13.8, "year": 2025, "n": 79, "grid": "4546_3278", "location": "Berlin", "plz": "13403"}, {"lat": 52.57395, "lng": 13.32002, "rent": 9.3, "year": 2024, "n": 72, "grid": "4546_3279", "location": "Berlin", "plz": "13403"}, {"lat": 52.5919, "lng": 13.32138, "rent": 10.4, "year": 2024, "n": 61, "grid": "4546_3281", "location": "Berlin", "plz": "13437"}, {"lat": 52.60088, "lng": 13.32206, "rent": 8.3, "year": 2025, "n": 54, "grid": "4546_3282", "location": "Berlin", "plz": "13437"}, {"lat": 52.42095, "lng": 13.32325, "rent": 12.2, "year": 2025, "n": 51, "grid": "4547_3262", "location": "Berlin", "plz": "12209"}, {"lat": 52.42993, "lng": 13.32393, "rent": 12.0, "year": 2024, "n": 60, "grid": "4547_3263", "location": "Berlin", "plz": "12209"}, {"lat": 52.4389, "lng": 13.3246, "rent": 12.0, "year": 2025, "n": 55, "grid": "4547_3264", "location": "Berlin", "plz": "12167"}, {"lat": 52.44788, "lng": 13.32528, "rent": 12.6, "year": 2025, "n": 159, "grid": "4547_3265", "location": "Berlin", "plz": "12167"}, {"lat": 52.45686, "lng": 13.32595, "rent": 15.7, "year": 2025, "n": 178, "grid": "4547_3266", "location": "Berlin", "plz": "12167"}, {"lat": 52.46583, "lng": 13.32663, "rent": 13.9, "year": 2025, "n": 192, "grid": "4547_3267", "location": "Berlin", "plz": "12161"}, {"lat": 52.47481, "lng": 13.3273, "rent": 14.4, "year": 2025, "n": 217, "grid": "4547_3268", "location": "Berlin", "plz": "12161"}, {"lat": 52.48378, "lng": 13.32798, "rent": 13.5, "year": 2025, "n": 342, "grid": "4547_3269", "location": "Berlin", "plz": "10715"}, {"lat": 52.49276, "lng": 13.32866, "rent": 15.8, "year": 2025, "n": 331, "grid": "4547_3270", "location": "Berlin", "plz": "10717"}, {"lat": 52.50173, "lng": 13.32933, "rent": 16.0, "year": 2025, "n": 71, "grid": "4547_3271", "location": "Berlin", "plz": "10719"}, {"lat": 52.51071, "lng": 13.33001, "rent": 19.6, "year": 2025, "n": 70, "grid": "4547_3272", "location": "Berlin", "plz": "10623"}, {"lat": 52.51969, "lng": 13.33069, "rent": 13.3, "year": 2025, "n": 217, "grid": "4547_3273", "location": "Berlin", "plz": "10555"}, {"lat": 52.52866, "lng": 13.33137, "rent": 11.7, "year": 2025, "n": 253, "grid": "4547_3274", "location": "Berlin", "plz": "10555"}, {"lat": 52.54661, "lng": 13.33272, "rent": 12.6, "year": 2025, "n": 126, "grid": "4547_3276", "location": "Berlin", "plz": "13351"}, {"lat": 52.55559, "lng": 13.3334, "rent": 15.0, "year": 2025, "n": 162, "grid": "4547_3277", "location": "Berlin", "plz": "13351"}, {"lat": 52.56457, "lng": 13.33408, "rent": 10.6, "year": 2024, "n": 137, "grid": "4547_3278", "location": "Berlin", "plz": "13349"}, {"lat": 52.57354, "lng": 13.33476, "rent": 11.7, "year": 2024, "n": 62, "grid": "4547_3279", "location": "Berlin", "plz": "13437"}, {"lat": 52.58252, "lng": 13.33544, "rent": 13.2, "year": 2025, "n": 61, "grid": "4547_3280", "location": "Berlin", "plz": "13437"}, {"lat": 52.59149, "lng": 13.33612, "rent": 5.7, "year": 2024, "n": 91, "grid": "4547_3281", "location": "Berlin", "plz": "13437"}, {"lat": 52.40259, "lng": 13.33659, "rent": 8.2, "year": 2025, "n": 78, "grid": "4548_3260", "location": "", "plz": "12279"}, {"lat": 52.41156, "lng": 13.33726, "rent": 11.8, "year": 2024, "n": 102, "grid": "4548_3261", "location": "Berlin", "plz": "12209"}, {"lat": 52.42054, "lng": 13.33794, "rent": 9.9, "year": 2025, "n": 57, "grid": "4548_3262", "location": "Berlin", "plz": "12209"}, {"lat": 52.42952, "lng": 13.33862, "rent": 10.2, "year": 2025, "n": 112, "grid": "4548_3263", "location": "Berlin", "plz": "12249"}, {"lat": 52.43849, "lng": 13.33929, "rent": 14.4, "year": 2025, "n": 109, "grid": "4548_3264", "location": "Berlin", "plz": "12247"}, {"lat": 52.44747, "lng": 13.33997, "rent": 16.8, "year": 2025, "n": 191, "grid": "4548_3265", "location": "Berlin", "plz": "12169"}, {"lat": 52.45644, "lng": 13.34065, "rent": 13.4, "year": 2024, "n": 67, "grid": "4548_3266", "location": "Berlin", "plz": "12169"}, {"lat": 52.46542, "lng": 13.34133, "rent": 12.7, "year": 2025, "n": 82, "grid": "4548_3267", "location": "Berlin", "plz": "12157"}, {"lat": 52.4744, "lng": 13.34201, "rent": 13.9, "year": 2025, "n": 217, "grid": "4548_3268", "location": "Berlin", "plz": "12159"}, {"lat": 52.48337, "lng": 13.34269, "rent": 18.2, "year": 2025, "n": 350, "grid": "4548_3269", "location": "Berlin", "plz": "10825"}, {"lat": 52.49235, "lng": 13.34337, "rent": 16.8, "year": 2025, "n": 496, "grid": "4548_3270", "location": "Berlin", "plz": "10779"}, {"lat": 52.50132, "lng": 13.34405, "rent": 15.2, "year": 2025, "n": 167, "grid": "4548_3271", "location": "Berlin", "plz": "10777"}, {"lat": 52.51927, "lng": 13.34541, "rent": 12.8, "year": 2025, "n": 133, "grid": "4548_3273", "location": "Berlin", "plz": "10555"}, {"lat": 52.52825, "lng": 13.34609, "rent": 13.1, "year": 2025, "n": 198, "grid": "4548_3274", "location": "Berlin", "plz": "10559"}, {"lat": 52.53723, "lng": 13.34677, "rent": 13.3, "year": 2025, "n": 285, "grid": "4548_3275", "location": "Berlin", "plz": "10559"}, {"lat": 52.5462, "lng": 13.34745, "rent": 12.4, "year": 2025, "n": 252, "grid": "4548_3276", "location": "Berlin", "plz": "13353"}, {"lat": 52.55518, "lng": 13.34813, "rent": 10.4, "year": 2025, "n": 73, "grid": "4548_3277", "location": "Berlin", "plz": "13349"}, {"lat": 52.56415, "lng": 13.34881, "rent": 11.6, "year": 2025, "n": 60, "grid": "4548_3278", "location": "Berlin", "plz": "13349"}, {"lat": 52.57313, "lng": 13.3495, "rent": 10.3, "year": 2025, "n": 75, "grid": "4548_3279", "location": "Berlin", "plz": "13407"}, {"lat": 52.5821, "lng": 13.35018, "rent": 14.2, "year": 2025, "n": 61, "grid": "4548_3280", "location": "Berlin", "plz": "13407"}, {"lat": 52.59108, "lng": 13.35086, "rent": 7.0, "year": 2025, "n": 68, "grid": "4548_3281", "location": "Berlin", "plz": "13439"}, {"lat": 52.60006, "lng": 13.35155, "rent": 6.7, "year": 2025, "n": 120, "grid": "4548_3282", "location": "Berlin", "plz": "13439"}, {"lat": 52.41115, "lng": 13.35195, "rent": 11.7, "year": 2025, "n": 74, "grid": "4549_3261", "location": "Berlin", "plz": "12279"}, {"lat": 52.42013, "lng": 13.35263, "rent": 16.7, "year": 2025, "n": 90, "grid": "4549_3262", "location": "Berlin", "plz": "12249"}, {"lat": 52.45603, "lng": 13.35535, "rent": 14.1, "year": 2025, "n": 50, "grid": "4549_3266", "location": "Berlin", "plz": "12157"}, {"lat": 52.47398, "lng": 13.35671, "rent": 13.4, "year": 2025, "n": 173, "grid": "4549_3268", "location": "Berlin", "plz": "10829"}, {"lat": 52.48296, "lng": 13.35739, "rent": 11.5, "year": 2025, "n": 192, "grid": "4549_3269", "location": "Berlin", "plz": "10827"}, {"lat": 52.49193, "lng": 13.35808, "rent": 11.8, "year": 2025, "n": 213, "grid": "4549_3270", "location": "Berlin", "plz": "10781"}, {"lat": 52.50091, "lng": 13.35876, "rent": 16.4, "year": 2025, "n": 161, "grid": "4549_3271", "location": "Berlin", "plz": "10783"}, {"lat": 52.51886, "lng": 13.36013, "rent": 11.2, "year": 2025, "n": 56, "grid": "4549_3273", "location": "Berlin", "plz": "10557"}, {"lat": 52.52784, "lng": 13.36081, "rent": 18.8, "year": 2025, "n": 781, "grid": "4549_3274", "location": "Berlin", "plz": "10557"}, {"lat": 52.53681, "lng": 13.36149, "rent": 16.6, "year": 2025, "n": 151, "grid": "4549_3275", "location": "Berlin", "plz": "13353"}, {"lat": 52.54579, "lng": 13.36218, "rent": 11.9, "year": 2025, "n": 219, "grid": "4549_3276", "location": "Berlin", "plz": "13347"}, {"lat": 52.55476, "lng": 13.36286, "rent": 10.6, "year": 2025, "n": 114, "grid": "4549_3277", "location": "Berlin", "plz": "13347"}, {"lat": 52.56374, "lng": 13.36355, "rent": 10.8, "year": 2025, "n": 148, "grid": "4549_3278", "location": "Berlin", "plz": "13409"}, {"lat": 52.58169, "lng": 13.36492, "rent": 13.8, "year": 2025, "n": 68, "grid": "4549_3280", "location": "Berlin", "plz": "13409"}, {"lat": 52.59067, "lng": 13.36561, "rent": 11.8, "year": 2024, "n": 65, "grid": "4549_3281", "location": "Berlin", "plz": "13439"}, {"lat": 52.43766, "lng": 13.36868, "rent": 11.4, "year": 2025, "n": 109, "grid": "4550_3264", "location": "Berlin", "plz": "12105"}, {"lat": 52.44664, "lng": 13.36936, "rent": 11.8, "year": 2025, "n": 98, "grid": "4550_3265", "location": "Berlin", "plz": "12105"}, {"lat": 52.45562, "lng": 13.37004, "rent": 12.9, "year": 2025, "n": 186, "grid": "4550_3266", "location": "Berlin", "plz": "12103"}, {"lat": 52.46459, "lng": 13.37073, "rent": 10.3, "year": 2025, "n": 51, "grid": "4550_3267", "location": "Berlin", "plz": "12103"}, {"lat": 52.47357, "lng": 13.37141, "rent": 10.4, "year": 2024, "n": 98, "grid": "4550_3268", "location": "Berlin", "plz": "12103"}, {"lat": 52.48254, "lng": 13.3721, "rent": 12.2, "year": 2025, "n": 136, "grid": "4550_3269", "location": "Berlin", "plz": "10829"}, {"lat": 52.49152, "lng": 13.37278, "rent": 11.9, "year": 2025, "n": 134, "grid": "4550_3270", "location": "Berlin", "plz": "10963"}, {"lat": 52.50049, "lng": 13.37347, "rent": 15.9, "year": 2025, "n": 148, "grid": "4550_3271", "location": "Berlin", "plz": "10963"}, {"lat": 52.50947, "lng": 13.37416, "rent": 14.4, "year": 2025, "n": 118, "grid": "4550_3272", "location": "Berlin", "plz": "10785"}, {"lat": 52.51844, "lng": 13.37484, "rent": 18.6, "year": 2025, "n": 167, "grid": "4550_3273", "location": "Berlin", "plz": "10117"}, {"lat": 52.52742, "lng": 13.37553, "rent": 15.6, "year": 2025, "n": 381, "grid": "4550_3274", "location": "Berlin", "plz": "10115"}, {"lat": 52.5364, "lng": 13.37622, "rent": 11.5, "year": 2025, "n": 202, "grid": "4550_3275", "location": "Berlin", "plz": "10115"}, {"lat": 52.54537, "lng": 13.3769, "rent": 12.3, "year": 2025, "n": 213, "grid": "4550_3276", "location": "Berlin", "plz": "13357"}, {"lat": 52.55435, "lng": 13.37759, "rent": 12.6, "year": 2025, "n": 319, "grid": "4550_3277", "location": "Berlin", "plz": "13357"}, {"lat": 52.56332, "lng": 13.37828, "rent": 11.2, "year": 2025, "n": 70, "grid": "4550_3278", "location": "Berlin", "plz": "13359"}, {"lat": 52.58127, "lng": 13.37966, "rent": 11.7, "year": 2025, "n": 51, "grid": "4550_3280", "location": "Berlin", "plz": "13158"}, {"lat": 52.42827, "lng": 13.38268, "rent": 9.9, "year": 2024, "n": 151, "grid": "4551_3263", "location": "Berlin", "plz": "12107"}, {"lat": 52.43725, "lng": 13.38337, "rent": 11.3, "year": 2024, "n": 114, "grid": "4551_3264", "location": "Berlin", "plz": "12107"}, {"lat": 52.44622, "lng": 13.38405, "rent": 11.8, "year": 2024, "n": 64, "grid": "4551_3265", "location": "Berlin", "plz": "12105"}, {"lat": 52.4552, "lng": 13.38474, "rent": 9.8, "year": 2024, "n": 83, "grid": "4551_3266", "location": "Berlin", "plz": "12105"}, {"lat": 52.46417, "lng": 13.38543, "rent": 10.5, "year": 2024, "n": 99, "grid": "4551_3267", "location": "Berlin", "plz": "12103"}, {"lat": 52.48212, "lng": 13.3868, "rent": 10.4, "year": 2025, "n": 154, "grid": "4551_3269", "location": "Berlin", "plz": "12101"}, {"lat": 52.4911, "lng": 13.38749, "rent": 14.7, "year": 2025, "n": 375, "grid": "4551_3270", "location": "Berlin", "plz": "10961"}, {"lat": 52.50008, "lng": 13.38818, "rent": 12.2, "year": 2025, "n": 263, "grid": "4551_3271", "location": "Berlin", "plz": "10963"}, {"lat": 52.50905, "lng": 13.38887, "rent": 18.0, "year": 2025, "n": 234, "grid": "4551_3272", "location": "Berlin", "plz": "10117"}, {"lat": 52.51803, "lng": 13.38956, "rent": 19.5, "year": 2025, "n": 299, "grid": "4551_3273", "location": "Berlin", "plz": "10117"}, {"lat": 52.527, "lng": 13.39025, "rent": 21.5, "year": 2025, "n": 525, "grid": "4551_3274", "location": "Berlin", "plz": "10117"}, {"lat": 52.53598, "lng": 13.39094, "rent": 15.8, "year": 2025, "n": 266, "grid": "4551_3275", "location": "Berlin", "plz": "13355"}, {"lat": 52.54495, "lng": 13.39163, "rent": 15.6, "year": 2025, "n": 291, "grid": "4551_3276", "location": "Berlin", "plz": "13355"}, {"lat": 52.55393, "lng": 13.39232, "rent": 19.2, "year": 2025, "n": 350, "grid": "4551_3277", "location": "Berlin", "plz": "13359"}, {"lat": 52.5629, "lng": 13.39301, "rent": 11.7, "year": 2025, "n": 152, "grid": "4551_3278", "location": "Berlin", "plz": "13359"}, {"lat": 52.57188, "lng": 13.3937, "rent": 11.3, "year": 2024, "n": 116, "grid": "4551_3279", "location": "Berlin", "plz": "13156"}, {"lat": 52.58085, "lng": 13.3944, "rent": 19.3, "year": 2025, "n": 438, "grid": "4551_3280", "location": "Berlin", "plz": "13156"}, {"lat": 52.58983, "lng": 13.39509, "rent": 9.8, "year": 2024, "n": 171, "grid": "4551_3281", "location": "Berlin", "plz": "13156"}, {"lat": 52.38298, "lng": 13.39393, "rent": 8.5, "year": 2025, "n": 57, "grid": "4552_3258", "location": "Teltow-Fl\u00e4ming, Brandenburg", "plz": "12307"}, {"lat": 52.39195, "lng": 13.39461, "rent": 10.1, "year": 2024, "n": 68, "grid": "4552_3259", "location": "Berlin", "plz": "12307"}, {"lat": 52.40093, "lng": 13.3953, "rent": 11.1, "year": 2024, "n": 52, "grid": "4552_3260", "location": "Berlin", "plz": "12305"}, {"lat": 52.41888, "lng": 13.39668, "rent": 9.7, "year": 2024, "n": 57, "grid": "4552_3262", "location": "Berlin", "plz": "12305"}, {"lat": 52.43683, "lng": 13.39806, "rent": 12.7, "year": 2024, "n": 138, "grid": "4552_3264", "location": "Berlin", "plz": "12107"}, {"lat": 52.45478, "lng": 13.39944, "rent": 9.2, "year": 2025, "n": 61, "grid": "4552_3266", "location": "Berlin", "plz": "12099"}, {"lat": 52.48171, "lng": 13.40151, "rent": 17.1, "year": 2025, "n": 132, "grid": "4552_3269", "location": "Berlin", "plz": "10965"}, {"lat": 52.49068, "lng": 13.4022, "rent": 11.6, "year": 2025, "n": 211, "grid": "4552_3270", "location": "Berlin", "plz": "10961"}, {"lat": 52.49966, "lng": 13.40289, "rent": 13.5, "year": 2025, "n": 240, "grid": "4552_3271", "location": "Berlin", "plz": "10969"}, {"lat": 52.50863, "lng": 13.40359, "rent": 16.4, "year": 2025, "n": 428, "grid": "4552_3272", "location": "Berlin", "plz": "10969"}, {"lat": 52.51761, "lng": 13.40428, "rent": 15.8, "year": 2025, "n": 221, "grid": "4552_3273", "location": "Berlin", "plz": "10178"}, {"lat": 52.52658, "lng": 13.40497, "rent": 16.6, "year": 2025, "n": 387, "grid": "4552_3274", "location": "Berlin", "plz": "10119"}, {"lat": 52.53556, "lng": 13.40566, "rent": 16.9, "year": 2025, "n": 401, "grid": "4552_3275", "location": "Berlin", "plz": "10119"}, {"lat": 52.54453, "lng": 13.40636, "rent": 15.0, "year": 2025, "n": 652, "grid": "4552_3276", "location": "Berlin", "plz": "10437"}, {"lat": 52.55351, "lng": 13.40705, "rent": 12.3, "year": 2025, "n": 270, "grid": "4552_3277", "location": "Berlin", "plz": "10439"}, {"lat": 52.56248, "lng": 13.40775, "rent": 12.5, "year": 2025, "n": 88, "grid": "4552_3278", "location": "Berlin", "plz": "13187"}, {"lat": 52.57146, "lng": 13.40844, "rent": 10.9, "year": 2025, "n": 151, "grid": "4552_3279", "location": "Berlin", "plz": "13187"}, {"lat": 52.58043, "lng": 13.40913, "rent": 13.9, "year": 2025, "n": 136, "grid": "4552_3280", "location": "Berlin", "plz": "13187"}, {"lat": 52.59839, "lng": 13.41053, "rent": 10.1, "year": 2024, "n": 71, "grid": "4552_3282", "location": "Berlin", "plz": "13156"}, {"lat": 52.60736, "lng": 13.41122, "rent": 9.4, "year": 2024, "n": 125, "grid": "4552_3283", "location": "Berlin", "plz": "13127"}, {"lat": 52.38256, "lng": 13.4086, "rent": 8.5, "year": 2025, "n": 53, "grid": "4553_3258", "location": "Berlin", "plz": "12307"}, {"lat": 52.39153, "lng": 13.40929, "rent": 8.8, "year": 2024, "n": 95, "grid": "4553_3259", "location": "Berlin", "plz": "12309"}, {"lat": 52.45436, "lng": 13.41413, "rent": 10.1, "year": 2024, "n": 108, "grid": "4553_3266", "location": "Berlin", "plz": "12099"}, {"lat": 52.46333, "lng": 13.41483, "rent": 12.9, "year": 2025, "n": 185, "grid": "4553_3267", "location": "Berlin", "plz": "12099"}, {"lat": 52.47231, "lng": 13.41552, "rent": 12.9, "year": 2025, "n": 298, "grid": "4553_3268", "location": "Berlin", "plz": "12049"}, {"lat": 52.48129, "lng": 13.41622, "rent": 15.1, "year": 2025, "n": 294, "grid": "4553_3269", "location": "Berlin", "plz": "12049"}, {"lat": 52.49026, "lng": 13.41691, "rent": 11.9, "year": 2025, "n": 320, "grid": "4553_3270", "location": "Berlin", "plz": "10967"}, {"lat": 52.49924, "lng": 13.4176, "rent": 13.5, "year": 2025, "n": 174, "grid": "4553_3271", "location": "Berlin", "plz": "10967"}, {"lat": 52.50821, "lng": 13.4183, "rent": 13.3, "year": 2025, "n": 182, "grid": "4553_3272", "location": "Berlin", "plz": "10179"}, {"lat": 52.51719, "lng": 13.41899, "rent": 11.7, "year": 2025, "n": 154, "grid": "4553_3273", "location": "Berlin", "plz": "10179"}, {"lat": 52.52616, "lng": 13.41969, "rent": 15.4, "year": 2025, "n": 362, "grid": "4553_3274", "location": "Berlin", "plz": "10405"}, {"lat": 52.53514, "lng": 13.42039, "rent": 14.7, "year": 2025, "n": 310, "grid": "4553_3275", "location": "Berlin", "plz": "10405"}, {"lat": 52.54411, "lng": 13.42108, "rent": 12.7, "year": 2025, "n": 207, "grid": "4553_3276", "location": "Berlin", "plz": "10405"}, {"lat": 52.55309, "lng": 13.42178, "rent": 16.4, "year": 2025, "n": 202, "grid": "4553_3277", "location": "Berlin", "plz": "13189"}, {"lat": 52.56206, "lng": 13.42248, "rent": 13.4, "year": 2025, "n": 61, "grid": "4553_3278", "location": "Berlin", "plz": "13189"}, {"lat": 52.57104, "lng": 13.42317, "rent": 13.0, "year": 2025, "n": 64, "grid": "4553_3279", "location": "Berlin", "plz": "13187"}, {"lat": 52.58001, "lng": 13.42387, "rent": 20.0, "year": 2025, "n": 241, "grid": "4553_3280", "location": "Berlin", "plz": "13187"}, {"lat": 52.58899, "lng": 13.42457, "rent": 13.7, "year": 2024, "n": 70, "grid": "4553_3281", "location": "Berlin", "plz": "13187"}, {"lat": 52.40906, "lng": 13.42535, "rent": 9.2, "year": 2025, "n": 90, "grid": "4554_3261", "location": "Berlin", "plz": "12309"}, {"lat": 52.41804, "lng": 13.42605, "rent": 11.5, "year": 2024, "n": 55, "grid": "4554_3262", "location": "Berlin", "plz": "12349"}, {"lat": 52.44496, "lng": 13.42813, "rent": 11.1, "year": 2024, "n": 53, "grid": "4554_3265", "location": "Berlin", "plz": "12347"}, {"lat": 52.45394, "lng": 13.42883, "rent": 11.5, "year": 2025, "n": 80, "grid": "4554_3266", "location": "Berlin", "plz": "12347"}, {"lat": 52.46291, "lng": 13.42953, "rent": 10.9, "year": 2025, "n": 360, "grid": "4554_3267", "location": "Berlin", "plz": "12051"}, {"lat": 52.47189, "lng": 13.43022, "rent": 11.1, "year": 2025, "n": 220, "grid": "4554_3268", "location": "Berlin", "plz": "12053"}, {"lat": 52.48086, "lng": 13.43092, "rent": 11.8, "year": 2025, "n": 367, "grid": "4554_3269", "location": "Berlin", "plz": "12053"}, {"lat": 52.48984, "lng": 13.43162, "rent": 16.7, "year": 2025, "n": 262, "grid": "4554_3270", "location": "Berlin", "plz": "12047"}, {"lat": 52.49881, "lng": 13.43232, "rent": 14.7, "year": 2025, "n": 192, "grid": "4554_3271", "location": "Berlin", "plz": "10997"}, {"lat": 52.50779, "lng": 13.43301, "rent": 14.0, "year": 2025, "n": 294, "grid": "4554_3272", "location": "Berlin", "plz": "10997"}, {"lat": 52.51676, "lng": 13.43371, "rent": 12.6, "year": 2025, "n": 296, "grid": "4554_3273", "location": "Berlin", "plz": "10243"}, {"lat": 52.52574, "lng": 13.43441, "rent": 14.2, "year": 2025, "n": 188, "grid": "4554_3274", "location": "Berlin", "plz": "10249"}, {"lat": 52.53471, "lng": 13.43511, "rent": 11.7, "year": 2025, "n": 166, "grid": "4554_3275", "location": "Berlin", "plz": "10409"}, {"lat": 52.54369, "lng": 13.43581, "rent": 14.6, "year": 2025, "n": 139, "grid": "4554_3276", "location": "Berlin", "plz": "10409"}, {"lat": 52.55266, "lng": 13.43651, "rent": 11.4, "year": 2025, "n": 205, "grid": "4554_3277", "location": "Berlin", "plz": "13086"}, {"lat": 52.56164, "lng": 13.43721, "rent": 12.9, "year": 2024, "n": 129, "grid": "4554_3278", "location": "Berlin", "plz": "13089"}, {"lat": 52.41761, "lng": 13.44073, "rent": 11.2, "year": 2024, "n": 61, "grid": "4555_3262", "location": "Berlin", "plz": "12353"}, {"lat": 52.43556, "lng": 13.44213, "rent": 9.6, "year": 2024, "n": 53, "grid": "4555_3264", "location": "Berlin", "plz": "12351"}, {"lat": 52.44454, "lng": 13.44283, "rent": 7.8, "year": 2025, "n": 53, "grid": "4555_3265", "location": "Berlin", "plz": "12359"}, {"lat": 52.45351, "lng": 13.44353, "rent": 9.4, "year": 2024, "n": 51, "grid": "4555_3266", "location": "Berlin", "plz": "12359"}, {"lat": 52.46249, "lng": 13.44422, "rent": 9.5, "year": 2024, "n": 95, "grid": "4555_3267", "location": "Berlin", "plz": "12055"}, {"lat": 52.47146, "lng": 13.44492, "rent": 13.9, "year": 2025, "n": 354, "grid": "4555_3268", "location": "Berlin", "plz": "12055"}, {"lat": 52.48044, "lng": 13.44562, "rent": 10.6, "year": 2025, "n": 156, "grid": "4555_3269", "location": "Berlin", "plz": "12043"}, {"lat": 52.48941, "lng": 13.44632, "rent": 14.1, "year": 2025, "n": 156, "grid": "4555_3270", "location": "Berlin", "plz": "12059"}, {"lat": 52.49839, "lng": 13.44703, "rent": 14.9, "year": 2025, "n": 298, "grid": "4555_3271", "location": "Berlin", "plz": "10245"}, {"lat": 52.50736, "lng": 13.44773, "rent": 15.3, "year": 2025, "n": 526, "grid": "4555_3272", "location": "Berlin", "plz": "10245"}, {"lat": 52.51634, "lng": 13.44843, "rent": 12.3, "year": 2025, "n": 471, "grid": "4555_3273", "location": "Berlin", "plz": "10243"}, {"lat": 52.52531, "lng": 13.44913, "rent": 13.8, "year": 2025, "n": 89, "grid": "4555_3274", "location": "Berlin", "plz": "10249"}, {"lat": 52.54326, "lng": 13.45053, "rent": 15.8, "year": 2025, "n": 125, "grid": "4555_3276", "location": "Berlin", "plz": "10409"}, {"lat": 52.55224, "lng": 13.45124, "rent": 14.5, "year": 2025, "n": 158, "grid": "4555_3277", "location": "Berlin", "plz": "13086"}, {"lat": 52.41719, "lng": 13.45542, "rent": 7.8, "year": 2025, "n": 64, "grid": "4556_3262", "location": "Berlin", "plz": "12353"}, {"lat": 52.42616, "lng": 13.45612, "rent": 8.3, "year": 2025, "n": 71, "grid": "4556_3263", "location": "Berlin", "plz": "12353"}, {"lat": 52.47104, "lng": 13.45963, "rent": 7.9, "year": 2024, "n": 84, "grid": "4556_3268", "location": "Berlin", "plz": "12057"}, {"lat": 52.48001, "lng": 13.46033, "rent": 10.6, "year": 2025, "n": 97, "grid": "4556_3269", "location": "Berlin", "plz": "12059"}, {"lat": 52.50694, "lng": 13.46244, "rent": 13.9, "year": 2025, "n": 355, "grid": "4556_3272", "location": "Berlin", "plz": "10245"}, {"lat": 52.51591, "lng": 13.46314, "rent": 15.5, "year": 2025, "n": 238, "grid": "4556_3273", "location": "Berlin", "plz": "10247"}, {"lat": 52.52489, "lng": 13.46385, "rent": 9.2, "year": 2025, "n": 92, "grid": "4556_3274", "location": "Berlin", "plz": "10369"}, {"lat": 52.55181, "lng": 13.46597, "rent": 10.0, "year": 2025, "n": 67, "grid": "4556_3277", "location": "Berlin", "plz": "13088"}, {"lat": 52.61464, "lng": 13.47092, "rent": 9.7, "year": 2024, "n": 56, "grid": "4556_3284", "location": "Berlin", "plz": "13125"}, {"lat": 52.41676, "lng": 13.4701, "rent": 7.8, "year": 2025, "n": 111, "grid": "4557_3262", "location": "Dahme-Spreewald, Brandenburg", "plz": "12353"}, {"lat": 52.46163, "lng": 13.47362, "rent": 10.4, "year": 2025, "n": 70, "grid": "4557_3267", "location": "Berlin", "plz": "12437"}, {"lat": 52.47061, "lng": 13.47433, "rent": 10.5, "year": 2025, "n": 92, "grid": "4557_3268", "location": "Berlin", "plz": "12437"}, {"lat": 52.49753, "lng": 13.47645, "rent": 15.9, "year": 2025, "n": 234, "grid": "4557_3271", "location": "Berlin", "plz": "10317"}, {"lat": 52.50651, "lng": 13.47715, "rent": 9.7, "year": 2025, "n": 92, "grid": "4557_3272", "location": "Berlin", "plz": "10317"}, {"lat": 52.51548, "lng": 13.47786, "rent": 10.5, "year": 2025, "n": 108, "grid": "4557_3273", "location": "Berlin", "plz": "10367"}, {"lat": 52.52446, "lng": 13.47857, "rent": 6.5, "year": 2024, "n": 133, "grid": "4557_3274", "location": "Berlin", "plz": "10367"}, {"lat": 52.53343, "lng": 13.47928, "rent": 13.7, "year": 2025, "n": 138, "grid": "4557_3275", "location": "Berlin", "plz": "10367"}, {"lat": 52.54241, "lng": 13.47998, "rent": 11.3, "year": 2025, "n": 70, "grid": "4557_3276", "location": "Berlin", "plz": "13088"}, {"lat": 52.60523, "lng": 13.48495, "rent": 10.9, "year": 2024, "n": 101, "grid": "4557_3283", "location": "Berlin", "plz": "13051"}, {"lat": 52.62318, "lng": 13.48638, "rent": 7.2, "year": 2025, "n": 53, "grid": "4557_3285", "location": "Berlin", "plz": "13125"}, {"lat": 52.63216, "lng": 13.48709, "rent": 9.0, "year": 2024, "n": 110, "grid": "4557_3286", "location": "Berlin", "plz": "13125"}, {"lat": 52.64113, "lng": 13.4878, "rent": 11.7, "year": 2024, "n": 129, "grid": "4557_3287", "location": "Berlin", "plz": "13125"}, {"lat": 52.3894, "lng": 13.48266, "rent": 11.9, "year": 2024, "n": 51, "grid": "4558_3259", "location": "Dahme-Spreewald, Brandenburg", "plz": "12355"}, {"lat": 52.45223, "lng": 13.48761, "rent": 11.6, "year": 2025, "n": 58, "grid": "4558_3266", "location": "Berlin", "plz": "12437"}, {"lat": 52.4612, "lng": 13.48832, "rent": 9.7, "year": 2024, "n": 101, "grid": "4558_3267", "location": "Berlin", "plz": "12437"}, {"lat": 52.48813, "lng": 13.49045, "rent": 7.7, "year": 2024, "n": 65, "grid": "4558_3270", "location": "Berlin", "plz": "10317"}, {"lat": 52.4971, "lng": 13.49116, "rent": 15.1, "year": 2025, "n": 254, "grid": "4558_3271", "location": "Berlin", "plz": "10317"}, {"lat": 52.50608, "lng": 13.49187, "rent": 12.4, "year": 2025, "n": 223, "grid": "4558_3272", "location": "Berlin", "plz": "10317"}, {"lat": 52.51505, "lng": 13.49258, "rent": 9.4, "year": 2025, "n": 110, "grid": "4558_3273", "location": "Berlin", "plz": "10365"}, {"lat": 52.533, "lng": 13.494, "rent": 8.9, "year": 2025, "n": 158, "grid": "4558_3275", "location": "Berlin", "plz": "13055"}, {"lat": 52.54198, "lng": 13.49471, "rent": 9.6, "year": 2025, "n": 61, "grid": "4558_3276", "location": "Berlin", "plz": "13055"}, {"lat": 52.55993, "lng": 13.49613, "rent": 7.9, "year": 2025, "n": 85, "grid": "4558_3278", "location": "Berlin", "plz": "13053"}, {"lat": 52.5689, "lng": 13.49685, "rent": 7.1, "year": 2025, "n": 76, "grid": "4558_3279", "location": "Berlin", "plz": "13051"}, {"lat": 52.38, "lng": 13.49663, "rent": 10.2, "year": 2024, "n": 103, "grid": "4559_3258", "location": "Dahme-Spreewald, Brandenburg", "plz": "12529"}, {"lat": 52.38897, "lng": 13.49734, "rent": 12.1, "year": 2025, "n": 159, "grid": "4559_3259", "location": "Dahme-Spreewald, Brandenburg", "plz": "12355"}, {"lat": 52.39795, "lng": 13.49805, "rent": 9.5, "year": 2025, "n": 67, "grid": "4559_3260", "location": "Berlin", "plz": "12355"}, {"lat": 52.42487, "lng": 13.50017, "rent": 7.8, "year": 2025, "n": 53, "grid": "4559_3263", "location": "Berlin", "plz": "12357"}, {"lat": 52.43385, "lng": 13.50088, "rent": 10.3, "year": 2025, "n": 82, "grid": "4559_3264", "location": "Berlin", "plz": "12487"}, {"lat": 52.44282, "lng": 13.50159, "rent": 10.9, "year": 2025, "n": 82, "grid": "4559_3265", "location": "Berlin", "plz": "12487"}, {"lat": 52.4518, "lng": 13.50231, "rent": 12.0, "year": 2025, "n": 119, "grid": "4559_3266", "location": "Berlin", "plz": "12487"}, {"lat": 52.46077, "lng": 13.50302, "rent": 11.4, "year": 2025, "n": 233, "grid": "4559_3267", "location": "Berlin", "plz": "12437"}, {"lat": 52.47872, "lng": 13.50444, "rent": 17.7, "year": 2025, "n": 734, "grid": "4559_3269", "location": "Berlin", "plz": "10318"}, {"lat": 52.4877, "lng": 13.50515, "rent": 9.1, "year": 2025, "n": 167, "grid": "4559_3270", "location": "Berlin", "plz": "10319"}, {"lat": 52.49667, "lng": 13.50587, "rent": 9.2, "year": 2025, "n": 72, "grid": "4559_3271", "location": "Berlin", "plz": "10319"}, {"lat": 52.50565, "lng": 13.50658, "rent": 18.2, "year": 2025, "n": 428, "grid": "4559_3272", "location": "Berlin", "plz": "10319"}, {"lat": 52.51462, "lng": 13.50729, "rent": 9.1, "year": 2024, "n": 103, "grid": "4559_3273", "location": "Berlin", "plz": "10315"}, {"lat": 52.5236, "lng": 13.50801, "rent": 21.3, "year": 2025, "n": 244, "grid": "4559_3274", "location": "Berlin", "plz": "10315"}, {"lat": 52.53257, "lng": 13.50872, "rent": 13.4, "year": 2025, "n": 78, "grid": "4559_3275", "location": "Berlin", "plz": "13055"}, {"lat": 52.55052, "lng": 13.51015, "rent": 8.3, "year": 2024, "n": 109, "grid": "4559_3277", "location": "Berlin", "plz": "13053"}, {"lat": 52.55949, "lng": 13.51086, "rent": 7.4, "year": 2024, "n": 92, "grid": "4559_3278", "location": "Berlin", "plz": "13053"}, {"lat": 52.56847, "lng": 13.51158, "rent": 7.3, "year": 2025, "n": 54, "grid": "4559_3279", "location": "Berlin", "plz": "13059"}, {"lat": 52.39752, "lng": 13.51272, "rent": 5.6, "year": 2024, "n": 61, "grid": "4560_3260", "location": "Berlin", "plz": "12355"}, {"lat": 52.43341, "lng": 13.51557, "rent": 10.9, "year": 2025, "n": 51, "grid": "4560_3264", "location": "Berlin", "plz": "12487"}, {"lat": 52.45136, "lng": 13.517, "rent": 13.9, "year": 2025, "n": 227, "grid": "4560_3266", "location": "Berlin", "plz": "12439"}, {"lat": 52.46034, "lng": 13.51771, "rent": 15.3, "year": 2025, "n": 325, "grid": "4560_3267", "location": "Berlin", "plz": "12459"}, {"lat": 52.47829, "lng": 13.51914, "rent": 12.1, "year": 2025, "n": 94, "grid": "4560_3269", "location": "Berlin", "plz": "10318"}, {"lat": 52.48726, "lng": 13.51986, "rent": 11.4, "year": 2025, "n": 53, "grid": "4560_3270", "location": "Berlin", "plz": "10318"}, {"lat": 52.50521, "lng": 13.52129, "rent": 10.9, "year": 2025, "n": 71, "grid": "4560_3272", "location": "Berlin", "plz": "10319"}, {"lat": 52.52316, "lng": 13.52272, "rent": 14.9, "year": 2024, "n": 109, "grid": "4560_3274", "location": "Berlin", "plz": "10315"}, {"lat": 52.55906, "lng": 13.52559, "rent": 7.2, "year": 2024, "n": 53, "grid": "4560_3278", "location": "Berlin", "plz": "12681"}, {"lat": 52.40606, "lng": 13.52811, "rent": 8.4, "year": 2024, "n": 67, "grid": "4561_3261", "location": "Berlin", "plz": "12524"}, {"lat": 52.41503, "lng": 13.52883, "rent": 12.4, "year": 2025, "n": 64, "grid": "4561_3262", "location": "Berlin", "plz": "12524"}, {"lat": 52.43298, "lng": 13.53026, "rent": 14.2, "year": 2025, "n": 67, "grid": "4561_3264", "location": "Berlin", "plz": "12489"}, {"lat": 52.45093, "lng": 13.53169, "rent": 11.4, "year": 2025, "n": 114, "grid": "4561_3266", "location": "Berlin", "plz": "12439"}, {"lat": 52.52273, "lng": 13.53744, "rent": 8.2, "year": 2025, "n": 53, "grid": "4561_3274", "location": "Berlin", "plz": "10315"}, {"lat": 52.5317, "lng": 13.53816, "rent": 8.1, "year": 2024, "n": 79, "grid": "4561_3275", "location": "Berlin", "plz": "12681"}, {"lat": 52.54067, "lng": 13.53888, "rent": 6.7, "year": 2025, "n": 58, "grid": "4561_3276", "location": "Berlin", "plz": "12681"}, {"lat": 52.54965, "lng": 13.5396, "rent": 7.0, "year": 2024, "n": 63, "grid": "4561_3277", "location": "Berlin", "plz": "12681"}, {"lat": 52.40562, "lng": 13.54279, "rent": 8.2, "year": 2024, "n": 65, "grid": "4562_3261", "location": "Berlin", "plz": "12524"}, {"lat": 52.43254, "lng": 13.54495, "rent": 11.7, "year": 2025, "n": 337, "grid": "4562_3264", "location": "Berlin", "plz": "12489"}, {"lat": 52.50434, "lng": 13.55071, "rent": 11.5, "year": 2025, "n": 52, "grid": "4562_3272", "location": "Berlin", "plz": "12683"}, {"lat": 52.54024, "lng": 13.55361, "rent": 7.1, "year": 2024, "n": 68, "grid": "4562_3276", "location": "Berlin", "plz": "12679"}, {"lat": 52.54921, "lng": 13.55433, "rent": 8.0, "year": 2025, "n": 81, "grid": "4562_3277", "location": "Berlin", "plz": "12679"}, {"lat": 52.55819, "lng": 13.55505, "rent": 8.7, "year": 2025, "n": 80, "grid": "4562_3278", "location": "Berlin", "plz": "12687"}, {"lat": 52.56716, "lng": 13.55578, "rent": 8.3, "year": 2025, "n": 52, "grid": "4562_3279", "location": "Berlin", "plz": "13057"}, {"lat": 52.40518, "lng": 13.55747, "rent": 14.1, "year": 2025, "n": 113, "grid": "4563_3261", "location": "Berlin", "plz": "12524"}, {"lat": 52.43211, "lng": 13.55964, "rent": 9.2, "year": 2025, "n": 60, "grid": "4563_3264", "location": "Berlin", "plz": "12489"}, {"lat": 52.44108, "lng": 13.56036, "rent": 12.5, "year": 2025, "n": 150, "grid": "4563_3265", "location": "Berlin", "plz": "12489"}, {"lat": 52.45005, "lng": 13.56108, "rent": 15.9, "year": 2025, "n": 401, "grid": "4563_3266", "location": "Berlin", "plz": "12489"}, {"lat": 52.5039, "lng": 13.56543, "rent": 15.3, "year": 2024, "n": 59, "grid": "4563_3272", "location": "Berlin", "plz": "12683"}, {"lat": 52.52185, "lng": 13.56688, "rent": 7.8, "year": 2025, "n": 50, "grid": "4563_3274", "location": "Berlin", "plz": "12685"}, {"lat": 52.5398, "lng": 13.56833, "rent": 9.3, "year": 2025, "n": 52, "grid": "4563_3276", "location": "Berlin", "plz": "12685"}, {"lat": 52.54877, "lng": 13.56906, "rent": 7.6, "year": 2025, "n": 66, "grid": "4563_3277", "location": "Berlin", "plz": "12679"}, {"lat": 52.55775, "lng": 13.56978, "rent": 6.8, "year": 2024, "n": 54, "grid": "4563_3278", "location": "Berlin", "plz": "12687"}, {"lat": 52.56672, "lng": 13.57051, "rent": 7.8, "year": 2024, "n": 86, "grid": "4563_3279", "location": "Berlin", "plz": "12689"}, {"lat": 52.41372, "lng": 13.57287, "rent": 11.6, "year": 2025, "n": 54, "grid": "4564_3262", "location": "Berlin", "plz": "12526"}, {"lat": 52.42269, "lng": 13.5736, "rent": 14.2, "year": 2025, "n": 261, "grid": "4564_3263", "location": "Berlin", "plz": "12557"}, {"lat": 52.43166, "lng": 13.57432, "rent": 11.9, "year": 2025, "n": 120, "grid": "4564_3264", "location": "Berlin", "plz": "12557"}, {"lat": 52.44064, "lng": 13.57505, "rent": 10.0, "year": 2025, "n": 112, "grid": "4564_3265", "location": "Berlin", "plz": "12557"}, {"lat": 52.44961, "lng": 13.57577, "rent": 12.0, "year": 2025, "n": 75, "grid": "4564_3266", "location": "Berlin", "plz": "12555"}, {"lat": 52.45859, "lng": 13.5765, "rent": 11.7, "year": 2025, "n": 120, "grid": "4564_3267", "location": "Berlin", "plz": "12555"}, {"lat": 52.50346, "lng": 13.58014, "rent": 8.8, "year": 2024, "n": 63, "grid": "4564_3272", "location": "Berlin", "plz": "12621"}, {"lat": 52.51243, "lng": 13.58086, "rent": 8.7, "year": 2025, "n": 59, "grid": "4564_3273", "location": "Berlin", "plz": "12621"}, {"lat": 52.52141, "lng": 13.58159, "rent": 7.0, "year": 2025, "n": 154, "grid": "4564_3274", "location": "Berlin", "plz": "12619"}, {"lat": 52.53038, "lng": 13.58232, "rent": 5.4, "year": 2024, "n": 57, "grid": "4564_3275", "location": "Berlin", "plz": "12619"}, {"lat": 52.53936, "lng": 13.58305, "rent": 10.4, "year": 2025, "n": 87, "grid": "4564_3276", "location": "Berlin", "plz": "12629"}, {"lat": 52.42225, "lng": 13.58828, "rent": 8.4, "year": 2024, "n": 62, "grid": "4565_3263", "location": "Berlin", "plz": "12557"}, {"lat": 52.43122, "lng": 13.58901, "rent": 8.5, "year": 2024, "n": 59, "grid": "4565_3264", "location": "Berlin", "plz": "12557"}, {"lat": 52.51199, "lng": 13.59558, "rent": 10.4, "year": 2024, "n": 60, "grid": "4565_3273", "location": "Berlin", "plz": "12621"}, {"lat": 52.52994, "lng": 13.59704, "rent": 9.0, "year": 2024, "n": 81, "grid": "4565_3275", "location": "Berlin", "plz": "12619"}, {"lat": 52.53891, "lng": 13.59777, "rent": 10.7, "year": 2025, "n": 81, "grid": "4565_3276", "location": "Berlin", "plz": "12629"}, {"lat": 52.44873, "lng": 13.60516, "rent": 8.0, "year": 2024, "n": 57, "grid": "4566_3266", "location": "Berlin", "plz": "12555"}, {"lat": 52.50257, "lng": 13.60956, "rent": 7.9, "year": 2024, "n": 60, "grid": "4566_3272", "location": "Berlin", "plz": "12623"}, {"lat": 52.52949, "lng": 13.61176, "rent": 8.0, "year": 2025, "n": 95, "grid": "4566_3275", "location": "Berlin", "plz": "12627"}, {"lat": 52.44828, "lng": 13.61985, "rent": 10.5, "year": 2025, "n": 75, "grid": "4567_3266", "location": "Berlin", "plz": "12587"}, {"lat": 52.42762, "lng": 13.7065, "rent": 7.1, "year": 2024, "n": 73, "grid": "4573_3264", "location": "Berlin", "plz": "12589"}, {"lat": 52.4267, "lng": 13.73587, "rent": 8.1, "year": 2024, "n": 80, "grid": "4575_3264", "location": "Berlin", "plz": "15569"}, {"lat": 52.41727, "lng": 13.74979, "rent": 14.8, "year": 2025, "n": 58, "grid": "4576_3263", "location": "Oder-Spree, Brandenburg", "plz": "15569"}]}
+{
+  "source": "RWI-GEO-REDX PUF v16",
+  "doi": "https://doi.org/10.7807/IMMO:REDX:PUF:V16",
+  "description": "Berlin-only Immoscout24 market rent grid cells (price indices as \u20ac/m\u00b2)",
+  "years": [
+    2008,
+    2013,
+    2018,
+    2023,
+    2024,
+    2025
+  ],
+  "total_grids": 467,
+  "mean": 10.79,
+  "std": 3.78,
+  "clean": 467,
+  "grids": [
+    {
+      "lat": 52.52527,
+      "lng": 13.12461,
+      "rent": 12.61,
+      "year": 2024,
+      "n": 72,
+      "plz": "13591",
+      "location": "Berlin",
+      "grid": "4533_3273"
+    },
+    {
+      "lat": 52.40818,
+      "lng": 13.13105,
+      "rent": 7.32,
+      "year": 2013,
+      "n": 125,
+      "plz": "14109",
+      "location": "Berlin",
+      "grid": "4534_3260"
+    },
+    {
+      "lat": 52.52488,
+      "lng": 13.13933,
+      "rent": 8.42,
+      "year": 2024,
+      "n": 197,
+      "plz": "13591",
+      "location": "Berlin",
+      "grid": "4534_3273"
+    },
+    {
+      "lat": 52.53386,
+      "lng": 13.13997,
+      "rent": 8.17,
+      "year": 2018,
+      "n": 51,
+      "plz": "13591",
+      "location": "Berlin",
+      "grid": "4534_3274"
+    },
+    {
+      "lat": 52.54283,
+      "lng": 13.14061,
+      "rent": 4.89,
+      "year": 2013,
+      "n": 54,
+      "plz": "13591",
+      "location": "Berlin",
+      "grid": "4534_3275"
+    },
+    {
+      "lat": 52.55181,
+      "lng": 13.14125,
+      "rent": 3.9,
+      "year": 2008,
+      "n": 175,
+      "plz": "13591",
+      "location": "Berlin",
+      "grid": "4534_3276"
+    },
+    {
+      "lat": 52.41677,
+      "lng": 13.14637,
+      "rent": 6.78,
+      "year": 2013,
+      "n": 73,
+      "plz": "14109",
+      "location": "Berlin",
+      "grid": "4535_3261"
+    },
+    {
+      "lat": 52.46165,
+      "lng": 13.14956,
+      "rent": 13.89,
+      "year": 2024,
+      "n": 57,
+      "plz": "14089",
+      "location": "Berlin",
+      "grid": "4535_3266"
+    },
+    {
+      "lat": 52.52449,
+      "lng": 13.15405,
+      "rent": 4.79,
+      "year": 2013,
+      "n": 106,
+      "plz": "13591",
+      "location": "Berlin",
+      "grid": "4535_3273"
+    },
+    {
+      "lat": 52.54244,
+      "lng": 13.15533,
+      "rent": 7.6,
+      "year": 2024,
+      "n": 60,
+      "plz": "13591",
+      "location": "Berlin",
+      "grid": "4535_3275"
+    },
+    {
+      "lat": 52.55142,
+      "lng": 13.15598,
+      "rent": 7.53,
+      "year": 2024,
+      "n": 64,
+      "plz": "13589",
+      "location": "Berlin",
+      "grid": "4535_3276"
+    },
+    {
+      "lat": 52.42535,
+      "lng": 13.1617,
+      "rent": 11.11,
+      "year": 2008,
+      "n": 53,
+      "plz": "14109",
+      "location": "Berlin",
+      "grid": "4536_3262"
+    },
+    {
+      "lat": 52.51512,
+      "lng": 13.16813,
+      "rent": 8.39,
+      "year": 2024,
+      "n": 123,
+      "plz": "13593",
+      "location": "Berlin",
+      "grid": "4536_3272"
+    },
+    {
+      "lat": 52.5241,
+      "lng": 13.16877,
+      "rent": 10.95,
+      "year": 2024,
+      "n": 60,
+      "plz": "13593",
+      "location": "Berlin",
+      "grid": "4536_3273"
+    },
+    {
+      "lat": 52.53308,
+      "lng": 13.16942,
+      "rent": 8.67,
+      "year": 2024,
+      "n": 156,
+      "plz": "13593",
+      "location": "Berlin",
+      "grid": "4536_3274"
+    },
+    {
+      "lat": 52.54205,
+      "lng": 13.17006,
+      "rent": 7.46,
+      "year": 2025,
+      "n": 52,
+      "plz": "13583",
+      "location": "Berlin",
+      "grid": "4536_3275"
+    },
+    {
+      "lat": 52.55103,
+      "lng": 13.17071,
+      "rent": 6.75,
+      "year": 2024,
+      "n": 55,
+      "plz": "13583",
+      "location": "Berlin",
+      "grid": "4536_3276"
+    },
+    {
+      "lat": 52.41599,
+      "lng": 13.17574,
+      "rent": 7.72,
+      "year": 2013,
+      "n": 63,
+      "plz": "14129",
+      "location": "Berlin",
+      "grid": "4537_3261"
+    },
+    {
+      "lat": 52.50575,
+      "lng": 13.1822,
+      "rent": 6.13,
+      "year": 2008,
+      "n": 57,
+      "plz": "13595",
+      "location": "Berlin",
+      "grid": "4537_3271"
+    },
+    {
+      "lat": 52.51473,
+      "lng": 13.18284,
+      "rent": 10.16,
+      "year": 2025,
+      "n": 70,
+      "plz": "13595",
+      "location": "Berlin",
+      "grid": "4537_3272"
+    },
+    {
+      "lat": 52.52371,
+      "lng": 13.18349,
+      "rent": 11.02,
+      "year": 2025,
+      "n": 148,
+      "plz": "13581",
+      "location": "Berlin",
+      "grid": "4537_3273"
+    },
+    {
+      "lat": 52.53268,
+      "lng": 13.18414,
+      "rent": 11.29,
+      "year": 2025,
+      "n": 52,
+      "plz": "13581",
+      "location": "Berlin",
+      "grid": "4537_3274"
+    },
+    {
+      "lat": 52.54166,
+      "lng": 13.18479,
+      "rent": 9.73,
+      "year": 2025,
+      "n": 65,
+      "plz": "13583",
+      "location": "Berlin",
+      "grid": "4537_3275"
+    },
+    {
+      "lat": 52.55064,
+      "lng": 13.18544,
+      "rent": 10.01,
+      "year": 2024,
+      "n": 56,
+      "plz": "13583",
+      "location": "Berlin",
+      "grid": "4537_3276"
+    },
+    {
+      "lat": 52.55962,
+      "lng": 13.18609,
+      "rent": 5.15,
+      "year": 2013,
+      "n": 119,
+      "plz": "13587",
+      "location": "Berlin",
+      "grid": "4537_3277"
+    },
+    {
+      "lat": 52.41559,
+      "lng": 13.19043,
+      "rent": 7.45,
+      "year": 2013,
+      "n": 152,
+      "plz": "14129",
+      "location": "Berlin",
+      "grid": "4538_3261"
+    },
+    {
+      "lat": 52.42457,
+      "lng": 13.19107,
+      "rent": 14.26,
+      "year": 2025,
+      "n": 87,
+      "plz": "14129",
+      "location": "Berlin",
+      "grid": "4538_3262"
+    },
+    {
+      "lat": 52.50536,
+      "lng": 13.19691,
+      "rent": 9.78,
+      "year": 2024,
+      "n": 84,
+      "plz": "13595",
+      "location": "Berlin",
+      "grid": "4538_3271"
+    },
+    {
+      "lat": 52.51434,
+      "lng": 13.19756,
+      "rent": 8.05,
+      "year": 2018,
+      "n": 124,
+      "plz": "13595",
+      "location": "Berlin",
+      "grid": "4538_3272"
+    },
+    {
+      "lat": 52.52331,
+      "lng": 13.19821,
+      "rent": 9.26,
+      "year": 2024,
+      "n": 81,
+      "plz": "13581",
+      "location": "Berlin",
+      "grid": "4538_3273"
+    },
+    {
+      "lat": 52.53229,
+      "lng": 13.19886,
+      "rent": 11.68,
+      "year": 2024,
+      "n": 53,
+      "plz": "13581",
+      "location": "Berlin",
+      "grid": "4538_3274"
+    },
+    {
+      "lat": 52.54127,
+      "lng": 13.19951,
+      "rent": 11.67,
+      "year": 2025,
+      "n": 142,
+      "plz": "13585",
+      "location": "Berlin",
+      "grid": "4538_3275"
+    },
+    {
+      "lat": 52.55024,
+      "lng": 13.20017,
+      "rent": 14.01,
+      "year": 2025,
+      "n": 104,
+      "plz": "13585",
+      "location": "Berlin",
+      "grid": "4538_3276"
+    },
+    {
+      "lat": 52.55922,
+      "lng": 13.20082,
+      "rent": 10.7,
+      "year": 2025,
+      "n": 106,
+      "plz": "13585",
+      "location": "Berlin",
+      "grid": "4538_3277"
+    },
+    {
+      "lat": 52.5682,
+      "lng": 13.20147,
+      "rent": 7.59,
+      "year": 2018,
+      "n": 76,
+      "plz": "13587",
+      "location": "Berlin",
+      "grid": "4538_3278"
+    },
+    {
+      "lat": 52.42417,
+      "lng": 13.20576,
+      "rent": 7.06,
+      "year": 2013,
+      "n": 68,
+      "plz": "14129",
+      "location": "Berlin",
+      "grid": "4539_3262"
+    },
+    {
+      "lat": 52.43315,
+      "lng": 13.20641,
+      "rent": 9.95,
+      "year": 2024,
+      "n": 62,
+      "plz": "14129",
+      "location": "Berlin",
+      "grid": "4539_3263"
+    },
+    {
+      "lat": 52.50497,
+      "lng": 13.21163,
+      "rent": 10.35,
+      "year": 2024,
+      "n": 134,
+      "plz": "13595",
+      "location": "Berlin",
+      "grid": "4539_3271"
+    },
+    {
+      "lat": 52.52292,
+      "lng": 13.21293,
+      "rent": 3.74,
+      "year": 2008,
+      "n": 93,
+      "plz": "13597",
+      "location": "Berlin",
+      "grid": "4539_3273"
+    },
+    {
+      "lat": 52.54087,
+      "lng": 13.21424,
+      "rent": 7.49,
+      "year": 2018,
+      "n": 56,
+      "plz": "13585",
+      "location": "Berlin",
+      "grid": "4539_3275"
+    },
+    {
+      "lat": 52.54985,
+      "lng": 13.2149,
+      "rent": 9.72,
+      "year": 2025,
+      "n": 74,
+      "plz": "13585",
+      "location": "Berlin",
+      "grid": "4539_3276"
+    },
+    {
+      "lat": 52.55882,
+      "lng": 13.21555,
+      "rent": 9.35,
+      "year": 2024,
+      "n": 63,
+      "plz": "13585",
+      "location": "Berlin",
+      "grid": "4539_3277"
+    },
+    {
+      "lat": 52.42378,
+      "lng": 13.22045,
+      "rent": 6.63,
+      "year": 2013,
+      "n": 95,
+      "plz": "14129",
+      "location": "Berlin",
+      "grid": "4540_3262"
+    },
+    {
+      "lat": 52.43275,
+      "lng": 13.2211,
+      "rent": 7.08,
+      "year": 2013,
+      "n": 147,
+      "plz": "14129",
+      "location": "Berlin",
+      "grid": "4540_3263"
+    },
+    {
+      "lat": 52.44173,
+      "lng": 13.22176,
+      "rent": 8.75,
+      "year": 2008,
+      "n": 56,
+      "plz": "14163",
+      "location": "Berlin",
+      "grid": "4540_3264"
+    },
+    {
+      "lat": 52.50457,
+      "lng": 13.22634,
+      "rent": 6.93,
+      "year": 2013,
+      "n": 78,
+      "plz": "14055",
+      "location": "Berlin",
+      "grid": "4540_3271"
+    },
+    {
+      "lat": 52.54047,
+      "lng": 13.22897,
+      "rent": 9.2,
+      "year": 2025,
+      "n": 114,
+      "plz": "13599",
+      "location": "Berlin",
+      "grid": "4540_3275"
+    },
+    {
+      "lat": 52.5674,
+      "lng": 13.23094,
+      "rent": 17.25,
+      "year": 2025,
+      "n": 153,
+      "plz": "13599",
+      "location": "Berlin",
+      "grid": "4540_3278"
+    },
+    {
+      "lat": 52.60331,
+      "lng": 13.23358,
+      "rent": 6.68,
+      "year": 2008,
+      "n": 57,
+      "plz": "13503",
+      "location": "Berlin",
+      "grid": "4540_3282"
+    },
+    {
+      "lat": 52.42338,
+      "lng": 13.23514,
+      "rent": 6.51,
+      "year": 2013,
+      "n": 57,
+      "plz": "14165",
+      "location": "Berlin",
+      "grid": "4541_3262"
+    },
+    {
+      "lat": 52.43236,
+      "lng": 13.23579,
+      "rent": 11.57,
+      "year": 2024,
+      "n": 56,
+      "plz": "14163",
+      "location": "Berlin",
+      "grid": "4541_3263"
+    },
+    {
+      "lat": 52.44133,
+      "lng": 13.23645,
+      "rent": 6.83,
+      "year": 2013,
+      "n": 73,
+      "plz": "14163",
+      "location": "Berlin",
+      "grid": "4541_3264"
+    },
+    {
+      "lat": 52.50417,
+      "lng": 13.24105,
+      "rent": 14.65,
+      "year": 2024,
+      "n": 77,
+      "plz": "14055",
+      "location": "Berlin",
+      "grid": "4541_3271"
+    },
+    {
+      "lat": 52.51314,
+      "lng": 13.24171,
+      "rent": 17.78,
+      "year": 2025,
+      "n": 73,
+      "plz": "14055",
+      "location": "Berlin",
+      "grid": "4541_3272"
+    },
+    {
+      "lat": 52.54007,
+      "lng": 13.24369,
+      "rent": 10.42,
+      "year": 2025,
+      "n": 66,
+      "plz": "13599",
+      "location": "Berlin",
+      "grid": "4541_3275"
+    },
+    {
+      "lat": 52.42298,
+      "lng": 13.24982,
+      "rent": 7.38,
+      "year": 2013,
+      "n": 141,
+      "plz": "14165",
+      "location": "Berlin",
+      "grid": "4542_3262"
+    },
+    {
+      "lat": 52.43196,
+      "lng": 13.25048,
+      "rent": 12.04,
+      "year": 2024,
+      "n": 105,
+      "plz": "14165",
+      "location": "Berlin",
+      "grid": "4542_3263"
+    },
+    {
+      "lat": 52.44093,
+      "lng": 13.25114,
+      "rent": 8.58,
+      "year": 2013,
+      "n": 82,
+      "plz": "14163",
+      "location": "Berlin",
+      "grid": "4542_3264"
+    },
+    {
+      "lat": 52.44991,
+      "lng": 13.2518,
+      "rent": 9.42,
+      "year": 2018,
+      "n": 72,
+      "plz": "14163",
+      "location": "Berlin",
+      "grid": "4542_3265"
+    },
+    {
+      "lat": 52.47684,
+      "lng": 13.25378,
+      "rent": 9.69,
+      "year": 2013,
+      "n": 172,
+      "plz": "14055",
+      "location": "Berlin",
+      "grid": "4542_3268"
+    },
+    {
+      "lat": 52.48581,
+      "lng": 13.25444,
+      "rent": 9.03,
+      "year": 2013,
+      "n": 67,
+      "plz": "14055",
+      "location": "Berlin",
+      "grid": "4542_3269"
+    },
+    {
+      "lat": 52.50377,
+      "lng": 13.25577,
+      "rent": 13.88,
+      "year": 2024,
+      "n": 108,
+      "plz": "14052",
+      "location": "Berlin",
+      "grid": "4542_3271"
+    },
+    {
+      "lat": 52.51274,
+      "lng": 13.25643,
+      "rent": 11.31,
+      "year": 2025,
+      "n": 79,
+      "plz": "14052",
+      "location": "Berlin",
+      "grid": "4542_3272"
+    },
+    {
+      "lat": 52.5307,
+      "lng": 13.25776,
+      "rent": 8.89,
+      "year": 2024,
+      "n": 110,
+      "plz": "13629",
+      "location": "Berlin",
+      "grid": "4542_3274"
+    },
+    {
+      "lat": 52.53967,
+      "lng": 13.25842,
+      "rent": 10.76,
+      "year": 2025,
+      "n": 70,
+      "plz": "13629",
+      "location": "Berlin",
+      "grid": "4542_3275"
+    },
+    {
+      "lat": 52.57558,
+      "lng": 13.26108,
+      "rent": 6.14,
+      "year": 2024,
+      "n": 72,
+      "plz": "13507",
+      "location": "Berlin",
+      "grid": "4542_3279"
+    },
+    {
+      "lat": 52.4136,
+      "lng": 13.26385,
+      "rent": 7.27,
+      "year": 2013,
+      "n": 83,
+      "plz": "14165",
+      "location": "Berlin",
+      "grid": "4543_3261"
+    },
+    {
+      "lat": 52.42258,
+      "lng": 13.26451,
+      "rent": 7.76,
+      "year": 2013,
+      "n": 89,
+      "plz": "14165",
+      "location": "Berlin",
+      "grid": "4543_3262"
+    },
+    {
+      "lat": 52.43155,
+      "lng": 13.26517,
+      "rent": 13.48,
+      "year": 2025,
+      "n": 66,
+      "plz": "14169",
+      "location": "Berlin",
+      "grid": "4543_3263"
+    },
+    {
+      "lat": 52.44053,
+      "lng": 13.26583,
+      "rent": 8.3,
+      "year": 2013,
+      "n": 59,
+      "plz": "14169",
+      "location": "Berlin",
+      "grid": "4543_3264"
+    },
+    {
+      "lat": 52.44951,
+      "lng": 13.2665,
+      "rent": 15.2,
+      "year": 2024,
+      "n": 107,
+      "plz": "14169",
+      "location": "Berlin",
+      "grid": "4543_3265"
+    },
+    {
+      "lat": 52.45848,
+      "lng": 13.26716,
+      "rent": 7.96,
+      "year": 2013,
+      "n": 59,
+      "plz": "14169",
+      "location": "Berlin",
+      "grid": "4543_3266"
+    },
+    {
+      "lat": 52.47644,
+      "lng": 13.26849,
+      "rent": 13.2,
+      "year": 2024,
+      "n": 101,
+      "plz": "14199",
+      "location": "Berlin",
+      "grid": "4543_3268"
+    },
+    {
+      "lat": 52.48541,
+      "lng": 13.26915,
+      "rent": 18.02,
+      "year": 2024,
+      "n": 62,
+      "plz": "10711",
+      "location": "Berlin",
+      "grid": "4543_3269"
+    },
+    {
+      "lat": 52.49439,
+      "lng": 13.26982,
+      "rent": 7.26,
+      "year": 2023,
+      "n": 53,
+      "plz": "14057",
+      "location": "Berlin",
+      "grid": "4543_3270"
+    },
+    {
+      "lat": 52.50336,
+      "lng": 13.27048,
+      "rent": 14.56,
+      "year": 2025,
+      "n": 94,
+      "plz": "14052",
+      "location": "Berlin",
+      "grid": "4543_3271"
+    },
+    {
+      "lat": 52.51234,
+      "lng": 13.27115,
+      "rent": 12.17,
+      "year": 2024,
+      "n": 51,
+      "plz": "14050",
+      "location": "Berlin",
+      "grid": "4543_3272"
+    },
+    {
+      "lat": 52.52132,
+      "lng": 13.27181,
+      "rent": 15.3,
+      "year": 2024,
+      "n": 87,
+      "plz": "14050",
+      "location": "Berlin",
+      "grid": "4543_3273"
+    },
+    {
+      "lat": 52.53029,
+      "lng": 13.27248,
+      "rent": 11.97,
+      "year": 2024,
+      "n": 62,
+      "plz": "14050",
+      "location": "Berlin",
+      "grid": "4543_3274"
+    },
+    {
+      "lat": 52.53927,
+      "lng": 13.27315,
+      "rent": 5.38,
+      "year": 2008,
+      "n": 82,
+      "plz": "13629",
+      "location": "Berlin",
+      "grid": "4543_3275"
+    },
+    {
+      "lat": 52.57517,
+      "lng": 13.27581,
+      "rent": 9.96,
+      "year": 2025,
+      "n": 71,
+      "plz": "13507",
+      "location": "Berlin",
+      "grid": "4543_3279"
+    },
+    {
+      "lat": 52.58415,
+      "lng": 13.27648,
+      "rent": 11.76,
+      "year": 2025,
+      "n": 128,
+      "plz": "13507",
+      "location": "Berlin",
+      "grid": "4543_3280"
+    },
+    {
+      "lat": 52.62903,
+      "lng": 13.27983,
+      "rent": 6.02,
+      "year": 2008,
+      "n": 65,
+      "plz": "13465",
+      "location": "Berlin",
+      "grid": "4543_3285"
+    },
+    {
+      "lat": 52.4132,
+      "lng": 13.27853,
+      "rent": 15.77,
+      "year": 2025,
+      "n": 87,
+      "plz": "14167",
+      "location": "Berlin",
+      "grid": "4544_3261"
+    },
+    {
+      "lat": 52.42217,
+      "lng": 13.2792,
+      "rent": 7.75,
+      "year": 2013,
+      "n": 66,
+      "plz": "14167",
+      "location": "Berlin",
+      "grid": "4544_3262"
+    },
+    {
+      "lat": 52.43115,
+      "lng": 13.27986,
+      "rent": 7.12,
+      "year": 2013,
+      "n": 104,
+      "plz": "14167",
+      "location": "Berlin",
+      "grid": "4544_3263"
+    },
+    {
+      "lat": 52.44013,
+      "lng": 13.28053,
+      "rent": 11.71,
+      "year": 2024,
+      "n": 100,
+      "plz": "14169",
+      "location": "Berlin",
+      "grid": "4544_3264"
+    },
+    {
+      "lat": 52.4491,
+      "lng": 13.28119,
+      "rent": 7.96,
+      "year": 2013,
+      "n": 56,
+      "plz": "14195",
+      "location": "Berlin",
+      "grid": "4544_3265"
+    },
+    {
+      "lat": 52.45808,
+      "lng": 13.28186,
+      "rent": 9.4,
+      "year": 2013,
+      "n": 68,
+      "plz": "14195",
+      "location": "Berlin",
+      "grid": "4544_3266"
+    },
+    {
+      "lat": 52.46705,
+      "lng": 13.28253,
+      "rent": 14.81,
+      "year": 2024,
+      "n": 105,
+      "plz": "14195",
+      "location": "Berlin",
+      "grid": "4544_3267"
+    },
+    {
+      "lat": 52.47603,
+      "lng": 13.28319,
+      "rent": 14.57,
+      "year": 2025,
+      "n": 126,
+      "plz": "14199",
+      "location": "Berlin",
+      "grid": "4544_3268"
+    },
+    {
+      "lat": 52.48501,
+      "lng": 13.28386,
+      "rent": 14.88,
+      "year": 2025,
+      "n": 111,
+      "plz": "14199",
+      "location": "Berlin",
+      "grid": "4544_3269"
+    },
+    {
+      "lat": 52.49398,
+      "lng": 13.28453,
+      "rent": 15.45,
+      "year": 2025,
+      "n": 229,
+      "plz": "10711",
+      "location": "Berlin",
+      "grid": "4544_3270"
+    },
+    {
+      "lat": 52.50296,
+      "lng": 13.2852,
+      "rent": 17.41,
+      "year": 2025,
+      "n": 288,
+      "plz": "14057",
+      "location": "Berlin",
+      "grid": "4544_3271"
+    },
+    {
+      "lat": 52.51194,
+      "lng": 13.28586,
+      "rent": 12.7,
+      "year": 2025,
+      "n": 191,
+      "plz": "14057",
+      "location": "Berlin",
+      "grid": "4544_3272"
+    },
+    {
+      "lat": 52.52091,
+      "lng": 13.28653,
+      "rent": 15.41,
+      "year": 2025,
+      "n": 211,
+      "plz": "14059",
+      "location": "Berlin",
+      "grid": "4544_3273"
+    },
+    {
+      "lat": 52.52989,
+      "lng": 13.2872,
+      "rent": 7.37,
+      "year": 2024,
+      "n": 160,
+      "plz": "14059",
+      "location": "Berlin",
+      "grid": "4544_3274"
+    },
+    {
+      "lat": 52.53886,
+      "lng": 13.28787,
+      "rent": 5.18,
+      "year": 2008,
+      "n": 96,
+      "plz": "13627",
+      "location": "Berlin",
+      "grid": "4544_3275"
+    },
+    {
+      "lat": 52.57477,
+      "lng": 13.29055,
+      "rent": 8.99,
+      "year": 2024,
+      "n": 92,
+      "plz": "13509",
+      "location": "Berlin",
+      "grid": "4544_3279"
+    },
+    {
+      "lat": 52.58374,
+      "lng": 13.29122,
+      "rent": 12.05,
+      "year": 2025,
+      "n": 100,
+      "plz": "13509",
+      "location": "Berlin",
+      "grid": "4544_3280"
+    },
+    {
+      "lat": 52.59272,
+      "lng": 13.29189,
+      "rent": 16.54,
+      "year": 2025,
+      "n": 73,
+      "plz": "13509",
+      "location": "Berlin",
+      "grid": "4544_3281"
+    },
+    {
+      "lat": 52.61067,
+      "lng": 13.29324,
+      "rent": 10.77,
+      "year": 2024,
+      "n": 61,
+      "plz": "13467",
+      "location": "Berlin",
+      "grid": "4544_3283"
+    },
+    {
+      "lat": 52.61965,
+      "lng": 13.29391,
+      "rent": 10.0,
+      "year": 2024,
+      "n": 73,
+      "plz": "13467",
+      "location": "Berlin",
+      "grid": "4544_3284"
+    },
+    {
+      "lat": 52.62862,
+      "lng": 13.29458,
+      "rent": 6.82,
+      "year": 2013,
+      "n": 66,
+      "plz": "13465",
+      "location": "Berlin",
+      "grid": "4544_3285"
+    },
+    {
+      "lat": 52.41279,
+      "lng": 13.29321,
+      "rent": 11.44,
+      "year": 2025,
+      "n": 56,
+      "plz": "12207",
+      "location": "Berlin",
+      "grid": "4545_3261"
+    },
+    {
+      "lat": 52.42177,
+      "lng": 13.29388,
+      "rent": 8.72,
+      "year": 2018,
+      "n": 53,
+      "plz": "12205",
+      "location": "Berlin",
+      "grid": "4545_3262"
+    },
+    {
+      "lat": 52.43074,
+      "lng": 13.29455,
+      "rent": 10.16,
+      "year": 2024,
+      "n": 146,
+      "plz": "12205",
+      "location": "Berlin",
+      "grid": "4545_3263"
+    },
+    {
+      "lat": 52.43972,
+      "lng": 13.29522,
+      "rent": 13.96,
+      "year": 2025,
+      "n": 59,
+      "plz": "12205",
+      "location": "Berlin",
+      "grid": "4545_3264"
+    },
+    {
+      "lat": 52.4487,
+      "lng": 13.29589,
+      "rent": 7.69,
+      "year": 2013,
+      "n": 98,
+      "plz": "14195",
+      "location": "Berlin",
+      "grid": "4545_3265"
+    },
+    {
+      "lat": 52.45767,
+      "lng": 13.29656,
+      "rent": 20.64,
+      "year": 2024,
+      "n": 249,
+      "plz": "14195",
+      "location": "Berlin",
+      "grid": "4545_3266"
+    },
+    {
+      "lat": 52.46665,
+      "lng": 13.29723,
+      "rent": 16.83,
+      "year": 2025,
+      "n": 75,
+      "plz": "14199",
+      "location": "Berlin",
+      "grid": "4545_3267"
+    },
+    {
+      "lat": 52.47562,
+      "lng": 13.2979,
+      "rent": 20.13,
+      "year": 2025,
+      "n": 76,
+      "plz": "14199",
+      "location": "Berlin",
+      "grid": "4545_3268"
+    },
+    {
+      "lat": 52.4846,
+      "lng": 13.29857,
+      "rent": 11.02,
+      "year": 2025,
+      "n": 56,
+      "plz": "14199",
+      "location": "Berlin",
+      "grid": "4545_3269"
+    },
+    {
+      "lat": 52.49358,
+      "lng": 13.29924,
+      "rent": 18.26,
+      "year": 2025,
+      "n": 389,
+      "plz": "10709",
+      "location": "Berlin",
+      "grid": "4545_3270"
+    },
+    {
+      "lat": 52.50255,
+      "lng": 13.29991,
+      "rent": 17.66,
+      "year": 2025,
+      "n": 437,
+      "plz": "10629",
+      "location": "Berlin",
+      "grid": "4545_3271"
+    },
+    {
+      "lat": 52.51153,
+      "lng": 13.30058,
+      "rent": 14.08,
+      "year": 2025,
+      "n": 251,
+      "plz": "10627",
+      "location": "Berlin",
+      "grid": "4545_3272"
+    },
+    {
+      "lat": 52.52051,
+      "lng": 13.30125,
+      "rent": 12.51,
+      "year": 2025,
+      "n": 163,
+      "plz": "10585",
+      "location": "Berlin",
+      "grid": "4545_3273"
+    },
+    {
+      "lat": 52.52948,
+      "lng": 13.30192,
+      "rent": 11.69,
+      "year": 2025,
+      "n": 63,
+      "plz": "10589",
+      "location": "Berlin",
+      "grid": "4545_3274"
+    },
+    {
+      "lat": 52.53846,
+      "lng": 13.3026,
+      "rent": 6.41,
+      "year": 2024,
+      "n": 54,
+      "plz": "13627",
+      "location": "Berlin",
+      "grid": "4545_3275"
+    },
+    {
+      "lat": 52.54743,
+      "lng": 13.30327,
+      "rent": 4.62,
+      "year": 2008,
+      "n": 125,
+      "plz": "13627",
+      "location": "Berlin",
+      "grid": "4545_3276"
+    },
+    {
+      "lat": 52.56539,
+      "lng": 13.30461,
+      "rent": 12.21,
+      "year": 2025,
+      "n": 125,
+      "plz": "13405",
+      "location": "Berlin",
+      "grid": "4545_3278"
+    },
+    {
+      "lat": 52.57436,
+      "lng": 13.30529,
+      "rent": 8.96,
+      "year": 2025,
+      "n": 64,
+      "plz": "13403",
+      "location": "Berlin",
+      "grid": "4545_3279"
+    },
+    {
+      "lat": 52.58334,
+      "lng": 13.30596,
+      "rent": 8.7,
+      "year": 2024,
+      "n": 54,
+      "plz": "13509",
+      "location": "Berlin",
+      "grid": "4545_3280"
+    },
+    {
+      "lat": 52.60129,
+      "lng": 13.30731,
+      "rent": 6.23,
+      "year": 2013,
+      "n": 127,
+      "plz": "13509",
+      "location": "Berlin",
+      "grid": "4545_3282"
+    },
+    {
+      "lat": 52.61027,
+      "lng": 13.30799,
+      "rent": 6.68,
+      "year": 2013,
+      "n": 59,
+      "plz": "13467",
+      "location": "Berlin",
+      "grid": "4545_3283"
+    },
+    {
+      "lat": 52.61924,
+      "lng": 13.30866,
+      "rent": 6.77,
+      "year": 2013,
+      "n": 65,
+      "plz": "13467",
+      "location": "Berlin",
+      "grid": "4545_3284"
+    },
+    {
+      "lat": 52.62822,
+      "lng": 13.30934,
+      "rent": 10.14,
+      "year": 2024,
+      "n": 59,
+      "plz": "13467",
+      "location": "Berlin",
+      "grid": "4545_3285"
+    },
+    {
+      "lat": 52.63719,
+      "lng": 13.31001,
+      "rent": 5.91,
+      "year": 2013,
+      "n": 79,
+      "plz": "16548",
+      "location": "Berlin",
+      "grid": "4545_3286"
+    },
+    {
+      "lat": 52.41238,
+      "lng": 13.3079,
+      "rent": 10.51,
+      "year": 2025,
+      "n": 80,
+      "plz": "12207",
+      "location": "Berlin",
+      "grid": "4546_3261"
+    },
+    {
+      "lat": 52.42136,
+      "lng": 13.30857,
+      "rent": 13.18,
+      "year": 2024,
+      "n": 64,
+      "plz": "12207",
+      "location": "Berlin",
+      "grid": "4546_3262"
+    },
+    {
+      "lat": 52.43034,
+      "lng": 13.30924,
+      "rent": 11.82,
+      "year": 2024,
+      "n": 65,
+      "plz": "12207",
+      "location": "Berlin",
+      "grid": "4546_3263"
+    },
+    {
+      "lat": 52.43931,
+      "lng": 13.30991,
+      "rent": 12.39,
+      "year": 2025,
+      "n": 60,
+      "plz": "12203",
+      "location": "Berlin",
+      "grid": "4546_3264"
+    },
+    {
+      "lat": 52.44829,
+      "lng": 13.31058,
+      "rent": 13.82,
+      "year": 2025,
+      "n": 94,
+      "plz": "12203",
+      "location": "Berlin",
+      "grid": "4546_3265"
+    },
+    {
+      "lat": 52.45726,
+      "lng": 13.31126,
+      "rent": 12.73,
+      "year": 2025,
+      "n": 144,
+      "plz": "12165",
+      "location": "Berlin",
+      "grid": "4546_3266"
+    },
+    {
+      "lat": 52.46624,
+      "lng": 13.31193,
+      "rent": 11.93,
+      "year": 2025,
+      "n": 127,
+      "plz": "14197",
+      "location": "Berlin",
+      "grid": "4546_3267"
+    },
+    {
+      "lat": 52.47522,
+      "lng": 13.3126,
+      "rent": 12.39,
+      "year": 2025,
+      "n": 151,
+      "plz": "14197",
+      "location": "Berlin",
+      "grid": "4546_3268"
+    },
+    {
+      "lat": 52.48419,
+      "lng": 13.31327,
+      "rent": 14.63,
+      "year": 2025,
+      "n": 251,
+      "plz": "10713",
+      "location": "Berlin",
+      "grid": "4546_3269"
+    },
+    {
+      "lat": 52.49317,
+      "lng": 13.31395,
+      "rent": 19.15,
+      "year": 2025,
+      "n": 285,
+      "plz": "10707",
+      "location": "Berlin",
+      "grid": "4546_3270"
+    },
+    {
+      "lat": 52.50214,
+      "lng": 13.31462,
+      "rent": 19.91,
+      "year": 2025,
+      "n": 237,
+      "plz": "10625",
+      "location": "Berlin",
+      "grid": "4546_3271"
+    },
+    {
+      "lat": 52.51112,
+      "lng": 13.3153,
+      "rent": 14.49,
+      "year": 2025,
+      "n": 145,
+      "plz": "10625",
+      "location": "Berlin",
+      "grid": "4546_3272"
+    },
+    {
+      "lat": 52.5201,
+      "lng": 13.31597,
+      "rent": 12.56,
+      "year": 2025,
+      "n": 203,
+      "plz": "10587",
+      "location": "Berlin",
+      "grid": "4546_3273"
+    },
+    {
+      "lat": 52.52907,
+      "lng": 13.31665,
+      "rent": 11.74,
+      "year": 2025,
+      "n": 125,
+      "plz": "10553",
+      "location": "Berlin",
+      "grid": "4546_3274"
+    },
+    {
+      "lat": 52.556,
+      "lng": 13.31867,
+      "rent": 10.63,
+      "year": 2024,
+      "n": 88,
+      "plz": "13405",
+      "location": "Berlin",
+      "grid": "4546_3277"
+    },
+    {
+      "lat": 52.56498,
+      "lng": 13.31935,
+      "rent": 13.76,
+      "year": 2025,
+      "n": 79,
+      "plz": "13403",
+      "location": "Berlin",
+      "grid": "4546_3278"
+    },
+    {
+      "lat": 52.57395,
+      "lng": 13.32002,
+      "rent": 9.26,
+      "year": 2024,
+      "n": 72,
+      "plz": "13403",
+      "location": "Berlin",
+      "grid": "4546_3279"
+    },
+    {
+      "lat": 52.58293,
+      "lng": 13.3207,
+      "rent": 5.67,
+      "year": 2013,
+      "n": 53,
+      "plz": "13403",
+      "location": "Berlin",
+      "grid": "4546_3280"
+    },
+    {
+      "lat": 52.5919,
+      "lng": 13.32138,
+      "rent": 10.44,
+      "year": 2024,
+      "n": 61,
+      "plz": "13437",
+      "location": "Berlin",
+      "grid": "4546_3281"
+    },
+    {
+      "lat": 52.60088,
+      "lng": 13.32206,
+      "rent": 8.31,
+      "year": 2025,
+      "n": 54,
+      "plz": "13437",
+      "location": "Berlin",
+      "grid": "4546_3282"
+    },
+    {
+      "lat": 52.60986,
+      "lng": 13.32273,
+      "rent": 4.92,
+      "year": 2013,
+      "n": 77,
+      "plz": "13469",
+      "location": "Berlin",
+      "grid": "4546_3283"
+    },
+    {
+      "lat": 52.403,
+      "lng": 13.32191,
+      "rent": 6.4,
+      "year": 2013,
+      "n": 58,
+      "plz": "12209",
+      "location": "Berlin",
+      "grid": "4547_3260"
+    },
+    {
+      "lat": 52.41198,
+      "lng": 13.32258,
+      "rent": 6.49,
+      "year": 2013,
+      "n": 139,
+      "plz": "12209",
+      "location": "Berlin",
+      "grid": "4547_3261"
+    },
+    {
+      "lat": 52.42095,
+      "lng": 13.32325,
+      "rent": 12.25,
+      "year": 2025,
+      "n": 51,
+      "plz": "12209",
+      "location": "Berlin",
+      "grid": "4547_3262"
+    },
+    {
+      "lat": 52.42993,
+      "lng": 13.32393,
+      "rent": 12.04,
+      "year": 2024,
+      "n": 60,
+      "plz": "12209",
+      "location": "Berlin",
+      "grid": "4547_3263"
+    },
+    {
+      "lat": 52.4389,
+      "lng": 13.3246,
+      "rent": 12.05,
+      "year": 2025,
+      "n": 55,
+      "plz": "12167",
+      "location": "Berlin",
+      "grid": "4547_3264"
+    },
+    {
+      "lat": 52.44788,
+      "lng": 13.32528,
+      "rent": 12.59,
+      "year": 2025,
+      "n": 159,
+      "plz": "12167",
+      "location": "Berlin",
+      "grid": "4547_3265"
+    },
+    {
+      "lat": 52.45686,
+      "lng": 13.32595,
+      "rent": 15.69,
+      "year": 2025,
+      "n": 178,
+      "plz": "12167",
+      "location": "Berlin",
+      "grid": "4547_3266"
+    },
+    {
+      "lat": 52.46583,
+      "lng": 13.32663,
+      "rent": 13.87,
+      "year": 2025,
+      "n": 192,
+      "plz": "12161",
+      "location": "Berlin",
+      "grid": "4547_3267"
+    },
+    {
+      "lat": 52.47481,
+      "lng": 13.3273,
+      "rent": 14.44,
+      "year": 2025,
+      "n": 217,
+      "plz": "12161",
+      "location": "Berlin",
+      "grid": "4547_3268"
+    },
+    {
+      "lat": 52.48378,
+      "lng": 13.32798,
+      "rent": 13.5,
+      "year": 2025,
+      "n": 342,
+      "plz": "10715",
+      "location": "Berlin",
+      "grid": "4547_3269"
+    },
+    {
+      "lat": 52.49276,
+      "lng": 13.32866,
+      "rent": 15.8,
+      "year": 2025,
+      "n": 331,
+      "plz": "10717",
+      "location": "Berlin",
+      "grid": "4547_3270"
+    },
+    {
+      "lat": 52.50173,
+      "lng": 13.32933,
+      "rent": 15.97,
+      "year": 2025,
+      "n": 71,
+      "plz": "10719",
+      "location": "Berlin",
+      "grid": "4547_3271"
+    },
+    {
+      "lat": 52.51071,
+      "lng": 13.33001,
+      "rent": 19.61,
+      "year": 2025,
+      "n": 70,
+      "plz": "10623",
+      "location": "Berlin",
+      "grid": "4547_3272"
+    },
+    {
+      "lat": 52.51969,
+      "lng": 13.33069,
+      "rent": 13.29,
+      "year": 2025,
+      "n": 217,
+      "plz": "10555",
+      "location": "Berlin",
+      "grid": "4547_3273"
+    },
+    {
+      "lat": 52.52866,
+      "lng": 13.33137,
+      "rent": 11.72,
+      "year": 2025,
+      "n": 253,
+      "plz": "10555",
+      "location": "Berlin",
+      "grid": "4547_3274"
+    },
+    {
+      "lat": 52.53764,
+      "lng": 13.33204,
+      "rent": 4.01,
+      "year": 2008,
+      "n": 52,
+      "plz": "10551",
+      "location": "Berlin",
+      "grid": "4547_3275"
+    },
+    {
+      "lat": 52.54661,
+      "lng": 13.33272,
+      "rent": 12.6,
+      "year": 2025,
+      "n": 126,
+      "plz": "13351",
+      "location": "Berlin",
+      "grid": "4547_3276"
+    },
+    {
+      "lat": 52.55559,
+      "lng": 13.3334,
+      "rent": 15.04,
+      "year": 2025,
+      "n": 162,
+      "plz": "13351",
+      "location": "Berlin",
+      "grid": "4547_3277"
+    },
+    {
+      "lat": 52.56457,
+      "lng": 13.33408,
+      "rent": 10.57,
+      "year": 2024,
+      "n": 137,
+      "plz": "13349",
+      "location": "Berlin",
+      "grid": "4547_3278"
+    },
+    {
+      "lat": 52.57354,
+      "lng": 13.33476,
+      "rent": 11.66,
+      "year": 2024,
+      "n": 62,
+      "plz": "13437",
+      "location": "Berlin",
+      "grid": "4547_3279"
+    },
+    {
+      "lat": 52.58252,
+      "lng": 13.33544,
+      "rent": 13.16,
+      "year": 2025,
+      "n": 61,
+      "plz": "13437",
+      "location": "Berlin",
+      "grid": "4547_3280"
+    },
+    {
+      "lat": 52.59149,
+      "lng": 13.33612,
+      "rent": 5.67,
+      "year": 2024,
+      "n": 91,
+      "plz": "13437",
+      "location": "Berlin",
+      "grid": "4547_3281"
+    },
+    {
+      "lat": 52.41156,
+      "lng": 13.33726,
+      "rent": 11.75,
+      "year": 2024,
+      "n": 102,
+      "plz": "12209",
+      "location": "Berlin",
+      "grid": "4548_3261"
+    },
+    {
+      "lat": 52.42054,
+      "lng": 13.33794,
+      "rent": 9.93,
+      "year": 2025,
+      "n": 57,
+      "plz": "12209",
+      "location": "Berlin",
+      "grid": "4548_3262"
+    },
+    {
+      "lat": 52.42952,
+      "lng": 13.33862,
+      "rent": 10.24,
+      "year": 2025,
+      "n": 112,
+      "plz": "12249",
+      "location": "Berlin",
+      "grid": "4548_3263"
+    },
+    {
+      "lat": 52.43849,
+      "lng": 13.33929,
+      "rent": 14.37,
+      "year": 2025,
+      "n": 109,
+      "plz": "12247",
+      "location": "Berlin",
+      "grid": "4548_3264"
+    },
+    {
+      "lat": 52.44747,
+      "lng": 13.33997,
+      "rent": 16.85,
+      "year": 2025,
+      "n": 191,
+      "plz": "12169",
+      "location": "Berlin",
+      "grid": "4548_3265"
+    },
+    {
+      "lat": 52.45644,
+      "lng": 13.34065,
+      "rent": 13.45,
+      "year": 2024,
+      "n": 67,
+      "plz": "12169",
+      "location": "Berlin",
+      "grid": "4548_3266"
+    },
+    {
+      "lat": 52.46542,
+      "lng": 13.34133,
+      "rent": 12.71,
+      "year": 2025,
+      "n": 82,
+      "plz": "12157",
+      "location": "Berlin",
+      "grid": "4548_3267"
+    },
+    {
+      "lat": 52.4744,
+      "lng": 13.34201,
+      "rent": 13.88,
+      "year": 2025,
+      "n": 217,
+      "plz": "12159",
+      "location": "Berlin",
+      "grid": "4548_3268"
+    },
+    {
+      "lat": 52.48337,
+      "lng": 13.34269,
+      "rent": 18.16,
+      "year": 2025,
+      "n": 350,
+      "plz": "10825",
+      "location": "Berlin",
+      "grid": "4548_3269"
+    },
+    {
+      "lat": 52.49235,
+      "lng": 13.34337,
+      "rent": 16.84,
+      "year": 2025,
+      "n": 496,
+      "plz": "10779",
+      "location": "Berlin",
+      "grid": "4548_3270"
+    },
+    {
+      "lat": 52.50132,
+      "lng": 13.34405,
+      "rent": 15.22,
+      "year": 2025,
+      "n": 167,
+      "plz": "10777",
+      "location": "Berlin",
+      "grid": "4548_3271"
+    },
+    {
+      "lat": 52.51927,
+      "lng": 13.34541,
+      "rent": 12.85,
+      "year": 2025,
+      "n": 133,
+      "plz": "10555",
+      "location": "Berlin",
+      "grid": "4548_3273"
+    },
+    {
+      "lat": 52.52825,
+      "lng": 13.34609,
+      "rent": 13.1,
+      "year": 2025,
+      "n": 198,
+      "plz": "10559",
+      "location": "Berlin",
+      "grid": "4548_3274"
+    },
+    {
+      "lat": 52.53723,
+      "lng": 13.34677,
+      "rent": 13.27,
+      "year": 2025,
+      "n": 285,
+      "plz": "10559",
+      "location": "Berlin",
+      "grid": "4548_3275"
+    },
+    {
+      "lat": 52.5462,
+      "lng": 13.34745,
+      "rent": 12.42,
+      "year": 2025,
+      "n": 252,
+      "plz": "13353",
+      "location": "Berlin",
+      "grid": "4548_3276"
+    },
+    {
+      "lat": 52.55518,
+      "lng": 13.34813,
+      "rent": 10.41,
+      "year": 2025,
+      "n": 73,
+      "plz": "13349",
+      "location": "Berlin",
+      "grid": "4548_3277"
+    },
+    {
+      "lat": 52.56415,
+      "lng": 13.34881,
+      "rent": 11.61,
+      "year": 2025,
+      "n": 60,
+      "plz": "13349",
+      "location": "Berlin",
+      "grid": "4548_3278"
+    },
+    {
+      "lat": 52.57313,
+      "lng": 13.3495,
+      "rent": 10.28,
+      "year": 2025,
+      "n": 75,
+      "plz": "13407",
+      "location": "Berlin",
+      "grid": "4548_3279"
+    },
+    {
+      "lat": 52.5821,
+      "lng": 13.35018,
+      "rent": 14.18,
+      "year": 2025,
+      "n": 61,
+      "plz": "13407",
+      "location": "Berlin",
+      "grid": "4548_3280"
+    },
+    {
+      "lat": 52.59108,
+      "lng": 13.35086,
+      "rent": 7.03,
+      "year": 2025,
+      "n": 68,
+      "plz": "13439",
+      "location": "Berlin",
+      "grid": "4548_3281"
+    },
+    {
+      "lat": 52.60006,
+      "lng": 13.35155,
+      "rent": 6.67,
+      "year": 2025,
+      "n": 120,
+      "plz": "13439",
+      "location": "Berlin",
+      "grid": "4548_3282"
+    },
+    {
+      "lat": 52.41115,
+      "lng": 13.35195,
+      "rent": 11.74,
+      "year": 2025,
+      "n": 74,
+      "plz": "12279",
+      "location": "Berlin",
+      "grid": "4549_3261"
+    },
+    {
+      "lat": 52.42013,
+      "lng": 13.35263,
+      "rent": 16.69,
+      "year": 2025,
+      "n": 90,
+      "plz": "12249",
+      "location": "Berlin",
+      "grid": "4549_3262"
+    },
+    {
+      "lat": 52.4291,
+      "lng": 13.35331,
+      "rent": 5.97,
+      "year": 2013,
+      "n": 117,
+      "plz": "12249",
+      "location": "Berlin",
+      "grid": "4549_3263"
+    },
+    {
+      "lat": 52.43808,
+      "lng": 13.35399,
+      "rent": 5.34,
+      "year": 2008,
+      "n": 108,
+      "plz": "12247",
+      "location": "Berlin",
+      "grid": "4549_3264"
+    },
+    {
+      "lat": 52.44705,
+      "lng": 13.35467,
+      "rent": 5.08,
+      "year": 2008,
+      "n": 98,
+      "plz": "12247",
+      "location": "Berlin",
+      "grid": "4549_3265"
+    },
+    {
+      "lat": 52.45603,
+      "lng": 13.35535,
+      "rent": 14.13,
+      "year": 2025,
+      "n": 50,
+      "plz": "12157",
+      "location": "Berlin",
+      "grid": "4549_3266"
+    },
+    {
+      "lat": 52.46501,
+      "lng": 13.35603,
+      "rent": 4.61,
+      "year": 2008,
+      "n": 116,
+      "plz": "12157",
+      "location": "Berlin",
+      "grid": "4549_3267"
+    },
+    {
+      "lat": 52.47398,
+      "lng": 13.35671,
+      "rent": 13.36,
+      "year": 2025,
+      "n": 173,
+      "plz": "10829",
+      "location": "Berlin",
+      "grid": "4549_3268"
+    },
+    {
+      "lat": 52.48296,
+      "lng": 13.35739,
+      "rent": 11.48,
+      "year": 2025,
+      "n": 192,
+      "plz": "10827",
+      "location": "Berlin",
+      "grid": "4549_3269"
+    },
+    {
+      "lat": 52.49193,
+      "lng": 13.35808,
+      "rent": 11.79,
+      "year": 2025,
+      "n": 213,
+      "plz": "10781",
+      "location": "Berlin",
+      "grid": "4549_3270"
+    },
+    {
+      "lat": 52.50091,
+      "lng": 13.35876,
+      "rent": 16.41,
+      "year": 2025,
+      "n": 161,
+      "plz": "10783",
+      "location": "Berlin",
+      "grid": "4549_3271"
+    },
+    {
+      "lat": 52.51886,
+      "lng": 13.36013,
+      "rent": 11.19,
+      "year": 2025,
+      "n": 56,
+      "plz": "10557",
+      "location": "Berlin",
+      "grid": "4549_3273"
+    },
+    {
+      "lat": 52.52784,
+      "lng": 13.36081,
+      "rent": 18.78,
+      "year": 2025,
+      "n": 781,
+      "plz": "10557",
+      "location": "Berlin",
+      "grid": "4549_3274"
+    },
+    {
+      "lat": 52.53681,
+      "lng": 13.36149,
+      "rent": 16.61,
+      "year": 2025,
+      "n": 151,
+      "plz": "13353",
+      "location": "Berlin",
+      "grid": "4549_3275"
+    },
+    {
+      "lat": 52.54579,
+      "lng": 13.36218,
+      "rent": 11.93,
+      "year": 2025,
+      "n": 219,
+      "plz": "13347",
+      "location": "Berlin",
+      "grid": "4549_3276"
+    },
+    {
+      "lat": 52.55476,
+      "lng": 13.36286,
+      "rent": 10.59,
+      "year": 2025,
+      "n": 114,
+      "plz": "13347",
+      "location": "Berlin",
+      "grid": "4549_3277"
+    },
+    {
+      "lat": 52.56374,
+      "lng": 13.36355,
+      "rent": 10.76,
+      "year": 2025,
+      "n": 148,
+      "plz": "13409",
+      "location": "Berlin",
+      "grid": "4549_3278"
+    },
+    {
+      "lat": 52.57271,
+      "lng": 13.36423,
+      "rent": 8.07,
+      "year": 2018,
+      "n": 78,
+      "plz": "13409",
+      "location": "Berlin",
+      "grid": "4549_3279"
+    },
+    {
+      "lat": 52.58169,
+      "lng": 13.36492,
+      "rent": 13.77,
+      "year": 2025,
+      "n": 68,
+      "plz": "13409",
+      "location": "Berlin",
+      "grid": "4549_3280"
+    },
+    {
+      "lat": 52.59067,
+      "lng": 13.36561,
+      "rent": 11.83,
+      "year": 2024,
+      "n": 65,
+      "plz": "13439",
+      "location": "Berlin",
+      "grid": "4549_3281"
+    },
+    {
+      "lat": 52.41971,
+      "lng": 13.36731,
+      "rent": 4.88,
+      "year": 2008,
+      "n": 131,
+      "plz": "12277",
+      "location": "Berlin",
+      "grid": "4550_3262"
+    },
+    {
+      "lat": 52.42869,
+      "lng": 13.36799,
+      "rent": 5.81,
+      "year": 2013,
+      "n": 66,
+      "plz": "12249",
+      "location": "Berlin",
+      "grid": "4550_3263"
+    },
+    {
+      "lat": 52.43766,
+      "lng": 13.36868,
+      "rent": 11.41,
+      "year": 2025,
+      "n": 109,
+      "plz": "12105",
+      "location": "Berlin",
+      "grid": "4550_3264"
+    },
+    {
+      "lat": 52.44664,
+      "lng": 13.36936,
+      "rent": 11.84,
+      "year": 2025,
+      "n": 98,
+      "plz": "12105",
+      "location": "Berlin",
+      "grid": "4550_3265"
+    },
+    {
+      "lat": 52.45562,
+      "lng": 13.37004,
+      "rent": 12.88,
+      "year": 2025,
+      "n": 186,
+      "plz": "12103",
+      "location": "Berlin",
+      "grid": "4550_3266"
+    },
+    {
+      "lat": 52.46459,
+      "lng": 13.37073,
+      "rent": 10.33,
+      "year": 2025,
+      "n": 51,
+      "plz": "12103",
+      "location": "Berlin",
+      "grid": "4550_3267"
+    },
+    {
+      "lat": 52.47357,
+      "lng": 13.37141,
+      "rent": 10.39,
+      "year": 2024,
+      "n": 98,
+      "plz": "12103",
+      "location": "Berlin",
+      "grid": "4550_3268"
+    },
+    {
+      "lat": 52.48254,
+      "lng": 13.3721,
+      "rent": 12.21,
+      "year": 2025,
+      "n": 136,
+      "plz": "10829",
+      "location": "Berlin",
+      "grid": "4550_3269"
+    },
+    {
+      "lat": 52.49152,
+      "lng": 13.37278,
+      "rent": 11.95,
+      "year": 2025,
+      "n": 134,
+      "plz": "10963",
+      "location": "Berlin",
+      "grid": "4550_3270"
+    },
+    {
+      "lat": 52.50049,
+      "lng": 13.37347,
+      "rent": 15.94,
+      "year": 2025,
+      "n": 148,
+      "plz": "10963",
+      "location": "Berlin",
+      "grid": "4550_3271"
+    },
+    {
+      "lat": 52.50947,
+      "lng": 13.37416,
+      "rent": 14.44,
+      "year": 2025,
+      "n": 118,
+      "plz": "10785",
+      "location": "Berlin",
+      "grid": "4550_3272"
+    },
+    {
+      "lat": 52.51844,
+      "lng": 13.37484,
+      "rent": 18.62,
+      "year": 2025,
+      "n": 167,
+      "plz": "10117",
+      "location": "Berlin",
+      "grid": "4550_3273"
+    },
+    {
+      "lat": 52.52742,
+      "lng": 13.37553,
+      "rent": 15.59,
+      "year": 2025,
+      "n": 381,
+      "plz": "10115",
+      "location": "Berlin",
+      "grid": "4550_3274"
+    },
+    {
+      "lat": 52.5364,
+      "lng": 13.37622,
+      "rent": 11.5,
+      "year": 2025,
+      "n": 202,
+      "plz": "10115",
+      "location": "Berlin",
+      "grid": "4550_3275"
+    },
+    {
+      "lat": 52.54537,
+      "lng": 13.3769,
+      "rent": 12.26,
+      "year": 2025,
+      "n": 213,
+      "plz": "13357",
+      "location": "Berlin",
+      "grid": "4550_3276"
+    },
+    {
+      "lat": 52.55435,
+      "lng": 13.37759,
+      "rent": 12.6,
+      "year": 2025,
+      "n": 319,
+      "plz": "13357",
+      "location": "Berlin",
+      "grid": "4550_3277"
+    },
+    {
+      "lat": 52.56332,
+      "lng": 13.37828,
+      "rent": 11.22,
+      "year": 2025,
+      "n": 70,
+      "plz": "13359",
+      "location": "Berlin",
+      "grid": "4550_3278"
+    },
+    {
+      "lat": 52.58127,
+      "lng": 13.37966,
+      "rent": 11.69,
+      "year": 2025,
+      "n": 51,
+      "plz": "13158",
+      "location": "Berlin",
+      "grid": "4550_3280"
+    },
+    {
+      "lat": 52.42827,
+      "lng": 13.38268,
+      "rent": 9.89,
+      "year": 2024,
+      "n": 151,
+      "plz": "12107",
+      "location": "Berlin",
+      "grid": "4551_3263"
+    },
+    {
+      "lat": 52.43725,
+      "lng": 13.38337,
+      "rent": 11.33,
+      "year": 2024,
+      "n": 114,
+      "plz": "12107",
+      "location": "Berlin",
+      "grid": "4551_3264"
+    },
+    {
+      "lat": 52.44622,
+      "lng": 13.38405,
+      "rent": 11.76,
+      "year": 2024,
+      "n": 64,
+      "plz": "12105",
+      "location": "Berlin",
+      "grid": "4551_3265"
+    },
+    {
+      "lat": 52.4552,
+      "lng": 13.38474,
+      "rent": 9.78,
+      "year": 2024,
+      "n": 83,
+      "plz": "12105",
+      "location": "Berlin",
+      "grid": "4551_3266"
+    },
+    {
+      "lat": 52.46417,
+      "lng": 13.38543,
+      "rent": 10.52,
+      "year": 2024,
+      "n": 99,
+      "plz": "12103",
+      "location": "Berlin",
+      "grid": "4551_3267"
+    },
+    {
+      "lat": 52.48212,
+      "lng": 13.3868,
+      "rent": 10.41,
+      "year": 2025,
+      "n": 154,
+      "plz": "12101",
+      "location": "Berlin",
+      "grid": "4551_3269"
+    },
+    {
+      "lat": 52.4911,
+      "lng": 13.38749,
+      "rent": 14.73,
+      "year": 2025,
+      "n": 375,
+      "plz": "10961",
+      "location": "Berlin",
+      "grid": "4551_3270"
+    },
+    {
+      "lat": 52.50008,
+      "lng": 13.38818,
+      "rent": 12.17,
+      "year": 2025,
+      "n": 263,
+      "plz": "10963",
+      "location": "Berlin",
+      "grid": "4551_3271"
+    },
+    {
+      "lat": 52.50905,
+      "lng": 13.38887,
+      "rent": 17.98,
+      "year": 2025,
+      "n": 234,
+      "plz": "10117",
+      "location": "Berlin",
+      "grid": "4551_3272"
+    },
+    {
+      "lat": 52.51803,
+      "lng": 13.38956,
+      "rent": 19.47,
+      "year": 2025,
+      "n": 299,
+      "plz": "10117",
+      "location": "Berlin",
+      "grid": "4551_3273"
+    },
+    {
+      "lat": 52.527,
+      "lng": 13.39025,
+      "rent": 21.5,
+      "year": 2025,
+      "n": 525,
+      "plz": "10117",
+      "location": "Berlin",
+      "grid": "4551_3274"
+    },
+    {
+      "lat": 52.53598,
+      "lng": 13.39094,
+      "rent": 15.75,
+      "year": 2025,
+      "n": 266,
+      "plz": "13355",
+      "location": "Berlin",
+      "grid": "4551_3275"
+    },
+    {
+      "lat": 52.54495,
+      "lng": 13.39163,
+      "rent": 15.59,
+      "year": 2025,
+      "n": 291,
+      "plz": "13355",
+      "location": "Berlin",
+      "grid": "4551_3276"
+    },
+    {
+      "lat": 52.55393,
+      "lng": 13.39232,
+      "rent": 19.17,
+      "year": 2025,
+      "n": 350,
+      "plz": "13359",
+      "location": "Berlin",
+      "grid": "4551_3277"
+    },
+    {
+      "lat": 52.5629,
+      "lng": 13.39301,
+      "rent": 11.72,
+      "year": 2025,
+      "n": 152,
+      "plz": "13359",
+      "location": "Berlin",
+      "grid": "4551_3278"
+    },
+    {
+      "lat": 52.57188,
+      "lng": 13.3937,
+      "rent": 11.34,
+      "year": 2024,
+      "n": 116,
+      "plz": "13156",
+      "location": "Berlin",
+      "grid": "4551_3279"
+    },
+    {
+      "lat": 52.58085,
+      "lng": 13.3944,
+      "rent": 19.3,
+      "year": 2025,
+      "n": 438,
+      "plz": "13156",
+      "location": "Berlin",
+      "grid": "4551_3280"
+    },
+    {
+      "lat": 52.58983,
+      "lng": 13.39509,
+      "rent": 9.84,
+      "year": 2024,
+      "n": 171,
+      "plz": "13156",
+      "location": "Berlin",
+      "grid": "4551_3281"
+    },
+    {
+      "lat": 52.39195,
+      "lng": 13.39461,
+      "rent": 10.09,
+      "year": 2024,
+      "n": 68,
+      "plz": "12307",
+      "location": "Berlin",
+      "grid": "4552_3259"
+    },
+    {
+      "lat": 52.40093,
+      "lng": 13.3953,
+      "rent": 11.09,
+      "year": 2024,
+      "n": 52,
+      "plz": "12305",
+      "location": "Berlin",
+      "grid": "4552_3260"
+    },
+    {
+      "lat": 52.4099,
+      "lng": 13.39599,
+      "rent": 6.12,
+      "year": 2013,
+      "n": 85,
+      "plz": "12305",
+      "location": "Berlin",
+      "grid": "4552_3261"
+    },
+    {
+      "lat": 52.41888,
+      "lng": 13.39668,
+      "rent": 9.68,
+      "year": 2024,
+      "n": 57,
+      "plz": "12305",
+      "location": "Berlin",
+      "grid": "4552_3262"
+    },
+    {
+      "lat": 52.43683,
+      "lng": 13.39806,
+      "rent": 12.66,
+      "year": 2024,
+      "n": 138,
+      "plz": "12107",
+      "location": "Berlin",
+      "grid": "4552_3264"
+    },
+    {
+      "lat": 52.4458,
+      "lng": 13.39875,
+      "rent": 4.59,
+      "year": 2008,
+      "n": 66,
+      "plz": "12109",
+      "location": "Berlin",
+      "grid": "4552_3265"
+    },
+    {
+      "lat": 52.45478,
+      "lng": 13.39944,
+      "rent": 9.16,
+      "year": 2025,
+      "n": 61,
+      "plz": "12099",
+      "location": "Berlin",
+      "grid": "4552_3266"
+    },
+    {
+      "lat": 52.48171,
+      "lng": 13.40151,
+      "rent": 17.07,
+      "year": 2025,
+      "n": 132,
+      "plz": "10965",
+      "location": "Berlin",
+      "grid": "4552_3269"
+    },
+    {
+      "lat": 52.49068,
+      "lng": 13.4022,
+      "rent": 11.58,
+      "year": 2025,
+      "n": 211,
+      "plz": "10961",
+      "location": "Berlin",
+      "grid": "4552_3270"
+    },
+    {
+      "lat": 52.49966,
+      "lng": 13.40289,
+      "rent": 13.52,
+      "year": 2025,
+      "n": 240,
+      "plz": "10969",
+      "location": "Berlin",
+      "grid": "4552_3271"
+    },
+    {
+      "lat": 52.50863,
+      "lng": 13.40359,
+      "rent": 16.43,
+      "year": 2025,
+      "n": 428,
+      "plz": "10969",
+      "location": "Berlin",
+      "grid": "4552_3272"
+    },
+    {
+      "lat": 52.51761,
+      "lng": 13.40428,
+      "rent": 15.79,
+      "year": 2025,
+      "n": 221,
+      "plz": "10178",
+      "location": "Berlin",
+      "grid": "4552_3273"
+    },
+    {
+      "lat": 52.52658,
+      "lng": 13.40497,
+      "rent": 16.59,
+      "year": 2025,
+      "n": 387,
+      "plz": "10119",
+      "location": "Berlin",
+      "grid": "4552_3274"
+    },
+    {
+      "lat": 52.53556,
+      "lng": 13.40566,
+      "rent": 16.94,
+      "year": 2025,
+      "n": 401,
+      "plz": "10119",
+      "location": "Berlin",
+      "grid": "4552_3275"
+    },
+    {
+      "lat": 52.54453,
+      "lng": 13.40636,
+      "rent": 14.97,
+      "year": 2025,
+      "n": 652,
+      "plz": "10437",
+      "location": "Berlin",
+      "grid": "4552_3276"
+    },
+    {
+      "lat": 52.55351,
+      "lng": 13.40705,
+      "rent": 12.33,
+      "year": 2025,
+      "n": 270,
+      "plz": "10439",
+      "location": "Berlin",
+      "grid": "4552_3277"
+    },
+    {
+      "lat": 52.56248,
+      "lng": 13.40775,
+      "rent": 12.49,
+      "year": 2025,
+      "n": 88,
+      "plz": "13187",
+      "location": "Berlin",
+      "grid": "4552_3278"
+    },
+    {
+      "lat": 52.57146,
+      "lng": 13.40844,
+      "rent": 10.89,
+      "year": 2025,
+      "n": 151,
+      "plz": "13187",
+      "location": "Berlin",
+      "grid": "4552_3279"
+    },
+    {
+      "lat": 52.58043,
+      "lng": 13.40913,
+      "rent": 13.87,
+      "year": 2025,
+      "n": 136,
+      "plz": "13187",
+      "location": "Berlin",
+      "grid": "4552_3280"
+    },
+    {
+      "lat": 52.59839,
+      "lng": 13.41053,
+      "rent": 10.11,
+      "year": 2024,
+      "n": 71,
+      "plz": "13156",
+      "location": "Berlin",
+      "grid": "4552_3282"
+    },
+    {
+      "lat": 52.60736,
+      "lng": 13.41122,
+      "rent": 9.4,
+      "year": 2024,
+      "n": 125,
+      "plz": "13127",
+      "location": "Berlin",
+      "grid": "4552_3283"
+    },
+    {
+      "lat": 52.38256,
+      "lng": 13.4086,
+      "rent": 8.52,
+      "year": 2025,
+      "n": 53,
+      "plz": "12307",
+      "location": "Berlin",
+      "grid": "4553_3258"
+    },
+    {
+      "lat": 52.39153,
+      "lng": 13.40929,
+      "rent": 8.8,
+      "year": 2024,
+      "n": 95,
+      "plz": "12309",
+      "location": "Berlin",
+      "grid": "4553_3259"
+    },
+    {
+      "lat": 52.40051,
+      "lng": 13.40998,
+      "rent": 6.96,
+      "year": 2013,
+      "n": 68,
+      "plz": "12305",
+      "location": "Berlin",
+      "grid": "4553_3260"
+    },
+    {
+      "lat": 52.40948,
+      "lng": 13.41067,
+      "rent": 5.0,
+      "year": 2008,
+      "n": 96,
+      "plz": "12305",
+      "location": "Berlin",
+      "grid": "4553_3261"
+    },
+    {
+      "lat": 52.41846,
+      "lng": 13.41136,
+      "rent": 5.87,
+      "year": 2013,
+      "n": 73,
+      "plz": "12349",
+      "location": "Berlin",
+      "grid": "4553_3262"
+    },
+    {
+      "lat": 52.45436,
+      "lng": 13.41413,
+      "rent": 10.06,
+      "year": 2024,
+      "n": 108,
+      "plz": "12099",
+      "location": "Berlin",
+      "grid": "4553_3266"
+    },
+    {
+      "lat": 52.46333,
+      "lng": 13.41483,
+      "rent": 12.92,
+      "year": 2025,
+      "n": 185,
+      "plz": "12099",
+      "location": "Berlin",
+      "grid": "4553_3267"
+    },
+    {
+      "lat": 52.47231,
+      "lng": 13.41552,
+      "rent": 12.92,
+      "year": 2025,
+      "n": 298,
+      "plz": "12049",
+      "location": "Berlin",
+      "grid": "4553_3268"
+    },
+    {
+      "lat": 52.48129,
+      "lng": 13.41622,
+      "rent": 15.07,
+      "year": 2025,
+      "n": 294,
+      "plz": "12049",
+      "location": "Berlin",
+      "grid": "4553_3269"
+    },
+    {
+      "lat": 52.49026,
+      "lng": 13.41691,
+      "rent": 11.85,
+      "year": 2025,
+      "n": 320,
+      "plz": "10967",
+      "location": "Berlin",
+      "grid": "4553_3270"
+    },
+    {
+      "lat": 52.49924,
+      "lng": 13.4176,
+      "rent": 13.49,
+      "year": 2025,
+      "n": 174,
+      "plz": "10967",
+      "location": "Berlin",
+      "grid": "4553_3271"
+    },
+    {
+      "lat": 52.50821,
+      "lng": 13.4183,
+      "rent": 13.34,
+      "year": 2025,
+      "n": 182,
+      "plz": "10179",
+      "location": "Berlin",
+      "grid": "4553_3272"
+    },
+    {
+      "lat": 52.51719,
+      "lng": 13.41899,
+      "rent": 11.74,
+      "year": 2025,
+      "n": 154,
+      "plz": "10179",
+      "location": "Berlin",
+      "grid": "4553_3273"
+    },
+    {
+      "lat": 52.52616,
+      "lng": 13.41969,
+      "rent": 15.42,
+      "year": 2025,
+      "n": 362,
+      "plz": "10405",
+      "location": "Berlin",
+      "grid": "4553_3274"
+    },
+    {
+      "lat": 52.53514,
+      "lng": 13.42039,
+      "rent": 14.71,
+      "year": 2025,
+      "n": 310,
+      "plz": "10405",
+      "location": "Berlin",
+      "grid": "4553_3275"
+    },
+    {
+      "lat": 52.54411,
+      "lng": 13.42108,
+      "rent": 12.66,
+      "year": 2025,
+      "n": 207,
+      "plz": "10405",
+      "location": "Berlin",
+      "grid": "4553_3276"
+    },
+    {
+      "lat": 52.55309,
+      "lng": 13.42178,
+      "rent": 16.42,
+      "year": 2025,
+      "n": 202,
+      "plz": "13189",
+      "location": "Berlin",
+      "grid": "4553_3277"
+    },
+    {
+      "lat": 52.56206,
+      "lng": 13.42248,
+      "rent": 13.42,
+      "year": 2025,
+      "n": 61,
+      "plz": "13189",
+      "location": "Berlin",
+      "grid": "4553_3278"
+    },
+    {
+      "lat": 52.57104,
+      "lng": 13.42317,
+      "rent": 12.96,
+      "year": 2025,
+      "n": 64,
+      "plz": "13187",
+      "location": "Berlin",
+      "grid": "4553_3279"
+    },
+    {
+      "lat": 52.58001,
+      "lng": 13.42387,
+      "rent": 20.01,
+      "year": 2025,
+      "n": 241,
+      "plz": "13187",
+      "location": "Berlin",
+      "grid": "4553_3280"
+    },
+    {
+      "lat": 52.58899,
+      "lng": 13.42457,
+      "rent": 13.7,
+      "year": 2024,
+      "n": 70,
+      "plz": "13187",
+      "location": "Berlin",
+      "grid": "4553_3281"
+    },
+    {
+      "lat": 52.59796,
+      "lng": 13.42527,
+      "rent": 6.14,
+      "year": 2013,
+      "n": 131,
+      "plz": "13127",
+      "location": "Berlin",
+      "grid": "4553_3282"
+    },
+    {
+      "lat": 52.60694,
+      "lng": 13.42597,
+      "rent": 5.99,
+      "year": 2013,
+      "n": 89,
+      "plz": "13127",
+      "location": "Berlin",
+      "grid": "4553_3283"
+    },
+    {
+      "lat": 52.40008,
+      "lng": 13.42466,
+      "rent": 6.22,
+      "year": 2013,
+      "n": 166,
+      "plz": "12309",
+      "location": "Berlin",
+      "grid": "4554_3260"
+    },
+    {
+      "lat": 52.40906,
+      "lng": 13.42535,
+      "rent": 9.21,
+      "year": 2025,
+      "n": 90,
+      "plz": "12309",
+      "location": "Berlin",
+      "grid": "4554_3261"
+    },
+    {
+      "lat": 52.41804,
+      "lng": 13.42605,
+      "rent": 11.54,
+      "year": 2024,
+      "n": 55,
+      "plz": "12349",
+      "location": "Berlin",
+      "grid": "4554_3262"
+    },
+    {
+      "lat": 52.43599,
+      "lng": 13.42744,
+      "rent": 7.95,
+      "year": 2018,
+      "n": 74,
+      "plz": "12347",
+      "location": "Berlin",
+      "grid": "4554_3264"
+    },
+    {
+      "lat": 52.44496,
+      "lng": 13.42813,
+      "rent": 11.08,
+      "year": 2024,
+      "n": 53,
+      "plz": "12347",
+      "location": "Berlin",
+      "grid": "4554_3265"
+    },
+    {
+      "lat": 52.45394,
+      "lng": 13.42883,
+      "rent": 11.45,
+      "year": 2025,
+      "n": 80,
+      "plz": "12347",
+      "location": "Berlin",
+      "grid": "4554_3266"
+    },
+    {
+      "lat": 52.46291,
+      "lng": 13.42953,
+      "rent": 10.91,
+      "year": 2025,
+      "n": 360,
+      "plz": "12051",
+      "location": "Berlin",
+      "grid": "4554_3267"
+    },
+    {
+      "lat": 52.47189,
+      "lng": 13.43022,
+      "rent": 11.07,
+      "year": 2025,
+      "n": 220,
+      "plz": "12053",
+      "location": "Berlin",
+      "grid": "4554_3268"
+    },
+    {
+      "lat": 52.48086,
+      "lng": 13.43092,
+      "rent": 11.78,
+      "year": 2025,
+      "n": 367,
+      "plz": "12053",
+      "location": "Berlin",
+      "grid": "4554_3269"
+    },
+    {
+      "lat": 52.48984,
+      "lng": 13.43162,
+      "rent": 16.72,
+      "year": 2025,
+      "n": 262,
+      "plz": "12047",
+      "location": "Berlin",
+      "grid": "4554_3270"
+    },
+    {
+      "lat": 52.49881,
+      "lng": 13.43232,
+      "rent": 14.67,
+      "year": 2025,
+      "n": 192,
+      "plz": "10997",
+      "location": "Berlin",
+      "grid": "4554_3271"
+    },
+    {
+      "lat": 52.50779,
+      "lng": 13.43301,
+      "rent": 14.04,
+      "year": 2025,
+      "n": 294,
+      "plz": "10997",
+      "location": "Berlin",
+      "grid": "4554_3272"
+    },
+    {
+      "lat": 52.51676,
+      "lng": 13.43371,
+      "rent": 12.59,
+      "year": 2025,
+      "n": 296,
+      "plz": "10243",
+      "location": "Berlin",
+      "grid": "4554_3273"
+    },
+    {
+      "lat": 52.52574,
+      "lng": 13.43441,
+      "rent": 14.17,
+      "year": 2025,
+      "n": 188,
+      "plz": "10249",
+      "location": "Berlin",
+      "grid": "4554_3274"
+    },
+    {
+      "lat": 52.53471,
+      "lng": 13.43511,
+      "rent": 11.72,
+      "year": 2025,
+      "n": 166,
+      "plz": "10409",
+      "location": "Berlin",
+      "grid": "4554_3275"
+    },
+    {
+      "lat": 52.54369,
+      "lng": 13.43581,
+      "rent": 14.6,
+      "year": 2025,
+      "n": 139,
+      "plz": "10409",
+      "location": "Berlin",
+      "grid": "4554_3276"
+    },
+    {
+      "lat": 52.55266,
+      "lng": 13.43651,
+      "rent": 11.36,
+      "year": 2025,
+      "n": 205,
+      "plz": "13086",
+      "location": "Berlin",
+      "grid": "4554_3277"
+    },
+    {
+      "lat": 52.56164,
+      "lng": 13.43721,
+      "rent": 12.86,
+      "year": 2024,
+      "n": 129,
+      "plz": "13089",
+      "location": "Berlin",
+      "grid": "4554_3278"
+    },
+    {
+      "lat": 52.58856,
+      "lng": 13.43931,
+      "rent": 5.24,
+      "year": 2008,
+      "n": 52,
+      "plz": "13129",
+      "location": "Berlin",
+      "grid": "4554_3281"
+    },
+    {
+      "lat": 52.41761,
+      "lng": 13.44073,
+      "rent": 11.16,
+      "year": 2024,
+      "n": 61,
+      "plz": "12353",
+      "location": "Berlin",
+      "grid": "4555_3262"
+    },
+    {
+      "lat": 52.42659,
+      "lng": 13.44143,
+      "rent": 7.26,
+      "year": 2018,
+      "n": 63,
+      "plz": "12353",
+      "location": "Berlin",
+      "grid": "4555_3263"
+    },
+    {
+      "lat": 52.43556,
+      "lng": 13.44213,
+      "rent": 9.63,
+      "year": 2024,
+      "n": 53,
+      "plz": "12351",
+      "location": "Berlin",
+      "grid": "4555_3264"
+    },
+    {
+      "lat": 52.44454,
+      "lng": 13.44283,
+      "rent": 7.78,
+      "year": 2025,
+      "n": 53,
+      "plz": "12359",
+      "location": "Berlin",
+      "grid": "4555_3265"
+    },
+    {
+      "lat": 52.45351,
+      "lng": 13.44353,
+      "rent": 9.37,
+      "year": 2024,
+      "n": 51,
+      "plz": "12359",
+      "location": "Berlin",
+      "grid": "4555_3266"
+    },
+    {
+      "lat": 52.46249,
+      "lng": 13.44422,
+      "rent": 9.45,
+      "year": 2024,
+      "n": 95,
+      "plz": "12055",
+      "location": "Berlin",
+      "grid": "4555_3267"
+    },
+    {
+      "lat": 52.47146,
+      "lng": 13.44492,
+      "rent": 13.89,
+      "year": 2025,
+      "n": 354,
+      "plz": "12055",
+      "location": "Berlin",
+      "grid": "4555_3268"
+    },
+    {
+      "lat": 52.48044,
+      "lng": 13.44562,
+      "rent": 10.57,
+      "year": 2025,
+      "n": 156,
+      "plz": "12043",
+      "location": "Berlin",
+      "grid": "4555_3269"
+    },
+    {
+      "lat": 52.48941,
+      "lng": 13.44632,
+      "rent": 14.13,
+      "year": 2025,
+      "n": 156,
+      "plz": "12059",
+      "location": "Berlin",
+      "grid": "4555_3270"
+    },
+    {
+      "lat": 52.49839,
+      "lng": 13.44703,
+      "rent": 14.89,
+      "year": 2025,
+      "n": 298,
+      "plz": "10245",
+      "location": "Berlin",
+      "grid": "4555_3271"
+    },
+    {
+      "lat": 52.50736,
+      "lng": 13.44773,
+      "rent": 15.26,
+      "year": 2025,
+      "n": 526,
+      "plz": "10245",
+      "location": "Berlin",
+      "grid": "4555_3272"
+    },
+    {
+      "lat": 52.51634,
+      "lng": 13.44843,
+      "rent": 12.34,
+      "year": 2025,
+      "n": 471,
+      "plz": "10243",
+      "location": "Berlin",
+      "grid": "4555_3273"
+    },
+    {
+      "lat": 52.52531,
+      "lng": 13.44913,
+      "rent": 13.82,
+      "year": 2025,
+      "n": 89,
+      "plz": "10249",
+      "location": "Berlin",
+      "grid": "4555_3274"
+    },
+    {
+      "lat": 52.53429,
+      "lng": 13.44983,
+      "rent": 5.81,
+      "year": 2008,
+      "n": 82,
+      "plz": "10407",
+      "location": "Berlin",
+      "grid": "4555_3275"
+    },
+    {
+      "lat": 52.54326,
+      "lng": 13.45053,
+      "rent": 15.81,
+      "year": 2025,
+      "n": 125,
+      "plz": "10409",
+      "location": "Berlin",
+      "grid": "4555_3276"
+    },
+    {
+      "lat": 52.55224,
+      "lng": 13.45124,
+      "rent": 14.46,
+      "year": 2025,
+      "n": 158,
+      "plz": "13086",
+      "location": "Berlin",
+      "grid": "4555_3277"
+    },
+    {
+      "lat": 52.41719,
+      "lng": 13.45542,
+      "rent": 7.85,
+      "year": 2025,
+      "n": 64,
+      "plz": "12353",
+      "location": "Berlin",
+      "grid": "4556_3262"
+    },
+    {
+      "lat": 52.42616,
+      "lng": 13.45612,
+      "rent": 8.34,
+      "year": 2025,
+      "n": 71,
+      "plz": "12353",
+      "location": "Berlin",
+      "grid": "4556_3263"
+    },
+    {
+      "lat": 52.43514,
+      "lng": 13.45682,
+      "rent": 5.19,
+      "year": 2013,
+      "n": 77,
+      "plz": "12351",
+      "location": "Berlin",
+      "grid": "4556_3264"
+    },
+    {
+      "lat": 52.46206,
+      "lng": 13.45892,
+      "rent": 5.26,
+      "year": 2013,
+      "n": 1973,
+      "plz": "12057",
+      "location": "Berlin",
+      "grid": "4556_3267"
+    },
+    {
+      "lat": 52.47104,
+      "lng": 13.45963,
+      "rent": 7.85,
+      "year": 2024,
+      "n": 84,
+      "plz": "12057",
+      "location": "Berlin",
+      "grid": "4556_3268"
+    },
+    {
+      "lat": 52.48001,
+      "lng": 13.46033,
+      "rent": 10.57,
+      "year": 2025,
+      "n": 97,
+      "plz": "12059",
+      "location": "Berlin",
+      "grid": "4556_3269"
+    },
+    {
+      "lat": 52.48899,
+      "lng": 13.46103,
+      "rent": 24.74,
+      "year": 2025,
+      "n": 117,
+      "plz": "12435",
+      "location": "Berlin",
+      "grid": "4556_3270"
+    },
+    {
+      "lat": 52.49796,
+      "lng": 13.46174,
+      "rent": 24.36,
+      "year": 2025,
+      "n": 237,
+      "plz": "10245",
+      "location": "Berlin",
+      "grid": "4556_3271"
+    },
+    {
+      "lat": 52.50694,
+      "lng": 13.46244,
+      "rent": 13.89,
+      "year": 2025,
+      "n": 355,
+      "plz": "10245",
+      "location": "Berlin",
+      "grid": "4556_3272"
+    },
+    {
+      "lat": 52.51591,
+      "lng": 13.46314,
+      "rent": 15.54,
+      "year": 2025,
+      "n": 238,
+      "plz": "10247",
+      "location": "Berlin",
+      "grid": "4556_3273"
+    },
+    {
+      "lat": 52.52489,
+      "lng": 13.46385,
+      "rent": 9.24,
+      "year": 2025,
+      "n": 92,
+      "plz": "10369",
+      "location": "Berlin",
+      "grid": "4556_3274"
+    },
+    {
+      "lat": 52.53386,
+      "lng": 13.46455,
+      "rent": 4.8,
+      "year": 2008,
+      "n": 99,
+      "plz": "10369",
+      "location": "Berlin",
+      "grid": "4556_3275"
+    },
+    {
+      "lat": 52.54284,
+      "lng": 13.46526,
+      "rent": 6.82,
+      "year": 2018,
+      "n": 78,
+      "plz": "10407",
+      "location": "Berlin",
+      "grid": "4556_3276"
+    },
+    {
+      "lat": 52.55181,
+      "lng": 13.46597,
+      "rent": 9.98,
+      "year": 2025,
+      "n": 67,
+      "plz": "13088",
+      "location": "Berlin",
+      "grid": "4556_3277"
+    },
+    {
+      "lat": 52.61464,
+      "lng": 13.47092,
+      "rent": 9.71,
+      "year": 2024,
+      "n": 56,
+      "plz": "13125",
+      "location": "Berlin",
+      "grid": "4556_3284"
+    },
+    {
+      "lat": 52.45266,
+      "lng": 13.47292,
+      "rent": 5.32,
+      "year": 2008,
+      "n": 60,
+      "plz": "12437",
+      "location": "Berlin",
+      "grid": "4557_3266"
+    },
+    {
+      "lat": 52.46163,
+      "lng": 13.47362,
+      "rent": 10.41,
+      "year": 2025,
+      "n": 70,
+      "plz": "12437",
+      "location": "Berlin",
+      "grid": "4557_3267"
+    },
+    {
+      "lat": 52.47061,
+      "lng": 13.47433,
+      "rent": 10.49,
+      "year": 2025,
+      "n": 92,
+      "plz": "12437",
+      "location": "Berlin",
+      "grid": "4557_3268"
+    },
+    {
+      "lat": 52.48856,
+      "lng": 13.47574,
+      "rent": 7.99,
+      "year": 2013,
+      "n": 121,
+      "plz": "12435",
+      "location": "Berlin",
+      "grid": "4557_3270"
+    },
+    {
+      "lat": 52.49753,
+      "lng": 13.47645,
+      "rent": 15.87,
+      "year": 2025,
+      "n": 234,
+      "plz": "10317",
+      "location": "Berlin",
+      "grid": "4557_3271"
+    },
+    {
+      "lat": 52.50651,
+      "lng": 13.47715,
+      "rent": 9.69,
+      "year": 2025,
+      "n": 92,
+      "plz": "10317",
+      "location": "Berlin",
+      "grid": "4557_3272"
+    },
+    {
+      "lat": 52.51548,
+      "lng": 13.47786,
+      "rent": 10.46,
+      "year": 2025,
+      "n": 108,
+      "plz": "10367",
+      "location": "Berlin",
+      "grid": "4557_3273"
+    },
+    {
+      "lat": 52.52446,
+      "lng": 13.47857,
+      "rent": 6.54,
+      "year": 2024,
+      "n": 133,
+      "plz": "10367",
+      "location": "Berlin",
+      "grid": "4557_3274"
+    },
+    {
+      "lat": 52.53343,
+      "lng": 13.47928,
+      "rent": 13.69,
+      "year": 2025,
+      "n": 138,
+      "plz": "10367",
+      "location": "Berlin",
+      "grid": "4557_3275"
+    },
+    {
+      "lat": 52.54241,
+      "lng": 13.47998,
+      "rent": 11.3,
+      "year": 2025,
+      "n": 70,
+      "plz": "13088",
+      "location": "Berlin",
+      "grid": "4557_3276"
+    },
+    {
+      "lat": 52.56036,
+      "lng": 13.4814,
+      "rent": 4.73,
+      "year": 2008,
+      "n": 50,
+      "plz": "13088",
+      "location": "Berlin",
+      "grid": "4557_3278"
+    },
+    {
+      "lat": 52.60523,
+      "lng": 13.48495,
+      "rent": 10.86,
+      "year": 2024,
+      "n": 101,
+      "plz": "13051",
+      "location": "Berlin",
+      "grid": "4557_3283"
+    },
+    {
+      "lat": 52.61421,
+      "lng": 13.48566,
+      "rent": 7.12,
+      "year": 2018,
+      "n": 87,
+      "plz": "13125",
+      "location": "Berlin",
+      "grid": "4557_3284"
+    },
+    {
+      "lat": 52.62318,
+      "lng": 13.48638,
+      "rent": 7.21,
+      "year": 2025,
+      "n": 53,
+      "plz": "13125",
+      "location": "Berlin",
+      "grid": "4557_3285"
+    },
+    {
+      "lat": 52.63216,
+      "lng": 13.48709,
+      "rent": 9.05,
+      "year": 2024,
+      "n": 110,
+      "plz": "13125",
+      "location": "Berlin",
+      "grid": "4557_3286"
+    },
+    {
+      "lat": 52.64113,
+      "lng": 13.4878,
+      "rent": 11.7,
+      "year": 2024,
+      "n": 129,
+      "plz": "13125",
+      "location": "Berlin",
+      "grid": "4557_3287"
+    },
+    {
+      "lat": 52.41633,
+      "lng": 13.48478,
+      "rent": 6.32,
+      "year": 2013,
+      "n": 94,
+      "plz": "12357",
+      "location": "Berlin",
+      "grid": "4558_3262"
+    },
+    {
+      "lat": 52.43428,
+      "lng": 13.4862,
+      "rent": 4.67,
+      "year": 2008,
+      "n": 109,
+      "plz": "12357",
+      "location": "Berlin",
+      "grid": "4558_3264"
+    },
+    {
+      "lat": 52.45223,
+      "lng": 13.48761,
+      "rent": 11.63,
+      "year": 2025,
+      "n": 58,
+      "plz": "12437",
+      "location": "Berlin",
+      "grid": "4558_3266"
+    },
+    {
+      "lat": 52.4612,
+      "lng": 13.48832,
+      "rent": 9.72,
+      "year": 2024,
+      "n": 101,
+      "plz": "12437",
+      "location": "Berlin",
+      "grid": "4558_3267"
+    },
+    {
+      "lat": 52.48813,
+      "lng": 13.49045,
+      "rent": 7.69,
+      "year": 2024,
+      "n": 65,
+      "plz": "10317",
+      "location": "Berlin",
+      "grid": "4558_3270"
+    },
+    {
+      "lat": 52.4971,
+      "lng": 13.49116,
+      "rent": 15.1,
+      "year": 2025,
+      "n": 254,
+      "plz": "10317",
+      "location": "Berlin",
+      "grid": "4558_3271"
+    },
+    {
+      "lat": 52.50608,
+      "lng": 13.49187,
+      "rent": 12.4,
+      "year": 2025,
+      "n": 223,
+      "plz": "10317",
+      "location": "Berlin",
+      "grid": "4558_3272"
+    },
+    {
+      "lat": 52.51505,
+      "lng": 13.49258,
+      "rent": 9.36,
+      "year": 2025,
+      "n": 110,
+      "plz": "10365",
+      "location": "Berlin",
+      "grid": "4558_3273"
+    },
+    {
+      "lat": 52.533,
+      "lng": 13.494,
+      "rent": 8.89,
+      "year": 2025,
+      "n": 158,
+      "plz": "13055",
+      "location": "Berlin",
+      "grid": "4558_3275"
+    },
+    {
+      "lat": 52.54198,
+      "lng": 13.49471,
+      "rent": 9.56,
+      "year": 2025,
+      "n": 61,
+      "plz": "13055",
+      "location": "Berlin",
+      "grid": "4558_3276"
+    },
+    {
+      "lat": 52.55993,
+      "lng": 13.49613,
+      "rent": 7.93,
+      "year": 2025,
+      "n": 85,
+      "plz": "13053",
+      "location": "Berlin",
+      "grid": "4558_3278"
+    },
+    {
+      "lat": 52.5689,
+      "lng": 13.49685,
+      "rent": 7.1,
+      "year": 2025,
+      "n": 76,
+      "plz": "13051",
+      "location": "Berlin",
+      "grid": "4558_3279"
+    },
+    {
+      "lat": 52.63172,
+      "lng": 13.50184,
+      "rent": 6.3,
+      "year": 2018,
+      "n": 56,
+      "plz": "13125",
+      "location": "Berlin",
+      "grid": "4558_3286"
+    },
+    {
+      "lat": 52.39795,
+      "lng": 13.49805,
+      "rent": 9.45,
+      "year": 2025,
+      "n": 67,
+      "plz": "12355",
+      "location": "Berlin",
+      "grid": "4559_3260"
+    },
+    {
+      "lat": 52.40692,
+      "lng": 13.49876,
+      "rent": 6.0,
+      "year": 2013,
+      "n": 50,
+      "plz": "12355",
+      "location": "Berlin",
+      "grid": "4559_3261"
+    },
+    {
+      "lat": 52.4159,
+      "lng": 13.49946,
+      "rent": 6.86,
+      "year": 2018,
+      "n": 80,
+      "plz": "12355",
+      "location": "Berlin",
+      "grid": "4559_3262"
+    },
+    {
+      "lat": 52.42487,
+      "lng": 13.50017,
+      "rent": 7.79,
+      "year": 2025,
+      "n": 53,
+      "plz": "12357",
+      "location": "Berlin",
+      "grid": "4559_3263"
+    },
+    {
+      "lat": 52.43385,
+      "lng": 13.50088,
+      "rent": 10.31,
+      "year": 2025,
+      "n": 82,
+      "plz": "12487",
+      "location": "Berlin",
+      "grid": "4559_3264"
+    },
+    {
+      "lat": 52.44282,
+      "lng": 13.50159,
+      "rent": 10.9,
+      "year": 2025,
+      "n": 82,
+      "plz": "12487",
+      "location": "Berlin",
+      "grid": "4559_3265"
+    },
+    {
+      "lat": 52.4518,
+      "lng": 13.50231,
+      "rent": 12.02,
+      "year": 2025,
+      "n": 119,
+      "plz": "12487",
+      "location": "Berlin",
+      "grid": "4559_3266"
+    },
+    {
+      "lat": 52.46077,
+      "lng": 13.50302,
+      "rent": 11.44,
+      "year": 2025,
+      "n": 233,
+      "plz": "12437",
+      "location": "Berlin",
+      "grid": "4559_3267"
+    },
+    {
+      "lat": 52.46975,
+      "lng": 13.50373,
+      "rent": 5.06,
+      "year": 2008,
+      "n": 55,
+      "plz": "10318",
+      "location": "Berlin",
+      "grid": "4559_3268"
+    },
+    {
+      "lat": 52.47872,
+      "lng": 13.50444,
+      "rent": 17.7,
+      "year": 2025,
+      "n": 734,
+      "plz": "10318",
+      "location": "Berlin",
+      "grid": "4559_3269"
+    },
+    {
+      "lat": 52.4877,
+      "lng": 13.50515,
+      "rent": 9.11,
+      "year": 2025,
+      "n": 167,
+      "plz": "10319",
+      "location": "Berlin",
+      "grid": "4559_3270"
+    },
+    {
+      "lat": 52.49667,
+      "lng": 13.50587,
+      "rent": 9.21,
+      "year": 2025,
+      "n": 72,
+      "plz": "10319",
+      "location": "Berlin",
+      "grid": "4559_3271"
+    },
+    {
+      "lat": 52.50565,
+      "lng": 13.50658,
+      "rent": 18.16,
+      "year": 2025,
+      "n": 428,
+      "plz": "10319",
+      "location": "Berlin",
+      "grid": "4559_3272"
+    },
+    {
+      "lat": 52.51462,
+      "lng": 13.50729,
+      "rent": 9.09,
+      "year": 2024,
+      "n": 103,
+      "plz": "10315",
+      "location": "Berlin",
+      "grid": "4559_3273"
+    },
+    {
+      "lat": 52.5236,
+      "lng": 13.50801,
+      "rent": 21.28,
+      "year": 2025,
+      "n": 244,
+      "plz": "10315",
+      "location": "Berlin",
+      "grid": "4559_3274"
+    },
+    {
+      "lat": 52.53257,
+      "lng": 13.50872,
+      "rent": 13.36,
+      "year": 2025,
+      "n": 78,
+      "plz": "13055",
+      "location": "Berlin",
+      "grid": "4559_3275"
+    },
+    {
+      "lat": 52.55052,
+      "lng": 13.51015,
+      "rent": 8.31,
+      "year": 2024,
+      "n": 109,
+      "plz": "13053",
+      "location": "Berlin",
+      "grid": "4559_3277"
+    },
+    {
+      "lat": 52.55949,
+      "lng": 13.51086,
+      "rent": 7.42,
+      "year": 2024,
+      "n": 92,
+      "plz": "13053",
+      "location": "Berlin",
+      "grid": "4559_3278"
+    },
+    {
+      "lat": 52.56847,
+      "lng": 13.51158,
+      "rent": 7.35,
+      "year": 2025,
+      "n": 54,
+      "plz": "13059",
+      "location": "Berlin",
+      "grid": "4559_3279"
+    },
+    {
+      "lat": 52.39752,
+      "lng": 13.51272,
+      "rent": 5.57,
+      "year": 2024,
+      "n": 61,
+      "plz": "12355",
+      "location": "Berlin",
+      "grid": "4560_3260"
+    },
+    {
+      "lat": 52.41547,
+      "lng": 13.51415,
+      "rent": 4.46,
+      "year": 2008,
+      "n": 92,
+      "plz": "12355",
+      "location": "Berlin",
+      "grid": "4560_3262"
+    },
+    {
+      "lat": 52.43341,
+      "lng": 13.51557,
+      "rent": 10.89,
+      "year": 2025,
+      "n": 51,
+      "plz": "12487",
+      "location": "Berlin",
+      "grid": "4560_3264"
+    },
+    {
+      "lat": 52.45136,
+      "lng": 13.517,
+      "rent": 13.93,
+      "year": 2025,
+      "n": 227,
+      "plz": "12439",
+      "location": "Berlin",
+      "grid": "4560_3266"
+    },
+    {
+      "lat": 52.46034,
+      "lng": 13.51771,
+      "rent": 15.31,
+      "year": 2025,
+      "n": 325,
+      "plz": "12459",
+      "location": "Berlin",
+      "grid": "4560_3267"
+    },
+    {
+      "lat": 52.47829,
+      "lng": 13.51914,
+      "rent": 12.13,
+      "year": 2025,
+      "n": 94,
+      "plz": "10318",
+      "location": "Berlin",
+      "grid": "4560_3269"
+    },
+    {
+      "lat": 52.48726,
+      "lng": 13.51986,
+      "rent": 11.36,
+      "year": 2025,
+      "n": 53,
+      "plz": "10318",
+      "location": "Berlin",
+      "grid": "4560_3270"
+    },
+    {
+      "lat": 52.50521,
+      "lng": 13.52129,
+      "rent": 10.89,
+      "year": 2025,
+      "n": 71,
+      "plz": "10319",
+      "location": "Berlin",
+      "grid": "4560_3272"
+    },
+    {
+      "lat": 52.52316,
+      "lng": 13.52272,
+      "rent": 14.92,
+      "year": 2024,
+      "n": 109,
+      "plz": "10315",
+      "location": "Berlin",
+      "grid": "4560_3274"
+    },
+    {
+      "lat": 52.55906,
+      "lng": 13.52559,
+      "rent": 7.16,
+      "year": 2024,
+      "n": 53,
+      "plz": "12681",
+      "location": "Berlin",
+      "grid": "4560_3278"
+    },
+    {
+      "lat": 52.39708,
+      "lng": 13.5274,
+      "rent": 5.59,
+      "year": 2013,
+      "n": 110,
+      "plz": "12524",
+      "location": "Berlin",
+      "grid": "4561_3260"
+    },
+    {
+      "lat": 52.40606,
+      "lng": 13.52811,
+      "rent": 8.4,
+      "year": 2024,
+      "n": 67,
+      "plz": "12524",
+      "location": "Berlin",
+      "grid": "4561_3261"
+    },
+    {
+      "lat": 52.41503,
+      "lng": 13.52883,
+      "rent": 12.38,
+      "year": 2025,
+      "n": 64,
+      "plz": "12524",
+      "location": "Berlin",
+      "grid": "4561_3262"
+    },
+    {
+      "lat": 52.43298,
+      "lng": 13.53026,
+      "rent": 14.16,
+      "year": 2025,
+      "n": 67,
+      "plz": "12489",
+      "location": "Berlin",
+      "grid": "4561_3264"
+    },
+    {
+      "lat": 52.45093,
+      "lng": 13.53169,
+      "rent": 11.37,
+      "year": 2025,
+      "n": 114,
+      "plz": "12439",
+      "location": "Berlin",
+      "grid": "4561_3266"
+    },
+    {
+      "lat": 52.51375,
+      "lng": 13.53672,
+      "rent": 6.17,
+      "year": 2018,
+      "n": 581,
+      "plz": "10315",
+      "location": "Berlin",
+      "grid": "4561_3273"
+    },
+    {
+      "lat": 52.52273,
+      "lng": 13.53744,
+      "rent": 8.2,
+      "year": 2025,
+      "n": 53,
+      "plz": "10315",
+      "location": "Berlin",
+      "grid": "4561_3274"
+    },
+    {
+      "lat": 52.5317,
+      "lng": 13.53816,
+      "rent": 8.06,
+      "year": 2024,
+      "n": 79,
+      "plz": "12681",
+      "location": "Berlin",
+      "grid": "4561_3275"
+    },
+    {
+      "lat": 52.54067,
+      "lng": 13.53888,
+      "rent": 6.69,
+      "year": 2025,
+      "n": 58,
+      "plz": "12681",
+      "location": "Berlin",
+      "grid": "4561_3276"
+    },
+    {
+      "lat": 52.54965,
+      "lng": 13.5396,
+      "rent": 7.05,
+      "year": 2024,
+      "n": 63,
+      "plz": "12681",
+      "location": "Berlin",
+      "grid": "4561_3277"
+    },
+    {
+      "lat": 52.55862,
+      "lng": 13.54032,
+      "rent": 5.21,
+      "year": 2013,
+      "n": 65,
+      "plz": "12681",
+      "location": "Berlin",
+      "grid": "4561_3278"
+    },
+    {
+      "lat": 52.5676,
+      "lng": 13.54104,
+      "rent": 5.04,
+      "year": 2013,
+      "n": 86,
+      "plz": "13057",
+      "location": "Berlin",
+      "grid": "4561_3279"
+    },
+    {
+      "lat": 52.39665,
+      "lng": 13.54207,
+      "rent": 5.74,
+      "year": 2013,
+      "n": 98,
+      "plz": "12524",
+      "location": "Berlin",
+      "grid": "4562_3260"
+    },
+    {
+      "lat": 52.40562,
+      "lng": 13.54279,
+      "rent": 8.25,
+      "year": 2024,
+      "n": 65,
+      "plz": "12524",
+      "location": "Berlin",
+      "grid": "4562_3261"
+    },
+    {
+      "lat": 52.43254,
+      "lng": 13.54495,
+      "rent": 11.72,
+      "year": 2025,
+      "n": 337,
+      "plz": "12489",
+      "location": "Berlin",
+      "grid": "4562_3264"
+    },
+    {
+      "lat": 52.44152,
+      "lng": 13.54567,
+      "rent": 5.96,
+      "year": 2013,
+      "n": 82,
+      "plz": "12489",
+      "location": "Berlin",
+      "grid": "4562_3265"
+    },
+    {
+      "lat": 52.50434,
+      "lng": 13.55071,
+      "rent": 11.46,
+      "year": 2025,
+      "n": 52,
+      "plz": "12683",
+      "location": "Berlin",
+      "grid": "4562_3272"
+    },
+    {
+      "lat": 52.52229,
+      "lng": 13.55216,
+      "rent": 5.0,
+      "year": 2013,
+      "n": 78,
+      "plz": "12685",
+      "location": "Berlin",
+      "grid": "4562_3274"
+    },
+    {
+      "lat": 52.53126,
+      "lng": 13.55288,
+      "rent": 4.22,
+      "year": 2008,
+      "n": 122,
+      "plz": "12685",
+      "location": "Berlin",
+      "grid": "4562_3275"
+    },
+    {
+      "lat": 52.54024,
+      "lng": 13.55361,
+      "rent": 7.1,
+      "year": 2024,
+      "n": 68,
+      "plz": "12679",
+      "location": "Berlin",
+      "grid": "4562_3276"
+    },
+    {
+      "lat": 52.54921,
+      "lng": 13.55433,
+      "rent": 7.96,
+      "year": 2025,
+      "n": 81,
+      "plz": "12679",
+      "location": "Berlin",
+      "grid": "4562_3277"
+    },
+    {
+      "lat": 52.55819,
+      "lng": 13.55505,
+      "rent": 8.67,
+      "year": 2025,
+      "n": 80,
+      "plz": "12687",
+      "location": "Berlin",
+      "grid": "4562_3278"
+    },
+    {
+      "lat": 52.56716,
+      "lng": 13.55578,
+      "rent": 8.33,
+      "year": 2025,
+      "n": 52,
+      "plz": "13057",
+      "location": "Berlin",
+      "grid": "4562_3279"
+    },
+    {
+      "lat": 52.40518,
+      "lng": 13.55747,
+      "rent": 14.05,
+      "year": 2025,
+      "n": 113,
+      "plz": "12524",
+      "location": "Berlin",
+      "grid": "4563_3261"
+    },
+    {
+      "lat": 52.42313,
+      "lng": 13.55891,
+      "rent": 6.11,
+      "year": 2008,
+      "n": 81,
+      "plz": "12524",
+      "location": "Berlin",
+      "grid": "4563_3263"
+    },
+    {
+      "lat": 52.43211,
+      "lng": 13.55964,
+      "rent": 9.16,
+      "year": 2025,
+      "n": 60,
+      "plz": "12489",
+      "location": "Berlin",
+      "grid": "4563_3264"
+    },
+    {
+      "lat": 52.44108,
+      "lng": 13.56036,
+      "rent": 12.52,
+      "year": 2025,
+      "n": 150,
+      "plz": "12489",
+      "location": "Berlin",
+      "grid": "4563_3265"
+    },
+    {
+      "lat": 52.45005,
+      "lng": 13.56108,
+      "rent": 15.88,
+      "year": 2025,
+      "n": 401,
+      "plz": "12489",
+      "location": "Berlin",
+      "grid": "4563_3266"
+    },
+    {
+      "lat": 52.45903,
+      "lng": 13.5618,
+      "rent": 8.94,
+      "year": 2018,
+      "n": 54,
+      "plz": "12555",
+      "location": "Berlin",
+      "grid": "4563_3267"
+    },
+    {
+      "lat": 52.468,
+      "lng": 13.56253,
+      "rent": 8.23,
+      "year": 2018,
+      "n": 52,
+      "plz": "12555",
+      "location": "Berlin",
+      "grid": "4563_3268"
+    },
+    {
+      "lat": 52.5039,
+      "lng": 13.56543,
+      "rent": 15.31,
+      "year": 2024,
+      "n": 59,
+      "plz": "12683",
+      "location": "Berlin",
+      "grid": "4563_3272"
+    },
+    {
+      "lat": 52.51287,
+      "lng": 13.56615,
+      "rent": 4.38,
+      "year": 2008,
+      "n": 165,
+      "plz": "12683",
+      "location": "Berlin",
+      "grid": "4563_3273"
+    },
+    {
+      "lat": 52.52185,
+      "lng": 13.56688,
+      "rent": 7.81,
+      "year": 2025,
+      "n": 50,
+      "plz": "12685",
+      "location": "Berlin",
+      "grid": "4563_3274"
+    },
+    {
+      "lat": 52.5398,
+      "lng": 13.56833,
+      "rent": 9.26,
+      "year": 2025,
+      "n": 52,
+      "plz": "12685",
+      "location": "Berlin",
+      "grid": "4563_3276"
+    },
+    {
+      "lat": 52.54877,
+      "lng": 13.56906,
+      "rent": 7.6,
+      "year": 2025,
+      "n": 66,
+      "plz": "12679",
+      "location": "Berlin",
+      "grid": "4563_3277"
+    },
+    {
+      "lat": 52.55775,
+      "lng": 13.56978,
+      "rent": 6.81,
+      "year": 2024,
+      "n": 54,
+      "plz": "12687",
+      "location": "Berlin",
+      "grid": "4563_3278"
+    },
+    {
+      "lat": 52.56672,
+      "lng": 13.57051,
+      "rent": 7.84,
+      "year": 2024,
+      "n": 86,
+      "plz": "12689",
+      "location": "Berlin",
+      "grid": "4563_3279"
+    },
+    {
+      "lat": 52.41372,
+      "lng": 13.57287,
+      "rent": 11.65,
+      "year": 2025,
+      "n": 54,
+      "plz": "12526",
+      "location": "Berlin",
+      "grid": "4564_3262"
+    },
+    {
+      "lat": 52.42269,
+      "lng": 13.5736,
+      "rent": 14.17,
+      "year": 2025,
+      "n": 261,
+      "plz": "12557",
+      "location": "Berlin",
+      "grid": "4564_3263"
+    },
+    {
+      "lat": 52.43166,
+      "lng": 13.57432,
+      "rent": 11.87,
+      "year": 2025,
+      "n": 120,
+      "plz": "12557",
+      "location": "Berlin",
+      "grid": "4564_3264"
+    },
+    {
+      "lat": 52.44064,
+      "lng": 13.57505,
+      "rent": 10.01,
+      "year": 2025,
+      "n": 112,
+      "plz": "12557",
+      "location": "Berlin",
+      "grid": "4564_3265"
+    },
+    {
+      "lat": 52.44961,
+      "lng": 13.57577,
+      "rent": 12.04,
+      "year": 2025,
+      "n": 75,
+      "plz": "12555",
+      "location": "Berlin",
+      "grid": "4564_3266"
+    },
+    {
+      "lat": 52.45859,
+      "lng": 13.5765,
+      "rent": 11.69,
+      "year": 2025,
+      "n": 120,
+      "plz": "12555",
+      "location": "Berlin",
+      "grid": "4564_3267"
+    },
+    {
+      "lat": 52.50346,
+      "lng": 13.58014,
+      "rent": 8.8,
+      "year": 2024,
+      "n": 63,
+      "plz": "12621",
+      "location": "Berlin",
+      "grid": "4564_3272"
+    },
+    {
+      "lat": 52.51243,
+      "lng": 13.58086,
+      "rent": 8.73,
+      "year": 2025,
+      "n": 59,
+      "plz": "12621",
+      "location": "Berlin",
+      "grid": "4564_3273"
+    },
+    {
+      "lat": 52.52141,
+      "lng": 13.58159,
+      "rent": 7.01,
+      "year": 2025,
+      "n": 154,
+      "plz": "12619",
+      "location": "Berlin",
+      "grid": "4564_3274"
+    },
+    {
+      "lat": 52.53038,
+      "lng": 13.58232,
+      "rent": 5.42,
+      "year": 2024,
+      "n": 57,
+      "plz": "12619",
+      "location": "Berlin",
+      "grid": "4564_3275"
+    },
+    {
+      "lat": 52.53936,
+      "lng": 13.58305,
+      "rent": 10.38,
+      "year": 2025,
+      "n": 87,
+      "plz": "12629",
+      "location": "Berlin",
+      "grid": "4564_3276"
+    },
+    {
+      "lat": 52.41327,
+      "lng": 13.58756,
+      "rent": 7.81,
+      "year": 2013,
+      "n": 55,
+      "plz": "12557",
+      "location": "Berlin",
+      "grid": "4565_3262"
+    },
+    {
+      "lat": 52.42225,
+      "lng": 13.58828,
+      "rent": 8.38,
+      "year": 2024,
+      "n": 62,
+      "plz": "12557",
+      "location": "Berlin",
+      "grid": "4565_3263"
+    },
+    {
+      "lat": 52.43122,
+      "lng": 13.58901,
+      "rent": 8.48,
+      "year": 2024,
+      "n": 59,
+      "plz": "12557",
+      "location": "Berlin",
+      "grid": "4565_3264"
+    },
+    {
+      "lat": 52.4402,
+      "lng": 13.58974,
+      "rent": 6.58,
+      "year": 2018,
+      "n": 187,
+      "plz": "12557",
+      "location": "Berlin",
+      "grid": "4565_3265"
+    },
+    {
+      "lat": 52.44917,
+      "lng": 13.59047,
+      "rent": 5.3,
+      "year": 2008,
+      "n": 59,
+      "plz": "12555",
+      "location": "Berlin",
+      "grid": "4565_3266"
+    },
+    {
+      "lat": 52.45815,
+      "lng": 13.5912,
+      "rent": 3.82,
+      "year": 2008,
+      "n": 51,
+      "plz": "12555",
+      "location": "Berlin",
+      "grid": "4565_3267"
+    },
+    {
+      "lat": 52.51199,
+      "lng": 13.59558,
+      "rent": 10.37,
+      "year": 2024,
+      "n": 60,
+      "plz": "12621",
+      "location": "Berlin",
+      "grid": "4565_3273"
+    },
+    {
+      "lat": 52.52994,
+      "lng": 13.59704,
+      "rent": 8.98,
+      "year": 2024,
+      "n": 81,
+      "plz": "12619",
+      "location": "Berlin",
+      "grid": "4565_3275"
+    },
+    {
+      "lat": 52.53891,
+      "lng": 13.59777,
+      "rent": 10.65,
+      "year": 2025,
+      "n": 81,
+      "plz": "12629",
+      "location": "Berlin",
+      "grid": "4565_3276"
+    },
+    {
+      "lat": 52.43975,
+      "lng": 13.60443,
+      "rent": 5.57,
+      "year": 2008,
+      "n": 50,
+      "plz": "12557",
+      "location": "Berlin",
+      "grid": "4566_3265"
+    },
+    {
+      "lat": 52.44873,
+      "lng": 13.60516,
+      "rent": 7.97,
+      "year": 2024,
+      "n": 57,
+      "plz": "12555",
+      "location": "Berlin",
+      "grid": "4566_3266"
+    },
+    {
+      "lat": 52.50257,
+      "lng": 13.60956,
+      "rent": 7.92,
+      "year": 2024,
+      "n": 60,
+      "plz": "12623",
+      "location": "Berlin",
+      "grid": "4566_3272"
+    },
+    {
+      "lat": 52.52052,
+      "lng": 13.61103,
+      "rent": 5.28,
+      "year": 2013,
+      "n": 134,
+      "plz": "12627",
+      "location": "Berlin",
+      "grid": "4566_3274"
+    },
+    {
+      "lat": 52.52949,
+      "lng": 13.61176,
+      "rent": 8.0,
+      "year": 2025,
+      "n": 95,
+      "plz": "12627",
+      "location": "Berlin",
+      "grid": "4566_3275"
+    },
+    {
+      "lat": 52.53847,
+      "lng": 13.6125,
+      "rent": 7.34,
+      "year": 2018,
+      "n": 191,
+      "plz": "12627",
+      "location": "Berlin",
+      "grid": "4566_3276"
+    },
+    {
+      "lat": 52.43931,
+      "lng": 13.61912,
+      "rent": 7.05,
+      "year": 2013,
+      "n": 61,
+      "plz": "12587",
+      "location": "Berlin",
+      "grid": "4567_3265"
+    },
+    {
+      "lat": 52.44828,
+      "lng": 13.61985,
+      "rent": 10.52,
+      "year": 2025,
+      "n": 75,
+      "plz": "12587",
+      "location": "Berlin",
+      "grid": "4567_3266"
+    },
+    {
+      "lat": 52.42762,
+      "lng": 13.7065,
+      "rent": 7.13,
+      "year": 2024,
+      "n": 73,
+      "plz": "12589",
+      "location": "Berlin",
+      "grid": "4573_3264"
+    },
+    {
+      "lat": 52.4267,
+      "lng": 13.73587,
+      "rent": 8.07,
+      "year": 2024,
+      "n": 80,
+      "plz": "15569",
+      "location": "Berlin",
+      "grid": "4575_3264"
+    }
+  ]
+}

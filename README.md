@@ -1,40 +1,35 @@
-# Mietspiegel Digitization
+# Berlin Mietspiegel
 
-Digitized, standardized, searchable database of official German city Mietspiegel (rent indexes) — extracted from PDFs into structured data with an interactive map dashboard.
+Berlin rent data — block by block. Three independent data sources layered on a single interactive map: market rents (Immoscout24), official census rents (Zensus 2022), and the legally binding Berlin Mietspiegel.
 
 **Live dashboard:** https://ravidvr.github.io/mietspiegel-digitization/
 
 ## What This Is
 
-Germany has no unified national rent database. Each city publishes its Mietspiegel independently as a PDF — this project extracts, normalizes, and visualizes them all in one place.
+All calculations are relative to Berlin. Every z-score, average, and comparison uses Berlin-only data — not national averages.
 
-- **28 cities** of official rent index data (23 with complete tables)
-- **7,304 Immoscout24 market-rent grid cells** (RWI-GEO-REDX PUF v16)
-- **113K Zensus 2022 census rent cells** (100m resolution, aggregated to 1km)
-- **Berlin district overlay** (400,505 address-level classifications)
+- **12 Bezirke** with estimated average rents (derived from 400,505 address-level points)
+- **467 Immoscout24 market-rent grid cells** (RWI-GEO-REDX PUF v16, Berlin-only)
+- **1,155 Zensus 2022 census rent cells** (100m resolution, aggregated to 1km, Berlin-only)
+- **Berlin Mietspiegel 2024** (full rent table: 3 Wohnlagen x 8 Baujahre x 4 sizes)
+- **6 historical editions** (2013-2023, all three Wohnlagen tracked)
 
 ## Dashboard Features
 
-- Interactive heatmap with z-score normalization (zoom-sensitive radius/blur)
-- City labels with official Mietspiegel average rents
-- Click anywhere for multi-layer rent data (Immoscout vs Census vs Official)
-- Cross-city comparison table (filter by Wohnlage, size, Baujahr)
-- Historical trends (Chart.js line chart, growth ranking, edition tracking)
-- Berlin-only dashboard with district panel and dual-source toggle
+- Interactive heatmap with Berlin-local z-score normalization (zoom-sensitive radius/blur)
+- 12 Bezirke labels with estimated average rents
+- Click anywhere for multi-layer rent data (Immoscout vs Census vs Official Mietspiegel)
+- District comparison table (12 Bezirke ranked, sortable, with Mietspiegel table)
+- Historical trends (Wohnlage comparison chart, growth ranking, edition history)
 - DE/EN language toggle, dark mode, CSV export
 - Mobile-friendly with bottom-sheet tooltips
+- Address search via Nominatim (restricted to Berlin bounding box)
 
 ## Quick Start
 
 ```bash
 git clone https://github.com/ravidvr/mietspiegel-digitization.git
 cd mietspiegel-digitization
-
-# Build the full dashboard (normalize data, build GeoJSON, process census)
-./scripts/build.sh
-
-# Or skip the heavy grid/census processing if data already exists:
-./scripts/build.sh --skip-grid --skip-zensus
 
 # Serve locally:
 python3 -m http.server 8000 --directory docs
@@ -44,14 +39,12 @@ python3 -m http.server 8000 --directory docs
 ### External Data Dependencies
 
 The build pipeline references external datasets that are **not included in git** (too large).
-Download them separately:
 
 | Dataset | Source | How to get |
 |---------|--------|------------|
 | RWI-GEO-REDX PUF v16 | RWI Essen | https://doi.org/10.7807/IMMO:REDX:PUF:V16 |
 | Zensus 2022 (Nettokaltmiete) | Destatis | https://www.zensus2022.de |
-| German boundaries (Kreise/States) | GADM | https://gadm.org |
-| PLZ centroids | WZB | `data/external/plz_centroids.csv` |
+| Berlin WFS (Wohnlage) | Berlin Senate | https://gdi.berlin.de/services/wfs/wohnlagenadr2026 |
 
 Place downloaded files under `data/external/`.
 
@@ -60,29 +53,15 @@ Place downloaded files under `data/external/`.
 ```
 mietspiegel-digitization/
 ├── docs/                          ← GitHub Pages deployment root
-│   ├── index.html                 ← Main dashboard (single-file, no framework)
-│   ├── cross-city-comparison.html ← Side-by-side comparison view
-│   ├── historical_trends.html     ← Rent development over time (Chart.js)
-│   ├── berlin.html                ← Berlin-only standalone dashboard
-│   ├── about.html                 ← Full project documentation
-│   ├── berlin-about.html          ← Berlin dashboard docs
-│   ├── schema.md                  ← Data schema reference
+│   ├── index.html                 ← Main Berlin dashboard (single-file, no framework)
+│   ├── cross-city-comparison.html ← 12 Bezirke comparison + Mietspiegel table
+│   ├── historical_trends.html     ← Berlin rent history by Wohnlage (Chart.js)
+│   ├── berlin.html                ← Standalone Berlin map (Immoscout vs Zensus)
+│   ├── about.html                 ← Project documentation
 │   └── data/processed/            ← All dashboard data (served statically)
 ├── scripts/                       ← Build pipeline
-│   ├── build.sh                   ← Full pipeline orchestrator
-│   ├── compile_data.py            ← Normalize city data → dashboard JSON
-│   ├── build_national_choropleth.py ← RWI grids → GeoJSON with spatial joins
-│   ├── process_zensus2022.py      ← Zensus 100m → 1km aggregated JSON
-│   └── ...
 ├── validate/                      ← Data quality framework
-│   ├── sanity_checks.py           ← Monotonicity, completeness, positivity
-│   ├── gdw_crossref.py            ← Cross-reference vs GdW benchmarks
-│   └── run_validations.py         ← CLI runner
 ├── data/                          ← Source data (not tracked in git)
-│   ├── raw/                       ← Original Mietspiegel PDFs
-│   ├── external/                  ← RWI, Zensus, GADM downloads
-│   ├── processed/                 ← Build staging area
-│   └── versions/                  ← Historical edition snapshots
 └── .github/workflows/pages.yml    ← Auto-deploy to GitHub Pages
 ```
 
@@ -90,7 +69,7 @@ mietspiegel-digitization/
 
 - **Frontend:** Vanilla HTML/CSS/JS (no framework, no build step, no npm)
 - **Map:** Leaflet.js 1.9.4 + Leaflet.heat 0.2.0
-- **Charts:** Chart.js 4.4.7 (historical trends only)
+- **Charts:** Chart.js 4.4.7 (historical trends)
 - **Data:** Static JSON files served by GitHub Pages
 - **Build:** Python 3 (pdfplumber, shapely, pyproj, scipy)
 - **Deployment:** GitHub Pages via GitHub Actions
@@ -99,34 +78,13 @@ mietspiegel-digitization/
 
 | Source | Coverage | License |
 |--------|----------|---------|
-| City Mietspiegel PDFs | 28 cities, 2024-2026 | Public official documents |
-| RWI-GEO-REDX PUF v16 | 7,304 grid cells nationwide | Public Use File (DOI: 10.7807/IMMO:REDX:PUF:V16) |
-| Zensus 2022 | 113K cells at 100m resolution | Datenlizenz Deutschland – Namensnennung 2.0 |
-| Berlin WFS | 400,505 addresses | Datenlizenz Deutschland – Zero |
+| Berlin Mietspiegel 2024 | Full rent table, 3 Wohnlagen | Public official document |
+| RWI-GEO-REDX PUF v16 | 467 Berlin grid cells | Public Use File (DOI: 10.7807/IMMO:REDX:PUF:V16) |
+| Zensus 2022 | 1,155 Berlin cells (100m→1km) | dl-de/by-2.0 |
+| Berlin WFS | 400,505 address points | dl-de/zero-2.0 |
 | OSM tiles | Map base | ODbL |
-
-See [docs/about.html](docs/about.html) for full documentation including methodology, limitations, and reproducibility instructions.
-
-## Validation
-
-```bash
-# Run all sanity checks on extracted city data
-python3 -m validate.run_validations
-
-# Single city
-python3 -m validate.run_validations --city berlin
-
-# JSON output
-python3 -m validate.run_validations --json
-```
-
-Checks: Baujahr monotonicity, Lage monotonicity, positive values, field completeness, GdW cross-reference.
 
 ## License
 
 Dashboard code: **CC BY-SA 4.0**
 Data: See individual source licenses above.
-
-## Contributing
-
-Found a bug or have data for a new city? Open an issue or PR on [GitHub](https://github.com/ravidvr/mietspiegel-digitization).

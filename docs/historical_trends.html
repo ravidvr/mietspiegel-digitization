@@ -1,129 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Mietspiegel Historical Trends — Rent Development" />
-<meta property="og:description" content="Track German rent development over time. Growth rankings, historical editions, and annualized rates for 10 major cities." />
+<meta property="og:title" content="Berlin Mietspiegel — Historical Rent Trends" />
+<meta property="og:description" content="Track Berlin rent development over time. Growth by Wohnlage, edition history, and annualized rates from 2013 to 2023." />
 <meta property="og:image" content="https://ravidvr.github.io/mietspiegel-digitization/og-image.svg" />
-<meta property="og:url" content="https://ravidvr.github.io/mietspiegel-digitization/docs/historical_trends.html" />
+<meta property="og:url" content="https://ravidvr.github.io/mietspiegel-digitization/historical_trends.html" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Mietspiegel Historical Trends — Rent Development" />
-<meta name="twitter:description" content="Track German rent development over time. Growth rankings, historical editions, and annualized rates for 10 major cities." />
-  <title>Mietspiegel Historical Trends — Rent Development Over Time</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #0f1117; color: #e4e6f0; min-height: 100vh;
-    }
-    .header {
-      background: #151821; border-bottom: 1px solid #2a2e3e;
-      padding: 12px 24px; display: flex; justify-content: space-between;
-      align-items: center; flex-wrap: wrap; gap: 10px;
-    }
-    .header h1 { font-size: 18px; font-weight: 700; color: #e4e6f0; }
-    .header h1 span { color: #5b8def; }
-    .header .nav a {
-      color: #8b8fa3; text-decoration: none; font-size: 12px;
-      padding: 4px 10px; border: 1px solid #2a2e3e; border-radius: 5px;
-      transition: 0.2s;
-    }
-    .header .nav a:hover { color: #5b8def; border-color: #5b8def; }
-    .container { max-width: 1300px; margin: 0 auto; padding: 20px; }
-
-    .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 20px; }
-    .summary-card {
-      background: #1a1d28; border: 1px solid #2a2e3e; border-radius: 8px; padding: 14px;
-    }
-    .summary-card .label { font-size: 11px; color: #8b8fa3; text-transform: uppercase; letter-spacing: 0.5px; }
-    .summary-card .value { font-size: 24px; font-weight: 700; margin-top: 4px; }
-    .summary-card .value.green { color: #48bb78; }
-    .summary-card .value.red { color: #f56565; }
-    .summary-card .value.amber { color: #ecc94b; }
-    .summary-card .value.blue { color: #5b8def; }
-
-    .section {
-      background: #1a1d28; border: 1px solid #2a2e3e; border-radius: 8px; padding: 20px; margin-bottom: 20px;
-    }
-    .section h2 { font-size: 16px; color: #ecc94b; margin-bottom: 12px; }
-
-    .chart-container { position: relative; width: 100%; max-height: 450px; }
-    .chart-container canvas { max-height: 420px; }
-
-    .controls { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; align-items: center; }
-    .controls label { font-size: 12px; color: #b0b0c0; }
-    .controls select {
-      background: #222639; color: #e4e6f0; border: 1px solid #2a2e3e; border-radius: 5px;
-      padding: 5px 10px; font-size: 12px; cursor: pointer; outline: none;
-    }
-    .controls select:focus { border-color: #5b8def; }
-
-    .growth-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-    .growth-table th {
-      text-align: left; padding: 6px 8px; border-bottom: 2px solid #2a2e3e;
-      color: #8b8fa3; font-size: 11px; text-transform: uppercase; letter-spacing: 0.3px;
-    }
-    .growth-table td { padding: 6px 8px; border-bottom: 1px solid #222639; }
-    .growth-table tr:hover td { background: #1e2030; }
-    .growth-table .rank { color: #666680; font-size: 11px; width: 2rem; }
-    .growth-table .city-name { font-weight: 600; }
-    .growth-table .price { text-align: right; font-variant-numeric: tabular-nums; }
-    .growth-table .growth-pct { text-align: right; font-weight: 600; white-space: nowrap; }
-    .growth-table .growth-pct.pos { color: #48bb78; }
-    .growth-table .growth-pct.neg { color: #f56565; }
-    .growth-table .city-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
-    .bar-cell { display: flex; align-items: center; gap: 6px; justify-content: flex-end; }
-    .bar-cell .bar { height: 8px; border-radius: 4px; min-width: 3px; }
-
-    .city-detail-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin-top: 12px; }
-    .city-card {
-      background: #14141e; border: 1px solid #2a2e3e; border-radius: 6px; padding: 12px;
-      display: flex; flex-direction: column;
-    }
-    .city-card h3 { font-size: 14px; margin-bottom: 4px; }
-    .city-card .city-pop { font-size: 11px; color: #666680; margin-bottom: 6px; }
-    .city-card .history-row { display: flex; justify-content: space-between; padding: 2px 0; color: #b0b0c4; font-size: 12px; }
-    .city-card .history-row .year { color: #666680; }
-    .city-card .growth-badge {
-      display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 600;
-      margin-top: 6px; margin-bottom: 4px;
-    }
-    .city-card .growth-badge.fast { background: #2a4422; color: #66dd88; }
-    .city-card .growth-badge.avg { background: #222244; color: #7799cc; }
-    .city-card .growth-badge.slow { background: #443322; color: #ddaa66; }
-
-    .filter-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
-    .filter-tag {
-      background: #222238; border: 1px solid #3a3a55; border-radius: 14px;
-      padding: 3px 10px; font-size: 11px; cursor: pointer; color: #b0b0c0;
-    }
-    .filter-tag:hover { border-color: #ecc94b; }
-    .filter-tag.active { background: #ecc94b; color: #1a1a2e; border-color: #ecc94b; font-weight: 600; }
-
-    .methodology { font-size: 12px; color: #666680; line-height: 1.6; }
-    .methodology a { color: #5b8def; }
-    .methodology strong { color: #8b8fa3; }
-
-    .loading { display: flex; align-items: center; justify-content: center; padding: 40px; color: #8b8fa3; gap: 8px; }
-    .spinner { width: 16px; height: 16px; border: 2px solid #2a2e3e; border-top-color: #5b8def; border-radius: 50%; animation: spin 0.8s linear infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    footer { text-align: center; padding: 12px; font-size: 11px; color: #666680; }
-    footer a { color: #5b8def; text-decoration: none; }
-
-    @media (max-width: 768px) {
-      .summary-grid { grid-template-columns: repeat(2, 1fr); }
-      .growth-table { font-size: 11px; }
-      .city-detail-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+<title>Berlin Mietspiegel — Historical Rent Trends</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f1117; color: #e4e6f0; min-height: 100vh; }
+  .header { background: #151821; border-bottom: 1px solid #2a2e3e; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+  .header h1 { font-size: 18px; font-weight: 700; } .header h1 span { color: #5b8def; }
+  .header .nav a { color: #8b8fa3; text-decoration: none; font-size: 12px; padding: 4px 10px; border: 1px solid #2a2e3e; border-radius: 5px; transition: 0.2s; }
+  .header .nav a:hover { color: #5b8def; border-color: #5b8def; }
+  .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 20px; }
+  .summary-card { background: #1a1d28; border: 1px solid #2a2e3e; border-radius: 8px; padding: 14px; }
+  .summary-card .label { font-size: 11px; color: #8b8fa3; text-transform: uppercase; letter-spacing: 0.5px; }
+  .summary-card .value { font-size: 24px; font-weight: 700; margin-top: 4px; }
+  .summary-card .value.green { color: #48bb78; } .summary-card .value.red { color: #f56565; } .summary-card .value.amber { color: #ecc94b; } .summary-card .value.blue { color: #5b8def; }
+  .section { background: #1a1d28; border: 1px solid #2a2e3e; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+  .section h2 { font-size: 16px; color: #ecc94b; margin-bottom: 12px; }
+  .chart-container { position: relative; width: 100%; max-height: 400px; }
+  .chart-container canvas { max-height: 380px; }
+  .growth-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .growth-table th { text-align: left; padding: 6px 8px; border-bottom: 2px solid #2a2e3e; color: #8b8fa3; font-size: 11px; text-transform: uppercase; letter-spacing: 0.3px; }
+  .growth-table td { padding: 6px 8px; border-bottom: 1px solid #222639; }
+  .growth-table tr:hover td { background: #1e2030; }
+  .growth-table .lage-name { font-weight: 600; }
+  .growth-table .lage-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+  .growth-table .price { text-align: right; font-variant-numeric: tabular-nums; }
+  .growth-table .growth-pct { text-align: right; font-weight: 600; white-space: nowrap; }
+  .growth-table .growth-pct.pos { color: #48bb78; } .growth-table .growth-pct.neg { color: #f56565; }
+  .bar-cell { display: flex; align-items: center; gap: 6px; justify-content: flex-end; }
+  .bar-cell .bar { height: 8px; border-radius: 4px; min-width: 3px; }
+  .edition-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+  .edition-card { background: #14141e; border: 1px solid #2a2e3e; border-radius: 6px; padding: 14px; }
+  .edition-card h3 { font-size: 15px; margin-bottom: 4px; }
+  .edition-card .year-label { font-size: 11px; color: #666680; margin-bottom: 8px; }
+  .edition-card .lage-row { display: flex; justify-content: space-between; padding: 3px 0; color: #b0b0c4; font-size: 12px; }
+  .edition-card .lage-row .lage-label { color: #666680; }
+  .edition-card .growth-badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 600; margin-top: 6px; }
+  .edition-card .growth-badge.pos { background: #2a4422; color: #66dd88; }
+  .edition-card .growth-badge.neg { background: #442222; color: #dd8888; }
+  .methodology { font-size: 12px; color: #666680; line-height: 1.6; }
+  .methodology a { color: #5b8def; }
+  .methodology strong { color: #8b8fa3; }
+  .loading { display: flex; align-items: center; justify-content: center; padding: 40px; color: #8b8fa3; gap: 8px; }
+  .spinner { width: 16px; height: 16px; border: 2px solid #2a2e3e; border-top-color: #5b8def; border-radius: 50%; animation: spin 0.8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  footer { text-align: center; padding: 12px; font-size: 11px; color: #666680; }
+  footer a { color: #5b8def; text-decoration: none; }
+  @media (max-width: 768px) {
+    .summary-grid { grid-template-columns: repeat(2, 1fr); }
+    .growth-table { font-size: 11px; }
+    .edition-grid { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
 <body>
 <div class="header">
-  <h1>📈 Mietspiegel <span>Historical Trends</span></h1>
+  <h1>📈 Berlin Mietspiegel <span>Historical Trends</span></h1>
   <div class="nav">
     <a href="index.html">🗺️ Map</a>
     <a href="cross-city-comparison.html">📊 Compare</a>
@@ -131,62 +73,56 @@
   </div>
 </div>
 <div class="container" id="app">
-  <div class="loading"><div class="spinner"></div> Loading historical data...</div>
+  <div class="loading"><div class="spinner"></div> Loading Berlin rent history...</div>
 </div>
 <footer>
-  Data from official city Mietspiegel editions · Net cold rent per m² · Mittlere Wohnlage
+  Data from official Berlin Mietspiegel editions · Net cold rent per m² · 60-90 sqm apartments
   <br><a href="index.html">← Back to map</a> · <a href="https://github.com/ravidvr/mietspiegel-digitization">GitHub</a>
 </footer>
 <script>
 let HISTORICAL_DATA = null;
 let mainChart = null;
-const COLORS = ['#5b8def','#48bb78','#ecc94b','#ed8936','#f56565','#6c5ce7','#00b894','#e85555','#bb77dd','#66ccdd','#fdcb6e','#a29bfe','#ff7675','#74b9ff','#55efc4','#ffeaa7','#dfe6e9','#fab1a0','#74b9ff','#a29bfe'];
-const cityColor = {};
+const LAGE_COLORS = { 'einfach': '#48bb78', 'mittel': '#5b8def', 'gut': '#ecc94b' };
+const LAGE_LABELS = { 'einfach': 'Einfache Wohnlage (simple)', 'mittel': 'Mittlere Wohnlage (middle)', 'gut': 'Gute Wohnlage (good)' };
 
 async function loadData() {
-  const resp = await fetch('data/historical_mietspiegel.json');
+  const resp = await fetch('data/processed/berlin_historical.json');
   HISTORICAL_DATA = await resp.json();
-  HISTORICAL_DATA.cities.forEach((c, i) => { cityColor[c.city] = COLORS[i % COLORS.length]; });
 }
 
-function buildChartData(metric) {
-  const years = new Set();
-  const datasets = [];
-  HISTORICAL_DATA.cities.forEach((city) => {
-    const vals = city.editions.map(e => {
-      const lageData = city.by_lage[String(e.year)];
-      const val = lageData ? lageData[metric] : null;
-      years.add(e.year);
-      return { year: e.year, value: val };
+function buildChartData() {
+  const berlin = HISTORICAL_DATA.cities.find(c => c.city === 'Berlin');
+  if (!berlin) return { labels: [], datasets: [] };
+
+  const years = [...new Set(berlin.editions.map(e => e.year))].sort((a,b) => a-b);
+  const datasets = ['einfach', 'mittel', 'gut'].map(lage => {
+    const vals = years.map(y => {
+      const ld = berlin.by_lage[String(y)];
+      return ld ? ld[lage] : null;
     });
-    datasets.push({
-      label: city.city,
-      data: vals.sort((a,b) => a.year - b.year).map(v => v.value),
-      borderColor: cityColor[city.city],
-      backgroundColor: cityColor[city.city] + '22',
-      tension: 0.2,
-      pointRadius: 4,
-      pointHoverRadius: 6,
-      spanGaps: false,
-      fill: false,
-    });
+    return {
+      label: LAGE_LABELS[lage],
+      data: vals,
+      borderColor: LAGE_COLORS[lage],
+      backgroundColor: LAGE_COLORS[lage] + '22',
+      tension: 0.2, pointRadius: 5, pointHoverRadius: 7, spanGaps: false, fill: false,
+    };
   });
-  return { labels: [...years].sort((a,b) => a-b), datasets };
+  return { labels: years, datasets };
 }
 
-function initChart(metric) {
+function initChart() {
   const ctx = document.getElementById('mainChart').getContext('2d');
-  const chartData = buildChartData(metric);
+  const chartData = buildChartData();
   if (mainChart) mainChart.destroy();
   mainChart = new Chart(ctx, {
     type: 'line',
     data: chartData,
     options: {
-      responsive: true,
-      maintainAspectRatio: false,
+      responsive: true, maintainAspectRatio: false,
       interaction: { mode: 'index', intersect: false },
       plugins: {
-        legend: { position: 'top', labels: { color: '#b0b0c0', font: { size: 11 }, usePointStyle: true, padding: 12 } },
+        legend: { position: 'top', labels: { color: '#b0b0c0', font: { size: 12 }, usePointStyle: true, padding: 12 } },
         tooltip: {
           backgroundColor: '#1a1d28', titleColor: '#ecc94b', bodyColor: '#e4e6f0',
           borderColor: '#2a2e3e', borderWidth: 1, padding: 10,
@@ -194,57 +130,42 @@ function initChart(metric) {
         }
       },
       scales: {
-        x: { ticks: { color: '#8b8fa3', font: { size: 11 } }, grid: { color: '#1e1e2e' }, title: { display: true, text: 'Mietspiegel Edition Year', color: '#8b8fa3' } },
-        y: { ticks: { color: '#8b8fa3', font: { size: 11 }, callback: v => '€' + v.toFixed(1) }, grid: { color: '#1e1e2e' }, title: { display: true, text: 'Net Cold Rent per m²', color: '#8b8fa3' } }
+        x: { ticks: { color: '#8b8fa3', font: { size: 12 } }, grid: { color: '#1e1e2e' }, title: { display: true, text: 'Mietspiegel Edition Year', color: '#8b8fa3' } },
+        y: { ticks: { color: '#8b8fa3', font: { size: 12 }, callback: v => '€' + v.toFixed(1) }, grid: { color: '#1e1e2e' }, title: { display: true, text: 'Net Cold Rent per m²', color: '#8b8fa3' } }
       }
     }
   });
 }
 
-function getGrowth(city, lookback) {
-  const sorted = [...city.editions].sort((a,b) => a.year - b.year);
-  const earliest = sorted[0];
-  const latest = lookback === 'all' ? sorted[sorted.length-1] : sorted.slice(-lookback)[0];
-  const ed1 = earliest.base_rent_per_sqm;
-  const ed2 = latest.base_rent_per_sqm;
-  const diff = ed2 - ed1;
-  const pct = ((ed2 - ed1) / ed1 * 100);
+function renderGrowthTable() {
+  const berlin = HISTORICAL_DATA.cities.find(c => c.city === 'Berlin');
+  if (!berlin) return;
+  const sorted = [...berlin.editions].sort((a,b) => a.year - b.year);
+  const earliest = sorted[0], latest = sorted[sorted.length-1];
   const years = latest.year - earliest.year;
-  const annualized = years > 0 ? (Math.pow(ed2/ed1, 1/years) - 1) * 100 : 0;
-  return { earliest, latest, diff, pct, annualized, years };
-}
 
-function getGrowthForPeriod(city, lookbackYears) {
-  const sorted = [...city.editions].sort((a,b) => a.year - b.year);
-  if (lookbackYears === 'all') return getGrowth(city, 'all');
-  const latest = sorted[sorted.length-1];
-  const cutoffYear = latest.year - lookbackYears;
-  const ref = sorted.filter(e => e.year >= cutoffYear)[0] || sorted[0];
-  const ed1 = ref.base_rent_per_sqm;
-  const ed2 = latest.base_rent_per_sqm;
-  const diff = ed2 - ed1;
-  const pct = ((ed2 - ed1) / ed1 * 100);
-  const years = latest.year - ref.year;
-  const annualized = years > 0 ? (Math.pow(ed2/ed1, 1/years) - 1) * 100 : 0;
-  return { earliest: ref, latest, diff, pct, annualized, years };
-}
+  const rows = ['einfach', 'mittel', 'gut'].map(lage => {
+    const ed1 = earliest.base_rent_per_sqm; // This is 'mittel' base
+    const ld1 = berlin.by_lage[String(earliest.year)];
+    const ld2 = berlin.by_lage[String(latest.year)];
+    const v1 = ld1 ? ld1[lage] : null;
+    const v2 = ld2 ? ld2[lage] : null;
+    if (v1 == null || v2 == null) return null;
+    const pct = ((v2 - v1) / v1 * 100);
+    const annualized = years > 0 ? (Math.pow(v2/v1, 1/years) - 1) * 100 : 0;
+    return { lage, v1, v2, diff: v2-v1, pct, annualized };
+  }).filter(Boolean);
 
-function renderGrowthTable(period) {
-  const rows = HISTORICAL_DATA.cities.map(c => {
-    const g = period === 'all' ? getGrowth(c, 'all') : getGrowthForPeriod(c, parseInt(period));
-    return { city: c.city, ...g };
-  });
   rows.sort((a,b) => b.pct - a.pct);
   const maxPct = Math.max(...rows.map(r => r.pct));
-  const tbody = document.getElementById('growthBody');
-  tbody.innerHTML = rows.map((r, i) => {
+
+  document.getElementById('growthBody').innerHTML = rows.map(r => {
     const barW = (r.pct / maxPct * 100).toFixed(0);
     const cl = r.pct >= 0 ? 'pos' : 'neg';
     return `<tr>
-      <td class="rank">#${i+1}</td>
-      <td><span class="city-dot" style="background:${cityColor[r.city]}"></span><span class="city-name">${r.city}</span></td>
-      <td class="price">€${r.earliest.base_rent_per_sqm.toFixed(2)}</td>
-      <td class="price">€${r.latest.base_rent_per_sqm.toFixed(2)}</td>
+      <td><span class="lage-dot" style="background:${LAGE_COLORS[r.lage]}"></span><span class="lage-name">${LAGE_LABELS[r.lage]}</span></td>
+      <td class="price">€${r.v1.toFixed(2)}</td>
+      <td class="price">€${r.v2.toFixed(2)}</td>
       <td class="price">€${r.diff.toFixed(2)}</td>
       <td class="bar-cell"><div class="bar" style="width:${barW}px;background:${r.pct >= 0 ? '#48bb78' : '#f56565'}"></div><span class="growth-pct ${cl}">${r.pct >= 0 ? '+' : ''}${r.pct.toFixed(1)}%</span></td>
       <td class="growth-pct ${cl}" style="text-align:right;">+${r.annualized.toFixed(1)}%</td>
@@ -253,142 +174,104 @@ function renderGrowthTable(period) {
 }
 
 function renderSummary() {
-  const growthList = HISTORICAL_DATA.cities.map(c => {
-    const g = getGrowth(c, 'all');
-    return { city: c.city, ...g };
+  const berlin = HISTORICAL_DATA.cities.find(c => c.city === 'Berlin');
+  if (!berlin) return;
+  const sorted = [...berlin.editions].sort((a,b) => a.year - b.year);
+  const earliest = sorted[0], latest = sorted[sorted.length-1];
+  const years = latest.year - earliest.year;
+
+  // Growth for each Wohnlage
+  const growth = {};
+  ['einfach','mittel','gut'].forEach(lage => {
+    const v1 = berlin.by_lage[String(earliest.year)][lage];
+    const v2 = berlin.by_lage[String(latest.year)][lage];
+    growth[lage] = ((v2 - v1) / v1 * 100);
   });
-  growthList.sort((a,b) => b.pct - a.pct);
-  const fastest = growthList[0];
-  const slowest = growthList[growthList.length-1];
-  const avgGrowth = growthList.reduce((s, r) => s + r.pct, 0) / growthList.length;
-  const allEditions = HISTORICAL_DATA.cities.reduce((s, c) => s + c.editions.length, 0);
-  const munich = HISTORICAL_DATA.cities.find(c => c.city === 'Munich' || c.city === 'München');
-  const munichLatest = munich ? munich.editions[munich.editions.length-1].base_rent_per_sqm : '—';
+
+  // Overall growth
+  const totalGrowth = growth.mittel;
+  const annualized = years > 0 ? (Math.pow(latest.base_rent_per_sqm/earliest.base_rent_per_sqm, 1/years) - 1) * 100 : 0;
 
   document.getElementById('summaryCards').innerHTML = `
-    <div class="summary-card"><div class="label">Cities Tracked</div><div class="value blue">${HISTORICAL_DATA.cities.length}</div></div>
-    <div class="summary-card"><div class="label">Editions</div><div class="value amber">${allEditions}</div></div>
-    <div class="summary-card"><div class="label">Avg Growth</div><div class="value green">+${avgGrowth.toFixed(1)}%</div></div>
-    <div class="summary-card"><div class="label">Fastest</div><div class="value green">${fastest.city} +${fastest.pct.toFixed(0)}%</div></div>
-    <div class="summary-card"><div class="label">Slowest</div><div class="value red">${slowest.city} +${slowest.pct.toFixed(0)}%</div></div>
-    <div class="summary-card"><div class="label">Highest Rent</div><div class="value red" style="font-size:18px;">München €${munichLatest.toFixed ? munichLatest.toFixed(2) : munichLatest}/m²</div></div>
+    <div class="summary-card"><div class="label">Editions Tracked</div><div class="value blue">${berlin.editions.length}</div></div>
+    <div class="summary-card"><div class="label">Period</div><div class="value amber">${earliest.year}–${latest.year}</div></div>
+    <div class="summary-card"><div class="label">Total Growth</div><div class="value green">+${totalGrowth.toFixed(1)}%</div></div>
+    <div class="summary-card"><div class="label">Annualized</div><div class="value green">+${annualized.toFixed(1)}%</div></div>
+    <div class="summary-card"><div class="label">2013 (Mittel)</div><div class="value">€${earliest.base_rent_per_sqm.toFixed(2)}</div></div>
+    <div class="summary-card"><div class="label">2023 (Mittel)</div><div class="value red">€${latest.base_rent_per_sqm.toFixed(2)}</div></div>
+    <div class="summary-card"><div class="label">Einfach Growth</div><div class="value green">+${growth.einfach.toFixed(0)}%</div></div>
+    <div class="summary-card"><div class="label">Gut Growth</div><div class="value green">+${growth.gut.toFixed(0)}%</div></div>
   `;
 }
 
-function renderCityDetails(filterCity) {
-  const grid = document.getElementById('cityDetailGrid');
-  const cities = filterCity === 'all'
-    ? HISTORICAL_DATA.cities
-    : HISTORICAL_DATA.cities.filter(c => c.city === filterCity);
-  grid.innerHTML = cities.map(c => {
-    const sorted = [...c.editions].sort((a,b) => b.year - a.year);
-    const g = getGrowth(c, 'all');
-    const growthLabel = g.pct >= 70 ? 'fast' : g.pct >= 35 ? 'avg' : 'slow';
-    const growthText = g.pct >= 70 ? 'Fast growth' : g.pct >= 35 ? 'Moderate' : 'Below average';
-    return `<div class="city-card">
-      <h3>${c.city}</h3>
-      <div class="city-pop">${c.state} · ${(c.population/1000).toFixed(0)}k residents</div>
-      <div class="growth-badge ${growthLabel}">${growthText}: +${g.pct.toFixed(1)}%</div>
-      <div>
-        ${sorted.map(e => {
-          const prevIdx = sorted.indexOf(e) + 1;
-          const prev = sorted[prevIdx];
-          const chg = prev ? ((e.base_rent_per_sqm - prev.base_rent_per_sqm) / prev.base_rent_per_sqm * 100) : 0;
-          const arrow = chg > 0 ? '<span style="color:#48bb78">▲</span>' : (chg < 0 ? '<span style="color:#f56565">▼</span>' : '');
-          return `<div class="history-row"><span class="year">${e.year}</span><span>€${e.base_rent_per_sqm.toFixed(2)}/m² ${arrow}${chg ? ' +'+chg.toFixed(1)+'%' : ''}</span></div>`;
-        }).join('')}
+function renderEditionHistory() {
+  const berlin = HISTORICAL_DATA.cities.find(c => c.city === 'Berlin');
+  if (!berlin) return;
+  const sorted = [...berlin.editions].sort((a,b) => b.year - a.year);
+
+  document.getElementById('editionGrid').innerHTML = sorted.map(e => {
+    const lage = berlin.by_lage[String(e.year)];
+    const prevIdx = sorted.indexOf(e) + 1;
+    const prev = sorted[prevIdx];
+    const chg = prev ? ((e.base_rent_per_sqm - prev.base_rent_per_sqm) / prev.base_rent_per_sqm * 100) : 0;
+    const arrow = chg > 0 ? '<span style="color:#48bb78">▲</span>' : (chg < 0 ? '<span style="color:#f56565">▼</span>' : '');
+    return `<div class="edition-card">
+      <h3>Berlin Mietspiegel ${e.year}</h3>
+      <div class="year-label">${e.year}${prev ? ` → ${prev.year}` : ''}</div>
+      ${chg !== 0 ? `<div class="growth-badge ${chg>0?'pos':'neg'}">${arrow} ${chg>0?'+':''}${chg.toFixed(1)}% vs ${prev.year}</div>` : '<div class="growth-badge pos">First tracked edition</div>'}
+      <div style="margin-top:6px">
+        ${lage ? `
+          <div class="lage-row"><span class="lage-label" style="color:#48bb78">● Einfach</span><span>€${lage.einfach.toFixed(2)}/m²</span></div>
+          <div class="lage-row"><span class="lage-label" style="color:#5b8def">● Mittel</span><span>€${lage.mittel.toFixed(2)}/m²</span></div>
+          <div class="lage-row"><span class="lage-label" style="color:#ecc94b">● Gut</span><span>€${lage.gut.toFixed(2)}/m²</span></div>
+        ` : `<div class="lage-row"><span class="lage-label">Base rent</span><span>€${e.base_rent_per_sqm.toFixed(2)}/m²</span></div>`}
       </div>
     </div>`;
   }).join('');
-}
-
-function populateCityFilter() {
-  const container = document.getElementById('cityFilter');
-  HISTORICAL_DATA.cities.forEach(c => {
-    const tag = document.createElement('span');
-    tag.className = 'filter-tag';
-    tag.dataset.city = c.city;
-    tag.textContent = c.city;
-    container.appendChild(tag);
-  });
 }
 
 async function init() {
   try {
     await loadData();
   } catch(e) {
-    document.getElementById('app').innerHTML = '<div class="loading" style="color:#f56565">Failed to load historical data. Make sure data/historical_mietspiegel.json is accessible.</div>';
+    document.getElementById('app').innerHTML = '<div class="loading" style="color:#f56565">Failed to load Berlin historical data.</div>';
     return;
   }
-
   document.getElementById('app').innerHTML = `
     <div class="summary-grid" id="summaryCards"></div>
     <div class="section">
-      <h2>Rent Development Over Time</h2>
-      <div class="controls">
-        <label>Metric:</label>
-        <select id="metricSelector">
-          <option value="mittel">Mittlere Wohnlage (middle)</option>
-          <option value="einfach">Einfache Wohnlage (simple)</option>
-          <option value="gut">Gute Wohnlage (good)</option>
-        </select>
-      </div>
+      <h2>Berlin Rent Development by Wohnlage</h2>
+      <p style="font-size:12px;color:#b0b0c0;margin-bottom:10px">Official Mietspiegel base rent values (€/m² net cold) for each Wohnlage tier, 60-90 sqm apartments, 1965-1974 building age.</p>
       <div class="chart-container"><canvas id="mainChart"></canvas></div>
-      <p style="font-size:11px;color:#666680;margin-top:6px;">Click city names in the legend to toggle visibility.</p>
+      <p style="font-size:11px;color:#666680;margin-top:6px;">Click Wohnlage names in the legend to toggle visibility.</p>
     </div>
     <div class="section">
-      <h2>Rent Growth Ranking</h2>
-      <p style="font-size:12px;color:#b0b0c0;margin-bottom:10px;">Total rent increase from earliest to latest Mietspiegel edition · Mittlere Wohnlage</p>
-      <div class="filter-row" id="growthFilter">
-        <span class="filter-tag active" data-period="all">Total</span>
-        <span class="filter-tag" data-period="5">Last ~5 years</span>
-        <span class="filter-tag" data-period="3">Last ~3 years</span>
-      </div>
+      <h2>Growth by Wohnlage (2013 → 2023)</h2>
+      <p style="font-size:12px;color:#b0b0c0;margin-bottom:10px">Total rent increase from earliest to latest Mietspiegel edition.</p>
       <table class="growth-table">
-        <thead><tr><th></th><th>City</th><th style="text-align:right;">First</th><th style="text-align:right;">Latest</th><th style="text-align:right;">Increase</th><th style="text-align:right;">Growth %</th><th style="text-align:right;">Annualized</th></tr></thead>
+        <thead><tr><th>Wohnlage</th><th style="text-align:right">2013</th><th style="text-align:right">2023</th><th style="text-align:right">Increase</th><th style="text-align:right">Growth %</th><th style="text-align:right">Annualized</th></tr></thead>
         <tbody id="growthBody"></tbody>
       </table>
     </div>
     <div class="section">
-      <h2>Edition History by City</h2>
-      <div class="filter-row" id="cityFilter">
-        <span class="filter-tag active" data-city="all">All</span>
-      </div>
-      <div class="city-detail-grid" id="cityDetailGrid"></div>
+      <h2>Edition History</h2>
+      <p style="font-size:12px;color:#b0b0c0;margin-bottom:10px">All tracked Berlin Mietspiegel editions with rent values by Wohnlage.</p>
+      <div class="edition-grid" id="editionGrid"></div>
     </div>
     <div class="section">
-      <h2>Methodology &amp; Sources</h2>
+      <h2>Methodology & Sources</h2>
       <div class="methodology">
-        <p><strong>What this tracks:</strong> The official Mietspiegel base rent table values for "mittlere Wohnlage" (middle residential location), 60–80 sqm apartments, 1965–1974 building age cohort. Values are net cold rent per square meter.</p>
-        <p style="margin-top:6px;"><strong>Data sources:</strong> Values from official city Mietspiegel PDFs published by each city's administration.</p>
-        <p style="margin-top:6px;"><strong>Limitations:</strong> Mietspiegel tables differ in structure between cities and across years. Some values are interpolated. Only "qualifizierte Mietspiegel" editions are tracked.</p>
+        <p><strong>What this tracks:</strong> The official Berlin Mietspiegel base rent table values for each Wohnlage tier (einfach, mittel, gut), 60-80 sqm apartments, 1965-1974 building age cohort. Values are net cold rent per square meter.</p>
+        <p style="margin-top:6px;"><strong>Data sources:</strong> Values from official Berlin Mietspiegel PDFs published by the Berlin Senate (senatsverwaltung für Stadtentwicklung).</p>
+        <p style="margin-top:6px;"><strong>Editions tracked:</strong> 2013, 2015, 2017, 2019, 2021, 2023. The Berlin Mietspiegel is a "qualifizierter Mietspiegel" — legally binding rent index.</p>
+        <p style="margin-top:6px;"><strong>Key insight:</strong> Berlin rents nearly doubled in 10 years (+103% for mittel Wohnlage). The 2021-2023 period saw the steepest increase (+18.4%) despite Berlin's Mietendeckel (rent freeze) being struck down in 2021.</p>
       </div>
     </div>
   `;
-
-  document.getElementById('growthFilter').addEventListener('click', e => {
-    const tag = e.target.closest('.filter-tag');
-    if (!tag) return;
-    document.querySelectorAll('#growthFilter .filter-tag').forEach(t => t.classList.remove('active'));
-    tag.classList.add('active');
-    renderGrowthTable(tag.dataset.period);
-  });
-
-  document.getElementById('cityFilter').addEventListener('click', e => {
-    const tag = e.target.closest('.filter-tag');
-    if (!tag) return;
-    document.querySelectorAll('#cityFilter .filter-tag').forEach(t => t.classList.remove('active'));
-    tag.classList.add('active');
-    renderCityDetails(tag.dataset.city);
-  });
-
-  document.getElementById('metricSelector').addEventListener('change', e => initChart(e.target.value));
-
   renderSummary();
-  populateCityFilter();
-  initChart('mittel');
-  renderGrowthTable('all');
-  renderCityDetails('all');
+  initChart();
+  renderGrowthTable();
+  renderEditionHistory();
 }
 
 document.addEventListener('DOMContentLoaded', init);

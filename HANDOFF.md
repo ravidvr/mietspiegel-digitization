@@ -22,6 +22,8 @@
 | Cities with complete rent tables | **23** |
 | Cities with metadata only (no table) | **5** (Bielefeld, Chemnitz, Duisburg, Mannheim, Mönchengladbach – PDFs never found) |
 | Berlin district data | ✅ 12 Bezirke with choropleth polygons + estimated rent |
+| Berlin Immoscout heatmap | ✅ 467 grid cells, ø €10.79/m² (Berlin-only z-scores) |
+| Berlin Zensus heatmap | ✅ 1,155 cells, ø €7.97/m² (Berlin-only z-scores) |
 | Dashboard features | City map, detail table, comparison, Berlin district auto-drill-down, DE/EN, dark mode, CSV export, welcome modal, footer |
 
 ### 23 Cities with data

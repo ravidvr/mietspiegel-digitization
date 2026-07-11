@@ -60,7 +60,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   <div class="h-right">
     <span class="bdg" id="cell-count">...</span>
     <button class="h-btn" id="zensus-btn" onclick="toggleSource()">📋 Census</button>
-    <a class="h-btn" href="index.html">🇩🇪 Germany</a>
+    <a class="h-btn" href="cross-city-comparison.html">📊 Compare</a>
     <a class="h-btn" href="about.html">About</a>
   </div>
 </div>
@@ -236,14 +236,16 @@ async function toggleSource() {
   buildHeat();
 }
 
-// ─── Zoom ──────────────────────────────────────────────────────
-map.on('zoomend', () => { if (heatLayer) buildHeat(); });
+// ─── Zoom (handled inside init() after map is created) ──────
 
 // ─── Init ──────────────────────────────────────────────────────
 async function init() {
   map = L.map('map', {center:[52.52,13.405],zoom:12,scrollWheelZoom:true,zoomControl:false});
   L.control.zoom({position:'bottomright'}).addTo(map);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution:'&copy; OSM',maxZoom:18}).addTo(map);
+
+  // Zoom handler — registered after map exists
+  map.on('zoomend', () => { if (heatLayer) buildHeat(); });
 
   // Load Immoscout Berlin
   try {

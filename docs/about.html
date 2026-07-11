@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta property="og:type" content="website" />
-<meta property="og:title" content="About — Mietspiegel Digitization" />
-<meta property="og:description" content="Comprehensive German rent index database — digitized from official city PDFs, enriched with market and census data." />
+<meta property="og:title" content="About — Berlin Mietspiegel" />
+<meta property="og:description" content="Berlin rent data block by block: market rents vs census rents vs official Mietspiegel. 12 Bezirke, 467 grid cells." />
 <meta property="og:image" content="https://ravidvr.github.io/mietspiegel-digitization/og-image.svg" />
-<meta property="og:url" content="https://ravidvr.github.io/mietspiegel-digitization/docs/about.html" />
+<meta property="og:url" content="https://ravidvr.github.io/mietspiegel-digitization/about.html" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="About — Mietspiegel Digitization" />
-<meta name="twitter:description" content="Comprehensive German rent index database — digitized from official city PDFs, enriched with market and census data." />
-<title>About — Mietspiegel Digitization</title>
+<meta name="twitter:title" content="About — Berlin Mietspiegel" />
+<meta name="twitter:description" content="Berlin rent data block by block: market rents vs census rents vs official Mietspiegel. 12 Bezirke, 467 grid cells." />
+<title>About — Berlin Mietspiegel</title>
 <style>
 :root{--bg:#0f1117;--surface:#1a1d28;--surface2:#222639;--border:#2a2e3e;--text:#e4e6f0;--text-dim:#8b8fa3;--accent:#5b8def;--green:#48bb78;--yellow:#ecc94b;--red:#f56565}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -27,23 +27,17 @@ a:hover{text-decoration:underline}
 ul,ol{padding-left:24px;margin:8px 0}
 li{margin:6px 0}
 code{background:var(--surface2);padding:2px 6px;border-radius:3px;font-size:13px;color:var(--accent)}
-pre{background:var(--surface2);padding:16px;border-radius:6px;overflow-x:auto;font-size:13px;line-height:1.5;margin:12px 0;border:1px solid var(--border)}
 table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
 th,td{padding:8px 12px;text-align:left;border:1px solid var(--border)}
 th{background:var(--surface2);color:var(--text);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.5px}
 td{color:var(--text-dim)}
 .green{color:var(--green)} .red{color:var(--red)} .yellow{color:var(--yellow)}
-.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;margin:0 2px}
-.badge-green{background:#48bb7822;color:var(--green)}
-.badge-yellow{background:#ecc94b22;color:var(--yellow)}
-.badge-red{background:#f5656522;color:var(--red)}
-.badge-blue{background:#5b8def22;color:var(--accent)}
 </style>
 </head>
 <body>
 
-<h1>📊 Mietspiegel <span>Digitization</span></h1>
-<p>A comprehensive German rent index database — digitized from official city PDFs, enriched with market data from Immoscout24, and presented as an interactive national dashboard.</p>
+<h1>📊 Berlin <span>Mietspiegel</span></h1>
+<p>Berlin rent data — block by block. Three independent data sources layered on a single interactive map: market rents (Immoscout24), official census rents (Zensus 2022), and the legally binding Berlin Mietspiegel.</p>
 
 <p>
   <a href="index.html">← Back to Dashboard</a> ·
@@ -52,289 +46,136 @@ td{color:var(--text-dim)}
 
 <h2>1. Project Overview</h2>
 
-<h3>What is a Mietspiegel?</h3>
-<p>A <strong>Mietspiegel</strong> (rent index) is an official document published by German cities that establishes the <strong>legally admissible rent levels</strong> for residential properties. It categorizes rent by:</p>
+<h3>What is the Berlin Mietspiegel?</h3>
+<p>A <strong>Mietspiegel</strong> (rent index) is an official document published by the Berlin Senate that establishes the <strong>legally admissible rent levels</strong> for residential properties. It categorizes rent by:</p>
 <ul>
   <li><strong>Wohnlage</strong> — location quality (einfach/simple, mittel/medium, gut/good)</li>
-  <li><strong>Baujahr</strong> — construction year period (from pre-1918 to post-2014)</li>
+  <li><strong>Baujahr</strong> — construction year period (from pre-1918 to post-2011)</li>
   <li><strong>Wohnfläche</strong> — apartment size in m²</li>
 </ul>
-<p>Each city publishes its Mietspiegel independently — typically as a 30-80 page PDF. <strong>No unified national database exists.</strong> This project fills that gap.</p>
+<p>The Berlin Mietspiegel is a <strong>"qualifizierter Mietspiegel"</strong> — the highest legal grade, admissible in court without further evidence. It directly affects rent control (Mietpreisbremse), tenant disputes, and housing policy.</p>
 
-<h3>Why This Matters</h3>
-<p>Germany's housing market is one of the most regulated in Europe. The Mietspiegel directly affects:</p>
-<ul>
-  <li><strong>Rent control</strong> — landlords cannot charge more than the Mietspiegel allows (Mietpreisbremse)</li>
-  <li><strong>Tenant disputes</strong> — the official index is admissible in court</li>
-  <li><strong>Policy decisions</strong> — cities use the data to justify housing policy</li>
-  <li><strong>Market transparency</strong> — comparing official vs actual market rents reveals regulatory gaps</li>
-</ul>
+<h3>Why Three Data Sources?</h3>
+<p>No single source tells the full story of Berlin rents. By combining three independent datasets, we can reveal the gap between what the law says and what the market actually charges:</p>
+<table>
+  <tr><th>Source</th><th>What it shows</th><th>Year</th></tr>
+  <tr><td><strong>Berlin Mietspiegel</strong></td><td>Legal reference rent — what landlords are allowed to charge for existing contracts</td><td>2024</td></tr>
+  <tr><td><strong>Immoscout24 (RWI-GEO-REDX)</strong></td><td>Market asking rents — what new listings actually cost</td><td>2021–2025</td></tr>
+  <tr><td><strong>Zensus 2022 (Destatis)</strong></td><td>Census rents — what current tenants actually pay right now</td><td>2022</td></tr>
+</table>
 
 <h2>2. Data Sources</h2>
 
-<h3>Source A: Official Mietspiegel (PDF Extraction)</h3>
+<h3>Berlin Mietspiegel 2024</h3>
 <table>
   <tr><th>Metric</th><th>Value</th></tr>
-  <tr><td>Cities with complete rent tables</td><td><strong>23</strong></td></tr>
-  <tr><td>Cities with metadata only</td><td>0 (5 cities removed from index: Bielefeld, Chemnitz, Duisburg, Mannheim, Mönchengladbach — PDFs available but extraction pending)</td></tr>
-  <tr><td>Data years</td><td>2024–2026</td></tr>
-  <tr><td>Extraction method</td><td>pdfplumber + manual validation</td></tr>
-  <tr><td>Raw PDFs downloaded</td><td>27 (awaiting batch extraction for 12 additional cities)</td></tr>
+  <tr><td>Tables</td><td><strong>3</strong> (einfach, mittel, gut)</td></tr>
+  <tr><td>Baujahr periods</td><td>8 (bis 1918 through 2011-2024)</td></tr>
+  <tr><td>Size categories</td><td>4 (bis 40 m², 40-60 m², 60-90 m², über 90 m²)</td></tr>
+  <tr><td>Mittel average (40-60 m²)</td><td>€11.73/m²</td></tr>
+  <tr><td>Type</td><td>Qualifizierter Mietspiegel</td></tr>
+  <tr><td>Source</td><td>Berlin Senate (senatsverwaltung für Stadtentwicklung)</td></tr>
 </table>
 
-<p><strong>23 cities with complete data:</strong> Aachen, Augsburg, Berlin, Bonn, Braunschweig, Bremen, Dresden, Düsseldorf, Essen, Frankfurt am Main, Freiburg im Breisgau, Halle (Saale), Hamburg, Hannover, Kiel, Köln, Leipzig, Lübeck, Mainz, München, Nürnberg, Rostock, Stuttgart.</p>
-
-<h3>Source B: RWI-GEO-REDX PUF v16 (Immoscout24 Market Data)</h3>
+<h3>Immoscout24 Market Data (RWI-GEO-REDX PUF v16)</h3>
 <table>
   <tr><th>Metric</th><th>Value</th></tr>
-  <tr><td>Grid cells</td><td><strong>7,304</strong> (1km² each)</td></tr>
-  <tr><td>Coverage</td><td>Nationwide — 2,570 unique ZIP codes, 373 districts</td></tr>
+  <tr><td>Berlin grid cells</td><td><strong>467</strong> (1km² each)</td></tr>
+  <tr><td>Berlin average</td><td>€10.79/m² (σ = €3.78)</td></tr>
   <tr><td>Time range</td><td>2008–2025 (6 data points per cell)</td></tr>
   <tr><td>Rent range</td><td>€4.43 – €25.45/m² net cold</td></tr>
-  <tr><td>National average</td><td>€7.93/m² (σ = €2.83, after 3σ outlier removal)</td></tr>
-  <tr><td>License</td><td><strong>Public Use File</strong> — free for any use, attribution required</td></tr>
+  <tr><td>License</td><td><strong>Public Use File</strong> — free for any use</td></tr>
   <tr><td>DOI</td><td>10.7807/IMMO:REDX:PUF:V16</td></tr>
-  <tr><td>Source</td><td>RWI – Leibniz Institute for Economic Research, Essen</td></tr>
 </table>
+<p>The RWI-GEO-REDX is a <strong>hedonic price index</strong> derived from Immoscout24 rental listings. Unlike the Mietspiegel (a regulatory instrument), this reflects <strong>actual market asking prices</strong> for new listings.</p>
 
-<p>The RWI-GEO-REDX is a <strong>hedonic price index</strong> derived from Immoscout24 rental listings. Each 1km² grid cell represents the quality-adjusted rent level for apartments in that area. Unlike the official Mietspiegel (which is a regulatory instrument), the REDX data reflects <strong>actual market asking prices</strong>.</p>
-
-<h3>Source C: Berlin Address-Level WFS</h3>
+<h3>Zensus 2022 (Official Census Rent)</h3>
 <table>
   <tr><th>Metric</th><th>Value</th></tr>
-  <tr><td>Coverage</td><td>400,505 address points with Wohnlage classification</td></tr>
-  <tr><td>Granularity</td><td>Individual addresses → aggregated to 12 Bezirke (districts)</td></tr>
+  <tr><td>Berlin cells</td><td><strong>1,155</strong> (1km grid, aggregated from 100m)</td></tr>
+  <tr><td>Berlin average</td><td>€7.97/m² (σ = €1.31)</td></tr>
+  <tr><td>Original resolution</td><td>100m grid (Destatis Zensus 2022)</td></tr>
+  <tr><td>Metric</td><td>Durchschnittliche Nettokaltmiete (average net cold rent)</td></tr>
+  <tr><td>License</td><td>Datenlizenz Deutschland – Namensnennung 2.0</td></tr>
+</table>
+<p>The census rent represents <strong>what current tenants actually pay</strong> — including long-term tenants with older, cheaper contracts. This is why the census average (€7.97/m²) is significantly lower than the market average (€10.79/m²): new listings cost dramatically more than existing contracts.</p>
+
+<h3>Berlin District (Bezirk) Data</h3>
+<table>
+  <tr><th>Metric</th><th>Value</th></tr>
+  <tr><td>Bezirke</td><td><strong>12</strong></td></tr>
+  <tr><td>Address points</td><td>400,505 with Wohnlage classification</td></tr>
+  <tr><td>Granularity</td><td>Individual addresses → aggregated to Bezirke</td></tr>
   <tr><td>License</td><td>Datenlizenz Deutschland – Zero (no restrictions)</td></tr>
   <tr><td>Source</td><td>Berlin Senate — GDI-BE WFS Service</td></tr>
 </table>
 
-<h3>Source D: Geographic Boundaries & PLZ</h3>
+<h2>3. What You See on the Map</h2>
+
+<h3>Heatmap</h3>
+<p>The heatmap shows either Immoscout24 market rents or Zensus 2022 census rents (toggleable). Colors are z-score normalized relative to the <strong>Berlin average</strong>, not national:</p>
+<ul>
+  <li><span class="green">● Green</span> — below Berlin average (cheaper areas)</li>
+  <li><span class="yellow">● Yellow</span> — at Berlin average</li>
+  <li><span class="red">● Red</span> — above Berlin average (expensive areas)</li>
+</ul>
+
+<h3>District Labels</h3>
+<p>Berlin's 12 Bezirke are shown as text labels with their estimated average rent per m². The estimates are derived from the Berlin Senate's Wohnlage classification (400,505 address-level points) cross-referenced with the official Mietspiegel rent tables.</p>
+
+<h3>Click Anywhere</h3>
+<p>Clicking the map performs nearest-neighbor lookups across all three data layers:</p>
+<ul>
+  <li><strong>Market rent</strong> — nearest Immoscout24 grid cell with €/m², year, and PLZ</li>
+  <li><strong>Census rent</strong> — nearest Zensus 2022 cell showing what residents actually pay</li>
+  <li><strong>Official Mietspiegel</strong> — Berlin's legal reference rent, with the gap to market</li>
+</ul>
+<p>The tooltip explains: <em>"New listings cost X% more than what current tenants pay"</em> — plain language, no z-score jargon.</p>
+
+<h2>4. Key Findings</h2>
+
+<h3>Market vs Census Gap</h3>
 <table>
-  <tr><th>Dataset</th><th>Features</th><th>Source</th></tr>
-  <tr><td>German districts (Kreise)</td><td>434 polygons</td><td>GADM (gadm.org)</td></tr>
-  <tr><td>German states</td><td>16 polygons</td><td>GADM</td></tr>
-  <tr><td>PLZ centroids</td><td>8,299 ZIP codes</td><td>WZB Social Science Center (ODbL)</td></tr>
-  <tr><td>Berlin district boundaries</td><td>12 Bezirke</td><td>m-hoerz/berlin-shapes (GitHub)</td></tr>
+  <tr><th>Metric</th><th>Value</th><th>Meaning</th></tr>
+  <tr><td>Market avg (Immoscout)</td><td>€10.79/m²</td><td>What new listings cost</td></tr>
+  <tr><td>Census avg (2022)</td><td>€7.97/m²</td><td>What current tenants pay</td></tr>
+  <tr><td>Gap</td><td class="red">+35.4%</td><td>New tenants pay a third more</td></tr>
 </table>
 
-<h2>3. Architecture</h2>
+<h3>Berlin Rent History (2013–2023)</h3>
+<table>
+  <tr><th>Year</th><th>Einfach</th><th>Mittel</th><th>Gut</th><th>vs 2013</th></tr>
+  <tr><td>2013</td><td>€5.00</td><td>€6.16</td><td>€7.48</td><td>—</td></tr>
+  <tr><td>2015</td><td>€5.42</td><td>€6.71</td><td>€8.17</td><td class="green">+8.9%</td></tr>
+  <tr><td>2017</td><td>€6.18</td><td>€7.60</td><td>€9.20</td><td class="green">+23.4%</td></tr>
+  <tr><td>2019</td><td>€7.15</td><td>€8.87</td><td>€10.84</td><td class="green">+44.0%</td></tr>
+  <tr><td>2021</td><td>€8.48</td><td>€10.56</td><td>€12.94</td><td class="green">+71.4%</td></tr>
+  <tr><td>2023</td><td>€9.98</td><td>€12.50</td><td>€15.40</td><td class="red">+103.0%</td></tr>
+</table>
+<p><strong>Berlin rents doubled in 10 years.</strong> The 2021→2023 period alone saw +18.4% growth — the steepest increase in a single edition cycle. This coincides with the Mietendeckel (rent freeze) being struck down by Germany's Constitutional Court in April 2021.</p>
 
-<h3>Project Structure</h3>
-<pre>
-mietspiegel-digitization/
-├── docs/                          ← GitHub Pages deployment root
-│   ├── index.html                 ← Main dashboard (single-file, 570 lines)
-│   ├── about.html                 ← This documentation
-│   ├── cross-city-comparison.html ← Side-by-side comparison view
-│   ├── historical_trends.html     ← Rent development over time
-│   └── data/processed/            ← All data files (served statically)
-│       ├── cities_index.json      ← City metadata + geo coordinates
-│       ├── {city}.json            ← Per-city Mietspiegel tables
-│       ├── redx_grid_rent.json    ← RWI grid-level rent data (1.5 MB)
-│       ├── national-rent-grid.geojson ← Pre-built polygon GeoJSON
-│       ├── cities_comparison.json ← Mietspiegel vs Immoscout gap per city
-│       └── berlin-districts-choropleth.geojson ← Berlin district layer
-│
-├── data/                          ← Source data (mirrored to docs/data/)
-│   ├── processed/                 ← Cleaned/standardized JSON
-│   ├── external/                  ← Raw downloads (GeoJSON, CSV, RWI ZIP)
-│   ├── district_scan/             ← PDF scan output (26 cities queued)
-│   └── raw/                       ← Original Mietspiegel PDFs (27 files)
-│
-├── scripts/
-│   └── build_national_choropleth.py ← RWI → GeoJSON with spatial join
-│
-└── validate/
-    └── validate_schema.py         ← Data validation checks
-</pre>
-
-<h3>Tech Stack</h3>
+<h2>5. Tech Stack</h2>
 <table>
   <tr><th>Component</th><th>Technology</th></tr>
   <tr><td>Dashboard</td><td>Vanilla HTML/CSS/JS (no framework, no build step)</td></tr>
   <tr><td>Map</td><td>Leaflet.js 1.9.4 + Leaflet.heat 0.2.0</td></tr>
-  <tr><td>Base tiles</td><td>OpenStreetMap (unpkg CDN)</td></tr>
-  <tr><td>Data format</td><td>JSON, GeoJSON</td></tr>
-  <tr><td>Deployment</td><td>GitHub Pages via GitHub Actions</td></tr>
-  <tr><td>Build scripts</td><td>Python 3 (shapely, pyproj, scipy)</td></tr>
-  <tr><td>PDF extraction</td><td>pdfplumber</td></tr>
-  <tr><td>i18n</td><td>Manual DE/EN toggle (no library)</td></tr>
-  <tr><td>Dark mode</td><td>CSS custom properties + data-theme attribute</td></tr>
+  <tr><td>Charts</td><td>Chart.js 4.4.7 (historical trends)</td></tr>
+  <tr><td>Base tiles</td><td>OpenStreetMap</td></tr>
+  <tr><td>Data format</td><td>Static JSON files served by GitHub Pages</td></tr>
+  <tr><td>i18n</td><td>Manual DE/EN toggle</td></tr>
+  <tr><td>Dark mode</td><td>CSS custom properties</td></tr>
 </table>
 
-<h3>Design Decisions</h3>
-<ul>
-  <li><strong>Single HTML file</strong> — no npm, no bundler, no framework. The entire dashboard is one self-contained file. This makes it trivial to deploy (just push to GitHub Pages) and inspect (View Source works).</li>
-  <li><strong>Static JSON files</strong> — all data is pre-computed and served as static files. No database, no API server, no backend. The browser fetches JSON directly via <code>fetch()</code>.</li>
-  <li><strong>Pre-computed aggregation</strong> — spatial joins (PLZ, districts), z-score normalization, and city averages are computed offline in Python build scripts. The browser only does nearest-neighbor lookups and rendering.</li>
-  <li><strong>Canvas heatmap</strong> — the Immoscout layer uses Leaflet.heat (canvas-based) for performance at 7,304 cells. Radius auto-scales with zoom level (4–20px).</li>
-</ul>
-
-<h2>4. Dashboard Features</h2>
-
-<h3>Unified Map View</h3>
-<ul>
-  <li><strong>Always-on heatmap</strong> — 7,304 1km² grid cells color-coded by z-score relative to national average. Red = above average (expensive), green = below average (cheap). Radius scales from 20px (country view) to 4px (street view).</li>
-  <li><strong>City text labels</strong> — 23 cities shown as subtle text labels with official Mietspiegel average rent. Filterable by state, price range, and construction period.</li>
-  <li><strong>Berlin district overlay</strong> — 12 Bezirke appear automatically when zooming into Berlin (zoom ≥ 10). Semi-transparent polygons with color-coded average rent.</li>
-</ul>
-
-<h3>Click Interaction</h3>
-<p>Clicking anywhere on the map performs a nearest-neighbor lookup across all data layers:</p>
-<ul>
-  <li>Finds the nearest RWI grid cell and shows: <strong>€/m², year, z-score vs national average, sample size, PLZ, district name</strong></li>
-  <li>If near a city with Mietspiegel data, also shows the <strong>official vs market gap</strong> (e.g., "Mietspiegel: €11.73 → Market: €10.54 → −10.1%")</li>
-  <li>If inside a Berlin district polygon, shows the <strong>district breakdown</strong> (einfach/mittel/gut percentages and average rent)</li>
-</ul>
-
-<h3>Side Panel</h3>
-<ul>
-  <li><strong>Comparison table</strong> (always visible) — all 23 cities sorted by Mietspiegel vs Immoscout gap percentage. Each row shows: official rent → market rent → gap with color-coded bar.</li>
-  <li><strong>Detail card</strong> (on click) — full Mietspiegel rent table for the selected city with all Wohnlage × Baujahr × Größe combinations.</li>
-  <li><strong>Berlin district card</strong> — district-level statistics with einfach/mittel/gut distribution.</li>
-</ul>
-
-<h3>Additional Features</h3>
-<ul>
-  <li>DE/EN language toggle</li>
-  <li>Dark mode (persisted to localStorage)</li>
-  <li>CSV export of all city data</li>
-  <li>Separate cross-city comparison page with configurable lage/size/baujahr filters</li>
-  <li>Historical trends page</li>
-  <li>Welcome modal on first visit</li>
-</ul>
-
-<h2>5. Data Pipeline</h2>
-
-<h3>Official Mietspiegel Extraction</h3>
-<ol>
-  <li><strong>PDF discovery</strong> — search city websites for the latest Mietspiegel brochure PDF</li>
-  <li><strong>Table extraction</strong> — use pdfplumber to extract rent tables (Grundpreis matrix, Zu-/Abschläge, Betriebskosten)</li>
-  <li><strong>Standardization</strong> — normalize to unified schema: city, state, year, type, lage_categories, baujahr_groups, size_categories, source_url, tables array</li>
-  <li><strong>Validation</strong> — spot-check 8+ values against the original PDF, verify rent ranges are plausible</li>
-  <li><strong>Storage</strong> — save as <code>{city_slug}.json</code> in <code>data/processed/</code></li>
-</ol>
-
-<h3>Immoscout Grid Processing</h3>
-<ol>
-  <li><strong>Download</strong> — RWI-GEO-REDX PUF v16 ZIP from RWI Essen FDZ</li>
-  <li><strong>Parse</strong> — extract grid-level hedonic indices (<code>redx_grid_rent.json</code>, 1.5 MB, 9,407 grids)</li>
-  <li><strong>Most-recent-year selection</strong> — for each grid cell, pick the latest year with data (2025 preferred, fallback through 2008)</li>
-  <li><strong>3σ outlier removal</strong> — filter cells beyond 3 standard deviations from mean</li>
-  <li><strong>Spatial joins</strong> — assign each cell to: German district (Kreis), nearest PLZ code (8,299 centroids via KDTree), and city comparison radius</li>
-  <li><strong>GeoJSON generation</strong> — convert grid IDs (ETRS89-LAEA) to WGS84 polygons via pyproj</li>
-  <li><strong>Output</strong> — <code>national-rent-grid.geojson</code> (1.6 MB, 7,304 polygons)</li>
-</ol>
-
-<h3>City Comparison</h3>
-<ol>
-  <li>For each of the 23 cities, compute the average Immoscout rent from grid cells within a population-scaled radius (8–25 km)</li>
-  <li>Compute the Mietspiegel average (mittel Wohnlage, 40–60 m² size range)</li>
-  <li>Calculate gap percentage: <code>(immoscout_avg − mietspiegel_avg) / mietspiegel_avg × 100</code></li>
-  <li>Output: <code>cities_comparison.json</code></li>
-</ol>
-
-<h2>6. Data Quality & Validation</h2>
-
-<h3>Mietspiegel Data</h3>
-<ul>
-  <li>Each city extraction was spot-checked against the original PDF — minimum 8 cross-references per city</li>
-  <li>Values cross-validated against known rent ranges (€4–25/m² for net cold rent in Germany)</li>
-  <li>Baujahr periods normalized to a canonical set of 8 categories for cross-city comparison</li>
-  <li>5 cities omitted due to PDF unavailability (download blocked by anti-bot measures)</li>
-</ul>
-
-<h3>Immoscout Data</h3>
-<ul>
-  <li>375 outlier cells removed (3σ filter) from 23,016 total measurements</li>
-  <li>All values are hedonic quality-adjusted indices — not raw listing prices</li>
-  <li>Sample sizes range from ~30 to ~450 listings per grid cell per year</li>
-  <li>Z-scores computed against cleaned national mean (€7.93/m², σ = €2.83)</li>
-</ul>
-
-<h3>Geographic Data</h3>
-<ul>
-  <li>District spatial joins: 7,251/7,304 matched (99.3%). 53 cells on borders/coastlines unmatched.</li>
-  <li>PLZ nearest-neighbor: 100% match rate (each cell assigned to closest of 8,299 ZIP centroids)</li>
-  <li>Berlin district polygons: independently validated against 400,505 address-level WFS data points</li>
-</ul>
-
-<h2>7. Key Findings</h2>
-
-<h3>Mietspiegel vs Market Gap</h3>
-<p>The comparison between official Mietspiegel values and actual Immoscout24 market rents reveals systematic differences:</p>
-<table>
-  <tr><th>City</th><th>Official Mietspiegel</th><th>Market (Immoscout)</th><th>Gap</th></tr>
-  <tr><td>Kiel</td><td>€7.93</td><td>€8.32</td><td class="red">+4.9%</td></tr>
-  <tr><td>Dresden</td><td>€7.63</td><td>€7.82</td><td class="red">+2.5%</td></tr>
-  <tr><td>München</td><td>€19.86</td><td>€16.86</td><td class="green">−15.1%</td></tr>
-  <tr><td>Hamburg</td><td>€14.52</td><td>€11.20</td><td class="green">−22.9%</td></tr>
-  <tr><td>Köln</td><td>€14.16</td><td>€10.58</td><td class="green">−25.3%</td></tr>
-  <tr><td>Bremen</td><td>€11.42</td><td>€7.64</td><td class="green">−33.1%</td></tr>
-</table>
-
-<p><strong>Interpretation:</strong> Cities where the market is above the Mietspiegel (positive gap) suggest the official index <em>undervalues</em> the local market — rents are rising faster than regulation captures. Cities with large negative gaps (Bremen, Essen, Köln) likely reflect that the Immoscout grid cells include <em>broader metro areas</em> with cheaper suburbs, while the Mietspiegel is city-proper only.</p>
-
-<h3>National Rent Geography</h3>
-<ul>
-  <li><strong>Munich orbit:</strong> deepest red on the map — €16–25/m² radiating ~40 km from the city center</li>
-  <li><strong>Berlin gradient:</strong> sharp east-west divide within the city. Mitte/Prenzlauer Berg at €14–16/m², Marzahn at €8–10/m²</li>
-  <li><strong>Ruhrgebiet:</strong> surprisingly uniform yellow-green (€8–12/m²) despite being Germany's largest urban agglomeration</li>
-  <li><strong>Eastern Germany:</strong> predominantly green (€4–8/m²) with bright spots around Leipzig, Dresden, and Berlin's commuter belt</li>
-  <li><strong>Rhine corridor:</strong> Düsseldorf–Köln–Bonn axis shows a clear rent gradient following the river</li>
-</ul>
-
-<h2>8. License & Attribution</h2>
-
+<h2>6. License & Attribution</h2>
 <table>
   <tr><th>Component</th><th>License</th><th>Attribution</th></tr>
   <tr><td>Dashboard code</td><td>CC BY-SA 4.0</td><td>Ravi DVR / github.com/ravidvr</td></tr>
-  <tr><td>City Mietspiegel data</td><td>Public official documents</td><td>Respective city administrations</td></tr>
+  <tr><td>Berlin Mietspiegel</td><td>Public official document</td><td>Berlin Senate</td></tr>
   <tr><td>RWI-GEO-REDX PUF v16</td><td>Public Use File (no restrictions)</td><td>RWI Essen, DOI: 10.7807/IMMO:REDX:PUF:V16</td></tr>
-  <tr><td>Berlin WFS data</td><td>Datenlizenz Deutschland – Zero</td><td>GDI-BE / Berlin Senate</td></tr>
-  <tr><td>PLZ centroids</td><td>ODbL 1.0</td><td>WZB Social Science Center</td></tr>
-  <tr><td>District boundaries</td><td>GADM (free for non-commercial)</td><td>gadm.org</td></tr>
+  <tr><td>Zensus 2022</td><td>dl-de/by-2.0</td><td>Destatis (Statistisches Bundesamt)</td></tr>
+  <tr><td>Berlin WFS data</td><td>dl-de/zero-2.0</td><td>GDI-BE / Berlin Senate</td></tr>
   <tr><td>Map tiles</td><td>ODbL</td><td>OpenStreetMap contributors</td></tr>
 </table>
-
-<h2>9. Limitations & Future Work</h2>
-
-<h3>Current Limitations</h3>
-<ul>
-  <li><strong>23 of ~80 major German cities</strong> — coverage needs to scale 3–4x for comprehensive national representation</li>
-  <li><strong>No municipality-level (Gemeinde) data</strong> — the RWI PUF only goes to grid level. The SUF (Scientific Use File) would provide Gemeinde data but requires an academic application</li>
-  <li><strong>Heatmap resolution</strong> — at street-level zoom, 1km² cells become individual squares. True address-level data only exists for Berlin.</li>
-  <li><strong>Time lag</strong> — Mietspiegel updates every 2 years per city. The dashboard shows the latest available year (2024–2026 range).</li>
-  <li><strong>5 cities pending extraction</strong> — Bielefeld, Chemnitz, Duisburg, Mannheim, Mönchengladbach (PDFs available, removed from dashboard until tables are extracted)</li>
-</ul>
-
-<h3>Planned Improvements</h3>
-<ul>
-  <li><strong>Batch extract 12 additional cities</strong> — 27 PDFs downloaded, district scan pipeline ready</li>
-  <li><strong>Hamburg district layer</strong> — Wohnlagenverzeichnis PDF (5.6 MB) parsed for street-level Wohnlage classifications</li>
-  <li><strong>Rent trend visualization</strong> — 3,877 grid cells have 3+ years of timeseries data for historical analysis</li>
-  <li><strong>Academic SUF application</strong> — for municipality-level RWI data covering all 11,000 German Gemeinden</li>
-  <li><strong>Community contribution pipeline</strong> — GitHub issue templates for submitting new city Mietspiegel data</li>
-</ul>
-
-<h2>10. Reproducibility</h2>
-
-<p>All data processing is fully reproducible:</p>
-
-<pre>
-# Rebuild the national rent GeoJSON from source
-cd mietspiegel-digitization
-python3 scripts/build_national_choropleth.py
-
-# The script:
-# 1. Loads redx_grid_rent.json (1.5 MB, 9,407 grids)
-# 2. Applies 3σ outlier removal
-# 3. Selects most recent year per grid
-# 4. Joins to 434 German districts (STRtree)
-# 5. Matches to 8,299 PLZ codes (KDTree)
-# 6. Converts LAEA → WGS84 (pyproj)
-# 7. Outputs 7,304 polygons → national-rent-grid.geojson (1.6 MB)
-</pre>
 
 <p style="margin-top:40px;padding-top:20px;border-top:1px solid var(--border);font-size:13px;color:var(--text-dim)">
   Built by <a href="https://github.com/ravidvr">Ravi DVR</a>. Dashboard live at <a href="index.html">ravidvr.github.io/mietspiegel-digitization</a>.
