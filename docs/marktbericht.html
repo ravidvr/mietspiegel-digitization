@@ -259,23 +259,23 @@ const T = {
     metrics: {
       geldumsatz: '💰 Transaction Volume (Mio. €)',
       geldumsatz_bebaut: '💰 Volume — Developed Properties',
-      geldumsatz_we: '💰 Volume — Condominiums',
+      geldumsatz_we: '💰 Volume — Apartments',
       kauffaelle: '📋 Transactions (count)',
-      kauffaelle_we: '📋 Transactions — Condominiums',
+      kauffaelle_we: '📋 Transactions — Apartments',
       flaeche: '📐 Land Area Sold (ha)',
       condo_resale: '🏢 Condo Resale (avg €/m²)',
       condo_neubau: '🏗️ Condo New Build (avg €/m²)',
-      brw_min: '🏞️ Standard Land Value min (€/m²)',
-      brw_max: '🏞️ Standard Land Value max (€/m²)',
+      condo_resale: '🏢 Apartment Resale (avg €/m²)',
+      condo_neubau: '🏗️ New-Build Apartment (avg €/m²)',
     },
     tt_pct_berlin: '% of Berlin total volume',
     tt_unbebaut: 'Undeveloped land',
     tt_bebaut: 'Developed properties',
     tt_kf: '📋 Total sales',
-    tt_kf_we: '   — of which condos',
+    tt_kf_we: '   — of which apartments',
     tt_flaeche: '📐 Land area',
     tt_brw: '🏞️ Standard land value',
-    tt_etw: '🏢 Condo prices (avg €/m²)',
+    tt_etw: '🏢 Apartment prices (avg €/m²)',
     tt_neubau: '   — New build',
     tt_above_avg: 'above Berlin average',
     tt_below_avg: 'below Berlin average',
@@ -296,15 +296,15 @@ const T = {
     helpSub: 'Real sale prices from 20,789 notarized contracts — no estimates, no asking prices.',
     helpWhatTitle: '🎯 What you are looking at',
     helpWhat1: '<span class="dot-sm" style="background:#e04030"></span> <strong>Color-coded districts</strong> — darker means higher value. Green (low) to red (high).',
-    helpWhat2: '<span class="dot-sm" style="background:#5b8def"></span> <strong>10 different metrics</strong> — transaction volume, sales count, condo prices, land values. Switchable in the top menu.',
+    helpWhat2: '<span class="dot-sm" style="background:#5b8def"></span> <strong>10 different metrics</strong> — transaction volume, sales count, apartment prices, land values. Switchable in the top menu.',
     helpWhat3: '<span class="dot-sm" style="background:#48bb78"></span> <strong>District list</strong> — left sidebar sorted by value. Click to zoom.',
     helpHowTitle: '🔍 How to use this map',
     helpHow0: '<strong>Search by address or postal code</strong> — type any address and the map zooms directly to that district with all data.',
     helpHow1: '<strong>Click a district</strong> — opens an info box with all details: prices, number of sales, land values.',
-    helpHow2: '<strong>Switch metrics</strong> — use the dropdown above to toggle between money volume, transactions, condo prices, and land values.',
+    helpHow2: '<strong>Switch metrics</strong> — use the dropdown above to toggle between money volume, transactions, apartment prices, and land values.',
     helpHow3: '<strong>Hover over a district</strong> — shows the name. Click for the full breakdown.',
     helpInsightTitle: '📊 The key insight',
-    helpInsight: 'In 2024, Berlin real estate worth <strong>€14.9 billion</strong> was sold — 20% more than 2023. But prices are still falling: condos average <strong>€5,251/m²</strong> (-1%), single-family homes <strong>€3,800/m²</strong> (-7%). The market is slowly bottoming out.',
+    helpInsight: 'In 2024, Berlin real estate worth <strong>€14.9 billion</strong> was sold — 20% more than 2023. But prices are still falling: apartments average <strong>€5,251/m²</strong> (-1%), single-family homes <strong>€3,800/m²</strong> (-7%). The market is slowly bottoming out.',
     helpBtn: 'Got it! →',
   }
 };
@@ -533,7 +533,7 @@ function showTooltip(bezirk) {
     h += `<div class="row"><span>📐 ${t('tt_flaeche')}</span><b>${fl.gesamt_ha.toFixed(1)} ha</b></div>`;
   }
 
-  // Condo prices — with einfache/gute spread
+  // Apartment prices — with einfache/gute spread
   const ck = Object.keys(condo).filter(k=>k.startsWith('resale'));
   if (ck.length || condo.erstverkauf_neubau) {
     h += `<div class="hr"></div><div class="sub" style="font-weight:600;margin-bottom:2px">${t('tt_etw')}</div>`;
