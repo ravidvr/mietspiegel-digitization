@@ -24,6 +24,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .controls select{padding:4px 8px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:11px;min-width:140px}
 .controls select:focus{outline:none;border-color:var(--accent)}
 
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:3px 8px;font-size:11px;white-space:nowrap;font-weight:600;cursor:default}
+.stat small{font-size:10px;font-weight:500}
+@media(max-width:900px){#statCards{display:none!important}}
+
 #map{width:100%;height:calc(100vh - 90px)}
 
 .district-panel{position:absolute;top:92px;left:10px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px;z-index:1000;box-shadow:0 2px 8px rgba(0,0,0,.3);max-height:calc(100% - 120px);overflow-y:auto;font-size:12px;max-width:250px}
@@ -138,6 +142,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     <option value="2023">2023</option>
   </select>
   <span style="font-size:10px;color:var(--text-dim);margin-left:auto" id="srcNote">Daten: Gutachterausschuss Berlin · dl-de/zero-2-0</span>
+  <span style="display:flex;gap:8px;align-items:center;margin-left:12px" id="statCards">
+    <span class="stat" id="statVolume" title="Geldumsatz 2024">💰 14,9 Mrd. € <small style="color:var(--green)">+20%</small></span>
+    <span class="stat" id="statCondo" title="ETW ø-Preis">🏢 5.251 €/m² <small style="color:var(--red)">-1%</small></span>
+    <span class="stat" id="statHouse" title="EFH ø-Preis">🏠 3.800 €/m² <small style="color:var(--red)">-7%</small></span>
+    <span class="stat" id="statNewBuild" title="ETW Neubau">🏗️ 7.912 €/m² <small style="color:var(--green)">+1%</small></span>
+    <span class="stat" id="statYield" title="Mietwohnhäuser Vervielfältiger">📈 23,5×</span>
+  </span>
 </div>
 
 <div id="map">
@@ -183,6 +194,11 @@ const T = {
     tt_berlin_avg: 'Berlin ø',
     tt_geldumsatz: 'Geldumsatz',
     tt_share_berlin: 'Anteil an Berlin',
+    statVolume: '💰 14,9 Mrd. € <small style="color:var(--green)">+20%</small>',
+    statCondo: '🏢 5.251 €/m² <small style="color:var(--red)">-1%</small>',
+    statHouse: '🏠 3.800 €/m² <small style="color:var(--red)">-7%</small>',
+    statNewBuild: '🏗️ 7.912 €/m² <small style="color:var(--green)">+1%</small>',
+    statYield: '📈 23,5×',
     yr_prev: '2023 (Vorjahr)',
     helpTitle: '🏙️ Berliner Immobilienmarkt 2024',
     helpSub: 'Echte Kaufpreise aus 20.789 notariellen Verträgen — keine Schätzungen, keine Angebotspreise.',
@@ -232,6 +248,11 @@ const T = {
     tt_berlin_avg: 'Berlin avg',
     tt_geldumsatz: 'Transaction volume',
     tt_share_berlin: 'Share of Berlin',
+    statVolume: '💰 €14.9B <small style="color:var(--green)">+20%</small>',
+    statCondo: '🏢 €5,251/m² <small style="color:var(--red)">-1%</small>',
+    statHouse: '🏠 €3,800/m² <small style="color:var(--red)">-7%</small>',
+    statNewBuild: '🏗️ €7,912/m² <small style="color:var(--green)">+1%</small>',
+    statYield: '📈 23.5×',
     yr_prev: '2023 (previous year)',
     helpTitle: '🏙️ Berlin Real Estate Market 2024',
     helpSub: 'Real sale prices from 20,789 notarized contracts — no estimates, no asking prices.',
@@ -282,6 +303,11 @@ function toggleLang() {
     `<option value="${k}">${v}</option>`).join('');
   sel.value = currentVal;
   buildMap();
+
+  // Update stat cards
+  ['statVolume','statCondo','statHouse','statNewBuild','statYield'].forEach(id => {
+    const el = document.getElementById(id); if (el) el.innerHTML = t(id);
+  });
 }
 
 // ─── Dashboard Data (embedded) ─────────────────────────────────
