@@ -228,6 +228,15 @@ const T = {
     tt_berlin_avg: 'Berlin ø',
     tt_geldumsatz: 'Geldumsatz',
     tt_share_berlin: 'Anteil an Berlin',
+    tt_fertig: '🏗️ Fertiggestellt 2024',
+    tt_genehmigt: '📋 Genehmigt 2024',
+    tt_wohnbestand: '🏠 Wohnungsbestand',
+    tt_pro_1k: 'pro 1.000 WE',
+    tt_vs_2023: 'vs 2023',
+    tt_vs_vorjahr: 'vs Vorjahr',
+    tt_plus_2024: 'davon 2024',
+    tt_verkaeufe: 'Verkäufe',
+    tt_neue_we: 'neue WE',
     srchPlaceholder: '🔍 Adresse oder PLZ (z.B. Brandenburger Tor, 10115, Karl-Marx-Allee 43)...',
     srchButton: '📍 Suchen',
     srchNotFound: '❌ Nicht gefunden',
@@ -292,6 +301,15 @@ const T = {
     tt_berlin_avg: 'Berlin avg',
     tt_geldumsatz: 'Transaction volume',
     tt_share_berlin: 'Share of Berlin',
+    tt_fertig: '🏗️ Completed 2024',
+    tt_genehmigt: '📋 Permitted 2024',
+    tt_wohnbestand: '🏠 Housing Stock',
+    tt_pro_1k: 'per 1,000 units',
+    tt_vs_2023: 'vs 2023',
+    tt_vs_vorjahr: 'vs prev year',
+    tt_plus_2024: 'added in 2024',
+    tt_verkaeufe: 'Sales',
+    tt_neue_we: 'new units',
     srchPlaceholder: '🔍 Address or postal code (e.g. Brandenburg Gate, 10115, Unter den Linden 1)...',
     srchButton: '📍 Search',
     srchNotFound: '❌ Not found',
@@ -585,11 +603,11 @@ function showTooltip(bezirk) {
     if (['condo_resale','condo_neubau'].includes(currentMetric) && curVal)
       h += ` · ${(curVal*60).toLocaleString()} € für 60 m²`;
     if (['baufertig','genehmigungen'].includes(currentMetric) && wb && curVal)
-      h += ` · ${(curVal/wb.wohnungen_2024*1000).toFixed(1)} pro 1.000 WE`;
+      h += ` · ${(curVal/wb.wohnungen_2024*1000).toFixed(1)} ${t('tt_pro_1k')}`;
     if (currentMetric==='umsatz_pro_1k' && kf)
-      h += ` · ${kf.gesamt_anzahl.toLocaleString()} Verkäufe`;
+      h += ` · ${kf.gesamt_anzahl.toLocaleString()} ${t('tt_verkaeufe')}`;
     if (currentMetric==='baurate' && bau)
-      h += ` · ${bau.fertig_2024.toLocaleString()} neue WE`;
+      h += ` · ${bau.fertig_2024.toLocaleString()} ${t('tt_neue_we')}`;
     h += `</div>`;
 
     h += `<div style="margin-top:8px;padding:6px 8px;background:var(--surface2);border-radius:4px;font-size:11px">`;
@@ -623,7 +641,7 @@ function showTooltip(bezirk) {
       h += `<div class="row"><span>${t('tt_brw')}</span><b>${lo.toFixed(0)} – ${hi.toFixed(0)} €/m²</b></div>`;
       if (brw.change_pct != null) {
         const chg=brw.change_pct, cc=chg>0?'var(--red)':chg<0?'var(--green)':'var(--text-dim)';
-        h += `<div class="row"><span style="color:var(--text-dim)">   vs Vorjahr</span><b style="color:${cc}">${chg>=0?'+':''}${chg}%</b></div>`;
+        h += `<div class="row"><span style="color:var(--text-dim)">   ${t('tt_vs_vorjahr')}</span><b style="color:${cc}">${chg>=0?'+':''}${chg}%</b></div>`;
       }
     }
   }
@@ -632,21 +650,21 @@ function showTooltip(bezirk) {
   if (['baufertig','genehmigungen','wohnbestand','umsatz_pro_1k','baurate'].includes(currentMetric)) {
     if (bau) {
       h += `<div class="hr"></div>`;
-      h += `<div class="row"><span>🏗️ Fertiggestellt 2024</span><b>${bau.fertig_2024.toLocaleString()}</b></div>`;
-      if (bau.change_pct!=null) h += `<div class="row"><span style="color:var(--text-dim)">   vs 2023</span><b>${bau.change_pct>=0?'+':''}${bau.change_pct}%</b></div>`;
+      h += `<div class="row"><span>${t('tt_fertig')}</span><b>${bau.fertig_2024.toLocaleString()}</b></div>`;
+      if (bau.change_pct!=null) h += `<div class="row"><span style="color:var(--text-dim)">   ${t('tt_vs_2023')}</span><b>${bau.change_pct>=0?'+':''}${bau.change_pct}%</b></div>`;
     }
     if (gen) {
-      h += `<div class="row"><span>📋 Genehmigt 2024</span><b>${gen.genehmigt_2024.toLocaleString()}</b></div>`;
-      if (gen.change_pct!=null) h += `<div class="row"><span style="color:var(--text-dim)">   vs 2023</span><b>${gen.change_pct>=0?'+':''}${gen.change_pct}%</b></div>`;
+      h += `<div class="row"><span>${t('tt_genehmigt')}</span><b>${gen.genehmigt_2024.toLocaleString()}</b></div>`;
+      if (gen.change_pct!=null) h += `<div class="row"><span style="color:var(--text-dim)">   ${t('tt_vs_2023')}</span><b>${gen.change_pct>=0?'+':''}${gen.change_pct}%</b></div>`;
     }
     if (wb) {
-      h += `<div class="row"><span>🏠 Wohnungsbestand</span><b>${wb.wohnungen_2024.toLocaleString()}</b></div>`;
-      h += `<div class="row"><span style="color:var(--text-dim)">   plus ${wb.change_absolut.toLocaleString()} in 2024</span><b>+${wb.change_pct}%</b></div>`;
+      h += `<div class="row"><span>${t('tt_wohnbestand')}</span><b>${wb.wohnungen_2024.toLocaleString()}</b></div>`;
+      h += `<div class="row"><span style="color:var(--text-dim)">   ${t('tt_plus_2024')}: ${wb.change_absolut.toLocaleString()}</span><b>+${wb.change_pct}%</b></div>`;
     }
     if (kf) {
       h += `<div class="hr"></div>`;
       h += `<div class="row"><span>📋 ${t('tt_kf')}</span><b>${kf.gesamt_anzahl.toLocaleString()}</b></div>`;
-      if (wb) h += `<div class="row"><span style="color:var(--text-dim)">   pro 1.000 WE</span><b>${(kf.gesamt_anzahl/wb.wohnungen_2024*1000).toFixed(1)}</b></div>`;
+      if (wb) h += `<div class="row"><span style="color:var(--text-dim)">   ${t('tt_pro_1k')}</span><b>${(kf.gesamt_anzahl/wb.wohnungen_2024*1000).toFixed(1)}</b></div>`;
     }
   }
 
