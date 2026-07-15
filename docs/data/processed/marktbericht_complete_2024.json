@@ -2841,5 +2841,6 @@
         "source": "umwandlung_condos"
       }
     }
-  }
+  },
+  "_data_subset": "2020-2024 time series. Older archive at marktbericht_timeseries_full.json or marktbericht-archiv/"
 }
