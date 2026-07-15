@@ -2157,28 +2157,6 @@
           "mw23_gut": 3225.0,
           "mw24_einfach": 4881.0,
           "mw24_gut": null
-        },
-        {
-          "stadtgebiet": "City",
-          "kf23_einfach": 31,
-          "kf23_gut": 69,
-          "kf24_einfach": 29,
-          "kf24_gut": 78,
-          "mw23_einfach": 4645.0,
-          "mw23_gut": 5732.0,
-          "mw24_einfach": 4249.0,
-          "mw24_gut": 5583.0
-        },
-        {
-          "stadtgebiet": "City",
-          "kf23_einfach": 22,
-          "kf23_gut": 39,
-          "kf24_einfach": 23,
-          "kf24_gut": 49,
-          "mw23_einfach": 4151.0,
-          "mw23_gut": 6158.0,
-          "mw24_einfach": 3803.0,
-          "mw24_gut": 5856.0
         }
       ]
     },
@@ -2195,28 +2173,6 @@
           "mw23_gut": 5318.0,
           "mw24_einfach": 4862.0,
           "mw24_gut": null
-        },
-        {
-          "stadtgebiet": "City",
-          "kf23_einfach": 15,
-          "kf23_gut": 34,
-          "kf24_einfach": 15,
-          "kf24_gut": 30,
-          "mw23_einfach": 2686.0,
-          "mw23_gut": 5771.0,
-          "mw24_einfach": 3937.0,
-          "mw24_gut": 5553.0
-        },
-        {
-          "stadtgebiet": "City",
-          "kf23_einfach": 6,
-          "kf23_gut": 17,
-          "kf24_einfach": 3,
-          "kf24_gut": 9,
-          "mw23_einfach": 4283.0,
-          "mw23_gut": 5621.0,
-          "mw24_einfach": 4696.0,
-          "mw24_gut": 4795.0
         }
       ]
     },
@@ -2233,28 +2189,6 @@
           "mw23_gut": 6367.0,
           "mw24_einfach": null,
           "mw24_gut": null
-        },
-        {
-          "stadtgebiet": "City",
-          "kf23_einfach": 1,
-          "kf23_gut": 9,
-          "kf24_einfach": 2,
-          "kf24_gut": 9,
-          "mw23_einfach": 7128.0,
-          "mw23_gut": 7175.0,
-          "mw24_einfach": null,
-          "mw24_gut": null
-        },
-        {
-          "stadtgebiet": "City",
-          "kf23_einfach": 3,
-          "kf23_gut": 5,
-          "kf24_einfach": 4,
-          "kf24_gut": 11,
-          "mw23_einfach": 3910.0,
-          "mw23_gut": 7116.0,
-          "mw24_einfach": 4532.0,
-          "mw24_gut": 7660.0
         }
       ]
     },
@@ -2271,17 +2205,6 @@
           "mw23_gut": 4821.0,
           "mw24_einfach": 3271.0,
           "mw24_gut": 4740.0
-        },
-        {
-          "stadtgebiet": "City",
-          "kf23_einfach": 40,
-          "kf23_gut": 100,
-          "kf24_einfach": 33,
-          "kf24_gut": 117,
-          "mw23_einfach": 3508.0,
-          "mw23_gut": 4910.0,
-          "mw24_einfach": 3557.0,
-          "mw24_gut": 5018.0
         }
       ]
     }
