@@ -636,7 +636,7 @@
     "investment_properties": "Manually transcribed from Section 5.4.1 summary tables.",
     "price_tables_house": "EXTRACTED via pdfbox-app-3.0.7",
     "price_tables_condo": "EXTRACTED via pdfbox-app-3.0.7 — 18 rows",
-    "price_tables_land": "PARTIAL — Bodenrichtwerte only: 11 Bezirke",
+    "price_tables_land": "EXTRACTED: Bodenrichtwerte per Bezirk + Wohnlage tables (offen + geschlossen)",
     "historical_trends": "BLOCKED — data only exists as charts (Abb. 64-66), not as text tables",
     "next_steps": "Install tabula-py (Java-based) or camelot-py for lattice-based PDF table extraction. Or manually transcribe the summary price rows.",
     "price_tables_erstverkauf": "EXTRACTED — 6 rows"
@@ -1438,5 +1438,491 @@
       "bodenrichtwert_max": 750.0,
       "change_pct": -5
     }
-  ]
+  ],
+  "bodenrichtwerte_wohnlage": {
+    "bauland_offen": [
+      {
+        "bezirk": "Mitte",
+        "wohnlage": "gute Wohnlage"
+      },
+      {
+        "bezirk": "Friedrichshain-Kreuzberg",
+        "wohnlage": "gute Wohnlage"
+      },
+      {
+        "bezirk": "Pankow",
+        "wohnlage": "gute Wohnlage"
+      },
+      {
+        "bezirk": "Charlottenburg-Wilmersdorf",
+        "wohnlage": "gute Wohnlage"
+      },
+      {
+        "bezirk": "Spandau",
+        "wohnlage": "gute Wohnlage"
+      },
+      {
+        "bezirk": "Steglitz-Zehlendorf",
+        "wohnlage": "gute Wohnlage"
+      },
+      {
+        "bezirk": "Tempelhof-Schöneberg",
+        "wohnlage": "gute Wohnlage"
+      },
+      {
+        "bezirk": "Neukölln",
+        "wohnlage": "gute Wohnlage"
+      },
+      {
+        "bezirk": "Treptow-Köpenick",
+        "wohnlage": "gute Wohnlage"
+      },
+      {
+        "bezirk": "Marzahn-Hellersdorf",
+        "wohnlage": "gute Wohnlage"
+      },
+      {
+        "bezirk": "Lichtenberg",
+        "wohnlage": "gute Wohnlage"
+      },
+      {
+        "bezirk": "Reinickendorf",
+        "wohnlage": "gute Wohnlage"
+      },
+      {
+        "bezirk": "Mitte",
+        "wohnlage": "mittlere Wohnlage",
+        "brw_2024_min": 1000.0,
+        "brw_2024_max": 850.0,
+        "brw_2025_min": 380.0,
+        "brw_2025_max": 1000.0
+      },
+      {
+        "bezirk": "Friedrichshain-Kreuzberg",
+        "wohnlage": "mittlere Wohnlage",
+        "brw_2024_min": 2000.0,
+        "brw_2024_max": 710.0,
+        "brw_2025_min": 750.0,
+        "brw_2025_max": 1000.0
+      },
+      {
+        "bezirk": "Pankow",
+        "wohnlage": "mittlere Wohnlage",
+        "brw_2024_min": 1800.0,
+        "brw_2024_max": 730.0,
+        "brw_2025_min": 380.0,
+        "brw_2025_max": 900.0
+      },
+      {
+        "bezirk": "Charlottenburg-Wilmersdorf",
+        "wohnlage": "mittlere Wohnlage",
+        "brw_2024_min": 640.0,
+        "brw_2024_max": 570.0,
+        "brw_2025_min": 670.0,
+        "brw_2025_max": 1100.0
+      },
+      {
+        "bezirk": "Spandau",
+        "wohnlage": "mittlere Wohnlage",
+        "brw_2024_min": 800.0,
+        "brw_2024_max": 520.0,
+        "brw_2025_min": 590.0,
+        "brw_2025_max": 900.0
+      },
+      {
+        "bezirk": "Steglitz-Zehlendorf",
+        "wohnlage": "mittlere Wohnlage",
+        "brw_2024_min": 2800.0,
+        "brw_2024_max": 1000.0,
+        "brw_2025_min": 540.0,
+        "brw_2025_max": 1200.0
+      },
+      {
+        "bezirk": "Tempelhof-Schöneberg",
+        "wohnlage": "mittlere Wohnlage",
+        "brw_2024_min": 620.0,
+        "brw_2024_max": 1700.0,
+        "brw_2025_min": 450.0,
+        "brw_2025_max": 750.0
+      },
+      {
+        "bezirk": "Neukölln",
+        "wohnlage": "mittlere Wohnlage",
+        "brw_2024_min": 950.0,
+        "brw_2024_max": 800.0,
+        "brw_2025_min": 320.0,
+        "brw_2025_max": 590.0
+      },
+      {
+        "bezirk": "Treptow-Köpenick",
+        "wohnlage": "mittlere Wohnlage",
+        "brw_2024_min": 1900.0,
+        "brw_2024_max": 670.0,
+        "brw_2025_min": 390.0,
+        "brw_2025_max": 950.0
+      },
+      {
+        "bezirk": "Marzahn-Hellersdorf",
+        "wohnlage": "mittlere Wohnlage",
+        "brw_2024_min": 1700.0,
+        "brw_2024_max": 690.0,
+        "brw_2025_min": 470.0,
+        "brw_2025_max": 710.0
+      },
+      {
+        "bezirk": "Lichtenberg",
+        "wohnlage": "mittlere Wohnlage",
+        "brw_2024_min": 610.0,
+        "brw_2024_max": 540.0,
+        "brw_2025_min": 360.0,
+        "brw_2025_max": 950.0
+      },
+      {
+        "bezirk": "Reinickendorf",
+        "wohnlage": "mittlere Wohnlage",
+        "brw_2024_min": 750.0,
+        "brw_2024_max": 490.0,
+        "brw_2025_min": 710.0,
+        "brw_2025_max": 1000.0
+      },
+      {
+        "bezirk": "Mitte",
+        "wohnlage": "einfache Wohnlage",
+        "brw_2024_min": 950.0,
+        "brw_2024_max": 390.0,
+        "brw_2025_min": 470.0,
+        "brw_2025_max": 750.0
+      },
+      {
+        "bezirk": "Friedrichshain-Kreuzberg",
+        "wohnlage": "einfache Wohnlage",
+        "brw_2024_min": 710.0,
+        "brw_2024_max": 470.0,
+        "brw_2025_min": 380.0,
+        "brw_2025_max": 650.0
+      },
+      {
+        "bezirk": "Pankow",
+        "wohnlage": "einfache Wohnlage",
+        "brw_2024_min": 950.0,
+        "brw_2024_max": 360.0,
+        "brw_2025_min": 320.0,
+        "brw_2025_max": 520.0
+      },
+      {
+        "bezirk": "Charlottenburg-Wilmersdorf",
+        "wohnlage": "einfache Wohnlage",
+        "brw_2024_min": 1000.0,
+        "brw_2024_max": 710.0,
+        "brw_2025_min": 670.0,
+        "brw_2025_max": 950.0
+      },
+      {
+        "bezirk": "Spandau",
+        "wohnlage": "einfache Wohnlage",
+        "brw_2024_min": 850.0,
+        "brw_2024_max": 360.0,
+        "brw_2025_min": 610.0,
+        "brw_2025_max": 680.0
+      },
+      {
+        "bezirk": "Steglitz-Zehlendorf",
+        "wohnlage": "einfache Wohnlage",
+        "brw_2024_min": 1000.0,
+        "brw_2024_max": 640.0,
+        "brw_2025_min": 520.0,
+        "brw_2025_max": 750.0
+      },
+      {
+        "bezirk": "Tempelhof-Schöneberg",
+        "wohnlage": "einfache Wohnlage",
+        "brw_2024_min": 850.0,
+        "brw_2024_max": 560.0,
+        "brw_2025_min": 490.0,
+        "brw_2025_max": 650.0
+      },
+      {
+        "bezirk": "Neukölln",
+        "wohnlage": "einfache Wohnlage",
+        "brw_2024_min": 1100.0,
+        "brw_2024_max": 510.0,
+        "brw_2025_min": 400.0,
+        "brw_2025_max": 590.0
+      },
+      {
+        "bezirk": "Treptow-Köpenick",
+        "wohnlage": "einfache Wohnlage",
+        "brw_2024_min": 710.0,
+        "brw_2024_max": 430.0,
+        "brw_2025_min": 380.0,
+        "brw_2025_max": 700.0
+      },
+      {
+        "bezirk": "Marzahn-Hellersdorf",
+        "wohnlage": "einfache Wohnlage",
+        "brw_2024_min": 560.0,
+        "brw_2024_max": 300.0,
+        "brw_2025_min": 410.0,
+        "brw_2025_max": 550.0
+      },
+      {
+        "bezirk": "Lichtenberg",
+        "wohnlage": "einfache Wohnlage",
+        "brw_2024_min": 900.0,
+        "brw_2024_max": 370.0,
+        "brw_2025_min": 450.0,
+        "brw_2025_max": 710.0
+      },
+      {
+        "bezirk": "Reinickendorf",
+        "wohnlage": "einfache Wohnlage",
+        "brw_2024_min": 670.0,
+        "brw_2024_max": 450.0,
+        "brw_2025_min": 360.0,
+        "brw_2025_max": 620.0
+      }
+    ],
+    "bauland_geschlossen": [
+      {
+        "bezirk": "Mitte",
+        "wohnlage": "gute Wohnlage"
+      },
+      {
+        "bezirk": "Friedrichshain-Kreuzberg",
+        "wohnlage": "gute Wohnlage"
+      },
+      {
+        "bezirk": "Pankow",
+        "wohnlage": "gute Wohnlage"
+      },
+      {
+        "bezirk": "Charlottenburg-Wilmersdorf",
+        "wohnlage": "gute Wohnlage"
+      },
+      {
+        "bezirk": "Spandau",
+        "wohnlage": "gute Wohnlage"
+      },
+      {
+        "bezirk": "Steglitz-Zehlendorf",
+        "wohnlage": "gute Wohnlage"
+      },
+      {
+        "bezirk": "Tempelhof-Schöneberg",
+        "wohnlage": "gute Wohnlage"
+      },
+      {
+        "bezirk": "Neukölln",
+        "wohnlage": "gute Wohnlage"
+      },
+      {
+        "bezirk": "Treptow-Köpenick",
+        "wohnlage": "gute Wohnlage"
+      },
+      {
+        "bezirk": "Marzahn-Hellersdorf",
+        "wohnlage": "gute Wohnlage"
+      },
+      {
+        "bezirk": "Lichtenberg",
+        "wohnlage": "gute Wohnlage"
+      },
+      {
+        "bezirk": "Reinickendorf",
+        "wohnlage": "gute Wohnlage"
+      },
+      {
+        "bezirk": "Mitte",
+        "wohnlage": "mittlere Wohnlage",
+        "brw_2024_min": 2400.0,
+        "brw_2024_max": 2200.0,
+        "brw_2025_min": 600.0,
+        "brw_2025_max": 1500.0
+      },
+      {
+        "bezirk": "Friedrichshain-Kreuzberg",
+        "wohnlage": "mittlere Wohnlage",
+        "brw_2024_min": 1000.0,
+        "brw_2024_max": 550.0,
+        "brw_2025_min": 1500.0,
+        "brw_2025_max": 500.0
+      },
+      {
+        "bezirk": "Pankow",
+        "wohnlage": "mittlere Wohnlage",
+        "brw_2024_min": 2100.0,
+        "brw_2024_max": 1100.0,
+        "brw_2025_min": 2200.0,
+        "brw_2025_max": 650.0
+      },
+      {
+        "bezirk": "Charlottenburg-Wilmersdorf",
+        "wohnlage": "mittlere Wohnlage",
+        "brw_2024_min": 1500.0,
+        "brw_2024_max": 900.0,
+        "brw_2025_min": 400.0,
+        "brw_2025_max": 1300.0
+      },
+      {
+        "bezirk": "Spandau",
+        "wohnlage": "mittlere Wohnlage",
+        "brw_2024_min": 1100.0,
+        "brw_2024_max": 550.0,
+        "brw_2025_min": 500.0,
+        "brw_2025_max": 1100.0
+      },
+      {
+        "bezirk": "Steglitz-Zehlendorf",
+        "wohnlage": "mittlere Wohnlage",
+        "brw_2024_min": 1300.0,
+        "brw_2024_max": 3500.0,
+        "brw_2025_min": 550.0,
+        "brw_2025_max": 1000.0
+      },
+      {
+        "bezirk": "Tempelhof-Schöneberg",
+        "wohnlage": "mittlere Wohnlage",
+        "brw_2024_min": 1900.0,
+        "brw_2024_max": 2400.0,
+        "brw_2025_min": 500.0,
+        "brw_2025_max": 850.0
+      },
+      {
+        "bezirk": "Neukölln",
+        "wohnlage": "mittlere Wohnlage",
+        "brw_2024_min": 2200.0,
+        "brw_2024_max": 1000.0,
+        "brw_2025_min": 400.0,
+        "brw_2025_max": 1100.0
+      },
+      {
+        "bezirk": "Treptow-Köpenick",
+        "wohnlage": "mittlere Wohnlage",
+        "brw_2024_min": 550.0,
+        "brw_2024_max": 2100.0,
+        "brw_2025_min": 500.0,
+        "brw_2025_max": 600.0
+      },
+      {
+        "bezirk": "Marzahn-Hellersdorf",
+        "wohnlage": "mittlere Wohnlage",
+        "brw_2024_min": 1100.0,
+        "brw_2024_max": 1500.0,
+        "brw_2025_min": 500.0,
+        "brw_2025_max": 1400.0
+      },
+      {
+        "bezirk": "Lichtenberg",
+        "wohnlage": "mittlere Wohnlage",
+        "brw_2024_min": 900.0,
+        "brw_2024_max": 1100.0,
+        "brw_2025_min": 550.0,
+        "brw_2025_max": 600.0
+      },
+      {
+        "bezirk": "Reinickendorf",
+        "wohnlage": "mittlere Wohnlage",
+        "brw_2024_min": 550.0,
+        "brw_2024_max": 1300.0,
+        "brw_2025_min": 600.0,
+        "brw_2025_max": 1500.0
+      },
+      {
+        "bezirk": "Mitte",
+        "wohnlage": "einfache Wohnlage",
+        "brw_2024_min": 500.0,
+        "brw_2024_max": 600.0,
+        "brw_2025_min": 550.0,
+        "brw_2025_max": 1600.0
+      },
+      {
+        "bezirk": "Friedrichshain-Kreuzberg",
+        "wohnlage": "einfache Wohnlage",
+        "brw_2024_min": 550.0,
+        "brw_2024_max": 600.0,
+        "brw_2025_min": 500.0,
+        "brw_2025_max": 1900.0
+      },
+      {
+        "bezirk": "Pankow",
+        "wohnlage": "einfache Wohnlage",
+        "brw_2024_min": 1500.0,
+        "brw_2024_max": 2200.0,
+        "brw_2025_min": 450.0,
+        "brw_2025_max": 650.0
+      },
+      {
+        "bezirk": "Charlottenburg-Wilmersdorf",
+        "wohnlage": "einfache Wohnlage",
+        "brw_2024_min": 500.0,
+        "brw_2024_max": 650.0,
+        "brw_2025_min": 600.0,
+        "brw_2025_max": 550.0
+      },
+      {
+        "bezirk": "Spandau",
+        "wohnlage": "einfache Wohnlage",
+        "brw_2024_min": 1300.0,
+        "brw_2024_max": 400.0,
+        "brw_2025_min": 1000.0,
+        "brw_2025_max": 500.0
+      },
+      {
+        "bezirk": "Steglitz-Zehlendorf",
+        "wohnlage": "einfache Wohnlage",
+        "brw_2024_min": 1100.0,
+        "brw_2024_max": 500.0,
+        "brw_2025_min": 600.0,
+        "brw_2025_max": 450.0
+      },
+      {
+        "bezirk": "Tempelhof-Schöneberg",
+        "wohnlage": "einfache Wohnlage",
+        "brw_2024_min": 1000.0,
+        "brw_2024_max": 550.0,
+        "brw_2025_min": 850.0,
+        "brw_2025_max": 500.0
+      },
+      {
+        "bezirk": "Neukölln",
+        "wohnlage": "einfache Wohnlage",
+        "brw_2024_min": 850.0,
+        "brw_2024_max": 500.0,
+        "brw_2025_min": 600.0,
+        "brw_2025_max": 400.0
+      },
+      {
+        "bezirk": "Treptow-Köpenick",
+        "wohnlage": "einfache Wohnlage",
+        "brw_2024_min": 1100.0,
+        "brw_2024_max": 400.0,
+        "brw_2025_min": 1300.0,
+        "brw_2025_max": 500.0
+      },
+      {
+        "bezirk": "Marzahn-Hellersdorf",
+        "wohnlage": "einfache Wohnlage",
+        "brw_2024_min": 600.0,
+        "brw_2024_max": 500.0,
+        "brw_2025_min": 700.0,
+        "brw_2025_max": 550.0
+      },
+      {
+        "bezirk": "Lichtenberg",
+        "wohnlage": "einfache Wohnlage",
+        "brw_2024_min": 1400.0,
+        "brw_2024_max": 500.0,
+        "brw_2025_min": 1600.0,
+        "brw_2025_max": 500.0
+      },
+      {
+        "bezirk": "Reinickendorf",
+        "wohnlage": "einfache Wohnlage",
+        "brw_2024_min": 600.0,
+        "brw_2024_max": 550.0,
+        "brw_2025_min": 1900.0,
+        "brw_2025_max": 450.0
+      }
+    ]
+  }
 }
