@@ -47,7 +47,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   #map{height:60vh;min-height:350px}
 }
 
-.district-panel{position:absolute;top:92px;left:10px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px;z-index:1000;box-shadow:0 2px 8px rgba(0,0,0,.3);max-height:calc(100% - 120px);overflow-y:auto;font-size:12px;max-width:250px}
+.district-panel{position:absolute;top:128px;left:10px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px;z-index:1000;box-shadow:0 2px 8px rgba(0,0,0,.3);max-height:calc(100% - 156px);overflow-y:auto;font-size:12px;max-width:250px}
 .district-panel h4{font-size:11px;font-weight:700;margin-bottom:6px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.5px}
 .district-panel .d-row{display:flex;justify-content:space-between;padding:4px 5px;border-radius:3px;cursor:pointer;margin:1px 0;gap:6px}
 .district-panel .d-row:hover{background:var(--surface2)}
@@ -59,7 +59,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .map-legend .d{width:16px;height:3px;border-radius:2px;flex-shrink:0}
 .map-legend .title{font-weight:600;margin-bottom:3px;font-size:10px}
 
-.tooltip{position:absolute;top:92px;right:10px;max-width:360px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px;z-index:1001;box-shadow:0 4px 16px rgba(0,0,0,.3);font-size:12px;display:none;max-height:calc(100% - 120px);overflow-y:auto}
+.tooltip{position:absolute;top:128px;right:10px;max-width:360px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px;z-index:1001;box-shadow:0 4px 16px rgba(0,0,0,.3);font-size:12px;display:none;max-height:calc(100% - 156px);overflow-y:auto}
 .tooltip .close{float:right;background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:16px;padding:0 2px}
 .tooltip h3{font-size:14px;margin-bottom:4px}
 .tooltip .val{font-size:22px;font-weight:700;color:var(--accent)}
@@ -126,6 +126,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     <div class="section">
       <h3 id="helpHowTitle">🔍 So nutzt du die Karte</h3>
       <ul>
+        <li id="helpHow0"><strong>Adresse oder PLZ suchen</strong> — gib eine Adresse ein und die Karte zoomt direkt zum Bezirk mit allen Daten.</li>
         <li id="helpHow1"><strong>Auf einen Bezirk klicken</strong> — öffnet eine Infobox mit allen Details: Preise, Anzahl der Verkäufe, Bodenrichtwerte.</li>
         <li id="helpHow2"><strong>Metrik wechseln</strong> — oben im Dropdown zwischen Geldumsatz, Kauffällen, Wohnungspreisen und Bodenrichtwerten umschalten.</li>
         <li id="helpHow3"><strong>Auf einen Bezirk hovern</strong> — zeigt den Namen an. Klicken für die vollständige Aufschlüsselung.</li>
@@ -219,6 +220,10 @@ const T = {
     tt_berlin_avg: 'Berlin ø',
     tt_geldumsatz: 'Geldumsatz',
     tt_share_berlin: 'Anteil an Berlin',
+    srchPlaceholder: '🔍 Adresse oder PLZ (z.B. Brandenburger Tor, 10115, Karl-Marx-Allee 43)...',
+    srchButton: '📍 Suchen',
+    srchNotFound: '❌ Nicht gefunden',
+    srchFailed: '❌ Suche fehlgeschlagen',
     statVolume: '💰 14,9 Mrd. € <small style="color:var(--green)">+20%</small>',
     statCondo: '🏢 5.251 €/m² <small style="color:var(--red)">-1%</small>',
     statHouse: '🏠 3.800 €/m² <small style="color:var(--red)">-7%</small>',
@@ -232,6 +237,7 @@ const T = {
     helpWhat2: '<span class="dot-sm" style="background:#5b8def"></span> <strong>10 verschiedene Metriken</strong> — Geldumsatz, Kauffälle, Wohnungspreise, Bodenrichtwerte. Oben im Menü umschaltbar.',
     helpWhat3: '<span class="dot-sm" style="background:#48bb78"></span> <strong>Bezirksliste</strong> — links sortiert nach Wert. Klicken zum Zoomen.',
     helpHowTitle: '🔍 So nutzt du die Karte',
+    helpHow0: '<strong>Adresse oder PLZ suchen</strong> — gib eine Adresse ein und die Karte zoomt direkt zum Bezirk mit allen Daten.',
     helpHow1: '<strong>Auf einen Bezirk klicken</strong> — öffnet eine Infobox mit allen Details: Preise, Anzahl der Verkäufe, Bodenrichtwerte.',
     helpHow2: '<strong>Metrik wechseln</strong> — oben im Dropdown zwischen Geldumsatz, Kauffällen, Wohnungspreisen und Bodenrichtwerten umschalten.',
     helpHow3: '<strong>Auf einen Bezirk hovern</strong> — zeigt den Namen an. Klicken für die vollständige Aufschlüsselung.',
@@ -273,6 +279,10 @@ const T = {
     tt_berlin_avg: 'Berlin avg',
     tt_geldumsatz: 'Transaction volume',
     tt_share_berlin: 'Share of Berlin',
+    srchPlaceholder: '🔍 Address or postal code (e.g. Brandenburg Gate, 10115, Unter den Linden 1)...',
+    srchButton: '📍 Search',
+    srchNotFound: '❌ Not found',
+    srchFailed: '❌ Search failed',
     statVolume: '💰 €14.9B <small style="color:var(--green)">+20%</small>',
     statCondo: '🏢 €5,251/m² <small style="color:var(--red)">-1%</small>',
     statHouse: '🏠 €3,800/m² <small style="color:var(--red)">-7%</small>',
@@ -286,6 +296,7 @@ const T = {
     helpWhat2: '<span class="dot-sm" style="background:#5b8def"></span> <strong>10 different metrics</strong> — transaction volume, sales count, condo prices, land values. Switchable in the top menu.',
     helpWhat3: '<span class="dot-sm" style="background:#48bb78"></span> <strong>District list</strong> — left sidebar sorted by value. Click to zoom.',
     helpHowTitle: '🔍 How to use this map',
+    helpHow0: '<strong>Search by address or postal code</strong> — type any address and the map zooms directly to that district with all data.',
     helpHow1: '<strong>Click a district</strong> — opens an info box with all details: prices, number of sales, land values.',
     helpHow2: '<strong>Switch metrics</strong> — use the dropdown above to toggle between money volume, transactions, condo prices, and land values.',
     helpHow3: '<strong>Hover over a district</strong> — shows the name. Click for the full breakdown.',
@@ -314,7 +325,7 @@ function toggleLang() {
   document.querySelector('#yearSelect option[value="2023"]').textContent = t('yr_prev');
   // Update overlay text
   const overlayIds = ['helpTitle','helpSub','helpWhatTitle','helpWhat1','helpWhat2','helpWhat3',
-    'helpHowTitle','helpHow1','helpHow2','helpHow3','helpInsightTitle','helpInsight','helpBtn'];
+    'helpHowTitle','helpHow0','helpHow1','helpHow2','helpHow3','helpInsightTitle','helpInsight','helpBtn'];
   overlayIds.forEach(id => {
     const el = document.getElementById(id);
     if (!el) return;
@@ -333,6 +344,12 @@ function toggleLang() {
   ['statVolume','statCondo','statHouse','statNewBuild','statYield'].forEach(id => {
     const el = document.getElementById(id); if (el) el.innerHTML = t(id);
   });
+
+  // Update search bar
+  const s = document.getElementById('addrSearch');
+  if (s) s.placeholder = t('srchPlaceholder');
+  const sb = document.querySelector('.searchbar .s-btn');
+  if (sb) sb.textContent = t('srchButton');
 }
 
 // ─── Dashboard Data (embedded) ─────────────────────────────────
@@ -446,7 +463,7 @@ async function searchAddress() {
     const url = `https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(q + ', Berlin, Germany')}&countrycodes=de&accept-language=de`;
     const r = await fetch(url, { headers: { 'User-Agent': 'BerlinMarktbericht/1.0' } });
     const results = await r.json();
-    if (!results.length) { document.getElementById('addrSearch').placeholder = '❌ Nicht gefunden'; return; }
+    if (!results.length) { document.getElementById('addrSearch').placeholder = t('srchNotFound'); return; }
     const lat = parseFloat(results[0].lat), lng = parseFloat(results[0].lon);
     map.flyTo([lat, lng], 14, { duration: 1.2 });
     if (searchMarker) map.removeLayer(searchMarker);
@@ -456,8 +473,8 @@ async function searchAddress() {
     searchMarker.bindPopup(`<b>${name}</b>${bezirk ? '<br>📍 ' + bezirk : ''}`, { closeButton: false }).openPopup();
     if (bezirk) showTooltip(bezirk);
     document.getElementById('addrSearch').value = name;
-    setTimeout(() => { document.getElementById('addrSearch').placeholder = '🔍 Adresse oder PLZ...'; }, 3000);
-  } catch(e) { document.getElementById('addrSearch').placeholder = '❌ Suche fehlgeschlagen'; }
+    setTimeout(() => { document.getElementById('addrSearch').placeholder = t('srchPlaceholder'); }, 3000);
+  } catch(e) { document.getElementById('addrSearch').placeholder = t('srchFailed'); }
 }
 
 function showTooltip(bezirk) {
@@ -513,16 +530,29 @@ function showTooltip(bezirk) {
     h += `<div class="row"><span>📐 ${t('tt_flaeche')}</span><b>${fl.gesamt_ha.toFixed(1)} ha</b></div>`;
   }
 
-  // Condo prices
+  // Condo prices — with YoY
   const ck = Object.keys(condo).filter(k=>k.startsWith('resale'));
   if (ck.length || condo.erstverkauf_neubau) {
     h += `<div class="hr"></div><div class="sub" style="font-weight:600;margin-bottom:2px">${t('tt_etw')}</div>`;
     for (const k of ck.slice(0,2)) {
       const c = condo[k];
-      h += `<div class="row"><span>   ${k.replace('resale_','')}</span><b>${c.preis_pro_qm.toFixed(0)} €/m²</b></div>`;
+      const p24 = c.preis_pro_qm; const p23 = c.preis_pro_qm_2023;
+      let yoy = '';
+      if (p23 && p24) {
+        const chg = ((p24 - p23) / p23 * 100);
+        yoy = ` <span style="color:${chg>0?'var(--red)':chg<0?'var(--green)':'var(--text-dim)'};font-weight:500">${chg >= 0 ? '+' : ''}${chg.toFixed(0)}%</span>`;
+      }
+      h += `<div class="row"><span>   ${k.replace('resale_','')}</span><b>${p24.toFixed(0)} €/m²${yoy}</b></div>`;
     }
     if (condo.erstverkauf_neubau) {
-      h += `<div class="row"><span>${t('tt_neubau')}</span><b>${condo.erstverkauf_neubau.preis_pro_qm.toFixed(0)} €/m²</b></div>`;
+      const cn = condo.erstverkauf_neubau;
+      const p24 = cn.preis_pro_qm; const p23 = cn.preis_pro_qm_2023;
+      let yoy = '';
+      if (p23 && p24) {
+        const chg = ((p24 - p23) / p23 * 100);
+        yoy = ` <span style="color:${chg>0?'var(--red)':chg<0?'var(--green)':'var(--text-dim)'};font-weight:500">${chg >= 0 ? '+' : ''}${chg.toFixed(0)}%</span>`;
+      }
+      h += `<div class="row"><span>${t('tt_neubau')}</span><b>${p24.toFixed(0)} €/m²${yoy}</b></div>`;
     }
   }
 
@@ -532,7 +562,7 @@ function showTooltip(bezirk) {
     if (brw.change_pct != null) {
       const chg = brw.change_pct;
       const chgColor = chg > 0 ? 'var(--red)' : chg < 0 ? 'var(--green)' : 'var(--text-dim)';
-      h += `<div class="row"><span style="color:var(--text-dim)">   vs 2024</span><b style="color:${chgColor}">${chg >= 0 ? '+' : ''}${chg}%</b></div>`;
+      h += `<div class="row"><span style="color:var(--text-dim)">   vs Vorjahr</span><b style="color:${chgColor}">${chg >= 0 ? '+' : ''}${chg}%</b></div>`;
     }
   }
 
