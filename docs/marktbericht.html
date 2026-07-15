@@ -370,7 +370,7 @@ const BEZIRKE = ['Mitte','Friedrichshain-Kreuzberg','Pankow','Charlottenburg-Wil
   'Spandau','Steglitz-Zehlendorf','Tempelhof-Schöneberg','Neukölln',
   'Treptow-Köpenick','Marzahn-Hellersdorf','Lichtenberg','Reinickendorf'];
 
-let map, geoLayer, currentMetric = 'geldumsatz', geoData = null;
+let map, geoLayer, currentMetric = 'condo_resale', geoData = null;
 
 function getColor(value, min, max) {
   if (value == null || max === min) return '#374151';
@@ -449,7 +449,7 @@ function buildMap() {
     lh+=`<div class="r"><span class="d" style="background:${getColor(v,min,max)}"></span> ${formatVal(v,currentMetric)}</div>`;}
   document.getElementById('legend').innerHTML = lh;
   const sorted = BEZIRKE.map(b=>({bezirk:b,val:getMetricValue(b,currentMetric)})).sort((a,b)=>(b.val||0)-(a.val||0));
-  document.getElementById('dlist').innerHTML = sorted.map(d =>
+  document.getElementById('dlist').innerHTML = sorted.map((d,i) =>
     `<div class="d-row" onclick="zoomToDistrict('${d.bezirk}')"><span class="d-name">${d.bezirk}</span><span class="d-val">${formatVal(d.val,currentMetric)}</span></div>`).join('');
 }
 
@@ -530,6 +530,21 @@ function showTooltip(bezirk) {
     h += `<div class="val">${formatVal(curVal, currentMetric)}</div>`;
     h += `<div class="insight" style="color:${diffColor};margin-top:4px;font-size:12px;font-weight:600">`;
     h += above ? `▲ ${Math.abs(diffPct).toFixed(0)}% ${t('tt_above_avg')}` : `▼ ${Math.abs(diffPct).toFixed(0)}% ${t('tt_below_avg')}`;
+    h += `</div>`;
+
+    // "So what?" — ranking + real money
+    const allSorted = BEZIRKE.map(b => ({bezirk:b, val:getMetricValue(b, currentMetric)}))
+      .filter(x => x.val != null).sort((a,b) => (b.val||0) - (a.val||0));
+    const rank = allSorted.findIndex(x => x.bezirk === bezirk) + 1;
+    h += `<div style="margin-top:6px;font-size:11px;color:var(--text-dim)">`;
+    h += `#${rank} of ${allSorted.length} Bezirke`;
+    
+    // Real-money translation for price metrics
+    if (currentMetric === 'condo_resale' && curVal) {
+      h += ` · ${(curVal*60).toLocaleString()} € für 60 m²`;
+    } else if (currentMetric === 'condo_neubau' && curVal) {
+      h += ` · ${(curVal*60).toLocaleString()} € für 60 m²`;
+    }
     h += `</div>`;
 
     // YoY comparison where available
