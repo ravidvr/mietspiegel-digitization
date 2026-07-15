@@ -634,8 +634,8 @@
     "weg_creation": "Manually transcribed from Section 2.2/Chapter 7.",
     "outlook": "Manually transcribed from Chapter 8.",
     "investment_properties": "Manually transcribed from Section 5.4.1 summary tables.",
-    "price_tables_house": "FAILED: pymupdf text extraction cannot parse merged-cell tables reliably. Requires tabula-py or camelot-py with lattice mode.",
-    "price_tables_condo": "FAILED: same issue. Stadtgebiet-level tables need proper table extraction.",
+    "price_tables_house": "EXTRACTED via pdfbox-app-3.0.7",
+    "price_tables_condo": "EXTRACTED via pdfbox-app-3.0.7 — 18 rows",
     "price_tables_land": "NOT ATTEMPTED: requires same table parser as house/condo tables.",
     "historical_trends": "NOT ATTEMPTED: separate table format, needs dedicated parser.",
     "next_steps": "Install tabula-py (Java-based) or camelot-py for lattice-based PDF table extraction. Or manually transcribe the summary price rows."
@@ -646,5 +646,660 @@
     "bezirk_summary": "All 12 districts have complete data. Pct sums within 0.1% of 100.",
     "bezirk_validation": "Kauffälle sum: 20,080 + 709 Pakete = 20,789 ✓. Geldumsatz: 14,540 + 348 Pakete = 14,889 ✓. Fläche: 447.4 + 2.7 Pakete = 450.1 ✓.",
     "confidence": "HIGH: Bezirk data validated against report totals. All sums match. Ready for dashboard."
-  }
+  },
+  "house_prices": {
+    "freistehend": [
+      {
+        "baujahresgruppe": "bis 1919",
+        "wohnlage": "einfach + mittel",
+        "kauffaelle": 9,
+        "grundstuecksflaeche_m2": 921,
+        "geschossflaeche_m2": 272,
+        "kaufpreis_pro_qm_gf": 3604,
+        "trend": 15
+      },
+      {
+        "baujahresgruppe": "bis 1919",
+        "wohnlage": "gut + sehr gut",
+        "kauffaelle": 4,
+        "grundstuecksflaeche_m2": 903,
+        "geschossflaeche_m2": 350,
+        "kaufpreis_pro_qm_gf": 3873,
+        "trend": -15
+      },
+      {
+        "baujahresgruppe": "bis 1919",
+        "wohnlage": "insgesamt",
+        "kauffaelle": 12,
+        "grundstuecksflaeche_m2": 868,
+        "geschossflaeche_m2": 254,
+        "kaufpreis_pro_qm_gf": 2956,
+        "trend": -5
+      },
+      {
+        "baujahresgruppe": "1920-1948",
+        "wohnlage": "einfach + mittel",
+        "kauffaelle": 188,
+        "grundstuecksflaeche_m2": 665,
+        "geschossflaeche_m2": 148,
+        "kaufpreis_pro_qm_gf": 3204,
+        "trend": -5
+      },
+      {
+        "baujahresgruppe": "1920-1948",
+        "wohnlage": "gut + sehr gut",
+        "kauffaelle": 46,
+        "grundstuecksflaeche_m2": 849,
+        "geschossflaeche_m2": 232,
+        "kaufpreis_pro_qm_gf": 5226,
+        "trend": -5
+      },
+      {
+        "baujahresgruppe": "1920-1948",
+        "wohnlage": "insgesamt",
+        "kauffaelle": 234,
+        "grundstuecksflaeche_m2": 687,
+        "geschossflaeche_m2": 158,
+        "kaufpreis_pro_qm_gf": 3315,
+        "trend": -5
+      },
+      {
+        "baujahresgruppe": "1949-1970",
+        "wohnlage": "einfach + mittel",
+        "kauffaelle": 104,
+        "grundstuecksflaeche_m2": 719,
+        "geschossflaeche_m2": 137,
+        "kaufpreis_pro_qm_gf": 3401,
+        "trend": -5
+      },
+      {
+        "baujahresgruppe": "1949-1970",
+        "wohnlage": "gut + sehr gut",
+        "kauffaelle": 32,
+        "grundstuecksflaeche_m2": 790,
+        "geschossflaeche_m2": 183,
+        "kaufpreis_pro_qm_gf": 4854,
+        "trend": -15
+      },
+      {
+        "baujahresgruppe": "1949-1970",
+        "wohnlage": "insgesamt",
+        "kauffaelle": 133,
+        "grundstuecksflaeche_m2": 735,
+        "geschossflaeche_m2": 143,
+        "kaufpreis_pro_qm_gf": 3519,
+        "trend": -5
+      },
+      {
+        "baujahresgruppe": "1971-1990",
+        "wohnlage": "einfach + mittel",
+        "kauffaelle": 158,
+        "grundstuecksflaeche_m2": 596,
+        "geschossflaeche_m2": 162,
+        "kaufpreis_pro_qm_gf": 3165,
+        "trend": -5
+      },
+      {
+        "baujahresgruppe": "1971-1990",
+        "wohnlage": "gut + sehr gut",
+        "kauffaelle": 21,
+        "grundstuecksflaeche_m2": 605,
+        "geschossflaeche_m2": 160,
+        "kaufpreis_pro_qm_gf": 3795,
+        "trend": -15
+      },
+      {
+        "baujahresgruppe": "1971-1990",
+        "wohnlage": "insgesamt",
+        "kauffaelle": 178,
+        "grundstuecksflaeche_m2": 599,
+        "geschossflaeche_m2": 161,
+        "kaufpreis_pro_qm_gf": 3251,
+        "trend": -5
+      },
+      {
+        "baujahresgruppe": "1991-2020",
+        "wohnlage": "einfach + mittel",
+        "kauffaelle": 190,
+        "grundstuecksflaeche_m2": 577,
+        "geschossflaeche_m2": 160,
+        "kaufpreis_pro_qm_gf": 3840,
+        "trend": -5
+      },
+      {
+        "baujahresgruppe": "1991-2020",
+        "wohnlage": "gut + sehr gut",
+        "kauffaelle": 9,
+        "grundstuecksflaeche_m2": 824,
+        "geschossflaeche_m2": 224,
+        "kaufpreis_pro_qm_gf": 4829,
+        "trend": -15
+      },
+      {
+        "baujahresgruppe": "1991-2020",
+        "wohnlage": "insgesamt",
+        "kauffaelle": 200,
+        "grundstuecksflaeche_m2": 582,
+        "geschossflaeche_m2": 162,
+        "kaufpreis_pro_qm_gf": 3869,
+        "trend": -5
+      },
+      {
+        "baujahresgruppe": "ab 2021",
+        "wohnlage": "einfach + mittel",
+        "kauffaelle": 12,
+        "grundstuecksflaeche_m2": 724,
+        "geschossflaeche_m2": 196,
+        "kaufpreis_pro_qm_gf": 4146,
+        "trend": -15
+      },
+      {
+        "baujahresgruppe": "ab 2021",
+        "wohnlage": "insgesamt",
+        "kauffaelle": 12,
+        "grundstuecksflaeche_m2": 658,
+        "geschossflaeche_m2": 205,
+        "kaufpreis_pro_qm_gf": 4028,
+        "trend": -15
+      }
+    ],
+    "doppelhaushaelfte": [
+      {
+        "baujahresgruppe": "bis 1919",
+        "wohnlage": "einfach + mittel",
+        "kauffaelle": 3,
+        "grundstuecksflaeche_m2": 567,
+        "geschossflaeche_m2": 186,
+        "kaufpreis_pro_qm_gf": 3445,
+        "trend": 15
+      },
+      {
+        "baujahresgruppe": "bis 1919",
+        "wohnlage": "insgesamt",
+        "kauffaelle": 4,
+        "grundstuecksflaeche_m2": 512,
+        "geschossflaeche_m2": 184,
+        "kaufpreis_pro_qm_gf": 3516,
+        "trend": 15
+      },
+      {
+        "baujahresgruppe": "1920-1948",
+        "wohnlage": "einfach + mittel",
+        "kauffaelle": 63,
+        "grundstuecksflaeche_m2": 508,
+        "geschossflaeche_m2": 133,
+        "kaufpreis_pro_qm_gf": 3200,
+        "trend": -15
+      },
+      {
+        "baujahresgruppe": "1920-1948",
+        "wohnlage": "gut + sehr gut",
+        "kauffaelle": 8,
+        "grundstuecksflaeche_m2": 455,
+        "geschossflaeche_m2": 209,
+        "kaufpreis_pro_qm_gf": 4579,
+        "trend": -15
+      },
+      {
+        "baujahresgruppe": "1920-1948",
+        "wohnlage": "insgesamt",
+        "kauffaelle": 67,
+        "grundstuecksflaeche_m2": 497,
+        "geschossflaeche_m2": 133,
+        "kaufpreis_pro_qm_gf": 3270,
+        "trend": -15
+      },
+      {
+        "baujahresgruppe": "1949-1970",
+        "wohnlage": "einfach + mittel",
+        "kauffaelle": 15,
+        "grundstuecksflaeche_m2": 395,
+        "geschossflaeche_m2": 128,
+        "kaufpreis_pro_qm_gf": 3664,
+        "trend": 5
+      },
+      {
+        "baujahresgruppe": "1949-1970",
+        "wohnlage": "gut + sehr gut",
+        "kauffaelle": 12,
+        "grundstuecksflaeche_m2": 458,
+        "geschossflaeche_m2": 156,
+        "kaufpreis_pro_qm_gf": 4612,
+        "trend": -5
+      },
+      {
+        "baujahresgruppe": "1949-1970",
+        "wohnlage": "insgesamt",
+        "kauffaelle": 25,
+        "grundstuecksflaeche_m2": 417,
+        "geschossflaeche_m2": 133,
+        "kaufpreis_pro_qm_gf": 4040,
+        "trend": null
+      },
+      {
+        "baujahresgruppe": "1971-1990",
+        "wohnlage": "einfach + mittel",
+        "kauffaelle": 40,
+        "grundstuecksflaeche_m2": 321,
+        "geschossflaeche_m2": 128,
+        "kaufpreis_pro_qm_gf": 3289,
+        "trend": -5
+      },
+      {
+        "baujahresgruppe": "1971-1990",
+        "wohnlage": "gut + sehr gut",
+        "kauffaelle": 11,
+        "grundstuecksflaeche_m2": 347,
+        "geschossflaeche_m2": 148,
+        "kaufpreis_pro_qm_gf": 3799,
+        "trend": -5
+      },
+      {
+        "baujahresgruppe": "1971-1990",
+        "wohnlage": "insgesamt",
+        "kauffaelle": 50,
+        "grundstuecksflaeche_m2": 326,
+        "geschossflaeche_m2": 131,
+        "kaufpreis_pro_qm_gf": 3357,
+        "trend": -5
+      },
+      {
+        "baujahresgruppe": "1991-2020",
+        "wohnlage": "einfach + mittel",
+        "kauffaelle": 25,
+        "grundstuecksflaeche_m2": 352,
+        "geschossflaeche_m2": 147,
+        "kaufpreis_pro_qm_gf": 3964,
+        "trend": null
+      },
+      {
+        "baujahresgruppe": "1991-2020",
+        "wohnlage": "gut + sehr gut",
+        "kauffaelle": 5,
+        "grundstuecksflaeche_m2": 358,
+        "geschossflaeche_m2": 163,
+        "kaufpreis_pro_qm_gf": 6496,
+        "trend": -5
+      },
+      {
+        "baujahresgruppe": "1991-2020",
+        "wohnlage": "insgesamt",
+        "kauffaelle": 31,
+        "grundstuecksflaeche_m2": 344,
+        "geschossflaeche_m2": 148,
+        "kaufpreis_pro_qm_gf": 4073,
+        "trend": 5
+      },
+      {
+        "baujahresgruppe": "ab 2021",
+        "wohnlage": "einfach + mittel",
+        "kauffaelle": 6,
+        "grundstuecksflaeche_m2": 261,
+        "geschossflaeche_m2": 167,
+        "kaufpreis_pro_qm_gf": 4429,
+        "trend": 5
+      },
+      {
+        "baujahresgruppe": "ab 2021",
+        "wohnlage": "gut + sehr gut",
+        "kauffaelle": 4,
+        "grundstuecksflaeche_m2": 294,
+        "geschossflaeche_m2": 120,
+        "kaufpreis_pro_qm_gf": 5417,
+        "trend": null
+      },
+      {
+        "baujahresgruppe": "ab 2021",
+        "wohnlage": "insgesamt",
+        "kauffaelle": 10,
+        "grundstuecksflaeche_m2": 262,
+        "geschossflaeche_m2": 148,
+        "kaufpreis_pro_qm_gf": 4824,
+        "trend": 5
+      }
+    ],
+    "reihenhaus": [
+      {
+        "baujahresgruppe": "1920-1948",
+        "wohnlage": "einfach + mittel",
+        "kauffaelle": 68,
+        "grundstuecksflaeche_m2": 256,
+        "geschossflaeche_m2": 120,
+        "kaufpreis_pro_qm_gf": 3990,
+        "trend": null
+      },
+      {
+        "baujahresgruppe": "1920-1948",
+        "wohnlage": "gut + sehr gut",
+        "kauffaelle": 12,
+        "grundstuecksflaeche_m2": 289,
+        "geschossflaeche_m2": 158,
+        "kaufpreis_pro_qm_gf": 4606,
+        "trend": -15
+      },
+      {
+        "baujahresgruppe": "1920-1948",
+        "wohnlage": "insgesamt",
+        "kauffaelle": 79,
+        "grundstuecksflaeche_m2": 258,
+        "geschossflaeche_m2": 126,
+        "kaufpreis_pro_qm_gf": 4126,
+        "trend": -15
+      },
+      {
+        "baujahresgruppe": "1949-1970",
+        "wohnlage": "einfach + mittel",
+        "kauffaelle": 71,
+        "grundstuecksflaeche_m2": 273,
+        "geschossflaeche_m2": 113,
+        "kaufpreis_pro_qm_gf": 3201,
+        "trend": -5
+      },
+      {
+        "baujahresgruppe": "1949-1970",
+        "wohnlage": "gut + sehr gut",
+        "kauffaelle": 8,
+        "grundstuecksflaeche_m2": 361,
+        "geschossflaeche_m2": 121,
+        "kaufpreis_pro_qm_gf": 5270,
+        "trend": 5
+      },
+      {
+        "baujahresgruppe": "1949-1970",
+        "wohnlage": "insgesamt",
+        "kauffaelle": 75,
+        "grundstuecksflaeche_m2": 281,
+        "geschossflaeche_m2": 115,
+        "kaufpreis_pro_qm_gf": 3283,
+        "trend": -5
+      },
+      {
+        "baujahresgruppe": "1971-1990",
+        "wohnlage": "einfach + mittel",
+        "kauffaelle": 41,
+        "grundstuecksflaeche_m2": 315,
+        "geschossflaeche_m2": 134,
+        "kaufpreis_pro_qm_gf": 3004,
+        "trend": -15
+      },
+      {
+        "baujahresgruppe": "1971-1990",
+        "wohnlage": "gut + sehr gut",
+        "kauffaelle": 9,
+        "grundstuecksflaeche_m2": 354,
+        "geschossflaeche_m2": 156,
+        "kaufpreis_pro_qm_gf": 4559,
+        "trend": 15
+      },
+      {
+        "baujahresgruppe": "1971-1990",
+        "wohnlage": "insgesamt",
+        "kauffaelle": 47,
+        "grundstuecksflaeche_m2": 314,
+        "geschossflaeche_m2": 135,
+        "kaufpreis_pro_qm_gf": 3026,
+        "trend": -15
+      },
+      {
+        "baujahresgruppe": "1991-2020",
+        "wohnlage": "einfach + mittel",
+        "kauffaelle": 52,
+        "grundstuecksflaeche_m2": 228,
+        "geschossflaeche_m2": 149,
+        "kaufpreis_pro_qm_gf": 3877,
+        "trend": null
+      },
+      {
+        "baujahresgruppe": "1991-2020",
+        "wohnlage": "gut + sehr gut",
+        "kauffaelle": 5,
+        "grundstuecksflaeche_m2": 308,
+        "geschossflaeche_m2": 163,
+        "kaufpreis_pro_qm_gf": 4828,
+        "trend": null
+      },
+      {
+        "baujahresgruppe": "1991-2020",
+        "wohnlage": "insgesamt",
+        "kauffaelle": 57,
+        "grundstuecksflaeche_m2": 228,
+        "geschossflaeche_m2": 147,
+        "kaufpreis_pro_qm_gf": 3936,
+        "trend": null
+      },
+      {
+        "baujahresgruppe": "ab 2021",
+        "wohnlage": "einfach + mittel",
+        "kauffaelle": 22,
+        "grundstuecksflaeche_m2": 254,
+        "geschossflaeche_m2": 170,
+        "kaufpreis_pro_qm_gf": 3368,
+        "trend": null
+      },
+      {
+        "baujahresgruppe": "ab 2021",
+        "wohnlage": "insgesamt",
+        "kauffaelle": 22,
+        "grundstuecksflaeche_m2": 254,
+        "geschossflaeche_m2": 170,
+        "kaufpreis_pro_qm_gf": 3368,
+        "trend": 0
+      }
+    ]
+  },
+  "condo_resales": [
+    {
+      "baujahresgruppe": "1949-1970",
+      "stadtgebiet_rows": [
+        {
+          "stadtgebiet": "City",
+          "kf23_einfach": 13,
+          "kf23_gut": 19,
+          "kf24_einfach": 13,
+          "kf24_gut": 14,
+          "mw23_einfach": 4279.0,
+          "mw23_gut": 5567.0,
+          "mw24_einfach": 4956.0,
+          "mw24_gut": 4913.0
+        },
+        {
+          "stadtgebiet": "Nord",
+          "kf23_einfach": 36,
+          "kf23_gut": 2,
+          "kf24_einfach": 51,
+          "kf24_gut": 3,
+          "mw23_einfach": 3497.0,
+          "mw23_gut": 3504.0,
+          "mw24_einfach": 3845.0,
+          "mw24_gut": null
+        },
+        {
+          "stadtgebiet": "Ost",
+          "kf23_einfach": 0,
+          "kf23_gut": 0,
+          "kf24_einfach": 0,
+          "kf24_gut": 0,
+          "mw23_einfach": 3424.0,
+          "mw23_gut": 3427.0,
+          "mw24_einfach": null,
+          "mw24_gut": null
+        },
+        {
+          "stadtgebiet": "Südost",
+          "kf23_einfach": 37,
+          "kf23_gut": 0,
+          "kf24_einfach": 41,
+          "kf24_gut": 0,
+          "mw23_einfach": 3424.0,
+          "mw23_gut": 3427.0,
+          "mw24_einfach": null,
+          "mw24_gut": null
+        },
+        {
+          "stadtgebiet": "Südwest",
+          "kf23_einfach": 22,
+          "kf23_gut": 63,
+          "kf24_einfach": 30,
+          "kf24_gut": 80,
+          "mw23_einfach": 4112.0,
+          "mw23_gut": 4284.0,
+          "mw24_einfach": 3795.0,
+          "mw24_gut": 4230.0
+        },
+        {
+          "stadtgebiet": "West",
+          "kf23_einfach": 22,
+          "kf23_gut": 0,
+          "kf24_einfach": 29,
+          "kf24_gut": 0,
+          "mw23_einfach": 3412.0,
+          "mw23_gut": 3025.0,
+          "mw24_einfach": null,
+          "mw24_gut": null
+        }
+      ]
+    },
+    {
+      "baujahresgruppe": "1971-1990",
+      "stadtgebiet_rows": [
+        {
+          "stadtgebiet": "City",
+          "kf23_einfach": 23,
+          "kf23_gut": 8,
+          "kf24_einfach": 32,
+          "kf24_gut": 11,
+          "mw23_einfach": 4771.0,
+          "mw23_gut": 5460.0,
+          "mw24_einfach": 5033.0,
+          "mw24_gut": 5073.0
+        },
+        {
+          "stadtgebiet": "Nord",
+          "kf23_einfach": 27,
+          "kf23_gut": 5,
+          "kf24_einfach": 20,
+          "kf24_gut": 8,
+          "mw23_einfach": 3785.0,
+          "mw23_gut": 3893.0,
+          "mw24_einfach": 3508.0,
+          "mw24_gut": 4322.0
+        },
+        {
+          "stadtgebiet": "Ost",
+          "kf23_einfach": 0,
+          "kf23_gut": 0,
+          "kf24_einfach": 0,
+          "kf24_gut": 0,
+          "mw23_einfach": 3576.0,
+          "mw23_gut": 3376.0,
+          "mw24_einfach": null,
+          "mw24_gut": null
+        },
+        {
+          "stadtgebiet": "Südost",
+          "kf23_einfach": 51,
+          "kf23_gut": 0,
+          "kf24_einfach": 63,
+          "kf24_gut": 0,
+          "mw23_einfach": 3576.0,
+          "mw23_gut": 3376.0,
+          "mw24_einfach": null,
+          "mw24_gut": null
+        },
+        {
+          "stadtgebiet": "Südwest",
+          "kf23_einfach": 26,
+          "kf23_gut": 72,
+          "kf24_einfach": 29,
+          "kf24_gut": 84,
+          "mw23_einfach": 3963.0,
+          "mw23_gut": 4767.0,
+          "mw24_einfach": 3968.0,
+          "mw24_gut": 5006.0
+        },
+        {
+          "stadtgebiet": "West",
+          "kf23_einfach": 11,
+          "kf23_gut": 0,
+          "kf24_einfach": 13,
+          "kf24_gut": 2,
+          "mw23_einfach": 3772.0,
+          "mw23_gut": 3761.0,
+          "mw24_einfach": null,
+          "mw24_gut": null
+        }
+      ]
+    },
+    {
+      "baujahresgruppe": "ab 1991",
+      "stadtgebiet_rows": [
+        {
+          "stadtgebiet": "City",
+          "kf23_einfach": 185,
+          "kf23_gut": 151,
+          "kf24_einfach": 230,
+          "kf24_gut": 240,
+          "mw23_einfach": 7080.0,
+          "mw23_gut": 7685.0,
+          "mw24_einfach": 7233.0,
+          "mw24_gut": 7734.0
+        },
+        {
+          "stadtgebiet": "Nord",
+          "kf23_einfach": 124,
+          "kf23_gut": 27,
+          "kf24_einfach": 178,
+          "kf24_gut": 28,
+          "mw23_einfach": 4362.0,
+          "mw23_gut": 5048.0,
+          "mw24_einfach": 4060.0,
+          "mw24_gut": 5275.0
+        },
+        {
+          "stadtgebiet": "Ost",
+          "kf23_einfach": 87,
+          "kf23_gut": 1,
+          "kf24_einfach": 113,
+          "kf24_gut": 3,
+          "mw23_einfach": 4065.0,
+          "mw23_gut": 4065.0,
+          "mw24_einfach": 3678.0,
+          "mw24_gut": null
+        },
+        {
+          "stadtgebiet": "Südost",
+          "kf23_einfach": 141,
+          "kf23_gut": 16,
+          "kf24_einfach": 152,
+          "kf24_gut": 20,
+          "mw23_einfach": 4196.0,
+          "mw23_gut": 4220.0,
+          "mw24_einfach": 4011.0,
+          "mw24_gut": 4794.0
+        },
+        {
+          "stadtgebiet": "Südwest",
+          "kf23_einfach": 21,
+          "kf23_gut": 53,
+          "kf24_einfach": 29,
+          "kf24_gut": 56,
+          "mw23_einfach": 5009.0,
+          "mw23_gut": 6856.0,
+          "mw24_einfach": 5158.0,
+          "mw24_gut": 6633.0
+        },
+        {
+          "stadtgebiet": "West",
+          "kf23_einfach": 20,
+          "kf23_gut": 0,
+          "kf24_einfach": 32,
+          "kf24_gut": 0,
+          "mw23_einfach": 3738.0,
+          "mw23_gut": 2783.0,
+          "mw24_einfach": null,
+          "mw24_gut": null
+        }
+      ]
+    }
+  ]
 }
