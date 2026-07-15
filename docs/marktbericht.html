@@ -551,120 +551,102 @@ function showTooltip(bezirk) {
   const fl = DATA.bezirke.flaechenumsatz.find(d=>d.bezirk===bezirk);
   const condo = DATA.condo[bezirk] || {};
   const brw = DATA.brw_offen.find(d=>d.bezirk===bezirk);
+  const bau = (DATA.baufertig||{}).bezirke ? DATA.baufertig.bezirke.find(d=>d.bezirk===bezirk) : null;
+  const gen = (DATA.genehmigungen||{}).bezirke ? DATA.genehmigungen.bezirke.find(d=>d.bezirk===bezirk) : null;
+  const wb = (DATA.wohnbestand||{}).bezirke ? DATA.wohnbestand.bezirke.find(d=>d.bezirk===bezirk) : null;
 
   let h = `<button class="close" onclick="this.parentElement.style.display='none'">×</button>`;
   h += `<h3>🏙️ ${bezirk}</h3>`;
 
-  // Current metric value with Berlin comparison
+  // ── Main value + comparison (always) ──
   const curVal = getMetricValue(bezirk, currentMetric);
   if (curVal != null) {
     const allVals = BEZIRKE.map(b => getMetricValue(b, currentMetric)).filter(v => v != null);
     const berlinAvg = allVals.reduce((a,b)=>a+b,0) / allVals.length;
     const diffPct = berlinAvg > 0 ? ((curVal - berlinAvg) / berlinAvg * 100) : 0;
     const above = diffPct > 0;
-    const diffColor = above ? 'var(--red)' : 'var(--green)';
     h += `<div class="val">${formatVal(curVal, currentMetric)}</div>`;
-    h += `<div class="insight" style="color:${diffColor};margin-top:4px;font-size:12px;font-weight:600">`;
+    h += `<div class="insight" style="color:${above?'var(--red)':'var(--green)'};margin-top:4px;font-size:12px;font-weight:600">`;
     h += above ? `▲ ${Math.abs(diffPct).toFixed(0)}% ${t('tt_above_avg')}` : `▼ ${Math.abs(diffPct).toFixed(0)}% ${t('tt_below_avg')}`;
     h += `</div>`;
 
-    // "So what?" — ranking + real money
-    const allSorted = BEZIRKE.map(b => ({bezirk:b, val:getMetricValue(b, currentMetric)}))
-      .filter(x => x.val != null).sort((a,b) => (b.val||0) - (a.val||0));
-    const rank = allSorted.findIndex(x => x.bezirk === bezirk) + 1;
+    const allSorted = BEZIRKE.map(b=>({bezirk:b,val:getMetricValue(b,currentMetric)}))
+      .filter(x=>x.val!=null).sort((a,b)=>(b.val||0)-(a.val||0));
+    const rank = allSorted.findIndex(x=>x.bezirk===bezirk) + 1;
     h += `<div style="margin-top:6px;font-size:11px;color:var(--text-dim)">`;
     h += `#${rank} of ${allSorted.length} Bezirke`;
-    
-    // Real-money translation for price metrics
-    if (currentMetric === 'condo_resale' && curVal) {
+
+    if (['condo_resale','condo_neubau'].includes(currentMetric) && curVal)
       h += ` · ${(curVal*60).toLocaleString()} € für 60 m²`;
-    } else if (currentMetric === 'condo_neubau' && curVal) {
-      h += ` · ${(curVal*60).toLocaleString()} € für 60 m²`;
-    }
+    if (['baufertig','genehmigungen'].includes(currentMetric) && wb && curVal)
+      h += ` · ${(curVal/wb.wohnungen_2024*1000).toFixed(1)} pro 1.000 WE`;
+    if (currentMetric==='umsatz_pro_1k' && kf)
+      h += ` · ${kf.gesamt_anzahl.toLocaleString()} Verkäufe`;
+    if (currentMetric==='baurate' && bau)
+      h += ` · ${bau.fertig_2024.toLocaleString()} neue WE`;
     h += `</div>`;
 
-    // YoY comparison where available
-    if (kf && gd) {
-      let yoyHtml = '';
-      // Geldumsatz YoY
-      const gdBerlinAll = DATA.bezirke.geldumsatz;
-      const gd2023 = gdBerlinAll.find(d=>d.bezirk===bezirk);
-      // We don't have 2023 per-bezirk data explicitly — compute from overview
-      // Use total Berlin overview data for context
-      yoyHtml += `<div style="margin-top:8px;padding:6px 8px;background:var(--surface2);border-radius:4px;font-size:11px">`;
-      yoyHtml += `<span style="color:var(--text-dim)">${t('tt_berlin_avg')}:</span> `;
-      yoyHtml += `<span style="font-weight:700">${formatVal(berlinAvg, currentMetric)}</span>`;
-      yoyHtml += `</div>`;
-      h += yoyHtml;
-    }
+    h += `<div style="margin-top:8px;padding:6px 8px;background:var(--surface2);border-radius:4px;font-size:11px">`;
+    h += `<span style="color:var(--text-dim)">${t('tt_berlin_avg')}:</span> `;
+    h += `<span style="font-weight:700">${formatVal(berlinAvg, currentMetric)}</span>`;
+    h += `</div>`;
   }
 
-  // Key stats block
-  if (gd) {
-    h += `<div class="hr"></div>`;
-    h += `<div class="row"><span>💰 ${t('tt_geldumsatz')}</span><b>${gd.gesamt_MioEUR.toFixed(1)} Mio. €</b></div>`;
-    h += `<div class="row"><span style="color:var(--text-dim)">   ${t('tt_share_berlin')}</span><b>${gd.gesamt_pct_berlin.toFixed(1)}%</b></div>`;
-  }
-  if (kf) {
-    h += `<div class="row"><span>📋 ${t('tt_kf')}</span><b>${kf.gesamt_anzahl.toLocaleString()}</b></div>`;
-    h += `<div class="row"><span style="color:var(--text-dim)">   ${t('tt_kf_we')}</span><b>${kf.we_anzahl.toLocaleString()}</b></div>`;
-  }
-  if (fl) {
-    h += `<div class="row"><span>📐 ${t('tt_flaeche')}</span><b>${fl.gesamt_ha.toFixed(1)} ha</b></div>`;
-  }
-
-  // Apartment prices — with einfache/gute spread
-  const ck = Object.keys(condo).filter(k=>k.startsWith('resale'));
-  if (ck.length || condo.erstverkauf_neubau) {
-    h += `<div class="hr"></div><div class="sub" style="font-weight:600;margin-bottom:2px">${t('tt_etw')}</div>`;
-    for (const k of ck.slice(0,2)) {
-      const c = condo[k];
-      const elo = c.preis_pro_qm, ehi = c.preis_pro_qm_gut;
-      if (ehi) {
-        h += `<div class="row"><span>   ${k.replace('resale_','')}</span><b>${elo.toFixed(0)} – ${ehi.toFixed(0)} €/m²</b></div>`;
-        // Mini range bar
-        const allPrices = [elo, ehi];
-        const lo = Math.min(...allPrices), hi = Math.max(...allPrices);
-        const pct = hi > lo ? ((elo - lo) / (hi - lo) * 100) : 50;
-        h += `<div class="range-bar"><div class="fill" style="left:0;width:100%"></div><div class="mark" style="left:${pct}%"></div></div>`;
-        h += `<div class="range-label"><span>einfach</span><span>gut</span></div>`;
-      } else {
-        h += `<div class="row"><span>   ${k.replace('resale_','')}</span><b>${elo.toFixed(0)} €/m²</b></div>`;
-      }
+  // ── Context: price metrics ──
+  if (['geldumsatz','geldumsatz_bebaut','geldumsatz_we','kauffaelle','kauffaelle_we','flaeche','condo_resale','condo_neubau','brw_min','brw_max'].includes(currentMetric)) {
+    if (gd) {
+      h += `<div class="hr"></div>`;
+      h += `<div class="row"><span>💰 ${t('tt_geldumsatz')}</span><b>${gd.gesamt_MioEUR.toFixed(1)} Mio. €</b></div>`;
+      h += `<div class="row"><span style="color:var(--text-dim)">   ${t('tt_share_berlin')}</span><b>${gd.gesamt_pct_berlin.toFixed(1)}%</b></div>`;
     }
-    if (condo.erstverkauf_neubau) {
-      const cn = condo.erstverkauf_neubau;
-      const elo = cn.preis_pro_qm, ehi = cn.preis_pro_qm_gut;
-      if (ehi) {
-        h += `<div class="row"><span>${t('tt_neubau')}</span><b>${elo.toFixed(0)} – ${ehi.toFixed(0)} €/m²</b></div>`;
-        const pct = ehi > elo ? ((elo - elo) / (ehi - elo) * 100) : 50;
-        h += `<div class="range-bar"><div class="fill" style="left:0;width:100%"></div><div class="mark" style="left:${pct}%"></div></div>`;
-        h += `<div class="range-label"><span>einfach</span><span>gut</span></div>`;
-      } else {
-        h += `<div class="row"><span>${t('tt_neubau')}</span><b>${elo.toFixed(0)} €/m²</b></div>`;
+    if (kf) {
+      h += `<div class="row"><span>📋 ${t('tt_kf')}</span><b>${kf.gesamt_anzahl.toLocaleString()}</b></div>`;
+      h += `<div class="row"><span style="color:var(--text-dim)">   ${t('tt_kf_we')}</span><b>${kf.we_anzahl.toLocaleString()}</b></div>`;
+    }
+    if (fl) h += `<div class="row"><span>📐 ${t('tt_flaeche')}</span><b>${fl.gesamt_ha.toFixed(1)} ha</b></div>`;
+
+    // Condo spread for price metrics
+    const cp = DATA.condo_primary||{};
+    const bp = cp[bezirk];
+    if (bp && bp.sg) {
+      h += `<div class="hr"></div><div class="row"><span>🏢 ${t('tt_etw')} (${bp.sg})</span><b>${bp.price.toFixed(0)} €/m²</b></div>`;
+    }
+
+    if (brw) {
+      const lo=brw.bodenrichtwert_min, hi=brw.bodenrichtwert_max;
+      h += `<div class="row"><span>${t('tt_brw')}</span><b>${lo.toFixed(0)} – ${hi.toFixed(0)} €/m²</b></div>`;
+      if (brw.change_pct != null) {
+        const chg=brw.change_pct, cc=chg>0?'var(--red)':chg<0?'var(--green)':'var(--text-dim)';
+        h += `<div class="row"><span style="color:var(--text-dim)">   vs Vorjahr</span><b style="color:${cc}">${chg>=0?'+':''}${chg}%</b></div>`;
       }
     }
   }
 
-  // Bodenrichtwert — with range bar
-  if (brw) {
-    const lo = brw.bodenrichtwert_min, hi = brw.bodenrichtwert_max;
-    h += `<div class="hr"></div><div class="row"><span>${t('tt_brw')}</span><b>${lo.toFixed(0)} – ${hi.toFixed(0)} €/m²</b></div>`;
-    // Range bar: position mark at 50% since midpoint is the reference
-    h += `<div class="range-bar"><div class="fill" style="left:0;width:100%"></div><div class="mark" style="left:50%"></div></div>`;
-    h += `<div class="range-label"><span>min</span><span>max</span></div>`;
-    if (brw.change_pct != null) {
-      const chg = brw.change_pct;
-      const chgColor = chg > 0 ? 'var(--red)' : chg < 0 ? 'var(--green)' : 'var(--text-dim)';
-      h += `<div class="row"><span style="color:var(--text-dim)">   vs Vorjahr</span><b style="color:${chgColor}">${chg >= 0 ? '+' : ''}${chg}%</b></div>`;
+  // ── Context: construction metrics ──
+  if (['baufertig','genehmigungen','wohnbestand','umsatz_pro_1k','baurate'].includes(currentMetric)) {
+    if (bau) {
+      h += `<div class="hr"></div>`;
+      h += `<div class="row"><span>🏗️ Fertiggestellt 2024</span><b>${bau.fertig_2024.toLocaleString()}</b></div>`;
+      if (bau.change_pct!=null) h += `<div class="row"><span style="color:var(--text-dim)">   vs 2023</span><b>${bau.change_pct>=0?'+':''}${bau.change_pct}%</b></div>`;
+    }
+    if (gen) {
+      h += `<div class="row"><span>📋 Genehmigt 2024</span><b>${gen.genehmigt_2024.toLocaleString()}</b></div>`;
+      if (gen.change_pct!=null) h += `<div class="row"><span style="color:var(--text-dim)">   vs 2023</span><b>${gen.change_pct>=0?'+':''}${gen.change_pct}%</b></div>`;
+    }
+    if (wb) {
+      h += `<div class="row"><span>🏠 Wohnungsbestand</span><b>${wb.wohnungen_2024.toLocaleString()}</b></div>`;
+      h += `<div class="row"><span style="color:var(--text-dim)">   plus ${wb.change_absolut.toLocaleString()} in 2024</span><b>+${wb.change_pct}%</b></div>`;
+    }
+    if (kf) {
+      h += `<div class="hr"></div>`;
+      h += `<div class="row"><span>📋 ${t('tt_kf')}</span><b>${kf.gesamt_anzahl.toLocaleString()}</b></div>`;
+      if (wb) h += `<div class="row"><span style="color:var(--text-dim)">   pro 1.000 WE</span><b>${(kf.gesamt_anzahl/wb.wohnungen_2024*1000).toFixed(1)}</b></div>`;
     }
   }
 
   document.getElementById('tooltip').innerHTML=h;
   document.getElementById('tooltip').style.display='block';
-}
-
-async function init() {
+}async function init() {
   // Populate metric select
   const sel = document.getElementById('metricSelect');
   sel.innerHTML = Object.entries(T[currentLang].metrics).map(([k,v]) => `<option value="${k}">${v}</option>`).join('');
