@@ -499,6 +499,12 @@ function zoomToDistrict(name) {
 function switchMetric() {
   currentMetric = document.getElementById('metricSelect').value;
   buildMap();
+  // Refresh tooltip if open
+  const tt = document.getElementById('tooltip');
+  if (tt.style.display === 'block') {
+    const bez = tt.querySelector('h3');
+    if (bez) showTooltip(bez.textContent.replace('🏙️ ',''));
+  }
 }
 
 // ─── Address Search ────────────────────────────────────────────
