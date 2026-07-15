@@ -43,6 +43,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .tooltip h3{font-size:14px;margin-bottom:4px}
 .tooltip .val{font-size:22px;font-weight:700;color:var(--accent)}
 .tooltip .sub{font-size:10px;color:var(--text-dim)}
+.tooltip .insight{font-size:12px;font-weight:600}
 .tooltip .row{display:flex;justify-content:space-between;font-size:10px;margin:1px 0}
 .tooltip table{width:100%;font-size:10px;border-collapse:collapse;margin:6px 0}
 .tooltip td,.tooltip th{padding:2px 4px;text-align:right}
@@ -177,6 +178,11 @@ const T = {
     tt_brw: '🏞️ Bodenrichtwert',
     tt_etw: '🏢 Wohnungspreise (ø €/m²)',
     tt_neubau: '   — Neubau',
+    tt_above_avg: 'über Berliner Durchschnitt',
+    tt_below_avg: 'unter Berliner Durchschnitt',
+    tt_berlin_avg: 'Berlin ø',
+    tt_geldumsatz: 'Geldumsatz',
+    tt_share_berlin: 'Anteil an Berlin',
     yr_prev: '2023 (Vorjahr)',
     helpTitle: '🏙️ Berliner Immobilienmarkt 2024',
     helpSub: 'Echte Kaufpreise aus 20.789 notariellen Verträgen — keine Schätzungen, keine Angebotspreise.',
@@ -221,6 +227,11 @@ const T = {
     tt_brw: '🏞️ Standard land value',
     tt_etw: '🏢 Condo prices (avg €/m²)',
     tt_neubau: '   — New build',
+    tt_above_avg: 'above Berlin average',
+    tt_below_avg: 'below Berlin average',
+    tt_berlin_avg: 'Berlin avg',
+    tt_geldumsatz: 'Transaction volume',
+    tt_share_berlin: 'Share of Berlin',
     yr_prev: '2023 (previous year)',
     helpTitle: '🏙️ Berlin Real Estate Market 2024',
     helpSub: 'Real sale prices from 20,789 notarized contracts — no estimates, no asking prices.',
@@ -360,15 +371,76 @@ function showTooltip(bezirk) {
   const fl = DATA.bezirke.flaechenumsatz.find(d=>d.bezirk===bezirk);
   const condo = DATA.condo[bezirk] || {};
   const brw = DATA.brw_offen.find(d=>d.bezirk===bezirk);
-  let h = `<button class="close" onclick="this.parentElement.style.display='none'">×</button><h3>🏙️ ${bezirk}</h3>`;
-  if(gd){h+=`<div class="val">${gd.gesamt_MioEUR.toFixed(1)} <span class="sub">Mio. €</span></div><div class="sub">${gd.gesamt_pct_berlin.toFixed(1)}% ${t('tt_pct_berlin')}</div>`;}
-  if(gd){h+=`<div class="hr"></div><table><tr><th></th><th>Mio. €</th><th>% Bezirk</th></tr><tr><td>${t('tt_unbebaut')}</td><td>${gd.unbebaut_MioEUR.toFixed(1)}</td><td>${gd.unbebaut_pct_bezirk.toFixed(1)}%</td></tr><tr><td>${t('tt_bebaut')}</td><td>${gd.bebaut_MioEUR.toFixed(1)}</td><td>${gd.bebaut_pct_bezirk.toFixed(1)}%</td></tr><tr><td>WE/TE</td><td>${gd.we_MioEUR.toFixed(1)}</td><td>${gd.we_pct_bezirk.toFixed(1)}%</td></tr></table>`;}
-  if(kf){h+=`<div class="hr"></div><div class="row"><span>${t('tt_kf')}</span><b>${kf.gesamt_anzahl.toLocaleString()}</b></div><div class="row"><span>${t('tt_kf_we')}</span><b>${kf.we_anzahl.toLocaleString()}</b></div>`;}
-  if(fl){h+=`<div class="row"><span>${t('tt_flaeche')}</span><b>${fl.gesamt_ha.toFixed(1)} ha</b></div>`;}
-  if(brw){h+=`<div class="hr"></div><div class="row"><span>${t('tt_brw')}</span><b>${brw.bodenrichtwert_min.toFixed(0)} – ${brw.bodenrichtwert_max.toFixed(0)} €/m²</b></div>`;}
+
+  let h = `<button class="close" onclick="this.parentElement.style.display='none'">×</button>`;
+  h += `<h3>🏙️ ${bezirk}</h3>`;
+
+  // Current metric value with Berlin comparison
+  const curVal = getMetricValue(bezirk, currentMetric);
+  if (curVal != null) {
+    const allVals = BEZIRKE.map(b => getMetricValue(b, currentMetric)).filter(v => v != null);
+    const berlinAvg = allVals.reduce((a,b)=>a+b,0) / allVals.length;
+    const diffPct = berlinAvg > 0 ? ((curVal - berlinAvg) / berlinAvg * 100) : 0;
+    const above = diffPct > 0;
+    const diffColor = above ? 'var(--red)' : 'var(--green)';
+    h += `<div class="val">${formatVal(curVal, currentMetric)}</div>`;
+    h += `<div class="insight" style="color:${diffColor};margin-top:4px;font-size:12px;font-weight:600">`;
+    h += above ? `▲ ${Math.abs(diffPct).toFixed(0)}% ${t('tt_above_avg')}` : `▼ ${Math.abs(diffPct).toFixed(0)}% ${t('tt_below_avg')}`;
+    h += `</div>`;
+
+    // YoY comparison where available
+    if (kf && gd) {
+      let yoyHtml = '';
+      // Geldumsatz YoY
+      const gdBerlinAll = DATA.bezirke.geldumsatz;
+      const gd2023 = gdBerlinAll.find(d=>d.bezirk===bezirk);
+      // We don't have 2023 per-bezirk data explicitly — compute from overview
+      // Use total Berlin overview data for context
+      yoyHtml += `<div style="margin-top:8px;padding:6px 8px;background:var(--surface2);border-radius:4px;font-size:11px">`;
+      yoyHtml += `<span style="color:var(--text-dim)">${t('tt_berlin_avg')}:</span> `;
+      yoyHtml += `<span style="font-weight:700">${formatVal(berlinAvg, currentMetric)}</span>`;
+      yoyHtml += `</div>`;
+      h += yoyHtml;
+    }
+  }
+
+  // Key stats block
+  if (gd) {
+    h += `<div class="hr"></div>`;
+    h += `<div class="row"><span>💰 ${t('tt_geldumsatz')}</span><b>${gd.gesamt_MioEUR.toFixed(1)} Mio. €</b></div>`;
+    h += `<div class="row"><span style="color:var(--text-dim)">   ${t('tt_share_berlin')}</span><b>${gd.gesamt_pct_berlin.toFixed(1)}%</b></div>`;
+  }
+  if (kf) {
+    h += `<div class="row"><span>📋 ${t('tt_kf')}</span><b>${kf.gesamt_anzahl.toLocaleString()}</b></div>`;
+    h += `<div class="row"><span style="color:var(--text-dim)">   ${t('tt_kf_we')}</span><b>${kf.we_anzahl.toLocaleString()}</b></div>`;
+  }
+  if (fl) {
+    h += `<div class="row"><span>📐 ${t('tt_flaeche')}</span><b>${fl.gesamt_ha.toFixed(1)} ha</b></div>`;
+  }
+
+  // Condo prices
   const ck = Object.keys(condo).filter(k=>k.startsWith('resale'));
-  if(ck.length){h+=`<div class="hr"></div><div class="sub" style="font-weight:600;margin-bottom:2px">${t('tt_etw')}</div>`;for(const k of ck.slice(0,3)){const c=condo[k];h+=`<div class="row"><span>   ${k.replace('resale_','')}</span><b>${c.preis_pro_qm.toFixed(0)} €/m²</b></div>`;}}
-  if(condo.erstverkauf_neubau){h+=`<div class="row"><span>${t('tt_neubau')}</span><b>${condo.erstverkauf_neubau.preis_pro_qm.toFixed(0)} €/m²</b></div>`;}
+  if (ck.length || condo.erstverkauf_neubau) {
+    h += `<div class="hr"></div><div class="sub" style="font-weight:600;margin-bottom:2px">${t('tt_etw')}</div>`;
+    for (const k of ck.slice(0,2)) {
+      const c = condo[k];
+      h += `<div class="row"><span>   ${k.replace('resale_','')}</span><b>${c.preis_pro_qm.toFixed(0)} €/m²</b></div>`;
+    }
+    if (condo.erstverkauf_neubau) {
+      h += `<div class="row"><span>${t('tt_neubau')}</span><b>${condo.erstverkauf_neubau.preis_pro_qm.toFixed(0)} €/m²</b></div>`;
+    }
+  }
+
+  // Bodenrichtwert
+  if (brw) {
+    h += `<div class="hr"></div><div class="row"><span>${t('tt_brw')}</span><b>${brw.bodenrichtwert_min.toFixed(0)} – ${brw.bodenrichtwert_max.toFixed(0)} €/m²</b></div>`;
+    if (brw.change_pct != null) {
+      const chg = brw.change_pct;
+      const chgColor = chg > 0 ? 'var(--red)' : chg < 0 ? 'var(--green)' : 'var(--text-dim)';
+      h += `<div class="row"><span style="color:var(--text-dim)">   vs 2024</span><b style="color:${chgColor}">${chg >= 0 ? '+' : ''}${chg}%</b></div>`;
+    }
+  }
+
   document.getElementById('tooltip').innerHTML=h;
   document.getElementById('tooltip').style.display='block';
 }
