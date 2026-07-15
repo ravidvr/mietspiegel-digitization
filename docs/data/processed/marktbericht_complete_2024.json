@@ -639,7 +639,10 @@
     "price_tables_land": "EXTRACTED: Bodenrichtwerte per Bezirk + Wohnlage tables (offen + geschlossen)",
     "historical_trends": "BLOCKED — data only exists as charts (Abb. 64-66), not as text tables",
     "next_steps": "Install tabula-py (Java-based) or camelot-py for lattice-based PDF table extraction. Or manually transcribe the summary price rows.",
-    "price_tables_erstverkauf": "EXTRACTED — 6 rows"
+    "price_tables_erstverkauf": "EXTRACTED — 6 rows",
+    "price_tables_umwandlung": "EXTRACTED — 5 rows",
+    "price_tables_teileigentum": "EXTRACTED — 1 types",
+    "price_tables_luxury": "EXTRACTED — 6 fields"
   },
   "_quality_report": {
     "checks_passed": 16,
@@ -2008,5 +2011,319 @@
       ]
     },
     "ortsteile_total": 96
+  },
+  "umwandlung_condos": [
+    {
+      "baujahresgruppe": "bis 1919",
+      "stadtgebiet_rows": [
+        {
+          "stadtgebiet": "Nord",
+          "kf23_einfach": 78,
+          "kf23_gut": 165,
+          "kf24_einfach": 84,
+          "kf24_gut": 220,
+          "mw23_einfach": 3309.0,
+          "mw23_gut": 4707.0,
+          "mw24_einfach": 3087.0,
+          "mw24_gut": 4740.0
+        },
+        {
+          "stadtgebiet": "Ost",
+          "kf23_einfach": 22,
+          "kf23_gut": 38,
+          "kf24_einfach": 18,
+          "kf24_gut": 35,
+          "mw23_einfach": 3953.0,
+          "mw23_gut": 4559.0,
+          "mw24_einfach": 3031.0,
+          "mw24_gut": 4793.0
+        },
+        {
+          "stadtgebiet": "Südost",
+          "kf23_einfach": 31,
+          "kf23_gut": 67,
+          "kf24_einfach": 29,
+          "kf24_gut": 68,
+          "mw23_einfach": 2824.0,
+          "mw23_gut": 4723.0,
+          "mw24_einfach": 3114.0,
+          "mw24_gut": 4264.0
+        },
+        {
+          "stadtgebiet": "Südwest",
+          "kf23_einfach": 28,
+          "kf23_gut": 90,
+          "kf24_einfach": 45,
+          "kf24_gut": 113,
+          "mw23_einfach": 3847.0,
+          "mw23_gut": 5367.0,
+          "mw24_einfach": 3619.0,
+          "mw24_gut": 5402.0
+        },
+        {
+          "stadtgebiet": "West",
+          "kf23_einfach": 25,
+          "kf23_gut": 25,
+          "kf24_einfach": 27,
+          "kf24_gut": 33,
+          "mw23_einfach": 2749.0,
+          "mw23_gut": 3336.0,
+          "mw24_einfach": 2692.0,
+          "mw24_gut": 3560.0
+        }
+      ]
+    },
+    {
+      "baujahresgruppe": "bis 1920",
+      "stadtgebiet_rows": [
+        {
+          "stadtgebiet": "City",
+          "kf23_einfach": 76,
+          "kf23_gut": 178,
+          "kf24_einfach": 134,
+          "kf24_gut": 207,
+          "mw23_einfach": 3362.0,
+          "mw23_gut": 5422.0,
+          "mw24_einfach": 3233.0,
+          "mw24_gut": 5155.0
+        },
+        {
+          "stadtgebiet": "Nord",
+          "kf23_einfach": 53,
+          "kf23_gut": 86,
+          "kf24_einfach": 109,
+          "kf24_gut": 120,
+          "mw23_einfach": 3016.0,
+          "mw23_gut": 4114.0,
+          "mw24_einfach": 2665.0,
+          "mw24_gut": 3917.0
+        },
+        {
+          "stadtgebiet": "Ost",
+          "kf23_einfach": 16,
+          "kf23_gut": 36,
+          "kf24_einfach": 17,
+          "kf24_gut": 20,
+          "mw23_einfach": 2775.0,
+          "mw23_gut": 5164.0,
+          "mw24_einfach": 3045.0,
+          "mw24_gut": 5018.0
+        },
+        {
+          "stadtgebiet": "Südost",
+          "kf23_einfach": 50,
+          "kf23_gut": 48,
+          "kf24_einfach": 46,
+          "kf24_gut": 64,
+          "mw23_einfach": 2935.0,
+          "mw23_gut": 3772.0,
+          "mw24_einfach": 3059.0,
+          "mw24_gut": 3767.0
+        },
+        {
+          "stadtgebiet": "Südwest",
+          "kf23_einfach": 47,
+          "kf23_gut": 88,
+          "kf24_einfach": 50,
+          "kf24_gut": 133,
+          "mw23_einfach": 3417.0,
+          "mw23_gut": 4785.0,
+          "mw24_einfach": 3104.0,
+          "mw24_gut": 4851.0
+        },
+        {
+          "stadtgebiet": "West",
+          "kf23_einfach": 27,
+          "kf23_gut": 24,
+          "kf24_einfach": 25,
+          "kf24_gut": 29,
+          "mw23_einfach": 2769.0,
+          "mw23_gut": 3475.0,
+          "mw24_einfach": 2530.0,
+          "mw24_gut": 3524.0
+        }
+      ]
+    },
+    {
+      "baujahresgruppe": "ab 1949",
+      "stadtgebiet_rows": [
+        {
+          "stadtgebiet": "City",
+          "kf23_einfach": 1,
+          "kf23_gut": 8,
+          "kf24_einfach": 3,
+          "kf24_gut": 7,
+          "mw23_einfach": 4909.0,
+          "mw23_gut": 3225.0,
+          "mw24_einfach": 4881.0,
+          "mw24_gut": null
+        },
+        {
+          "stadtgebiet": "City",
+          "kf23_einfach": 31,
+          "kf23_gut": 69,
+          "kf24_einfach": 29,
+          "kf24_gut": 78,
+          "mw23_einfach": 4645.0,
+          "mw23_gut": 5732.0,
+          "mw24_einfach": 4249.0,
+          "mw24_gut": 5583.0
+        },
+        {
+          "stadtgebiet": "City",
+          "kf23_einfach": 22,
+          "kf23_gut": 39,
+          "kf24_einfach": 23,
+          "kf24_gut": 49,
+          "mw23_einfach": 4151.0,
+          "mw23_gut": 6158.0,
+          "mw24_einfach": 3803.0,
+          "mw24_gut": 5856.0
+        }
+      ]
+    },
+    {
+      "baujahresgruppe": "1971-1990",
+      "stadtgebiet_rows": [
+        {
+          "stadtgebiet": "City",
+          "kf23_einfach": 7,
+          "kf23_gut": 8,
+          "kf24_einfach": 2,
+          "kf24_gut": 11,
+          "mw23_einfach": 4374.0,
+          "mw23_gut": 5318.0,
+          "mw24_einfach": 4862.0,
+          "mw24_gut": null
+        },
+        {
+          "stadtgebiet": "City",
+          "kf23_einfach": 15,
+          "kf23_gut": 34,
+          "kf24_einfach": 15,
+          "kf24_gut": 30,
+          "mw23_einfach": 2686.0,
+          "mw23_gut": 5771.0,
+          "mw24_einfach": 3937.0,
+          "mw24_gut": 5553.0
+        },
+        {
+          "stadtgebiet": "City",
+          "kf23_einfach": 6,
+          "kf23_gut": 17,
+          "kf24_einfach": 3,
+          "kf24_gut": 9,
+          "mw23_einfach": 4283.0,
+          "mw23_gut": 5621.0,
+          "mw24_einfach": 4696.0,
+          "mw24_gut": 4795.0
+        }
+      ]
+    },
+    {
+      "baujahresgruppe": "ab 1991",
+      "stadtgebiet_rows": [
+        {
+          "stadtgebiet": "City",
+          "kf23_einfach": 1,
+          "kf23_gut": 10,
+          "kf24_einfach": 0,
+          "kf24_gut": 7,
+          "mw23_einfach": 5923.0,
+          "mw23_gut": 6367.0,
+          "mw24_einfach": null,
+          "mw24_gut": null
+        },
+        {
+          "stadtgebiet": "City",
+          "kf23_einfach": 1,
+          "kf23_gut": 9,
+          "kf24_einfach": 2,
+          "kf24_gut": 9,
+          "mw23_einfach": 7128.0,
+          "mw23_gut": 7175.0,
+          "mw24_einfach": null,
+          "mw24_gut": null
+        },
+        {
+          "stadtgebiet": "City",
+          "kf23_einfach": 3,
+          "kf23_gut": 5,
+          "kf24_einfach": 4,
+          "kf24_gut": 11,
+          "mw23_einfach": 3910.0,
+          "mw23_gut": 7116.0,
+          "mw24_einfach": 4532.0,
+          "mw24_gut": 7660.0
+        }
+      ]
+    },
+    {
+      "baujahresgruppe": "sozial ab 1950",
+      "stadtgebiet_rows": [
+        {
+          "stadtgebiet": "City",
+          "kf23_einfach": 21,
+          "kf23_gut": 48,
+          "kf24_einfach": 16,
+          "kf24_gut": 39,
+          "mw23_einfach": 3306.0,
+          "mw23_gut": 4821.0,
+          "mw24_einfach": 3271.0,
+          "mw24_gut": 4740.0
+        },
+        {
+          "stadtgebiet": "City",
+          "kf23_einfach": 40,
+          "kf23_gut": 100,
+          "kf24_einfach": 33,
+          "kf24_gut": 117,
+          "mw23_einfach": 3508.0,
+          "mw23_gut": 4910.0,
+          "mw24_einfach": 3557.0,
+          "mw24_gut": 5018.0
+        }
+      ]
+    }
+  ],
+  "teileigentum": {
+    "dachraum_unausgebaut": {
+      "kauffaelle_2023": 65,
+      "kauffaelle_2024": 61,
+      "mittelwert_2023_eur_pro_qm": 65.0,
+      "mittelwert_2024_eur_pro_qm": 61.0
+    },
+    "Keller": {
+      "kauffaelle_2023": 27,
+      "kauffaelle_2024": 39,
+      "mittelwert_2023_eur_pro_qm": 27.0,
+      "mittelwert_2024_eur_pro_qm": 39.0
+    },
+    "sonstiges_teileigentum": {
+      "kauffaelle_2023": 8,
+      "kauffaelle_2024": 16,
+      "mittelwert_2023_eur_pro_qm": 16.0,
+      "mittelwert_2024_eur_pro_qm": 1667.0
+    },
+    "Stellpl": {
+      "kauffaelle_2023": 45,
+      "kauffaelle_2024": 76,
+      "mittelwert_2023_eur_pro_qm": 665.0,
+      "mittelwert_2024_eur_pro_qm": 831.0
+    },
+    "Garage": {
+      "kauffaelle_2023": 45,
+      "kauffaelle_2024": 76,
+      "mittelwert_2023_eur_pro_qm": 45.0,
+      "mittelwert_2024_eur_pro_qm": 76.0
+    }
+  },
+  "luxury_sales": {
+    "kauffaelle_gesamt": 127,
+    "kauffaelle_vorjahr": 106,
+    "davon_ueber_50_Mio": 17,
+    "davon_ueber_50_Mio_vj": 9,
+    "davon_ueber_100_Mio": 6,
+    "davon_ueber_100_Mio_vj": 4
   }
 }
