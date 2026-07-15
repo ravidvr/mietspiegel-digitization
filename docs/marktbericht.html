@@ -212,6 +212,7 @@ const T = {
       genehmigungen: '📋 Baugenehmigungen (2024)',
       wohnbestand: '🏠 Wohnungsbestand (Anzahl)',
       umsatz_pro_1k: '📊 Verkäufe pro 1.000 Wohnungen',
+      baurate: '🏗️ Neubau-Quote (% des Bestands)',
     },
     tt_pct_berlin: '% des Berliner Geldumsatzes',
     tt_unbebaut: 'Unbebaute Grundstücke',
@@ -275,6 +276,7 @@ const T = {
       genehmigungen: '📋 Building Permits (2024)',
       wohnbestand: '🏠 Housing Stock (units)',
       umsatz_pro_1k: '📊 Sales per 1,000 Apartments',
+      baurate: '🏗️ New Build Rate (% of stock)',
     },
     tt_pct_berlin: '% of Berlin total volume',
     tt_unbebaut: 'Undeveloped land',
@@ -419,6 +421,12 @@ function getMetricValue(bezirk, metric) {
       if (k && w) return (k.gesamt_anzahl / w.wohnungen_2024 * 1000);
       return null;
     }
+    case 'baurate': {
+      const b = (DATA.baufertig||{}).bezirke ? DATA.baufertig.bezirke.find(d=>d.bezirk===bezirk) : null;
+      const w = (DATA.wohnbestand||{}).bezirke ? DATA.wohnbestand.bezirke.find(d=>d.bezirk===bezirk) : null;
+      if (b && w) return (b.fertig_2024 / w.wohnungen_2024 * 100);
+      return null;
+    }
     default: return null;
   }
 }
@@ -430,6 +438,7 @@ function formatVal(v, metric) {
   if (metric === 'flaeche') return v.toFixed(1) + ' ha';
   if (metric === 'wohnbestand') return v.toLocaleString();
   if (metric === 'umsatz_pro_1k') return v.toFixed(1);
+  if (metric === 'baurate') return v.toFixed(2) + '%';
   if (['baufertig','genehmigungen'].includes(metric)) return v.toLocaleString();
   return v.toFixed(0) + ' €/m²';
 }
