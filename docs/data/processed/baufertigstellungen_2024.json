@@ -1,0 +1,111 @@
+{
+  "source": "Amt für Statistik Berlin-Brandenburg — Baufertigstellungen",
+  "press_release": "Nr. 70/2025",
+  "url": "https://www.statistik-berlin-brandenburg.de/070-2025/",
+  "license": "dl-de/by-2-0",
+  "berlin_totals": {
+    "fertig_2024": 15362,
+    "fertig_2023": 16374,
+    "neubau_2024": 14632,
+    "neubau_2023": 14633,
+    "change_pct": -6.2
+  },
+  "bezirke": [
+    {
+      "bezirk": "Mitte",
+      "fertig_2024": 981,
+      "fertig_2023": 1933,
+      "fertig_neubau_2024": 860,
+      "fertig_neubau_2023": 1795,
+      "change_pct": -49.2
+    },
+    {
+      "bezirk": "Friedrichshain-Kreuzberg",
+      "fertig_2024": 679,
+      "fertig_2023": 638,
+      "fertig_neubau_2024": 712,
+      "fertig_neubau_2023": 565,
+      "change_pct": 6.4
+    },
+    {
+      "bezirk": "Pankow",
+      "fertig_2024": 1539,
+      "fertig_2023": 1610,
+      "fertig_neubau_2024": 1320,
+      "fertig_neubau_2023": 1456,
+      "change_pct": -4.4
+    },
+    {
+      "bezirk": "Charlottenburg-Wilmersdorf",
+      "fertig_2024": 363,
+      "fertig_2023": 884,
+      "fertig_neubau_2024": 311,
+      "fertig_neubau_2023": 777,
+      "change_pct": -58.9
+    },
+    {
+      "bezirk": "Spandau",
+      "fertig_2024": 2477,
+      "fertig_2023": 740,
+      "fertig_neubau_2024": 2461,
+      "fertig_neubau_2023": 708,
+      "change_pct": 234.7
+    },
+    {
+      "bezirk": "Steglitz-Zehlendorf",
+      "fertig_2024": 317,
+      "fertig_2023": 345,
+      "fertig_neubau_2024": 290,
+      "fertig_neubau_2023": 265,
+      "change_pct": -8.1
+    },
+    {
+      "bezirk": "Tempelhof-Schöneberg",
+      "fertig_2024": 677,
+      "fertig_2023": 698,
+      "fertig_neubau_2024": 568,
+      "fertig_neubau_2023": 622,
+      "change_pct": -3.0
+    },
+    {
+      "bezirk": "Neukölln",
+      "fertig_2024": 756,
+      "fertig_2023": 850,
+      "fertig_neubau_2024": 750,
+      "fertig_neubau_2023": 665,
+      "change_pct": -11.1
+    },
+    {
+      "bezirk": "Treptow-Köpenick",
+      "fertig_2024": 2071,
+      "fertig_2023": 2276,
+      "fertig_neubau_2024": 2071,
+      "fertig_neubau_2023": 2081,
+      "change_pct": -9.0
+    },
+    {
+      "bezirk": "Marzahn-Hellersdorf",
+      "fertig_2024": 2339,
+      "fertig_2023": 2055,
+      "fertig_neubau_2024": 2134,
+      "fertig_neubau_2023": 2077,
+      "change_pct": 13.8
+    },
+    {
+      "bezirk": "Lichtenberg",
+      "fertig_2024": 3062,
+      "fertig_2023": 3915,
+      "fertig_neubau_2024": 3055,
+      "fertig_neubau_2023": 3268,
+      "change_pct": -21.8
+    },
+    {
+      "bezirk": "Reinickendorf",
+      "fertig_2024": 101,
+      "fertig_2023": 430,
+      "fertig_neubau_2024": 100,
+      "fertig_neubau_2023": 354,
+      "change_pct": -76.5
+    }
+  ]
+}

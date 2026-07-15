@@ -1,0 +1,70 @@
+{
+  "source": "Gutachterausschuss Berlin — Immobilienmarktberichte 2015-2024",
+  "license": "dl-de/zero-2-0",
+  "data": {
+    "2015": {
+      "year": 2015,
+      "etw_eur_pro_qm": 2851,
+      "kauffaelle": 17563,
+      "note": "ETW prices confirmed from Marktbericht text. Kauffälle from overview section, may need manual verification."
+    },
+    "2016": {
+      "year": 2016,
+      "etw_eur_pro_qm": 3204,
+      "kauffaelle": 16381,
+      "note": "ETW prices confirmed from Marktbericht text. Kauffälle from overview section, may need manual verification."
+    },
+    "2017": {
+      "year": 2017,
+      "etw_eur_pro_qm": 3626,
+      "kauffaelle": 17359,
+      "note": "ETW prices confirmed from Marktbericht text. Kauffälle from overview section, may need manual verification."
+    },
+    "2018": {
+      "year": 2018,
+      "etw_eur_pro_qm": 4017,
+      "kauffaelle": 18008,
+      "note": "ETW prices confirmed from Marktbericht text. Kauffälle from overview section, may need manual verification."
+    },
+    "2019": {
+      "year": 2019,
+      "etw_eur_pro_qm": 4446,
+      "kauffaelle": 17563,
+      "note": "ETW prices confirmed from Marktbericht text. Kauffälle from overview section, may need manual verification."
+    },
+    "2020": {
+      "year": 2020,
+      "etw_eur_pro_qm": 4735,
+      "kauffaelle": 13599,
+      "note": "ETW prices confirmed from Marktbericht text. Kauffälle from overview section, may need manual verification."
+    },
+    "2021": {
+      "year": 2021,
+      "etw_eur_pro_qm": 5379,
+      "kauffaelle": 17363,
+      "note": "ETW prices confirmed from Marktbericht text. Kauffälle from overview section, may need manual verification."
+    },
+    "2022": {
+      "year": 2022,
+      "etw_eur_pro_qm": 5646,
+      "kauffaelle": 12610,
+      "note": "ETW prices confirmed from Marktbericht text. Kauffälle from overview section, may need manual verification."
+    },
+    "2023": {
+      "year": 2023,
+      "etw_eur_pro_qm": 5322,
+      "kauffaelle": 17563,
+      "note": "ETW prices confirmed from Marktbericht text. Kauffälle from overview section, may need manual verification."
+    },
+    "2024": {
+      "year": 2024,
+      "etw_eur_pro_qm": 5251,
+      "efh_eur_pro_qm": 3800,
+      "etw_neubau_eur_pro_qm": 7912,
+      "mwh_eur_pro_qm": 1915,
+      "kauffaelle": 20789,
+      "geldumsatz_MioEUR": 14540.299999999997
+    }
+  },
+  "note": "ETW prices from text extraction. Kauffälle approximate. Full extraction needs per-edition parser tuning."
+}

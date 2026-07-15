@@ -1,0 +1,1398 @@
+{
+  "_meta": {
+    "title": "Berlin Property Market — Combined Dataset",
+    "description": "20,789 property transactions (2024), ETW price time series (2015-2024), Baufertigstellungen per Bezirk",
+    "sources": [
+      "Gutachterausschuss Berlin — Immobilienmarktbericht 2024/2025 (dl-de/zero-2-0)",
+      "Gutachterausschuss Berlin — Immobilienmarktberichte 2015-2024 (dl-de/zero-2-0)",
+      "Amt für Statistik Berlin-Brandenburg — Baufertigstellungen (dl-de/by-2-0)"
+    ],
+    "extraction_date": "2026-07-15",
+    "validation_checks": "3804.3333333333335/3804.3333333333335 passed"
+  },
+  "timeseries_etw": {
+    "source": "Gutachterausschuss Berlin — Immobilienmarktberichte 2015-2024",
+    "license": "dl-de/zero-2-0",
+    "data": {
+      "2015": {
+        "year": 2015,
+        "etw_eur_pro_qm": 2851,
+        "kauffaelle": 17563,
+        "note": "ETW prices confirmed from Marktbericht text. Kauffälle from overview section, may need manual verification."
+      },
+      "2016": {
+        "year": 2016,
+        "etw_eur_pro_qm": 3204,
+        "kauffaelle": 16381,
+        "note": "ETW prices confirmed from Marktbericht text. Kauffälle from overview section, may need manual verification."
+      },
+      "2017": {
+        "year": 2017,
+        "etw_eur_pro_qm": 3626,
+        "kauffaelle": 17359,
+        "note": "ETW prices confirmed from Marktbericht text. Kauffälle from overview section, may need manual verification."
+      },
+      "2018": {
+        "year": 2018,
+        "etw_eur_pro_qm": 4017,
+        "kauffaelle": 18008,
+        "note": "ETW prices confirmed from Marktbericht text. Kauffälle from overview section, may need manual verification."
+      },
+      "2019": {
+        "year": 2019,
+        "etw_eur_pro_qm": 4446,
+        "kauffaelle": 17563,
+        "note": "ETW prices confirmed from Marktbericht text. Kauffälle from overview section, may need manual verification."
+      },
+      "2020": {
+        "year": 2020,
+        "etw_eur_pro_qm": 4735,
+        "kauffaelle": 13599,
+        "note": "ETW prices confirmed from Marktbericht text. Kauffälle from overview section, may need manual verification."
+      },
+      "2021": {
+        "year": 2021,
+        "etw_eur_pro_qm": 5379,
+        "kauffaelle": 17363,
+        "note": "ETW prices confirmed from Marktbericht text. Kauffälle from overview section, may need manual verification."
+      },
+      "2022": {
+        "year": 2022,
+        "etw_eur_pro_qm": 5646,
+        "kauffaelle": 12610,
+        "note": "ETW prices confirmed from Marktbericht text. Kauffälle from overview section, may need manual verification."
+      },
+      "2023": {
+        "year": 2023,
+        "etw_eur_pro_qm": 5322,
+        "kauffaelle": 17563,
+        "note": "ETW prices confirmed from Marktbericht text. Kauffälle from overview section, may need manual verification."
+      },
+      "2024": {
+        "year": 2024,
+        "etw_eur_pro_qm": 5251,
+        "efh_eur_pro_qm": 3800,
+        "etw_neubau_eur_pro_qm": 7912,
+        "mwh_eur_pro_qm": 1915,
+        "kauffaelle": 20789,
+        "geldumsatz_MioEUR": 14540.299999999997
+      }
+    },
+    "note": "ETW prices from text extraction. Kauffälle approximate. Full extraction needs per-edition parser tuning."
+  },
+  "baufertigstellungen": {
+    "source": "Amt für Statistik Berlin-Brandenburg — Baufertigstellungen",
+    "press_release": "Nr. 70/2025",
+    "url": "https://www.statistik-berlin-brandenburg.de/070-2025/",
+    "license": "dl-de/by-2-0",
+    "berlin_totals": {
+      "fertig_2024": 15362,
+      "fertig_2023": 16374,
+      "neubau_2024": 14632,
+      "neubau_2023": 14633,
+      "change_pct": -6.2
+    },
+    "bezirke": [
+      {
+        "bezirk": "Mitte",
+        "fertig_2024": 981,
+        "fertig_2023": 1933,
+        "fertig_neubau_2024": 860,
+        "fertig_neubau_2023": 1795,
+        "change_pct": -49.2
+      },
+      {
+        "bezirk": "Friedrichshain-Kreuzberg",
+        "fertig_2024": 679,
+        "fertig_2023": 638,
+        "fertig_neubau_2024": 712,
+        "fertig_neubau_2023": 565,
+        "change_pct": 6.4
+      },
+      {
+        "bezirk": "Pankow",
+        "fertig_2024": 1539,
+        "fertig_2023": 1610,
+        "fertig_neubau_2024": 1320,
+        "fertig_neubau_2023": 1456,
+        "change_pct": -4.4
+      },
+      {
+        "bezirk": "Charlottenburg-Wilmersdorf",
+        "fertig_2024": 363,
+        "fertig_2023": 884,
+        "fertig_neubau_2024": 311,
+        "fertig_neubau_2023": 777,
+        "change_pct": -58.9
+      },
+      {
+        "bezirk": "Spandau",
+        "fertig_2024": 2477,
+        "fertig_2023": 740,
+        "fertig_neubau_2024": 2461,
+        "fertig_neubau_2023": 708,
+        "change_pct": 234.7
+      },
+      {
+        "bezirk": "Steglitz-Zehlendorf",
+        "fertig_2024": 317,
+        "fertig_2023": 345,
+        "fertig_neubau_2024": 290,
+        "fertig_neubau_2023": 265,
+        "change_pct": -8.1
+      },
+      {
+        "bezirk": "Tempelhof-Schöneberg",
+        "fertig_2024": 677,
+        "fertig_2023": 698,
+        "fertig_neubau_2024": 568,
+        "fertig_neubau_2023": 622,
+        "change_pct": -3.0
+      },
+      {
+        "bezirk": "Neukölln",
+        "fertig_2024": 756,
+        "fertig_2023": 850,
+        "fertig_neubau_2024": 750,
+        "fertig_neubau_2023": 665,
+        "change_pct": -11.1
+      },
+      {
+        "bezirk": "Treptow-Köpenick",
+        "fertig_2024": 2071,
+        "fertig_2023": 2276,
+        "fertig_neubau_2024": 2071,
+        "fertig_neubau_2023": 2081,
+        "change_pct": -9.0
+      },
+      {
+        "bezirk": "Marzahn-Hellersdorf",
+        "fertig_2024": 2339,
+        "fertig_2023": 2055,
+        "fertig_neubau_2024": 2134,
+        "fertig_neubau_2023": 2077,
+        "change_pct": 13.8
+      },
+      {
+        "bezirk": "Lichtenberg",
+        "fertig_2024": 3062,
+        "fertig_2023": 3915,
+        "fertig_neubau_2024": 3055,
+        "fertig_neubau_2023": 3268,
+        "change_pct": -21.8
+      },
+      {
+        "bezirk": "Reinickendorf",
+        "fertig_2024": 101,
+        "fertig_2023": 430,
+        "fertig_neubau_2024": 100,
+        "fertig_neubau_2023": 354,
+        "change_pct": -76.5
+      }
+    ]
+  },
+  "marktbericht_2024": {
+    "bezirke": {
+      "kauffaelle": [
+        {
+          "bezirk": "Mitte",
+          "unbebaut_anzahl": 9,
+          "unbebaut_pct_berlin": 1.1,
+          "unbebaut_pct_bezirk": 0.5,
+          "bebaut_anzahl": 99,
+          "bebaut_pct_berlin": 2.9,
+          "bebaut_pct_bezirk": 5.2,
+          "we_anzahl": 1785,
+          "we_pct_berlin": 11.2,
+          "we_pct_bezirk": 94.3,
+          "gesamt_anzahl": 1893,
+          "gesamt_pct_berlin": 9.4,
+          "gesamt_pct_bezirk": 100.0
+        },
+        {
+          "bezirk": "Friedrichshain-Kreuzberg",
+          "unbebaut_anzahl": 10,
+          "unbebaut_pct_berlin": 1.3,
+          "unbebaut_pct_bezirk": 0.6,
+          "bebaut_anzahl": 63,
+          "bebaut_pct_berlin": 1.9,
+          "bebaut_pct_bezirk": 3.6,
+          "we_anzahl": 1667,
+          "we_pct_berlin": 10.5,
+          "we_pct_bezirk": 95.8,
+          "gesamt_anzahl": 1740,
+          "gesamt_pct_berlin": 8.7,
+          "gesamt_pct_bezirk": 100.0
+        },
+        {
+          "bezirk": "Pankow",
+          "unbebaut_anzahl": 169,
+          "unbebaut_pct_berlin": 21.4,
+          "unbebaut_pct_bezirk": 7.1,
+          "bebaut_anzahl": 318,
+          "bebaut_pct_berlin": 9.5,
+          "bebaut_pct_bezirk": 13.4,
+          "we_anzahl": 1886,
+          "we_pct_berlin": 11.8,
+          "we_pct_bezirk": 79.5,
+          "gesamt_anzahl": 2373,
+          "gesamt_pct_berlin": 11.8,
+          "gesamt_pct_bezirk": 100.0
+        },
+        {
+          "bezirk": "Charlottenburg-Wilmersdorf",
+          "unbebaut_anzahl": 28,
+          "unbebaut_pct_berlin": 3.6,
+          "unbebaut_pct_bezirk": 1.1,
+          "bebaut_anzahl": 160,
+          "bebaut_pct_berlin": 4.8,
+          "bebaut_pct_bezirk": 6.1,
+          "we_anzahl": 2423,
+          "we_pct_berlin": 15.2,
+          "we_pct_bezirk": 92.8,
+          "gesamt_anzahl": 2611,
+          "gesamt_pct_berlin": 13.0,
+          "gesamt_pct_bezirk": 100.0
+        },
+        {
+          "bezirk": "Spandau",
+          "unbebaut_anzahl": 57,
+          "unbebaut_pct_berlin": 7.2,
+          "unbebaut_pct_bezirk": 4.6,
+          "bebaut_anzahl": 318,
+          "bebaut_pct_berlin": 9.5,
+          "bebaut_pct_bezirk": 25.9,
+          "we_anzahl": 851,
+          "we_pct_berlin": 5.3,
+          "we_pct_bezirk": 69.4,
+          "gesamt_anzahl": 1226,
+          "gesamt_pct_berlin": 6.1,
+          "gesamt_pct_bezirk": 100.0
+        },
+        {
+          "bezirk": "Steglitz-Zehlendorf",
+          "unbebaut_anzahl": 39,
+          "unbebaut_pct_berlin": 4.9,
+          "unbebaut_pct_bezirk": 1.9,
+          "bebaut_anzahl": 472,
+          "bebaut_pct_berlin": 14.1,
+          "bebaut_pct_bezirk": 22.9,
+          "we_anzahl": 1546,
+          "we_pct_berlin": 9.7,
+          "we_pct_bezirk": 75.2,
+          "gesamt_anzahl": 2057,
+          "gesamt_pct_berlin": 10.2,
+          "gesamt_pct_bezirk": 100.0
+        },
+        {
+          "bezirk": "Tempelhof-Schöneberg",
+          "unbebaut_anzahl": 28,
+          "unbebaut_pct_berlin": 3.6,
+          "unbebaut_pct_bezirk": 1.4,
+          "bebaut_anzahl": 335,
+          "bebaut_pct_berlin": 10.0,
+          "bebaut_pct_bezirk": 16.5,
+          "we_anzahl": 1673,
+          "we_pct_berlin": 10.5,
+          "we_pct_bezirk": 82.2,
+          "gesamt_anzahl": 2036,
+          "gesamt_pct_berlin": 10.1,
+          "gesamt_pct_bezirk": 100.0
+        },
+        {
+          "bezirk": "Neukölln",
+          "unbebaut_anzahl": 47,
+          "unbebaut_pct_berlin": 6.0,
+          "unbebaut_pct_bezirk": 3.7,
+          "bebaut_anzahl": 323,
+          "bebaut_pct_berlin": 9.6,
+          "bebaut_pct_bezirk": 25.5,
+          "we_anzahl": 896,
+          "we_pct_berlin": 5.6,
+          "we_pct_bezirk": 70.8,
+          "gesamt_anzahl": 1266,
+          "gesamt_pct_berlin": 6.3,
+          "gesamt_pct_bezirk": 100.0
+        },
+        {
+          "bezirk": "Treptow-Köpenick",
+          "unbebaut_anzahl": 139,
+          "unbebaut_pct_berlin": 17.6,
+          "unbebaut_pct_bezirk": 6.8,
+          "bebaut_anzahl": 415,
+          "bebaut_pct_berlin": 12.4,
+          "bebaut_pct_bezirk": 20.4,
+          "we_anzahl": 1478,
+          "we_pct_berlin": 9.3,
+          "we_pct_bezirk": 72.7,
+          "gesamt_anzahl": 2032,
+          "gesamt_pct_berlin": 10.1,
+          "gesamt_pct_bezirk": 100.0
+        },
+        {
+          "bezirk": "Marzahn-Hellersdorf",
+          "unbebaut_anzahl": 155,
+          "unbebaut_pct_berlin": 19.7,
+          "unbebaut_pct_bezirk": 21.2,
+          "bebaut_anzahl": 284,
+          "bebaut_pct_berlin": 8.5,
+          "bebaut_pct_bezirk": 38.9,
+          "we_anzahl": 291,
+          "we_pct_berlin": 1.8,
+          "we_pct_bezirk": 39.9,
+          "gesamt_anzahl": 730,
+          "gesamt_pct_berlin": 3.6,
+          "gesamt_pct_bezirk": 100.0
+        },
+        {
+          "bezirk": "Lichtenberg",
+          "unbebaut_anzahl": 52,
+          "unbebaut_pct_berlin": 6.6,
+          "unbebaut_pct_bezirk": 6.4,
+          "bebaut_anzahl": 161,
+          "bebaut_pct_berlin": 4.8,
+          "bebaut_pct_bezirk": 19.7,
+          "we_anzahl": 605,
+          "we_pct_berlin": 3.8,
+          "we_pct_bezirk": 74.0,
+          "gesamt_anzahl": 818,
+          "gesamt_pct_berlin": 4.1,
+          "gesamt_pct_bezirk": 100.0
+        },
+        {
+          "bezirk": "Reinickendorf",
+          "unbebaut_anzahl": 55,
+          "unbebaut_pct_berlin": 7.0,
+          "unbebaut_pct_bezirk": 4.2,
+          "bebaut_anzahl": 409,
+          "bebaut_pct_berlin": 12.2,
+          "bebaut_pct_bezirk": 31.5,
+          "we_anzahl": 834,
+          "we_pct_berlin": 5.2,
+          "we_pct_bezirk": 64.3,
+          "gesamt_anzahl": 1298,
+          "gesamt_pct_berlin": 6.5,
+          "gesamt_pct_bezirk": 100.0
+        }
+      ],
+      "geldumsatz": [
+        {
+          "bezirk": "Mitte",
+          "unbebaut_MioEUR": 64.7,
+          "unbebaut_pct_berlin": 7.0,
+          "unbebaut_pct_bezirk": 4.0,
+          "bebaut_MioEUR": 841.3,
+          "bebaut_pct_berlin": 10.6,
+          "bebaut_pct_bezirk": 51.5,
+          "we_MioEUR": 726.1,
+          "we_pct_berlin": 12.7,
+          "we_pct_bezirk": 44.5,
+          "gesamt_MioEUR": 1632.1,
+          "gesamt_pct_berlin": 11.2,
+          "gesamt_pct_bezirk": 100.0
+        },
+        {
+          "bezirk": "Friedrichshain-Kreuzberg",
+          "unbebaut_MioEUR": 179.9,
+          "unbebaut_pct_berlin": 19.5,
+          "unbebaut_pct_bezirk": 14.8,
+          "bebaut_MioEUR": 342.9,
+          "bebaut_pct_berlin": 4.3,
+          "bebaut_pct_bezirk": 28.3,
+          "we_MioEUR": 690.6,
+          "we_pct_berlin": 12.1,
+          "we_pct_bezirk": 56.9,
+          "gesamt_MioEUR": 1213.4,
+          "gesamt_pct_berlin": 8.3,
+          "gesamt_pct_bezirk": 100.0
+        },
+        {
+          "bezirk": "Pankow",
+          "unbebaut_MioEUR": 110.9,
+          "unbebaut_pct_berlin": 12.0,
+          "unbebaut_pct_bezirk": 6.7,
+          "bebaut_MioEUR": 814.6,
+          "bebaut_pct_berlin": 10.3,
+          "bebaut_pct_bezirk": 49.3,
+          "we_MioEUR": 728.4,
+          "we_pct_berlin": 12.8,
+          "we_pct_bezirk": 44.0,
+          "gesamt_MioEUR": 1653.9,
+          "gesamt_pct_berlin": 11.4,
+          "gesamt_pct_bezirk": 100.0
+        },
+        {
+          "bezirk": "Charlottenburg-Wilmersdorf",
+          "unbebaut_MioEUR": 78.9,
+          "unbebaut_pct_berlin": 8.5,
+          "unbebaut_pct_bezirk": 4.1,
+          "bebaut_MioEUR": 735.7,
+          "bebaut_pct_berlin": 9.3,
+          "bebaut_pct_bezirk": 38.6,
+          "we_MioEUR": 1090.8,
+          "we_pct_berlin": 19.1,
+          "we_pct_bezirk": 57.2,
+          "gesamt_MioEUR": 1905.4,
+          "gesamt_pct_berlin": 13.1,
+          "gesamt_pct_bezirk": 100.0
+        },
+        {
+          "bezirk": "Spandau",
+          "unbebaut_MioEUR": 44.6,
+          "unbebaut_pct_berlin": 4.8,
+          "unbebaut_pct_bezirk": 5.4,
+          "bebaut_MioEUR": 566.4,
+          "bebaut_pct_berlin": 7.2,
+          "bebaut_pct_bezirk": 68.6,
+          "we_MioEUR": 214.5,
+          "we_pct_berlin": 3.8,
+          "we_pct_bezirk": 26.0,
+          "gesamt_MioEUR": 825.6,
+          "gesamt_pct_berlin": 5.7,
+          "gesamt_pct_bezirk": 100.0
+        },
+        {
+          "bezirk": "Steglitz-Zehlendorf",
+          "unbebaut_MioEUR": 39.7,
+          "unbebaut_pct_berlin": 4.3,
+          "unbebaut_pct_bezirk": 3.0,
+          "bebaut_MioEUR": 755.1,
+          "bebaut_pct_berlin": 9.5,
+          "bebaut_pct_bezirk": 56.6,
+          "we_MioEUR": 540.3,
+          "we_pct_berlin": 9.5,
+          "we_pct_bezirk": 40.5,
+          "gesamt_MioEUR": 1335.1,
+          "gesamt_pct_berlin": 9.2,
+          "gesamt_pct_bezirk": 100.0
+        },
+        {
+          "bezirk": "Tempelhof-Schöneberg",
+          "unbebaut_MioEUR": 13.7,
+          "unbebaut_pct_berlin": 1.5,
+          "unbebaut_pct_bezirk": 1.1,
+          "bebaut_MioEUR": 722.0,
+          "bebaut_pct_berlin": 9.1,
+          "bebaut_pct_bezirk": 55.8,
+          "we_MioEUR": 557.1,
+          "we_pct_berlin": 9.8,
+          "we_pct_bezirk": 43.1,
+          "gesamt_MioEUR": 1292.8,
+          "gesamt_pct_berlin": 8.9,
+          "gesamt_pct_bezirk": 100.0
+        },
+        {
+          "bezirk": "Neukölln",
+          "unbebaut_MioEUR": 46.3,
+          "unbebaut_pct_berlin": 5.0,
+          "unbebaut_pct_bezirk": 5.3,
+          "bebaut_MioEUR": 565.6,
+          "bebaut_pct_berlin": 7.2,
+          "bebaut_pct_bezirk": 64.4,
+          "we_MioEUR": 267.0,
+          "we_pct_berlin": 4.7,
+          "we_pct_bezirk": 30.4,
+          "gesamt_MioEUR": 878.9,
+          "gesamt_pct_berlin": 6.0,
+          "gesamt_pct_bezirk": 100.0
+        },
+        {
+          "bezirk": "Treptow-Köpenick",
+          "unbebaut_MioEUR": 67.6,
+          "unbebaut_pct_berlin": 7.3,
+          "unbebaut_pct_bezirk": 6.6,
+          "bebaut_MioEUR": 541.8,
+          "bebaut_pct_berlin": 6.8,
+          "bebaut_pct_bezirk": 52.6,
+          "we_MioEUR": 421.5,
+          "we_pct_berlin": 7.4,
+          "we_pct_bezirk": 40.9,
+          "gesamt_MioEUR": 1030.9,
+          "gesamt_pct_berlin": 7.1,
+          "gesamt_pct_bezirk": 100.0
+        },
+        {
+          "bezirk": "Marzahn-Hellersdorf",
+          "unbebaut_MioEUR": 143.6,
+          "unbebaut_pct_berlin": 15.5,
+          "unbebaut_pct_bezirk": 11.3,
+          "bebaut_MioEUR": 1045.0,
+          "bebaut_pct_berlin": 13.2,
+          "bebaut_pct_bezirk": 82.2,
+          "we_MioEUR": 82.2,
+          "we_pct_berlin": 1.4,
+          "we_pct_bezirk": 6.5,
+          "gesamt_MioEUR": 1270.8,
+          "gesamt_pct_berlin": 8.7,
+          "gesamt_pct_bezirk": 100.0
+        },
+        {
+          "bezirk": "Lichtenberg",
+          "unbebaut_MioEUR": 99.7,
+          "unbebaut_pct_berlin": 10.8,
+          "unbebaut_pct_bezirk": 11.4,
+          "bebaut_MioEUR": 594.6,
+          "bebaut_pct_berlin": 7.5,
+          "bebaut_pct_bezirk": 68.3,
+          "we_MioEUR": 176.8,
+          "we_pct_berlin": 3.1,
+          "we_pct_bezirk": 20.3,
+          "gesamt_MioEUR": 871.0,
+          "gesamt_pct_berlin": 6.0,
+          "gesamt_pct_bezirk": 100.0
+        },
+        {
+          "bezirk": "Reinickendorf",
+          "unbebaut_MioEUR": 35.3,
+          "unbebaut_pct_berlin": 3.8,
+          "unbebaut_pct_bezirk": 5.6,
+          "bebaut_MioEUR": 385.8,
+          "bebaut_pct_berlin": 4.9,
+          "bebaut_pct_bezirk": 61.2,
+          "we_MioEUR": 209.3,
+          "we_pct_berlin": 3.7,
+          "we_pct_bezirk": 33.2,
+          "gesamt_MioEUR": 630.4,
+          "gesamt_pct_berlin": 4.3,
+          "gesamt_pct_bezirk": 100.0
+        }
+      ],
+      "flaechenumsatz": [
+        {
+          "bezirk": "Mitte",
+          "unbebaut_ha": 2.4,
+          "unbebaut_pct_berlin": 2.1,
+          "unbebaut_pct_bezirk": 19.8,
+          "bebaut_ha": 9.9,
+          "bebaut_pct_berlin": 3.0,
+          "bebaut_pct_bezirk": 80.2,
+          "gesamt_ha": 12.3,
+          "gesamt_pct_berlin": 2.7,
+          "gesamt_pct_bezirk": 100.0
+        },
+        {
+          "bezirk": "Friedrichshain-Kreuzberg",
+          "unbebaut_ha": 2.6,
+          "unbebaut_pct_berlin": 2.3,
+          "unbebaut_pct_bezirk": 32.8,
+          "bebaut_ha": 5.3,
+          "bebaut_pct_berlin": 1.6,
+          "bebaut_pct_bezirk": 67.2,
+          "gesamt_ha": 7.9,
+          "gesamt_pct_berlin": 1.8,
+          "gesamt_pct_bezirk": 100.0
+        },
+        {
+          "bezirk": "Pankow",
+          "unbebaut_ha": 21.4,
+          "unbebaut_pct_berlin": 18.5,
+          "unbebaut_pct_bezirk": 38.9,
+          "bebaut_ha": 33.6,
+          "bebaut_pct_berlin": 10.1,
+          "bebaut_pct_bezirk": 61.1,
+          "gesamt_ha": 55.0,
+          "gesamt_pct_berlin": 12.3,
+          "gesamt_pct_bezirk": 100.0
+        },
+        {
+          "bezirk": "Charlottenburg-Wilmersdorf",
+          "unbebaut_ha": 2.6,
+          "unbebaut_pct_berlin": 2.2,
+          "unbebaut_pct_bezirk": 13.5,
+          "bebaut_ha": 16.5,
+          "bebaut_pct_berlin": 5.0,
+          "bebaut_pct_bezirk": 86.5,
+          "gesamt_ha": 19.1,
+          "gesamt_pct_berlin": 4.3,
+          "gesamt_pct_bezirk": 100.0
+        },
+        {
+          "bezirk": "Spandau",
+          "unbebaut_ha": 15.4,
+          "unbebaut_pct_berlin": 13.3,
+          "unbebaut_pct_bezirk": 33.7,
+          "bebaut_ha": 30.3,
+          "bebaut_pct_berlin": 9.1,
+          "bebaut_pct_bezirk": 66.3,
+          "gesamt_ha": 45.7,
+          "gesamt_pct_berlin": 10.2,
+          "gesamt_pct_bezirk": 100.0
+        },
+        {
+          "bezirk": "Steglitz-Zehlendorf",
+          "unbebaut_ha": 5.7,
+          "unbebaut_pct_berlin": 4.9,
+          "unbebaut_pct_bezirk": 12.5,
+          "bebaut_ha": 39.7,
+          "bebaut_pct_berlin": 12.0,
+          "bebaut_pct_bezirk": 87.5,
+          "gesamt_ha": 45.4,
+          "gesamt_pct_berlin": 10.1,
+          "gesamt_pct_bezirk": 100.0
+        },
+        {
+          "bezirk": "Tempelhof-Schöneberg",
+          "unbebaut_ha": 2.8,
+          "unbebaut_pct_berlin": 2.5,
+          "unbebaut_pct_bezirk": 8.0,
+          "bebaut_ha": 32.7,
+          "bebaut_pct_berlin": 9.9,
+          "bebaut_pct_bezirk": 92.0,
+          "gesamt_ha": 35.5,
+          "gesamt_pct_berlin": 7.9,
+          "gesamt_pct_bezirk": 100.0
+        },
+        {
+          "bezirk": "Neukölln",
+          "unbebaut_ha": 6.3,
+          "unbebaut_pct_berlin": 5.4,
+          "unbebaut_pct_bezirk": 16.6,
+          "bebaut_ha": 31.6,
+          "bebaut_pct_berlin": 9.5,
+          "bebaut_pct_bezirk": 83.4,
+          "gesamt_ha": 37.8,
+          "gesamt_pct_berlin": 8.5,
+          "gesamt_pct_bezirk": 100.0
+        },
+        {
+          "bezirk": "Treptow-Köpenick",
+          "unbebaut_ha": 13.5,
+          "unbebaut_pct_berlin": 11.7,
+          "unbebaut_pct_bezirk": 22.3,
+          "bebaut_ha": 47.1,
+          "bebaut_pct_berlin": 14.2,
+          "bebaut_pct_bezirk": 77.7,
+          "gesamt_ha": 60.7,
+          "gesamt_pct_berlin": 13.6,
+          "gesamt_pct_bezirk": 100.0
+        },
+        {
+          "bezirk": "Marzahn-Hellersdorf",
+          "unbebaut_ha": 20.4,
+          "unbebaut_pct_berlin": 17.6,
+          "unbebaut_pct_bezirk": 38.1,
+          "bebaut_ha": 33.2,
+          "bebaut_pct_berlin": 10.0,
+          "bebaut_pct_bezirk": 61.9,
+          "gesamt_ha": 53.6,
+          "gesamt_pct_berlin": 12.0,
+          "gesamt_pct_bezirk": 100.0
+        },
+        {
+          "bezirk": "Lichtenberg",
+          "unbebaut_ha": 9.4,
+          "unbebaut_pct_berlin": 8.1,
+          "unbebaut_pct_bezirk": 32.0,
+          "bebaut_ha": 20.0,
+          "bebaut_pct_berlin": 6.0,
+          "bebaut_pct_bezirk": 68.0,
+          "gesamt_ha": 29.4,
+          "gesamt_pct_berlin": 6.6,
+          "gesamt_pct_bezirk": 100.0
+        },
+        {
+          "bezirk": "Reinickendorf",
+          "unbebaut_ha": 13.1,
+          "unbebaut_pct_berlin": 11.4,
+          "unbebaut_pct_bezirk": 29.2,
+          "bebaut_ha": 31.9,
+          "bebaut_pct_berlin": 9.6,
+          "bebaut_pct_bezirk": 70.8,
+          "gesamt_ha": 45.0,
+          "gesamt_pct_berlin": 10.1,
+          "gesamt_pct_bezirk": 100.0
+        }
+      ],
+      "berlin_total": {
+        "kauffaelle": 20789,
+        "kauffaelle_ohne_pakete": 20080,
+        "geldumsatz_MioEUR": 14888.7,
+        "geldumsatz_ohne_pakete_MioEUR": 14540.3,
+        "flaechenumsatz_ha": 450.1,
+        "flaechenumsatz_ohne_pakete_ha": 447.4
+      }
+    },
+    "condo_prices": {
+      "Charlottenburg-Wilmersdorf": {
+        "resale_1949-1970": {
+          "preis_pro_qm": 3795,
+          "preis_pro_qm_gut": 4230,
+          "stadtgebiet": "Südwest",
+          "weight": 0.61,
+          "source": "condo_resales"
+        },
+        "resale_1971-1990": {
+          "preis_pro_qm": 3968,
+          "preis_pro_qm_gut": 5006,
+          "stadtgebiet": "Südwest",
+          "weight": 0.61,
+          "source": "condo_resales"
+        },
+        "resale_ab 1991": {
+          "preis_pro_qm": 5158,
+          "preis_pro_qm_gut": 6633,
+          "stadtgebiet": "Südwest",
+          "weight": 0.61,
+          "source": "condo_resales"
+        },
+        "erstverkauf_neubau": {
+          "preis_pro_qm": 6374,
+          "preis_pro_qm_gut": 10001,
+          "stadtgebiet": "Südwest",
+          "weight": 0.61,
+          "source": "erstverkauf_condos"
+        },
+        "umwandlung_bis 1919": {
+          "preis_pro_qm": 3619,
+          "preis_pro_qm_gut": 5402,
+          "stadtgebiet": "Südwest",
+          "weight": 0.61,
+          "source": "umwandlung_condos"
+        },
+        "umwandlung_1920-1948": {
+          "preis_pro_qm": 3104,
+          "preis_pro_qm_gut": 4851,
+          "stadtgebiet": "Südwest",
+          "weight": 0.61,
+          "source": "umwandlung_condos"
+        },
+        "umwandlung_1949-1970": {
+          "preis_pro_qm": 4881,
+          "preis_pro_qm_gut": null,
+          "stadtgebiet": "City",
+          "weight": 0.235,
+          "source": "umwandlung_condos"
+        },
+        "umwandlung_1971-1990": {
+          "preis_pro_qm": 4862,
+          "preis_pro_qm_gut": null,
+          "stadtgebiet": "City",
+          "weight": 0.235,
+          "source": "umwandlung_condos"
+        },
+        "umwandlung_sozial ab 1950": {
+          "preis_pro_qm": 3271,
+          "preis_pro_qm_gut": 4740,
+          "stadtgebiet": "City",
+          "weight": 0.235,
+          "source": "umwandlung_condos"
+        }
+      },
+      "Friedrichshain-Kreuzberg": {
+        "resale_1949-1970": {
+          "preis_pro_qm": 4956,
+          "preis_pro_qm_gut": 4913,
+          "stadtgebiet": "City",
+          "weight": 0.161,
+          "source": "condo_resales"
+        },
+        "resale_1971-1990": {
+          "preis_pro_qm": 5033,
+          "preis_pro_qm_gut": 5073,
+          "stadtgebiet": "City",
+          "weight": 0.161,
+          "source": "condo_resales"
+        },
+        "resale_ab 1991": {
+          "preis_pro_qm": 7233,
+          "preis_pro_qm_gut": 7734,
+          "stadtgebiet": "City",
+          "weight": 0.161,
+          "source": "condo_resales"
+        },
+        "erstverkauf_neubau": {
+          "preis_pro_qm": 10102,
+          "preis_pro_qm_gut": 9332,
+          "stadtgebiet": "City",
+          "weight": 0.161,
+          "source": "erstverkauf_condos"
+        },
+        "umwandlung_1920-1948": {
+          "preis_pro_qm": 3233,
+          "preis_pro_qm_gut": 5155,
+          "stadtgebiet": "City",
+          "weight": 0.161,
+          "source": "umwandlung_condos"
+        },
+        "umwandlung_1949-1970": {
+          "preis_pro_qm": 4881,
+          "preis_pro_qm_gut": null,
+          "stadtgebiet": "City",
+          "weight": 0.161,
+          "source": "umwandlung_condos"
+        },
+        "umwandlung_1971-1990": {
+          "preis_pro_qm": 4862,
+          "preis_pro_qm_gut": null,
+          "stadtgebiet": "City",
+          "weight": 0.161,
+          "source": "umwandlung_condos"
+        },
+        "umwandlung_sozial ab 1950": {
+          "preis_pro_qm": 3271,
+          "preis_pro_qm_gut": 4740,
+          "stadtgebiet": "City",
+          "weight": 0.161,
+          "source": "umwandlung_condos"
+        }
+      },
+      "Mitte": {
+        "resale_1949-1970": {
+          "preis_pro_qm": 3845,
+          "preis_pro_qm_gut": null,
+          "stadtgebiet": "Nord",
+          "weight": 0.258,
+          "source": "condo_resales"
+        },
+        "resale_1971-1990": {
+          "preis_pro_qm": 3508,
+          "preis_pro_qm_gut": 4322,
+          "stadtgebiet": "Nord",
+          "weight": 0.258,
+          "source": "condo_resales"
+        },
+        "resale_ab 1991": {
+          "preis_pro_qm": 4060,
+          "preis_pro_qm_gut": 5275,
+          "stadtgebiet": "Nord",
+          "weight": 0.258,
+          "source": "condo_resales"
+        },
+        "erstverkauf_neubau": {
+          "preis_pro_qm": 6732,
+          "preis_pro_qm_gut": 8562,
+          "stadtgebiet": "Nord",
+          "weight": 0.258,
+          "source": "erstverkauf_condos"
+        },
+        "umwandlung_bis 1919": {
+          "preis_pro_qm": 3087,
+          "preis_pro_qm_gut": 4740,
+          "stadtgebiet": "Nord",
+          "weight": 0.258,
+          "source": "umwandlung_condos"
+        },
+        "umwandlung_1920-1948": {
+          "preis_pro_qm": 2665,
+          "preis_pro_qm_gut": 3917,
+          "stadtgebiet": "Nord",
+          "weight": 0.258,
+          "source": "umwandlung_condos"
+        },
+        "umwandlung_1949-1970": {
+          "preis_pro_qm": 4881,
+          "preis_pro_qm_gut": null,
+          "stadtgebiet": "City",
+          "weight": 0.173,
+          "source": "umwandlung_condos"
+        },
+        "umwandlung_1971-1990": {
+          "preis_pro_qm": 4862,
+          "preis_pro_qm_gut": null,
+          "stadtgebiet": "City",
+          "weight": 0.173,
+          "source": "umwandlung_condos"
+        },
+        "umwandlung_sozial ab 1950": {
+          "preis_pro_qm": 3271,
+          "preis_pro_qm_gut": 4740,
+          "stadtgebiet": "City",
+          "weight": 0.173,
+          "source": "umwandlung_condos"
+        }
+      },
+      "Neukölln": {
+        "resale_1949-1970": {
+          "preis_pro_qm": 4956,
+          "preis_pro_qm_gut": 4913,
+          "stadtgebiet": "City",
+          "weight": 0.087,
+          "source": "condo_resales"
+        },
+        "resale_1971-1990": {
+          "preis_pro_qm": 5033,
+          "preis_pro_qm_gut": 5073,
+          "stadtgebiet": "City",
+          "weight": 0.087,
+          "source": "condo_resales"
+        },
+        "resale_ab 1991": {
+          "preis_pro_qm": 4011,
+          "preis_pro_qm_gut": 4794,
+          "stadtgebiet": "Südost",
+          "weight": 0.221,
+          "source": "condo_resales"
+        },
+        "erstverkauf_neubau": {
+          "preis_pro_qm": 6384,
+          "preis_pro_qm_gut": 8221,
+          "stadtgebiet": "Südost",
+          "weight": 0.221,
+          "source": "erstverkauf_condos"
+        },
+        "umwandlung_bis 1919": {
+          "preis_pro_qm": 3114,
+          "preis_pro_qm_gut": 4264,
+          "stadtgebiet": "Südost",
+          "weight": 0.221,
+          "source": "umwandlung_condos"
+        },
+        "umwandlung_1920-1948": {
+          "preis_pro_qm": 3059,
+          "preis_pro_qm_gut": 3767,
+          "stadtgebiet": "Südost",
+          "weight": 0.221,
+          "source": "umwandlung_condos"
+        },
+        "umwandlung_1949-1970": {
+          "preis_pro_qm": 4881,
+          "preis_pro_qm_gut": null,
+          "stadtgebiet": "City",
+          "weight": 0.087,
+          "source": "umwandlung_condos"
+        },
+        "umwandlung_1971-1990": {
+          "preis_pro_qm": 4862,
+          "preis_pro_qm_gut": null,
+          "stadtgebiet": "City",
+          "weight": 0.087,
+          "source": "umwandlung_condos"
+        },
+        "umwandlung_sozial ab 1950": {
+          "preis_pro_qm": 3271,
+          "preis_pro_qm_gut": 4740,
+          "stadtgebiet": "City",
+          "weight": 0.087,
+          "source": "umwandlung_condos"
+        }
+      },
+      "Pankow": {
+        "resale_1949-1970": {
+          "preis_pro_qm": 3845,
+          "preis_pro_qm_gut": null,
+          "stadtgebiet": "Nord",
+          "weight": 0.272,
+          "source": "condo_resales"
+        },
+        "resale_1971-1990": {
+          "preis_pro_qm": 3508,
+          "preis_pro_qm_gut": 4322,
+          "stadtgebiet": "Nord",
+          "weight": 0.272,
+          "source": "condo_resales"
+        },
+        "resale_ab 1991": {
+          "preis_pro_qm": 4060,
+          "preis_pro_qm_gut": 5275,
+          "stadtgebiet": "Nord",
+          "weight": 0.272,
+          "source": "condo_resales"
+        },
+        "erstverkauf_neubau": {
+          "preis_pro_qm": 6732,
+          "preis_pro_qm_gut": 8562,
+          "stadtgebiet": "Nord",
+          "weight": 0.272,
+          "source": "erstverkauf_condos"
+        },
+        "umwandlung_bis 1919": {
+          "preis_pro_qm": 3087,
+          "preis_pro_qm_gut": 4740,
+          "stadtgebiet": "Nord",
+          "weight": 0.272,
+          "source": "umwandlung_condos"
+        },
+        "umwandlung_1920-1948": {
+          "preis_pro_qm": 2665,
+          "preis_pro_qm_gut": 3917,
+          "stadtgebiet": "Nord",
+          "weight": 0.272,
+          "source": "umwandlung_condos"
+        },
+        "umwandlung_1949-1970": {
+          "preis_pro_qm": 4881,
+          "preis_pro_qm_gut": null,
+          "stadtgebiet": "City",
+          "weight": 0.183,
+          "source": "umwandlung_condos"
+        },
+        "umwandlung_1971-1990": {
+          "preis_pro_qm": 4862,
+          "preis_pro_qm_gut": null,
+          "stadtgebiet": "City",
+          "weight": 0.183,
+          "source": "umwandlung_condos"
+        },
+        "umwandlung_sozial ab 1950": {
+          "preis_pro_qm": 3271,
+          "preis_pro_qm_gut": 4740,
+          "stadtgebiet": "City",
+          "weight": 0.183,
+          "source": "umwandlung_condos"
+        }
+      },
+      "Tempelhof-Schöneberg": {
+        "resale_1949-1970": {
+          "preis_pro_qm": 4956,
+          "preis_pro_qm_gut": 4913,
+          "stadtgebiet": "City",
+          "weight": 0.162,
+          "source": "condo_resales"
+        },
+        "resale_1971-1990": {
+          "preis_pro_qm": 5033,
+          "preis_pro_qm_gut": 5073,
+          "stadtgebiet": "City",
+          "weight": 0.162,
+          "source": "condo_resales"
+        },
+        "resale_ab 1991": {
+          "preis_pro_qm": 4011,
+          "preis_pro_qm_gut": 4794,
+          "stadtgebiet": "Südost",
+          "weight": 0.413,
+          "source": "condo_resales"
+        },
+        "erstverkauf_neubau": {
+          "preis_pro_qm": 6384,
+          "preis_pro_qm_gut": 8221,
+          "stadtgebiet": "Südost",
+          "weight": 0.413,
+          "source": "erstverkauf_condos"
+        },
+        "umwandlung_bis 1919": {
+          "preis_pro_qm": 3114,
+          "preis_pro_qm_gut": 4264,
+          "stadtgebiet": "Südost",
+          "weight": 0.413,
+          "source": "umwandlung_condos"
+        },
+        "umwandlung_1920-1948": {
+          "preis_pro_qm": 3059,
+          "preis_pro_qm_gut": 3767,
+          "stadtgebiet": "Südost",
+          "weight": 0.413,
+          "source": "umwandlung_condos"
+        },
+        "umwandlung_1949-1970": {
+          "preis_pro_qm": 4881,
+          "preis_pro_qm_gut": null,
+          "stadtgebiet": "City",
+          "weight": 0.162,
+          "source": "umwandlung_condos"
+        },
+        "umwandlung_1971-1990": {
+          "preis_pro_qm": 4862,
+          "preis_pro_qm_gut": null,
+          "stadtgebiet": "City",
+          "weight": 0.162,
+          "source": "umwandlung_condos"
+        },
+        "umwandlung_sozial ab 1950": {
+          "preis_pro_qm": 3271,
+          "preis_pro_qm_gut": 4740,
+          "stadtgebiet": "City",
+          "weight": 0.162,
+          "source": "umwandlung_condos"
+        }
+      },
+      "Reinickendorf": {
+        "resale_1949-1970": {
+          "preis_pro_qm": 3845,
+          "preis_pro_qm_gut": null,
+          "stadtgebiet": "Nord",
+          "weight": 0.12,
+          "source": "condo_resales"
+        },
+        "resale_1971-1990": {
+          "preis_pro_qm": 3508,
+          "preis_pro_qm_gut": 4322,
+          "stadtgebiet": "Nord",
+          "weight": 0.12,
+          "source": "condo_resales"
+        },
+        "resale_ab 1991": {
+          "preis_pro_qm": 4060,
+          "preis_pro_qm_gut": 5275,
+          "stadtgebiet": "Nord",
+          "weight": 0.12,
+          "source": "condo_resales"
+        },
+        "erstverkauf_neubau": {
+          "preis_pro_qm": 6732,
+          "preis_pro_qm_gut": 8562,
+          "stadtgebiet": "Nord",
+          "weight": 0.12,
+          "source": "erstverkauf_condos"
+        },
+        "umwandlung_bis 1919": {
+          "preis_pro_qm": 3087,
+          "preis_pro_qm_gut": 4740,
+          "stadtgebiet": "Nord",
+          "weight": 0.12,
+          "source": "umwandlung_condos"
+        },
+        "umwandlung_1920-1948": {
+          "preis_pro_qm": 2665,
+          "preis_pro_qm_gut": 3917,
+          "stadtgebiet": "Nord",
+          "weight": 0.12,
+          "source": "umwandlung_condos"
+        }
+      },
+      "Steglitz-Zehlendorf": {
+        "resale_1949-1970": {
+          "preis_pro_qm": 3795,
+          "preis_pro_qm_gut": 4230,
+          "stadtgebiet": "Südwest",
+          "weight": 0.39,
+          "source": "condo_resales"
+        },
+        "resale_1971-1990": {
+          "preis_pro_qm": 3968,
+          "preis_pro_qm_gut": 5006,
+          "stadtgebiet": "Südwest",
+          "weight": 0.39,
+          "source": "condo_resales"
+        },
+        "resale_ab 1991": {
+          "preis_pro_qm": 5158,
+          "preis_pro_qm_gut": 6633,
+          "stadtgebiet": "Südwest",
+          "weight": 0.39,
+          "source": "condo_resales"
+        },
+        "erstverkauf_neubau": {
+          "preis_pro_qm": 6374,
+          "preis_pro_qm_gut": 10001,
+          "stadtgebiet": "Südwest",
+          "weight": 0.39,
+          "source": "erstverkauf_condos"
+        },
+        "umwandlung_bis 1919": {
+          "preis_pro_qm": 3619,
+          "preis_pro_qm_gut": 5402,
+          "stadtgebiet": "Südwest",
+          "weight": 0.39,
+          "source": "umwandlung_condos"
+        },
+        "umwandlung_1920-1948": {
+          "preis_pro_qm": 3104,
+          "preis_pro_qm_gut": 4851,
+          "stadtgebiet": "Südwest",
+          "weight": 0.39,
+          "source": "umwandlung_condos"
+        }
+      },
+      "Lichtenberg": {
+        "resale_ab 1991": {
+          "preis_pro_qm": 3678,
+          "preis_pro_qm_gut": null,
+          "stadtgebiet": "Ost",
+          "weight": 0.188,
+          "source": "condo_resales"
+        },
+        "erstverkauf_neubau": {
+          "preis_pro_qm": 5334,
+          "preis_pro_qm_gut": 6521,
+          "stadtgebiet": "Ost",
+          "weight": 0.188,
+          "source": "erstverkauf_condos"
+        },
+        "umwandlung_bis 1919": {
+          "preis_pro_qm": 3031,
+          "preis_pro_qm_gut": 4793,
+          "stadtgebiet": "Ost",
+          "weight": 0.188,
+          "source": "umwandlung_condos"
+        },
+        "umwandlung_1920-1948": {
+          "preis_pro_qm": 3045,
+          "preis_pro_qm_gut": 5018,
+          "stadtgebiet": "Ost",
+          "weight": 0.188,
+          "source": "umwandlung_condos"
+        }
+      },
+      "Marzahn-Hellersdorf": {
+        "resale_ab 1991": {
+          "preis_pro_qm": 3678,
+          "preis_pro_qm_gut": null,
+          "stadtgebiet": "Ost",
+          "weight": 0.09,
+          "source": "condo_resales"
+        },
+        "erstverkauf_neubau": {
+          "preis_pro_qm": 5334,
+          "preis_pro_qm_gut": 6521,
+          "stadtgebiet": "Ost",
+          "weight": 0.09,
+          "source": "erstverkauf_condos"
+        },
+        "umwandlung_bis 1919": {
+          "preis_pro_qm": 3031,
+          "preis_pro_qm_gut": 4793,
+          "stadtgebiet": "Ost",
+          "weight": 0.09,
+          "source": "umwandlung_condos"
+        },
+        "umwandlung_1920-1948": {
+          "preis_pro_qm": 3045,
+          "preis_pro_qm_gut": 5018,
+          "stadtgebiet": "Ost",
+          "weight": 0.09,
+          "source": "umwandlung_condos"
+        }
+      },
+      "Spandau": {
+        "resale_ab 1991": {
+          "preis_pro_qm": 3678,
+          "preis_pro_qm_gut": null,
+          "stadtgebiet": "Ost",
+          "weight": 0.264,
+          "source": "condo_resales"
+        },
+        "erstverkauf_neubau": {
+          "preis_pro_qm": 5334,
+          "preis_pro_qm_gut": 6521,
+          "stadtgebiet": "Ost",
+          "weight": 0.264,
+          "source": "erstverkauf_condos"
+        },
+        "umwandlung_bis 1919": {
+          "preis_pro_qm": 2692,
+          "preis_pro_qm_gut": 3560,
+          "stadtgebiet": "West",
+          "weight": 1.0,
+          "source": "umwandlung_condos"
+        },
+        "umwandlung_1920-1948": {
+          "preis_pro_qm": 2530,
+          "preis_pro_qm_gut": 3524,
+          "stadtgebiet": "West",
+          "weight": 1.0,
+          "source": "umwandlung_condos"
+        }
+      },
+      "Treptow-Köpenick": {
+        "resale_ab 1991": {
+          "preis_pro_qm": 4011,
+          "preis_pro_qm_gut": 4794,
+          "stadtgebiet": "Südost",
+          "weight": 0.365,
+          "source": "condo_resales"
+        },
+        "erstverkauf_neubau": {
+          "preis_pro_qm": 6384,
+          "preis_pro_qm_gut": 8221,
+          "stadtgebiet": "Südost",
+          "weight": 0.365,
+          "source": "erstverkauf_condos"
+        },
+        "umwandlung_bis 1919": {
+          "preis_pro_qm": 3114,
+          "preis_pro_qm_gut": 4264,
+          "stadtgebiet": "Südost",
+          "weight": 0.365,
+          "source": "umwandlung_condos"
+        },
+        "umwandlung_1920-1948": {
+          "preis_pro_qm": 3059,
+          "preis_pro_qm_gut": 3767,
+          "stadtgebiet": "Südost",
+          "weight": 0.365,
+          "source": "umwandlung_condos"
+        }
+      }
+    },
+    "brw_offen": [
+      {
+        "bezirk": "Mitte",
+        "bodenrichtwert_min": 450.0,
+        "bodenrichtwert_max": 2800.0,
+        "change_pct": 0
+      },
+      {
+        "bezirk": "Pankow",
+        "bodenrichtwert_min": 270.0,
+        "bodenrichtwert_max": 1000.0,
+        "change_pct": -10
+      },
+      {
+        "bezirk": "Charlottenburg-Wilmersdorf",
+        "bodenrichtwert_min": 710.0,
+        "bodenrichtwert_max": 2800.0,
+        "change_pct": -5
+      },
+      {
+        "bezirk": "Spandau",
+        "bodenrichtwert_min": 280.0,
+        "bodenrichtwert_max": 850.0,
+        "change_pct": -5
+      },
+      {
+        "bezirk": "Steglitz-Zehlendorf",
+        "bodenrichtwert_min": 320.0,
+        "bodenrichtwert_max": 2800.0,
+        "change_pct": 0
+      },
+      {
+        "bezirk": "Tempelhof-Schöneberg",
+        "bodenrichtwert_min": 360.0,
+        "bodenrichtwert_max": 1700.0,
+        "change_pct": -5
+      },
+      {
+        "bezirk": "Neukölln",
+        "bodenrichtwert_min": 370.0,
+        "bodenrichtwert_max": 1100.0,
+        "change_pct": -5
+      },
+      {
+        "bezirk": "Treptow-Köpenick",
+        "bodenrichtwert_min": 190.0,
+        "bodenrichtwert_max": 750.0,
+        "change_pct": -5
+      },
+      {
+        "bezirk": "Marzahn-Hellersdorf",
+        "bodenrichtwert_min": 300.0,
+        "bodenrichtwert_max": 560.0,
+        "change_pct": -5
+      },
+      {
+        "bezirk": "Lichtenberg",
+        "bodenrichtwert_min": 360.0,
+        "bodenrichtwert_max": 900.0,
+        "change_pct": -5
+      },
+      {
+        "bezirk": "Reinickendorf",
+        "bodenrichtwert_min": 280.0,
+        "bodenrichtwert_max": 750.0,
+        "change_pct": -5
+      }
+    ],
+    "key_prices": {
+      "efh_zfh_mittel_eur_pro_qm_gfkl": 3800,
+      "efh_change_pct": -7,
+      "mietwohnhaeuser_mittel_eur_pro_qm_gfkl": 1915,
+      "mwh_change_pct": -6,
+      "wohn_geschaeftshaeuser_mittel_eur_pro_qm_gfkl": 1855,
+      "wgh_change_pct": -10,
+      "etw_mittel_eur_pro_qm_wfl": 5251,
+      "etw_change_pct": -1,
+      "etw_neubau_mittel_eur_pro_qm_wfl": 7912,
+      "etw_neubau_change_pct": 1,
+      "stellplatz_mittel_eur": 31658,
+      "etw_hoechstpreis_MioEUR": 8.3,
+      "etw_hoechstpreis_ortsteil": "Charlottenburg",
+      "villa_hoechstpreis_MioEUR": 17.2,
+      "villa_hoechstpreis_ortsteil": "Kladow",
+      "efh_hoechstpreis_eur_pro_qm_wfl": 12120,
+      "efh_hoechstpreis_ortsteil": "Grunewald",
+      "stellplatz_hoechstpreis_eur": 100000,
+      "stellplatz_hoechstpreis_bezirk": "Mitte"
+    }
+  }
+}
