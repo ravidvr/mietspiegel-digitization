@@ -173,29 +173,52 @@ Stadtgebiet → Bezirk mapping is NOT 1:1. "Nord" spans Pankow and Reinickendorf
 
 ---
 
-## 4. Processing Pipeline
+## 4. Extraction Results (Implemented)
 
-### Phase 1: Extract (per section)
-1. Parse pymupdf raw text for each table format
-2. Normalize German number formatting: `1.234,56` → `1234.56`
-3. Decode trend arrows → midpoint values
-4. Replace "---" with null
-5. Map column positions (text extraction loses alignment)
+### Phase 1 Complete: Bezirk-Level Data
 
-### Phase 2: Harmonize
-1. Map Stadtgebiet → best-guess Bezirk (weighted by population shares)
-2. Create unified schema across all 5 table types
-3. Build lookup: `bezirk_name` → Bezirk ID, `ortsteil_name` → Ortsteil ID
+Extracted and validated via Python script from pymupdf text output:
 
-### Phase 3: Geocode
-1. Join Geldumsatz/Flächenumsatz/Kauffälle → existing `berlin-districts-choropleth.geojson` (12 Bezirke)
-2. For Ortsteil-level data, acquire or create an Ortsteil GeoJSON (97 features)
-3. No lat/lng in source — all joins are on name matching
+```
+docs/data/processed/marktbericht_bezirke_2024.json      — 12 Bezirke × 3 metrics
+docs/data/processed/marktbericht_complete_2024.json     — unified dataset
+```
 
-### Phase 4: Validate
-1. Row counts → must match 12 for Bezirk tables
-2. Sums → Bezirk sums should match Berlin total from overview
-3. 2023 vs 2024 completeness → some cells suppressed in one year but not the other
+**What was successfully extracted:**
+
+| Section | Method | Status |
+|---|---|---|
+| Bezirk Kauffälle (6.1.1) | Automated parser | ✓ 12/12 districts, sum=20,080 (+709 PKT = 20,789) |
+| Bezirk Geldumsatz (6.1.2) | Automated parser | ✓ 12/12, sum=14,540 (+348 PKT = 14,889) |
+| Bezirk Flächenumsatz (6.1.3) | Automated parser | ✓ 12/12, sum=447.4 ha (+2.7 PKT = 450.1) |
+| Overview table (2.1) | Manual transcription | ✓ 3 Teilmärkte + Pakete |
+| Key prices (2.2) | Manual transcription | ✓ 19 data points |
+| WEG creation (2.2/7) | Manual transcription | ✓ 8 data points |
+| Q1 2025 outlook (8) | Manual transcription | ✓ 4 sections |
+| Investment summary (5.4.1) | Manual transcription | ✓ 3 property types |
+| House price tables (5.4.2) | Attempted — FAILED | ✗ pymupdf can't parse merged cells |
+| Condo price tables (5.5) | Attempted — FAILED | ✗ same reason |
+| Land price tables (5.1) | Not attempted | ✗ same reason |
+| Historical trends (6.4) | Not attempted | ✗ separate format |
+
+**Data quality: 16/16 checks passed.**
+
+Kauffälle: 788 + 3,370 + 16,631 = 20,789 ✓ matches report
+Paket breakdown: 0 + 13 + 696 = 709 ✓ matches report
+All 12 Bezirk pct sums within 0.1% of 100% ✓
+
+### Phase 2–4 Status
+
+Blocked by Phase 1 table extraction. Detailed price tables (condos, houses, land) require a lattice-based PDF table extractor (tabula-py or camelot-py) — pymupdf's text extraction loses column alignment for merged cells.
+
+### Next Extraction Target
+
+Install `tabula-py` (requires Java runtime) or `camelot-py` and re-extract:
+1. Condo resale prices (6 Baujahresgruppen × 6 Stadtgebiete)
+2. House prices by subtype (3+ subtypes × 6 Baujahresgruppen × 3 Wohnlagen)
+3. Historical time series 1990–2024
+
+The Bezirk-level data is ready for a dashboard now.
 
 ---
 
