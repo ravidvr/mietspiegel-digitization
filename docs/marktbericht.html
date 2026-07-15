@@ -412,11 +412,10 @@ function getMetricValue(bezirk, metric) {
       return cp ? cp.price : null;
     }
     case 'condo_neubau': {
-      const cn = (DATA.condo_primary||{})[bezirk];
-      if (!cn) return null;
-      // Use erstverkauf data if available
-      const sgp = DATA.sg_prices || {};
-      return sgp[cn.sg] || null;
+      const cp = (DATA.condo_primary||{})[bezirk];
+      if (!cp) return null;
+      const nb = (DATA.sg_neubau||{})[cp.sg];
+      return nb || null;
     }
     case 'brw_min': return brw ? brw.bodenrichtwert_min : null;
     case 'brw_max': return brw ? brw.bodenrichtwert_max : null;
