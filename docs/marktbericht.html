@@ -65,15 +65,64 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   .tooltip{top:auto;bottom:0;left:0;right:0;max-width:100%;border-radius:12px 12px 0 0;max-height:50vh}
   .map-legend{bottom:8px;left:4px;font-size:9px;padding:5px 8px}
 }
+
+/* Explainer overlay */
+.help-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:9999;align-items:center;justify-content:center;padding:16px}
+.help-overlay.open{display:flex}
+.help-box{background:var(--surface);border:1px solid var(--border);border-radius:10px;max-width:440px;width:100%;max-height:85vh;overflow-y:auto;padding:24px;box-shadow:0 6px 24px rgba(0,0,0,.4);position:relative}
+.help-box h2{font-size:18px;margin-bottom:2px;color:#fff}
+.help-box .sub{font-size:12px;color:var(--text-dim);margin-bottom:16px}
+.help-box .section{margin-bottom:14px}
+.help-box .section h3{font-size:13px;font-weight:600;margin-bottom:4px;color:var(--accent)}
+.help-box .section p,.help-box .section li{font-size:12px;line-height:1.6;color:var(--text-dim)}
+.help-box .section ul{padding-left:16px}
+.help-box .section li{margin-bottom:2px}
+.help-box .close-btn{position:absolute;top:12px;right:14px;background:none;border:none;font-size:20px;color:var(--text-dim);cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%}
+.help-box .close-btn:hover{background:var(--surface2);color:#fff}
+.help-box .got-it{display:block;width:100%;padding:10px;background:var(--accent);color:#fff;border:none;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;margin-top:8px}
+.help-box .got-it:hover{opacity:.85}
+.help-box .dot-sm{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px;vertical-align:middle}
+@media(max-width:600px){.help-box{padding:16px;max-width:100%}.help-box h2{font-size:16px}.help-box .section h3{font-size:12px}.help-box .section p,.help-box .section li{font-size:11px}}
 </style>
 </head>
 <body>
+
+<!-- Explainer overlay -->
+<div class="help-overlay" id="helpOverlay" onclick="if(event.target===this)closeHelp()">
+  <div class="help-box">
+    <button class="close-btn" onclick="closeHelp()">×</button>
+    <h2 id="helpTitle">🏙️ Berliner Immobilienmarkt 2024</h2>
+    <div class="sub" id="helpSub">Echte Kaufpreise aus 20.789 notariellen Verträgen — keine Schätzungen, keine Angebotspreise.</div>
+    <div class="section">
+      <h3 id="helpWhatTitle">🎯 Was du siehst</h3>
+      <ul>
+        <li id="helpWhat1"><span class="dot-sm" style="background:#e04030"></span> <strong>Eingefärbte Bezirke</strong> — je dunkler, desto höher der Wert. Von grün (niedrig) bis rot (hoch).</li>
+        <li id="helpWhat2"><span class="dot-sm" style="background:#5b8def"></span> <strong>10 verschiedene Metriken</strong> — Geldumsatz, Kauffälle, Wohnungspreise, Bodenrichtwerte. Oben im Menü umschaltbar.</li>
+        <li id="helpWhat3"><span class="dot-sm" style="background:#48bb78"></span> <strong>Bezirksliste</strong> — links sortiert nach Wert. Klicken zum Zoomen.</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h3 id="helpHowTitle">🔍 So nutzt du die Karte</h3>
+      <ul>
+        <li id="helpHow1"><strong>Auf einen Bezirk klicken</strong> — öffnet eine Infobox mit allen Details: Preise, Anzahl der Verkäufe, Bodenrichtwerte.</li>
+        <li id="helpHow2"><strong>Metrik wechseln</strong> — oben im Dropdown zwischen Geldumsatz, Kauffällen, Wohnungspreisen und Bodenrichtwerten umschalten.</li>
+        <li id="helpHow3"><strong>Auf einen Bezirk hovern</strong> — zeigt den Namen an. Klicken für die vollständige Aufschlüsselung.</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h3 id="helpInsightTitle">📊 Das Wichtigste in Kürze</h3>
+      <p id="helpInsight">2024 wurden in Berlin Immobilien im Wert von <strong>14,9 Milliarden Euro</strong> verkauft — 20% mehr als 2023. Die Preise fallen jedoch weiter: Eigentumswohnungen kosten im Schnitt <strong>5.251 €/m²</strong> (-1%), Einfamilienhäuser <strong>3.800 €/m²</strong> (-7%). Der Markt erreicht langsam den Boden.</p>
+    </div>
+    <button class="got-it" onclick="closeHelp()" id="helpBtn">Verstanden! →</button>
+  </div>
+</div>
 
 <div class="header">
   <h1><span id="hTitle">🏙️ Berlin Immobilienmarkt 2024</span></h1>
   <div class="h-right">
     <span class="bdg" id="yearBadge">20.789</span>
     <button class="h-btn" id="langToggle" onclick="toggleLang()">EN</button>
+    <button class="h-btn" onclick="openHelp()" title="How to use this map">❓ Help</button>
     <a class="h-btn" href="berlin.html">📊 Mietspiegel</a>
     <a class="h-btn" href="index.html">🏠 Home</a>
   </div>
@@ -120,15 +169,28 @@ const T = {
       brw_max: '🏞️ Bodenrichtwert max (€/m²)',
     },
     tt_pct_berlin: '% des Berliner Geldumsatzes',
-    tt_unbebaut: 'Unbebaut',
-    tt_bebaut: 'Bebaut',
-    tt_kf: '📋 Kauffälle',
-    tt_kf_we: '   — WE',
-    tt_flaeche: '📐 Flächenumsatz',
-    tt_brw: '🏞️ Bodenrichtwert (offen)',
-    tt_etw: '🏢 ETW Preise (verteilt)',
-    tt_neubau: '   Neubau',
+    tt_unbebaut: 'Unbebaute Grundstücke',
+    tt_bebaut: 'Bebaute Grundstücke',
+    tt_kf: '📋 Verkäufe insgesamt',
+    tt_kf_we: '   — davon Wohnungen',
+    tt_flaeche: '📐 Fläche',
+    tt_brw: '🏞️ Bodenrichtwert',
+    tt_etw: '🏢 Wohnungspreise (ø €/m²)',
+    tt_neubau: '   — Neubau',
     yr_prev: '2023 (Vorjahr)',
+    helpTitle: '🏙️ Berliner Immobilienmarkt 2024',
+    helpSub: 'Echte Kaufpreise aus 20.789 notariellen Verträgen — keine Schätzungen, keine Angebotspreise.',
+    helpWhatTitle: '🎯 Was du siehst',
+    helpWhat1: '<span class="dot-sm" style="background:#e04030"></span> <strong>Eingefärbte Bezirke</strong> — je dunkler, desto höher der Wert. Von grün (niedrig) bis rot (hoch).',
+    helpWhat2: '<span class="dot-sm" style="background:#5b8def"></span> <strong>10 verschiedene Metriken</strong> — Geldumsatz, Kauffälle, Wohnungspreise, Bodenrichtwerte. Oben im Menü umschaltbar.',
+    helpWhat3: '<span class="dot-sm" style="background:#48bb78"></span> <strong>Bezirksliste</strong> — links sortiert nach Wert. Klicken zum Zoomen.',
+    helpHowTitle: '🔍 So nutzt du die Karte',
+    helpHow1: '<strong>Auf einen Bezirk klicken</strong> — öffnet eine Infobox mit allen Details: Preise, Anzahl der Verkäufe, Bodenrichtwerte.',
+    helpHow2: '<strong>Metrik wechseln</strong> — oben im Dropdown zwischen Geldumsatz, Kauffällen, Wohnungspreisen und Bodenrichtwerten umschalten.',
+    helpHow3: '<strong>Auf einen Bezirk hovern</strong> — zeigt den Namen an. Klicken für die vollständige Aufschlüsselung.',
+    helpInsightTitle: '📊 Das Wichtigste in Kürze',
+    helpInsight: '2024 wurden in Berlin Immobilien im Wert von <strong>14,9 Milliarden Euro</strong> verkauft — 20% mehr als 2023. Die Preise fallen jedoch weiter: Eigentumswohnungen kosten im Schnitt <strong>5.251 €/m²</strong> (-1%), Einfamilienhäuser <strong>3.800 €/m²</strong> (-7%). Der Markt erreicht langsam den Boden.',
+    helpBtn: 'Verstanden! →',
   },
   en: {
     title: '🏙️ Berlin Real Estate Market 2024',
@@ -151,21 +213,37 @@ const T = {
       brw_max: '🏞️ Standard Land Value max (€/m²)',
     },
     tt_pct_berlin: '% of Berlin total volume',
-    tt_unbebaut: 'Undeveloped',
-    tt_bebaut: 'Developed',
-    tt_kf: '📋 Transactions',
-    tt_kf_we: '   — Condos',
-    tt_flaeche: '📐 Land Area',
-    tt_brw: '🏞️ Standard Land Value (open const.)',
-    tt_etw: '🏢 Condo Prices (distributed)',
-    tt_neubau: '   New Build',
+    tt_unbebaut: 'Undeveloped land',
+    tt_bebaut: 'Developed properties',
+    tt_kf: '📋 Total sales',
+    tt_kf_we: '   — of which condos',
+    tt_flaeche: '📐 Land area',
+    tt_brw: '🏞️ Standard land value',
+    tt_etw: '🏢 Condo prices (avg €/m²)',
+    tt_neubau: '   — New build',
     yr_prev: '2023 (previous year)',
+    helpTitle: '🏙️ Berlin Real Estate Market 2024',
+    helpSub: 'Real sale prices from 20,789 notarized contracts — no estimates, no asking prices.',
+    helpWhatTitle: '🎯 What you are looking at',
+    helpWhat1: '<span class="dot-sm" style="background:#e04030"></span> <strong>Color-coded districts</strong> — darker means higher value. Green (low) to red (high).',
+    helpWhat2: '<span class="dot-sm" style="background:#5b8def"></span> <strong>10 different metrics</strong> — transaction volume, sales count, condo prices, land values. Switchable in the top menu.',
+    helpWhat3: '<span class="dot-sm" style="background:#48bb78"></span> <strong>District list</strong> — left sidebar sorted by value. Click to zoom.',
+    helpHowTitle: '🔍 How to use this map',
+    helpHow1: '<strong>Click a district</strong> — opens an info box with all details: prices, number of sales, land values.',
+    helpHow2: '<strong>Switch metrics</strong> — use the dropdown above to toggle between money volume, transactions, condo prices, and land values.',
+    helpHow3: '<strong>Hover over a district</strong> — shows the name. Click for the full breakdown.',
+    helpInsightTitle: '📊 The key insight',
+    helpInsight: 'In 2024, Berlin real estate worth <strong>€14.9 billion</strong> was sold — 20% more than 2023. But prices are still falling: condos average <strong>€5,251/m²</strong> (-1%), single-family homes <strong>€3,800/m²</strong> (-7%). The market is slowly bottoming out.',
+    helpBtn: 'Got it! →',
   }
 };
 
 let currentLang = 'de';
 function t(key) { return (T[currentLang] || T.de)[key] || key; }
 function tm(key) { return (T[currentLang] || T.de).metrics[key] || key; }
+
+function openHelp() { document.getElementById('helpOverlay').classList.add('open'); }
+function closeHelp() { document.getElementById('helpOverlay').classList.remove('open'); }
 
 function toggleLang() {
   currentLang = currentLang === 'de' ? 'en' : 'de';
@@ -177,6 +255,15 @@ function toggleLang() {
   document.getElementById('srcNote').textContent = t('source');
   document.getElementById('yearBadge').textContent = t('badge');
   document.querySelector('#yearSelect option[value="2023"]').textContent = t('yr_prev');
+  // Update overlay text
+  const overlayIds = ['helpTitle','helpSub','helpWhatTitle','helpWhat1','helpWhat2','helpWhat3',
+    'helpHowTitle','helpHow1','helpHow2','helpHow3','helpInsightTitle','helpInsight','helpBtn'];
+  overlayIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (id === 'helpBtn' || id === 'helpTitle') { el.textContent = t(id); }
+    else { el.innerHTML = t(id); }
+  });
   // Rebuild metric select options
   const sel = document.getElementById('metricSelect');
   const currentVal = sel.value;
@@ -308,7 +395,12 @@ async function init() {
   }).addTo(map);
   buildMap();
 }
-document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded', () => { init();
+  // Show help on first visit
+  if (!localStorage.getItem('marktbericht-help-seen')) {
+    setTimeout(() => { openHelp(); localStorage.setItem('marktbericht-help-seen','1'); }, 600);
+  }
+});
 </script>
 </body>
 </html>
