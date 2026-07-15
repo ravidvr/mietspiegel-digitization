@@ -636,9 +636,10 @@
     "investment_properties": "Manually transcribed from Section 5.4.1 summary tables.",
     "price_tables_house": "EXTRACTED via pdfbox-app-3.0.7",
     "price_tables_condo": "EXTRACTED via pdfbox-app-3.0.7 — 18 rows",
-    "price_tables_land": "NOT ATTEMPTED: requires same table parser as house/condo tables.",
-    "historical_trends": "NOT ATTEMPTED: separate table format, needs dedicated parser.",
-    "next_steps": "Install tabula-py (Java-based) or camelot-py for lattice-based PDF table extraction. Or manually transcribe the summary price rows."
+    "price_tables_land": "PARTIAL — Bodenrichtwerte only: 11 Bezirke",
+    "historical_trends": "BLOCKED — data only exists as charts (Abb. 64-66), not as text tables",
+    "next_steps": "Install tabula-py (Java-based) or camelot-py for lattice-based PDF table extraction. Or manually transcribe the summary price rows.",
+    "price_tables_erstverkauf": "EXTRACTED — 6 rows"
   },
   "_quality_report": {
     "checks_passed": 16,
@@ -1300,6 +1301,142 @@
           "mw24_gut": null
         }
       ]
+    }
+  ],
+  "erstverkauf_condos": [
+    {
+      "stadtgebiet": "City",
+      "kf23_einfach": 159,
+      "kf23_gut": 43,
+      "kf24_einfach": 212,
+      "kf24_gut": 97,
+      "mw23_einfach": 9459.0,
+      "mw23_gut": 10078.0,
+      "mw24_einfach": 10102.0,
+      "mw24_gut": 9332.0
+    },
+    {
+      "stadtgebiet": "Nord",
+      "kf23_einfach": 144,
+      "kf23_gut": 16,
+      "kf24_einfach": 120,
+      "kf24_gut": 17,
+      "mw23_einfach": 6408.0,
+      "mw23_gut": 7952.0,
+      "mw24_einfach": 6732.0,
+      "mw24_gut": 8562.0
+    },
+    {
+      "stadtgebiet": "Ost",
+      "kf23_einfach": 123,
+      "kf23_gut": 3,
+      "kf24_einfach": 151,
+      "kf24_gut": 3,
+      "mw23_einfach": 5533.0,
+      "mw23_gut": 6213.0,
+      "mw24_einfach": 5334.0,
+      "mw24_gut": 6521.0
+    },
+    {
+      "stadtgebiet": "Südost",
+      "kf23_einfach": 103,
+      "kf23_gut": 12,
+      "kf24_einfach": 218,
+      "kf24_gut": 4,
+      "mw23_einfach": 5882.0,
+      "mw23_gut": 7120.0,
+      "mw24_einfach": 6384.0,
+      "mw24_gut": 8221.0
+    },
+    {
+      "stadtgebiet": "Südwest",
+      "kf23_einfach": 11,
+      "kf23_gut": 10,
+      "kf24_einfach": 22,
+      "kf24_gut": 52,
+      "mw23_einfach": 7689.0,
+      "mw23_gut": 8816.0,
+      "mw24_einfach": 6374.0,
+      "mw24_gut": 10001.0
+    },
+    {
+      "stadtgebiet": "West",
+      "kf23_einfach": 15,
+      "kf23_gut": 0,
+      "kf24_einfach": 21,
+      "kf24_gut": 1,
+      "mw23_einfach": 7061.0,
+      "mw23_gut": 7971.0,
+      "mw24_einfach": null,
+      "mw24_gut": null
+    }
+  ],
+  "bodenrichtwerte_offen": [
+    {
+      "bezirk": "Mitte",
+      "bodenrichtwert_min": 450.0,
+      "bodenrichtwert_max": 2800.0,
+      "change_pct": 0
+    },
+    {
+      "bezirk": "Pankow",
+      "bodenrichtwert_min": 270.0,
+      "bodenrichtwert_max": 1000.0,
+      "change_pct": -10
+    },
+    {
+      "bezirk": "Charlottenburg-Wilmersdorf",
+      "bodenrichtwert_min": 710.0,
+      "bodenrichtwert_max": 2800.0,
+      "change_pct": -5
+    },
+    {
+      "bezirk": "Spandau",
+      "bodenrichtwert_min": 280.0,
+      "bodenrichtwert_max": 850.0,
+      "change_pct": -5
+    },
+    {
+      "bezirk": "Steglitz-Zehlendorf",
+      "bodenrichtwert_min": 320.0,
+      "bodenrichtwert_max": 2800.0,
+      "change_pct": 0
+    },
+    {
+      "bezirk": "Tempelhof-Schöneberg",
+      "bodenrichtwert_min": 360.0,
+      "bodenrichtwert_max": 1700.0,
+      "change_pct": -5
+    },
+    {
+      "bezirk": "Neukölln",
+      "bodenrichtwert_min": 370.0,
+      "bodenrichtwert_max": 1100.0,
+      "change_pct": -5
+    },
+    {
+      "bezirk": "Treptow-Köpenick",
+      "bodenrichtwert_min": 190.0,
+      "bodenrichtwert_max": 750.0,
+      "change_pct": -5
+    },
+    {
+      "bezirk": "Marzahn-Hellersdorf",
+      "bodenrichtwert_min": 300.0,
+      "bodenrichtwert_max": 560.0,
+      "change_pct": -5
+    },
+    {
+      "bezirk": "Lichtenberg",
+      "bodenrichtwert_min": 360.0,
+      "bodenrichtwert_max": 900.0,
+      "change_pct": -5
+    },
+    {
+      "bezirk": "Reinickendorf",
+      "bodenrichtwert_min": 280.0,
+      "bodenrichtwert_max": 750.0,
+      "change_pct": -5
     }
   ]
 }
