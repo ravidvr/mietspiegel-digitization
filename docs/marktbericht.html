@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Berliner Immobilienmarkt 2024 — Marktbericht Dashboard</title>
-<meta property="og:title" content="Berliner Immobilienmarkt 2024">
-<meta property="og:description" content="Interaktive Karte des Berliner Immobilienmarktberichts 2024/2025 — Kaufpreise, Geldumsatz, Kauffälle pro Bezirk. Daten: Gutachterausschuss Berlin.">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
@@ -72,43 +70,122 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 <body>
 
 <div class="header">
-  <h1>🏙️ Berlin <span>Immobilienmarkt</span> 2024</h1>
+  <h1><span id="hTitle">🏙️ Berlin Immobilienmarkt 2024</span></h1>
   <div class="h-right">
-    <span class="bdg" id="yearBadge">20.789 Kauffälle</span>
+    <span class="bdg" id="yearBadge">20.789</span>
+    <button class="h-btn" id="langToggle" onclick="toggleLang()">EN</button>
     <a class="h-btn" href="berlin.html">📊 Mietspiegel</a>
     <a class="h-btn" href="index.html">🏠 Home</a>
   </div>
 </div>
 
 <div class="controls">
-  <label for="metricSelect">Metrik:</label>
-  <select id="metricSelect" onchange="switchMetric()">
-    <option value="geldumsatz">💰 Geldumsatz (Mio. €)</option>
-    <option value="geldumsatz_bebaut">💰 Geldumsatz — bebaute Grundstücke</option>
-    <option value="geldumsatz_we">💰 Geldumsatz — Wohnungseigentum</option>
-    <option value="kauffaelle">📋 Kauffälle (Anzahl)</option>
-    <option value="kauffaelle_we">📋 Kauffälle — Wohnungseigentum</option>
-    <option value="flaeche">📐 Flächenumsatz (ha)</option>
-    <option value="condo_resale">🏢 ETW Weiterverkauf (€/m²)</option>
-    <option value="condo_neubau">🏗️ ETW Neubau (€/m²)</option>
-    <option value="brw_min">🏞️ Bodenrichtwert min (€/m²)</option>
-    <option value="brw_max">🏞️ Bodenrichtwert max (€/m²)</option>
-  </select>
-  <label for="yearSelect" style="margin-left:8px">Jahr:</label>
+  <label for="metricSelect" id="lblMetric">Metrik:</label>
+  <select id="metricSelect" onchange="switchMetric()"></select>
+  <label for="yearSelect" id="lblYear" style="margin-left:8px">Jahr:</label>
   <select id="yearSelect" onchange="switchMetric()">
     <option value="2024">2024</option>
-    <option value="2023">2023 (Vorjahr)</option>
+    <option value="2023">2023</option>
   </select>
-  <span style="font-size:10px;color:var(--text-dim);margin-left:auto">Daten: Gutachterausschuss Berlin · dl-de/zero-2-0</span>
+  <span style="font-size:10px;color:var(--text-dim);margin-left:auto" id="srcNote">Daten: Gutachterausschuss Berlin · dl-de/zero-2-0</span>
 </div>
 
 <div id="map">
-  <div class="district-panel" id="dpanel"><h4>Bezirke</h4><div id="dlist"></div></div>
+  <div class="district-panel" id="dpanel"><h4 id="dpTitle">Bezirke</h4><div id="dlist"></div></div>
   <div class="map-legend" id="legend"></div>
   <div class="tooltip" id="tooltip"></div>
 </div>
 
 <script>
+// ─── Translations ──────────────────────────────────────────────
+const T = {
+  de: {
+    title: '🏙️ Berlin Immobilienmarkt 2024',
+    badge: '20.789 Kauffälle',
+    metric: 'Metrik:',
+    year: 'Jahr:',
+    districts: 'Bezirke',
+    source: 'Daten: Gutachterausschuss Berlin · dl-de/zero-2-0',
+    langLabel: 'EN',
+    metrics: {
+      geldumsatz: '💰 Geldumsatz (Mio. €)',
+      geldumsatz_bebaut: '💰 Geldumsatz — bebaute Grundstücke',
+      geldumsatz_we: '💰 Geldumsatz — Wohnungseigentum',
+      kauffaelle: '📋 Kauffälle (Anzahl)',
+      kauffaelle_we: '📋 Kauffälle — Wohnungseigentum',
+      flaeche: '📐 Flächenumsatz (ha)',
+      condo_resale: '🏢 ETW Weiterverkauf (ø €/m²)',
+      condo_neubau: '🏗️ ETW Neubau (ø €/m²)',
+      brw_min: '🏞️ Bodenrichtwert min (€/m²)',
+      brw_max: '🏞️ Bodenrichtwert max (€/m²)',
+    },
+    tt_pct_berlin: '% des Berliner Geldumsatzes',
+    tt_unbebaut: 'Unbebaut',
+    tt_bebaut: 'Bebaut',
+    tt_kf: '📋 Kauffälle',
+    tt_kf_we: '   — WE',
+    tt_flaeche: '📐 Flächenumsatz',
+    tt_brw: '🏞️ Bodenrichtwert (offen)',
+    tt_etw: '🏢 ETW Preise (verteilt)',
+    tt_neubau: '   Neubau',
+    yr_prev: '2023 (Vorjahr)',
+  },
+  en: {
+    title: '🏙️ Berlin Real Estate Market 2024',
+    badge: '20,789 transactions',
+    metric: 'Metric:',
+    year: 'Year:',
+    districts: 'Districts',
+    source: 'Data: Gutachterausschuss Berlin · dl-de/zero-2-0',
+    langLabel: 'DE',
+    metrics: {
+      geldumsatz: '💰 Transaction Volume (Mio. €)',
+      geldumsatz_bebaut: '💰 Volume — Developed Properties',
+      geldumsatz_we: '💰 Volume — Condominiums',
+      kauffaelle: '📋 Transactions (count)',
+      kauffaelle_we: '📋 Transactions — Condominiums',
+      flaeche: '📐 Land Area Sold (ha)',
+      condo_resale: '🏢 Condo Resale (avg €/m²)',
+      condo_neubau: '🏗️ Condo New Build (avg €/m²)',
+      brw_min: '🏞️ Standard Land Value min (€/m²)',
+      brw_max: '🏞️ Standard Land Value max (€/m²)',
+    },
+    tt_pct_berlin: '% of Berlin total volume',
+    tt_unbebaut: 'Undeveloped',
+    tt_bebaut: 'Developed',
+    tt_kf: '📋 Transactions',
+    tt_kf_we: '   — Condos',
+    tt_flaeche: '📐 Land Area',
+    tt_brw: '🏞️ Standard Land Value (open const.)',
+    tt_etw: '🏢 Condo Prices (distributed)',
+    tt_neubau: '   New Build',
+    yr_prev: '2023 (previous year)',
+  }
+};
+
+let currentLang = 'de';
+function t(key) { return (T[currentLang] || T.de)[key] || key; }
+function tm(key) { return (T[currentLang] || T.de).metrics[key] || key; }
+
+function toggleLang() {
+  currentLang = currentLang === 'de' ? 'en' : 'de';
+  document.getElementById('langToggle').textContent = t('langLabel');
+  document.getElementById('hTitle').textContent = t('title');
+  document.getElementById('lblMetric').textContent = t('metric');
+  document.getElementById('lblYear').textContent = t('year');
+  document.getElementById('dpTitle').textContent = t('districts');
+  document.getElementById('srcNote').textContent = t('source');
+  document.getElementById('yearBadge').textContent = t('badge');
+  document.querySelector('#yearSelect option[value="2023"]').textContent = t('yr_prev');
+  // Rebuild metric select options
+  const sel = document.getElementById('metricSelect');
+  const currentVal = sel.value;
+  sel.innerHTML = Object.entries(T[currentLang].metrics).map(([k,v]) =>
+    `<option value="${k}">${v}</option>`).join('');
+  sel.value = currentVal;
+  buildMap();
+}
+
 // ─── Dashboard Data (embedded) ─────────────────────────────────
 const DATA = {"bezirke": {"kauffaelle": [{"bezirk": "Mitte", "unbebaut_anzahl": 9, "unbebaut_pct_berlin": 1.1, "unbebaut_pct_bezirk": 0.5, "bebaut_anzahl": 99, "bebaut_pct_berlin": 2.9, "bebaut_pct_bezirk": 5.2, "we_anzahl": 1785, "we_pct_berlin": 11.2, "we_pct_bezirk": 94.3, "gesamt_anzahl": 1893, "gesamt_pct_berlin": 9.4, "gesamt_pct_bezirk": 100.0}, {"bezirk": "Friedrichshain-Kreuzberg", "unbebaut_anzahl": 10, "unbebaut_pct_berlin": 1.3, "unbebaut_pct_bezirk": 0.6, "bebaut_anzahl": 63, "bebaut_pct_berlin": 1.9, "bebaut_pct_bezirk": 3.6, "we_anzahl": 1667, "we_pct_berlin": 10.5, "we_pct_bezirk": 95.8, "gesamt_anzahl": 1740, "gesamt_pct_berlin": 8.7, "gesamt_pct_bezirk": 100.0}, {"bezirk": "Pankow", "unbebaut_anzahl": 169, "unbebaut_pct_berlin": 21.4, "unbebaut_pct_bezirk": 7.1, "bebaut_anzahl": 318, "bebaut_pct_berlin": 9.5, "bebaut_pct_bezirk": 13.4, "we_anzahl": 1886, "we_pct_berlin": 11.8, "we_pct_bezirk": 79.5, "gesamt_anzahl": 2373, "gesamt_pct_berlin": 11.8, "gesamt_pct_bezirk": 100.0}, {"bezirk": "Charlottenburg-Wilmersdorf", "unbebaut_anzahl": 28, "unbebaut_pct_berlin": 3.6, "unbebaut_pct_bezirk": 1.1, "bebaut_anzahl": 160, "bebaut_pct_berlin": 4.8, "bebaut_pct_bezirk": 6.1, "we_anzahl": 2423, "we_pct_berlin": 15.2, "we_pct_bezirk": 92.8, "gesamt_anzahl": 2611, "gesamt_pct_berlin": 13.0, "gesamt_pct_bezirk": 100.0}, {"bezirk": "Spandau", "unbebaut_anzahl": 57, "unbebaut_pct_berlin": 7.2, "unbebaut_pct_bezirk": 4.6, "bebaut_anzahl": 318, "bebaut_pct_berlin": 9.5, "bebaut_pct_bezirk": 25.9, "we_anzahl": 851, "we_pct_berlin": 5.3, "we_pct_bezirk": 69.4, "gesamt_anzahl": 1226, "gesamt_pct_berlin": 6.1, "gesamt_pct_bezirk": 100.0}, {"bezirk": "Steglitz-Zehlendorf", "unbebaut_anzahl": 39, "unbebaut_pct_berlin": 4.9, "unbebaut_pct_bezirk": 1.9, "bebaut_anzahl": 472, "bebaut_pct_berlin": 14.1, "bebaut_pct_bezirk": 22.9, "we_anzahl": 1546, "we_pct_berlin": 9.7, "we_pct_bezirk": 75.2, "gesamt_anzahl": 2057, "gesamt_pct_berlin": 10.2, "gesamt_pct_bezirk": 100.0}, {"bezirk": "Tempelhof-Schöneberg", "unbebaut_anzahl": 28, "unbebaut_pct_berlin": 3.6, "unbebaut_pct_bezirk": 1.4, "bebaut_anzahl": 335, "bebaut_pct_berlin": 10.0, "bebaut_pct_bezirk": 16.5, "we_anzahl": 1673, "we_pct_berlin": 10.5, "we_pct_bezirk": 82.2, "gesamt_anzahl": 2036, "gesamt_pct_berlin": 10.1, "gesamt_pct_bezirk": 100.0}, {"bezirk": "Neukölln", "unbebaut_anzahl": 47, "unbebaut_pct_berlin": 6.0, "unbebaut_pct_bezirk": 3.7, "bebaut_anzahl": 323, "bebaut_pct_berlin": 9.6, "bebaut_pct_bezirk": 25.5, "we_anzahl": 896, "we_pct_berlin": 5.6, "we_pct_bezirk": 70.8, "gesamt_anzahl": 1266, "gesamt_pct_berlin": 6.3, "gesamt_pct_bezirk": 100.0}, {"bezirk": "Treptow-Köpenick", "unbebaut_anzahl": 139, "unbebaut_pct_berlin": 17.6, "unbebaut_pct_bezirk": 6.8, "bebaut_anzahl": 415, "bebaut_pct_berlin": 12.4, "bebaut_pct_bezirk": 20.4, "we_anzahl": 1478, "we_pct_berlin": 9.3, "we_pct_bezirk": 72.7, "gesamt_anzahl": 2032, "gesamt_pct_berlin": 10.1, "gesamt_pct_bezirk": 100.0}, {"bezirk": "Marzahn-Hellersdorf", "unbebaut_anzahl": 155, "unbebaut_pct_berlin": 19.7, "unbebaut_pct_bezirk": 21.2, "bebaut_anzahl": 284, "bebaut_pct_berlin": 8.5, "bebaut_pct_bezirk": 38.9, "we_anzahl": 291, "we_pct_berlin": 1.8, "we_pct_bezirk": 39.9, "gesamt_anzahl": 730, "gesamt_pct_berlin": 3.6, "gesamt_pct_bezirk": 100.0}, {"bezirk": "Lichtenberg", "unbebaut_anzahl": 52, "unbebaut_pct_berlin": 6.6, "unbebaut_pct_bezirk": 6.4, "bebaut_anzahl": 161, "bebaut_pct_berlin": 4.8, "bebaut_pct_bezirk": 19.7, "we_anzahl": 605, "we_pct_berlin": 3.8, "we_pct_bezirk": 74.0, "gesamt_anzahl": 818, "gesamt_pct_berlin": 4.1, "gesamt_pct_bezirk": 100.0}, {"bezirk": "Reinickendorf", "unbebaut_anzahl": 55, "unbebaut_pct_berlin": 7.0, "unbebaut_pct_bezirk": 4.2, "bebaut_anzahl": 409, "bebaut_pct_berlin": 12.2, "bebaut_pct_bezirk": 31.5, "we_anzahl": 834, "we_pct_berlin": 5.2, "we_pct_bezirk": 64.3, "gesamt_anzahl": 1298, "gesamt_pct_berlin": 6.5, "gesamt_pct_bezirk": 100.0}], "geldumsatz": [{"bezirk": "Mitte", "unbebaut_MioEUR": 64.7, "unbebaut_pct_berlin": 7.0, "unbebaut_pct_bezirk": 4.0, "bebaut_MioEUR": 841.3, "bebaut_pct_berlin": 10.6, "bebaut_pct_bezirk": 51.5, "we_MioEUR": 726.1, "we_pct_berlin": 12.7, "we_pct_bezirk": 44.5, "gesamt_MioEUR": 1632.1, "gesamt_pct_berlin": 11.2, "gesamt_pct_bezirk": 100.0}, {"bezirk": "Friedrichshain-Kreuzberg", "unbebaut_MioEUR": 179.9, "unbebaut_pct_berlin": 19.5, "unbebaut_pct_bezirk": 14.8, "bebaut_MioEUR": 342.9, "bebaut_pct_berlin": 4.3, "bebaut_pct_bezirk": 28.3, "we_MioEUR": 690.6, "we_pct_berlin": 12.1, "we_pct_bezirk": 56.9, "gesamt_MioEUR": 1213.4, "gesamt_pct_berlin": 8.3, "gesamt_pct_bezirk": 100.0}, {"bezirk": "Pankow", "unbebaut_MioEUR": 110.9, "unbebaut_pct_berlin": 12.0, "unbebaut_pct_bezirk": 6.7, "bebaut_MioEUR": 814.6, "bebaut_pct_berlin": 10.3, "bebaut_pct_bezirk": 49.3, "we_MioEUR": 728.4, "we_pct_berlin": 12.8, "we_pct_bezirk": 44.0, "gesamt_MioEUR": 1653.9, "gesamt_pct_berlin": 11.4, "gesamt_pct_bezirk": 100.0}, {"bezirk": "Charlottenburg-Wilmersdorf", "unbebaut_MioEUR": 78.9, "unbebaut_pct_berlin": 8.5, "unbebaut_pct_bezirk": 4.1, "bebaut_MioEUR": 735.7, "bebaut_pct_berlin": 9.3, "bebaut_pct_bezirk": 38.6, "we_MioEUR": 1090.8, "we_pct_berlin": 19.1, "we_pct_bezirk": 57.2, "gesamt_MioEUR": 1905.4, "gesamt_pct_berlin": 13.1, "gesamt_pct_bezirk": 100.0}, {"bezirk": "Spandau", "unbebaut_MioEUR": 44.6, "unbebaut_pct_berlin": 4.8, "unbebaut_pct_bezirk": 5.4, "bebaut_MioEUR": 566.4, "bebaut_pct_berlin": 7.2, "bebaut_pct_bezirk": 68.6, "we_MioEUR": 214.5, "we_pct_berlin": 3.8, "we_pct_bezirk": 26.0, "gesamt_MioEUR": 825.6, "gesamt_pct_berlin": 5.7, "gesamt_pct_bezirk": 100.0}, {"bezirk": "Steglitz-Zehlendorf", "unbebaut_MioEUR": 39.7, "unbebaut_pct_berlin": 4.3, "unbebaut_pct_bezirk": 3.0, "bebaut_MioEUR": 755.1, "bebaut_pct_berlin": 9.5, "bebaut_pct_bezirk": 56.6, "we_MioEUR": 540.3, "we_pct_berlin": 9.5, "we_pct_bezirk": 40.5, "gesamt_MioEUR": 1335.1, "gesamt_pct_berlin": 9.2, "gesamt_pct_bezirk": 100.0}, {"bezirk": "Tempelhof-Schöneberg", "unbebaut_MioEUR": 13.7, "unbebaut_pct_berlin": 1.5, "unbebaut_pct_bezirk": 1.1, "bebaut_MioEUR": 722.0, "bebaut_pct_berlin": 9.1, "bebaut_pct_bezirk": 55.8, "we_MioEUR": 557.1, "we_pct_berlin": 9.8, "we_pct_bezirk": 43.1, "gesamt_MioEUR": 1292.8, "gesamt_pct_berlin": 8.9, "gesamt_pct_bezirk": 100.0}, {"bezirk": "Neukölln", "unbebaut_MioEUR": 46.3, "unbebaut_pct_berlin": 5.0, "unbebaut_pct_bezirk": 5.3, "bebaut_MioEUR": 565.6, "bebaut_pct_berlin": 7.2, "bebaut_pct_bezirk": 64.4, "we_MioEUR": 267.0, "we_pct_berlin": 4.7, "we_pct_bezirk": 30.4, "gesamt_MioEUR": 878.9, "gesamt_pct_berlin": 6.0, "gesamt_pct_bezirk": 100.0}, {"bezirk": "Treptow-Köpenick", "unbebaut_MioEUR": 67.6, "unbebaut_pct_berlin": 7.3, "unbebaut_pct_bezirk": 6.6, "bebaut_MioEUR": 541.8, "bebaut_pct_berlin": 6.8, "bebaut_pct_bezirk": 52.6, "we_MioEUR": 421.5, "we_pct_berlin": 7.4, "we_pct_bezirk": 40.9, "gesamt_MioEUR": 1030.9, "gesamt_pct_berlin": 7.1, "gesamt_pct_bezirk": 100.0}, {"bezirk": "Marzahn-Hellersdorf", "unbebaut_MioEUR": 143.6, "unbebaut_pct_berlin": 15.5, "unbebaut_pct_bezirk": 11.3, "bebaut_MioEUR": 1045.0, "bebaut_pct_berlin": 13.2, "bebaut_pct_bezirk": 82.2, "we_MioEUR": 82.2, "we_pct_berlin": 1.4, "we_pct_bezirk": 6.5, "gesamt_MioEUR": 1270.8, "gesamt_pct_berlin": 8.7, "gesamt_pct_bezirk": 100.0}, {"bezirk": "Lichtenberg", "unbebaut_MioEUR": 99.7, "unbebaut_pct_berlin": 10.8, "unbebaut_pct_bezirk": 11.4, "bebaut_MioEUR": 594.6, "bebaut_pct_berlin": 7.5, "bebaut_pct_bezirk": 68.3, "we_MioEUR": 176.8, "we_pct_berlin": 3.1, "we_pct_bezirk": 20.3, "gesamt_MioEUR": 871.0, "gesamt_pct_berlin": 6.0, "gesamt_pct_bezirk": 100.0}, {"bezirk": "Reinickendorf", "unbebaut_MioEUR": 35.3, "unbebaut_pct_berlin": 3.8, "unbebaut_pct_bezirk": 5.6, "bebaut_MioEUR": 385.8, "bebaut_pct_berlin": 4.9, "bebaut_pct_bezirk": 61.2, "we_MioEUR": 209.3, "we_pct_berlin": 3.7, "we_pct_bezirk": 33.2, "gesamt_MioEUR": 630.4, "gesamt_pct_berlin": 4.3, "gesamt_pct_bezirk": 100.0}], "flaechenumsatz": [{"bezirk": "Mitte", "unbebaut_ha": 2.4, "unbebaut_pct_berlin": 2.1, "unbebaut_pct_bezirk": 19.8, "bebaut_ha": 9.9, "bebaut_pct_berlin": 3.0, "bebaut_pct_bezirk": 80.2, "gesamt_ha": 12.3, "gesamt_pct_berlin": 2.7, "gesamt_pct_bezirk": 100.0}, {"bezirk": "Friedrichshain-Kreuzberg", "unbebaut_ha": 2.6, "unbebaut_pct_berlin": 2.3, "unbebaut_pct_bezirk": 32.8, "bebaut_ha": 5.3, "bebaut_pct_berlin": 1.6, "bebaut_pct_bezirk": 67.2, "gesamt_ha": 7.9, "gesamt_pct_berlin": 1.8, "gesamt_pct_bezirk": 100.0}, {"bezirk": "Pankow", "unbebaut_ha": 21.4, "unbebaut_pct_berlin": 18.5, "unbebaut_pct_bezirk": 38.9, "bebaut_ha": 33.6, "bebaut_pct_berlin": 10.1, "bebaut_pct_bezirk": 61.1, "gesamt_ha": 55.0, "gesamt_pct_berlin": 12.3, "gesamt_pct_bezirk": 100.0}, {"bezirk": "Charlottenburg-Wilmersdorf", "unbebaut_ha": 2.6, "unbebaut_pct_berlin": 2.2, "unbebaut_pct_bezirk": 13.5, "bebaut_ha": 16.5, "bebaut_pct_berlin": 5.0, "bebaut_pct_bezirk": 86.5, "gesamt_ha": 19.1, "gesamt_pct_berlin": 4.3, "gesamt_pct_bezirk": 100.0}, {"bezirk": "Spandau", "unbebaut_ha": 15.4, "unbebaut_pct_berlin": 13.3, "unbebaut_pct_bezirk": 33.7, "bebaut_ha": 30.3, "bebaut_pct_berlin": 9.1, "bebaut_pct_bezirk": 66.3, "gesamt_ha": 45.7, "gesamt_pct_berlin": 10.2, "gesamt_pct_bezirk": 100.0}, {"bezirk": "Steglitz-Zehlendorf", "unbebaut_ha": 5.7, "unbebaut_pct_berlin": 4.9, "unbebaut_pct_bezirk": 12.5, "bebaut_ha": 39.7, "bebaut_pct_berlin": 12.0, "bebaut_pct_bezirk": 87.5, "gesamt_ha": 45.4, "gesamt_pct_berlin": 10.1, "gesamt_pct_bezirk": 100.0}, {"bezirk": "Tempelhof-Schöneberg", "unbebaut_ha": 2.8, "unbebaut_pct_berlin": 2.5, "unbebaut_pct_bezirk": 8.0, "bebaut_ha": 32.7, "bebaut_pct_berlin": 9.9, "bebaut_pct_bezirk": 92.0, "gesamt_ha": 35.5, "gesamt_pct_berlin": 7.9, "gesamt_pct_bezirk": 100.0}, {"bezirk": "Neukölln", "unbebaut_ha": 6.3, "unbebaut_pct_berlin": 5.4, "unbebaut_pct_bezirk": 16.6, "bebaut_ha": 31.6, "bebaut_pct_berlin": 9.5, "bebaut_pct_bezirk": 83.4, "gesamt_ha": 37.8, "gesamt_pct_berlin": 8.5, "gesamt_pct_bezirk": 100.0}, {"bezirk": "Treptow-Köpenick", "unbebaut_ha": 13.5, "unbebaut_pct_berlin": 11.7, "unbebaut_pct_bezirk": 22.3, "bebaut_ha": 47.1, "bebaut_pct_berlin": 14.2, "bebaut_pct_bezirk": 77.7, "gesamt_ha": 60.7, "gesamt_pct_berlin": 13.6, "gesamt_pct_bezirk": 100.0}, {"bezirk": "Marzahn-Hellersdorf", "unbebaut_ha": 20.4, "unbebaut_pct_berlin": 17.6, "unbebaut_pct_bezirk": 38.1, "bebaut_ha": 33.2, "bebaut_pct_berlin": 10.0, "bebaut_pct_bezirk": 61.9, "gesamt_ha": 53.6, "gesamt_pct_berlin": 12.0, "gesamt_pct_bezirk": 100.0}, {"bezirk": "Lichtenberg", "unbebaut_ha": 9.4, "unbebaut_pct_berlin": 8.1, "unbebaut_pct_bezirk": 32.0, "bebaut_ha": 20.0, "bebaut_pct_berlin": 6.0, "bebaut_pct_bezirk": 68.0, "gesamt_ha": 29.4, "gesamt_pct_berlin": 6.6, "gesamt_pct_bezirk": 100.0}, {"bezirk": "Reinickendorf", "unbebaut_ha": 13.1, "unbebaut_pct_berlin": 11.4, "unbebaut_pct_bezirk": 29.2, "bebaut_ha": 31.9, "bebaut_pct_berlin": 9.6, "bebaut_pct_bezirk": 70.8, "gesamt_ha": 45.0, "gesamt_pct_berlin": 10.1, "gesamt_pct_bezirk": 100.0}], "berlin_total": {"kauffaelle": 20789, "kauffaelle_ohne_pakete": 20080, "geldumsatz_MioEUR": 14888.7, "geldumsatz_ohne_pakete_MioEUR": 14540.3, "flaechenumsatz_ha": 450.1, "flaechenumsatz_ohne_pakete_ha": 447.4}}, "condo": {"Charlottenburg-Wilmersdorf": {"resale_1949-1970": {"preis_pro_qm": 3795, "stadtgebiet": "Südwest", "weight": 0.61, "source": "condo_resales"}, "resale_1971-1990": {"preis_pro_qm": 3968, "stadtgebiet": "Südwest", "weight": 0.61, "source": "condo_resales"}, "resale_ab 1991": {"preis_pro_qm": 5158, "stadtgebiet": "Südwest", "weight": 0.61, "source": "condo_resales"}, "erstverkauf_neubau": {"preis_pro_qm": 6374, "stadtgebiet": "Südwest", "weight": 0.61, "source": "erstverkauf_condos"}, "umwandlung_bis 1919": {"preis_pro_qm": 3619, "stadtgebiet": "Südwest", "weight": 0.61, "source": "umwandlung_condos"}, "umwandlung_1920-1948": {"preis_pro_qm": 3104, "stadtgebiet": "Südwest", "weight": 0.61, "source": "umwandlung_condos"}, "umwandlung_1949-1970": {"preis_pro_qm": 3803, "stadtgebiet": "City", "weight": 0.235, "source": "umwandlung_condos"}, "umwandlung_1971-1990": {"preis_pro_qm": 4696, "stadtgebiet": "City", "weight": 0.235, "source": "umwandlung_condos"}, "umwandlung_ab 1991": {"preis_pro_qm": 4532, "stadtgebiet": "City", "weight": 0.235, "source": "umwandlung_condos"}, "umwandlung_sozial ab 1950": {"preis_pro_qm": 3557, "stadtgebiet": "City", "weight": 0.235, "source": "umwandlung_condos"}}, "Friedrichshain-Kreuzberg": {"resale_1949-1970": {"preis_pro_qm": 4956, "stadtgebiet": "City", "weight": 0.161, "source": "condo_resales"}, "resale_1971-1990": {"preis_pro_qm": 5033, "stadtgebiet": "City", "weight": 0.161, "source": "condo_resales"}, "resale_ab 1991": {"preis_pro_qm": 7233, "stadtgebiet": "City", "weight": 0.161, "source": "condo_resales"}, "erstverkauf_neubau": {"preis_pro_qm": 10102, "stadtgebiet": "City", "weight": 0.161, "source": "erstverkauf_condos"}, "umwandlung_1920-1948": {"preis_pro_qm": 3233, "stadtgebiet": "City", "weight": 0.161, "source": "umwandlung_condos"}, "umwandlung_1949-1970": {"preis_pro_qm": 3803, "stadtgebiet": "City", "weight": 0.161, "source": "umwandlung_condos"}, "umwandlung_1971-1990": {"preis_pro_qm": 4696, "stadtgebiet": "City", "weight": 0.161, "source": "umwandlung_condos"}, "umwandlung_ab 1991": {"preis_pro_qm": 4532, "stadtgebiet": "City", "weight": 0.161, "source": "umwandlung_condos"}, "umwandlung_sozial ab 1950": {"preis_pro_qm": 3557, "stadtgebiet": "City", "weight": 0.161, "source": "umwandlung_condos"}}, "Mitte": {"resale_1949-1970": {"preis_pro_qm": 3845, "stadtgebiet": "Nord", "weight": 0.258, "source": "condo_resales"}, "resale_1971-1990": {"preis_pro_qm": 3508, "stadtgebiet": "Nord", "weight": 0.258, "source": "condo_resales"}, "resale_ab 1991": {"preis_pro_qm": 4060, "stadtgebiet": "Nord", "weight": 0.258, "source": "condo_resales"}, "erstverkauf_neubau": {"preis_pro_qm": 6732, "stadtgebiet": "Nord", "weight": 0.258, "source": "erstverkauf_condos"}, "umwandlung_bis 1919": {"preis_pro_qm": 3087, "stadtgebiet": "Nord", "weight": 0.258, "source": "umwandlung_condos"}, "umwandlung_1920-1948": {"preis_pro_qm": 2665, "stadtgebiet": "Nord", "weight": 0.258, "source": "umwandlung_condos"}, "umwandlung_1949-1970": {"preis_pro_qm": 3803, "stadtgebiet": "City", "weight": 0.173, "source": "umwandlung_condos"}, "umwandlung_1971-1990": {"preis_pro_qm": 4696, "stadtgebiet": "City", "weight": 0.173, "source": "umwandlung_condos"}, "umwandlung_ab 1991": {"preis_pro_qm": 4532, "stadtgebiet": "City", "weight": 0.173, "source": "umwandlung_condos"}, "umwandlung_sozial ab 1950": {"preis_pro_qm": 3557, "stadtgebiet": "City", "weight": 0.173, "source": "umwandlung_condos"}}, "Neukölln": {"resale_1949-1970": {"preis_pro_qm": 4956, "stadtgebiet": "City", "weight": 0.087, "source": "condo_resales"}, "resale_1971-1990": {"preis_pro_qm": 5033, "stadtgebiet": "City", "weight": 0.087, "source": "condo_resales"}, "resale_ab 1991": {"preis_pro_qm": 4011, "stadtgebiet": "Südost", "weight": 0.221, "source": "condo_resales"}, "erstverkauf_neubau": {"preis_pro_qm": 6384, "stadtgebiet": "Südost", "weight": 0.221, "source": "erstverkauf_condos"}, "umwandlung_bis 1919": {"preis_pro_qm": 3114, "stadtgebiet": "Südost", "weight": 0.221, "source": "umwandlung_condos"}, "umwandlung_1920-1948": {"preis_pro_qm": 3059, "stadtgebiet": "Südost", "weight": 0.221, "source": "umwandlung_condos"}, "umwandlung_1949-1970": {"preis_pro_qm": 3803, "stadtgebiet": "City", "weight": 0.087, "source": "umwandlung_condos"}, "umwandlung_1971-1990": {"preis_pro_qm": 4696, "stadtgebiet": "City", "weight": 0.087, "source": "umwandlung_condos"}, "umwandlung_ab 1991": {"preis_pro_qm": 4532, "stadtgebiet": "City", "weight": 0.087, "source": "umwandlung_condos"}, "umwandlung_sozial ab 1950": {"preis_pro_qm": 3557, "stadtgebiet": "City", "weight": 0.087, "source": "umwandlung_condos"}}, "Pankow": {"resale_1949-1970": {"preis_pro_qm": 3845, "stadtgebiet": "Nord", "weight": 0.272, "source": "condo_resales"}, "resale_1971-1990": {"preis_pro_qm": 3508, "stadtgebiet": "Nord", "weight": 0.272, "source": "condo_resales"}, "resale_ab 1991": {"preis_pro_qm": 4060, "stadtgebiet": "Nord", "weight": 0.272, "source": "condo_resales"}, "erstverkauf_neubau": {"preis_pro_qm": 6732, "stadtgebiet": "Nord", "weight": 0.272, "source": "erstverkauf_condos"}, "umwandlung_bis 1919": {"preis_pro_qm": 3087, "stadtgebiet": "Nord", "weight": 0.272, "source": "umwandlung_condos"}, "umwandlung_1920-1948": {"preis_pro_qm": 2665, "stadtgebiet": "Nord", "weight": 0.272, "source": "umwandlung_condos"}, "umwandlung_1949-1970": {"preis_pro_qm": 3803, "stadtgebiet": "City", "weight": 0.183, "source": "umwandlung_condos"}, "umwandlung_1971-1990": {"preis_pro_qm": 4696, "stadtgebiet": "City", "weight": 0.183, "source": "umwandlung_condos"}, "umwandlung_ab 1991": {"preis_pro_qm": 4532, "stadtgebiet": "City", "weight": 0.183, "source": "umwandlung_condos"}, "umwandlung_sozial ab 1950": {"preis_pro_qm": 3557, "stadtgebiet": "City", "weight": 0.183, "source": "umwandlung_condos"}}, "Tempelhof-Schöneberg": {"resale_1949-1970": {"preis_pro_qm": 4956, "stadtgebiet": "City", "weight": 0.162, "source": "condo_resales"}, "resale_1971-1990": {"preis_pro_qm": 5033, "stadtgebiet": "City", "weight": 0.162, "source": "condo_resales"}, "resale_ab 1991": {"preis_pro_qm": 4011, "stadtgebiet": "Südost", "weight": 0.413, "source": "condo_resales"}, "erstverkauf_neubau": {"preis_pro_qm": 6384, "stadtgebiet": "Südost", "weight": 0.413, "source": "erstverkauf_condos"}, "umwandlung_bis 1919": {"preis_pro_qm": 3114, "stadtgebiet": "Südost", "weight": 0.413, "source": "umwandlung_condos"}, "umwandlung_1920-1948": {"preis_pro_qm": 3059, "stadtgebiet": "Südost", "weight": 0.413, "source": "umwandlung_condos"}, "umwandlung_1949-1970": {"preis_pro_qm": 3803, "stadtgebiet": "City", "weight": 0.162, "source": "umwandlung_condos"}, "umwandlung_1971-1990": {"preis_pro_qm": 4696, "stadtgebiet": "City", "weight": 0.162, "source": "umwandlung_condos"}, "umwandlung_ab 1991": {"preis_pro_qm": 4532, "stadtgebiet": "City", "weight": 0.162, "source": "umwandlung_condos"}, "umwandlung_sozial ab 1950": {"preis_pro_qm": 3557, "stadtgebiet": "City", "weight": 0.162, "source": "umwandlung_condos"}}, "Reinickendorf": {"resale_1949-1970": {"preis_pro_qm": 3845, "stadtgebiet": "Nord", "weight": 0.12, "source": "condo_resales"}, "resale_1971-1990": {"preis_pro_qm": 3508, "stadtgebiet": "Nord", "weight": 0.12, "source": "condo_resales"}, "resale_ab 1991": {"preis_pro_qm": 4060, "stadtgebiet": "Nord", "weight": 0.12, "source": "condo_resales"}, "erstverkauf_neubau": {"preis_pro_qm": 6732, "stadtgebiet": "Nord", "weight": 0.12, "source": "erstverkauf_condos"}, "umwandlung_bis 1919": {"preis_pro_qm": 3087, "stadtgebiet": "Nord", "weight": 0.12, "source": "umwandlung_condos"}, "umwandlung_1920-1948": {"preis_pro_qm": 2665, "stadtgebiet": "Nord", "weight": 0.12, "source": "umwandlung_condos"}}, "Steglitz-Zehlendorf": {"resale_1949-1970": {"preis_pro_qm": 3795, "stadtgebiet": "Südwest", "weight": 0.39, "source": "condo_resales"}, "resale_1971-1990": {"preis_pro_qm": 3968, "stadtgebiet": "Südwest", "weight": 0.39, "source": "condo_resales"}, "resale_ab 1991": {"preis_pro_qm": 5158, "stadtgebiet": "Südwest", "weight": 0.39, "source": "condo_resales"}, "erstverkauf_neubau": {"preis_pro_qm": 6374, "stadtgebiet": "Südwest", "weight": 0.39, "source": "erstverkauf_condos"}, "umwandlung_bis 1919": {"preis_pro_qm": 3619, "stadtgebiet": "Südwest", "weight": 0.39, "source": "umwandlung_condos"}, "umwandlung_1920-1948": {"preis_pro_qm": 3104, "stadtgebiet": "Südwest", "weight": 0.39, "source": "umwandlung_condos"}}, "Lichtenberg": {"resale_ab 1991": {"preis_pro_qm": 3678, "stadtgebiet": "Ost", "weight": 0.188, "source": "condo_resales"}, "erstverkauf_neubau": {"preis_pro_qm": 5334, "stadtgebiet": "Ost", "weight": 0.188, "source": "erstverkauf_condos"}, "umwandlung_bis 1919": {"preis_pro_qm": 3031, "stadtgebiet": "Ost", "weight": 0.188, "source": "umwandlung_condos"}, "umwandlung_1920-1948": {"preis_pro_qm": 3045, "stadtgebiet": "Ost", "weight": 0.188, "source": "umwandlung_condos"}}, "Marzahn-Hellersdorf": {"resale_ab 1991": {"preis_pro_qm": 3678, "stadtgebiet": "Ost", "weight": 0.09, "source": "condo_resales"}, "erstverkauf_neubau": {"preis_pro_qm": 5334, "stadtgebiet": "Ost", "weight": 0.09, "source": "erstverkauf_condos"}, "umwandlung_bis 1919": {"preis_pro_qm": 3031, "stadtgebiet": "Ost", "weight": 0.09, "source": "umwandlung_condos"}, "umwandlung_1920-1948": {"preis_pro_qm": 3045, "stadtgebiet": "Ost", "weight": 0.09, "source": "umwandlung_condos"}}, "Spandau": {"resale_ab 1991": {"preis_pro_qm": 3678, "stadtgebiet": "Ost", "weight": 0.264, "source": "condo_resales"}, "erstverkauf_neubau": {"preis_pro_qm": 5334, "stadtgebiet": "Ost", "weight": 0.264, "source": "erstverkauf_condos"}, "umwandlung_bis 1919": {"preis_pro_qm": 2692, "stadtgebiet": "West", "weight": 1.0, "source": "umwandlung_condos"}, "umwandlung_1920-1948": {"preis_pro_qm": 2530, "stadtgebiet": "West", "weight": 1.0, "source": "umwandlung_condos"}}, "Treptow-Köpenick": {"resale_ab 1991": {"preis_pro_qm": 4011, "stadtgebiet": "Südost", "weight": 0.365, "source": "condo_resales"}, "erstverkauf_neubau": {"preis_pro_qm": 6384, "stadtgebiet": "Südost", "weight": 0.365, "source": "erstverkauf_condos"}, "umwandlung_bis 1919": {"preis_pro_qm": 3114, "stadtgebiet": "Südost", "weight": 0.365, "source": "umwandlung_condos"}, "umwandlung_1920-1948": {"preis_pro_qm": 3059, "stadtgebiet": "Südost", "weight": 0.365, "source": "umwandlung_condos"}}}, "brw_offen": [{"bezirk": "Mitte", "bodenrichtwert_min": 450.0, "bodenrichtwert_max": 2800.0, "change_pct": 0}, {"bezirk": "Pankow", "bodenrichtwert_min": 270.0, "bodenrichtwert_max": 1000.0, "change_pct": -10}, {"bezirk": "Charlottenburg-Wilmersdorf", "bodenrichtwert_min": 710.0, "bodenrichtwert_max": 2800.0, "change_pct": -5}, {"bezirk": "Spandau", "bodenrichtwert_min": 280.0, "bodenrichtwert_max": 850.0, "change_pct": -5}, {"bezirk": "Steglitz-Zehlendorf", "bodenrichtwert_min": 320.0, "bodenrichtwert_max": 2800.0, "change_pct": 0}, {"bezirk": "Tempelhof-Schöneberg", "bodenrichtwert_min": 360.0, "bodenrichtwert_max": 1700.0, "change_pct": -5}, {"bezirk": "Neukölln", "bodenrichtwert_min": 370.0, "bodenrichtwert_max": 1100.0, "change_pct": -5}, {"bezirk": "Treptow-Köpenick", "bodenrichtwert_min": 190.0, "bodenrichtwert_max": 750.0, "change_pct": -5}, {"bezirk": "Marzahn-Hellersdorf", "bodenrichtwert_min": 300.0, "bodenrichtwert_max": 560.0, "change_pct": -5}, {"bezirk": "Lichtenberg", "bodenrichtwert_min": 360.0, "bodenrichtwert_max": 900.0, "change_pct": -5}, {"bezirk": "Reinickendorf", "bodenrichtwert_min": 280.0, "bodenrichtwert_max": 750.0, "change_pct": -5}], "brw_wohnlage": {"bauland_offen": [{"bezirk": "Mitte", "wohnlage": "gute Wohnlage"}, {"bezirk": "Friedrichshain-Kreuzberg", "wohnlage": "gute Wohnlage"}, {"bezirk": "Pankow", "wohnlage": "gute Wohnlage"}, {"bezirk": "Charlottenburg-Wilmersdorf", "wohnlage": "gute Wohnlage"}, {"bezirk": "Spandau", "wohnlage": "gute Wohnlage"}, {"bezirk": "Steglitz-Zehlendorf", "wohnlage": "gute Wohnlage"}, {"bezirk": "Tempelhof-Schöneberg", "wohnlage": "gute Wohnlage"}, {"bezirk": "Neukölln", "wohnlage": "gute Wohnlage"}, {"bezirk": "Treptow-Köpenick", "wohnlage": "gute Wohnlage"}, {"bezirk": "Marzahn-Hellersdorf", "wohnlage": "gute Wohnlage"}, {"bezirk": "Lichtenberg", "wohnlage": "gute Wohnlage"}, {"bezirk": "Reinickendorf", "wohnlage": "gute Wohnlage"}, {"bezirk": "Mitte", "wohnlage": "mittlere Wohnlage", "brw_2024_min": 1000.0, "brw_2024_max": 850.0, "brw_2025_min": 380.0, "brw_2025_max": 1000.0}, {"bezirk": "Friedrichshain-Kreuzberg", "wohnlage": "mittlere Wohnlage", "brw_2024_min": 2000.0, "brw_2024_max": 710.0, "brw_2025_min": 750.0, "brw_2025_max": 1000.0}, {"bezirk": "Pankow", "wohnlage": "mittlere Wohnlage", "brw_2024_min": 1800.0, "brw_2024_max": 730.0, "brw_2025_min": 380.0, "brw_2025_max": 900.0}, {"bezirk": "Charlottenburg-Wilmersdorf", "wohnlage": "mittlere Wohnlage", "brw_2024_min": 640.0, "brw_2024_max": 570.0, "brw_2025_min": 670.0, "brw_2025_max": 1100.0}, {"bezirk": "Spandau", "wohnlage": "mittlere Wohnlage", "brw_2024_min": 800.0, "brw_2024_max": 520.0, "brw_2025_min": 590.0, "brw_2025_max": 900.0}, {"bezirk": "Steglitz-Zehlendorf", "wohnlage": "mittlere Wohnlage", "brw_2024_min": 2800.0, "brw_2024_max": 1000.0, "brw_2025_min": 540.0, "brw_2025_max": 1200.0}, {"bezirk": "Tempelhof-Schöneberg", "wohnlage": "mittlere Wohnlage", "brw_2024_min": 620.0, "brw_2024_max": 1700.0, "brw_2025_min": 450.0, "brw_2025_max": 750.0}, {"bezirk": "Neukölln", "wohnlage": "mittlere Wohnlage", "brw_2024_min": 950.0, "brw_2024_max": 800.0, "brw_2025_min": 320.0, "brw_2025_max": 590.0}, {"bezirk": "Treptow-Köpenick", "wohnlage": "mittlere Wohnlage", "brw_2024_min": 1900.0, "brw_2024_max": 670.0, "brw_2025_min": 390.0, "brw_2025_max": 950.0}, {"bezirk": "Marzahn-Hellersdorf", "wohnlage": "mittlere Wohnlage", "brw_2024_min": 1700.0, "brw_2024_max": 690.0, "brw_2025_min": 470.0, "brw_2025_max": 710.0}, {"bezirk": "Lichtenberg", "wohnlage": "mittlere Wohnlage", "brw_2024_min": 610.0, "brw_2024_max": 540.0, "brw_2025_min": 360.0, "brw_2025_max": 950.0}, {"bezirk": "Reinickendorf", "wohnlage": "mittlere Wohnlage", "brw_2024_min": 750.0, "brw_2024_max": 490.0, "brw_2025_min": 710.0, "brw_2025_max": 1000.0}, {"bezirk": "Mitte", "wohnlage": "einfache Wohnlage", "brw_2024_min": 950.0, "brw_2024_max": 390.0, "brw_2025_min": 470.0, "brw_2025_max": 750.0}, {"bezirk": "Friedrichshain-Kreuzberg", "wohnlage": "einfache Wohnlage", "brw_2024_min": 710.0, "brw_2024_max": 470.0, "brw_2025_min": 380.0, "brw_2025_max": 650.0}, {"bezirk": "Pankow", "wohnlage": "einfache Wohnlage", "brw_2024_min": 950.0, "brw_2024_max": 360.0, "brw_2025_min": 320.0, "brw_2025_max": 520.0}, {"bezirk": "Charlottenburg-Wilmersdorf", "wohnlage": "einfache Wohnlage", "brw_2024_min": 1000.0, "brw_2024_max": 710.0, "brw_2025_min": 670.0, "brw_2025_max": 950.0}, {"bezirk": "Spandau", "wohnlage": "einfache Wohnlage", "brw_2024_min": 850.0, "brw_2024_max": 360.0, "brw_2025_min": 610.0, "brw_2025_max": 680.0}, {"bezirk": "Steglitz-Zehlendorf", "wohnlage": "einfache Wohnlage", "brw_2024_min": 1000.0, "brw_2024_max": 640.0, "brw_2025_min": 520.0, "brw_2025_max": 750.0}, {"bezirk": "Tempelhof-Schöneberg", "wohnlage": "einfache Wohnlage", "brw_2024_min": 850.0, "brw_2024_max": 560.0, "brw_2025_min": 490.0, "brw_2025_max": 650.0}, {"bezirk": "Neukölln", "wohnlage": "einfache Wohnlage", "brw_2024_min": 1100.0, "brw_2024_max": 510.0, "brw_2025_min": 400.0, "brw_2025_max": 590.0}, {"bezirk": "Treptow-Köpenick", "wohnlage": "einfache Wohnlage", "brw_2024_min": 710.0, "brw_2024_max": 430.0, "brw_2025_min": 380.0, "brw_2025_max": 700.0}, {"bezirk": "Marzahn-Hellersdorf", "wohnlage": "einfache Wohnlage", "brw_2024_min": 560.0, "brw_2024_max": 300.0, "brw_2025_min": 410.0, "brw_2025_max": 550.0}, {"bezirk": "Lichtenberg", "wohnlage": "einfache Wohnlage", "brw_2024_min": 900.0, "brw_2024_max": 370.0, "brw_2025_min": 450.0, "brw_2025_max": 710.0}, {"bezirk": "Reinickendorf", "wohnlage": "einfache Wohnlage", "brw_2024_min": 670.0, "brw_2024_max": 450.0, "brw_2025_min": 360.0, "brw_2025_max": 620.0}], "bauland_geschlossen": [{"bezirk": "Mitte", "wohnlage": "gute Wohnlage"}, {"bezirk": "Friedrichshain-Kreuzberg", "wohnlage": "gute Wohnlage"}, {"bezirk": "Pankow", "wohnlage": "gute Wohnlage"}, {"bezirk": "Charlottenburg-Wilmersdorf", "wohnlage": "gute Wohnlage"}, {"bezirk": "Spandau", "wohnlage": "gute Wohnlage"}, {"bezirk": "Steglitz-Zehlendorf", "wohnlage": "gute Wohnlage"}, {"bezirk": "Tempelhof-Schöneberg", "wohnlage": "gute Wohnlage"}, {"bezirk": "Neukölln", "wohnlage": "gute Wohnlage"}, {"bezirk": "Treptow-Köpenick", "wohnlage": "gute Wohnlage"}, {"bezirk": "Marzahn-Hellersdorf", "wohnlage": "gute Wohnlage"}, {"bezirk": "Lichtenberg", "wohnlage": "gute Wohnlage"}, {"bezirk": "Reinickendorf", "wohnlage": "gute Wohnlage"}, {"bezirk": "Mitte", "wohnlage": "mittlere Wohnlage", "brw_2024_min": 2400.0, "brw_2024_max": 2200.0, "brw_2025_min": 600.0, "brw_2025_max": 1500.0}, {"bezirk": "Friedrichshain-Kreuzberg", "wohnlage": "mittlere Wohnlage", "brw_2024_min": 1000.0, "brw_2024_max": 550.0, "brw_2025_min": 1500.0, "brw_2025_max": 500.0}, {"bezirk": "Pankow", "wohnlage": "mittlere Wohnlage", "brw_2024_min": 2100.0, "brw_2024_max": 1100.0, "brw_2025_min": 2200.0, "brw_2025_max": 650.0}, {"bezirk": "Charlottenburg-Wilmersdorf", "wohnlage": "mittlere Wohnlage", "brw_2024_min": 1500.0, "brw_2024_max": 900.0, "brw_2025_min": 400.0, "brw_2025_max": 1300.0}, {"bezirk": "Spandau", "wohnlage": "mittlere Wohnlage", "brw_2024_min": 1100.0, "brw_2024_max": 550.0, "brw_2025_min": 500.0, "brw_2025_max": 1100.0}, {"bezirk": "Steglitz-Zehlendorf", "wohnlage": "mittlere Wohnlage", "brw_2024_min": 1300.0, "brw_2024_max": 3500.0, "brw_2025_min": 550.0, "brw_2025_max": 1000.0}, {"bezirk": "Tempelhof-Schöneberg", "wohnlage": "mittlere Wohnlage", "brw_2024_min": 1900.0, "brw_2024_max": 2400.0, "brw_2025_min": 500.0, "brw_2025_max": 850.0}, {"bezirk": "Neukölln", "wohnlage": "mittlere Wohnlage", "brw_2024_min": 2200.0, "brw_2024_max": 1000.0, "brw_2025_min": 400.0, "brw_2025_max": 1100.0}, {"bezirk": "Treptow-Köpenick", "wohnlage": "mittlere Wohnlage", "brw_2024_min": 550.0, "brw_2024_max": 2100.0, "brw_2025_min": 500.0, "brw_2025_max": 600.0}, {"bezirk": "Marzahn-Hellersdorf", "wohnlage": "mittlere Wohnlage", "brw_2024_min": 1100.0, "brw_2024_max": 1500.0, "brw_2025_min": 500.0, "brw_2025_max": 1400.0}, {"bezirk": "Lichtenberg", "wohnlage": "mittlere Wohnlage", "brw_2024_min": 900.0, "brw_2024_max": 1100.0, "brw_2025_min": 550.0, "brw_2025_max": 600.0}, {"bezirk": "Reinickendorf", "wohnlage": "mittlere Wohnlage", "brw_2024_min": 550.0, "brw_2024_max": 1300.0, "brw_2025_min": 600.0, "brw_2025_max": 1500.0}, {"bezirk": "Mitte", "wohnlage": "einfache Wohnlage", "brw_2024_min": 500.0, "brw_2024_max": 600.0, "brw_2025_min": 550.0, "brw_2025_max": 1600.0}, {"bezirk": "Friedrichshain-Kreuzberg", "wohnlage": "einfache Wohnlage", "brw_2024_min": 550.0, "brw_2024_max": 600.0, "brw_2025_min": 500.0, "brw_2025_max": 1900.0}, {"bezirk": "Pankow", "wohnlage": "einfache Wohnlage", "brw_2024_min": 1500.0, "brw_2024_max": 2200.0, "brw_2025_min": 450.0, "brw_2025_max": 650.0}, {"bezirk": "Charlottenburg-Wilmersdorf", "wohnlage": "einfache Wohnlage", "brw_2024_min": 500.0, "brw_2024_max": 650.0, "brw_2025_min": 600.0, "brw_2025_max": 550.0}, {"bezirk": "Spandau", "wohnlage": "einfache Wohnlage", "brw_2024_min": 1300.0, "brw_2024_max": 400.0, "brw_2025_min": 1000.0, "brw_2025_max": 500.0}, {"bezirk": "Steglitz-Zehlendorf", "wohnlage": "einfache Wohnlage", "brw_2024_min": 1100.0, "brw_2024_max": 500.0, "brw_2025_min": 600.0, "brw_2025_max": 450.0}, {"bezirk": "Tempelhof-Schöneberg", "wohnlage": "einfache Wohnlage", "brw_2024_min": 1000.0, "brw_2024_max": 550.0, "brw_2025_min": 850.0, "brw_2025_max": 500.0}, {"bezirk": "Neukölln", "wohnlage": "einfache Wohnlage", "brw_2024_min": 850.0, "brw_2024_max": 500.0, "brw_2025_min": 600.0, "brw_2025_max": 400.0}, {"bezirk": "Treptow-Köpenick", "wohnlage": "einfache Wohnlage", "brw_2024_min": 1100.0, "brw_2024_max": 400.0, "brw_2025_min": 1300.0, "brw_2025_max": 500.0}, {"bezirk": "Marzahn-Hellersdorf", "wohnlage": "einfache Wohnlage", "brw_2024_min": 600.0, "brw_2024_max": 500.0, "brw_2025_min": 700.0, "brw_2025_max": 550.0}, {"bezirk": "Lichtenberg", "wohnlage": "einfache Wohnlage", "brw_2024_min": 1400.0, "brw_2024_max": 500.0, "brw_2025_min": 1600.0, "brw_2025_max": 500.0}, {"bezirk": "Reinickendorf", "wohnlage": "einfache Wohnlage", "brw_2024_min": 600.0, "brw_2024_max": 550.0, "brw_2025_min": 1900.0, "brw_2025_max": 450.0}]}, "overview": {"jahr": 2024, "kauffaelle_gesamt": 20789, "kauffaelle_vorjahr": 17563, "geldumsatz_gesamt_MrdEUR": 14.9, "flaechenumsatz_grundstuecke_ha": 450.1, "flaechenumsatz_wohnflaeche_tsd_m2": 1053.2, "teilmärkte": {"unbebaut": {"kauffaelle": 788, "geldumsatz_MioEUR": 924.8, "flaeche_ha": 115.7, "kauffaelle_change_pct": 14, "geld_change_pct": 19, "flaeche_change_pct": -22}, "bebaut": {"kauffaelle": 3370, "geldumsatz_MioEUR": 7991.1, "flaeche_ha": 334.4, "kauffaelle_change_pct": 15, "geld_change_pct": 22, "flaeche_change_pct": 9}, "we_te": {"kauffaelle": 16631, "geldumsatz_MioEUR": 5972.7, "wohnflaeche_tsd_m2": 1053.2, "kauffaelle_change_pct": 19, "geld_change_pct": 18, "flaeche_change_pct": 19}}, "pakete": {"kauffaelle": 709, "geldumsatz_MioEUR": 348.3, "anzahl_pakete": 192}}, "key_prices": {"efh_zfh_mittel_eur_pro_qm_gfkl": 3800, "efh_change_pct": -7, "mietwohnhaeuser_mittel_eur_pro_qm_gfkl": 1915, "mwh_change_pct": -6, "wohn_geschaeftshaeuser_mittel_eur_pro_qm_gfkl": 1855, "wgh_change_pct": -10, "etw_mittel_eur_pro_qm_wfl": 5251, "etw_change_pct": -1, "etw_neubau_mittel_eur_pro_qm_wfl": 7912, "etw_neubau_change_pct": 1, "stellplatz_mittel_eur": 31658, "etw_hoechstpreis_MioEUR": 8.3, "etw_hoechstpreis_ortsteil": "Charlottenburg", "villa_hoechstpreis_MioEUR": 17.2, "villa_hoechstpreis_ortsteil": "Kladow", "efh_hoechstpreis_eur_pro_qm_wfl": 12120, "efh_hoechstpreis_ortsteil": "Grunewald", "stellplatz_hoechstpreis_eur": 100000, "stellplatz_hoechstpreis_bezirk": "Mitte"}, "house_prices": {"freistehend": [{"baujahresgruppe": "bis 1919", "wohnlage": "einfach + mittel", "kauffaelle": 9, "grundstuecksflaeche_m2": 921, "geschossflaeche_m2": 272, "kaufpreis_pro_qm_gf": 3604, "trend": 15}, {"baujahresgruppe": "bis 1919", "wohnlage": "gut + sehr gut", "kauffaelle": 4, "grundstuecksflaeche_m2": 903, "geschossflaeche_m2": 350, "kaufpreis_pro_qm_gf": 3873, "trend": -15}, {"baujahresgruppe": "bis 1919", "wohnlage": "insgesamt", "kauffaelle": 12, "grundstuecksflaeche_m2": 868, "geschossflaeche_m2": 254, "kaufpreis_pro_qm_gf": 2956, "trend": -5}, {"baujahresgruppe": "1920-1948", "wohnlage": "einfach + mittel", "kauffaelle": 188, "grundstuecksflaeche_m2": 665, "geschossflaeche_m2": 148, "kaufpreis_pro_qm_gf": 3204, "trend": -5}, {"baujahresgruppe": "1920-1948", "wohnlage": "gut + sehr gut", "kauffaelle": 46, "grundstuecksflaeche_m2": 849, "geschossflaeche_m2": 232, "kaufpreis_pro_qm_gf": 5226, "trend": -5}, {"baujahresgruppe": "1920-1948", "wohnlage": "insgesamt", "kauffaelle": 234, "grundstuecksflaeche_m2": 687, "geschossflaeche_m2": 158, "kaufpreis_pro_qm_gf": 3315, "trend": -5}, {"baujahresgruppe": "1949-1970", "wohnlage": "einfach + mittel", "kauffaelle": 104, "grundstuecksflaeche_m2": 719, "geschossflaeche_m2": 137, "kaufpreis_pro_qm_gf": 3401, "trend": -5}, {"baujahresgruppe": "1949-1970", "wohnlage": "gut + sehr gut", "kauffaelle": 32, "grundstuecksflaeche_m2": 790, "geschossflaeche_m2": 183, "kaufpreis_pro_qm_gf": 4854, "trend": -15}, {"baujahresgruppe": "1949-1970", "wohnlage": "insgesamt", "kauffaelle": 133, "grundstuecksflaeche_m2": 735, "geschossflaeche_m2": 143, "kaufpreis_pro_qm_gf": 3519, "trend": -5}, {"baujahresgruppe": "1971-1990", "wohnlage": "einfach + mittel", "kauffaelle": 158, "grundstuecksflaeche_m2": 596, "geschossflaeche_m2": 162, "kaufpreis_pro_qm_gf": 3165, "trend": -5}, {"baujahresgruppe": "1971-1990", "wohnlage": "gut + sehr gut", "kauffaelle": 21, "grundstuecksflaeche_m2": 605, "geschossflaeche_m2": 160, "kaufpreis_pro_qm_gf": 3795, "trend": -15}, {"baujahresgruppe": "1971-1990", "wohnlage": "insgesamt", "kauffaelle": 178, "grundstuecksflaeche_m2": 599, "geschossflaeche_m2": 161, "kaufpreis_pro_qm_gf": 3251, "trend": -5}, {"baujahresgruppe": "1991-2020", "wohnlage": "einfach + mittel", "kauffaelle": 190, "grundstuecksflaeche_m2": 577, "geschossflaeche_m2": 160, "kaufpreis_pro_qm_gf": 3840, "trend": -5}, {"baujahresgruppe": "1991-2020", "wohnlage": "gut + sehr gut", "kauffaelle": 9, "grundstuecksflaeche_m2": 824, "geschossflaeche_m2": 224, "kaufpreis_pro_qm_gf": 4829, "trend": -15}, {"baujahresgruppe": "1991-2020", "wohnlage": "insgesamt", "kauffaelle": 200, "grundstuecksflaeche_m2": 582, "geschossflaeche_m2": 162, "kaufpreis_pro_qm_gf": 3869, "trend": -5}, {"baujahresgruppe": "ab 2021", "wohnlage": "einfach + mittel", "kauffaelle": 12, "grundstuecksflaeche_m2": 724, "geschossflaeche_m2": 196, "kaufpreis_pro_qm_gf": 4146, "trend": -15}, {"baujahresgruppe": "ab 2021", "wohnlage": "insgesamt", "kauffaelle": 12, "grundstuecksflaeche_m2": 658, "geschossflaeche_m2": 205, "kaufpreis_pro_qm_gf": 4028, "trend": -15}], "doppelhaushaelfte": [{"baujahresgruppe": "bis 1919", "wohnlage": "einfach + mittel", "kauffaelle": 3, "grundstuecksflaeche_m2": 567, "geschossflaeche_m2": 186, "kaufpreis_pro_qm_gf": 3445, "trend": 15}, {"baujahresgruppe": "bis 1919", "wohnlage": "insgesamt", "kauffaelle": 4, "grundstuecksflaeche_m2": 512, "geschossflaeche_m2": 184, "kaufpreis_pro_qm_gf": 3516, "trend": 15}, {"baujahresgruppe": "1920-1948", "wohnlage": "einfach + mittel", "kauffaelle": 63, "grundstuecksflaeche_m2": 508, "geschossflaeche_m2": 133, "kaufpreis_pro_qm_gf": 3200, "trend": -15}, {"baujahresgruppe": "1920-1948", "wohnlage": "gut + sehr gut", "kauffaelle": 8, "grundstuecksflaeche_m2": 455, "geschossflaeche_m2": 209, "kaufpreis_pro_qm_gf": 4579, "trend": -15}, {"baujahresgruppe": "1920-1948", "wohnlage": "insgesamt", "kauffaelle": 67, "grundstuecksflaeche_m2": 497, "geschossflaeche_m2": 133, "kaufpreis_pro_qm_gf": 3270, "trend": -15}, {"baujahresgruppe": "1949-1970", "wohnlage": "einfach + mittel", "kauffaelle": 15, "grundstuecksflaeche_m2": 395, "geschossflaeche_m2": 128, "kaufpreis_pro_qm_gf": 3664, "trend": 5}, {"baujahresgruppe": "1949-1970", "wohnlage": "gut + sehr gut", "kauffaelle": 12, "grundstuecksflaeche_m2": 458, "geschossflaeche_m2": 156, "kaufpreis_pro_qm_gf": 4612, "trend": -5}, {"baujahresgruppe": "1949-1970", "wohnlage": "insgesamt", "kauffaelle": 25, "grundstuecksflaeche_m2": 417, "geschossflaeche_m2": 133, "kaufpreis_pro_qm_gf": 4040, "trend": null}, {"baujahresgruppe": "1971-1990", "wohnlage": "einfach + mittel", "kauffaelle": 40, "grundstuecksflaeche_m2": 321, "geschossflaeche_m2": 128, "kaufpreis_pro_qm_gf": 3289, "trend": -5}, {"baujahresgruppe": "1971-1990", "wohnlage": "gut + sehr gut", "kauffaelle": 11, "grundstuecksflaeche_m2": 347, "geschossflaeche_m2": 148, "kaufpreis_pro_qm_gf": 3799, "trend": -5}, {"baujahresgruppe": "1971-1990", "wohnlage": "insgesamt", "kauffaelle": 50, "grundstuecksflaeche_m2": 326, "geschossflaeche_m2": 131, "kaufpreis_pro_qm_gf": 3357, "trend": -5}, {"baujahresgruppe": "1991-2020", "wohnlage": "einfach + mittel", "kauffaelle": 25, "grundstuecksflaeche_m2": 352, "geschossflaeche_m2": 147, "kaufpreis_pro_qm_gf": 3964, "trend": null}, {"baujahresgruppe": "1991-2020", "wohnlage": "gut + sehr gut", "kauffaelle": 5, "grundstuecksflaeche_m2": 358, "geschossflaeche_m2": 163, "kaufpreis_pro_qm_gf": 6496, "trend": -5}, {"baujahresgruppe": "1991-2020", "wohnlage": "insgesamt", "kauffaelle": 31, "grundstuecksflaeche_m2": 344, "geschossflaeche_m2": 148, "kaufpreis_pro_qm_gf": 4073, "trend": 5}, {"baujahresgruppe": "ab 2021", "wohnlage": "einfach + mittel", "kauffaelle": 6, "grundstuecksflaeche_m2": 261, "geschossflaeche_m2": 167, "kaufpreis_pro_qm_gf": 4429, "trend": 5}, {"baujahresgruppe": "ab 2021", "wohnlage": "gut + sehr gut", "kauffaelle": 4, "grundstuecksflaeche_m2": 294, "geschossflaeche_m2": 120, "kaufpreis_pro_qm_gf": 5417, "trend": null}, {"baujahresgruppe": "ab 2021", "wohnlage": "insgesamt", "kauffaelle": 10, "grundstuecksflaeche_m2": 262, "geschossflaeche_m2": 148, "kaufpreis_pro_qm_gf": 4824, "trend": 5}], "reihenhaus": [{"baujahresgruppe": "1920-1948", "wohnlage": "einfach + mittel", "kauffaelle": 68, "grundstuecksflaeche_m2": 256, "geschossflaeche_m2": 120, "kaufpreis_pro_qm_gf": 3990, "trend": null}, {"baujahresgruppe": "1920-1948", "wohnlage": "gut + sehr gut", "kauffaelle": 12, "grundstuecksflaeche_m2": 289, "geschossflaeche_m2": 158, "kaufpreis_pro_qm_gf": 4606, "trend": -15}, {"baujahresgruppe": "1920-1948", "wohnlage": "insgesamt", "kauffaelle": 79, "grundstuecksflaeche_m2": 258, "geschossflaeche_m2": 126, "kaufpreis_pro_qm_gf": 4126, "trend": -15}, {"baujahresgruppe": "1949-1970", "wohnlage": "einfach + mittel", "kauffaelle": 71, "grundstuecksflaeche_m2": 273, "geschossflaeche_m2": 113, "kaufpreis_pro_qm_gf": 3201, "trend": -5}, {"baujahresgruppe": "1949-1970", "wohnlage": "gut + sehr gut", "kauffaelle": 8, "grundstuecksflaeche_m2": 361, "geschossflaeche_m2": 121, "kaufpreis_pro_qm_gf": 5270, "trend": 5}, {"baujahresgruppe": "1949-1970", "wohnlage": "insgesamt", "kauffaelle": 75, "grundstuecksflaeche_m2": 281, "geschossflaeche_m2": 115, "kaufpreis_pro_qm_gf": 3283, "trend": -5}, {"baujahresgruppe": "1971-1990", "wohnlage": "einfach + mittel", "kauffaelle": 41, "grundstuecksflaeche_m2": 315, "geschossflaeche_m2": 134, "kaufpreis_pro_qm_gf": 3004, "trend": -15}, {"baujahresgruppe": "1971-1990", "wohnlage": "gut + sehr gut", "kauffaelle": 9, "grundstuecksflaeche_m2": 354, "geschossflaeche_m2": 156, "kaufpreis_pro_qm_gf": 4559, "trend": 15}, {"baujahresgruppe": "1971-1990", "wohnlage": "insgesamt", "kauffaelle": 47, "grundstuecksflaeche_m2": 314, "geschossflaeche_m2": 135, "kaufpreis_pro_qm_gf": 3026, "trend": -15}, {"baujahresgruppe": "1991-2020", "wohnlage": "einfach + mittel", "kauffaelle": 52, "grundstuecksflaeche_m2": 228, "geschossflaeche_m2": 149, "kaufpreis_pro_qm_gf": 3877, "trend": null}, {"baujahresgruppe": "1991-2020", "wohnlage": "gut + sehr gut", "kauffaelle": 5, "grundstuecksflaeche_m2": 308, "geschossflaeche_m2": 163, "kaufpreis_pro_qm_gf": 4828, "trend": null}, {"baujahresgruppe": "1991-2020", "wohnlage": "insgesamt", "kauffaelle": 57, "grundstuecksflaeche_m2": 228, "geschossflaeche_m2": 147, "kaufpreis_pro_qm_gf": 3936, "trend": null}, {"baujahresgruppe": "ab 2021", "wohnlage": "einfach + mittel", "kauffaelle": 22, "grundstuecksflaeche_m2": 254, "geschossflaeche_m2": 170, "kaufpreis_pro_qm_gf": 3368, "trend": null}, {"baujahresgruppe": "ab 2021", "wohnlage": "insgesamt", "kauffaelle": 22, "grundstuecksflaeche_m2": 254, "geschossflaeche_m2": 170, "kaufpreis_pro_qm_gf": 3368, "trend": 0}]}, "investment": {"mietwohnhaeuser": {"kaufpreis_durchschnitt_eur": 6250000, "kaufpreis_pro_qm_gfkl": 1915, "vielfaches_jahresnettokaltmiete": 23.5, "kauffaelle": 379, "geldumsatz_MioEUR": 1918.8}, "wohn_geschaeftshaeuser": {"kaufpreis_durchschnitt_eur": 6375000, "kaufpreis_pro_qm_gfkl": 1855, "vielfaches_jahresnettokaltmiete": 21.7, "kauffaelle": 298, "geldumsatz_MioEUR": 2312.0}, "buero_geschaeftshaeuser": {"kaufpreis_durchschnitt_eur": 20675000, "kaufpreis_pro_qm_gfkl": 4300, "vielfaches_jahresnettokaltmiete": 15.8, "kauffaelle": 83, "geldumsatz_MioEUR": 1230.4}}};
 
@@ -116,28 +193,21 @@ const BEZIRKE = ['Mitte','Friedrichshain-Kreuzberg','Pankow','Charlottenburg-Wil
   'Spandau','Steglitz-Zehlendorf','Tempelhof-Schöneberg','Neukölln',
   'Treptow-Köpenick','Marzahn-Hellersdorf','Lichtenberg','Reinickendorf'];
 
-// ─── State ─────────────────────────────────────────────────────
-let map, geoLayer, currentMetric = 'geldumsatz';
-let geoData = null;
+let map, geoLayer, currentMetric = 'geldumsatz', geoData = null;
 
-// ─── Color scales ─────────────────────────────────────────────
 function getColor(value, min, max) {
   if (value == null || max === min) return '#374151';
   const t = (value - min) / (max - min);
   const colors = ['#00a550','#7fc440','#e0d040','#f09030','#e04030','#b01020'];
-  const idx = Math.min(Math.floor(t * colors.length), colors.length - 1);
-  return colors[Math.max(0, idx)];
+  return colors[Math.max(0, Math.min(Math.floor(t*colors.length), colors.length-1))];
 }
 
-// ─── Metric extractors ────────────────────────────────────────
-function getMetricValue(bezirk, metric, year) {
-  const yr = year || '2024';
+function getMetricValue(bezirk, metric) {
   const kf = DATA.bezirke.kauffaelle.find(d => d.bezirk === bezirk);
   const gd = DATA.bezirke.geldumsatz.find(d => d.bezirk === bezirk);
   const fl = DATA.bezirke.flaechenumsatz.find(d => d.bezirk === bezirk);
   const condo = DATA.condo[bezirk] || {};
   const brw = DATA.brw_offen.find(d => d.bezirk === bezirk);
-
   switch(metric) {
     case 'geldumsatz': return gd ? gd.gesamt_MioEUR : null;
     case 'geldumsatz_bebaut': return gd ? gd.bebaut_MioEUR : null;
@@ -158,24 +228,6 @@ function getMetricValue(bezirk, metric, year) {
   }
 }
 
-function getMetricLabel(metric) {
-  const labels = {
-    geldumsatz: 'Geldumsatz gesamt', geldumsatz_bebaut: 'Geldumsatz — bebaute Grundstücke',
-    geldumsatz_we: 'Geldumsatz — Wohnungseigentum', kauffaelle: 'Kauffälle gesamt',
-    kauffaelle_we: 'Kauffälle — Wohnungseigentum', flaeche: 'Flächenumsatz',
-    condo_resale: 'ETW Weiterverkauf (ø €/m²)', condo_neubau: 'ETW Neubau (ø €/m²)',
-    brw_min: 'Bodenrichtwert minimal (€/m²)', brw_max: 'Bodenrichtwert maximal (€/m²)',
-  };
-  return labels[metric] || metric;
-}
-
-function getMetricUnit(metric) {
-  if (metric.startsWith('geldumsatz')) return 'Mio. €';
-  if (metric.startsWith('kauffaelle')) return 'Kauffälle';
-  if (metric === 'flaeche') return 'ha';
-  return '€/m²';
-}
-
 function formatVal(v, metric) {
   if (v == null) return '—';
   if (metric.startsWith('geldumsatz')) return v.toFixed(1) + ' Mio. €';
@@ -184,52 +236,30 @@ function formatVal(v, metric) {
   return v.toFixed(0) + ' €/m²';
 }
 
-// ─── Map ───────────────────────────────────────────────────────
 function buildMap() {
   const vals = BEZIRKE.map(b => getMetricValue(b, currentMetric)).filter(v => v != null);
-  const min = Math.min(...vals);
-  const max = Math.max(...vals);
-
-  // Update choropleth
+  const min = Math.min(...vals), max = Math.max(...vals);
   if (geoLayer && geoData) {
-    geoLayer.setStyle(feature => {
-      const v = getMetricValue(feature.properties.district, currentMetric);
-      return {
-        fillColor: getColor(v, min, max),
-        fillOpacity: 0.25, weight: 2, color: '#5b6a8a', dashArray: '4 2'
-      };
+    geoLayer.setStyle(f => {
+      const v = getMetricValue(f.properties.district, currentMetric);
+      return {fillColor:getColor(v,min,max),fillOpacity:0.25,weight:2,color:'#5b6a8a',dashArray:'4 2'};
     });
   }
-
-  // Update legend
   const steps = 5;
-  let legendHTML = `<div class="title">${getMetricLabel(currentMetric)}</div>`;
-  for (let i = 0; i < steps; i++) {
-    const t = i / (steps - 1);
-    const v = min + t * (max - min);
-    legendHTML += `<div class="r"><span class="d" style="background:${getColor(v, min, max)}"></span> ${formatVal(v, currentMetric)}</div>`;
-  }
-  document.getElementById('legend').innerHTML = legendHTML;
-
-  // Update district panel
-  const sorted = BEZIRKE.map(b => ({bezirk: b, val: getMetricValue(b, currentMetric)}))
-    .sort((a,b) => (b.val||0) - (a.val||0));
-  const dlist = document.getElementById('dlist');
-  dlist.innerHTML = sorted.map(d => `
-    <div class="d-row" onclick="zoomToDistrict('${d.bezirk}')">
-      <span class="d-name">${d.bezirk}</span>
-      <span class="d-val">${formatVal(d.val, currentMetric)}</span>
-    </div>`).join('');
+  let lh = `<div class="title">${tm(currentMetric)}</div>`;
+  for (let i=0;i<steps;i++){const t=i/(steps-1);const v=min+t*(max-min);
+    lh+=`<div class="r"><span class="d" style="background:${getColor(v,min,max)}"></span> ${formatVal(v,currentMetric)}</div>`;}
+  document.getElementById('legend').innerHTML = lh;
+  const sorted = BEZIRKE.map(b=>({bezirk:b,val:getMetricValue(b,currentMetric)})).sort((a,b)=>(b.val||0)-(a.val||0));
+  document.getElementById('dlist').innerHTML = sorted.map(d =>
+    `<div class="d-row" onclick="zoomToDistrict('${d.bezirk}')"><span class="d-name">${d.bezirk}</span><span class="d-val">${formatVal(d.val,currentMetric)}</span></div>`).join('');
 }
 
 function zoomToDistrict(name) {
-  const f = geoData.features.find(f => f.properties.district === name);
-  if (!f) return;
-  const layer = Object.values(geoLayer._layers).find(l => l.feature === f);
-  if (layer) {
-    map.fitBounds(layer.getBounds(), {padding:[30,30], maxZoom:14});
-    showTooltip(name);
-  }
+  const f = geoData.features.find(f=>f.properties.district===name);
+  if(!f)return;
+  const layer = Object.values(geoLayer._layers).find(l=>l.feature===f);
+  if(layer){map.fitBounds(layer.getBounds(),{padding:[30,30],maxZoom:14});showTooltip(name);}
 }
 
 function switchMetric() {
@@ -237,102 +267,47 @@ function switchMetric() {
   buildMap();
 }
 
-// ─── Tooltip ───────────────────────────────────────────────────
 function showTooltip(bezirk) {
-  const kf = DATA.bezirke.kauffaelle.find(d => d.bezirk === bezirk);
-  const gd = DATA.bezirke.geldumsatz.find(d => d.bezirk === bezirk);
-  const fl = DATA.bezirke.flaechenumsatz.find(d => d.bezirk === bezirk);
+  const kf = DATA.bezirke.kauffaelle.find(d=>d.bezirk===bezirk);
+  const gd = DATA.bezirke.geldumsatz.find(d=>d.bezirk===bezirk);
+  const fl = DATA.bezirke.flaechenumsatz.find(d=>d.bezirk===bezirk);
   const condo = DATA.condo[bezirk] || {};
-  const brw = DATA.brw_offen.find(d => d.bezirk === bezirk);
-
-  let html = `<button class="close" onclick="this.parentElement.style.display='none'">×</button>`;
-  html += `<h3>🏙️ ${bezirk}</h3>`;
-
-  // Main stats
-  if (gd) {
-    html += `<div class="val">${gd.gesamt_MioEUR.toFixed(1)} <span class="sub">Mio. €</span></div>`;
-    html += `<div class="sub">${gd.gesamt_pct_berlin.toFixed(1)}% des Berliner Geldumsatzes</div>`;
-  }
-
-  // Breakdown
-  if (gd) {
-    html += `<div class="hr"></div>`;
-    html += `<table>`;
-    html += `<tr><th></th><th>Mio. €</th><th>% Bezirk</th></tr>`;
-    html += `<tr><td>Unbebaut</td><td>${gd.unbebaut_MioEUR.toFixed(1)}</td><td>${gd.unbebaut_pct_bezirk.toFixed(1)}%</td></tr>`;
-    html += `<tr><td>Bebaut</td><td>${gd.bebaut_MioEUR.toFixed(1)}</td><td>${gd.bebaut_pct_bezirk.toFixed(1)}%</td></tr>`;
-    html += `<tr><td>WE/TE</td><td>${gd.we_MioEUR.toFixed(1)}</td><td>${gd.we_pct_bezirk.toFixed(1)}%</td></tr>`;
-    html += `</table>`;
-  }
-
-  // Kauffälle
-  if (kf) {
-    html += `<div class="hr"></div>`;
-    html += `<div class="row"><span>📋 Kauffälle</span><b>${kf.gesamt_anzahl.toLocaleString()}</b></div>`;
-    html += `<div class="row"><span>   — WE</span><b>${kf.we_anzahl.toLocaleString()}</b></div>`;
-  }
-
-  // Fläche
-  if (fl) {
-    html += `<div class="row"><span>📐 Flächenumsatz</span><b>${fl.gesamt_ha.toFixed(1)} ha</b></div>`;
-  }
-
-  // Bodenrichtwert
-  if (brw) {
-    html += `<div class="hr"></div>`;
-    html += `<div class="row"><span>🏞️ Bodenrichtwert (offen)</span><b>${brw.bodenrichtwert_min.toFixed(0)} – ${brw.bodenrichtwert_max.toFixed(0)} €/m²</b></div>`;
-  }
-
-  // Condo prices
-  const condoKeys = Object.keys(condo).filter(k => k.startsWith('resale'));
-  if (condoKeys.length) {
-    html += `<div class="hr"></div><div class="sub" style="font-weight:600;margin-bottom:2px">🏢 ETW Preise (verteilt)</div>`;
-    for (const k of condoKeys.slice(0, 3)) {
-      const c = condo[k];
-      html += `<div class="row"><span>   ${k.replace('resale_','')}</span><b>${c.preis_pro_qm.toFixed(0)} €/m²</b></div>`;
-    }
-  }
-  if (condo.erstverkauf_neubau) {
-    html += `<div class="row"><span>   Neubau</span><b>${condo.erstverkauf_neubau.preis_pro_qm.toFixed(0)} €/m²</b></div>`;
-  }
-
-  document.getElementById('tooltip').innerHTML = html;
-  document.getElementById('tooltip').style.display = 'block';
+  const brw = DATA.brw_offen.find(d=>d.bezirk===bezirk);
+  let h = `<button class="close" onclick="this.parentElement.style.display='none'">×</button><h3>🏙️ ${bezirk}</h3>`;
+  if(gd){h+=`<div class="val">${gd.gesamt_MioEUR.toFixed(1)} <span class="sub">Mio. €</span></div><div class="sub">${gd.gesamt_pct_berlin.toFixed(1)}% ${t('tt_pct_berlin')}</div>`;}
+  if(gd){h+=`<div class="hr"></div><table><tr><th></th><th>Mio. €</th><th>% Bezirk</th></tr><tr><td>${t('tt_unbebaut')}</td><td>${gd.unbebaut_MioEUR.toFixed(1)}</td><td>${gd.unbebaut_pct_bezirk.toFixed(1)}%</td></tr><tr><td>${t('tt_bebaut')}</td><td>${gd.bebaut_MioEUR.toFixed(1)}</td><td>${gd.bebaut_pct_bezirk.toFixed(1)}%</td></tr><tr><td>WE/TE</td><td>${gd.we_MioEUR.toFixed(1)}</td><td>${gd.we_pct_bezirk.toFixed(1)}%</td></tr></table>`;}
+  if(kf){h+=`<div class="hr"></div><div class="row"><span>${t('tt_kf')}</span><b>${kf.gesamt_anzahl.toLocaleString()}</b></div><div class="row"><span>${t('tt_kf_we')}</span><b>${kf.we_anzahl.toLocaleString()}</b></div>`;}
+  if(fl){h+=`<div class="row"><span>${t('tt_flaeche')}</span><b>${fl.gesamt_ha.toFixed(1)} ha</b></div>`;}
+  if(brw){h+=`<div class="hr"></div><div class="row"><span>${t('tt_brw')}</span><b>${brw.bodenrichtwert_min.toFixed(0)} – ${brw.bodenrichtwert_max.toFixed(0)} €/m²</b></div>`;}
+  const ck = Object.keys(condo).filter(k=>k.startsWith('resale'));
+  if(ck.length){h+=`<div class="hr"></div><div class="sub" style="font-weight:600;margin-bottom:2px">${t('tt_etw')}</div>`;for(const k of ck.slice(0,3)){const c=condo[k];h+=`<div class="row"><span>   ${k.replace('resale_','')}</span><b>${c.preis_pro_qm.toFixed(0)} €/m²</b></div>`;}}
+  if(condo.erstverkauf_neubau){h+=`<div class="row"><span>${t('tt_neubau')}</span><b>${condo.erstverkauf_neubau.preis_pro_qm.toFixed(0)} €/m²</b></div>`;}
+  document.getElementById('tooltip').innerHTML=h;
+  document.getElementById('tooltip').style.display='block';
 }
 
-// ─── Init ──────────────────────────────────────────────────────
 async function init() {
-  map = L.map('map', {
-    center:[52.52,13.405], zoom:11, scrollWheelZoom:true, zoomControl:false,
-    minZoom:10, maxZoom:16
-  });
-  L.control.zoom({position:'bottomright'}).addTo(map);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution:'&copy; OSM', maxZoom:18
-  }).addTo(map);
+  // Populate metric select
+  const sel = document.getElementById('metricSelect');
+  sel.innerHTML = Object.entries(T[currentLang].metrics).map(([k,v]) => `<option value="${k}">${v}</option>`).join('');
+  document.querySelector('#yearSelect option[value="2023"]').textContent = t('yr_prev');
 
-  // Load GeoJSON
+  map = L.map('map',{center:[52.52,13.405],zoom:11,scrollWheelZoom:true,zoomControl:false,minZoom:10,maxZoom:16});
+  L.control.zoom({position:'bottomright'}).addTo(map);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; OSM',maxZoom:18}).addTo(map);
   const r = await fetch('data/processed/berlin-districts-choropleth.geojson');
   geoData = await r.json();
-
   geoLayer = L.geoJSON(geoData, {
-    style: feature => {
-      const v = getMetricValue(feature.properties.district, currentMetric);
-      const vals = BEZIRKE.map(b => getMetricValue(b, currentMetric)).filter(x => x != null);
-      const mn = Math.min(...vals), mx = Math.max(...vals);
-      return {fillColor: getColor(v, mn, mx), fillOpacity: 0.25, weight: 2, color: '#5b6a8a', dashArray: '4 2'};
-    },
-    onEachFeature: (feature, layer) => {
-      layer.bindTooltip(`<b>${feature.properties.district}</b>`, {sticky:true});
-      layer.on('mouseover', function(){ this.setStyle({fillOpacity:0.45, weight:3, color:'#7b8fbf'}); });
-      layer.on('mouseout', function(){ this.setStyle({fillOpacity:0.25, weight:2, color:'#5b6a8a'}); });
-      layer.on('click', () => showTooltip(feature.properties.district));
+    style: f => {const v=getMetricValue(f.properties.district,currentMetric);const vals=BEZIRKE.map(b=>getMetricValue(b,currentMetric)).filter(x=>x!=null);const mn=Math.min(...vals),mx=Math.max(...vals);return {fillColor:getColor(v,mn,mx),fillOpacity:0.25,weight:2,color:'#5b6a8a',dashArray:'4 2'};},
+    onEachFeature: (f,layer) => {
+      layer.bindTooltip(`<b>${f.properties.district}</b>`,{sticky:true});
+      layer.on('mouseover',function(){this.setStyle({fillOpacity:0.45,weight:3,color:'#7b8fbf'});});
+      layer.on('mouseout',function(){this.setStyle({fillOpacity:0.25,weight:2,color:'#5b6a8a'});});
+      layer.on('click',()=>showTooltip(f.properties.district));
     }
   }).addTo(map);
-
   buildMap();
 }
-
 document.addEventListener('DOMContentLoaded', init);
 </script>
 </body>
