@@ -474,7 +474,7 @@ function buildMap() {
   let lh = `<div class="title">${tm(currentMetric)}</div>`;
   if (center != null) {
     for (let i=0;i<steps;i++){
-      const t=(i/(steps-1)-0.5)*2;const v=center+t*Math.max(max-center,center-min);
+      const t=(i/(steps-1)-0.5)*2;const v=Math.max(min,Math.min(max,center+t*Math.max(max-center,center-min)));
       lh+=`<div class="r"><span class="d" style="background:${getColor(v,min,max,center)}"></span> ${formatVal(v,currentMetric)}</div>`;
     }
   } else {
