@@ -1,0 +1,97 @@
+{
+  "source": "Amt für Statistik Berlin-Brandenburg — Pressemitteilung Nr. 90/2025",
+  "url": "https://www.statistik-berlin-brandenburg.de/090-2025",
+  "license": "dl-de/by-2-0",
+  "berlin_totals": {
+    "wohnungen_2023": 2043583,
+    "wohnungen_2024": 2058666,
+    "change_absolut": 15083,
+    "change_pct": 0.74
+  },
+  "bezirke": [
+    {
+      "bezirk": "Mitte",
+      "wohnungen_2023": 213666,
+      "wohnungen_2024": 214593,
+      "change_absolut": 927,
+      "change_pct": 0.4
+    },
+    {
+      "bezirk": "Friedrichshain-Kreuzberg",
+      "wohnungen_2023": 158223,
+      "wohnungen_2024": 158914,
+      "change_absolut": 691,
+      "change_pct": 0.4
+    },
+    {
+      "bezirk": "Pankow",
+      "wohnungen_2023": 226992,
+      "wohnungen_2024": 228516,
+      "change_absolut": 1524,
+      "change_pct": 0.7
+    },
+    {
+      "bezirk": "Charlottenburg-Wilmersdorf",
+      "wohnungen_2023": 196816,
+      "wohnungen_2024": 197177,
+      "change_absolut": 361,
+      "change_pct": 0.2
+    },
+    {
+      "bezirk": "Spandau",
+      "wohnungen_2023": 127822,
+      "wohnungen_2024": 130289,
+      "change_absolut": 2467,
+      "change_pct": 1.9
+    },
+    {
+      "bezirk": "Steglitz-Zehlendorf",
+      "wohnungen_2023": 162269,
+      "wohnungen_2024": 162542,
+      "change_absolut": 273,
+      "change_pct": 0.2
+    },
+    {
+      "bezirk": "Tempelhof-Schöneberg",
+      "wohnungen_2023": 187628,
+      "wohnungen_2024": 189048,
+      "change_absolut": 1420,
+      "change_pct": 0.8
+    },
+    {
+      "bezirk": "Neukölln",
+      "wohnungen_2023": 168189,
+      "wohnungen_2024": 168931,
+      "change_absolut": 742,
+      "change_pct": 0.4
+    },
+    {
+      "bezirk": "Treptow-Köpenick",
+      "wohnungen_2023": 156045,
+      "wohnungen_2024": 160034,
+      "change_absolut": 3989,
+      "change_pct": 2.6
+    },
+    {
+      "bezirk": "Marzahn-Hellersdorf",
+      "wohnungen_2023": 144905,
+      "wohnungen_2024": 145905,
+      "change_absolut": 1000,
+      "change_pct": 0.7
+    },
+    {
+      "bezirk": "Lichtenberg",
+      "wohnungen_2023": 167725,
+      "wohnungen_2024": 168712,
+      "change_absolut": 987,
+      "change_pct": 0.6
+    },
+    {
+      "bezirk": "Reinickendorf",
+      "wohnungen_2023": 133303,
+      "wohnungen_2024": 134005,
+      "change_absolut": 702,
+      "change_pct": 0.5
+    }
+  ]
+}

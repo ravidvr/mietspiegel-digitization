@@ -1415,5 +1415,212 @@
       "Tempelhof-Schöneberg": 96,
       "Marzahn-Hellersdorf": 62
     }
+  },
+  "baugenehmigungen": {
+    "source": "Amt für Statistik Berlin-Brandenburg — PM Nr. 51/2025",
+    "url": "https://www.statistik-berlin-brandenburg.de/051-2025",
+    "license": "dl-de/by-2-0",
+    "berlin_totals": {
+      "genehmigt_2024": 9772,
+      "genehmigt_2023": 15902,
+      "neubau_2024": 8558,
+      "neubau_2023": 14398,
+      "change_pct": -38.5
+    },
+    "bezirke": [
+      {
+        "bezirk": "Mitte",
+        "genehmigt_2024": 736,
+        "genehmigt_2023": 859,
+        "genehmigt_neubau_2024": 543,
+        "genehmigt_neubau_2023": 560,
+        "change_pct": -14.3
+      },
+      {
+        "bezirk": "Friedrichshain-Kreuzberg",
+        "genehmigt_2024": 346,
+        "genehmigt_2023": 790,
+        "genehmigt_neubau_2024": 181,
+        "genehmigt_neubau_2023": 648,
+        "change_pct": -56.2
+      },
+      {
+        "bezirk": "Pankow",
+        "genehmigt_2024": 583,
+        "genehmigt_2023": 1844,
+        "genehmigt_neubau_2024": 538,
+        "genehmigt_neubau_2023": 1540,
+        "change_pct": -68.4
+      },
+      {
+        "bezirk": "Charlottenburg-Wilmersdorf",
+        "genehmigt_2024": 1614,
+        "genehmigt_2023": 809,
+        "genehmigt_neubau_2024": 1451,
+        "genehmigt_neubau_2023": 767,
+        "change_pct": 99.5
+      },
+      {
+        "bezirk": "Spandau",
+        "genehmigt_2024": 1807,
+        "genehmigt_2023": 1055,
+        "genehmigt_neubau_2024": 1558,
+        "genehmigt_neubau_2023": 992,
+        "change_pct": 71.3
+      },
+      {
+        "bezirk": "Steglitz-Zehlendorf",
+        "genehmigt_2024": 343,
+        "genehmigt_2023": 518,
+        "genehmigt_neubau_2024": 309,
+        "genehmigt_neubau_2023": 357,
+        "change_pct": -33.8
+      },
+      {
+        "bezirk": "Tempelhof-Schöneberg",
+        "genehmigt_2024": 438,
+        "genehmigt_2023": 387,
+        "genehmigt_neubau_2024": 327,
+        "genehmigt_neubau_2023": 314,
+        "change_pct": 13.2
+      },
+      {
+        "bezirk": "Neukölln",
+        "genehmigt_2024": 222,
+        "genehmigt_2023": 2077,
+        "genehmigt_neubau_2024": 133,
+        "genehmigt_neubau_2023": 1908,
+        "change_pct": -89.3
+      },
+      {
+        "bezirk": "Treptow-Köpenick",
+        "genehmigt_2024": 1152,
+        "genehmigt_2023": 3450,
+        "genehmigt_neubau_2024": 1099,
+        "genehmigt_neubau_2023": 3394,
+        "change_pct": -66.6
+      },
+      {
+        "bezirk": "Marzahn-Hellersdorf",
+        "genehmigt_2024": 881,
+        "genehmigt_2023": 1351,
+        "genehmigt_neubau_2024": 863,
+        "genehmigt_neubau_2023": 1343,
+        "change_pct": -34.8
+      },
+      {
+        "bezirk": "Lichtenberg",
+        "genehmigt_2024": 1213,
+        "genehmigt_2023": 2378,
+        "genehmigt_neubau_2024": 1188,
+        "genehmigt_neubau_2023": 2212,
+        "change_pct": -49.0
+      },
+      {
+        "bezirk": "Reinickendorf",
+        "genehmigt_2024": 437,
+        "genehmigt_2023": 384,
+        "genehmigt_neubau_2024": 368,
+        "genehmigt_neubau_2023": 363,
+        "change_pct": 13.8
+      }
+    ]
+  },
+  "wohnungsbestand": {
+    "source": "Amt für Statistik Berlin-Brandenburg — Pressemitteilung Nr. 90/2025",
+    "url": "https://www.statistik-berlin-brandenburg.de/090-2025",
+    "license": "dl-de/by-2-0",
+    "berlin_totals": {
+      "wohnungen_2023": 2043583,
+      "wohnungen_2024": 2058666,
+      "change_absolut": 15083,
+      "change_pct": 0.74
+    },
+    "bezirke": [
+      {
+        "bezirk": "Mitte",
+        "wohnungen_2023": 213666,
+        "wohnungen_2024": 214593,
+        "change_absolut": 927,
+        "change_pct": 0.4
+      },
+      {
+        "bezirk": "Friedrichshain-Kreuzberg",
+        "wohnungen_2023": 158223,
+        "wohnungen_2024": 158914,
+        "change_absolut": 691,
+        "change_pct": 0.4
+      },
+      {
+        "bezirk": "Pankow",
+        "wohnungen_2023": 226992,
+        "wohnungen_2024": 228516,
+        "change_absolut": 1524,
+        "change_pct": 0.7
+      },
+      {
+        "bezirk": "Charlottenburg-Wilmersdorf",
+        "wohnungen_2023": 196816,
+        "wohnungen_2024": 197177,
+        "change_absolut": 361,
+        "change_pct": 0.2
+      },
+      {
+        "bezirk": "Spandau",
+        "wohnungen_2023": 127822,
+        "wohnungen_2024": 130289,
+        "change_absolut": 2467,
+        "change_pct": 1.9
+      },
+      {
+        "bezirk": "Steglitz-Zehlendorf",
+        "wohnungen_2023": 162269,
+        "wohnungen_2024": 162542,
+        "change_absolut": 273,
+        "change_pct": 0.2
+      },
+      {
+        "bezirk": "Tempelhof-Schöneberg",
+        "wohnungen_2023": 187628,
+        "wohnungen_2024": 189048,
+        "change_absolut": 1420,
+        "change_pct": 0.8
+      },
+      {
+        "bezirk": "Neukölln",
+        "wohnungen_2023": 168189,
+        "wohnungen_2024": 168931,
+        "change_absolut": 742,
+        "change_pct": 0.4
+      },
+      {
+        "bezirk": "Treptow-Köpenick",
+        "wohnungen_2023": 156045,
+        "wohnungen_2024": 160034,
+        "change_absolut": 3989,
+        "change_pct": 2.6
+      },
+      {
+        "bezirk": "Marzahn-Hellersdorf",
+        "wohnungen_2023": 144905,
+        "wohnungen_2024": 145905,
+        "change_absolut": 1000,
+        "change_pct": 0.7
+      },
+      {
+        "bezirk": "Lichtenberg",
+        "wohnungen_2023": 167725,
+        "wohnungen_2024": 168712,
+        "change_absolut": 987,
+        "change_pct": 0.6
+      },
+      {
+        "bezirk": "Reinickendorf",
+        "wohnungen_2023": 133303,
+        "wohnungen_2024": 134005,
+        "change_absolut": 702,
+        "change_pct": 0.5
+      }
+    ]
   }
 }
