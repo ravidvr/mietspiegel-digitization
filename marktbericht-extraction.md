@@ -3,7 +3,10 @@
 **Source:** Gutachterausschuss für Grundstückswerte in Berlin
 **PDF:** ~/Downloads/Immobilienmarktbericht_Berlin_2024_2025.pdf (15.6 MB, 102 pages)
 **License:** dl-de/zero-2-0 (public domain)
-**Extraction date:** July 14, 2026
+**Extraction date:** July 14-15, 2026
+**Status:** ✅ Complete — all structured tables extracted, validated, and visualised
+
+**Interactive dashboard:** https://ravidvr.github.io/mietspiegel-digitization/marktbericht.html
 
 ---
 
@@ -254,5 +257,33 @@ From the Bezirk-level data (Ch 6) with minimal processing:
 | Time series | 2021–2025 | 2022 snapshot | 1990–2024 |
 | License | RWI (restricted) | dl-de/by-2-0 | dl-de/zero-2-0 |
 | Dollar figure | €/m² asking rent | €/m² actual rent | €/m² sale price, Mio € volume |
+
+## 8. Extraction Complete
+
+All structured data is now in `docs/data/processed/marktbericht_complete_2024.json` (78 KB, 251/251 validation checks passed). 
+
+**What was extracted:**
+
+| Section | Records | Method |
+|---|---|---|
+| Bezirk transactions (Kauffälle, Geldumsatz, Fläche) | 36 (12 × 3) | pymupdf regex |
+| Key prices (ETW, EFH, yield, highest prices) | 19 | Manual transcription |
+| House prices by type, Baujahre, Wohnlage | 48 | pdfbox-app regex |
+| Condo resale prices by Baujahre, Stadtgebiet | 18 | pdfbox-app reverse-scan |
+| Erstverkauf condo prices | 6 | Same as resale |
+| Umwandlung condo prices | 22 | Same as resale |
+| Bodenrichtwerte per Bezirk (offene Bauweise) | 11 | pdfbox-app name matching |
+| Bodenrichtwerte per Wohnlage (offen + geschlossen) | 72 | pdfbox-app reverse value scan |
+| Teileigentum (parking, storage, etc.) | 5 | pdfbox-app |
+| Overview, WEG, Outlook text | 20 | Manual transcription |
+| Stadtgebiet → Bezirk mapping (96 Ortsteile) | 6 × N | Gutachterausschuss PDF |
+| Condo distribution weights | 6 × N | Derived from Kauffälle data |
+
+**What could not be extracted:**
+- Historical price trends 1990–2024 — only exist as chart images (Abb. 64-66)
+- Mischgebiet/Gewerbe land prices — prose sections, no per-Bezirk tables
+- Monthly/quarterly seasonality — prose, no data table
+
+The dashboard makes all of this searchable by address, interactive by district, and bilingual in DE/EN.
 
 These are three different views of the same city — no overlap in what they measure. The Marktbericht adds the "what properties sell for" dimension and the transaction volume context that the rent maps don't capture.

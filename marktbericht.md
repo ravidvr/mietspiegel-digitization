@@ -14,6 +14,22 @@ The Berlin Gutachterausschuss collects every property sale contract in the city.
 
 2024 was the recovery year: transactions up 18%, money volume up 20%, but prices still declining across most segments. Q1 2025 suggests the price slide may be bottoming out.
 
+**Interactive dashboard:** https://ravidvr.github.io/mietspiegel-digitization/marktbericht.html
+
+---
+
+## 5 Key Insights
+
+**1. Three districts move 36% of all money.** Charlottenburg-Wilmersdorf, Pankow, and Mitte together account for €5.2 billion of the €14.5 billion total. Mitte averages €860,000 per transaction — every sale there is a premium deal.
+
+**2. Land values span a 10× range across Berlin.** From €300/m² in outer Treptow-Köpenick to €2,800/m² in central Mitte. Even within a single district (Mitte), the spread is 6× from cheapest to most expensive plot.
+
+**3. Most districts are essentially condo-only markets.** In Friedrichshain-Kreuzberg, 96% of all property transactions are apartments. Only outer districts like Spandau (69%) and Steglitz-Zehlendorf (75%) have meaningful numbers of houses and land.
+
+**4. Volume is up, prices are down — the market is clearing.** 18% more transactions than 2023, but condo prices fell 1%, house prices fell 7%, and land values dropped in 9 of 11 districts. More deals happening at lower prices — not a boom, but market clearing.
+
+**5. Rental buildings are negative-carry investments.** Investors pay 23.5× annual rent, yielding 4.3% gross before costs. With financing at 3.5-4%, there is no cash-flow surplus. Buyers are betting on future rent growth, not current returns.
+
 ---
 
 ## 1. Top-Line Numbers (2024 vs 2023)
