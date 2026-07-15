@@ -1,51 +1,12 @@
-# Berlin Mietspiegel & Immobilienmarkt
+# Berlin Mietspiegel
 
-Two dashboards, one map. Rent data and actual sale prices for every Berlin district.
+Berlin rent data — block by block. Three independent data sources layered on a single interactive map: market rents (Immoscout24), official census rents (Zensus 2022), and the legally binding Berlin Mietspiegel.
 
-## Live Dashboards
+**Live dashboard:** https://ravidvr.github.io/mietspiegel-digitization/
 
-| Dashboard | What it shows | URL |
-|---|---|---|
-| **Rent Map** | Market rents vs census rents, block by block | [ravidvr.github.io/mietspiegel-digitization/](https://ravidvr.github.io/mietspiegel-digitization/) |
-| **Property Market** | Actual sale prices — not estimates, not asking prices | [ravidvr.github.io/mietspiegel-digitization/marktbericht.html](https://ravidvr.github.io/mietspiegel-digitization/marktbericht.html) |
+> Looking for property sale prices? The **Berlin Property Market** dashboard is now a separate project: [ravidvr/berlin-property-market](https://github.com/ravidvr/berlin-property-market) — [Live dashboard](https://ravidvr.github.io/berlin-property-market/)
 
----
-
-## Property Market — 5 Key Insights
-
-The Marktbericht dashboard visualises 20,789 notarised property sales from 2024. Here's what the data actually says:
-
-**1. Three districts move 36% of all money**
-Charlottenburg-Wilmersdorf, Pankow, and Mitte together account for €5.2 billion. Mitte has the highest average transaction at €860,000.
-
-**2. Land values vary by a factor of 10 across Berlin**
-From €300/m² in outer Treptow-Köpenick to €2,800/m² in central Mitte. Even within a single district, the spread can be 6×. The dashboard shows the range — not just a misleading average.
-
-**3. Most of Berlin is a condo market**
-In Friedrichshain-Kreuzberg, 96% of all property sales are apartments. Mitte: 94%. Only outer districts like Spandau and Steglitz-Zehlendorf have meaningful numbers of houses.
-
-**4. More transactions, lower prices — the market is clearing**
-Sales volume is up 18% year-on-year. But condo prices fell 1%, house prices fell 7%, and land values dropped in 9 out of 12 districts. Sellers are accepting lower prices, and buyers are returning.
-
-**5. Rental buildings are negative-carry investments**
-Investors pay 23.5× annual rent — that's a 4.3% gross yield. With financing at 3.5-4%, there's no cash-flow surplus. Buyers are betting on future rent growth, not current returns.
-
----
-
-## Dashboard Features
-
-- **10 switchable metrics** — transaction volume, sales count, land area, condo prices, land values
-- **Colour-coded district map** — green (low) to red (high) for every metric
-- **Address and postal code search** — type any Berlin address and the map zooms to that district
-- **Click any district** for a full breakdown with price ranges (einfache to gute Lage)
-- **Range bars** show the spread between cheap and expensive — not just the average
-- **Berlin-wide benchmark cards** — average prices for condos, houses, new-builds, and yields
-- **DE/EN language toggle** — all text, metrics, and tooltips translate
-- **Help overlay** — auto-shows on first visit, re-openable any time
-
----
-
-## What This Is (Rent Map)
+## What This Is
 
 All calculations are relative to Berlin. Every z-score, average, and comparison uses Berlin-only data — not national averages.
 
@@ -54,11 +15,17 @@ All calculations are relative to Berlin. Every z-score, average, and comparison 
 - **1,155 Zensus 2022 census rent cells** (100m resolution, aggregated to 1km, Berlin-only)
 - **Berlin Mietspiegel 2024** (full rent table: 3 Wohnlagen x 8 Baujahre x 4 sizes)
 - **6 historical editions** (2013-2023, all three Wohnlagen tracked)
-- Address search via Nominatim (restricted to Berlin bounding box)
+
+## Dashboard Features
+
+- Interactive heatmap with Berlin-local z-score normalization (zoom-sensitive radius/blur)
+- 12 Bezirke labels with estimated average rents
+- Click anywhere for multi-layer rent data (Immoscout vs Census vs Official Mietspiegel)
+- District comparison table (12 Bezirke ranked, sortable, with Mietspiegel table)
+- Historical trends (Wohnlage comparison chart, growth ranking, edition history)
 - DE/EN language toggle, dark mode, CSV export
 - Mobile-friendly with bottom-sheet tooltips
-
----
+- Address search via Nominatim (restricted to Berlin bounding box)
 
 ## Quick Start
 
@@ -83,15 +50,12 @@ The build pipeline references external datasets that are **not included in git**
 
 Place downloaded files under `data/external/`.
 
----
-
 ## Project Structure
 
 ```
 mietspiegel-digitization/
 ├── docs/                          ← GitHub Pages deployment root
 │   ├── index.html                 ← Main Berlin dashboard (single-file, no framework)
-│   ├── marktbericht.html          ← Property market dashboard
 │   ├── cross-city-comparison.html ← 12 Bezirke comparison + Mietspiegel table
 │   ├── historical_trends.html     ← Berlin rent history by Wohnlage (Chart.js)
 │   ├── berlin.html                ← Standalone Berlin map (Immoscout vs Zensus)
@@ -103,8 +67,6 @@ mietspiegel-digitization/
 └── .github/workflows/pages.yml    ← Auto-deploy to GitHub Pages
 ```
 
----
-
 ## Tech Stack
 
 - **Frontend:** Vanilla HTML/CSS/JS (no framework, no build step, no npm)
@@ -114,8 +76,6 @@ mietspiegel-digitization/
 - **Build:** Python 3 (pdfplumber, shapely, pyproj, scipy)
 - **Deployment:** GitHub Pages via GitHub Actions
 
----
-
 ## Data Sources
 
 | Source | Coverage | License |
@@ -124,10 +84,7 @@ mietspiegel-digitization/
 | RWI-GEO-REDX PUF v16 | 467 Berlin grid cells | Public Use File (DOI: 10.7807/IMMO:REDX:PUF:V16) |
 | Zensus 2022 | 1,155 Berlin cells (100m→1km) | dl-de/by-2.0 |
 | Berlin WFS | 400,505 address points | dl-de/zero-2.0 |
-| Immobilienmarktbericht 2024/2025 | 20,789 sale contracts | dl-de/zero-2.0 |
 | OSM tiles | Map base | ODbL |
-
----
 
 ## License
 
