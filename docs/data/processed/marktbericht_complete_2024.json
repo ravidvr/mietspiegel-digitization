@@ -2253,60 +2253,63 @@
     "Charlottenburg-Wilmersdorf": {
       "resale_1949-1970": {
         "preis_pro_qm": 3795,
+        "preis_pro_qm_gut": 4230,
         "stadtgebiet": "Südwest",
         "weight": 0.61,
         "source": "condo_resales"
       },
       "resale_1971-1990": {
         "preis_pro_qm": 3968,
+        "preis_pro_qm_gut": 5006,
         "stadtgebiet": "Südwest",
         "weight": 0.61,
         "source": "condo_resales"
       },
       "resale_ab 1991": {
         "preis_pro_qm": 5158,
+        "preis_pro_qm_gut": 6633,
         "stadtgebiet": "Südwest",
         "weight": 0.61,
         "source": "condo_resales"
       },
       "erstverkauf_neubau": {
         "preis_pro_qm": 6374,
+        "preis_pro_qm_gut": 10001,
         "stadtgebiet": "Südwest",
         "weight": 0.61,
         "source": "erstverkauf_condos"
       },
       "umwandlung_bis 1919": {
         "preis_pro_qm": 3619,
+        "preis_pro_qm_gut": 5402,
         "stadtgebiet": "Südwest",
         "weight": 0.61,
         "source": "umwandlung_condos"
       },
       "umwandlung_1920-1948": {
         "preis_pro_qm": 3104,
+        "preis_pro_qm_gut": 4851,
         "stadtgebiet": "Südwest",
         "weight": 0.61,
         "source": "umwandlung_condos"
       },
       "umwandlung_1949-1970": {
-        "preis_pro_qm": 3803,
+        "preis_pro_qm": 4881,
+        "preis_pro_qm_gut": null,
         "stadtgebiet": "City",
         "weight": 0.235,
         "source": "umwandlung_condos"
       },
       "umwandlung_1971-1990": {
-        "preis_pro_qm": 4696,
-        "stadtgebiet": "City",
-        "weight": 0.235,
-        "source": "umwandlung_condos"
-      },
-      "umwandlung_ab 1991": {
-        "preis_pro_qm": 4532,
+        "preis_pro_qm": 4862,
+        "preis_pro_qm_gut": null,
         "stadtgebiet": "City",
         "weight": 0.235,
         "source": "umwandlung_condos"
       },
       "umwandlung_sozial ab 1950": {
-        "preis_pro_qm": 3557,
+        "preis_pro_qm": 3271,
+        "preis_pro_qm_gut": 4740,
         "stadtgebiet": "City",
         "weight": 0.235,
         "source": "umwandlung_condos"
@@ -2315,54 +2318,56 @@
     "Friedrichshain-Kreuzberg": {
       "resale_1949-1970": {
         "preis_pro_qm": 4956,
+        "preis_pro_qm_gut": 4913,
         "stadtgebiet": "City",
         "weight": 0.161,
         "source": "condo_resales"
       },
       "resale_1971-1990": {
         "preis_pro_qm": 5033,
+        "preis_pro_qm_gut": 5073,
         "stadtgebiet": "City",
         "weight": 0.161,
         "source": "condo_resales"
       },
       "resale_ab 1991": {
         "preis_pro_qm": 7233,
+        "preis_pro_qm_gut": 7734,
         "stadtgebiet": "City",
         "weight": 0.161,
         "source": "condo_resales"
       },
       "erstverkauf_neubau": {
         "preis_pro_qm": 10102,
+        "preis_pro_qm_gut": 9332,
         "stadtgebiet": "City",
         "weight": 0.161,
         "source": "erstverkauf_condos"
       },
       "umwandlung_1920-1948": {
         "preis_pro_qm": 3233,
+        "preis_pro_qm_gut": 5155,
         "stadtgebiet": "City",
         "weight": 0.161,
         "source": "umwandlung_condos"
       },
       "umwandlung_1949-1970": {
-        "preis_pro_qm": 3803,
+        "preis_pro_qm": 4881,
+        "preis_pro_qm_gut": null,
         "stadtgebiet": "City",
         "weight": 0.161,
         "source": "umwandlung_condos"
       },
       "umwandlung_1971-1990": {
-        "preis_pro_qm": 4696,
-        "stadtgebiet": "City",
-        "weight": 0.161,
-        "source": "umwandlung_condos"
-      },
-      "umwandlung_ab 1991": {
-        "preis_pro_qm": 4532,
+        "preis_pro_qm": 4862,
+        "preis_pro_qm_gut": null,
         "stadtgebiet": "City",
         "weight": 0.161,
         "source": "umwandlung_condos"
       },
       "umwandlung_sozial ab 1950": {
-        "preis_pro_qm": 3557,
+        "preis_pro_qm": 3271,
+        "preis_pro_qm_gut": 4740,
         "stadtgebiet": "City",
         "weight": 0.161,
         "source": "umwandlung_condos"
@@ -2371,60 +2376,63 @@
     "Mitte": {
       "resale_1949-1970": {
         "preis_pro_qm": 3845,
+        "preis_pro_qm_gut": null,
         "stadtgebiet": "Nord",
         "weight": 0.258,
         "source": "condo_resales"
       },
       "resale_1971-1990": {
         "preis_pro_qm": 3508,
+        "preis_pro_qm_gut": 4322,
         "stadtgebiet": "Nord",
         "weight": 0.258,
         "source": "condo_resales"
       },
       "resale_ab 1991": {
         "preis_pro_qm": 4060,
+        "preis_pro_qm_gut": 5275,
         "stadtgebiet": "Nord",
         "weight": 0.258,
         "source": "condo_resales"
       },
       "erstverkauf_neubau": {
         "preis_pro_qm": 6732,
+        "preis_pro_qm_gut": 8562,
         "stadtgebiet": "Nord",
         "weight": 0.258,
         "source": "erstverkauf_condos"
       },
       "umwandlung_bis 1919": {
         "preis_pro_qm": 3087,
+        "preis_pro_qm_gut": 4740,
         "stadtgebiet": "Nord",
         "weight": 0.258,
         "source": "umwandlung_condos"
       },
       "umwandlung_1920-1948": {
         "preis_pro_qm": 2665,
+        "preis_pro_qm_gut": 3917,
         "stadtgebiet": "Nord",
         "weight": 0.258,
         "source": "umwandlung_condos"
       },
       "umwandlung_1949-1970": {
-        "preis_pro_qm": 3803,
+        "preis_pro_qm": 4881,
+        "preis_pro_qm_gut": null,
         "stadtgebiet": "City",
         "weight": 0.173,
         "source": "umwandlung_condos"
       },
       "umwandlung_1971-1990": {
-        "preis_pro_qm": 4696,
-        "stadtgebiet": "City",
-        "weight": 0.173,
-        "source": "umwandlung_condos"
-      },
-      "umwandlung_ab 1991": {
-        "preis_pro_qm": 4532,
+        "preis_pro_qm": 4862,
+        "preis_pro_qm_gut": null,
         "stadtgebiet": "City",
         "weight": 0.173,
         "source": "umwandlung_condos"
       },
       "umwandlung_sozial ab 1950": {
-        "preis_pro_qm": 3557,
+        "preis_pro_qm": 3271,
+        "preis_pro_qm_gut": 4740,
         "stadtgebiet": "City",
         "weight": 0.173,
         "source": "umwandlung_condos"
@@ -2433,60 +2441,63 @@
     "Neukölln": {
       "resale_1949-1970": {
         "preis_pro_qm": 4956,
+        "preis_pro_qm_gut": 4913,
         "stadtgebiet": "City",
         "weight": 0.087,
         "source": "condo_resales"
       },
       "resale_1971-1990": {
         "preis_pro_qm": 5033,
+        "preis_pro_qm_gut": 5073,
         "stadtgebiet": "City",
         "weight": 0.087,
         "source": "condo_resales"
       },
       "resale_ab 1991": {
         "preis_pro_qm": 4011,
+        "preis_pro_qm_gut": 4794,
         "stadtgebiet": "Südost",
         "weight": 0.221,
         "source": "condo_resales"
       },
       "erstverkauf_neubau": {
         "preis_pro_qm": 6384,
+        "preis_pro_qm_gut": 8221,
         "stadtgebiet": "Südost",
         "weight": 0.221,
         "source": "erstverkauf_condos"
       },
       "umwandlung_bis 1919": {
         "preis_pro_qm": 3114,
+        "preis_pro_qm_gut": 4264,
         "stadtgebiet": "Südost",
         "weight": 0.221,
         "source": "umwandlung_condos"
       },
       "umwandlung_1920-1948": {
         "preis_pro_qm": 3059,
+        "preis_pro_qm_gut": 3767,
         "stadtgebiet": "Südost",
         "weight": 0.221,
         "source": "umwandlung_condos"
       },
       "umwandlung_1949-1970": {
-        "preis_pro_qm": 3803,
+        "preis_pro_qm": 4881,
+        "preis_pro_qm_gut": null,
         "stadtgebiet": "City",
         "weight": 0.087,
         "source": "umwandlung_condos"
       },
       "umwandlung_1971-1990": {
-        "preis_pro_qm": 4696,
-        "stadtgebiet": "City",
-        "weight": 0.087,
-        "source": "umwandlung_condos"
-      },
-      "umwandlung_ab 1991": {
-        "preis_pro_qm": 4532,
+        "preis_pro_qm": 4862,
+        "preis_pro_qm_gut": null,
         "stadtgebiet": "City",
         "weight": 0.087,
         "source": "umwandlung_condos"
       },
       "umwandlung_sozial ab 1950": {
-        "preis_pro_qm": 3557,
+        "preis_pro_qm": 3271,
+        "preis_pro_qm_gut": 4740,
         "stadtgebiet": "City",
         "weight": 0.087,
         "source": "umwandlung_condos"
@@ -2495,60 +2506,63 @@
     "Pankow": {
       "resale_1949-1970": {
         "preis_pro_qm": 3845,
+        "preis_pro_qm_gut": null,
         "stadtgebiet": "Nord",
         "weight": 0.272,
         "source": "condo_resales"
       },
       "resale_1971-1990": {
         "preis_pro_qm": 3508,
+        "preis_pro_qm_gut": 4322,
         "stadtgebiet": "Nord",
         "weight": 0.272,
         "source": "condo_resales"
       },
       "resale_ab 1991": {
         "preis_pro_qm": 4060,
+        "preis_pro_qm_gut": 5275,
         "stadtgebiet": "Nord",
         "weight": 0.272,
         "source": "condo_resales"
       },
       "erstverkauf_neubau": {
         "preis_pro_qm": 6732,
+        "preis_pro_qm_gut": 8562,
         "stadtgebiet": "Nord",
         "weight": 0.272,
         "source": "erstverkauf_condos"
       },
       "umwandlung_bis 1919": {
         "preis_pro_qm": 3087,
+        "preis_pro_qm_gut": 4740,
         "stadtgebiet": "Nord",
         "weight": 0.272,
         "source": "umwandlung_condos"
       },
       "umwandlung_1920-1948": {
         "preis_pro_qm": 2665,
+        "preis_pro_qm_gut": 3917,
         "stadtgebiet": "Nord",
         "weight": 0.272,
         "source": "umwandlung_condos"
       },
       "umwandlung_1949-1970": {
-        "preis_pro_qm": 3803,
+        "preis_pro_qm": 4881,
+        "preis_pro_qm_gut": null,
         "stadtgebiet": "City",
         "weight": 0.183,
         "source": "umwandlung_condos"
       },
       "umwandlung_1971-1990": {
-        "preis_pro_qm": 4696,
-        "stadtgebiet": "City",
-        "weight": 0.183,
-        "source": "umwandlung_condos"
-      },
-      "umwandlung_ab 1991": {
-        "preis_pro_qm": 4532,
+        "preis_pro_qm": 4862,
+        "preis_pro_qm_gut": null,
         "stadtgebiet": "City",
         "weight": 0.183,
         "source": "umwandlung_condos"
       },
       "umwandlung_sozial ab 1950": {
-        "preis_pro_qm": 3557,
+        "preis_pro_qm": 3271,
+        "preis_pro_qm_gut": 4740,
         "stadtgebiet": "City",
         "weight": 0.183,
         "source": "umwandlung_condos"
@@ -2557,60 +2571,63 @@
     "Tempelhof-Schöneberg": {
       "resale_1949-1970": {
         "preis_pro_qm": 4956,
+        "preis_pro_qm_gut": 4913,
         "stadtgebiet": "City",
         "weight": 0.162,
         "source": "condo_resales"
       },
       "resale_1971-1990": {
         "preis_pro_qm": 5033,
+        "preis_pro_qm_gut": 5073,
         "stadtgebiet": "City",
         "weight": 0.162,
         "source": "condo_resales"
       },
       "resale_ab 1991": {
         "preis_pro_qm": 4011,
+        "preis_pro_qm_gut": 4794,
         "stadtgebiet": "Südost",
         "weight": 0.413,
         "source": "condo_resales"
       },
       "erstverkauf_neubau": {
         "preis_pro_qm": 6384,
+        "preis_pro_qm_gut": 8221,
         "stadtgebiet": "Südost",
         "weight": 0.413,
         "source": "erstverkauf_condos"
       },
       "umwandlung_bis 1919": {
         "preis_pro_qm": 3114,
+        "preis_pro_qm_gut": 4264,
         "stadtgebiet": "Südost",
         "weight": 0.413,
         "source": "umwandlung_condos"
       },
       "umwandlung_1920-1948": {
         "preis_pro_qm": 3059,
+        "preis_pro_qm_gut": 3767,
         "stadtgebiet": "Südost",
         "weight": 0.413,
         "source": "umwandlung_condos"
       },
       "umwandlung_1949-1970": {
-        "preis_pro_qm": 3803,
+        "preis_pro_qm": 4881,
+        "preis_pro_qm_gut": null,
         "stadtgebiet": "City",
         "weight": 0.162,
         "source": "umwandlung_condos"
       },
       "umwandlung_1971-1990": {
-        "preis_pro_qm": 4696,
-        "stadtgebiet": "City",
-        "weight": 0.162,
-        "source": "umwandlung_condos"
-      },
-      "umwandlung_ab 1991": {
-        "preis_pro_qm": 4532,
+        "preis_pro_qm": 4862,
+        "preis_pro_qm_gut": null,
         "stadtgebiet": "City",
         "weight": 0.162,
         "source": "umwandlung_condos"
       },
       "umwandlung_sozial ab 1950": {
-        "preis_pro_qm": 3557,
+        "preis_pro_qm": 3271,
+        "preis_pro_qm_gut": 4740,
         "stadtgebiet": "City",
         "weight": 0.162,
         "source": "umwandlung_condos"
@@ -2619,36 +2636,42 @@
     "Reinickendorf": {
       "resale_1949-1970": {
         "preis_pro_qm": 3845,
+        "preis_pro_qm_gut": null,
         "stadtgebiet": "Nord",
         "weight": 0.12,
         "source": "condo_resales"
       },
       "resale_1971-1990": {
         "preis_pro_qm": 3508,
+        "preis_pro_qm_gut": 4322,
         "stadtgebiet": "Nord",
         "weight": 0.12,
         "source": "condo_resales"
       },
       "resale_ab 1991": {
         "preis_pro_qm": 4060,
+        "preis_pro_qm_gut": 5275,
         "stadtgebiet": "Nord",
         "weight": 0.12,
         "source": "condo_resales"
       },
       "erstverkauf_neubau": {
         "preis_pro_qm": 6732,
+        "preis_pro_qm_gut": 8562,
         "stadtgebiet": "Nord",
         "weight": 0.12,
         "source": "erstverkauf_condos"
       },
       "umwandlung_bis 1919": {
         "preis_pro_qm": 3087,
+        "preis_pro_qm_gut": 4740,
         "stadtgebiet": "Nord",
         "weight": 0.12,
         "source": "umwandlung_condos"
       },
       "umwandlung_1920-1948": {
         "preis_pro_qm": 2665,
+        "preis_pro_qm_gut": 3917,
         "stadtgebiet": "Nord",
         "weight": 0.12,
         "source": "umwandlung_condos"
@@ -2657,36 +2680,42 @@
     "Steglitz-Zehlendorf": {
       "resale_1949-1970": {
         "preis_pro_qm": 3795,
+        "preis_pro_qm_gut": 4230,
         "stadtgebiet": "Südwest",
         "weight": 0.39,
         "source": "condo_resales"
       },
       "resale_1971-1990": {
         "preis_pro_qm": 3968,
+        "preis_pro_qm_gut": 5006,
         "stadtgebiet": "Südwest",
         "weight": 0.39,
         "source": "condo_resales"
       },
       "resale_ab 1991": {
         "preis_pro_qm": 5158,
+        "preis_pro_qm_gut": 6633,
         "stadtgebiet": "Südwest",
         "weight": 0.39,
         "source": "condo_resales"
       },
       "erstverkauf_neubau": {
         "preis_pro_qm": 6374,
+        "preis_pro_qm_gut": 10001,
         "stadtgebiet": "Südwest",
         "weight": 0.39,
         "source": "erstverkauf_condos"
       },
       "umwandlung_bis 1919": {
         "preis_pro_qm": 3619,
+        "preis_pro_qm_gut": 5402,
         "stadtgebiet": "Südwest",
         "weight": 0.39,
         "source": "umwandlung_condos"
       },
       "umwandlung_1920-1948": {
         "preis_pro_qm": 3104,
+        "preis_pro_qm_gut": 4851,
         "stadtgebiet": "Südwest",
         "weight": 0.39,
         "source": "umwandlung_condos"
@@ -2695,24 +2724,28 @@
     "Lichtenberg": {
       "resale_ab 1991": {
         "preis_pro_qm": 3678,
+        "preis_pro_qm_gut": null,
         "stadtgebiet": "Ost",
         "weight": 0.188,
         "source": "condo_resales"
       },
       "erstverkauf_neubau": {
         "preis_pro_qm": 5334,
+        "preis_pro_qm_gut": 6521,
         "stadtgebiet": "Ost",
         "weight": 0.188,
         "source": "erstverkauf_condos"
       },
       "umwandlung_bis 1919": {
         "preis_pro_qm": 3031,
+        "preis_pro_qm_gut": 4793,
         "stadtgebiet": "Ost",
         "weight": 0.188,
         "source": "umwandlung_condos"
       },
       "umwandlung_1920-1948": {
         "preis_pro_qm": 3045,
+        "preis_pro_qm_gut": 5018,
         "stadtgebiet": "Ost",
         "weight": 0.188,
         "source": "umwandlung_condos"
@@ -2721,24 +2754,28 @@
     "Marzahn-Hellersdorf": {
       "resale_ab 1991": {
         "preis_pro_qm": 3678,
+        "preis_pro_qm_gut": null,
         "stadtgebiet": "Ost",
         "weight": 0.09,
         "source": "condo_resales"
       },
       "erstverkauf_neubau": {
         "preis_pro_qm": 5334,
+        "preis_pro_qm_gut": 6521,
         "stadtgebiet": "Ost",
         "weight": 0.09,
         "source": "erstverkauf_condos"
       },
       "umwandlung_bis 1919": {
         "preis_pro_qm": 3031,
+        "preis_pro_qm_gut": 4793,
         "stadtgebiet": "Ost",
         "weight": 0.09,
         "source": "umwandlung_condos"
       },
       "umwandlung_1920-1948": {
         "preis_pro_qm": 3045,
+        "preis_pro_qm_gut": 5018,
         "stadtgebiet": "Ost",
         "weight": 0.09,
         "source": "umwandlung_condos"
@@ -2747,24 +2784,28 @@
     "Spandau": {
       "resale_ab 1991": {
         "preis_pro_qm": 3678,
+        "preis_pro_qm_gut": null,
         "stadtgebiet": "Ost",
         "weight": 0.264,
         "source": "condo_resales"
       },
       "erstverkauf_neubau": {
         "preis_pro_qm": 5334,
+        "preis_pro_qm_gut": 6521,
         "stadtgebiet": "Ost",
         "weight": 0.264,
         "source": "erstverkauf_condos"
       },
       "umwandlung_bis 1919": {
         "preis_pro_qm": 2692,
+        "preis_pro_qm_gut": 3560,
         "stadtgebiet": "West",
         "weight": 1.0,
         "source": "umwandlung_condos"
       },
       "umwandlung_1920-1948": {
         "preis_pro_qm": 2530,
+        "preis_pro_qm_gut": 3524,
         "stadtgebiet": "West",
         "weight": 1.0,
         "source": "umwandlung_condos"
@@ -2773,24 +2814,28 @@
     "Treptow-Köpenick": {
       "resale_ab 1991": {
         "preis_pro_qm": 4011,
+        "preis_pro_qm_gut": 4794,
         "stadtgebiet": "Südost",
         "weight": 0.365,
         "source": "condo_resales"
       },
       "erstverkauf_neubau": {
         "preis_pro_qm": 6384,
+        "preis_pro_qm_gut": 8221,
         "stadtgebiet": "Südost",
         "weight": 0.365,
         "source": "erstverkauf_condos"
       },
       "umwandlung_bis 1919": {
         "preis_pro_qm": 3114,
+        "preis_pro_qm_gut": 4264,
         "stadtgebiet": "Südost",
         "weight": 0.365,
         "source": "umwandlung_condos"
       },
       "umwandlung_1920-1948": {
         "preis_pro_qm": 3059,
+        "preis_pro_qm_gut": 3767,
         "stadtgebiet": "Südost",
         "weight": 0.365,
         "source": "umwandlung_condos"
