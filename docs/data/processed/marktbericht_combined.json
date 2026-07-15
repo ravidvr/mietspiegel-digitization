@@ -1394,5 +1394,26 @@
       "stellplatz_hoechstpreis_eur": 100000,
       "stellplatz_hoechstpreis_bezirk": "Mitte"
     }
+  },
+  "brw_2025_zones": {
+    "source": "Gutachterausschuss Berlin — BORIS Berlin, Stichtag 01.01.2025",
+    "license": "dl-de/zero-2-0",
+    "total_zones": 1619,
+    "wohngebiet_zones": 807,
+    "brw_range_wohnen": "190 – 12000 €/m²",
+    "zones_per_bezirk": {
+      "Spandau": 243,
+      "Mitte": 122,
+      "Treptow-Köpenick": 233,
+      "Pankow": 186,
+      "Neukölln": 84,
+      "Lichtenberg": 121,
+      "Friedrichshain-Kreuzberg": 57,
+      "Steglitz-Zehlendorf": 155,
+      "Charlottenburg-Wilmersdorf": 116,
+      "Reinickendorf": 144,
+      "Tempelhof-Schöneberg": 96,
+      "Marzahn-Hellersdorf": 62
+    }
   }
 }
