@@ -1,0 +1,52 @@
+{
+  "source": "Marktbericht 2024/2025 Section 6.1.1 WE Kauffälle per Bezirk",
+  "method": "Condo transaction counts used as proportional weights for Stadtgebiet→Bezirk distribution",
+  "weights": {
+    "City": {
+      "Charlottenburg-Wilmersdorf": 0.2345595353339787,
+      "Friedrichshain-Kreuzberg": 0.16137463697967086,
+      "Mitte": 0.1727976766698935,
+      "Neukölln": 0.0867376573088093,
+      "Pankow": 0.18257502420135527,
+      "Tempelhof-Schöneberg": 0.16195546950629236
+    },
+    "Nord": {
+      "Charlottenburg-Wilmersdorf": 0.3497401847575058,
+      "Mitte": 0.25765011547344113,
+      "Pankow": 0.2722286374133949,
+      "Reinickendorf": 0.1203810623556582
+    },
+    "Südwest": {
+      "Charlottenburg-Wilmersdorf": 0.6104812295288485,
+      "Steglitz-Zehlendorf": 0.3895187704711514
+    },
+    "West": {
+      "Spandau": 1.0
+    },
+    "Ost": {
+      "Lichtenberg": 0.1875968992248062,
+      "Marzahn-Hellersdorf": 0.09023255813953489,
+      "Spandau": 0.2638759689922481,
+      "Treptow-Köpenick": 0.45829457364341086
+    },
+    "Südost": {
+      "Neukölln": 0.2213985668396343,
+      "Tempelhof-Schöneberg": 0.41339263652087965,
+      "Treptow-Köpenick": 0.365208796639486
+    }
+  },
+  "we_kauffaelle_per_bezirk": {
+    "Mitte": 1785,
+    "Friedrichshain-Kreuzberg": 1667,
+    "Pankow": 1886,
+    "Charlottenburg-Wilmersdorf": 2423,
+    "Spandau": 851,
+    "Steglitz-Zehlendorf": 1546,
+    "Tempelhof-Schöneberg": 1673,
+    "Neukölln": 896,
+    "Treptow-Köpenick": 1478,
+    "Marzahn-Hellersdorf": 291,
+    "Lichtenberg": 605,
+    "Reinickendorf": 834
+  }
+}
