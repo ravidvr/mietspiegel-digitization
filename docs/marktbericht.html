@@ -487,7 +487,7 @@ function formatVal(v, metric) {
 function buildMap() {
   const vals = BEZIRKE.map(b => getMetricValue(b, currentMetric)).filter(v => v != null);
   const min = Math.min(...vals), max = Math.max(...vals);
-  const isPrice = ['condo_resale','condo_neubau','brw_min','brw_max'].includes(currentMetric);
+  const isPrice = ['condo_resale','brw_min','brw_max'].includes(currentMetric);
   const center = isPrice ? vals.reduce((a,b)=>a+b,0)/vals.length : null;
   if (geoLayer && geoData) {
     geoLayer.setStyle(f => {
@@ -689,7 +689,7 @@ function showTooltip(bezirk) {
   const r = await fetch('data/processed/berlin-districts-choropleth.geojson');
   geoData = await r.json();
   geoLayer = L.geoJSON(geoData, {
-    style: f => {const v=getMetricValue(f.properties.district,currentMetric);const vals=BEZIRKE.map(b=>getMetricValue(b,currentMetric)).filter(x=>x!=null);const mn=Math.min(...vals),mx=Math.max(...vals);const isP=['condo_resale','condo_neubau','brw_min','brw_max'].includes(currentMetric);const ct=isP?vals.reduce((a,b)=>a+b,0)/vals.length:null;return {fillColor:getColor(v,mn,mx,ct),fillOpacity:0.25,weight:2,color:'#5b6a8a',dashArray:'4 2'};},
+    style: f => {const v=getMetricValue(f.properties.district,currentMetric);const vals=BEZIRKE.map(b=>getMetricValue(b,currentMetric)).filter(x=>x!=null);const mn=Math.min(...vals),mx=Math.max(...vals);const isP=['condo_resale','brw_min','brw_max'].includes(currentMetric);const ct=isP?vals.reduce((a,b)=>a+b,0)/vals.length:null;return {fillColor:getColor(v,mn,mx,ct),fillOpacity:0.25,weight:2,color:'#5b6a8a',dashArray:'4 2'};},
     onEachFeature: (f,layer) => {
       layer.bindTooltip(`<b>${f.properties.district}</b>`,{sticky:true});
       layer.on('mouseover',function(){this.setStyle({fillOpacity:0.45,weight:3,color:'#7b8fbf'});});
