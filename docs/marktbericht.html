@@ -28,7 +28,24 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .stat small{font-size:10px;font-weight:500}
 @media(max-width:900px){#statCards{display:none!important}}
 
-#map{width:100%;height:calc(100vh - 90px)}
+/* Search bar */
+.searchbar{display:flex;align-items:center;gap:6px;padding:6px 14px;background:var(--bg);border-bottom:1px solid var(--border)}
+.searchbar input{flex:1;padding:7px 10px;border:1px solid var(--border);border-radius:6px;background:var(--surface);color:var(--text);font-size:12px;outline:none}
+.searchbar input:focus{border-color:var(--accent)}
+.searchbar .s-btn{padding:6px 12px;border:none;border-radius:6px;background:var(--accent);color:#fff;font-size:11px;font-weight:600;cursor:pointer;white-space:nowrap}
+.searchbar .s-btn:hover{opacity:.85}
+.search-wrap{position:relative;flex:1;min-width:0}
+.suggestions{position:absolute;top:100%;left:0;right:0;background:var(--surface);border:1px solid var(--border);border-top:none;border-radius:0 0 8px 8px;z-index:2000;max-height:200px;overflow-y:auto;display:none;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.suggestions.open{display:block}
+.suggestions .s-item{padding:8px 10px;font-size:11px;cursor:pointer;border-bottom:1px solid var(--border);color:var(--text)}
+.suggestions .s-item:hover,.suggestions .s-item.active{background:var(--surface2)}
+
+#map{width:100%;height:calc(100vh - 126px)}
+
+@media(max-width:768px){
+  .searchbar input{font-size:16px;min-height:40px}
+  #map{height:60vh;min-height:350px}
+}
 
 .district-panel{position:absolute;top:92px;left:10px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px;z-index:1000;box-shadow:0 2px 8px rgba(0,0,0,.3);max-height:calc(100% - 120px);overflow-y:auto;font-size:12px;max-width:250px}
 .district-panel h4{font-size:11px;font-weight:700;margin-bottom:6px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.5px}
@@ -149,6 +166,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     <span class="stat" id="statNewBuild" title="ETW Neubau">🏗️ 7.912 €/m² <small style="color:var(--green)">+1%</small></span>
     <span class="stat" id="statYield" title="Mietwohnhäuser Vervielfältiger">📈 23,5×</span>
   </span>
+</div>
+
+<div class="searchbar">
+  <div class="search-wrap">
+    <input type="text" id="addrSearch" placeholder="🔍 Adresse oder PLZ (z.B. Brandenburger Tor, 10115, Karl-Marx-Allee 43)..." onkeydown="if(event.key==='Enter')searchAddress()" autocomplete="off">
+    <div class="suggestions" id="suggestions"></div>
+  </div>
+  <button class="s-btn" onclick="searchAddress()">📍 Suchen</button>
 </div>
 
 <div id="map">
@@ -389,6 +414,50 @@ function zoomToDistrict(name) {
 function switchMetric() {
   currentMetric = document.getElementById('metricSelect').value;
   buildMap();
+}
+
+// ─── Address Search ────────────────────────────────────────────
+let searchMarker = null;
+
+function pointInPolygon(point, polygon) {
+  let inside = false;
+  for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+    const xi = polygon[i][0], yi = polygon[i][1];
+    const xj = polygon[j][0], yj = polygon[j][1];
+    if (((yi > point[1]) !== (yj > point[1])) && (point[0] < (xj - xi) * (point[1] - yi) / (yj - yi) + xi)) inside = !inside;
+  }
+  return inside;
+}
+
+function findBezirk(lat, lng) {
+  if (!geoData) return null;
+  for (const f of geoData.features) {
+    const g = f.geometry;
+    if (g.type === 'Polygon' && pointInPolygon([lng, lat], g.coordinates[0])) return f.properties.district;
+    if (g.type === 'MultiPolygon') { for (const p of g.coordinates) { if (pointInPolygon([lng, lat], p[0])) return f.properties.district; } }
+  }
+  return null;
+}
+
+async function searchAddress() {
+  const q = document.getElementById('addrSearch').value.trim();
+  if (q.length < 2) return;
+  try {
+    const url = `https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(q + ', Berlin, Germany')}&countrycodes=de&accept-language=de`;
+    const r = await fetch(url, { headers: { 'User-Agent': 'BerlinMarktbericht/1.0' } });
+    const results = await r.json();
+    if (!results.length) { document.getElementById('addrSearch').placeholder = '❌ Nicht gefunden'; return; }
+    const lat = parseFloat(results[0].lat), lng = parseFloat(results[0].lon);
+    map.flyTo([lat, lng], 14, { duration: 1.2 });
+    if (searchMarker) map.removeLayer(searchMarker);
+    searchMarker = L.circleMarker([lat, lng], { radius: 6, color: '#5b8def', fillColor: '#5b8def', fillOpacity: 0.6, weight: 2 }).addTo(map);
+    const bezirk = findBezirk(lat, lng);
+    const name = results[0].display_name.split(',')[0];
+    searchMarker.bindPopup(`<b>${name}</b>${bezirk ? '<br>📍 ' + bezirk : ''}`, { closeButton: false }).openPopup();
+    if (bezirk) showTooltip(bezirk);
+    document.getElementById('addrSearch').value = name;
+    setTimeout(() => { document.getElementById('addrSearch').placeholder = '🔍 Adresse oder PLZ...'; }, 3000);
+  } catch(e) { document.getElementById('addrSearch').placeholder = '❌ Suche fehlgeschlagen'; }
 }
 
 function showTooltip(bezirk) {
