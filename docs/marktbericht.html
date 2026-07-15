@@ -371,6 +371,13 @@ function toggleLang() {
   sel.value = currentVal;
   buildMap();
 
+  // Refresh tooltip if open
+  const tt = document.getElementById('tooltip');
+  if (tt && tt.style.display === 'block') {
+    const bez = tt.querySelector('h3');
+    if (bez) showTooltip(bez.textContent.replace('🏙️ ',''));
+  }
+
   // Update stat cards
   ['statVolume','statCondo','statHouse','statNewBuild','statYield'].forEach(id => {
     const el = document.getElementById(id); if (el) el.innerHTML = t(id);
