@@ -1,0 +1,84 @@
+{
+  "source": "Gutachterausschuss Berlin — Bezirke, Altbezirke und Ortsteile (10.07.2025)",
+  "stadtgebiet_to_bezirke": {
+    "City": [
+      "Charlottenburg-Wilmersdorf",
+      "Friedrichshain-Kreuzberg",
+      "Mitte",
+      "Neukölln",
+      "Pankow",
+      "Tempelhof-Schöneberg"
+    ],
+    "Nord": [
+      "Charlottenburg-Wilmersdorf",
+      "Mitte",
+      "Pankow",
+      "Reinickendorf"
+    ],
+    "Südwest": [
+      "Charlottenburg-Wilmersdorf",
+      "Steglitz-Zehlendorf"
+    ],
+    "West": [
+      "Spandau"
+    ],
+    "Ost": [
+      "Lichtenberg",
+      "Marzahn-Hellersdorf",
+      "Spandau",
+      "Treptow-Köpenick"
+    ],
+    "Südost": [
+      "Neukölln",
+      "Tempelhof-Schöneberg",
+      "Treptow-Köpenick"
+    ]
+  },
+  "bezirk_to_stadtgebiet": {
+    "Mitte": [
+      "City",
+      "Nord"
+    ],
+    "Friedrichshain-Kreuzberg": [
+      "City"
+    ],
+    "Pankow": [
+      "City",
+      "Nord"
+    ],
+    "Charlottenburg-Wilmersdorf": [
+      "City",
+      "Nord",
+      "Südwest"
+    ],
+    "Spandau": [
+      "Ost",
+      "West"
+    ],
+    "Steglitz-Zehlendorf": [
+      "Südwest"
+    ],
+    "Tempelhof-Schöneberg": [
+      "City",
+      "Südost"
+    ],
+    "Neukölln": [
+      "City",
+      "Südost"
+    ],
+    "Treptow-Köpenick": [
+      "Ost",
+      "Südost"
+    ],
+    "Marzahn-Hellersdorf": [
+      "Ost"
+    ],
+    "Lichtenberg": [
+      "Ost"
+    ],
+    "Reinickendorf": [
+      "Nord"
+    ]
+  },
+  "ortsteile_total": 96
+}
