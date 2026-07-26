@@ -1,6 +1,10 @@
 # Mietspiegel Digitization
 
-Rent data for 23 German cities — all values are **Nettokaltmiete (net cold rent)** in €/m²/month. Three independent data sources layered on an interactive map: official Mietspiegel reference rents, Immoscout24 market rents, and Zensus 2022 census rents.
+[![CI](https://github.com/ravidvr/mietspiegel-digitization/actions/workflows/ci.yml/badge.svg)](https://github.com/ravidvr/mietspiegel-digitization/actions/workflows/ci.yml)
+[![Data Validation](https://github.com/ravidvr/mietspiegel-digitization/actions/workflows/validate-and-deploy.yml/badge.svg)](https://github.com/ravidvr/mietspiegel-digitization/actions/workflows/validate-and-deploy.yml)
+[![GitHub Pages](https://img.shields.io/badge/demo-live-brightgreen)](https://ravidvr.github.io/mietspiegel-digitization/)
+
+Digitizes German municipal rent indices (Mietspiegel) — bilingual DE/EN, 23 cities, 3 reconciled data sources. All values are **Nettokaltmiete (net cold rent)** in €/m²/month.
 
 **Live dashboard:** https://ravidvr.github.io/mietspiegel-digitization/
 **📐 Metric dictionary:** [docs/METRICS.md](docs/METRICS.md) — cold vs warm rent, data sources, derived metrics
@@ -34,7 +38,12 @@ All calculations are relative to Berlin. Every z-score, average, and comparison 
 git clone https://github.com/ravidvr/mietspiegel-digitization.git
 cd mietspiegel-digitization
 
-# Serve locally:
+# Quickstart: one command to set up everything
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt -r requirements-dev.txt
+make all
+
+# Serve the dashboard locally:
 python3 -m http.server 8000 --directory docs
 # Open http://localhost:8000
 ```
@@ -91,3 +100,14 @@ mietspiegel-digitization/
 
 Dashboard code: **CC BY-SA 4.0**
 Data: See individual source licenses above.
+
+## Why This Project
+
+This project demonstrates the same analytical patterns used in supply chain and marketplace analytics:
+
+- **Multi-source reconciliation** — Three independent data sources (market, census, official) that disagree. Finding and explaining the gaps is the same skill as reconciling supplier-reported costs with internal ERP data.
+- **Monotonicity and plausibility checks** — 14 automated tests that catch impossible values before they reach a dashboard. Same pattern as KPI validation gates in production analytics pipelines.
+- **Index construction** — Building a rent index from raw grid cells is structurally identical to building price indices, demand forecasting inputs, or supplier performance scores.
+- **Experimentation mindset** — The A/B simulator models counterfactual policy scenarios with MDE calculations. Same framework used at Zalando and Delivery Hero for product experiments.
+
+Built by [Ravi Dronamraju](https://ravidvr.github.io) — Senior Data Analyst, Berlin.

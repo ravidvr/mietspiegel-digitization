@@ -21,6 +21,7 @@ import json
 import math
 import os
 import sys
+from datetime import datetime, timezone
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -108,6 +109,8 @@ def build_immoscout():
         "source": "RWI-GEO-REDX PUF v16",
         "doi": "https://doi.org/10.7807/IMMO:REDX:PUF:V16",
         "description": "Berlin-only Immoscout24 market rent grid cells (price indices as €/m²)",
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "data_version": "1.0",
         "years": sorted(set(g["year"] for g in berlin_grids)),
         "total_grids": len(berlin_grids),
         "mean": round(mean, 2),
@@ -167,6 +170,8 @@ def build_zensus():
     output = {
         "source": "Zensus 2022 — Durchschnittliche Nettokaltmiete (Destatis)",
         "license": "Datenlizenz Deutschland – Namensnennung 2.0",
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "data_version": "1.0",
         "year": 2022,
         "grid_size": "1km (aggregated from 100m)",
         "total_cells": len(berlin_cells),
