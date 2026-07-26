@@ -12,9 +12,12 @@
 <meta name="twitter:title" content="Berlin Mietspiegel — Rent Map" />
 <meta name="twitter:description" content="Berlin rent data block by block: market rents vs census rents vs official Mietspiegel. 12 Bezirke, 467 grid cells." />
 <title>Berlin Mietspiegel — Rent Map</title>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.heat/0.2.0/leaflet-heat.js"
+        integrity="sha512-KdUREHIkNiP4ZDdAQMxEaBB5RqLhSS5KGBg+mRQPkg9wC3P/RB33fnB89WRJPfPrfz8Obhz3G0hJQ1K21f4oxw==" crossorigin=""></script>
 <style>
 :root {
   --bg: #f8f9fa; --surface: #fff; --surface2: #f1f3f5;
@@ -412,7 +415,7 @@ function setupClickHandler() {
         '<span style="font-weight:700;margin:0 4px">\u20AC' + district3.avg_rent + '/m\u00B2</span>' +
         '<span style="color:' + dc + ';font-weight:600">\u2014 ' + dPct + '% ' + (dAbove ? 'above' : 'below') + ' Kiez</span>' +
         '</div>';
-    }`;
+    }
 
     // If in Immoscout mode, also find nearest Zensus
     if (!zensusMode && zensusCells.length) {
@@ -711,3 +714,9 @@ function flyToResult(result) {
 function escapeHtml(s) {
   const d = document.createElement('div'); d.textContent = s; return d.innerHTML;
 }
+
+// ─── Boot ─────────────────────────────────────────────────────
+init().catch(e => console.error('Init failed:', e));
+</script>
+</body>
+</html>
