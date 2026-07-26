@@ -235,6 +235,25 @@ const I18N = {
     welcome_desc:'Berlin rent data — block by block. Market rents (Immoscout24, €12.07/m²), official census rents (2022, €7.97/m²), and the official Mietspiegel. Click anywhere on the map for local rent details.',
     welcome_tip:'Heatmap shows market rents (Immoscout24). District labels show estimated average rent. Click anywhere for details.',
     got_it:'Got it! →', source_data:'Source Data',
+    census_rent_lbl:'Official census rent (2022)',
+    market_rent_lbl:'Market rent for new listings (Immoscout24)',
+    above:'above', below:'below',
+    what_people_pay:'What people actually pay',
+    official_census:'Official census (2022)',
+    more:'more', less:'less',
+    listings_cost:'New listings cost',
+    than_tenants:'than what current tenants pay',
+    off_mietspiegel:'Official Mietspiegel',
+    legal_ref:'Legal reference rent:',
+    above_off_idx:'above official index',
+    below_off_idx:'below official index',
+    market_listings_are:'Market listings are',
+    est_avg_cold:'Estimated average net cold rent',
+    addresses:'addresses',
+    ms_title:'Berlin Mietspiegel {year} — Mittlere Wohnlage',
+    net_cold:'Net cold rent (€/m²/month)',
+    src:'Source',
+    btwn:'between',
   },
   de: {
     dash:'Mietspiegel', subtitle:'Berliner Mietdaten — Block für Block',
@@ -245,6 +264,25 @@ const I18N = {
     welcome_desc:'Berliner Mietdaten — Block für Block. Marktmieten (Immoscout24, €12.07/m²), offizielle Zensus-Mieten (2022, €7.97/m²) und der offizielle Mietspiegel. Klicke auf die Karte für lokale Mietdetails.',
     welcome_tip:'Heatmap zeigt Marktmieten (Immoscout24). Bezirks-Labels zeigen geschätzte Durchschnittsmiete. Klicke für Details.',
     got_it:'Verstanden! →', source_data:'Datenquellen',
+    census_rent_lbl:'Offizielle Zensus-Miete (2022)',
+    market_rent_lbl:'Marktmiete für Neuvermietungen (Immoscout24)',
+    above:'über', below:'unter',
+    what_people_pay:'Was Mieter tatsächlich zahlen',
+    official_census:'Offizieller Zensus (2022)',
+    more:'mehr', less:'weniger',
+    listings_cost:'Neuvermietungen kosten',
+    than_tenants:'als Bestandsmieter zahlen',
+    off_mietspiegel:'Offizieller Mietspiegel',
+    legal_ref:'Gesetzliche Vergleichsmiete:',
+    above_off_idx:'über dem offiziellen Mietspiegel',
+    below_off_idx:'unter dem offiziellen Mietspiegel',
+    market_listings_are:'Marktangebote liegen',
+    est_avg_cold:'Geschätzte durchschnittliche Nettokaltmiete',
+    addresses:'Adressen',
+    ms_title:'Berliner Mietspiegel {year} — Mittlere Wohnlage',
+    net_cold:'Nettokaltmiete (€/m²/Monat)',
+    src:'Quelle',
+    btwn:'zwischen',
   }
 };
 let lang = localStorage.getItem('lang') || 'en';
@@ -257,7 +295,17 @@ function applyLang() {
   });
   document.getElementById('lang-btn').textContent = lang === 'en' ? 'DE' : 'EN';
 }
-function toggleLang() { lang = lang === 'en' ? 'de' : 'en'; localStorage.setItem('lang', lang); applyLang(); }
+function toggleLang() {
+  lang = lang === 'en' ? 'de' : 'en';
+  localStorage.setItem('lang', lang);
+  applyLang();
+  // Re-render open tooltip/card in new language
+  const tt = document.getElementById('map-tooltip');
+  if (tt && tt.style.display === 'block') {
+    if (clickCell) renderClickTooltip();
+    else if (cardDistrict) renderDistrictCard();
+  }
+}
 
 // ─── State ────────────────────────────────────────────────────
 const DATA = 'data/processed/';
@@ -379,6 +427,7 @@ function toggleSidebar() {
 }
 
 // ─── Click handler ────────────────────────────────────────────
+let clickCell = null, clickLat = null, clickLng = null, clickDistrict = null, clickThreshold = 0;
 function setupClickHandler() {
   map.on('click', e => {
     if (e.originalEvent && e.originalEvent.target && e.originalEvent.target.closest('.district-label')) return;
@@ -391,85 +440,100 @@ function setupClickHandler() {
       const d = (p.lat-lat)**2 + (p.lng-lng)**2;
       if (d < bestD) { bestD = d; best = p; }
     }
-    const threshold = 0.001 * Math.pow(2, 14 - map.getZoom());
-    if (!best || bestD > threshold) return;
+    clickThreshold = 0.001 * Math.pow(2, 14 - map.getZoom());
+    if (!best || bestD > clickThreshold) return;
 
-    const mean = zensusMode ? zensusMean : immoMean;
-    const std  = zensusMode ? zensusStd  : immoStd;
-    const z = zScore(best.rent, mean, std);
-    const loc = best.plz ? `PLZ ${best.plz} · ${best.location || 'Berlin'}` : 'Berlin';
-    const district3 = findDistrict(lat, lng);
+    clickCell = best; clickLat = lat; clickLng = lng;
+    clickDistrict = findDistrict(lat, lng);
+    renderClickTooltip();
+  });
+}
 
-    let html = `<button class="close" onclick="this.parentElement.style.display='none'">×</button><div class="dc">
-      <h3>📍 ${loc}</h3>
-      <div class="val">€${best.rent.toFixed ? best.rent.toFixed(1) : best.rent}/m²</div>
-      <div class="sub" style="margin-top:2px">${zensusMode ? 'Official census rent (2022)' : 'Market rent for new listings (Immoscout24)'}</div>`;
+function renderClickTooltip() {
+  if (!clickCell) return;
+  const best = clickCell, lat = clickLat, lng = clickLng;
+  const mean = zensusMode ? zensusMean : immoMean;
+  const std  = zensusMode ? zensusStd  : immoStd;
+  const z = zScore(best.rent, mean, std);
+  const loc = best.plz ? `PLZ ${best.plz} · ${best.location || 'Berlin'}` : 'Berlin';
+  const district3 = clickDistrict;
 
-    if (district3 && !zensusMode) {
-      const dDiff = best.rent - district3.avg_rent;
-      const dPct = Math.round(Math.abs(dDiff) / district3.avg_rent * 100);
-      const dAbove = dDiff > 0;
-      const dc = dAbove ? 'var(--red)' : 'var(--green)';
-      html += '<div style="margin-top:6px;padding:6px 8px;background:var(--surface2);border-radius:4px;font-size:11px">' +
-        '<span style="color:var(--text-dim)">📍 ' + district3.district + ' \xF8:</span>' +
-        '<span style="font-weight:700;margin:0 4px">\u20AC' + district3.avg_rent + '/m\u00B2</span>' +
-        '<span style="color:' + dc + ';font-weight:600">\u2014 ' + dPct + '% ' + (dAbove ? 'above' : 'below') + ' Kiez</span>' +
-        '</div>';
+  let html = `<button class="close" onclick="closeTooltip()">×</button><div class="dc">
+    <h3>📍 ${loc}</h3>
+    <div class="val">€${best.rent.toFixed ? best.rent.toFixed(1) : best.rent}/m²</div>
+    <div class="sub" style="margin-top:2px">${zensusMode ? t('census_rent_lbl') : t('market_rent_lbl')}</div>`;
+
+  if (district3 && !zensusMode) {
+    const dDiff = best.rent - district3.avg_rent;
+    const dPct = Math.round(Math.abs(dDiff) / district3.avg_rent * 100);
+    const dAbove = dDiff > 0;
+    const dc = dAbove ? 'var(--red)' : 'var(--green)';
+    html += '<div style="margin-top:6px;padding:6px 8px;background:var(--surface2);border-radius:4px;font-size:11px">' +
+      '<span style="color:var(--text-dim)">📍 ' + district3.district + ' \xF8:</span>' +
+      '<span style="font-weight:700;margin:0 4px">\u20AC' + district3.avg_rent + '/m\u00B2</span>' +
+      '<span style="color:' + dc + ';font-weight:600">\u2014 ' + dPct + '% ' + t(dAbove ? 'above' : 'below') + ' Kiez</span>' +
+      '</div>';
+  }
+
+  // If in Immoscout mode, also find nearest Zensus
+  if (!zensusMode && zensusCells.length) {
+    let zBest = null, zBestD = Infinity;
+    for (const zc of zensusCells) {
+      const d = (zc[0]-lat)**2 + (zc[1]-lng)**2;
+      if (d < zBestD) { zBestD = d; zBest = zc; }
     }
+    if (zBest && zBestD < clickThreshold) {
+      const zsRent = zBest[2];
+      const premium = ((best.rent - zsRent) / zsRent * 100);
+      const pct = premium > 0 ? `${premium.toFixed(0)}% ${t('more')}` : `${Math.abs(premium).toFixed(0)}% ${t('less')}`;
+      const pc = premium > 20 ? 'var(--red)' : premium > 5 ? 'var(--orange)' : premium > -5 ? 'var(--yellow)' : 'var(--green)';
+      html += `<div style="margin-top:8px;padding:8px;background:var(--surface2);border-radius:4px">
+        <div style="font-size:11px;font-weight:600;margin-bottom:4px">📊 ${t('what_people_pay')}</div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline">
+          <span style="font-size:10px;color:var(--text-dim)">${t('official_census')}</span>
+          <span style="font-weight:700;font-size:15px">€${zsRent.toFixed(1)}/m²</span>
+        </div>
+        <div style="margin-top:3px;font-size:10px;color:${pc};font-weight:600">
+          ${t('listings_cost')} <b>${pct}</b> ${t('than_tenants')}
+        </div>
+      </div>`;
+    }
+  }
 
-    // If in Immoscout mode, also find nearest Zensus
-    if (!zensusMode && zensusCells.length) {
-      let zBest = null, zBestD = Infinity;
-      for (const zc of zensusCells) {
-        const d = (zc[0]-lat)**2 + (zc[1]-lng)**2;
-        if (d < zBestD) { zBestD = d; zBest = zc; }
-      }
-      if (zBest && zBestD < threshold) {
-        const zsRent = zBest[2];
-        const premium = ((best.rent - zsRent) / zsRent * 100);
-        const pct = premium > 0 ? `${premium.toFixed(0)}% more` : `${Math.abs(premium).toFixed(0)}% less`;
-        const pc = premium > 20 ? 'var(--red)' : premium > 5 ? 'var(--orange)' : premium > -5 ? 'var(--yellow)' : 'var(--green)';
-        html += `<div style="margin-top:8px;padding:8px;background:var(--surface2);border-radius:4px">
-          <div style="font-size:11px;font-weight:600;margin-bottom:4px">📊 What people actually pay</div>
-          <div style="display:flex;justify-content:space-between;align-items:baseline">
-            <span style="font-size:10px;color:var(--text-dim)">Official census (2022)</span>
-            <span style="font-weight:700;font-size:15px">€${zsRent.toFixed(1)}/m²</span>
+  // Berlin official Mietspiegel row
+  if (!zensusMode && berlinMietspiegel) {
+    const l = berlinMietspiegel.tables.find(t => t.lage === 'mittel') || berlinMietspiegel.tables[0];
+    if (l) {
+      const vals = l.rows.map(r => r['40_60'] || r.bis_40 || 0).filter(x => x > 0);
+      const msAvg = vals.length ? vals.reduce((a,b)=>a+b,0)/vals.length : null;
+      if (msAvg) {
+        const gap = ((best.rent - msAvg) / msAvg * 100);
+        const gc = gap > 5 ? 'var(--red)' : gap > -5 ? 'var(--yellow)' : 'var(--green)';
+        const gapDir = gap > 0 ? 'above_off_idx' : 'below_off_idx';
+        const gapText = `${Math.abs(gap).toFixed(0)}% ${t(gapDir)}`;
+        html += `<div style="margin-top:6px;padding:8px;background:var(--surface2);border-radius:4px">
+          <div style="font-size:11px;font-weight:600;margin-bottom:4px">📋 ${t('off_mietspiegel')} (${berlinMietspiegel.year})</div>
+          <div style="display:flex;justify-content:space-between;margin-top:3px">
+            <span>${t('legal_ref')}</span>
+            <span style="font-weight:700">€${msAvg.toFixed(2)}/m²</span>
           </div>
-          <div style="margin-top:3px;font-size:10px;color:${pc};font-weight:600">
-            New listings cost <b>${pct}</b> than what current tenants pay
+          <div style="margin-top:2px;font-size:10px;color:${gc};font-weight:600">
+            ${t('market_listings_are')} <b>${gapText}</b>
           </div>
         </div>`;
       }
     }
+  }
 
-    // Berlin official Mietspiegel row
-    if (!zensusMode && berlinMietspiegel) {
-      const l = berlinMietspiegel.tables.find(t => t.lage === 'mittel') || berlinMietspiegel.tables[0];
-      if (l) {
-        const vals = l.rows.map(r => r['40_60'] || r.bis_40 || 0).filter(x => x > 0);
-        const msAvg = vals.length ? vals.reduce((a,b)=>a+b,0)/vals.length : null;
-        if (msAvg) {
-          const gap = ((best.rent - msAvg) / msAvg * 100);
-          const gc = gap > 5 ? 'var(--red)' : gap > -5 ? 'var(--yellow)' : 'var(--green)';
-          const gapText = gap > 0 ? `${gap.toFixed(0)}% above official index` : `${Math.abs(gap).toFixed(0)}% below official index`;
-          html += `<div style="margin-top:6px;padding:8px;background:var(--surface2);border-radius:4px">
-            <div style="font-size:11px;font-weight:600;margin-bottom:4px">📋 Official Mietspiegel (${berlinMietspiegel.year})</div>
-            <div style="display:flex;justify-content:space-between;margin-top:3px">
-              <span>Legal reference rent:</span>
-              <span style="font-weight:700">€${msAvg.toFixed(2)}/m²</span>
-            </div>
-            <div style="margin-top:2px;font-size:10px;color:${gc};font-weight:600">
-              Market listings are <b>${gapText}</b>
-            </div>
-          </div>`;
-        }
-      }
-    }
+  html += '</div>';
+  document.getElementById('map-tooltip').style.display = 'block';
+  document.getElementById('map-tooltip').innerHTML = html;
+}
 
-    html += '</div>';
-    document.getElementById('map-tooltip').style.display = 'block';
-    document.getElementById('map-tooltip').innerHTML = html;
-  });
+function closeTooltip() {
+  document.getElementById('map-tooltip').style.display = 'none';
+  clickCell = null; clickLat = null; clickLng = null;
+  clickDistrict = null; cardDistrict = null;
 }
 
 // ─── District detail card ─────────────────────────────────────
@@ -498,23 +562,30 @@ function findDistrict(lat, lng) {
   }
   return null;
 }
-
+// ─── District detail card ─────────────────────────────────────
+let cardDistrict = null;
 function showDistrictCard(p) {
+  cardDistrict = p;
+  renderDistrictCard();
+}
+function renderDistrictCard() {
+  const p = cardDistrict;
+  if (!p) return;
   const panel = document.getElementById('map-tooltip');
   panel.style.display = 'block';
-  panel.innerHTML = `<button class="close" onclick="this.parentElement.style.display='none'">×</button>` + `<div class="dc">
+  const col = p.avg_rent<10?'#48bb78':p.avg_rent<11.5?'#ecc94b':p.avg_rent<12.5?'#ed8936':'#f56565';
+  panel.innerHTML = `<button class="close" onclick="closeTooltip()">×</button>` + `<div class="dc">
     <h3>${p.district}</h3>
-    <div class="loc">Berlin · ${p.total_addresses.toLocaleString()} addresses</div>
+    <div class="loc">Berlin · ${p.total_addresses.toLocaleString()} ${t('addresses')}</div>
     <div style="margin-top:8px">
       <div>🟢 Einfach: <b>${p.einfach_pct}%</b></div>
       <div>🟡 Mittel: <b>${p.mittel_pct}%</b></div>
       <div>🔴 Gut: <b>${p.gut_pct}%</b></div>
     </div>
     <div style="margin-top:8px;padding:6px;background:var(--surface2);border-radius:4px;text-align:center">
-      <div style="font-size:22px;font-weight:700;color:${p.avg_rent<10?'#48bb78':p.avg_rent<11.5?'#ecc94b':p.avg_rent<12.5?'#ed8936':'#f56565'}">ø €${p.avg_rent}/m²</div>
-      <div class="sub">Estimated average net cold rent</div>
+      <div style="font-size:22px;font-weight:700;color:${col}">ø €${p.avg_rent}/m²</div>
+      <div class="sub">${t('est_avg_cold')}</div>
     </div>
-    <!-- Full Mietspiegel table -->
     ${berlinMietspiegel ? renderMietspiegelTable(p) : ''}
   </div>`;
 }
@@ -529,10 +600,11 @@ function renderMietspiegelTable(p) {
     const k = szK(s);
     return `<tr><td>${s}</td>${l.rows.map(r => `<td>${r[k]!=null?'€'+r[k].toFixed(2):'—'}</td>`).join('')}</tr>`;
   }).join('');
+  const title = t('ms_title').replace('{year}', d.year);
   return `<div style="margin-top:10px">
-    <div style="font-size:11px;font-weight:600;margin-bottom:4px">📋 Berlin Mietspiegel ${d.year} — Mittlere Wohnlage</div>
+    <div style="font-size:11px;font-weight:600;margin-bottom:4px">📋 ${title}</div>
     <table><thead><tr><th>Größe</th>${hd}</tr></thead><tbody>${bd}</tbody></table>
-    <div class="sub">Net cold rent (€/m²/month) · <a href="${d.source_url||'#'}" style="color:var(--accent)" target="_blank">Source</a></div>
+    <div class="sub">${t('net_cold')} · <a href="${d.source_url||'#'}" style="color:var(--accent)" target="_blank">${t('src')}</a></div>
   </div>`;
 }
 
