@@ -1,8 +1,9 @@
-# Berlin Mietspiegel
+# Mietspiegel Digitization
 
-Berlin rent data — block by block. Three independent data sources layered on a single interactive map: market rents (Immoscout24), official census rents (Zensus 2022), and the legally binding Berlin Mietspiegel.
+Rent data for 23 German cities — all values are **Nettokaltmiete (net cold rent)** in €/m²/month. Three independent data sources layered on an interactive map: official Mietspiegel reference rents, Immoscout24 market rents, and Zensus 2022 census rents.
 
 **Live dashboard:** https://ravidvr.github.io/mietspiegel-digitization/
+**📐 Metric dictionary:** [docs/METRICS.md](docs/METRICS.md) — cold vs warm rent, data sources, derived metrics
 
 > Looking for property sale prices? The **Berlin Property Market** dashboard is now a separate project: [ravidvr/berlin-property-market](https://github.com/ravidvr/berlin-property-market) — [Live dashboard](https://ravidvr.github.io/berlin-property-market/)
 
