@@ -1,0 +1,213 @@
+name: Validate & Deploy
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '**.md'
+      - 'LICENSE'
+      - '.gitignore'
+  schedule:
+    - cron: '0 6 * * 1'  # Every Monday at 06:00 UTC — weekly data quality gate
+  workflow_dispatch:      # Manual trigger for ad-hoc validation + deploy
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  issues: write           # Needed for auto-creating validation-failure issues
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  # ── Stage 1: Validate data quality ──────────────────────────────────
+  validate:
+    name: Data Quality Gate
+    runs-on: ubuntu-latest
+    outputs:
+      validation_passed: ${{ steps.gate.outputs.passed }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Cache validation artifacts
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/pip
+            .pytest_cache
+          key: ${{ runner.os }}-validate-${{ hashFiles('requirements*.txt', 'setup.cfg', 'pyproject.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-validate-
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest pytest-json-report 2>/dev/null || true
+          # Project-specific deps (minimal set for validation)
+          pip install -r requirements.txt 2>/dev/null || pip install pyproj shapely scipy pandas 2>/dev/null || true
+
+      # ── Step 1a: Enhanced validation suite (pytest) ──────────────────
+      - name: Run enhanced validation suite
+        id: pytest
+        continue-on-error: true
+        run: |
+          if [ -f tests/test_validation_enhanced.py ]; then
+            python -m pytest tests/test_validation_enhanced.py -v --json-report --json-report-file=validation_report.json
+          else
+            echo "⚠ tests/test_validation_enhanced.py not found — skipping pytest suite."
+            echo "SKIPPED" > pytest_status.txt
+          fi
+        working-directory: ${{ github.workspace }}
+
+      # ── Step 1b: Run sanity checks ───────────────────────────────────
+      - name: Run sanity checks
+        id: sanity
+        continue-on-error: true
+        run: |
+          python -m validate.run_validations --json --data-dir docs/data/processed --output validation_sanity.json
+        working-directory: ${{ github.workspace }}
+
+      # ── Step 1c: Ad-hoc spot-check ───────────────────────────────────
+      - name: Run ad-hoc spot-check
+        id: spotcheck
+        continue-on-error: true
+        run: |
+          python hermes-verify-mietspiegel.py
+        working-directory: ${{ github.workspace }}
+
+      # ── Gate: only proceed if ALL checks passed ──────────────────────
+      - name: Evaluate validation gate
+        id: gate
+        run: |
+          FAILURES=0
+
+          if [ "${{ steps.pytest.outcome }}" != "success" ] && [ ! -f pytest_status.txt ]; then
+            echo "❌ Pytest suite failed"
+            FAILURES=$((FAILURES + 1))
+          fi
+
+          if [ "${{ steps.sanity.outcome }}" != "success" ]; then
+            echo "❌ Sanity checks failed"
+            FAILURES=$((FAILURES + 1))
+          fi
+
+          if [ "${{ steps.spotcheck.outcome }}" != "success" ]; then
+            echo "❌ Ad-hoc spot-check failed"
+            FAILURES=$((FAILURES + 1))
+          fi
+
+          if [ "$FAILURES" -gt 0 ]; then
+            echo "🚫 $FAILURES validation stage(s) failed — deployment blocked."
+            echo "passed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "✅ All validation stages passed."
+            echo "passed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # ── On failure: create an issue to track the data problem ────────
+      - name: Create failure issue
+        if: failure() || steps.gate.outputs.passed == 'false'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const runUrl = `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
+
+            // Check if an open issue already exists for this workflow
+            const existing = await github.rest.issues.listForRepo({
+              owner,
+              repo,
+              state: 'open',
+              labels: ['validation-failure', 'automated'],
+            });
+
+            const title = `⚠ Validation failed — ${new Date().toISOString().slice(0, 10)}`;
+            const body = `## Data validation gate failed
+
+            The [validate-and-deploy workflow](${runUrl}) stopped because one or more validation stages did not pass.
+
+            ### What failed
+            - **Pytest suite:** ${process.env.PYTEST_OUTCOME || 'unknown'}
+            - **Sanity checks:** ${process.env.SANITY_OUTCOME || 'unknown'}
+            - **Spot-check:** ${process.env.SPOTCHECK_OUTCOME || 'unknown'}
+
+            ### Impact
+            Deployment to GitHub Pages was **blocked**. The live site was not updated.
+
+            ### Next steps
+            1. Check the [workflow run logs](${runUrl}) for details.
+            2. Fix the data issues in the affected city files.
+            3. Re-run the workflow manually or push a fix to \`main\`.
+
+            ---
+            🤖 Auto-generated by validate-and-deploy.yml`;
+
+            if (existing.data.length === 0) {
+              await github.rest.issues.create({
+                owner,
+                repo,
+                title,
+                body,
+                labels: ['validation-failure', 'automated'],
+              });
+              console.log('Created new validation-failure issue.');
+            } else {
+              console.log(`Skipped — open validation-failure issue #${existing.data[0].number} already exists.`);
+            }
+        env:
+          PYTEST_OUTCOME: ${{ steps.pytest.outcome }}
+          SANITY_OUTCOME: ${{ steps.sanity.outcome }}
+          SPOTCHECK_OUTCOME: ${{ steps.spotcheck.outcome }}
+
+  # ── Stage 2: Deploy to GitHub Pages (gated on validation) ───────────
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: validate
+    if: needs.validate.outputs.validation_passed == 'true'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  # ── Summary: always runs, reports the final outcome ─────────────────
+  summary:
+    name: Summary
+    needs: [validate, deploy]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Report outcome
+        run: |
+          echo "┌──────────────────────────────────────────────┐"
+          echo "│  MIETSPIEGEL VALIDATE & DEPLOY — SUMMARY     │"
+          echo "├──────────────────────────────────────────────┤"
+          echo "│  Validation: ${{ needs.validate.result }}"
+          echo "│  Deploy:     ${{ needs.deploy.result }}"
+          echo "└──────────────────────────────────────────────┘"
+          if [ "${{ needs.validate.outputs.validation_passed }}" = "true" ]; then
+            echo "  ✅ Site deployed to GitHub Pages"
+          else
+            echo "  🚫 Deployment blocked — validation failed"
+          fi
