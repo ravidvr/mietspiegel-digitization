@@ -24,9 +24,9 @@ import pytest
 
 PROJECT_ROOT = Path(os.environ.get(
     "MIETSPIEGEL_ROOT",
-    "/Users/ruhvee/mietspiegel-digitization",
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
 ))
-DATA_DIR = PROJECT_ROOT / "data" / "processed"
+DATA_DIR = PROJECT_ROOT / "docs" / "data" / "processed"
 GDW_PATH = PROJECT_ROOT / "data" / "reference" / "gdw_aggregate.json"
 HISTORICAL_PATH = PROJECT_ROOT / "data" / "historical_mietspiegel.json"
 

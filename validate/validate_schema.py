@@ -12,7 +12,7 @@ import os
 import sys
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_DIR = os.path.join(PROJECT_ROOT, 'data', 'processed')
+DATA_DIR = os.path.join(PROJECT_ROOT, 'docs', 'data', 'processed')
 
 # Canonical values
 CANONICAL_LAGE = {'einfach', 'mittel', 'gut'}
