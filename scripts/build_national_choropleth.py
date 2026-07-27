@@ -8,13 +8,13 @@ choropleth/heatmap view instead of point dots.
 - Spatial join to German district (Kreis) for names.
 - Nearest-neighbor match to 8,299 PLZ codes for ZIP granularity.
 """
-import csv
 import json
 import os
+
 from pyproj import Transformer
+from scipy.spatial import KDTree
 from shapely.geometry import Point, shape
 from shapely.strtree import STRtree
-from scipy.spatial import KDTree
 
 BASE = os.environ.get("MIETSPIEGEL_REPO", os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 INPUT = os.path.join(BASE, "data/processed/redx_grid_rent.json")
@@ -167,11 +167,11 @@ size_kb = os.path.getsize(OUTPUT) / 1024
 print(f"\nWrote {len(features)} polygons → {OUTPUT} ({size_kb:.0f} KB)")
 print(f"Polygon errors: {poly_errors}")
 print(f"District matches: {district_hits}/{len(features)} ({100*district_hits/len(features):.1f}%)")
-print(f"Year distribution:")
+print("Year distribution:")
 for y in YEARS:
     if year_counts[y]:
         print(f"  {y}: {year_counts[y]:>5} grids")
-print(f"\nSample:")
+print("\nSample:")
 for f in features[:4]:
     p = f["properties"]
     print(f"  {p['grid']:12s} → PLZ {p['plz']} · {p['location']} → €{p['pi']}/m²")

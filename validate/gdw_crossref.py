@@ -4,8 +4,6 @@ GdW = Gesamtverband der Wohnungswirtschaft (German Housing Association).
 """
 import json
 import os
-from typing import Optional
-
 
 GDW_PATH = os.path.join(os.path.dirname(__file__), "..", "data", "reference", "gdw_aggregate.json")
 
@@ -16,14 +14,14 @@ def load_gdw_data(path: str = GDW_PATH) -> dict:
         return json.load(f)
 
 
-def state_avg(gdw: dict, state: str) -> Optional[float]:
+def state_avg(gdw: dict, state: str) -> float | None:
     """Return the GdW average net cold rent per sqm for a given Bundesland."""
     if state in gdw.get("by_state", {}):
         return gdw["by_state"][state]["net_cold_rent_per_sqm"]
     return None
 
 
-def state_range(gdw: dict, state: str) -> Optional[tuple]:
+def state_range(gdw: dict, state: str) -> tuple | None:
     """Return the [min, max] range for a given Bundesland."""
     if state in gdw.get("by_state", {}):
         r = gdw["by_state"][state]["range"]

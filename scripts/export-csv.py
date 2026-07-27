@@ -13,10 +13,10 @@ Output: CSV with columns for all Wohnlage × Baujahr × Size combinations,
 plus optional historical data rows.
 """
 
-import json
-import csv
-import sys
 import argparse
+import csv
+import json
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -33,7 +33,7 @@ def load_cities():
     for fpath in sorted(DATA_DIR.glob('*.json')):
         if fpath.name in ('stadt-index.json', 'cities.json'):
             continue
-        with open(fpath, 'r', encoding='utf-8') as f:
+        with open(fpath, encoding='utf-8') as f:
             data = json.load(f)
             if not isinstance(data, dict):
                 continue

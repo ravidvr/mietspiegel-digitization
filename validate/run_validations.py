@@ -20,7 +20,13 @@ _project_root = os.path.normpath(os.path.join(os.path.dirname(__file__), ".."))
 if _project_root not in sys.path:
     sys.path.insert(0, _project_root)
 
-from validate import validate_all, load_city, validate_city, format_consolidated_summary, format_report_summary
+from validate import (
+    format_consolidated_summary,
+    format_report_summary,
+    load_city,
+    validate_all,
+    validate_city,
+)
 from validate.gdw_crossref import load_gdw_data
 
 

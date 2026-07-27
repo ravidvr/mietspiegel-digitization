@@ -101,7 +101,7 @@ def validate_index(cities):
 
         # Check for duplicate slugs
         if slug in seen_slugs:
-            error(slug, f"Duplicate slug in cities_index.json")
+            error(slug, "Duplicate slug in cities_index.json")
         seen_slugs.add(slug)
 
         # Check state is not empty
@@ -151,7 +151,7 @@ def main():
 
     # Report
     print(f"\n{'='*60}")
-    print(f"VALIDATION REPORT")
+    print("VALIDATION REPORT")
     print(f"{'='*60}")
     print(f"Cities checked: {len(cities)}")
     print(f"Errors:   {len(ERRORS)}")

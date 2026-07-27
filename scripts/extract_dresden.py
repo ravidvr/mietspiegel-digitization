@@ -4,7 +4,7 @@ Extract Dresden Mietspiegel 2025 data from PDF and produce unified JSON.
 Dresden uses a factor-based model: Rent = Base_Rent(Size) × F_Baujahr × F_Lage
 """
 import json
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 # ============================================================
 # TABLE 1: Basismiete (Base rent by Wohnfläche in m²)
@@ -150,7 +150,7 @@ dresden_extended = {
     "$schema": "https://raw.githubusercontent.com/ravidvr/mietspiegel-digitization/main/docs/schema.json",
     "meta": {
         "schema_version": "1.0.0",
-        "extracted_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "extracted_at": datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "extracted_by": "manual (PDF text extraction)",
         "extraction_notes": (
             "Dresden uses a factor-based Mietspiegel (Tabelle 1: Basismiete by size; "
@@ -235,7 +235,7 @@ for lage_key, lage_factor in lage_factors.items():
         for bracket_key, sizes in size_brackets.items():
             rep_size = rep_sizes[bracket_key]
             rent = calculate_rent(rep_size, bau_factor, lage_factor)
-            
+
             # Map bracket keys to size ids
             size_id_map = {
                 "size_under_40": "bis_40",
@@ -243,7 +243,7 @@ for lage_key, lage_factor in lage_factors.items():
                 "size_60_90": "60_90",
                 "size_over_90": "ab_90",
             }
-            
+
             dresden_extended["matrix"]["values"].append({
                 "lage_id": lage_key,
                 "bauperiod_id": bau_id,
@@ -293,12 +293,12 @@ for lage in ["einfach", "mittel", "gut"]:
         print(f"{baujahr_label:<18} {r['size_under_40']:>8.2f} €  {r['size_40_60']:>8.2f} €  {r['size_60_90']:>8.2f} €  {r['size_over_90']:>8.2f} €")
 
 print("\n\n=== Factor Tables (for validation) ===")
-print(f"\nTable 2 - Baualter factors:")
+print("\nTable 2 - Baualter factors:")
 for label, factor in bauperiod_factors:
     pct = (factor - 1.0) * 100
     print(f"  {label:<18} {pct:+.0f}%  factor={factor}")
 
-print(f"\nTable 3 - Wohnlage factors:")
+print("\nTable 3 - Wohnlage factors:")
 for lage, factor in lage_factors.items():
     pct = (factor - 1.0) * 100
     print(f"  {lage:<12} {pct:+.0f}%  factor={factor}")

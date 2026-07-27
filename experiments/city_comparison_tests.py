@@ -20,21 +20,19 @@ Usage:
 
 import json
 import os
-import sys
 from itertools import combinations
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any
 
 import numpy as np
 import pandas as pd
-from scipy import stats
 from scipy.stats import (
-    ttest_ind,
     f_oneway,
-    pearsonr,
-    spearmanr,
-    shapiro,
     levene,
+    pearsonr,
+    shapiro,
+    spearmanr,
+    ttest_ind,
 )
 
 try:
@@ -70,7 +68,7 @@ BONFERRONI_ALPHA = 0.05  # Will be divided by number of comparisons
 # Data loading
 # ---------------------------------------------------------------------------
 
-def _load_cities() -> Dict[str, dict]:
+def _load_cities() -> dict[str, dict]:
     """Load all valid city JSON files from data/processed/."""
     cities = {}
     skip_files = {
@@ -89,13 +87,13 @@ def _load_cities() -> Dict[str, dict]:
     return cities
 
 
-def _build_city_summary(cities: Dict[str, dict]) -> pd.DataFrame:
+def _build_city_summary(cities: dict[str, dict]) -> pd.DataFrame:
     """
     Build a per-city summary DataFrame.
     Columns: city, slug, state, population, year, avg_rent, std_rent,
              gut_avg, einfach_avg, rent_spread, baujahr_count, n_cells.
     """
-    rows: List[Dict[str, Any]] = []
+    rows: list[dict[str, Any]] = []
 
     for slug, data in cities.items():
         city = data.get("city", slug)
@@ -103,9 +101,9 @@ def _build_city_summary(cities: Dict[str, dict]) -> pd.DataFrame:
         population = data.get("population", 0)
         year = data.get("year", 0)
 
-        all_values: List[float] = []
-        gut_values: List[float] = []
-        einfach_values: List[float] = []
+        all_values: list[float] = []
+        gut_values: list[float] = []
+        einfach_values: list[float] = []
         baujahr_set: set = set()
 
         for table in data.get("tables", []):
@@ -150,14 +148,14 @@ def _build_city_summary(cities: Dict[str, dict]) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def _build_flat_rents(cities: Dict[str, dict]) -> Dict[str, list]:
+def _build_flat_rents(cities: dict[str, dict]) -> dict[str, list]:
     """
     Build per-city DataFrames of all rent values for t-test pairing.
     Returns dict: slug -> list of rent values.
     """
-    city_rents: Dict[str, List[float]] = {}
+    city_rents: dict[str, list[float]] = {}
     for slug, data in cities.items():
-        vals: List[float] = []
+        vals: list[float] = []
         for table in data.get("tables", []):
             for row in table.get("rows", []):
                 for sk in SIZE_KEYS:
@@ -169,9 +167,9 @@ def _build_flat_rents(cities: Dict[str, dict]) -> Dict[str, list]:
     return city_rents
 
 
-def _build_state_data(cities: Dict[str, dict]) -> Dict[str, List[float]]:
+def _build_state_data(cities: dict[str, dict]) -> dict[str, list[float]]:
     """Build per-state lists of rent values for ANOVA."""
-    state_data: Dict[str, List[float]] = defaultdict(list)
+    state_data: dict[str, list[float]] = defaultdict(list)
     for slug, data in cities.items():
         state = data.get("state", "Unbekannt")
         for table in data.get("tables", []):
@@ -184,7 +182,6 @@ def _build_state_data(cities: Dict[str, dict]) -> Dict[str, List[float]]:
 
 
 from collections import defaultdict
-
 
 # ---------------------------------------------------------------------------
 # 1. Cohen's d effect size
@@ -237,8 +234,8 @@ def interpret_cohens_d(d: float) -> str:
 # ---------------------------------------------------------------------------
 
 def run_pairwise_t_tests(
-    city_rents: Dict[str, List[float]],
-    city_names: Dict[str, str],
+    city_rents: dict[str, list[float]],
+    city_names: dict[str, str],
 ) -> pd.DataFrame:
     """
     Run independent t-tests between all city pairs with Bonferroni correction.
@@ -250,7 +247,7 @@ def run_pairwise_t_tests(
     n_comparisons = len(slugs) * (len(slugs) - 1) // 2
     bonferroni_threshold = ALPHA / n_comparisons if n_comparisons > 0 else ALPHA
 
-    results: List[Dict[str, Any]] = []
+    results: list[dict[str, Any]] = []
 
     for s1, s2 in combinations(slugs, 2):
         vals1 = np.array(city_rents[s1])
@@ -298,7 +295,7 @@ def run_pairwise_t_tests(
 # 3. ANOVA across Bundesländer
 # ---------------------------------------------------------------------------
 
-def run_anova_by_state(state_data: Dict[str, List[float]]) -> Dict[str, Any]:
+def run_anova_by_state(state_data: dict[str, list[float]]) -> dict[str, Any]:
     """
     One-way ANOVA: do mean rents differ significantly across Bundesländer?
 
@@ -329,7 +326,7 @@ def run_anova_by_state(state_data: Dict[str, List[float]]) -> Dict[str, Any]:
         levene_stat, levene_p = None, None
 
     # Normality check (sampled, as full test is expensive with large n)
-    normality_warnings: List[str] = []
+    normality_warnings: list[str] = []
     for state, group in zip(states, groups):
         if len(group) > 5000:
             sample = np.random.choice(group, size=min(5000, len(group)), replace=False)
@@ -378,7 +375,7 @@ def run_anova_by_state(state_data: Dict[str, List[float]]) -> Dict[str, Any]:
 # 4. Tukey HSD post-hoc
 # ---------------------------------------------------------------------------
 
-def run_tukey_hsd(state_data: Dict[str, List[float]]) -> Optional[pd.DataFrame]:
+def run_tukey_hsd(state_data: dict[str, list[float]]) -> pd.DataFrame | None:
     """
     Tukey Honestly Significant Difference post-hoc test for ANOVA.
 
@@ -388,8 +385,8 @@ def run_tukey_hsd(state_data: Dict[str, List[float]]) -> Optional[pd.DataFrame]:
         return None
 
     # Build long-format data
-    values: List[float] = []
-    labels: List[str] = []
+    values: list[float] = []
+    labels: list[str] = []
     for state, vals in state_data.items():
         values.extend(vals)
         labels.extend([state] * len(vals))
@@ -415,14 +412,14 @@ def run_tukey_hsd(state_data: Dict[str, List[float]]) -> Optional[pd.DataFrame]:
 # 5. Correlation analysis
 # ---------------------------------------------------------------------------
 
-def run_correlation_analysis(df_summary: pd.DataFrame) -> Dict[str, Any]:
+def run_correlation_analysis(df_summary: pd.DataFrame) -> dict[str, Any]:
     """
     Correlation analysis:
       - Population vs average rent (Pearson r)
       - Population vs rent spread (gut/einfach ratio)
       - City size (n_cells proxy) vs rent variance
     """
-    results: Dict[str, Any] = {}
+    results: dict[str, Any] = {}
 
     # Filter to cities with data
     df = df_summary.dropna(subset=["avg_rent", "population"]).copy()
@@ -479,11 +476,11 @@ def run_correlation_analysis(df_summary: pd.DataFrame) -> Dict[str, Any]:
 
 def print_statistical_report(
     pairwise_results: pd.DataFrame,
-    anova_results: Dict[str, Any],
-    tukey_results: Optional[pd.DataFrame],
-    correlation_results: Dict[str, Any],
+    anova_results: dict[str, Any],
+    tukey_results: pd.DataFrame | None,
+    correlation_results: dict[str, Any],
     df_summary: pd.DataFrame,
-    city_rents: Dict[str, List[float]],
+    city_rents: dict[str, list[float]],
 ) -> None:
     """Print a formatted statistical analysis report."""
 
@@ -528,7 +525,7 @@ def print_statistical_report(
 
     # Top significant differences
     sig_pairs = pairwise_results[pairwise_results["significant"]].nlargest(20, "cohens_d")
-    print(f"\n  Top significant differences (by effect size):")
+    print("\n  Top significant differences (by effect size):")
     print(f"  {'City A':<22s} {'City B':<22s} {'Cohens d':>9s} {'Effect':>12s} {'Mean A':>7s} {'Mean B':>7s} {'p(adj)':>10s}")
     print(f"  {'─'*22} {'─'*22} {'─'*9} {'─'*12} {'─'*7} {'─'*7} {'─'*10}")
     for _, row in sig_pairs.head(15).iterrows():
@@ -541,7 +538,7 @@ def print_statistical_report(
 
     # ---- Top 5 effect sizes overall ----
     top_effects = pairwise_results.nlargest(10, "cohens_d")
-    print(f"\n  Top 10 effect sizes (Cohen's d), regardless of significance:")
+    print("\n  Top 10 effect sizes (Cohen's d), regardless of significance:")
     for _, row in top_effects.iterrows():
         sig_mark = "✓" if row["significant"] else " "
         print(
@@ -566,7 +563,7 @@ def print_statistical_report(
             print(f"  Levene's:    W={anova_results['levene_statistic']}, p={anova_results['levene_p_value']:.4f} "
                   f"({'equal variances' if anova_results['equal_variances'] else 'unequal variances — use Welch ANOVA'})")
 
-        print(f"\n  State-level summary:")
+        print("\n  State-level summary:")
         print(f"  {'State':<25s} {'n':>6s} {'Mean €/m²':>10s} {'Std':>7s} {'Min':>7s} {'Max':>7s}")
         print(f"  {'─'*25} {'─'*6} {'─'*10} {'─'*7} {'─'*7} {'─'*7}")
         for s in sorted(anova_results["state_summaries"], key=lambda x: x["mean"], reverse=True):
@@ -577,7 +574,7 @@ def print_statistical_report(
             )
 
         if anova_results.get("normality_warnings"):
-            print(f"\n  Normality warnings:")
+            print("\n  Normality warnings:")
             for w in anova_results["normality_warnings"]:
                 print(f"    ⚠ {w}")
 
@@ -586,7 +583,7 @@ def print_statistical_report(
         print(f"\n{'─' * 78}")
         print("  3. TUKEY HSD POST-HOC TEST")
         print(f"{'─' * 78}")
-        print(f"  Significant pairwise differences between states:\n")
+        print("  Significant pairwise differences between states:\n")
         # Filter to significant only
         try:
             # Tukey output columns: group1, group2, meandiff, p-adj, lower, upper, reject

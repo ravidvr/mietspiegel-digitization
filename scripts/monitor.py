@@ -22,8 +22,7 @@ import json
 import os
 import re
 import sys
-import time
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from urllib.parse import urljoin
 
 try:
@@ -51,7 +50,7 @@ CHECK_TIMEOUT = 30  # seconds per city
 
 def load_cities():
     """Load the city registry."""
-    with open(CITIES_PATH, "r", encoding="utf-8") as f:
+    with open(CITIES_PATH, encoding="utf-8") as f:
         return json.load(f)["cities"]
 
 
@@ -67,7 +66,7 @@ def load_version_history(slug):
     """Load per-city version history JSON, or return empty."""
     path = os.path.join(VERSIONS_DIR, f"{slug}.json")
     if os.path.exists(path):
-        with open(path, "r", encoding="utf-8") as f:
+        with open(path, encoding="utf-8") as f:
             return json.load(f)
     return {"city": slug, "versions": [], "first_seen": None, "last_check": None}
 
@@ -224,7 +223,7 @@ def run_check(cities=None):
     new_editions = []
     errors = []
 
-    print(f"Mietspiegel Update Monitor — {datetime.now(timezone.utc).isoformat()}")
+    print(f"Mietspiegel Update Monitor — {datetime.now(UTC).isoformat()}")
     print(f"Cities to check: {len(to_check)}")
     print("=" * 60)
 
@@ -270,27 +269,27 @@ def run_check(cities=None):
                         "year": e["year"],
                         "source": e.get("source", "detected"),
                         "url": e.get("url", city["page_url"]),
-                        "detected_at": datetime.now(timezone.utc).isoformat(),
+                        "detected_at": datetime.now(UTC).isoformat(),
                     })
                     print(f"  └─ 🆕 NEW EDITION: {e['year']}")
 
                     # Add to version history
                     history.setdefault("versions", []).append({
                         "year": e["year"],
-                        "detected_at": datetime.now(timezone.utc).isoformat(),
+                        "detected_at": datetime.now(UTC).isoformat(),
                         "source": e.get("url", city["page_url"]),
                         "type": "detected_from_web",
                     })
 
             if not new_years:
-                print(f"  └─ ✓ All editions already known")
+                print("  └─ ✓ All editions already known")
         else:
-            print(f"  └─ No editions detected on page")
+            print("  └─ No editions detected on page")
 
         # Update timestamps
         history["city"] = slug
         history["city_name"] = name
-        history["last_check"] = datetime.now(timezone.utc).isoformat()
+        history["last_check"] = datetime.now(UTC).isoformat()
         if history.get("first_seen") is None:
             history["first_seen"] = history["last_check"]
         save_version_history(slug, history)
@@ -309,16 +308,16 @@ def run_check(cities=None):
         for ne in new_editions:
             print(f"    └─ {ne['city_name']} — edition {ne['year']}")
     else:
-        print(f"\n  ✓ No new editions found (all up to date)")
+        print("\n  ✓ No new editions found (all up to date)")
 
     if errors:
-        print(f"\n  ⚠  ERRORS:")
+        print("\n  ⚠  ERRORS:")
         for e in errors:
             print(f"    └─ {e['name']}: {e['error']}")
 
     # ── Save aggregate status ────────────────────────────────────────────
     status = {
-        "last_run": datetime.now(timezone.utc).isoformat(),
+        "last_run": datetime.now(UTC).isoformat(),
         "cities_checked": len(to_check),
         "errors": errors,
         "new_editions": new_editions,
@@ -336,7 +335,7 @@ def run_check(cities=None):
     with open(STATUS_PATH, "w", encoding="utf-8") as f:
         json.dump(status, f, indent=2, ensure_ascii=False)
         f.write("\n")
-    print(f"\n  ✓ Status saved to: data/monitoring/status.json")
+    print("\n  ✓ Status saved to: data/monitoring/status.json")
 
     return status
 
@@ -347,10 +346,10 @@ def print_status():
         print("No status available yet. Run the monitor first.")
         return
 
-    with open(STATUS_PATH, "r", encoding="utf-8") as f:
+    with open(STATUS_PATH, encoding="utf-8") as f:
         status = json.load(f)
 
-    print(f"Mietspiegel Monitoring Status")
+    print("Mietspiegel Monitoring Status")
     print(f"Last run: {status.get('last_run', 'never')}")
     print("=" * 60)
 
@@ -366,7 +365,7 @@ def print_status():
         for ne in new_eds:
             print(f"  └─ {ne['city_name']} — edition {ne['year']}")
     else:
-        print(f"\n✓ No pending new editions.")
+        print("\n✓ No pending new editions.")
 
 
 def export_json():
@@ -374,7 +373,7 @@ def export_json():
     if not os.path.exists(STATUS_PATH):
         print(json.dumps({"error": "no_status_yet", "run": "python3 scripts/monitor.py first"}))
         return
-    with open(STATUS_PATH, "r") as f:
+    with open(STATUS_PATH) as f:
         print(f.read().strip())
 
 

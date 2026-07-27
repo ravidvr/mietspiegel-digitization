@@ -18,12 +18,11 @@ Usage:
 import argparse
 import json
 import os
-import sys
 from pathlib import Path
-from typing import Any, Dict, List, Tuple
+from typing import Any
 
-import pandas as pd
 import numpy as np
+import pandas as pd
 
 # ---------------------------------------------------------------------------
 # Configuration
@@ -56,7 +55,7 @@ HIGH_RENT_CITY = "muenchen"
 # Data loading
 # ---------------------------------------------------------------------------
 
-def _load_cities() -> Dict[str, dict]:
+def _load_cities() -> dict[str, dict]:
     """Load all valid city JSON files."""
     cities = {}
     skip_files = {
@@ -75,12 +74,12 @@ def _load_cities() -> Dict[str, dict]:
     return cities
 
 
-def _build_dataframe(cities: Dict[str, dict]) -> pd.DataFrame:
+def _build_dataframe(cities: dict[str, dict]) -> pd.DataFrame:
     """
     Build a flat DataFrame from all city data.
     Columns: city, slug, state, population, lage, baujahr, bis_40, 40_60, 60_90, ueber_90
     """
-    rows: List[Dict[str, Any]] = []
+    rows: list[dict[str, Any]] = []
     for slug, data in cities.items():
         city = data.get("city", slug)
         state = data.get("state", "")
@@ -116,7 +115,7 @@ def _estimated_rental_units(population: float) -> float:
 def simulate_percentage_change(
     df: pd.DataFrame,
     pct: float = 5.0,
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     """
     Simulate a uniform percentage change in all Mietspiegel rents.
 
@@ -133,7 +132,7 @@ def simulate_percentage_change(
         df_sim[sk] = df[sk] * factor
 
     # Compute city-level impact
-    city_impact: List[Dict[str, Any]] = []
+    city_impact: list[dict[str, Any]] = []
     for slug, grp in df.groupby("slug"):
         city = grp.iloc[0]["city"]
         pop = grp.iloc[0]["population"]
@@ -176,7 +175,7 @@ def simulate_percentage_change(
 def simulate_counterfactual(
     df: pd.DataFrame,
     target_city_slug: str = HIGH_RENT_CITY,
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     """
     What if every city adopted the target city's rent levels?
     Shows how many tenants would be "priced out" based on affordability thresholds.
@@ -193,13 +192,13 @@ def simulate_counterfactual(
         return {"error": f"Target city '{target_city_slug}' not found."}
 
     # Build target city's rent table: (lage, baujahr) -> avg rent
-    target_rents: Dict[Tuple[str, str], Dict[str, float]] = {}
+    target_rents: dict[tuple[str, str], dict[str, float]] = {}
     for _, row in target_df.iterrows():
         key = (str(row["lage"]), str(row["baujahr"]))
         target_rents[key] = {sk: row[sk] for sk in SIZE_KEYS if not pd.isna(row[sk])}
 
     # Apply target rents to all cities, matching (lage, baujahr)
-    city_impact: List[Dict[str, Any]] = []
+    city_impact: list[dict[str, Any]] = []
     affordability_threshold = 0.30  # 30% of income on rent = "burdened"
 
     total_units_affected = 0
@@ -271,7 +270,7 @@ def simulate_counterfactual(
 # Scenario 3: Distributional impact
 # ---------------------------------------------------------------------------
 
-def simulate_distributional_impact(df: pd.DataFrame, pct: float = 5.0) -> Dict[str, Any]:
+def simulate_distributional_impact(df: pd.DataFrame, pct: float = 5.0) -> dict[str, Any]:
     """
     Analyze how a uniform rent increase disproportionately affects:
       - Small apartments (bis_40) vs large (ueber_90)
@@ -358,7 +357,7 @@ def simulate_distributional_impact(df: pd.DataFrame, pct: float = 5.0) -> Dict[s
 # Report formatting
 # ---------------------------------------------------------------------------
 
-def print_report(results: List[Dict[str, Any]]) -> None:
+def print_report(results: list[dict[str, Any]]) -> None:
     """Print a formatted simulation report."""
     print("=" * 78)
     print("  RENT POLICY IMPACT SIMULATION REPORT")
@@ -407,14 +406,14 @@ def print_report(results: List[Dict[str, Any]]) -> None:
 
         # Scenario 3: Distributional
         if "size_class_impact" in result:
-            print(f"\n  ** By Apartment Size **")
+            print("\n  ** By Apartment Size **")
             for size, vals in result["size_class_impact"].items():
                 print(
                     f"    {size:<15s}  orig €{vals['mean_orig_rent']:.2f}/m²  "
                     f"→ +€{vals['mean_abs_increase']:.2f}/m² (+{vals['mean_pct_increase']:.1f}%)"
                 )
 
-            print(f"\n  ** By Building Age **")
+            print("\n  ** By Building Age **")
             old_val = result["building_age_impact"]["old_buildings"]
             new_val = result["building_age_impact"]["new_buildings"]
             print(f"    Pre-1950 buildings:  orig €{old_val['mean_orig_rent']:.2f}/m² → +€{old_val['mean_abs_increase']:.2f}/m²")
@@ -422,7 +421,7 @@ def print_report(results: List[Dict[str, Any]]) -> None:
             print(f"    Old/New increase ratio: {result['building_age_impact']['old_vs_new_increase_ratio']:.2f}")
             print(f"    → {result['building_age_impact']['analysis']}")
 
-            print(f"\n  ** By Lage Category **")
+            print("\n  ** By Lage Category **")
             for lage, vals in result["lage_impact"].items():
                 print(
                     f"    {lage:<12s}  orig €{vals['mean_orig_rent']:.2f}/m²  "
@@ -468,7 +467,7 @@ def main() -> None:
     print(f"Loaded {len(cities)} cities, {len(df)} data rows.")
 
     # Run scenarios
-    results: List[Dict[str, Any]] = []
+    results: list[dict[str, Any]] = []
 
     if args.scenario in ("percentage", "all"):
         print(f"\nRunning percentage change scenario ({args.pct:+.1f}%)...")

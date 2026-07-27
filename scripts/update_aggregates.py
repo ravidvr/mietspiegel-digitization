@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """Update aggregate JSON files after Dresden extraction."""
-import json, datetime
+import datetime
+import json
 
 # 1. Update stadt-index.json timestamp
-with open('/Users/ruhvee/mietspiegel-digitization/data/processed/stadt-index.json', 'r') as f:
+with open('/Users/ruhvee/mietspiegel-digitization/data/processed/stadt-index.json') as f:
     idx = json.load(f)
-idx['generated_at'] = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%S+00:00")
+idx['generated_at'] = datetime.datetime.now(datetime.UTC).strftime("%Y-%m-%dT%H:%M:%S+00:00")
 with open('/Users/ruhvee/mietspiegel-digitization/data/processed/stadt-index.json', 'w') as f:
     json.dump(idx, f, indent=2, ensure_ascii=False)
 print("Updated stadt-index.json")
@@ -15,7 +16,7 @@ with open('/Users/ruhvee/mietspiegel-digitization/data/processed/dresden.json') 
     dd = json.load(f)
 
 # 3. Append to mietspiegel_katalog
-with open('/Users/ruhvee/mietspiegel-digitization/data/processed/mietspiegel_katalog.json', 'r') as f:
+with open('/Users/ruhvee/mietspiegel-digitization/data/processed/mietspiegel_katalog.json') as f:
     kat = json.load(f)
 
 dresden_entry = {"city": "Dresden", "city_slug": "dresden", "state": "Sachsen", "year": 2025}

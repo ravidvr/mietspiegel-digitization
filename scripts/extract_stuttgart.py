@@ -3,8 +3,8 @@
 Extract Stuttgart Mietspiegel 2025/2026 from PDF to unified JSON schema.
 Manual extraction because the PDF uses a regression format (not camelot-friendly tables).
 """
-import json, csv
-from datetime import datetime, timezone
+import json
+from datetime import UTC, datetime
 
 # === Base rent table (Grundwert) from page 6 ===
 # Structure: Baujahr x Wohnfläche -> single value (€/m², net cold)
@@ -109,7 +109,7 @@ output = {
     "$schema": "https://raw.githubusercontent.com/ravidvr/mietspiegel-digitization/main/docs/schema.json",
     "meta": {
         "schema_version": "1.0.0",
-        "extracted_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "extracted_at": datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "extracted_by": "manual_extraction",
         "extraction_notes": "Regression-based Mietspiegel. Base table (Baujahr×Wohnfläche) + additive Lage/feature adjustments. Fixed spanne: untere -1.80 €/m², obere +1.77 €/m². Lage and feature adjustments stored in source.extra.",
         "quality": {
@@ -137,7 +137,7 @@ output = {
         "pdf_url": "https://www.stuttgart.de/medien/ibs/mietspiegel_2025_2026.pdf",
         "local_pdf": "data/raw/stuttgart-mietspiegel-2025-2026.pdf",
         "pages": [6],
-        "retrieved_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "retrieved_at": datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "extra": {
             "type": "regression_based",
             "spanne_rules": {

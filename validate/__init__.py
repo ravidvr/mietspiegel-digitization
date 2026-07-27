@@ -6,11 +6,9 @@ cross-referencing against GdW aggregates, and generating reports.
 import json
 import os
 from datetime import datetime
-from typing import Optional, List
+from typing import List, Optional
 
-from . import sanity_checks
-from . import gdw_crossref
-
+from . import gdw_crossref, sanity_checks
 
 SCHEMA_KEYS_A = {"city", "state", "year", "tables"}       # Standard Mietspiegel table schema
 MATRIX_KEYS = {"lage_categories", "bauperiods", "size_groups", "values"}  # Matrix format
@@ -44,7 +42,7 @@ def detect_schema(data: dict) -> str:
     return "unknown"
 
 
-def normalize_city_data(data: dict) -> Optional[dict]:
+def normalize_city_data(data: dict) -> dict | None:
     """
     Normalize a city data file to the standard validation format.
     Returns None if the data cannot be normalized (no rent tables).
@@ -75,7 +73,7 @@ def normalize_city_data(data: dict) -> Optional[dict]:
     return None
 
 
-def normalize_matrix_schema(data: dict) -> Optional[dict]:
+def normalize_matrix_schema(data: dict) -> dict | None:
     """
     Normalize the 'matrix' format (e.g. dresden-extended.json) to the
     standard tables format.
@@ -153,7 +151,7 @@ def load_city(path: str) -> dict:
     return city_data
 
 
-def find_city_files(data_dir: str) -> List[str]:
+def find_city_files(data_dir: str) -> list[str]:
     """Find all city data files in the processed data directory."""
     files = []
     for fname in sorted(os.listdir(data_dir)):

@@ -12,11 +12,9 @@ Extends the existing sanity_checks.py with:
 Run: cd /Users/ruhvee/mietspiegel-digitization && python -m pytest tests/test_validation_enhanced.py -v
 """
 import json
-import math
 import os
-from pathlib import Path
 from collections import defaultdict
-from typing import Any, Dict, List, Optional, Tuple
+from pathlib import Path
 
 import pytest
 
@@ -44,7 +42,7 @@ def _load_city(slug: str) -> dict:
         return json.load(f)
 
 
-def _get_row_values(row: dict) -> List[float]:
+def _get_row_values(row: dict) -> list[float]:
     """Extract all numeric size-key values from a row."""
     return [float(row[k]) for k in SIZE_KEYS if k in row and isinstance(row[k], (int, float)) and row[k] > 0]
 
@@ -58,7 +56,7 @@ def _city_overall_avg(city_data: dict) -> float:
     return sum(values) / len(values) if values else 0.0
 
 
-def _load_all_cities() -> Dict[str, dict]:
+def _load_all_cities() -> dict[str, dict]:
     """Load all valid city JSON files from data/processed/."""
     cities = {}
     for fpath in sorted(DATA_DIR.glob("*.json")):
@@ -75,7 +73,7 @@ def _load_all_cities() -> Dict[str, dict]:
     return cities
 
 
-def _cell_values_by_combination(city_data: dict) -> Dict[Tuple[str, str, str], float]:
+def _cell_values_by_combination(city_data: dict) -> dict[tuple[str, str, str], float]:
     """
     Build a lookup: (lage, baujahr, size_key) -> rent value.
     Uses the first matching cell found.
@@ -98,7 +96,7 @@ def _cell_values_by_combination(city_data: dict) -> Dict[Tuple[str, str, str], f
 # ---------------------------------------------------------------------------
 
 @pytest.fixture(scope="module")
-def all_cities() -> Dict[str, dict]:
+def all_cities() -> dict[str, dict]:
     """Load all city data once per module."""
     return _load_all_cities()
 
@@ -118,7 +116,7 @@ def historical_data() -> dict:
 
 
 @pytest.fixture(scope="module")
-def all_cell_values(all_cities: Dict[str, dict]) -> Dict[str, Dict[Tuple[str, str, str], float]]:
+def all_cell_values(all_cities: dict[str, dict]) -> dict[str, dict[tuple[str, str, str], float]]:
     """Pre-computed (lage, baujahr, size_key) -> rent for every city."""
     return {slug: _cell_values_by_combination(data) for slug, data in all_cities.items()}
 
@@ -133,7 +131,7 @@ class TestRentPlausibility:
     MIN_PLAUSIBLE = 3.0
     MAX_PLAUSIBLE = 35.0
 
-    def test_no_rents_below_minimum(self, all_cities: Dict[str, dict]):
+    def test_no_rents_below_minimum(self, all_cities: dict[str, dict]):
         """Verify no rent value is below €3/m²."""
         violations = []
         for slug, data in all_cities.items():
@@ -153,7 +151,7 @@ class TestRentPlausibility:
             + "\n".join(violations[:20])
         )
 
-    def test_no_rents_above_maximum(self, all_cities: Dict[str, dict]):
+    def test_no_rents_above_maximum(self, all_cities: dict[str, dict]):
         """Verify no rent value is above €35/m²."""
         violations = []
         for slug, data in all_cities.items():
@@ -183,7 +181,7 @@ class TestStructureCompleteness:
 
     EXPECTED_LAGE_COUNT = 3
 
-    def test_has_expected_tables(self, all_cities: Dict[str, dict]):
+    def test_has_expected_tables(self, all_cities: dict[str, dict]):
         """Check each city has at least one table. Warn if not."""
         empty_tables = []
         for slug, data in all_cities.items():
@@ -199,7 +197,7 @@ class TestStructureCompleteness:
 
         # Don't hard-fail — these are data extraction gaps, not code bugs
 
-    def test_lage_category_count(self, all_cities: Dict[str, dict]):
+    def test_lage_category_count(self, all_cities: dict[str, dict]):
         """
         Check Lage category count per city.
         Flags cities with <2 or >4 categories.
@@ -240,7 +238,7 @@ class TestStructureCompleteness:
 
         # Don't hard-fail — these are data completeness issues to document
 
-    def test_each_table_has_size_keys(self, all_cities: Dict[str, dict]):
+    def test_each_table_has_size_keys(self, all_cities: dict[str, dict]):
         """Every row in every table should have at least 3 of 4 expected size keys."""
         violations = []
         for slug, data in all_cities.items():
@@ -255,7 +253,7 @@ class TestStructureCompleteness:
                             f"only {found}/4 size keys present"
                         )
         assert not violations, (
-            f"Rows with fewer than 3 size keys:\n" + "\n".join(violations[:20])
+            "Rows with fewer than 3 size keys:\n" + "\n".join(violations[:20])
         )
 
 
@@ -268,7 +266,7 @@ class TestBaujahrCoverage:
 
     MIN_BAUJAHR_GROUPS = 6
 
-    def test_baujahr_group_count(self, all_cities: Dict[str, dict]):
+    def test_baujahr_group_count(self, all_cities: dict[str, dict]):
         """Check each city has at least 6 Baujahr groups."""
         flagged = []
         for slug, data in all_cities.items():
@@ -327,11 +325,11 @@ class TestCrossCityRanking:
     """
 
     # Expected ranking for major cities (by descending average rent)
-    EXPECTED_HIGH_RENT: List[str] = ["muenchen", "stuttgart", "frankfurt", "hamburg"]
-    EXPECTED_MID_RENT: List[str] = ["koeln", "duesseldorf", "berlin"]
-    EXPECTED_LOW_RENT: List[str] = ["leipzig", "dresden", "chemnitz", "halle"]
+    EXPECTED_HIGH_RENT: list[str] = ["muenchen", "stuttgart", "frankfurt", "hamburg"]
+    EXPECTED_MID_RENT: list[str] = ["koeln", "duesseldorf", "berlin"]
+    EXPECTED_LOW_RENT: list[str] = ["leipzig", "dresden", "chemnitz", "halle"]
 
-    def test_city_rankings_monotonic(self, all_cities: Dict[str, dict]):
+    def test_city_rankings_monotonic(self, all_cities: dict[str, dict]):
         """Check that known high-rent cities rank above mid-rent above low-rent."""
         city_avgs = {
             slug: _city_overall_avg(data)
@@ -355,9 +353,9 @@ class TestCrossCityRanking:
             print(f"\n  Min high-rent city avg: €{min_high:.2f}")
             print(f"  Max mid-rent city avg: €{max_mid:.2f}")
             if min_high < max_mid:
-                print(f"  ⚠ High-rent group overlaps with mid-rent group!")
+                print("  ⚠ High-rent group overlaps with mid-rent group!")
             else:
-                print(f"  ✓ High > Mid rent ordering confirmed")
+                print("  ✓ High > Mid rent ordering confirmed")
 
         if mid_avgs and low_avgs:
             min_mid = min(mid_avgs)
@@ -365,9 +363,9 @@ class TestCrossCityRanking:
             print(f"  Min mid-rent city avg: €{min_mid:.2f}")
             print(f"  Max low-rent city avg: €{max_low:.2f}")
             if min_mid < max_low:
-                print(f"  ⚠ Mid-rent group overlaps with low-rent group!")
+                print("  ⚠ Mid-rent group overlaps with low-rent group!")
             else:
-                print(f"  ✓ Mid > Low rent ordering confirmed")
+                print("  ✓ Mid > Low rent ordering confirmed")
 
         # Soft assertion: Munchen should be top 3
         if "muenchen" in city_avgs:
@@ -428,10 +426,10 @@ class TestZScoreOutliers:
             return "1950_1964"
         return bj[:15]
 
-    def test_zscore_outlier_detection(self, all_cities: Dict[str, dict]):
+    def test_zscore_outlier_detection(self, all_cities: dict[str, dict]):
         """Detect per-combination z-score outliers and flag them."""
         # Build per-combination values
-        combination_values: Dict[Tuple[str, str, str], List[Tuple[str, float]]] = defaultdict(list)
+        combination_values: dict[tuple[str, str, str], list[tuple[str, float]]] = defaultdict(list)
 
         for slug, data in all_cities.items():
             city = data.get("city", slug)
@@ -445,8 +443,8 @@ class TestZScoreOutliers:
                             combination_values[(lage, bj_norm, sk)].append((city, float(val)))
 
         # Compute z-scores and flag outliers
-        outliers: List[str] = []
-        expected_outliers: List[str] = []
+        outliers: list[str] = []
+        expected_outliers: list[str] = []
 
         for (lage, bj, sk), entries in combination_values.items():
             if len(entries) < 3:
@@ -513,7 +511,7 @@ class TestGdwCrossref:
     MIN_NEW_LEASE_AVG = 3.50
     STATE_DEVIATION_MAX_PCT = 150.0  # Allow up to 150% above adjusted state avg
 
-    def test_city_averages_vs_adjusted_gdw(self, all_cities: Dict[str, dict], gdw_data: dict):
+    def test_city_averages_vs_adjusted_gdw(self, all_cities: dict[str, dict], gdw_data: dict):
         """Compare city averages against new-lease-adjusted GdW benchmarks."""
         national_gdw = gdw_data["national_averages"]["net_cold_rent_per_sqm"]  # 6.63
         # New-lease adjustment: multiply by factor
@@ -609,7 +607,7 @@ class TestHistoricalConsistency:
             print(f"  {city}: {' → '.join(years)}")
 
         if violations:
-            print(f"\n  ⚠ Violations found:")
+            print("\n  ⚠ Violations found:")
             for v in violations:
                 print(f"    ✗ {v}")
 
@@ -637,7 +635,7 @@ class TestHistoricalConsistency:
 class TestAdditionalSanityChecks:
     """Supplemental checks beyond the existing sanity_checks.py module."""
 
-    def test_positive_values(self, all_cities: Dict[str, dict]):
+    def test_positive_values(self, all_cities: dict[str, dict]):
         """All rent values must be positive."""
         violations = []
         for slug, data in all_cities.items():
@@ -652,7 +650,7 @@ class TestAdditionalSanityChecks:
                             violations.append(f"{city} [{lage}/{bj}/{sk}]: {val}")
         assert not violations, f"Non-positive values: {violations}"
 
-    def test_size_monotonicity(self, all_cities: Dict[str, dict]):
+    def test_size_monotonicity(self, all_cities: dict[str, dict]):
         """
         For each (lage, baujahr) row: bis_40 >= 40_60 >= 60_90 >= ueber_90.
         Smaller units generally cost more per sqm.
@@ -684,7 +682,7 @@ class TestAdditionalSanityChecks:
         # Soft check only
         assert True
 
-    def test_baujahr_monotonicity(self, all_cities: Dict[str, dict]):
+    def test_baujahr_monotonicity(self, all_cities: dict[str, dict]):
         """
         For each (lage, size_key): newer Baujahr should have higher rent.
         Uses tag-based ordering: vor/vor krieg < 1950_1964 < ... < neu.

@@ -8,14 +8,14 @@
 #
 # For production, configure SMTP settings below or use SendGrid/Mailgun API.
 
+import hashlib
 import json
 import os
 import smtplib
-import hashlib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-from pathlib import Path
 from datetime import datetime
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from pathlib import Path
 
 # === Configuration ===
 DATA_DIR = Path(__file__).resolve().parent.parent / 'data' / 'processed'
@@ -35,7 +35,7 @@ def load_json(path):
     """Load JSON file, return {} if not found."""
     if not path.exists():
         return {}
-    with open(path, 'r', encoding='utf-8') as f:
+    with open(path, encoding='utf-8') as f:
         return json.load(f)
 
 

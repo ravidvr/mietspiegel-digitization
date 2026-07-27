@@ -2,8 +2,11 @@
 """Process Zensus 2022 100m grid rent data into dashboard-compatible JSON.
 
 Converts LAEA → WGS84, filters invalid rows, aggregates to 1km grid."""
-import csv, json, os, sys
+import csv
+import json
+import os
 from collections import defaultdict
+
 from pyproj import Transformer
 
 BASE = os.environ.get("MIETSPIEGEL_REPO", os.path.dirname(os.path.dirname(os.path.abspath(__file__))))

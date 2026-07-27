@@ -21,7 +21,7 @@ import json
 import math
 import os
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -46,7 +46,7 @@ def build_immoscout():
 
     if not os.path.exists(input_path):
         print(f"  ⚠ Input not found: {input_path}")
-        print(f"    Run `scripts/build.sh` or `python3 scripts/process_redx.py` first")
+        print("    Run `scripts/build.sh` or `python3 scripts/process_redx.py` first")
         return False
 
     with open(input_path) as f:
@@ -109,7 +109,7 @@ def build_immoscout():
         "source": "RWI-GEO-REDX PUF v16",
         "doi": "https://doi.org/10.7807/IMMO:REDX:PUF:V16",
         "description": "Berlin-only Immoscout24 market rent grid cells (price indices as €/m²)",
-        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "generated_at": datetime.now(UTC).isoformat(),
         "data_version": "1.0",
         "years": sorted(set(g["year"] for g in berlin_grids)),
         "total_grids": len(berlin_grids),
@@ -136,7 +136,7 @@ def build_zensus():
 
     if not os.path.exists(input_path):
         print(f"  ⚠ Input not found: {input_path}")
-        print(f"    Run `python3 scripts/process_zensus2022.py` first")
+        print("    Run `python3 scripts/process_zensus2022.py` first")
         return False
 
     with open(input_path) as f:
@@ -170,7 +170,7 @@ def build_zensus():
     output = {
         "source": "Zensus 2022 — Durchschnittliche Nettokaltmiete (Destatis)",
         "license": "Datenlizenz Deutschland – Namensnennung 2.0",
-        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "generated_at": datetime.now(UTC).isoformat(),
         "data_version": "1.0",
         "year": 2022,
         "grid_size": "1km (aggregated from 100m)",

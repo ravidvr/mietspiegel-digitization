@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Run all sanity checks across all city JSON files. Exits 1 on errors."""
-import json, sys, os
+import json
+import os
+import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from validate.sanity_checks import run_all_sanity_checks

@@ -97,7 +97,7 @@ def get_slug(city_name):
 def normalize_table_row(row, size_labels=None):
     """Normalize a table row to {bis_40, 40_60, 60_90, ueber_90, baujahr}."""
     result = {}
-    
+
     if isinstance(row, dict):
         # Check for size_rows format (cities.json format)
         if "size_rows" in row:
@@ -110,10 +110,10 @@ def normalize_table_row(row, size_labels=None):
                     key = size_label_to_key(label)
                     result[key] = val
             return result
-        
+
         # Direct row format
         result["baujahr"] = row.get("baujahr", row.get("baujahr_group", ""))
-        
+
         # size_under_40, size_40_60, etc. format
         if "size_under_40" in row:
             result["bis_40"] = row["size_under_40"]
@@ -125,14 +125,14 @@ def normalize_table_row(row, size_labels=None):
             result["40_60"] = row.get("40_60")
             result["60_90"] = row.get("60_90")
             result["ueber_90"] = row.get("ueber_90")
-        
+
         # Single value (e.g. base_rent)
         if "base_rent" in row:
             result["bis_40"] = row["base_rent"]
             result["40_60"] = row["base_rent"]
             result["60_90"] = row["base_rent"]
             result["ueber_90"] = row["base_rent"]
-    
+
     return result
 
 
@@ -156,7 +156,7 @@ def normalize_city_data(city_entry, per_city_data=None):
     """Normalize a city entry to dashboard format."""
     city_name = city_entry.get("city", "Unknown")
     slug = city_entry.get("city_slug", city_entry.get("slug", get_slug(city_name)))
-    
+
     # Coordinates & population
     coords = CITY_COORDS.get(slug)
     if per_city_data:
@@ -172,9 +172,9 @@ def normalize_city_data(city_entry, per_city_data=None):
         else:
             lat, lng = 51.0, 10.0
         pop = CITY_POPULATIONS.get(slug, 100000)
-    
+
     state = city_entry.get("state", per_city_data.get("state", "") if per_city_data else "")
-    
+
     # ---- Try format A: current_edition format (berlin.json style) ----
     if per_city_data and "current_edition" in per_city_data:
         ed = per_city_data["current_edition"]
@@ -188,7 +188,7 @@ def normalize_city_data(city_entry, per_city_data=None):
                     norm_rows.append(nr)
             if norm_rows:
                 tables.append({"lage": lage_key, "rows": norm_rows})
-        
+
         lage_categories = per_city_data.get("lage_categories", list(tables_dict.keys()))
         baujahr_groups = []
         size_categories = ["bis 40 m²", "40-60 m²", "60-90 m²", "über 90 m²"]
@@ -197,7 +197,7 @@ def normalize_city_data(city_entry, per_city_data=None):
                 for r in t["rows"]:
                     if r.get("baujahr") and r["baujahr"] not in baujahr_groups:
                         baujahr_groups.append(r["baujahr"])
-        
+
         return {
             "city": city_name, "city_slug": slug, "slug": slug,
             "state": state, "lat": lat, "lng": lng, "population": pop,
@@ -209,7 +209,7 @@ def normalize_city_data(city_entry, per_city_data=None):
             "source_url": ed.get("source_url", ""),
             "tables": tables,
         }
-    
+
     # ---- Try format B: cities.json compact format (tables as [{lage, baujahr_group, size_rows}]) ----
     raw_tables = city_entry.get("tables", [])
     if raw_tables and isinstance(raw_tables[0], dict) and "lage" in raw_tables[0] and "baujahr_group" in raw_tables[0]:
@@ -228,13 +228,13 @@ def normalize_city_data(city_entry, per_city_data=None):
                         norm[key] = val
             if norm.get("bis_40") is not None:
                 tables_map[lage].append(norm)
-        
+
         tables = [{"lage": k, "rows": v} for k, v in tables_map.items() if v]
-        
+
         lage_categories = city_entry.get("categories", {}).get("lage", list(tables_map.keys()))
         baujahr_groups = city_entry.get("categories", {}).get("baujahr_groups", [])
         size_categories = city_entry.get("categories", {}).get("size_groups", ["bis 40 m²", "40-60 m²", "60-90 m²", "über 90 m²"])
-        
+
         return {
             "city": city_name, "city_slug": slug, "slug": slug,
             "state": state, "lat": lat, "lng": lng, "population": pop,
@@ -246,7 +246,7 @@ def normalize_city_data(city_entry, per_city_data=None):
             "source_url": city_entry.get("source_url", ""),
             "tables": tables,
         }
-    
+
     # ---- Try format C: extracted table data (tables as [{type, rows, header}]) ----
     if raw_tables and isinstance(raw_tables[0], dict) and "type" in raw_tables[0]:
         # Extract what we can
@@ -255,7 +255,7 @@ def normalize_city_data(city_entry, per_city_data=None):
             lage_categories = ["mittel"]
         baujahr_groups = city_entry.get("categories", {}).get("baujahr_groups", [])
         size_groups = city_entry.get("categories", {}).get("size_groups", [])
-        
+
         # For the dashboard, create single-table with whatever data we have
         rows = []
         for t in raw_tables:
@@ -271,9 +271,9 @@ def normalize_city_data(city_entry, per_city_data=None):
                     pass  # too complex for auto-normalization
                 if nr.get("bis_40") is not None:
                     rows.append(nr)
-        
+
         tables = [{"lage": lage_categories[0], "rows": rows}] if rows else []
-        
+
         return {
             "city": city_name, "city_slug": slug, "slug": slug,
             "state": state, "lat": lat, "lng": lng, "population": pop,
@@ -285,7 +285,7 @@ def normalize_city_data(city_entry, per_city_data=None):
             "source_url": city_entry.get("source_url", ""),
             "tables": tables,
         }
-    
+
     # Fallback
     return {
         "city": city_name, "city_slug": slug, "slug": slug,
@@ -303,18 +303,18 @@ def normalize_city_data(city_entry, per_city_data=None):
 def main():
     output_dir = Path(os.environ.get("MIETSPIEGEL_OUTPUT", REPO_ROOT / "docs" / "data" / "processed"))
     output_dir.mkdir(parents=True, exist_ok=True)
-    
+
     # 1. Load main cities.json
     cities_json_path = REPO_DATA / "cities.json"
     if not cities_json_path.exists():
         print(f"ERROR: {cities_json_path} not found")
         sys.exit(1)
-    
+
     with open(cities_json_path) as f:
         cities_data = json.load(f)
-    
+
     print(f"Loaded {len(cities_data)} cities from cities.json")
-    
+
     # 2. Load per-city data
     per_city = {}
     for f in sorted(REPO_DATA.glob("*.json")):
@@ -330,9 +330,9 @@ def main():
                 per_city[slug] = data
         except Exception:
             pass
-    
+
     print(f"Loaded {len(per_city)} per-city data files")
-    
+
     # 3. Also check workspace extraction data (configurable via env)
     workspace_env = os.environ.get("MIETSPIEGEL_WORKSPACE", "")
     workspace_paths = [Path(p) for p in workspace_env.split(":") if p]
@@ -350,27 +350,27 @@ def main():
                         print(f"  Added from workspace: {slug}")
                 except Exception:
                     pass
-    
+
     # 4. Normalize all cities
     city_index = []
     city_slugs_seen = set()
-    
+
     for entry in cities_data:
         city_name = entry.get("city", "Unknown")
         slug = entry.get("city_slug", get_slug(city_name))
-        
+
         if slug in city_slugs_seen:
             continue
         city_slugs_seen.add(slug)
-        
+
         pcd = per_city.get(slug)
         norm = normalize_city_data(entry, pcd)
-        
+
         # Write per-city file
         city_file = output_dir / f"{slug}.json"
         with open(city_file, "w") as f:
             json.dump(norm, f, indent=2, ensure_ascii=False)
-        
+
         # Add to index
         city_index.append({
             "city": norm["city"],
@@ -380,15 +380,15 @@ def main():
             "state": norm["state"],
             "population": norm["population"],
         })
-        
+
         table_count = len(norm.get("tables", []))
         row_count = sum(len(t.get("rows", [])) for t in norm.get("tables", []))
         print(f"  {city_name:25s} ({slug:15s})  {norm['year']}  {norm['type']:30s}  {table_count} tables, {row_count} rows")
-    
+
     # 4b. Also add workspace-only cities not in the main index
     # Map alternative slugs to canonical slugs
     ALIAS_SLUGS = {"cologne": "koeln", "munich": "muenchen"}
-    
+
     workspace_only = [s for s in per_city if s not in city_slugs_seen and not s.endswith("_standardized") and s not in ALIAS_SLUGS]
     for slug in sorted(workspace_only):
         data = per_city[slug]
@@ -398,14 +398,14 @@ def main():
                 city_name = city_name.get("name", city_name.get("city", slug))
             else:
                 city_name = str(city_name)
-        
+
         # Build a minimal entry for the dashboard
         lage_cats = data.get("lage_categories", data.get("categories", {}).get("lage", ["mittel"]))
         if not lage_cats:
             lage_cats = ["mittel"]
         baujahr_gps = data.get("categories", {}).get("baujahr_groups", [])
         size_cats = data.get("categories", {}).get("size_groups", ["bis 40 m²", "40-60 m²", "60-90 m²", "über 90 m²"])
-        
+
         # Try to extract tables
         raw_tables = data.get("tables", [])
         rows = []
@@ -425,7 +425,7 @@ def main():
                                 if val is not None:
                                     rows.append({"baujahr": h, "bis_40": val, "40_60": val, "60_90": val, "ueber_90": val})
                                 break
-        
+
         coords = CITY_COORDS.get(slug, (51.0, 10.0))
         # Try to get coordinates from per-city data if it's a dict format
         if isinstance(data.get("city"), dict) and "coordinates" in data["city"]:
@@ -450,31 +450,31 @@ def main():
             "source_url": data.get("source_url", ""),
             "tables": [{"lage": lage_cats[0], "rows": rows}] if rows else [],
         }
-        
+
         city_file = output_dir / f"{slug}.json"
         with open(city_file, "w") as f:
             json.dump(norm, f, indent=2, ensure_ascii=False)
-        
+
         city_index.append({
             "city": city_name, "slug": slug,
             "lat": coords[0], "lng": coords[1],
             "state": data.get("state", ""),
             "population": CITY_POPULATIONS.get(slug, 100000),
         })
-        
+
         tc = len(norm["tables"])
         rc = sum(len(t.get("rows", [])) for t in norm["tables"])
         print(f"  {city_name:25s} ({slug:15s})  {norm['year']}  {norm['type']:30s}  {tc} tables, {rc} rows  [workspace-only]")
-    
+
     # 5. Sort index alphabetically and write
     city_index.sort(key=lambda c: c["city"])
     index_path = output_dir / "cities_index.json"
     with open(index_path, "w") as f:
         json.dump(city_index, f, indent=2, ensure_ascii=False)
-    
+
     print(f"\n✅ Written {len(city_index)} cities to {output_dir}")
     print(f"   Index: {index_path}")
-    
+
     # 6. List per-city files
     files = sorted(output_dir.glob("*.json"))
     print(f"   Per-city files: {len(files)}")

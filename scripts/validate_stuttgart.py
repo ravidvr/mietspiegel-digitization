@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Validate stuttgart.json against schema and PDF values."""
-import json, jsonschema
+import json
+
+import jsonschema
 
 with open('docs/schema.json') as f:
     schema = json.load(f)
@@ -47,7 +49,7 @@ for v in values:
     if abs(base - expected) > 0.005:
         errors.append(f'MISMATCH {key}: got={base}, pdf={expected}')
 assert not errors, f'PDF value mismatches: {errors}'
-print(f'PDF values: 24/24 correct')
+print('PDF values: 24/24 correct')
 
 src = data['source']
 city = data['city']
