@@ -25,3 +25,5 @@ data/processed/
 
 # Large geojson files
 docs/data/germany-kreise.geojson
+.coverage
+.pytest_cache/
