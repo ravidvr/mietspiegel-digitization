@@ -1,0 +1,135 @@
+{
+  "insight": "gut_spread",
+  "description": "Gut/einfach rent ratio per city (rent inequality)",
+  "cities": 16,
+  "data": [
+    {
+      "city": "Essen",
+      "slug": "essen",
+      "gut_rent": 14.75,
+      "einfach_rent": 6.7,
+      "spread_ratio": 2.2,
+      "spread_eur": 8.05
+    },
+    {
+      "city": "Bremen",
+      "slug": "bremen",
+      "gut_rent": 15.3,
+      "einfach_rent": 7.5,
+      "spread_ratio": 2.04,
+      "spread_eur": 7.8
+    },
+    {
+      "city": "Frankfurt am Main",
+      "slug": "frankfurt",
+      "gut_rent": 15.56,
+      "einfach_rent": 9.5,
+      "spread_ratio": 1.64,
+      "spread_eur": 6.06
+    },
+    {
+      "city": "Leipzig",
+      "slug": "leipzig",
+      "gut_rent": 11.17,
+      "einfach_rent": 6.82,
+      "spread_ratio": 1.64,
+      "spread_eur": 4.35
+    },
+    {
+      "city": "D\u00fcsseldorf",
+      "slug": "duesseldorf",
+      "gut_rent": 14.43,
+      "einfach_rent": 8.86,
+      "spread_ratio": 1.63,
+      "spread_eur": 5.57
+    },
+    {
+      "city": "Berlin",
+      "slug": "berlin",
+      "gut_rent": 14.07,
+      "einfach_rent": 8.68,
+      "spread_ratio": 1.62,
+      "spread_eur": 5.39
+    },
+    {
+      "city": "Hannover",
+      "slug": "hannover",
+      "gut_rent": 12.85,
+      "einfach_rent": 7.91,
+      "spread_ratio": 1.62,
+      "spread_eur": 4.94
+    },
+    {
+      "city": "K\u00f6ln",
+      "slug": "koeln",
+      "gut_rent": 17.26,
+      "einfach_rent": 11.74,
+      "spread_ratio": 1.47,
+      "spread_eur": 5.52
+    },
+    {
+      "city": "Hamburg",
+      "slug": "hamburg",
+      "gut_rent": 17.66,
+      "einfach_rent": 12.06,
+      "spread_ratio": 1.46,
+      "spread_eur": 5.6
+    },
+    {
+      "city": "Stuttgart",
+      "slug": "stuttgart",
+      "gut_rent": 18.18,
+      "einfach_rent": 12.42,
+      "spread_ratio": 1.46,
+      "spread_eur": 5.76
+    },
+    {
+      "city": "M\u00fcnchen",
+      "slug": "muenchen",
+      "gut_rent": 24.2,
+      "einfach_rent": 16.74,
+      "spread_ratio": 1.45,
+      "spread_eur": 7.46
+    },
+    {
+      "city": "Rostock",
+      "slug": "rostock",
+      "gut_rent": 9.56,
+      "einfach_rent": 7.79,
+      "spread_ratio": 1.23,
+      "spread_eur": 1.77
+    },
+    {
+      "city": "Kiel",
+      "slug": "kiel",
+      "gut_rent": 9.33,
+      "einfach_rent": 7.93,
+      "spread_ratio": 1.18,
+      "spread_eur": 1.4
+    },
+    {
+      "city": "Bonn",
+      "slug": "bonn",
+      "gut_rent": 10.48,
+      "einfach_rent": 9.42,
+      "spread_ratio": 1.11,
+      "spread_eur": 1.06
+    },
+    {
+      "city": "L\u00fcbeck",
+      "slug": "luebeck",
+      "gut_rent": 10.0,
+      "einfach_rent": 9.09,
+      "spread_ratio": 1.1,
+      "spread_eur": 0.91
+    },
+    {
+      "city": "Dresden",
+      "slug": "dresden",
+      "gut_rent": 7.86,
+      "einfach_rent": 7.48,
+      "spread_ratio": 1.05,
+      "spread_eur": 0.38
+    }
+  ]
+}

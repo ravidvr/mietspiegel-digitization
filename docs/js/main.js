@@ -5,6 +5,34 @@ import { buildHeatmap, loadDistrictOverlay, buildDistrictLabels, setupClickHandl
 import { renderComparison } from './district.js';
 import { dismissWelcome } from './welcome.js';
 
+// ─── Tab switching ────────────────────────────────────────────
+window.switchTab = async function(tab) {
+  const mapEl = document.getElementById('map').parentElement;
+  const insightsPanel = document.getElementById('insights-panel');
+  const searchbar = document.querySelector('.searchbar');
+  const fbar = document.querySelector('.fbar');
+
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.tab-btn[onclick*="${tab}"]`)?.classList.add('active');
+
+  if (tab === 'map') {
+    mapEl.style.display = '';
+    insightsPanel.style.display = 'none';
+    if (searchbar) searchbar.style.display = '';
+    if (fbar) fbar.style.display = '';
+    S.map?.invalidateSize();
+  } else {
+    mapEl.style.display = 'none';
+    if (searchbar) searchbar.style.display = 'none';
+    if (fbar) fbar.style.display = 'none';
+    insightsPanel.style.display = 'block';
+    const { loadInsights, renderInsightCharts } = await import('./insights.js');
+    await loadInsights();
+    // Wait for DOM to settle, then render charts
+    setTimeout(renderInsightCharts, 100);
+  }
+};
+
 // ─── Init ─────────────────────────────────────────────────────
 async function init() {
   document.getElementById('p-compare').innerHTML = '<div class="es">⏳ Loading data...</div>';

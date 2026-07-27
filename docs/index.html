@@ -15,6 +15,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css"
       integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <link rel="stylesheet" href="css/main.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.7/chart.umd.min.js"
+        integrity="sha256-1xvj5TN1m7TdpHQCKMcRKnQWwVIGS4dp1C+d4tHDeJU=" crossorigin=""></script>
 </head>
 <body>
 <div class="mo" id="welcome" onclick="if(event.target===this)dismissWelcome()">
@@ -41,6 +43,10 @@
     <a class="h-btn" href="historical_trends.html" aria-label="Historical rent trends">📈 Trends</a>
     <a class="h-btn" href="about.html" data-i18n="about" aria-label="About this project">About</a>
   </div>
+</div>
+<div class="tab-bar" id="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('map')">🗺️ Map</button>
+  <button class="tab-btn" onclick="switchTab('insights')">📊 Insights</button>
 </div>
 <div class="searchbar">
   <div class="search-wrap">
@@ -79,6 +85,7 @@
     <div class="sc" id="p-compare"></div>
   </div>
 </div>
+<div class="insights-panel" id="insights-panel" style="display:none"></div>
 <div style="text-align:center;padding:10px;font-size:11px;color:var(--text-dim);border-top:1px solid var(--border);background:var(--surface)">
   <a href="data/processed/berlin_immoscout.json" style="color:var(--accent);text-decoration:none" target="_blank" data-i18n="source_data">Source Data</a> ·
   <a href="cross-city-comparison.html" style="color:var(--accent);text-decoration:none">📊 Compare</a> ·
@@ -86,6 +93,7 @@
   <a href="about.html" style="color:var(--accent);text-decoration:none" data-i18n="about">About</a> ·
   <a href="https://github.com/ravidvr/mietspiegel-digitization" style="color:var(--accent);text-decoration:none" target="_blank">GitHub</a> ·
   <span>CC BY-SA 4.0 · REDX: DOI 10.7807/IMMO:REDX:PUF:V16 · Zensus: dl-de/by-2.0</span>
+  <span style="margin-left:8px;font-size:10px;color:var(--text-dim)">· Powered by <a href="https://github.com/ravidvr/mietspiegel-digitization/blob/main/analytics/bigquery_schema.sql" style="color:var(--accent)">BigQuery</a> + <a href="https://github.com/ravidvr/mietspiegel-digitization/blob/main/analytics/looker_mietspiegel.model.lkml" style="color:var(--accent)">Looker</a></span>
   <span style="margin-left:12px;font-size:10px;color:var(--text-dim)" id="data-freshness"></span>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"

@@ -1,0 +1,127 @@
+{
+  "insight": "district_premium",
+  "description": "Immoscout market rent vs Mietspiegel official rent per Berlin Bezirk",
+  "districts": 12,
+  "data": [
+    {
+      "district": "Neuk\u00f6lln",
+      "market_rent": 9.79,
+      "official_rent": 11.73,
+      "premium_pct": -16.5,
+      "gap_pct": -9.3,
+      "einfach_pct": 63.7,
+      "mittel_pct": 36.3,
+      "gut_pct": 0.0
+    },
+    {
+      "district": "Treptow-K\u00f6penick",
+      "market_rent": 10.54,
+      "official_rent": 11.73,
+      "premium_pct": -10.1,
+      "gap_pct": -2.3,
+      "einfach_pct": 43.0,
+      "mittel_pct": 51.9,
+      "gut_pct": 5.1
+    },
+    {
+      "district": "Spandau",
+      "market_rent": 10.6,
+      "official_rent": 11.73,
+      "premium_pct": -9.6,
+      "gap_pct": -1.8,
+      "einfach_pct": 47.5,
+      "mittel_pct": 38.7,
+      "gut_pct": 13.7
+    },
+    {
+      "district": "Lichtenberg",
+      "market_rent": 10.82,
+      "official_rent": 11.73,
+      "premium_pct": -7.8,
+      "gap_pct": 0.3,
+      "einfach_pct": 34.5,
+      "mittel_pct": 59.5,
+      "gut_pct": 6.0
+    },
+    {
+      "district": "Reinickendorf",
+      "market_rent": 11.08,
+      "official_rent": 11.73,
+      "premium_pct": -5.5,
+      "gap_pct": 2.7,
+      "einfach_pct": 35.7,
+      "mittel_pct": 45.3,
+      "gut_pct": 19.0
+    },
+    {
+      "district": "Mitte",
+      "market_rent": 11.09,
+      "official_rent": 11.73,
+      "premium_pct": -5.5,
+      "gap_pct": 2.8,
+      "einfach_pct": 49.6,
+      "mittel_pct": 13.1,
+      "gut_pct": 37.3
+    },
+    {
+      "district": "Tempelhof-Sch\u00f6neberg",
+      "market_rent": 11.1,
+      "official_rent": 11.73,
+      "premium_pct": -5.4,
+      "gap_pct": 2.9,
+      "einfach_pct": 27.8,
+      "mittel_pct": 62.9,
+      "gut_pct": 9.3
+    },
+    {
+      "district": "Marzahn-Hellersdorf",
+      "market_rent": 11.7,
+      "official_rent": 11.73,
+      "premium_pct": -0.3,
+      "gap_pct": 8.4,
+      "einfach_pct": 20.1,
+      "mittel_pct": 54.9,
+      "gut_pct": 25.0
+    },
+    {
+      "district": "Friedrichshain-Kreuzberg",
+      "market_rent": 11.71,
+      "official_rent": 11.73,
+      "premium_pct": -0.2,
+      "gap_pct": 8.5,
+      "einfach_pct": 27.5,
+      "mittel_pct": 37.3,
+      "gut_pct": 35.2
+    },
+    {
+      "district": "Pankow",
+      "market_rent": 11.76,
+      "official_rent": 11.73,
+      "premium_pct": 0.3,
+      "gap_pct": 9.0,
+      "einfach_pct": 10.8,
+      "mittel_pct": 73.9,
+      "gut_pct": 15.3
+    },
+    {
+      "district": "Steglitz-Zehlendorf",
+      "market_rent": 12.78,
+      "official_rent": 11.73,
+      "premium_pct": 9.0,
+      "gap_pct": 18.4,
+      "einfach_pct": 1.4,
+      "mittel_pct": 51.9,
+      "gut_pct": 46.7
+    },
+    {
+      "district": "Charlottenburg-Wilmersdorf",
+      "market_rent": 12.8,
+      "official_rent": 11.73,
+      "premium_pct": 9.1,
+      "gap_pct": 18.6,
+      "einfach_pct": 9.5,
+      "mittel_pct": 32.5,
+      "gut_pct": 58.0
+    }
+  ]
+}

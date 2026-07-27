@@ -1,0 +1,159 @@
+{
+  "insight": "city_rankings",
+  "description": "All cities ranked by average rent (mittel, 40-60m\u00b2)",
+  "cities": 19,
+  "data": [
+    {
+      "city": "M\u00fcnchen",
+      "slug": "muenchen",
+      "state": "Bayern",
+      "avg_rent": 19.86,
+      "population": 1500000,
+      "year": 2025
+    },
+    {
+      "city": "Stuttgart",
+      "slug": "stuttgart",
+      "state": "Baden-W\u00fcrttemberg",
+      "avg_rent": 14.98,
+      "population": 630000,
+      "year": 2024
+    },
+    {
+      "city": "Hamburg",
+      "slug": "hamburg",
+      "state": "Hamburg",
+      "avg_rent": 14.52,
+      "population": 1900000,
+      "year": 2024
+    },
+    {
+      "city": "K\u00f6ln",
+      "slug": "koeln",
+      "state": "Nordrhein-Westfalen",
+      "avg_rent": 14.16,
+      "population": 1100000,
+      "year": 2024
+    },
+    {
+      "city": "Freiburg im Breisgau",
+      "slug": "freiburg",
+      "state": "Baden-W\u00fcrttemberg",
+      "avg_rent": 13.36,
+      "population": 100000,
+      "year": 2024
+    },
+    {
+      "city": "Frankfurt am Main",
+      "slug": "frankfurt",
+      "state": "Hessen",
+      "avg_rent": 12.97,
+      "population": 760000,
+      "year": 2024
+    },
+    {
+      "city": "N\u00fcrnberg",
+      "slug": "nuernberg",
+      "state": "Bayern",
+      "avg_rent": 12.24,
+      "population": 520000,
+      "year": 2024
+    },
+    {
+      "city": "D\u00fcsseldorf",
+      "slug": "duesseldorf",
+      "state": "Nordrhein-Westfalen",
+      "avg_rent": 12.02,
+      "population": 620000,
+      "year": 2024
+    },
+    {
+      "city": "Berlin",
+      "slug": "berlin",
+      "state": "Berlin",
+      "avg_rent": 11.73,
+      "population": 3700000,
+      "year": 2024
+    },
+    {
+      "city": "Bremen",
+      "slug": "bremen",
+      "state": "Bremen",
+      "avg_rent": 11.42,
+      "population": 100000,
+      "year": 2024
+    },
+    {
+      "city": "Mainz",
+      "slug": "mainz",
+      "state": "Rheinland-Pfalz",
+      "avg_rent": 11.41,
+      "population": 220000,
+      "year": 2025
+    },
+    {
+      "city": "Augsburg",
+      "slug": "augsburg",
+      "state": "Bayern",
+      "avg_rent": 11.24,
+      "population": 300000,
+      "year": 2025
+    },
+    {
+      "city": "Hannover",
+      "slug": "hannover",
+      "state": "Niedersachsen",
+      "avg_rent": 10.71,
+      "population": 540000,
+      "year": 2024
+    },
+    {
+      "city": "Essen",
+      "slug": "essen",
+      "state": "Nordrhein-Westfalen",
+      "avg_rent": 10.22,
+      "population": 100000,
+      "year": 2024
+    },
+    {
+      "city": "Bonn",
+      "slug": "bonn",
+      "state": "Nordrhein-Westfalen",
+      "avg_rent": 10.08,
+      "population": 330000,
+      "year": 2026
+    },
+    {
+      "city": "L\u00fcbeck",
+      "slug": "luebeck",
+      "state": "Schleswig-Holstein",
+      "avg_rent": 9.56,
+      "population": 216000,
+      "year": 2025
+    },
+    {
+      "city": "Leipzig",
+      "slug": "leipzig",
+      "state": "Sachsen",
+      "avg_rent": 9.31,
+      "population": 600000,
+      "year": 2024
+    },
+    {
+      "city": "Rostock",
+      "slug": "rostock",
+      "state": "Mecklenburg-Vorpommern",
+      "avg_rent": 8.68,
+      "population": 209000,
+      "year": 2026
+    },
+    {
+      "city": "Dresden",
+      "slug": "dresden",
+      "state": "Sachsen",
+      "avg_rent": 7.63,
+      "population": 556000,
+      "year": 2025
+    }
+  ]
+}
