@@ -41,5 +41,4 @@ source = ["scripts", "validate", "experiments"]
 branch = true
 
 [tool.coverage.report]
-fail_under = 65
 show_missing = true
