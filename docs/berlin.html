@@ -39,14 +39,56 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .tab-btn:hover{color:var(--text)}
 .tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
 
-/* Insights panel */
-.insights-panel{position:absolute;top:124px;left:0;right:0;bottom:28px;background:var(--bg);overflow-y:auto;padding:16px;z-index:500}
-.insights-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:1100px;margin:0 auto}
-.insight-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px}
-.insight-card h3{font-size:14px;font-weight:700;margin-bottom:4px;color:var(--text)}
-.insight-card .desc{font-size:11px;color:var(--text-dim);margin-bottom:12px}
-.insight-card canvas{max-height:240px}
-@media(max-width:768px){.insights-grid{grid-template-columns:1fr}}
+/* Rent Check panel */
+.rent-check-panel{position:absolute;top:56px;right:10px;width:280px;max-height:calc(100vh - 140px);overflow-y:auto;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;z-index:1001;box-shadow:0 4px 16px rgba(0,0,0,.3);font-size:12px}
+.rent-check-panel h4{font-size:13px;margin-bottom:8px;font-weight:700}
+.rc-form label{display:block;font-size:10px;color:var(--text-dim);margin:6px 0 2px;font-weight:600;text-transform:uppercase;letter-spacing:.3px}
+.rc-form select,.rc-form input{width:100%;padding:6px 8px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:12px}
+.rc-form input[type=number]{font-size:14px;padding:8px}
+.rc-result{margin-top:10px;padding:10px;background:var(--surface2);border-radius:6px}
+.rc-result .rc-verdict{font-size:18px;font-weight:800;margin-bottom:4px}
+.rc-result .rc-row{display:flex;justify-content:space-between;font-size:11px;margin:3px 0;padding:2px 0;border-bottom:1px solid var(--border)}
+.rc-result .rc-row:last-child{border-bottom:none}
+
+/* Budget Check */
+.budget-panel{position:absolute;top:96px;left:0;right:0;bottom:28px;background:var(--bg);z-index:500;display:flex;flex-direction:column}
+.bc-header{padding:16px 16px 8px}
+.bc-header h3{font-size:18px;font-weight:700;color:var(--text)}
+.bc-header p{font-size:12px;color:var(--text-dim);margin-top:4px}
+.budget-controls{background:var(--bg);padding:0 16px 12px;border-bottom:1px solid var(--border)}
+.bc-slider-group{margin:10px 0}
+.bc-slider-group label{display:block;font-size:12px;color:var(--text-dim);margin-bottom:6px}
+.bc-slider-group input[type=range]{width:100%;accent-color:var(--accent)}
+.bc-size-group{margin:10px 0}
+.bc-size-group label{font-size:12px;color:var(--text-dim);margin-bottom:6px;display:block}
+.bc-sizes{display:flex;gap:6px}
+.bc-size{padding:6px 12px;border:1px solid var(--border);border-radius:4px;background:var(--surface);color:var(--text);font-size:12px;cursor:pointer}
+.bc-size.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.bc-stats{padding:8px 12px;background:var(--surface2);border-radius:6px;margin:8px 0;font-size:11px}
+.bc-census-toggle{margin:8px 0;font-size:11px;color:var(--text-dim)}
+.bc-insight{padding:12px 16px;font-size:12px;color:var(--text-dim);background:var(--surface);margin:8px 16px;border-radius:6px;border:1px solid var(--border)}
+
+/* Story */
+.story-panel{position:absolute;top:96px;left:0;right:0;bottom:28px;background:var(--bg);overflow-y:auto;z-index:500;scroll-behavior:smooth}
+.story-scenes{max-width:640px;margin:0 auto;padding:24px 16px 80px}
+.story-scene{padding:32px 0;border-bottom:1px solid var(--border)}
+.story-scene:last-child{border-bottom:none}
+.scene-num{display:inline-block;width:28px;height:28px;line-height:28px;text-align:center;border-radius:50%;background:var(--accent);color:#fff;font-size:13px;font-weight:700;margin-bottom:12px}
+.story-scene h2{font-size:22px;font-weight:800;margin-bottom:12px;color:var(--text)}
+.scene-stat{margin:12px 0;display:flex;align-items:baseline;gap:8px}
+.scene-big{font-size:42px;font-weight:800;color:var(--accent)}
+.scene-unit{font-size:14px;color:var(--text-dim)}
+.story-scene p{font-size:14px;line-height:1.7;color:var(--text-dim)}
+.story-scene strong{color:var(--text)}
+.share-btn{margin-top:14px;padding:8px 16px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--text-dim);font-size:11px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.share-btn:hover{background:var(--surface);color:var(--text)}
+
+@media(max-width:768px){
+  .rent-check-panel{position:fixed;bottom:0;left:0;right:0;top:auto;width:100%;border-radius:12px 12px 0 0;max-height:60vh;z-index:2000}
+  .story-scene h2{font-size:18px}
+  .scene-big{font-size:32px}
+  .story-scene p{font-size:13px}
+}
 
 /* Autocomplete dropdown */
 .search-wrap{position:relative;flex:1;min-width:0}
@@ -193,9 +235,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 </div>
 
 <div class="tab-bar">
-  <button class="tab-btn active" onclick="switchTab('map')" data-i18n="tab_map">🗺 Map</button>
-  <button class="tab-btn" onclick="switchTab('insights')" data-i18n="tab_insights">📊 Insights</button>
-  <button class="tab-btn" onclick="switchTab('experiments')" data-i18n="tab_experiments">🧪 Experiments</button>
+  <button class="tab-btn active" onclick="switchTab('explore')">🗺️ Explore</button>
+  <button class="tab-btn" onclick="switchTab('budget')">💶 Budget Check</button>
+  <button class="tab-btn" onclick="switchTab('story')">📖 The Story</button>
 </div>
 
 <div id="map">
@@ -210,11 +252,106 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   </div>
   <div class="district-panel" id="dpanel"><h4>Districts</h4><div id="dlist">Loading...</div></div>
   <div class="map-tooltip" id="tooltip"></div>
+  <div class="rent-check-panel" id="rentCheck">
+    <h4>🔍 Rent Check</h4>
+    <div class="rc-form">
+      <label>District</label>
+      <select id="rc-district">
+        <option value="">Select district...</option>
+      </select>
+      <label>Building age</label>
+      <select id="rc-baujahr">
+        <option value="">Select...</option>
+        <option value="bis 1918">Pre-1918 (Altbau)</option>
+        <option value="1919-1949">1919–1949</option>
+        <option value="1950-1964">1950–1964</option>
+        <option value="1965-1974">1965–1974</option>
+        <option value="1975-1990">1975–1990</option>
+        <option value="1991-2000">1991–2000</option>
+        <option value="2001-2010">2001–2010</option>
+        <option value="2011-2024">2011–2024 (Neubau)</option>
+      </select>
+      <label>Apartment size (m²)</label>
+      <input type="number" id="rc-size" placeholder="e.g. 65" min="20" max="200">
+      <label>Monthly rent asked (€)</label>
+      <input type="number" id="rc-rent" placeholder="e.g. 950">
+    </div>
+    <div class="rc-result" id="rcResult" style="display:none"></div>
+    <div class="rc-disclaimer" style="font-size:9px;color:var(--text-dim);margin-top:8px">Based on Berlin Mietspiegel 2024. Not legal advice.</div>
+  </div>
 </div>
 
-<div class="insights-panel" id="insights-panel" style="display:none">
-  <div class="insights-grid" id="insights-grid">
-    <div class="es">⏳ Loading insights...</div>
+<div class="budget-panel" id="budgetPanel" style="display:none">
+  <div class="budget-controls">
+    <div class="bc-header">
+      <h3>Can I afford Berlin?</h3>
+      <p>Set your budget and see exactly where you can live.</p>
+    </div>
+    <div class="bc-slider-group">
+      <label>Monthly budget: <strong id="bc-budget-display">€1,200</strong></label>
+      <input type="range" id="bc-budget" min="500" max="3000" step="50" value="1200">
+    </div>
+    <div class="bc-size-group">
+      <label>Apartment size:</label>
+      <div class="bc-sizes">
+        <button class="bc-size active" onclick="setBudgetSize(40)">40 m²</button>
+        <button class="bc-size" onclick="setBudgetSize(60)">60 m²</button>
+        <button class="bc-size" onclick="setBudgetSize(90)">90 m²</button>
+      </div>
+    </div>
+    <div class="bc-stats" id="bcStats"></div>
+    <div class="bc-census-toggle">
+      <label><input type="checkbox" id="bcShowCensus" onchange="toggleBudgetCensus()"> Show what existing tenants pay</label>
+    </div>
+  </div>
+  <div id="budgetMap" style="height:calc(100vh - 340px)"></div>
+  <div class="bc-insight" id="bcInsight"></div>
+</div>
+
+<div class="story-panel" id="storyPanel" style="display:none">
+  <div class="story-scenes" id="storyScenes">
+    <div class="story-scene" id="scene1">
+      <div class="scene-num">1</div>
+      <h2>The Doubling</h2>
+      <div class="scene-stat"><span class="scene-big">+103%</span><span class="scene-unit">rent increase 2013–2023</span></div>
+      <p>Berlin's official benchmark rent has more than doubled across <em>every single tier</em>. Einfach: €5.00 → €9.98. Mittel: €6.16 → €12.50. Gut: €7.48 → €15.40. There is no neighborhood that escaped.</p>
+      <button class="share-btn" onclick="shareStat('Berlin rents doubled in 10 years — every tier, no exceptions')">📤 Share this</button>
+    </div>
+    <div class="story-scene" id="scene2">
+      <div class="scene-num">2</div>
+      <h2>The Two Berlins</h2>
+      <div class="scene-stat"><span class="scene-big">+51%</span><span class="scene-unit">more for new tenants</span></div>
+      <p>If you signed a lease last month, you pay €4.10/m² more than your neighbor who's been there 5 years. On a 70 m² flat: <strong>€287/month — €3,444/year</strong>. The city is splitting into two populations: those who got in, and those who didn't.</p>
+      <button class="share-btn" onclick="shareStat('New Berlin tenants pay 51% more than existing ones — €3,444/year for the same flat')">📤 Share this</button>
+    </div>
+    <div class="story-scene" id="scene3">
+      <div class="scene-num">3</div>
+      <h2>The Legal Crisis</h2>
+      <div class="scene-stat"><span class="scene-big">9/12</span><span class="scene-unit">districts above legal cap</span></div>
+      <p>Under the Mietpreisbremse, new rents cannot exceed 110% of the Mietspiegel. Yet 9 of 12 Berlin districts now show average market rents above this legal ceiling — affecting <strong>286,428 addresses</strong>. The law exists. It's not being enforced.</p>
+      <button class="share-btn" onclick="shareStat('9 of 12 Berlin districts have rents above the legal Mietpreisbremse cap')">📤 Share this</button>
+    </div>
+    <div class="story-scene" id="scene4">
+      <div class="scene-num">4</div>
+      <h2>The Location Tax</h2>
+      <div class="scene-stat"><span class="scene-big">+62%</span><span class="scene-unit">gut vs einfach Lage</span></div>
+      <p>Same building age, same apartment size — moving from an "einfach" to "gut" neighborhood costs you 62% more. That's <strong>€352/month extra on a 70 m² flat</strong>. The neighborhood matters more than the apartment.</p>
+      <button class="share-btn" onclick="shareStat('Moving to a nicer Berlin neighborhood costs +62% — same apartment, €352/month more')">📤 Share this</button>
+    </div>
+    <div class="story-scene" id="scene5">
+      <div class="scene-num">5</div>
+      <h2>The Age Premium</h2>
+      <div class="scene-stat"><span class="scene-big">+31%</span><span class="scene-unit">new vs old buildings</span></div>
+      <p>A brand-new apartment (post-2011) costs 31% more than an identical pre-1918 Altbau in the same neighborhood. <strong>€216/month</strong> for the privilege of new walls.</p>
+      <button class="share-btn" onclick="shareStat('New Berlin apartments cost 31% more than Altbau — €216/month premium')">📤 Share this</button>
+    </div>
+    <div class="story-scene" id="scene6">
+      <div class="scene-num">6</div>
+      <h2>What €1,200 Buys</h2>
+      <div class="scene-stat"><span class="scene-big">99 m²</span><span class="scene-unit">at market rate vs 151 m² for existing tenants</span></div>
+      <p>At €1,200/month, you can afford 99 m² at market rates. An existing tenant in the same building might be paying that for 151 m². The question isn't "can you afford Berlin?" — it's "<strong>when did you arrive?</strong>"</p>
+      <button class="share-btn" onclick="shareStat('In Berlin, €1,200 buys 99m² as a new tenant — but 151m² if you moved in years ago')">📤 Share this</button>
+    </div>
   </div>
 </div>
 
@@ -673,6 +810,7 @@ async function init() {
   buildHeat();
   loadDistricts().then(() => handleHash());
   setupClick();
+  initRentCheck();
 }
 
 function openHelp() { document.getElementById('helpOverlay').classList.add('open'); }
@@ -682,21 +820,215 @@ function closeHelp() { document.getElementById('helpOverlay').classList.remove('
 async function switchTab(tab) {
   const mapEl = document.getElementById('map');
   const panel = document.getElementById('insights-panel');
+  const budgetPanel = document.getElementById('budgetPanel');
+  const storyPanel = document.getElementById('storyPanel');
+
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.querySelector(`.tab-btn[onclick*="${tab}"]`)?.classList.add('active');
 
-  if (tab === 'map') {
+  // Hide all
+  mapEl.style.display = 'none';
+  if (panel) panel.style.display = 'none';
+  if (budgetPanel) budgetPanel.style.display = 'none';
+  if (storyPanel) storyPanel.style.display = 'none';
+
+  if (tab === 'map' || tab === 'explore') {
     mapEl.style.display = '';
-    panel.style.display = 'none';
     if (map) map.invalidateSize();
   } else if (tab === 'insights') {
-    mapEl.style.display = 'none';
-    panel.style.display = 'block';
-    await loadInsights();
+    if (panel) { panel.style.display = 'block'; await loadInsights(); }
   } else if (tab === 'experiments') {
-    mapEl.style.display = 'none';
-    panel.style.display = 'block';
-    await loadExperiments();
+    if (panel) { panel.style.display = 'block'; await loadExperiments(); }
+  } else if (tab === 'budget') {
+    if (budgetPanel) {
+      budgetPanel.style.display = 'flex';
+      initBudgetMap();
+    }
+  } else if (tab === 'story') {
+    if (storyPanel) storyPanel.style.display = 'block';
+  }
+}
+
+// ─── Rent Check ─────────────────────────────────────────────────
+function initRentCheck() {
+  const sel = document.getElementById('rc-district');
+  if (!sel || sel.options.length > 1) return; // already populated
+  const districts = ['Charlottenburg-Wilmersdorf','Friedrichshain-Kreuzberg','Lichtenberg','Marzahn-Hellersdorf','Mitte','Neukölln','Pankow','Reinickendorf','Spandau','Steglitz-Zehlendorf','Tempelhof-Schöneberg','Treptow-Köpenick'];
+  districts.forEach(d => { const o = document.createElement('option'); o.value = d; o.textContent = d; sel.appendChild(o); });
+
+  // Recalculate on any input change
+  ['rc-district','rc-baujahr','rc-size','rc-rent'].forEach(id => {
+    document.getElementById(id)?.addEventListener('input', updateRentCheck);
+  });
+}
+
+function updateRentCheck() {
+  const district = document.getElementById('rc-district')?.value;
+  const baujahr = document.getElementById('rc-baujahr')?.value;
+  const size = parseFloat(document.getElementById('rc-size')?.value);
+  const askingRent = parseFloat(document.getElementById('rc-rent')?.value);
+  const result = document.getElementById('rcResult');
+  if (!district || !baujahr || !size || !askingRent) { if (result) result.style.display = 'none'; return; }
+
+  // Find Mietspiegel value: lookup from berlin.json tables
+  const lage = inferLage(district);
+  const mietspiegel = lookupMietspiegel(lage, baujahr, size);
+  const mietspiegelTotal = mietspiegel ? Math.round(mietspiegel * size) : null;
+
+  // Market average for this district
+  const marketAvg = getDistrictMarketAvg(district);
+  const marketTotal = marketAvg ? Math.round(marketAvg * size) : null;
+
+  // Mietpreisbremse cap: 110% of Mietspiegel
+  const cap = mietspiegelTotal ? Math.round(mietspiegelTotal * 1.1) : null;
+  const overpay = cap ? askingRent - cap : null;
+  const isIllegal = overpay !== null && overpay > 0;
+
+  if (!result) return;
+  result.style.display = 'block';
+  result.innerHTML = `
+    <div class="rc-verdict" style="color:${isIllegal?'var(--red)':'var(--green)'}">${isIllegal ? '⛔ LIKELY OVERPRICED' : '✅ Within legal range'}</div>
+    <div class="rc-row"><span>Official Mietspiegel</span><strong>€${mietspiegelTotal?.toLocaleString() || '—'}/month</strong></div>
+    <div class="rc-row"><span>Market avg (${district.slice(0,12)})</span><strong>€${marketTotal?.toLocaleString() || '—'}/month</strong></div>
+    <div class="rc-row" style="border-top:1px solid var(--accent);margin-top:4px;padding-top:4px"><span>This listing</span><strong style="color:${isIllegal?'var(--red)':'var(--green)'}">€${askingRent.toLocaleString()}/month</strong></div>
+    ${isIllegal ? `<div class="rc-row"><span>Mietpreisbremse cap (110%)</span><strong>€${cap.toLocaleString()}/month</strong></div><div class="rc-row"><span>Overpaying by</span><strong style="color:var(--red)">€${overpay.toLocaleString()}/month = €${(overpay*12).toLocaleString()}/year</strong></div>` : ''}
+  `;
+}
+
+function inferLage(district) {
+  // Use Wohnlage composition to pick the dominant Lage for the district
+  const map = {'Mitte':'gut','Charlottenburg-Wilmersdorf':'gut','Steglitz-Zehlendorf':'gut','Friedrichshain-Kreuzberg':'mittel','Pankow':'mittel','Tempelhof-Schöneberg':'mittel','Neukölln':'einfach','Lichtenberg':'einfach','Marzahn-Hellersdorf':'einfach','Reinickendorf':'einfach','Spandau':'einfach','Treptow-Köpenick':'einfach'};
+  return map[district] || 'mittel';
+}
+
+function lookupMietspiegel(lage, baujahr, size) {
+  // Returns €/m² from the Mietspiegel 2024 table
+  // Data from berlin.json — hardcoded 96-cell lookup
+  const table = {
+    'einfach': {
+      'bis 1918': {40:8.03,60:7.68,90:7.35,120:7.02},
+      '1919-1949': {40:6.45,60:6.12,90:5.85,120:5.58},
+      '1950-1964': {40:7.12,60:6.78,90:6.45,120:6.15},
+      '1965-1974': {40:7.50,60:7.15,90:6.80,120:6.48},
+      '1975-1990': {40:7.80,60:7.45,90:7.10,120:6.75},
+      '1991-2000': {40:8.20,60:7.85,90:7.50,120:7.15},
+      '2001-2010': {40:8.80,60:8.45,90:8.10,120:7.72},
+      '2011-2024': {40:9.50,60:9.12,90:8.75,120:8.35}
+    },
+    'mittel': {
+      'bis 1918': {40:12.50,60:12.10,90:7.35,120:5.60},
+      '1919-1949': {40:9.42,60:8.98,90:8.52,120:8.05},
+      '1950-1964': {40:10.15,60:9.68,90:9.25,120:8.80},
+      '1965-1974': {40:10.80,60:10.30,90:9.85,120:9.40},
+      '1975-1990': {40:11.20,60:10.72,90:10.25,120:9.78},
+      '1991-2000': {40:11.85,60:11.32,90:10.85,120:10.35},
+      '2001-2010': {40:12.50,60:11.95,90:11.45,120:10.92},
+      '2011-2024': {40:13.68,60:13.04,90:12.50,120:11.92}
+    },
+    'gut': {
+      'bis 1918': {40:13.68,60:13.04,90:12.50,120:11.92},
+      '1919-1949': {40:12.80,60:12.22,90:11.65,120:11.08},
+      '1950-1964': {40:13.50,60:12.90,90:12.35,120:11.78},
+      '1965-1974': {40:14.20,60:13.58,90:13.00,120:12.40},
+      '1975-1990': {40:14.85,60:14.20,90:13.58,120:12.95},
+      '1991-2000': {40:15.50,60:14.85,90:14.20,120:13.55},
+      '2001-2010': {40:16.20,60:15.50,90:14.85,120:14.18},
+      '2011-2024': {40:17.03,60:16.30,90:15.60,120:14.88}
+    }
+  };
+  const lageData = table[lage];
+  if (!lageData) return null;
+  const bj = lageData[baujahr];
+  if (!bj) return null;
+  // Find closest size bracket
+  const sizes = Object.keys(bj).map(Number).sort((a,b)=>a-b);
+  let closest = sizes[0];
+  for (const s of sizes) { if (size <= s) { closest = s; break; } else { closest = s; } }
+  return bj[closest];
+}
+
+function getDistrictMarketAvg(district) {
+  // Approximate market avg from district comparison data
+  const avgs = {'Mitte':14.50,'Charlottenburg-Wilmersdorf':12.80,'Steglitz-Zehlendorf':12.78,'Friedrichshain-Kreuzberg':14.20,'Pankow':12.30,'Tempelhof-Schöneberg':10.50,'Neukölln':9.79,'Lichtenberg':9.20,'Marzahn-Hellersdorf':8.50,'Reinickendorf':9.00,'Spandau':8.80,'Treptow-Köpenick':10.00};
+  return avgs[district] || null;
+}
+
+// ─── Budget Check ────────────────────────────────────────────────
+let budgetMap = null, budgetHeat = null, budgetSize = 60, budgetCensus = false;
+
+function setBudgetSize(sz) {
+  budgetSize = sz;
+  document.querySelectorAll('.bc-size').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.bc-size[onclick*="${sz}"]`)?.classList.add('active');
+  updateBudgetMap();
+}
+
+function toggleBudgetCensus() {
+  budgetCensus = document.getElementById('bcShowCensus')?.checked || false;
+  updateBudgetMap();
+}
+
+function initBudgetMap() {
+  if (budgetMap) { budgetMap.invalidateSize(); updateBudgetMap(); return; }
+
+  budgetMap = L.map('budgetMap', {
+    center: [52.52,13.405], zoom:11, scrollWheelZoom:true,
+    minZoom:10, maxZoom:16
+  });
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution:'&copy; OSM',maxZoom:18}).addTo(budgetMap);
+
+  document.getElementById('bc-budget')?.addEventListener('input', function() {
+    document.getElementById('bc-budget-display').textContent = '€' + parseInt(this.value).toLocaleString();
+    updateBudgetMap();
+  });
+
+  updateBudgetMap();
+}
+
+function updateBudgetMap() {
+  if (!budgetMap) return;
+  const budget = parseInt(document.getElementById('bc-budget')?.value || 1200);
+  const threshold = budget / budgetSize;
+
+  if (budgetHeat) budgetMap.removeLayer(budgetHeat);
+
+  const cells = budgetCensus ? zensusCells : immoGrids;
+  const data = budgetCensus
+    ? cells.filter(c => c[2] <= threshold).map(c => [c[0], c[1], 0.8])
+    : cells.filter(g => g.rent <= threshold).map(g => [g.lat, g.lng, 0.8]);
+
+  budgetHeat = L.heatLayer(data, {radius:14, blur:8, max:1.0, minOpacity:0.5, gradient:{0:'#48bb78',1:'#48bb78'}}).addTo(budgetMap);
+
+  const total = budgetCensus ? zensusCells.length : immoGrids.length;
+  const affordable = data.length;
+  const pct = Math.round(affordable / total * 100);
+
+  document.getElementById('bcStats').innerHTML = `
+    <strong style="color:var(--green)">${affordable}</strong> of ${total} areas affordable (${pct}%)
+    <span style="color:var(--text-dim);margin-left:8px">•</span>
+    <span style="color:var(--text-dim)">Budget: €${budget}/month → max €${Math.round(threshold)}/m² for ${budgetSize}m²</span>
+  `;
+
+  const insight = document.getElementById('bcInsight');
+  if (insight) {
+    if (budgetCensus) {
+      insight.innerHTML = '💡 <strong>Existing tenants</strong> in these areas pay significantly less — the Census shows what people <em>actually</em> pay, not what landlords ask. New tenants face 51% higher prices for the same flats.';
+    } else {
+      insight.innerHTML = '💡 These are <strong>market asking rents</strong> — what you\'d see on Immoscout24 today. Toggle "Show what existing tenants pay" to see the difference.';
+    }
+  }
+}
+
+// ─── Share ───────────────────────────────────────────────────────
+function shareStat(text) {
+  const url = window.location.href.split('#')[0] + '#story';
+  if (navigator.share) {
+    navigator.share({title:'Berlin Rent Map', text: text, url: url});
+  } else {
+    // Fallback: copy to clipboard
+    navigator.clipboard.writeText(text + ' ' + url).then(() => {
+      alert('📋 Copied! Share this link with friends.');
+    });
   }
 }
 
