@@ -69,6 +69,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .bc-insight{padding:12px 16px;font-size:12px;color:var(--text-dim);background:var(--surface);margin:8px 16px;border-radius:6px;border:1px solid var(--border)}
 
 /* Story */
+.story-nav{display:flex;gap:6px;padding:16px 0 0;max-width:640px;margin:0 auto}
+.sn-btn{padding:6px 14px;border:1px solid var(--border);border-radius:6px;background:var(--surface);color:var(--text-dim);font-size:12px;cursor:pointer;min-height:36px}
+.sn-btn:hover{background:var(--surface2);color:var(--text)}
 .story-panel{position:absolute;top:96px;left:0;right:0;bottom:28px;background:var(--bg);overflow-y:auto;z-index:500;scroll-behavior:smooth}
 .story-scenes{max-width:640px;margin:0 auto;padding:24px 16px 80px}
 .story-scene{padding:32px 0;border-bottom:1px solid var(--border)}
@@ -288,7 +291,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   <h1>🏠 Berlin <span>Rent Map</span></h1>
   <div class="h-right">
     <span class="bdg" id="cell-count">...</span>
-    <button class="h-btn" id="zensus-btn" onclick="toggleSource()">📋 Census</button>
+    <button class="h-btn lang-btn" onclick="toggleLang()" data-i18n="lang" title="Switch language">DE</button>
+    <button class="h-btn" id="zensus-btn" onclick="toggleSource()" data-i18n="census">📋 Census</button>
     <button class="h-btn" onclick="openHelp()" title="How to use this map">❓ Help</button>
     <a class="h-btn" href="cross-city-comparison.html">📊 Compare</a>
     <a class="h-btn" href="about.html">About</a>
@@ -297,16 +301,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 
 <div class="searchbar">
   <div class="search-wrap">
-    <input type="text" id="addr-search" placeholder="🔍 Search by address, building name, or PLZ (e.g. Brandenburger Tor, 10115, Karl-Marx-Allee 43)..." onkeydown="return handleSearchKey(event)" oninput="debouncedSuggest()" autocomplete="off">
+    <input type="text" id="addr-search" data-i18n="search_placeholder" placeholder="🔍 Search by address, building name, or PLZ (e.g. Brandenburger Tor, 10115, Karl-Marx-Allee 43)..." onkeydown="return handleSearchKey(event)" oninput="debouncedSuggest()" autocomplete="off">
     <div class="suggestions" id="suggestions"></div>
   </div>
   <button class="s-btn" onclick="selectSuggestion(-1)">📍 Search</button>
 </div>
 
 <div class="tab-bar">
-  <button class="tab-btn active" onclick="switchTab('explore')">🗺️ Map</button>
-  <button class="tab-btn" onclick="switchTab('budget')">💶 Budget Check</button>
-  <button class="tab-btn" onclick="switchTab('story')">📖 The Story</button>
+  <button class="tab-btn active" onclick="switchTab('explore')"><span data-i18n="tab_map">🗺️ Map</span></button>
+  <button class="tab-btn" onclick="switchTab('budget')"><span data-i18n="tab_budget">💶 Budget Check</span></button>
+  <button class="tab-btn" onclick="switchTab('story')"><span data-i18n="tab_story">📖 The Story</span></button>
 </div>
 
 <div id="map">
@@ -328,13 +332,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   <div class="rent-check-panel" id="rentCheck">
     <div class="rc-handle"></div>
     <button class="rc-close-btn" onclick="document.getElementById('rentCheck').style.display='none'">×</button>
-    <h4>🔍 Rent Check</h4>
+    <h4 data-i18n="rc_title">🔍 Rent Check</h4>
     <div class="rc-form">
-      <label>District</label>
+      <label data-i18n="rc_district">District</label>
       <select id="rc-district">
         <option value="">Select district...</option>
       </select>
-      <label>Building age</label>
+      <label data-i18n="rc_baujahr">Building age</label>
       <select id="rc-baujahr">
         <option value="">Select...</option>
         <option value="bis 1918">Pre-1918 (Altbau)</option>
@@ -346,9 +350,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
         <option value="2001-2010">2001–2010</option>
         <option value="2011-2024">2011–2024 (Neubau)</option>
       </select>
-      <label>Apartment size (m²)</label>
+      <label data-i18n="rc_size">Apartment size (m²)</label>
       <input type="number" id="rc-size" placeholder="e.g. 65" min="20" max="200">
-      <label>Monthly cold rent / Nettokaltmiete (€)</label>
+      <label data-i18n="rc_rent">Monthly cold rent / Nettokaltmiete (€)</label>
       <input type="number" id="rc-rent" placeholder="e.g. 950 (cold rent, excl. heating)">
     </div>
     <div class="rc-result" id="rcResult" style="display:none"></div>
@@ -359,15 +363,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 <div class="budget-panel" id="budgetPanel" style="display:none">
   <div class="budget-controls">
     <div class="bc-header">
-      <h3>Can I afford Berlin?</h3>
-      <p>Set your budget and see exactly where you can live.</p>
+      <h3 data-i18n="bc_title">Can I afford Berlin?</h3>
+      <p data-i18n="bc_subtitle">Set your budget and see exactly where you can live.</p>
     </div>
     <div class="bc-slider-group">
-      <label>Monthly budget: <strong id="bc-budget-display">€1,200</strong></label>
+      <label><span data-i18n="bc_budget_label">Monthly budget:</span> <strong id="bc-budget-display">€1,200</strong></label>
       <input type="range" id="bc-budget" min="500" max="3000" step="50" value="1200">
     </div>
     <div class="bc-size-group">
-      <label>Apartment size:</label>
+      <label data-i18n="bc_size_label">Apartment size:</label>
       <div class="bc-sizes">
         <button class="bc-size active" onclick="setBudgetSize(40)">40 m²</button>
         <button class="bc-size" onclick="setBudgetSize(60)">60 m²</button>
@@ -376,7 +380,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     </div>
     <div class="bc-stats" id="bcStats"></div>
     <div class="bc-census-toggle">
-      <label><input type="checkbox" id="bcShowCensus" onchange="toggleBudgetCensus()"> Show what existing tenants pay</label>
+      <label><input type="checkbox" id="bcShowCensus" onchange="toggleBudgetCensus()"> <span data-i18n="bc_census_toggle">Show what existing tenants pay</span></label>
     </div>
   </div>
   <div id="budgetMap" style="height:calc(100vh - 340px)"></div>
@@ -384,12 +388,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 </div>
 
 <div class="story-panel" id="storyPanel" style="display:none">
+  <div class="story-nav" id="storyNav">
+    <button class="sn-btn" onclick="switchTab('explore')" data-i18n="tab_map">🗺️ Map</button>
+    <button class="sn-btn" onclick="switchTab('budget')" data-i18n="tab_budget">💶 Budget</button>
+  </div>
   <div class="story-scenes" id="storyScenes">
     <div class="story-scene" id="scene1">
       <div class="scene-num">1</div>
-      <h2>Everything Doubled</h2>
-      <div class="scene-stat"><span class="scene-big">+103%</span><span class="scene-unit">rent increase 2013–2023</span></div>
-      <p>Berlin's official benchmark rent has more than doubled across <em>every single tier</em>. Einfach: €5.00 → €9.98. Mittel: €6.16 → €12.50. Gut: €7.48 → €15.40. There is no neighborhood that escaped.</p>
+      <h2 data-i18n="story1_title">Everything Doubled</h2>
+      <div class="scene-stat"><span class="scene-big">+103%</span><span class="scene-unit" data-i18n="story1_stat">rent increase 2013–2023</span></div>
+      <p data-i18n="story1_text">Berlin's official benchmark rent has more than doubled across <em>every single tier</em>. Einfach: €5.00 → €9.98. Mittel: €6.16 → €12.50. Gut: €7.48 → €15.40. There is no neighborhood that escaped.</p>
       <button class="share-btn" onclick="shareStat('Everything doubled: Berlin rents +103% in 10 years across every tier')">📤 Share this</button>
     </div>
     <div class="story-scene" id="scene2">
@@ -431,19 +439,19 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 </div>
 
 <footer class="footer-bar">
-  <span>All values: net cold rent (Nettokaltmiete). Immoscout24 2023–2025</span>
+  <span data-i18n="footer_data">All values: net cold rent (Nettokaltmiete). Immoscout24 2023–2025</span>
   <span class="sep">·</span>
-  <span>Zensus 2022 census rents</span>
+  <span data-i18n="footer_zensus">Zensus 2022 census rents</span>
   <span class="sep">·</span>
-  <span>Official Mietspiegel 2024</span>
+  <span data-i18n="footer_mietspiegel">Official Mietspiegel 2024</span>
   <span class="sep">·</span>
-  <span>Last updated: 2025-07</span>
+  <span data-i18n="footer_updated">Last updated: 2025-07</span>
 </footer>
 
 <nav class="mobile-nav" id="mobileNav">
   <button class="mn-btn active" onclick="switchTab('explore')">
     <span class="mn-icon">🗺️</span>
-    <span class="mn-label">Map</span>
+    <span class="mn-label" data-i18n="tab_map">Map</span>
   </button>
   <button class="mn-btn" onclick="switchTab('budget')">
     <span class="mn-icon">💶</span>
@@ -456,6 +464,86 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 </nav>
 
 <script>
+// ─── I18N ──────────────────────────────────────────────────────
+const I18N = {
+  en: {
+    lang: 'DE', census: '📋 Census', census_on: '📋 Census ✓',
+    tab_map: '🗺️ Map', tab_budget: '💶 Budget Check', tab_story: '📖 The Story',
+    search_placeholder: '🔍 Search by address, building name, or PLZ...',
+    legend_title: '€/m² (net cold rent)',
+    rc_title: '🔍 Rent Check', rc_district: 'District', rc_baujahr: 'Building age',
+    rc_size: 'Apartment size (m²)', rc_rent: 'Monthly cold rent / Nettokaltmiete (€)',
+    bc_title: 'Can I afford Berlin?', bc_subtitle: 'Set your budget and see exactly where you can live.',
+    bc_budget_label: 'Monthly budget:', bc_size_label: 'Apartment size:',
+    bc_census_toggle: 'Show what existing tenants pay',
+    footer_data: 'All values: net cold rent (Nettokaltmiete). Immoscout24 2023–2025',
+    footer_zensus: 'Zensus 2022 census rents', footer_mietspiegel: 'Official Mietspiegel 2024',
+    footer_updated: 'Last updated: 2025-07',
+    story1_title: 'Everything Doubled', story1_stat: 'rent increase 2013–2023',
+    story1_text: "Berlin's official benchmark rent has more than doubled across <em>every single tier</em>. Einfach: €5.00 → €9.98. Mittel: €6.16 → €12.50. Gut: €7.48 → €15.40. There is no neighborhood that escaped.",
+  },
+  de: {
+    lang: 'EN', census: '📋 Zensus', census_on: '📋 Zensus ✓',
+    tab_map: '🗺️ Karte', tab_budget: '💶 Budget', tab_story: '📖 Story',
+    search_placeholder: '🔍 Adresse, Gebäude oder PLZ suchen...',
+    legend_title: '€/m² (Nettokaltmiete)',
+    rc_title: '🔍 Mietpreis-Prüfung', rc_district: 'Bezirk', rc_baujahr: 'Baujahr',
+    rc_size: 'Wohnfläche (m²)', rc_rent: 'Monatliche Kaltmiete / Nettokaltmiete (€)',
+    bc_title: 'Kann ich mir Berlin leisten?', bc_subtitle: 'Legen Sie Ihr Budget fest und sehen Sie, wo Sie wohnen können.',
+    bc_budget_label: 'Monatsbudget:', bc_size_label: 'Wohnungsgröße:',
+    bc_census_toggle: 'Zeige Bestandsmieten (was Mieter tatsächlich zahlen)',
+    footer_data: 'Alle Werte: Nettokaltmiete. Immoscout24 2023–2025',
+    footer_zensus: 'Zensus 2022 Bestandsmieten', footer_mietspiegel: 'Mietspiegel 2024',
+    footer_updated: 'Stand: Juli 2025',
+    story1_title: 'Alles hat sich verdoppelt', story1_stat: 'Mietanstieg 2013–2023',
+    story1_text: 'Der Berliner Mietspiegel hat sich in <em>jeder einzelnen Stufe</em> mehr als verdoppelt. Einfach: €5,00 → €9,98. Mittel: €6,16 → €12,50. Gut: €7,48 → €15,40. Kein Bezirk ist verschont geblieben.',
+  }
+};
+let currentLang = 'en';
+
+function applyLang() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const text = I18N[currentLang]?.[key];
+    if (!text) return;
+    if (el.tagName === 'INPUT' && (el.type === 'text' || el.type === 'search')) {
+      el.placeholder = text;
+    } else if (el.tagName === 'INPUT') {
+      // skip non-text inputs
+    } else {
+      el.innerHTML = text;
+    }
+  });
+  // Update legend if visible
+  updateBudgetLang();
+}
+function toggleLang() {
+  currentLang = currentLang === 'en' ? 'de' : 'en';
+  applyLang();
+  // Update heatmap legend text
+  const legTitle = document.querySelector('#legend div[data-i18n]');
+  if (legTitle) legTitle.innerHTML = I18N[currentLang].legend_title;
+  // Update census button text
+  const zensusBtn = document.getElementById('zensus-btn');
+  if (zensusBtn) zensusBtn.textContent = useZensus ? I18N[currentLang].census_on : I18N[currentLang].census;
+  // Re-render budget stats with correct language
+  if (budgetMap && document.getElementById('budgetPanel').style.display !== 'none') updateBudgetMap();
+}
+
+function updateBudgetLang() {
+  const insight = document.getElementById('bcInsight');
+  if (!insight || insight.innerHTML.includes('⏳')) return;
+  if (budgetCensus) {
+    insight.innerHTML = currentLang === 'de'
+      ? '💡 <strong>Bestandsmieter</strong> zahlen deutlich weniger — der Zensus zeigt, was Menschen <em>tatsächlich</em> zahlen, nicht was Vermieter verlangen. Neue Mieter zahlen 51% mehr für die gleichen Wohnungen.'
+      : '💡 <strong>Existing tenants</strong> in these areas pay significantly less — the Census shows what people <em>actually</em> pay, not what landlords ask. New tenants face 51% higher prices for the same flats.';
+  } else {
+    insight.innerHTML = currentLang === 'de'
+      ? '💡 Dies sind <strong>Marktpreise</strong> (Nettokaltmiete) — wie auf Immoscout24 inseriert. Aktivieren Sie "Bestandsmieten", um den Unterschied zu sehen.'
+      : '💡 These are <strong>market asking rents</strong> (net cold, excl. heating) — what you\'d see on Immoscout24 today. Toggle "Show what existing tenants pay" to see the difference.';
+  }
+}
+
 // ─── Data ──────────────────────────────────────────────────────
 let map, heatLayer, berlinLayer, distData = null;
 let immoMean = 0, immoStd = 0, immoGrids = [];
@@ -665,7 +753,7 @@ async function toggleSource() {
   const btn = document.getElementById('zensus-btn');
   const leg = document.getElementById('legend');
   if (useZensus) {
-    btn.style.background='var(--accent)';btn.style.color='#fff';btn.textContent='📋 Census ✓';
+    btn.style.background='var(--accent)';btn.style.color='#fff';btn.textContent = I18N[currentLang].census_on;
     leg.innerHTML = '<div style="font-weight:600;margin-bottom:4px;font-size:11px">€/m² (Zensus 2022)</div>' +
       '<div class="r"><span class="d" style="background:#08519c"></span> < €6.50</div>' +
       '<div class="r"><span class="d" style="background:#3182bd"></span> €6.50 – 7.50</div>' +
@@ -674,7 +762,7 @@ async function toggleSource() {
       '<div class="r"><span class="d" style="background:#e6550d"></span> €9.50 – 11</div>' +
       '<div class="r"><span class="d" style="background:#a63603"></span> > €11</div>';
   } else {
-    btn.style.background='';btn.style.color='';btn.textContent='📋 Census';
+    btn.style.background='';btn.style.color='';btn.textContent = I18N[currentLang].census;
     leg.innerHTML = '<div style="font-weight:600;margin-bottom:4px;font-size:11px">€/m² (net cold rent)</div>' +
       '<div class="r"><span class="d" style="background:#08519c"></span> < €9</div>' +
       '<div class="r"><span class="d" style="background:#3182bd"></span> €9 – 11</div>' +
@@ -901,6 +989,7 @@ async function init() {
   loadDistricts().then(() => handleHash());
   setupClick();
   initRentCheck();
+  applyLang();
 }
 
 function openHelp() { document.getElementById('helpOverlay').classList.add('open'); }
@@ -1068,6 +1157,9 @@ function getDistrictMarketAvg(district) {
 function resetMapView() {
   map.setView([52.52, 13.405], 12, {animate: true, duration: 0.5});
 }
+function resetBudgetMapView() {
+  if (budgetMap) budgetMap.setView([52.52, 13.405], 11, {animate: true, duration: 0.5});
+}
 function toggleDistricts() {
   const panel = document.getElementById('dpanel');
   const btn = document.getElementById('mc-districts');
@@ -1097,7 +1189,17 @@ function toggleBudgetCensus() {
 
 function initBudgetMap() {
   if (budgetMap) { budgetMap.invalidateSize(); updateBudgetMap(); return; }
-
+  
+  // Add map controls to budget map container
+  const bmContainer = document.getElementById('budgetMap');
+  if (bmContainer && !document.getElementById('mc-budget')) {
+    const mc = document.createElement('div');
+    mc.className = 'map-controls';
+    mc.style.cssText = 'position:absolute;top:8px;left:48px;z-index:1000';
+    mc.innerHTML = '<button class="mc-btn" onclick="resetBudgetMapView()" title="Reset view">🏠</button>';
+    bmContainer.appendChild(mc);
+  }
+  
   budgetMap = L.map('budgetMap', {
     center: [52.52,13.405], zoom:11, scrollWheelZoom:true,
     minZoom:10, maxZoom:16
