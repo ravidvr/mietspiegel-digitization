@@ -87,7 +87,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .scene-unit{font-size:14px;color:var(--text-dim)}
 .story-scene p{font-size:14px;line-height:1.7;color:var(--text-dim)}
 .story-scene strong{color:var(--text)}
-.share-btn{margin-top:14px;padding:8px 16px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--text-dim);font-size:11px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.share-btn{margin-top:14px;padding:8px 16px;background:var(--surface2);border:1px solid var(--accent);border-radius:6px;color:var(--accent);font-size:12px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-weight:600}
 .share-btn:hover{background:var(--surface);color:var(--text)}
 
 @media(max-width:768px){
@@ -132,6 +132,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .rc-handle{display:none;width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 8px}
 .rc-min-btn{position:absolute;top:8px;right:44px;background:none;border:none;color:var(--text-dim);font-size:18px;cursor:pointer;width:28px;height:28px;border-radius:4px;line-height:28px;text-align:center;font-weight:700}
 .rc-min-btn:hover{background:var(--surface2);color:var(--text)}
+.rc-expand-hint{display:none;font-size:10px;color:var(--text-dim);margin-left:4px}@media(max-width:768px){.rc-expand-hint{display:inline}.rent-check-panel:not(.collapsed) .rc-expand-hint{display:none}}
 .rc-close-btn{display:none;position:absolute;top:8px;right:10px;background:none;border:none;color:var(--text-dim);font-size:20px;cursor:pointer;width:36px;height:36px;border-radius:50%;line-height:36px;text-align:center}
 @media(max-width:768px){.rc-handle{display:block}.rc-close-btn{display:block}}
 
@@ -201,6 +202,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .map-tooltip .row{display:flex;justify-content:space-between;font-size:10px;margin:1px 0}
 
 .district-panel{position:absolute;top:56px;left:12px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px;z-index:1000;box-shadow:0 2px 8px rgba(0,0,0,.3);max-height:calc(100% - 100px);overflow-y:auto;font-size:12px;max-width:240px}
+.dp-close{display:none;position:absolute;top:6px;right:6px;background:none;border:none;color:var(--text-dim);font-size:16px;cursor:pointer;width:24px;height:24px;border-radius:4px;line-height:24px;text-align:center}@media(max-width:768px){.dp-close{display:block}}.dp-close:hover{background:var(--surface2);color:var(--text)}
 .district-panel h4{font-size:12px;font-weight:700;margin-bottom:6px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.5px}
 .district-panel .d-row{display:flex;justify-content:space-between;padding:4px 5px;border-radius:3px;cursor:pointer;margin:1px 0;gap:6px}
 .district-panel .d-row:hover{background:var(--surface2)}
@@ -231,8 +233,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   .searchbar{padding:6px 8px;gap:4px;flex-wrap:wrap}
   .searchbar input[type=text]{font-size:16px;min-height:44px;flex:1 1 100%}
   .searchbar .s-btn{font-size:14px;padding:10px 14px;min-height:44px}
-  #map{height:60vh;min-height:350px}
-  .map-tooltip{top:auto;bottom:80px;left:8px;right:8px;max-width:calc(100% - 16px);border-radius:10px;max-height:40vh;z-index:2010;position:fixed}
+  #map{height:calc(60vh - 20px);min-height:300px}
+  .map-tooltip{top:auto;bottom:80px;left:8px;right:8px;max-width:calc(100% - 16px);border-radius:10px;max-height:40vh;z-index:3010;position:fixed}
   /* District panel — compact floating overlay */
   .district-panel{position:fixed;bottom:80px;right:8px;width:auto;max-width:200px;max-height:35vh;border-radius:10px;z-index:2001;overflow-y:auto;font-size:11px;box-shadow:0 4px 16px rgba(0,0,0,.4)}
   .district-panel h4{display:none}
@@ -240,7 +242,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   .district-panel .d-name{font-size:10px;max-width:100px}
   .district-panel .d-rent{font-size:10px}
   .map-legend{bottom:60px}
-  .footer-bar{font-size:10px;padding:4px 8px 56px 8px;height:auto;min-height:28px}
+  .footer-bar{font-size:10px;padding:4px 8px 60px 8px;height:auto;min-height:28px}
 }
 
 /* Explainer overlay */
@@ -341,13 +343,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     <div class="r"><span class="d" style="background:#e6550d"></span> €15 – 18</div>
     <div class="r"><span class="d" style="background:#a63603"></span> > €18</div>
   </div>
-  <div class="district-panel" id="dpanel"><h4>Districts</h4><div id="dlist">Loading...</div></div>
+  <div class="district-panel" id="dpanel"><button class="dp-close" onclick="toggleDistricts()">×</button><h4>Districts</h4><div id="dlist">Loading...</div></div>
   <div class="map-tooltip" id="tooltip"></div>
   <div class="rent-check-panel" id="rentCheck">
     <div class="rc-handle"></div>
     <button class="rc-min-btn" onclick="toggleRentCheck()" title="Minimize">−</button>
     <button class="rc-close-btn" onclick="document.getElementById('rentCheck').style.display='none'">×</button>
-    <h4 data-i18n="rc_title" onclick="if(window.innerWidth<=768)document.getElementById('rentCheck').classList.toggle('collapsed')" style="cursor:pointer">🔍 Rent Check</h4>
+    <h4 data-i18n="rc_title" onclick="if(window.innerWidth<=768)document.getElementById('rentCheck').classList.toggle('collapsed')" style="cursor:pointer">🔍 Rent Check <span class="rc-expand-hint">▼</span></h4>
     <div class="rc-form">
       <label data-i18n="rc_district">District</label>
       <select id="rc-district">
@@ -1222,6 +1224,8 @@ function toggleBudgetCensus() {
 
 function initBudgetMap() {
   if (budgetMap) { budgetMap.invalidateSize(); updateBudgetMap(); return; }
+  
+  document.getElementById('bcStats').innerHTML = '⏳ Loading map data...';
   
   // Add map controls to budget map container
   const bmContainer = document.getElementById('budgetMap');
