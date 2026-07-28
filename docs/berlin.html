@@ -131,6 +131,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   .map-tooltip .close{font-size:22px;padding:4px 8px;min-width:44px;min-height:44px}
   .help-box .close-btn{width:44px;height:44px;font-size:24px}
   .help-box .got-it{padding:12px;font-size:14px;min-height:44px}
+  .mobile-nav{display:flex}
+  .map-controls{left:8px;top:4px}
+  .mc-btn{width:36px;height:36px;font-size:16px;border-radius:50%}
+  .footer-bar{margin-bottom:52px}
+  .map-legend{bottom:60px}
 }
 
 /* Autocomplete dropdown */
@@ -145,6 +150,20 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .suggestions .s-item .s-text{flex:1;line-height:1.3}
 .suggestions .s-item .s-name{font-weight:600;font-size:13px}
 .suggestions .s-item .s-detail{font-size:11px;color:var(--text-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* Map controls */
+.map-controls{position:absolute;top:8px;left:48px;display:flex;gap:4px;z-index:1000}
+.mc-btn{width:32px;height:32px;border:none;border-radius:6px;background:var(--surface);border:1px solid var(--border);color:var(--text);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,.3);transition:all .15s}
+.mc-btn:hover{background:var(--surface2)}
+.mc-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+/* Mobile bottom nav */
+.mobile-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--border);z-index:3000;padding:4px 8px;padding-bottom:max(4px, env(safe-area-inset-bottom));justify-content:space-around;box-shadow:0 -2px 12px rgba(0,0,0,.3)}
+.mn-btn{display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;color:var(--text-dim);padding:6px 12px;cursor:pointer;min-width:64px;min-height:48px;border-radius:8px;transition:all .15s}
+.mn-btn.active{color:var(--accent)}
+.mn-btn:hover{background:var(--surface2)}
+.mn-icon{font-size:18px;line-height:1}
+.mn-label{font-size:10px;font-weight:600}
 
 #map{width:100%;height:calc(100vh - 96px - 28px)}
 
@@ -291,6 +310,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 </div>
 
 <div id="map">
+  <div class="map-controls">
+    <button class="mc-btn" onclick="resetMapView()" title="Reset to Berlin overview">🏠</button>
+    <button class="mc-btn active" id="mc-districts" onclick="toggleDistricts()" title="Show/hide districts">📋</button>
+  </div>
   <div class="map-legend" id="legend">
     <div style="font-weight:600;margin-bottom:4px;font-size:11px">€/m² (net cold rent)</div>
     <div class="r"><span class="d" style="background:#08519c"></span> < €9</div>
@@ -416,6 +439,21 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   <span class="sep">·</span>
   <span>Last updated: 2025-07</span>
 </footer>
+
+<nav class="mobile-nav" id="mobileNav">
+  <button class="mn-btn active" onclick="switchTab('explore')">
+    <span class="mn-icon">🗺️</span>
+    <span class="mn-label">Map</span>
+  </button>
+  <button class="mn-btn" onclick="switchTab('budget')">
+    <span class="mn-icon">💶</span>
+    <span class="mn-label">Budget</span>
+  </button>
+  <button class="mn-btn" onclick="switchTab('story')">
+    <span class="mn-icon">📖</span>
+    <span class="mn-label">Story</span>
+  </button>
+</nav>
 
 <script>
 // ─── Data ──────────────────────────────────────────────────────
@@ -884,10 +922,15 @@ async function switchTab(tab) {
   if (budgetPanel) budgetPanel.style.display = 'none';
   if (storyPanel) storyPanel.style.display = 'none';
 
-  if (tab === 'map' || tab === 'explore') {
+  // Sync mobile nav
+  document.querySelectorAll('.mn-btn').forEach(b => b.classList.remove('active'));
+  const mnBtn = document.querySelector(`.mn-btn[onclick*="${tab}"]`);
+  if (mnBtn) mnBtn.classList.add('active');
+
+  if (tab === 'explore') {
     mapEl.style.display = '';
     if (map) map.invalidateSize();
-  } else if (tab === 'insights') {
+  } else if (tab === 'budget') {
     if (panel) { panel.style.display = 'block'; await loadInsights(); }
   } else if (tab === 'experiments') {
     if (panel) { panel.style.display = 'block'; await loadExperiments(); }
@@ -1019,6 +1062,22 @@ function getDistrictMarketAvg(district) {
     'Treptow-Köpenick': 10.54,
   };
   return avgs[district] || null;
+}
+
+// ─── Map controls ────────────────────────────────────────────────
+function resetMapView() {
+  map.setView([52.52, 13.405], 12, {animate: true, duration: 0.5});
+}
+function toggleDistricts() {
+  const panel = document.getElementById('dpanel');
+  const btn = document.getElementById('mc-districts');
+  if (panel.style.display === 'none') {
+    panel.style.display = '';
+    btn.classList.add('active');
+  } else {
+    panel.style.display = 'none';
+    btn.classList.remove('active');
+  }
 }
 
 // ─── Budget Check ────────────────────────────────────────────────
