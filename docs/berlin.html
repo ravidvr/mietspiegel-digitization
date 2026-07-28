@@ -45,7 +45,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .suggestions .s-item .s-name{font-weight:600;font-size:13px}
 .suggestions .s-item .s-detail{font-size:11px;color:var(--text-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
-#map{width:100%;height:calc(100vh - 96px)}
+#map{width:100%;height:calc(100vh - 96px - 28px)}
+
+.footer-bar{background:#151821;border-top:1px solid var(--border);padding:6px 14px;text-align:center;font-size:11px;color:var(--text-dim);height:28px;display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;line-height:1.4}
+.footer-bar .sep{opacity:.5}
 
 .map-legend{position:absolute;bottom:16px;left:12px;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:8px 12px;font-size:10px;z-index:1000;box-shadow:0 2px 8px rgba(0,0,0,.3)}
 .map-legend .r{display:flex;align-items:center;gap:6px;margin:2px 0}
@@ -94,6 +97,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   .map-tooltip{top:auto;bottom:0;left:0;right:0;max-width:100%;border-radius:12px 12px 0 0;max-height:55vh}
   .district-panel{display:none}
   .map-legend{bottom:8px;left:4px;font-size:9px;padding:5px 8px}
+  .footer-bar{font-size:10px;padding:4px 8px;height:auto;min-height:28px}
 }
 
 /* Explainer overlay */
@@ -174,16 +178,27 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 
 <div id="map">
   <div class="map-legend" id="legend">
-    <div style="font-weight:600;margin-bottom:3px">Berlin rent (Immoscout24)</div>
-    <div class="r"><span class="d" style="background:#b01020"></span> +2σ above Berlin avg</div>
-    <div class="r"><span class="d" style="background:#e04030"></span> +1σ</div>
-    <div class="r"><span class="d" style="background:#e0d040"></span> Berlin average</div>
-    <div class="r"><span class="d" style="background:#7fc440"></span> −1σ</div>
-    <div class="r"><span class="d" style="background:#00a550"></span> −2σ below Berlin avg</div>
+    <div style="font-weight:600;margin-bottom:4px;font-size:11px">€/m² (net cold rent)</div>
+    <div class="r"><span class="d" style="background:#08519c"></span> < €9</div>
+    <div class="r"><span class="d" style="background:#3182bd"></span> €9 – 11</div>
+    <div class="r"><span class="d" style="background:#6baed6"></span> €11 – 13</div>
+    <div class="r"><span class="d" style="background:#fd8d3c"></span> €13 – 15</div>
+    <div class="r"><span class="d" style="background:#e6550d"></span> €15 – 18</div>
+    <div class="r"><span class="d" style="background:#a63603"></span> > €18</div>
   </div>
   <div class="district-panel" id="dpanel"><h4>Districts</h4><div id="dlist">Loading...</div></div>
   <div class="map-tooltip" id="tooltip"></div>
 </div>
+
+<footer class="footer-bar">
+  <span>Immoscout24 market rents: 2023–2025</span>
+  <span class="sep">·</span>
+  <span>Zensus 2022 census rents</span>
+  <span class="sep">·</span>
+  <span>Official Mietspiegel 2024</span>
+  <span class="sep">·</span>
+  <span>Last updated: 2025-07</span>
+</footer>
 
 <script>
 // ─── Data ──────────────────────────────────────────────────────
@@ -217,7 +232,7 @@ function buildHeat() {
   const p = heatParams(map.getZoom());
   heatLayer = L.heatLayer(data, {
     radius: p.radius, blur: p.blur, max: 1.0, minOpacity: p.minO,
-    gradient: {0:'#00a550',.2:'#7fc440',.4:'#e0d040',.6:'#f09030',.8:'#e04030',1:'#b01020'}
+    gradient: {0:'#08519c',0.2:'#3182bd',0.4:'#6baed6',0.6:'#fd8d3c',0.8:'#e6550d',1:'#a63603'}
   }).addTo(map);
 }
 
@@ -257,8 +272,28 @@ function zoomToDistrict(name) {
   if (layer) {
     map.fitBounds(layer.getBounds(), {padding:[30,30], maxZoom:14});
     showDistrict(f.properties);
+    window.location.hash = 'district=' + encodeURIComponent(name);
   }
 }
+
+// ─── Metric help links ─────────────────────────────────────────
+const helpLink = (anchor) => `<a href="https://ravidvr.github.io/mietspiegel-digitization/docs/METRICS.md#${anchor}" target="_blank" title="What does this mean?" style="font-size:10px;color:var(--text-dim);text-decoration:none;margin-left:3px;cursor:help">?</a>`;
+
+// ─── Hash routing (P2.5) ───────────────────────────────────────
+function handleHash() {
+  const hash = window.location.hash.replace('#', '');
+  if (!hash) return;
+  const params = new URLSearchParams(hash);
+  const district = params.get('district');
+  if (district && distData) {
+    setTimeout(() => zoomToDistrict(decodeURIComponent(district)), 500);
+  }
+  const lat = parseFloat(params.get('lat'));
+  const lng = parseFloat(params.get('lng'));
+  const z = parseInt(params.get('z')) || 15;
+  if (lat && lng) map.setView([lat, lng], z);
+}
+window.addEventListener('hashchange', handleHash);
 
 function showDistrict(p) {
   document.getElementById('tooltip').innerHTML = `
@@ -271,7 +306,7 @@ function showDistrict(p) {
       <div class="row"><span>🔴 Good areas</span><b>${p.gut_pct}%</b></div>
     </div>
     <div style="margin-top:10px;padding:8px;background:var(--surface2);border-radius:4px;text-align:center">
-      <div style="font-size:22px;font-weight:700;color:${p.avg_rent<10?'#48bb78':p.avg_rent<11.5?'#ecc94b':p.avg_rent<12.5?'#ed8936':'#f56565'}">ø €${p.avg_rent}/m²</div>
+      <div style="font-size:22px;font-weight:700;color:${p.avg_rent<10?'#48bb78':p.avg_rent<11.5?'#ecc94b':p.avg_rent<12.5?'#ed8936':'#f56565'}">ø €${p.avg_rent}/m² ${helpLink('berlin-district-rent-estimates')}</div>
       <div class="sub">Estimated average net cold rent</div>
     </div>`;
   document.getElementById('tooltip').style.display = 'block';
@@ -333,7 +368,7 @@ function setupClick() {
 
     let html = `<button class="close" onclick="this.parentElement.style.display='none'">×</button>
       <h3>📍 ${loc}</h3>
-      <div class="val">€${ibest.rent}/m² <span class="sub">(${ibest.year})</span></div>
+      <div class="val">€${ibest.rent}/m² <span class="sub">(${ibest.year})</span> ${helpLink('immoscout-market-rents')}</div>
       <div class="insight" style="color:${above?'var(--red)':'var(--green)'};margin-top:4px">
         ${above?'Above':'Below'} Berlin average (€${immoMean}/m²)
       </div>`;
@@ -357,7 +392,7 @@ function setupClick() {
       const pctColor = diff/zsRent > 0.2 ? 'var(--red)' : diff/zsRent > 0.05 ? 'var(--orange)' : 'var(--green)';
       html += `<div style="margin-top:10px;padding:8px;background:var(--surface2);border-radius:4px">
         <div style="font-weight:600;font-size:11px;margin-bottom:4px">📊 What residents actually pay</div>
-        <div class="row"><span>Official census (2022)</span><span style="font-weight:700;font-size:14px">€${zsRent}/m²</span></div>
+        <div class="row"><span>Official census (2022)</span><span style="font-weight:700;font-size:14px">€${zsRent}/m² ${helpLink('zensus-2022-census-rents')}</span></div>
         <div style="margin-top:3px;font-size:10px;color:${pctColor};font-weight:600">
           New listings cost <b>${pct}</b> than current rents
         </div>
@@ -373,13 +408,25 @@ function setupClick() {
 async function toggleSource() {
   useZensus = !useZensus;
   const btn = document.getElementById('zensus-btn');
-  const leg = document.querySelector('#legend div:first-child');
+  const leg = document.getElementById('legend');
   if (useZensus) {
     btn.style.background='var(--accent)';btn.style.color='#fff';btn.textContent='📋 Census ✓';
-    leg.textContent = 'Berlin rent (Zensus 2022)';
+    leg.innerHTML = '<div style="font-weight:600;margin-bottom:4px;font-size:11px">€/m² (Zensus 2022)</div>' +
+      '<div class="r"><span class="d" style="background:#08519c"></span> < €6.50</div>' +
+      '<div class="r"><span class="d" style="background:#3182bd"></span> €6.50 – 7.50</div>' +
+      '<div class="r"><span class="d" style="background:#6baed6"></span> €7.50 – 8.50</div>' +
+      '<div class="r"><span class="d" style="background:#fd8d3c"></span> €8.50 – 9.50</div>' +
+      '<div class="r"><span class="d" style="background:#e6550d"></span> €9.50 – 11</div>' +
+      '<div class="r"><span class="d" style="background:#a63603"></span> > €11</div>';
   } else {
     btn.style.background='';btn.style.color='';btn.textContent='📋 Census';
-    leg.textContent = 'Berlin rent (Immoscout24)';
+    leg.innerHTML = '<div style="font-weight:600;margin-bottom:4px;font-size:11px">€/m² (net cold rent)</div>' +
+      '<div class="r"><span class="d" style="background:#08519c"></span> < €9</div>' +
+      '<div class="r"><span class="d" style="background:#3182bd"></span> €9 – 11</div>' +
+      '<div class="r"><span class="d" style="background:#6baed6"></span> €11 – 13</div>' +
+      '<div class="r"><span class="d" style="background:#fd8d3c"></span> €13 – 15</div>' +
+      '<div class="r"><span class="d" style="background:#e6550d"></span> €15 – 18</div>' +
+      '<div class="r"><span class="d" style="background:#a63603"></span> > €18</div>';
   }
   buildHeat();
 }
@@ -510,7 +557,7 @@ async function init() {
   } catch(e) { console.error(e); }
 
   buildHeat();
-  loadDistricts();
+  loadDistricts().then(() => handleHash());
   setupClick();
 }
 
