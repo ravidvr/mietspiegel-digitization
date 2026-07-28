@@ -367,7 +367,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
       <p data-i18n="bc_subtitle">Set your budget and see exactly where you can live.</p>
     </div>
     <div class="bc-slider-group">
-      <label><span data-i18n="bc_budget_label">Monthly budget:</span> <strong id="bc-budget-display">€1,200</strong></label>
+      <label><span data-i18n="bc_budget_label">Monthly cold rent budget:</span> <strong id="bc-budget-display">€1,200</strong></label>
       <input type="range" id="bc-budget" min="500" max="3000" step="50" value="1200">
     </div>
     <div class="bc-size-group">
@@ -474,7 +474,7 @@ const I18N = {
     rc_title: '🔍 Rent Check', rc_district: 'District', rc_baujahr: 'Building age',
     rc_size: 'Apartment size (m²)', rc_rent: 'Monthly cold rent / Nettokaltmiete (€)',
     bc_title: 'Can I afford Berlin?', bc_subtitle: 'Set your budget and see exactly where you can live.',
-    bc_budget_label: 'Monthly budget:', bc_size_label: 'Apartment size:',
+    bc_budget_label: 'Monthly cold rent budget:', bc_size_label: 'Apartment size:',
     bc_census_toggle: 'Show what existing tenants pay',
     footer_data: 'All values: net cold rent (Nettokaltmiete). Immoscout24 2023–2025',
     footer_zensus: 'Zensus 2022 census rents', footer_mietspiegel: 'Official Mietspiegel 2024',
@@ -490,7 +490,7 @@ const I18N = {
     rc_title: '🔍 Mietpreis-Prüfung', rc_district: 'Bezirk', rc_baujahr: 'Baujahr',
     rc_size: 'Wohnfläche (m²)', rc_rent: 'Monatliche Kaltmiete / Nettokaltmiete (€)',
     bc_title: 'Kann ich mir Berlin leisten?', bc_subtitle: 'Legen Sie Ihr Budget fest und sehen Sie, wo Sie wohnen können.',
-    bc_budget_label: 'Monatsbudget:', bc_size_label: 'Wohnungsgröße:',
+    bc_budget_label: 'Monatliche Kaltmiete:', bc_size_label: 'Wohnungsgröße:',
     bc_census_toggle: 'Zeige Bestandsmieten (was Mieter tatsächlich zahlen)',
     footer_data: 'Alle Werte: Nettokaltmiete. Immoscout24 2023–2025',
     footer_zensus: 'Zensus 2022 Bestandsmieten', footer_mietspiegel: 'Mietspiegel 2024',
@@ -998,7 +998,6 @@ function closeHelp() { document.getElementById('helpOverlay').classList.remove('
 // ─── Tab switching ─────────────────────────────────────────────
 async function switchTab(tab) {
   const mapEl = document.getElementById('map');
-  const panel = document.getElementById('insights-panel');
   const budgetPanel = document.getElementById('budgetPanel');
   const storyPanel = document.getElementById('storyPanel');
 
@@ -1007,7 +1006,6 @@ async function switchTab(tab) {
 
   // Hide all
   mapEl.style.display = 'none';
-  if (panel) panel.style.display = 'none';
   if (budgetPanel) budgetPanel.style.display = 'none';
   if (storyPanel) storyPanel.style.display = 'none';
 
@@ -1019,10 +1017,6 @@ async function switchTab(tab) {
   if (tab === 'explore') {
     mapEl.style.display = '';
     if (map) map.invalidateSize();
-  } else if (tab === 'budget') {
-    if (panel) { panel.style.display = 'block'; await loadInsights(); }
-  } else if (tab === 'experiments') {
-    if (panel) { panel.style.display = 'block'; await loadExperiments(); }
   } else if (tab === 'budget') {
     if (budgetPanel) {
       budgetPanel.style.display = 'flex';
