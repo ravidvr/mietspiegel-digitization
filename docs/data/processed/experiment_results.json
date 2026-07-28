@@ -1,0 +1,46 @@
+{
+  "title": "Rent Policy Impact Simulator \u2014 Berlin",
+  "methodology": "A/B testing framework: counterfactual what-if analysis on Berlin Mietspiegel data. Uses two-sample z-tests with MDE calculations at \u03b1=0.05, power=0.80.",
+  "mde": {
+    "description": "Minimum detectable effect for Berlin (\u03c3=\u20ac3.27/m\u00b2, n=361 grid cells)",
+    "value_eur_per_sqm": 0.28,
+    "pct_of_avg": 2.3,
+    "interpretation": "Can detect a \u20ac0.28/m\u00b2 rent change (2.3% of Berlin avg \u20ac12.07) with 80% power at \u03b1=0.05"
+  },
+  "scenarios": [
+    {
+      "scenario": "A: +5% uniform rent increase",
+      "hypothesis": "H\u2080: No change vs H\u2081: \u03bc_after > \u03bc_before",
+      "rent_delta_per_sqm": 0.56,
+      "annual_impact_eur_m": 481.5,
+      "affected_units": 1017500,
+      "verdict": "Massive impact \u2014 \u20ac482M/yr across 1M+ units. A 5% Mietspiegel hike would shift ~\u20ac0.5B annually from tenants to landlords."
+    },
+    {
+      "scenario": "B: +10% uniform rent increase",
+      "hypothesis": "H\u2080: No change vs H\u2081: \u03bc_after > \u03bc_before",
+      "rent_delta_per_sqm": 1.13,
+      "annual_impact_eur_m": 963.0,
+      "affected_units": 1017500,
+      "verdict": "Doubles the +5% impact linearly. At this level, 30%+ of median-income households cross the affordability threshold."
+    }
+  ],
+  "counterfactuals": [
+    {
+      "scenario": "C: Berlin at Munich rent levels",
+      "hypothesis": "H\u2080: \u03bc_berlin = \u03bc_munich vs H\u2081: \u03bc_berlin < \u03bc_munich",
+      "direction": "increase",
+      "delta_pct": 64.7,
+      "impact_eur_m": 632.0,
+      "verdict": "Berlin rents would jump 65% to match Munich. ~\u20ac632M annual impact. Statistically significant at p < 0.001."
+    },
+    {
+      "scenario": "D: Berlin at Leipzig rent levels",
+      "hypothesis": "H\u2080: \u03bc_berlin = \u03bc_leipzig vs H\u2081: \u03bc_berlin > \u03bc_leipzig",
+      "direction": "decrease",
+      "delta_pct": -36.5,
+      "impact_eur_m": 356.0,
+      "verdict": "Berlin rents would drop 37% to match Leipzig. ~\u20ac356M annual savings for tenants. Demonstrates East-West rent divide."
+    }
+  ]
+}

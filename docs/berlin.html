@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 <style>
 :root{--bg:#0f1117;--surface:#1a1d28;--surface2:#222639;--border:#2a2e3e;--text:#e4e6f0;--text-dim:#8b8fa3;--accent:#5b8def;--green:#48bb78;--yellow:#ecc94b;--orange:#ed8936;--red:#f56565}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -31,6 +32,21 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .searchbar input[type=text]:focus{box-shadow:0 0 0 3px rgba(91,141,239,.2)}
 .searchbar .s-btn{padding:8px 16px;border:none;border-radius:8px;background:var(--accent);color:#fff;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
 .searchbar .s-btn:hover{opacity:.85}
+
+/* Tab bar */
+.tab-bar{display:flex;gap:0;background:var(--surface2);border-bottom:1px solid var(--border);padding:0 14px}
+.tab-btn{background:transparent;border:none;color:var(--text-dim);padding:8px 16px;font-size:12px;font-weight:600;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s}
+.tab-btn:hover{color:var(--text)}
+.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+
+/* Insights panel */
+.insights-panel{position:absolute;top:124px;left:0;right:0;bottom:28px;background:var(--bg);overflow-y:auto;padding:16px;z-index:500}
+.insights-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:1100px;margin:0 auto}
+.insight-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px}
+.insight-card h3{font-size:14px;font-weight:700;margin-bottom:4px;color:var(--text)}
+.insight-card .desc{font-size:11px;color:var(--text-dim);margin-bottom:12px}
+.insight-card canvas{max-height:240px}
+@media(max-width:768px){.insights-grid{grid-template-columns:1fr}}
 
 /* Autocomplete dropdown */
 .search-wrap{position:relative;flex:1;min-width:0}
@@ -176,6 +192,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   <button class="s-btn" onclick="selectSuggestion(-1)">📍 Search</button>
 </div>
 
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('map')" data-i18n="tab_map">🗺 Map</button>
+  <button class="tab-btn" onclick="switchTab('insights')" data-i18n="tab_insights">📊 Insights</button>
+  <button class="tab-btn" onclick="switchTab('experiments')" data-i18n="tab_experiments">🧪 Experiments</button>
+</div>
+
 <div id="map">
   <div class="map-legend" id="legend">
     <div style="font-weight:600;margin-bottom:4px;font-size:11px">€/m² (net cold rent)</div>
@@ -188,6 +210,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   </div>
   <div class="district-panel" id="dpanel"><h4>Districts</h4><div id="dlist">Loading...</div></div>
   <div class="map-tooltip" id="tooltip"></div>
+</div>
+
+<div class="insights-panel" id="insights-panel" style="display:none">
+  <div class="insights-grid" id="insights-grid">
+    <div class="es">⏳ Loading insights...</div>
+  </div>
 </div>
 
 <footer class="footer-bar">
@@ -521,6 +549,92 @@ document.addEventListener('click', e => {
   if (!e.target.closest('.search-wrap')) hideSuggestions();
 });
 
+// ─── Experiments Tab ───────────────────────────────────────────
+async function loadExperiments() {
+  const grid = document.getElementById('insights-grid');
+  if (!grid) return;
+  grid.innerHTML = '<div class="es">⏳ Loading experiments...</div>';
+
+  try {
+    const data = await fetch('data/processed/experiment_results.json').then(r => r.json());
+    grid.innerHTML = '';
+
+    // MDE card (full width)
+    const mdeCard = document.createElement('div');
+    mdeCard.className = 'insight-card';
+    mdeCard.style.gridColumn = '1 / -1';
+    mdeCard.innerHTML =
+      '<h3>🔬 ' + escapeHtml(data.title) + '</h3>' +
+      '<div class="desc">' + escapeHtml(data.methodology) + '</div>' +
+      '<div style="display:flex;gap:20px;margin-top:12px;flex-wrap:wrap">' +
+        '<div style="flex:1;min-width:180px;padding:12px;background:var(--surface2);border-radius:6px;text-align:center">' +
+          '<div style="font-size:28px;font-weight:800;color:var(--accent)">€' + data.mde.value_eur_per_sqm + '/m²</div>' +
+          '<div style="font-size:11px;color:var(--text-dim);margin-top:4px">Minimum Detectable Effect</div>' +
+        '</div>' +
+        '<div style="flex:1;min-width:180px;padding:12px;background:var(--surface2);border-radius:6px;text-align:center">' +
+          '<div style="font-size:28px;font-weight:800;color:var(--green)">' + data.mde.pct_of_avg + '%</div>' +
+          '<div style="font-size:11px;color:var(--text-dim);margin-top:4px">of Berlin avg rent</div>' +
+        '</div>' +
+        '<div style="flex:1;min-width:180px;padding:12px;background:var(--surface2);border-radius:6px;text-align:center">' +
+          '<div style="font-size:28px;font-weight:800;color:var(--yellow)">α=0.05</div>' +
+          '<div style="font-size:11px;color:var(--text-dim);margin-top:4px">β=0.20 (80% power)</div>' +
+        '</div>' +
+      '</div>' +
+      '<div style="margin-top:10px;font-size:11px;color:var(--text-dim);font-style:italic">' + escapeHtml(data.mde.interpretation) + '</div>';
+    grid.appendChild(mdeCard);
+
+    // Scenario cards
+    (data.scenarios || []).forEach(function(s) {
+      const card = document.createElement('div');
+      card.className = 'insight-card';
+      const isUp = s.rent_delta_per_sqm > 0;
+      card.innerHTML =
+        '<h3>📈 ' + escapeHtml(s.scenario) + '</h3>' +
+        '<div class="desc" style="font-family:monospace;font-size:11px">' + escapeHtml(s.hypothesis) + '</div>' +
+        '<div style="display:flex;gap:12px;margin-top:10px;flex-wrap:wrap">' +
+          '<div style="flex:1;min-width:120px">' +
+            '<div style="font-size:24px;font-weight:800;color:' + (isUp ? 'var(--red)' : 'var(--green)') + '">' + (isUp ? '+' : '') + '€' + s.rent_delta_per_sqm + '/m²</div>' +
+            '<div style="font-size:10px;color:var(--text-dim)">Rent delta</div>' +
+          '</div>' +
+          '<div style="flex:1;min-width:120px">' +
+            '<div style="font-size:24px;font-weight:800;color:var(--accent)">€' + s.annual_impact_eur_m + 'M</div>' +
+            '<div style="font-size:10px;color:var(--text-dim)">Annual impact</div>' +
+          '</div>' +
+          '<div style="flex:1;min-width:120px">' +
+            '<div style="font-size:24px;font-weight:800;color:var(--text)">' + (s.affected_units / 1000).toFixed(0) + 'K</div>' +
+            '<div style="font-size:10px;color:var(--text-dim)">Units affected</div>' +
+          '</div>' +
+        '</div>' +
+        '<div style="margin-top:10px;padding:8px;background:var(--surface2);border-radius:4px;font-size:11px;color:var(--text-dim)">💡 ' + escapeHtml(s.verdict) + '</div>';
+      grid.appendChild(card);
+    });
+
+    // Counterfactual cards
+    (data.counterfactuals || []).forEach(function(c) {
+      const card = document.createElement('div');
+      card.className = 'insight-card';
+      const isUp = c.direction === 'increase';
+      card.innerHTML =
+        '<h3>🔄 ' + escapeHtml(c.scenario) + '</h3>' +
+        '<div class="desc" style="font-family:monospace;font-size:11px">H₀: μ_berlin = μ_target vs H₁: μ_berlin ' + (isUp ? '<' : '>') + ' μ_target</div>' +
+        '<div style="display:flex;gap:12px;margin-top:10px;flex-wrap:wrap">' +
+          '<div style="flex:1;min-width:120px">' +
+            '<div style="font-size:24px;font-weight:800;color:' + (isUp ? 'var(--red)' : 'var(--green)') + '">' + (isUp ? '+' : '') + c.delta_pct + '%</div>' +
+            '<div style="font-size:10px;color:var(--text-dim)">Rent change</div>' +
+          '</div>' +
+          '<div style="flex:1;min-width:120px">' +
+            '<div style="font-size:24px;font-weight:800;color:var(--accent)">€' + c.impact_eur_m + 'M</div>' +
+            '<div style="font-size:10px;color:var(--text-dim)">Annual impact</div>' +
+          '</div>' +
+        '</div>' +
+        '<div style="margin-top:10px;padding:8px;background:var(--surface2);border-radius:4px;font-size:11px;color:var(--text-dim)">💡 ' + escapeHtml(c.verdict) + '</div>';
+      grid.appendChild(card);
+    });
+  } catch(e) {
+    grid.innerHTML = '<div class="es">❌ Failed to load experiments: ' + escapeHtml(e.message) + '</div>';
+  }
+}
+
 // ─── Init ──────────────────────────────────────────────────────
 async function init() {
   // Berlin bounding box
@@ -563,6 +677,125 @@ async function init() {
 
 function openHelp() { document.getElementById('helpOverlay').classList.add('open'); }
 function closeHelp() { document.getElementById('helpOverlay').classList.remove('open'); }
+
+// ─── Tab switching ─────────────────────────────────────────────
+async function switchTab(tab) {
+  const mapEl = document.getElementById('map');
+  const panel = document.getElementById('insights-panel');
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.tab-btn[onclick*="${tab}"]`)?.classList.add('active');
+
+  if (tab === 'map') {
+    mapEl.style.display = '';
+    panel.style.display = 'none';
+    if (map) map.invalidateSize();
+  } else if (tab === 'insights') {
+    mapEl.style.display = 'none';
+    panel.style.display = 'block';
+    await loadInsights();
+  } else if (tab === 'experiments') {
+    mapEl.style.display = 'none';
+    panel.style.display = 'block';
+    await loadExperiments();
+  }
+}
+
+// ─── Insights loader ──────────────────────────────────────────
+async function loadInsights() {
+  const grid = document.getElementById('insights-grid');
+  grid.innerHTML = '<div class="es">⏳ Loading insights...</div>';
+
+  try {
+    const [rankings, premium, spread, berlin] = await Promise.all([
+      fetch('data/processed/insights_city_rankings.json').then(r => r.json()),
+      fetch('data/processed/insights_district_premium.json').then(r => r.json()),
+      fetch('data/processed/insights_gut_spread.json').then(r => r.json()),
+      fetch('data/processed/insights_berlin_table.json').then(r => r.json())
+    ]);
+
+    grid.innerHTML = '';
+
+    // Card 1: City rankings (top 10)
+    addInsightCard(grid, 'City Rent Rankings', 'Average rent (mittel Lage, 40-60m²) — top 10 of 19 cities', (ctx) => {
+      new Chart(ctx, {
+        type: 'bar', indexAxis: 'y',
+        data: {
+          labels: rankings.data.slice(0,10).map(d => d.city).reverse(),
+          datasets: [{
+            label: '€/m²', data: rankings.data.slice(0,10).map(d => d.avg_rent).reverse(),
+            backgroundColor: rankings.data.slice(0,10).map((d,i) => i<8?'#5b8def':'#48bb78').reverse()
+          }]
+        },
+        options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{x:{grid:{color:'#2a2e3e'},ticks:{color:'#8b8fa3',callback:v=>'€'+v}},y:{ticks:{color:'#e4e6f0',font:{size:11}}}}}
+      });
+    });
+
+    // Card 2: District premium (market vs official)
+    addInsightCard(grid, 'Market vs Official Rent by District', 'Immoscout24 market rent minus Mietspiegel official rent per Bezirk', (ctx) => {
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: premium.data.map(d => d.district),
+          datasets: [
+            {label:'Market rent',data:premium.data.map(d=>d.market_rent),backgroundColor:'#5b8def'},
+            {label:'Official Mietspiegel',data:premium.data.map(d=>d.official_rent),backgroundColor:'#48bb78'}
+          ]
+        },
+        options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{labels:{color:'#8b8fa3'}}}, scales:{x:{ticks:{color:'#8b8fa3',maxRotation:45,font:{size:9}}},y:{grid:{color:'#2a2e3e'},ticks:{color:'#8b8fa3',callback:v=>'€'+v}}}}
+      });
+    });
+
+    // Card 3: Gut/einfach spread (rent inequality)
+    addInsightCard(grid, 'Rent Inequality: Gut vs Einfach', 'Ratio of gut Lage to einfach Lage rents — higher = more inequality', (ctx) => {
+      new Chart(ctx, {
+        type: 'bar', indexAxis: 'y',
+        data: {
+          labels: spread.data.slice(0,10).map(d => d.city).reverse(),
+          datasets: [
+            {label:'Einfach',data:spread.data.slice(0,10).map(d=>d.einfach_rent).reverse(),backgroundColor:'#48bb78'},
+            {label:'Gut',data:spread.data.slice(0,10).map(d=>d.gut_rent).reverse(),backgroundColor:'#f56565'}
+          ]
+        },
+        options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{labels:{color:'#8b8fa3'}}}, scales:{x:{grid:{color:'#2a2e3e'},ticks:{color:'#8b8fa3',callback:v=>'€'+v}},y:{ticks:{color:'#e4e6f0',font:{size:11}}}}}
+      });
+    });
+
+    // Card 4: Berlin Mietspiegel table
+    addInsightCard(grid, 'Berlin Mietspiegel 2024 — Mittel Lage', 'Official rent table by Baujahr and apartment size (€/m² net cold)', (ctx) => {
+      const datasets = berlin.size_categories.map((size, i) => ({
+        label: size,
+        data: berlin.baujahr_groups.map(bj => {
+          const row = berlin.rows.find(r => r.baujahr === bj);
+          const valKey = Object.keys(row || {}).filter(k => k !== 'baujahr')[i];
+          return row && valKey ? row[valKey] : null;
+        }),
+        borderColor: ['#5b8def','#48bb78','#ecc94b','#f56565'][i],
+        backgroundColor: 'transparent',
+        tension: 0.2
+      }));
+      new Chart(ctx, {
+        type: 'line',
+        data: { labels: berlin.baujahr_groups, datasets },
+        options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{labels:{color:'#8b8fa3'}}}, scales:{x:{ticks:{color:'#8b8fa3',maxRotation:45,font:{size:9}}},y:{grid:{color:'#2a2e3e'},ticks:{color:'#8b8fa3',callback:v=>'€'+v}}}}
+      });
+    });
+  } catch(e) {
+    grid.innerHTML = '<div class="es">❌ Failed to load insights: ' + e.message + '</div>';
+  }
+}
+
+function addInsightCard(grid, title, desc, renderFn) {
+  const card = document.createElement('div');
+  card.className = 'insight-card';
+  card.innerHTML = '<h3>' + title + '</h3><div class="desc">' + desc + '</div><div style="position:relative;height:220px"></div>';
+  grid.appendChild(card);
+  const container = card.querySelector('div:last-child');
+  setTimeout(() => {
+    const ctx = document.createElement('canvas');
+    container.appendChild(ctx);
+    renderFn(ctx);
+  }, 50);
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   // Show help on first visit
