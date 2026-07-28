@@ -3,10 +3,12 @@ Mietspiegel digitization — validation framework.
 Main module: orchestrates loading city data, running sanity checks,
 cross-referencing against GdW aggregates, and generating reports.
 """
+from __future__ import annotations
+
 import json
 import os
 from datetime import datetime
-from typing import List, Optional
+from typing import List
 
 from . import gdw_crossref, sanity_checks
 
@@ -42,7 +44,7 @@ def detect_schema(data: dict) -> str:
     return "unknown"
 
 
-def normalize_city_data(data: dict) -> "dict | None":
+def normalize_city_data(data: dict) -> dict | None:
     """
     Normalize a city data file to the standard validation format.
     Returns None if the data cannot be normalized (no rent tables).
@@ -73,7 +75,7 @@ def normalize_city_data(data: dict) -> "dict | None":
     return None
 
 
-def normalize_matrix_schema(data: dict) -> "dict | None":
+def normalize_matrix_schema(data: dict) -> dict | None:
     """
     Normalize the 'matrix' format (e.g. dresden-extended.json) to the
     standard tables format.

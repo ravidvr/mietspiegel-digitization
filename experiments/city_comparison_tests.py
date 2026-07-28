@@ -17,6 +17,7 @@ Requirements:
 Usage:
     python experiments/city_comparison_tests.py
 """
+from __future__ import annotations
 
 import json
 import os
@@ -375,7 +376,7 @@ def run_anova_by_state(state_data: dict[str, list[float]]) -> dict[str, Any]:
 # 4. Tukey HSD post-hoc
 # ---------------------------------------------------------------------------
 
-def run_tukey_hsd(state_data: "dict[str, list[float]]") -> "pd.DataFrame | None":
+def run_tukey_hsd(state_data: dict[str, list[float]]) -> pd.DataFrame | None:
     """
     Tukey Honestly Significant Difference post-hoc test for ANOVA.
 
@@ -477,7 +478,7 @@ def run_correlation_analysis(df_summary: pd.DataFrame) -> dict[str, Any]:
 def print_statistical_report(
     pairwise_results: pd.DataFrame,
     anova_results: dict[str, Any],
-    tukey_results: "pd.DataFrame | None",
+    tukey_results: pd.DataFrame | None,
     correlation_results: dict[str, Any],
     df_summary: pd.DataFrame,
     city_rents: dict[str, list[float]],

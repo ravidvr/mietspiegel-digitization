@@ -8,11 +8,13 @@ Core principles tested:
   4. No negative, zero, or NaN values
   5. Size relationships are sensible (smaller units typically cost more per sqm)
 """
+from __future__ import annotations
+
 import math
-from typing import Any, Optional
+from typing import Any
 
 
-def _extract_numeric_value(val: Any) -> Optional[float]:
+def _extract_numeric_value(val: Any) -> float | None:
     """Convert a cell value to float if possible. Returns None for non-numeric."""
     if val is None:
         return None
@@ -75,7 +77,7 @@ def _baujahr_sort_key(baujahr_label: str) -> tuple:
     return (99, 0)
 
 
-def check_baujahr_monotonicity(tables: list, lage: Optional[str] = None,
+def check_baujahr_monotonicity(tables: list, lage: str | None = None,
                                  tolerance: float = 0.05) -> list:
     """
     For a given Lage (or across all if None), verify that rents
