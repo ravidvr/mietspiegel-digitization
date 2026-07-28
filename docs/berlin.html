@@ -325,8 +325,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
       </select>
       <label>Apartment size (m²)</label>
       <input type="number" id="rc-size" placeholder="e.g. 65" min="20" max="200">
-      <label>Monthly rent asked (€)</label>
-      <input type="number" id="rc-rent" placeholder="e.g. 950">
+      <label>Monthly cold rent / Nettokaltmiete (€)</label>
+      <input type="number" id="rc-rent" placeholder="e.g. 950 (cold rent, excl. heating)">
     </div>
     <div class="rc-result" id="rcResult" style="display:none"></div>
     <div class="rc-disclaimer" style="font-size:9px;color:var(--text-dim);margin-top:8px">Based on Berlin Mietspiegel 2024. Not legal advice.</div>
@@ -373,7 +373,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
       <div class="scene-num">2</div>
       <h2>The Two Berlins</h2>
       <div class="scene-stat"><span class="scene-big">+51%</span><span class="scene-unit">more for new tenants</span></div>
-      <p>If you signed a lease last month, you pay €4.10/m² more than your neighbor who's been there 5 years. On a 70 m² flat: <strong>€287/month — €3,444/year</strong>. The city is splitting into two populations: those who got in, and those who didn't.</p>
+      <p>If you signed a lease last month, you pay €4.10/m² more (net cold rent) than your neighbor who's been there 5 years. On a 70 m² flat: <strong>€287/month — €3,444/year</strong>. The city is splitting into two populations: those who got in, and those who didn't.</p>
       <button class="share-btn" onclick="shareStat('New Berlin tenants pay 51% more than existing ones — €3,444/year for the same flat')">📤 Share this</button>
     </div>
     <div class="story-scene" id="scene3">
@@ -401,14 +401,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
       <div class="scene-num">6</div>
       <h2>What €1,200 Buys</h2>
       <div class="scene-stat"><span class="scene-big">99 m²</span><span class="scene-unit">at market rate vs 151 m² for existing tenants</span></div>
-      <p>At €1,200/month, you can afford 99 m² at market rates. An existing tenant in the same building might be paying that for 151 m². The question isn't "can you afford Berlin?" — it's "<strong>when did you arrive?</strong>"</p>
+      <p>At €1,200/month cold rent, you can afford 99 m² at market rates. An existing tenant in the same building might be paying that for 151 m². The question isn't "can you afford Berlin?" — it's "<strong>when did you arrive?</strong>"</p>
       <button class="share-btn" onclick="shareStat('In Berlin, €1,200 buys 99m² as a new tenant — but 151m² if you moved in years ago')">📤 Share this</button>
     </div>
   </div>
 </div>
 
 <footer class="footer-bar">
-  <span>Immoscout24 market rents: 2023–2025</span>
+  <span>All values: net cold rent (Nettokaltmiete). Immoscout24 2023–2025</span>
   <span class="sep">·</span>
   <span>Zensus 2022 census rents</span>
   <span class="sep">·</span>
@@ -941,11 +941,11 @@ function updateRentCheck() {
   result.innerHTML = `
     <div style="background:${isIllegal?'rgba(245,101,101,.1)':'rgba(72,187,120,.1)'};padding:8px 10px;border-radius:4px;margin-bottom:10px;text-align:center">
       <div class="rc-verdict" style="color:${isIllegal?'var(--red)':'var(--green)'};margin-bottom:0">${isIllegal ? '⛔ Likely Overpriced' : '✅ Within Legal Range'}</div>
-      ${isIllegal ? '<div style="font-size:10px;color:var(--text-dim);margin-top:3px">Mietpreisbremse: new rents cannot exceed 110% of Mietspiegel</div>' : ''}
+      ${isIllegal ? '<div style="font-size:10px;color:var(--text-dim);margin-top:3px">Mietpreisbremse: cold rent cannot exceed 110% of Mietspiegel</div>' : ''}
     </div>
-    <div class="rc-row"><span>Official Mietspiegel</span><strong>€${mietspiegelTotal?.toLocaleString() || '—'}/month</strong></div>
-    <div class="rc-row"><span>Market avg (${district.slice(0,12)})</span><strong>€${marketTotal?.toLocaleString() || '—'}/month</strong></div>
-    <div class="rc-row" style="border-top:1px solid var(--accent);margin-top:4px;padding-top:4px"><span>This listing</span><strong style="color:${isIllegal?'var(--red)':'var(--green)'}">€${askingRent.toLocaleString()}/month</strong></div>
+    <div class="rc-row"><span>Official Mietspiegel (net cold)</span><strong>€${mietspiegelTotal?.toLocaleString() || '—'}/month</strong></div>
+    <div class="rc-row"><span>Market avg ${district.slice(0,12)} (net cold)</span><strong>€${marketTotal?.toLocaleString() || '—'}/month</strong></div>
+    <div class="rc-row" style="border-top:1px solid var(--accent);margin-top:4px;padding-top:4px"><span>This listing (cold rent)</span><strong style="color:${isIllegal?'var(--red)':'var(--green)'}">€${askingRent.toLocaleString()}/month</strong></div>
     ${isIllegal ? `<div class="rc-row"><span>Mietpreisbremse cap (110%)</span><strong>€${cap.toLocaleString()}/month</strong></div><div class="rc-row"><span>Overpaying by</span><strong style="color:var(--red)">€${overpay.toLocaleString()}/month = €${(overpay*12).toLocaleString()}/year</strong></div>` : ''}
   `;
 }
@@ -1074,7 +1074,7 @@ function updateBudgetMap() {
   document.getElementById('bcStats').innerHTML = `
     <strong style="color:var(--green)">${affordable}</strong> of ${total} areas affordable (${pct}%)
     <span style="color:var(--text-dim);margin-left:8px">•</span>
-    <span style="color:var(--text-dim)">Budget: €${budget}/month → max €${Math.round(threshold)}/m² for ${budgetSize}m²</span>
+    <span style="color:var(--text-dim)">Budget: €${budget}/month cold rent → max €${Math.round(threshold)}/m² for ${budgetSize}m²</span>
   `;
 
   const insight = document.getElementById('bcInsight');
@@ -1082,7 +1082,7 @@ function updateBudgetMap() {
     if (budgetCensus) {
       insight.innerHTML = '💡 <strong>Existing tenants</strong> in these areas pay significantly less — the Census shows what people <em>actually</em> pay, not what landlords ask. New tenants face 51% higher prices for the same flats.';
     } else {
-      insight.innerHTML = '💡 These are <strong>market asking rents</strong> — what you\'d see on Immoscout24 today. Toggle "Show what existing tenants pay" to see the difference.';
+      insight.innerHTML = '💡 These are <strong>market asking rents</strong> (net cold, excl. heating) — what you\'d see on Immoscout24 today. Toggle "Show what existing tenants pay" to see the difference.';
     }
   }
 }
