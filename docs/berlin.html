@@ -68,6 +68,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .bc-census-toggle{font-size:11px;color:var(--text-dim);white-space:nowrap}
 .bc-insight{padding:8px 16px;font-size:11px;color:var(--text-dim);background:var(--surface);border-top:1px solid var(--border)}
 
+/* Back button */
+.bc-back{padding:8px 16px 0;display:none}
+.back-btn{padding:6px 12px;border:1px solid var(--border);border-radius:6px;background:var(--surface);color:var(--accent);font-size:12px;cursor:pointer;font-weight:600;display:inline-flex;align-items:center;gap:4px}
+.back-btn:hover{background:var(--surface2)}
 /* Story */
 .story-nav{display:flex;gap:6px;padding:10px 16px;background:var(--surface);border-bottom:1px solid var(--border);max-width:640px;margin:0 auto;border-radius:0 0 8px 8px}
 .sn-btn{padding:6px 14px;border:1px solid var(--border);border-radius:6px;background:var(--surface);color:var(--text-dim);font-size:12px;cursor:pointer;min-height:36px}
@@ -87,7 +91,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .share-btn:hover{background:var(--surface);color:var(--text)}
 
 @media(max-width:768px){
-  .rent-check-panel{position:fixed;bottom:0;left:0;right:0;top:auto;width:100%;border-radius:12px 12px 0 0;max-height:60vh;z-index:2000}
+  .rent-check-panel{position:fixed;bottom:0;left:0;right:0;top:auto;width:100%;border-radius:12px 12px 0 0;max-height:60vh;z-index:2000;padding-top:0}
+  .rent-check-panel.collapsed .rc-form,.rent-check-panel.collapsed .rc-result,.rent-check-panel.collapsed .rc-disclaimer{display:none}
+  .rent-check-panel .rc-toggle-bar{display:none;padding:12px 16px;cursor:pointer;display:flex;align-items:center;justify-content:space-between}
+  .rent-check-panel .rc-toggle-bar .rc-toggle-icon{font-size:12px;color:var(--text-dim);transition:transform .2s}
   /* Tab bar — mobile tap targets */
   .tab-btn{padding:10px 14px;font-size:13px;min-height:40px}
   /* Rent Check panel — bottom sheet improvements */
@@ -96,6 +103,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   .rent-check-panel h4{font-size:15px}
   /* Budget panel — mobile: stack controls, smaller map */
   .budget-panel{top:128px}
+  .bc-back{display:block}
   .budget-controls{flex-direction:column;align-items:stretch;gap:8px;padding:0 12px 8px}
   .bc-header h3{font-size:16px}
   .bc-header p{font-size:11px}
@@ -224,13 +232,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   .searchbar input[type=text]{font-size:16px;min-height:44px;flex:1 1 100%}
   .searchbar .s-btn{font-size:14px;padding:10px 14px;min-height:44px}
   #map{height:60vh;min-height:350px}
-  .map-tooltip{top:auto;bottom:0;left:0;right:0;max-width:100%;border-radius:12px 12px 0 0;max-height:55vh;z-index:2010}
-  /* District panel — revive as bottom sheet on mobile */
-  .district-panel{position:fixed;bottom:0;left:0;right:0;top:auto;width:100%;max-width:100%;border-radius:14px 14px 0 0;max-height:45vh;z-index:2001;transform:translateY(100%);transition:transform .25s ease}
-  .district-panel.open{transform:translateY(0)}
-  .district-panel .d-row{padding:8px 10px;min-height:40px;align-items:center}
-  .district-panel .d-name{font-size:12px}
-  .district-panel .d-rent{font-size:12px}
+  .map-tooltip{top:auto;bottom:80px;left:8px;right:8px;max-width:calc(100% - 16px);border-radius:10px;max-height:40vh;z-index:2010;position:fixed}
+  /* District panel — compact floating overlay */
+  .district-panel{position:fixed;bottom:80px;right:8px;width:auto;max-width:200px;max-height:35vh;border-radius:10px;z-index:2001;overflow-y:auto;font-size:11px;box-shadow:0 4px 16px rgba(0,0,0,.4)}
+  .district-panel h4{display:none}
+  .district-panel .d-row{padding:4px 8px;min-height:32px;align-items:center}
+  .district-panel .d-name{font-size:10px;max-width:100px}
+  .district-panel .d-rent{font-size:10px}
   .map-legend{bottom:60px}
   .footer-bar{font-size:10px;padding:4px 8px 56px 8px;height:auto;min-height:28px}
 }
@@ -339,7 +347,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     <div class="rc-handle"></div>
     <button class="rc-min-btn" onclick="toggleRentCheck()" title="Minimize">−</button>
     <button class="rc-close-btn" onclick="document.getElementById('rentCheck').style.display='none'">×</button>
-    <h4 data-i18n="rc_title">🔍 Rent Check</h4>
+    <h4 data-i18n="rc_title" onclick="if(window.innerWidth<=768)document.getElementById('rentCheck').classList.toggle('collapsed')" style="cursor:pointer">🔍 Rent Check</h4>
     <div class="rc-form">
       <label data-i18n="rc_district">District</label>
       <select id="rc-district">
@@ -369,6 +377,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 
 <div class="budget-panel" id="budgetPanel" style="display:none">
   <div class="budget-controls">
+    <div class="bc-back">
+      <button class="back-btn" onclick="switchTab('explore')">← <span data-i18n="tab_map">🗺️ Map</span></button>
+    </div>
     <div class="bc-header">
       <h3 data-i18n="bc_title">Can I afford Berlin?</h3>
       <p data-i18n="bc_subtitle">Set your budget and see exactly where you can live.</p>
@@ -396,7 +407,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 
 <div class="story-panel" id="storyPanel" style="display:none">
   <div class="story-nav" id="storyNav">
-    <button class="sn-btn" onclick="switchTab('explore')" data-i18n="tab_map">🗺️ Map</button>
+    <button class="back-btn" onclick="switchTab('explore')">← <span data-i18n="tab_map">🗺️ Map</span></button>
     <button class="sn-btn" onclick="switchTab('budget')" data-i18n="tab_budget">💶 Budget</button>
   </div>
   <div class="story-scenes" id="storyScenes">
@@ -996,6 +1007,10 @@ async function init() {
   loadDistricts().then(() => handleHash());
   setupClick();
   initRentCheck();
+  // Collapse Rent Check on mobile by default
+  if (window.innerWidth <= 768) {
+    document.getElementById('rentCheck')?.classList.add('collapsed');
+  }
   applyLang();
 }
 
