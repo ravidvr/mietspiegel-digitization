@@ -85,9 +85,52 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 
 @media(max-width:768px){
   .rent-check-panel{position:fixed;bottom:0;left:0;right:0;top:auto;width:100%;border-radius:12px 12px 0 0;max-height:60vh;z-index:2000}
-  .story-scene h2{font-size:18px}
-  .scene-big{font-size:32px}
-  .story-scene p{font-size:13px}
+  /* Tab bar — mobile tap targets */
+  .tab-btn{padding:10px 14px;font-size:13px;min-height:40px}
+  /* Rent Check panel — bottom sheet improvements */
+  .rc-form select,.rc-form input{font-size:16px;min-height:44px;padding:10px 12px}
+  .rc-form label{font-size:11px}
+  .rent-check-panel h4{font-size:15px}
+  /* Budget panel — mobile optimization */
+  .budget-panel{top:88px}
+  .bc-header h3{font-size:16px}
+  .bc-header p{font-size:11px}
+  .bc-size{padding:8px 14px;font-size:13px;min-height:40px}
+  .bc-slider-group input[type=range]{height:40px}
+  .bc-stats{font-size:12px;padding:10px 14px}
+  #budgetMap{height:55vh;min-height:300px}
+  .bc-insight{font-size:11px;margin:8px 12px;padding:10px 14px}
+  .bc-census-toggle{font-size:12px;min-height:40px;display:flex;align-items:center}
+  .bc-census-toggle input[type=checkbox]{width:20px;height:20px}
+  /* Story panel — mobile readability */
+  .story-scenes{padding:16px 12px 60px}
+  .story-scene{padding:24px 0}
+  .scene-num{width:32px;height:32px;line-height:32px;font-size:14px}
+  .story-scene h2{font-size:20px}
+  .scene-big{font-size:36px}
+  .scene-unit{font-size:13px}
+  .story-scene p{font-size:14px;line-height:1.6}
+  .share-btn{padding:10px 18px;font-size:12px;min-height:44px}
+}
+
+/* Bottom sheet drag handle + close button for Rent Check */
+.rc-handle{display:none;width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 8px}
+.rc-close-btn{display:none;position:absolute;top:8px;right:10px;background:none;border:none;color:var(--text-dim);font-size:20px;cursor:pointer;width:36px;height:36px;border-radius:50%;line-height:36px;text-align:center}
+@media(max-width:768px){.rc-handle{display:block}.rc-close-btn{display:block}}
+
+/* -webkit-overflow-scrolling on all scrollable containers */
+.rent-check-panel{-webkit-overflow-scrolling:touch}
+.district-panel{-webkit-overflow-scrolling:touch}
+.story-panel{-webkit-overflow-scrolling:touch}
+.map-tooltip{-webkit-overflow-scrolling:touch}
+.suggestions{-webkit-overflow-scrolling:touch}
+.help-box{-webkit-overflow-scrolling:touch}
+
+/* Leaflet tooltip + Help overlay — bigger mobile tap targets */
+@media(max-width:768px){
+  .map-tooltip .close{font-size:22px;padding:4px 8px;min-width:44px;min-height:44px}
+  .help-box .close-btn{width:44px;height:44px;font-size:24px}
+  .help-box .got-it{padding:12px;font-size:14px;min-height:44px}
 }
 
 /* Autocomplete dropdown */
@@ -153,7 +196,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   .searchbar .s-btn{font-size:14px;padding:10px 14px;min-height:44px}
   #map{height:60vh;min-height:350px}
   .map-tooltip{top:auto;bottom:0;left:0;right:0;max-width:100%;border-radius:12px 12px 0 0;max-height:55vh}
-  .district-panel{display:none}
+  /* District panel — revive as bottom sheet on mobile */
+  .district-panel{position:fixed;bottom:0;left:0;right:0;top:auto;width:100%;max-width:100%;border-radius:14px 14px 0 0;max-height:45vh;z-index:2001;transform:translateY(100%);transition:transform .25s ease}
+  .district-panel.open{transform:translateY(0)}
+  .district-panel .d-row{padding:8px 10px;min-height:40px;align-items:center}
+  .district-panel .d-name{font-size:12px}
+  .district-panel .d-rent{font-size:12px}
   .map-legend{bottom:8px;left:4px;font-size:9px;padding:5px 8px}
   .footer-bar{font-size:10px;padding:4px 8px;height:auto;min-height:28px}
 }
@@ -193,9 +241,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     <div class="section">
       <h3>🎯 What you're looking at</h3>
       <ul>
-        <li><span class="dot-sm" style="background:#b01020"></span> <strong>Heatmap</strong> — Immoscout24 market rents (2021–2025). Red = expensive, green = cheaper.</li>
+        <li><span class="dot-sm" style="background:#08519c"></span> <strong>Heatmap</strong> — Immoscout24 market rents (2023–2025). Dark blue = cheaper, orange/red = more expensive. Colour-blind-safe.</li>
         <li><span class="dot-sm" style="background:#5b8def"></span> <strong>Census toggle</strong> — What residents actually pay (Zensus 2022). Usually much lower.</li>
         <li><span class="dot-sm" style="background:#8b8fa3"></span> <strong>District boundaries</strong> — 12 Bezirke with average rents. Hover to see details.</li>
+        <li><strong>💶 Budget Check</strong> — set your monthly budget and see exactly where in Berlin you can afford to live.</li>
+        <li><strong>🔍 Rent Check</strong> — enter any apartment's details and instantly see if the rent is fair or overpriced.</li>
       </ul>
     </div>
     <div class="section">
@@ -235,7 +285,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 </div>
 
 <div class="tab-bar">
-  <button class="tab-btn active" onclick="switchTab('explore')">🗺️ Explore</button>
+  <button class="tab-btn active" onclick="switchTab('explore')">🗺️ Map</button>
   <button class="tab-btn" onclick="switchTab('budget')">💶 Budget Check</button>
   <button class="tab-btn" onclick="switchTab('story')">📖 The Story</button>
 </div>
@@ -253,6 +303,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   <div class="district-panel" id="dpanel"><h4>Districts</h4><div id="dlist">Loading...</div></div>
   <div class="map-tooltip" id="tooltip"></div>
   <div class="rent-check-panel" id="rentCheck">
+    <div class="rc-handle"></div>
+    <button class="rc-close-btn" onclick="document.getElementById('rentCheck').style.display='none'">×</button>
     <h4>🔍 Rent Check</h4>
     <div class="rc-form">
       <label>District</label>
@@ -312,10 +364,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   <div class="story-scenes" id="storyScenes">
     <div class="story-scene" id="scene1">
       <div class="scene-num">1</div>
-      <h2>The Doubling</h2>
+      <h2>Everything Doubled</h2>
       <div class="scene-stat"><span class="scene-big">+103%</span><span class="scene-unit">rent increase 2013–2023</span></div>
       <p>Berlin's official benchmark rent has more than doubled across <em>every single tier</em>. Einfach: €5.00 → €9.98. Mittel: €6.16 → €12.50. Gut: €7.48 → €15.40. There is no neighborhood that escaped.</p>
-      <button class="share-btn" onclick="shareStat('Berlin rents doubled in 10 years — every tier, no exceptions')">📤 Share this</button>
+      <button class="share-btn" onclick="shareStat('Everything doubled: Berlin rents +103% in 10 years across every tier')">📤 Share this</button>
     </div>
     <div class="story-scene" id="scene2">
       <div class="scene-num">2</div>
@@ -326,24 +378,24 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     </div>
     <div class="story-scene" id="scene3">
       <div class="scene-num">3</div>
-      <h2>The Legal Crisis</h2>
+      <h2>The Law That Doesn't Work</h2>
       <div class="scene-stat"><span class="scene-big">9/12</span><span class="scene-unit">districts above legal cap</span></div>
       <p>Under the Mietpreisbremse, new rents cannot exceed 110% of the Mietspiegel. Yet 9 of 12 Berlin districts now show average market rents above this legal ceiling — affecting <strong>286,428 addresses</strong>. The law exists. It's not being enforced.</p>
-      <button class="share-btn" onclick="shareStat('9 of 12 Berlin districts have rents above the legal Mietpreisbremse cap')">📤 Share this</button>
+      <button class="share-btn" onclick="shareStat('The law that doesn\'t work: 9 of 12 Berlin districts above legal rent cap')">📤 Share this</button>
     </div>
     <div class="story-scene" id="scene4">
       <div class="scene-num">4</div>
-      <h2>The Location Tax</h2>
+      <h2>Your Neighborhood Is Your Rent</h2>
       <div class="scene-stat"><span class="scene-big">+62%</span><span class="scene-unit">gut vs einfach Lage</span></div>
       <p>Same building age, same apartment size — moving from an "einfach" to "gut" neighborhood costs you 62% more. That's <strong>€352/month extra on a 70 m² flat</strong>. The neighborhood matters more than the apartment.</p>
-      <button class="share-btn" onclick="shareStat('Moving to a nicer Berlin neighborhood costs +62% — same apartment, €352/month more')">📤 Share this</button>
+      <button class="share-btn" onclick="shareStat('Your neighborhood IS your rent: +62% for a nicer area — €352/month more')">📤 Share this</button>
     </div>
     <div class="story-scene" id="scene5">
       <div class="scene-num">5</div>
-      <h2>The Age Premium</h2>
+      <h2>New Walls, Higher Bills</h2>
       <div class="scene-stat"><span class="scene-big">+31%</span><span class="scene-unit">new vs old buildings</span></div>
       <p>A brand-new apartment (post-2011) costs 31% more than an identical pre-1918 Altbau in the same neighborhood. <strong>€216/month</strong> for the privilege of new walls.</p>
-      <button class="share-btn" onclick="shareStat('New Berlin apartments cost 31% more than Altbau — €216/month premium')">📤 Share this</button>
+      <button class="share-btn" onclick="shareStat('New walls, higher bills: post-2011 apartments cost 31% more than Altbau')">📤 Share this</button>
     </div>
     <div class="story-scene" id="scene6">
       <div class="scene-num">6</div>
@@ -887,7 +939,10 @@ function updateRentCheck() {
   if (!result) return;
   result.style.display = 'block';
   result.innerHTML = `
-    <div class="rc-verdict" style="color:${isIllegal?'var(--red)':'var(--green)'}">${isIllegal ? '⛔ LIKELY OVERPRICED' : '✅ Within legal range'}</div>
+    <div style="background:${isIllegal?'rgba(245,101,101,.1)':'rgba(72,187,120,.1)'};padding:8px 10px;border-radius:4px;margin-bottom:10px;text-align:center">
+      <div class="rc-verdict" style="color:${isIllegal?'var(--red)':'var(--green)'};margin-bottom:0">${isIllegal ? '⛔ Likely Overpriced' : '✅ Within Legal Range'}</div>
+      ${isIllegal ? '<div style="font-size:10px;color:var(--text-dim);margin-top:3px">Mietpreisbremse: new rents cannot exceed 110% of Mietspiegel</div>' : ''}
+    </div>
     <div class="rc-row"><span>Official Mietspiegel</span><strong>€${mietspiegelTotal?.toLocaleString() || '—'}/month</strong></div>
     <div class="rc-row"><span>Market avg (${district.slice(0,12)})</span><strong>€${marketTotal?.toLocaleString() || '—'}/month</strong></div>
     <div class="rc-row" style="border-top:1px solid var(--accent);margin-top:4px;padding-top:4px"><span>This listing</span><strong style="color:${isIllegal?'var(--red)':'var(--green)'}">€${askingRent.toLocaleString()}/month</strong></div>
