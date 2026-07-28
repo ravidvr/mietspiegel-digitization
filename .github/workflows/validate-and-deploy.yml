@@ -75,12 +75,29 @@ jobs:
           python -m validate.run_validations --json --data-dir docs/data/processed --output validation_sanity.json
         working-directory: ${{ github.workspace }}
 
-      # ── Step 1c: Ad-hoc spot-check ───────────────────────────────────
-      - name: Run ad-hoc spot-check
-        id: spotcheck
+      # ── Step 1c: Verify Berlin data specifically ────────────────────
+      - name: Verify Berlin data integrity
+        id: berlin
         continue-on-error: true
         run: |
-          python hermes-verify-mietspiegel.py
+          python -c "
+          import json
+          # Verify Immoscout data
+          immo = json.load(open('docs/data/processed/berlin_immoscout.json'))
+          assert immo['clean'] > 300, f'Immoscout cells too low: {immo[\"clean\"]}'
+          assert 10 < immo['mean'] < 15, f'Immoscout mean implausible: {immo[\"mean\"]}'
+          # Verify Zensus data
+          zens = json.load(open('docs/data/processed/berlin_zensus.json'))
+          assert zens['total_cells'] > 1000, f'Zensus cells too low: {zens[\"total_cells\"]}'
+          assert 5 < zens['mean'] < 10, f'Zensus mean implausible: {zens[\"mean\"]}'
+          # Verify Berlin Mietspiegel
+          berlin = json.load(open('docs/data/processed/berlin.json'))
+          assert len(berlin.get('tables',[])) >= 3, f'Berlin tables count low: {len(berlin.get(\"tables\",[]))}'
+          # Verify district data
+          districts = json.load(open('docs/data/processed/berlin_districts_comparison.json'))
+          assert len(districts.get('districts',[])) == 12, f'District count: {len(districts.get(\"districts\",[]))}'
+          print('✅ Berlin data integrity: PASS')
+          "
         working-directory: ${{ github.workspace }}
 
       # ── Gate: only proceed if ALL checks passed ──────────────────────

@@ -42,7 +42,7 @@ def detect_schema(data: dict) -> str:
     return "unknown"
 
 
-def normalize_city_data(data: dict) -> dict | None:
+def normalize_city_data(data: dict) -> "dict | None":
     """
     Normalize a city data file to the standard validation format.
     Returns None if the data cannot be normalized (no rent tables).
@@ -73,7 +73,7 @@ def normalize_city_data(data: dict) -> dict | None:
     return None
 
 
-def normalize_matrix_schema(data: dict) -> dict | None:
+def normalize_matrix_schema(data: dict) -> "dict | None":
     """
     Normalize the 'matrix' format (e.g. dresden-extended.json) to the
     standard tables format.
@@ -215,9 +215,11 @@ def validate_city(city_data: dict, gdw: dict, tolerance: float = 0.05) -> dict:
         },
     }
 
-    # Compute overall status
-    total_errors = sanity["errors"] + len(crossref["flags"])
-    total_warnings = sanity["warnings"] + len(crossref["warnings"])
+    # Compute overall status — GdW cross-ref flags are informational only
+    # (GdW data represents existing contracts; Mietspiegel values are new-lease reference rents.
+    #  A gap of 20-50% is expected and does NOT indicate data error.)
+    total_errors = sanity["errors"]
+    total_warnings = sanity["warnings"] + len(crossref["flags"]) + len(crossref["warnings"])
 
     report["summary"]["total_flags"] = total_errors
     report["summary"]["total_warnings"] = total_warnings

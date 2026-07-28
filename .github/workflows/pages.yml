@@ -11,7 +11,51 @@ concurrency:
   group: pages
   cancel-in-progress: true
 jobs:
+  # Wait for CI (ruff + pytest) to pass before deploying
+  wait-for-ci:
+    name: Wait for CI
+    runs-on: ubuntu-latest
+    outputs:
+      ci_passed: ${{ steps.check.outputs.conclusion }}
+    steps:
+      - name: Poll CI workflow
+        id: check
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const sha = context.sha;
+            // Find the CI workflow run for this commit
+            const { data: runs } = await github.rest.actions.listWorkflowRuns({
+              owner, repo, workflow_id: 'ci.yml', head_sha: sha, per_page: 5,
+            });
+            const ciRun = runs.workflow_runs.find(r => r.status !== 'cancelled');
+            if (!ciRun) { core.setFailed('No CI run found for this commit'); return; }
+            // If CI is still running, wait up to 5 min
+            if (ciRun.status === 'in_progress' || ciRun.status === 'queued') {
+              core.info(`CI run ${ciRun.id} is ${ciRun.status} — waiting...`);
+              let attempts = 0;
+              while (attempts < 30) {
+                await new Promise(r => setTimeout(r, 10000));
+                const { data: updated } = await github.rest.actions.getWorkflowRun({
+                  owner, repo, run_id: ciRun.id,
+                });
+                if (updated.status === 'completed') break;
+                attempts++;
+              }
+            }
+            const { data: final } = await github.rest.actions.getWorkflowRun({
+              owner, repo, run_id: ciRun.id,
+            });
+            if (final.conclusion !== 'success') {
+              core.setFailed(`CI run ${ciRun.id} concluded: ${final.conclusion}`);
+            } else {
+              core.info(`CI run ${ciRun.id} passed`);
+            }
+
   deploy:
+    name: Deploy
+    needs: wait-for-ci
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

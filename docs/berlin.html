@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Berlin Rent Map — Immoscout vs Census vs Mietspiegel" />
-<meta property="og:description" content="Berlin rent data block by block: market rents vs census rents vs official Mietspiegel. 12 Bezirke, 393 grid cells." />
+<meta property="og:description" content="Berlin rent data block by block: market rents vs census rents vs official Mietspiegel. 12 Bezirke, 361 grid cells." />
 <meta property="og:image" content="https://ravidvr.github.io/mietspiegel-digitization/og-image.svg" />
 <meta property="og:url" content="https://ravidvr.github.io/mietspiegel-digitization/docs/berlin.html" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Berlin Rent Map — Immoscout vs Census vs Mietspiegel" />
-<meta name="twitter:description" content="Berlin rent data block by block: market rents vs census rents vs official Mietspiegel. 12 Bezirke, 393 grid cells." />
+<meta name="twitter:description" content="Berlin rent data block by block: market rents vs census rents vs official Mietspiegel. 12 Bezirke, 361 grid cells." />
 <title>Berlin Rent Map</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -304,33 +304,6 @@ function findDistrict(lat, lng) {
   return null;
 }
 
-// ─── Point-in-polygon for district lookup ─────────────────────
-function pointInPolygon(point, polygon) {
-  let inside = false;
-  for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
-    const xi = polygon[i][0], yi = polygon[i][1];
-    const xj = polygon[j][0], yj = polygon[j][1];
-    const intersect = ((yi > point[1]) !== (yj > point[1]))
-      && (point[0] < (xj - xi) * (point[1] - yi) / (yj - yi) + xi);
-    if (intersect) inside = !inside;
-  }
-  return inside;
-}
-
-function findDistrict(lat, lng) {
-  if (!distData || !distData.features) return null;
-  for (const f of distData.features) {
-    if (f.geometry.type === 'Polygon') {
-      if (pointInPolygon([lng, lat], f.geometry.coordinates[0])) return f.properties;
-    } else if (f.geometry.type === 'MultiPolygon') {
-      for (const poly of f.geometry.coordinates) {
-        if (pointInPolygon([lng, lat], poly[0])) return f.properties;
-      }
-    }
-  }
-  return null;
-}
-
 // ─── Click ─────────────────────────────────────────────────────
 function setupClick() {
   map.on('click', e => {
@@ -510,6 +483,11 @@ async function init() {
     minZoom: 10, maxZoom: 18,
     maxBounds: BERLIN_BOUNDS, maxBoundsViscosity: 1.0
   });
+  // Only scroll-zoom when map has focus (prevents accidental zoom while scrolling page)
+  map.on('focus', () => { map.scrollWheelZoom.enable(); });
+  map.on('blur', () => { map.scrollWheelZoom.disable(); });
+  map.scrollWheelZoom.disable(); // Start disabled on mobile
+  map.on('click', () => { map.scrollWheelZoom.enable(); }); // Enable on interaction
   L.control.zoom({position:'bottomright'}).addTo(map);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution:'&copy; OSM',maxZoom:18}).addTo(map);
 
