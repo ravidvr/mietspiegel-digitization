@@ -1,0 +1,7 @@
+city,year,base_rent_per_sqm,mietspiegel_type,period
+Berlin,2013,6.16,qualifiziert,PRE
+Berlin,2015,6.71,qualifiziert,PRE
+Berlin,2017,7.6,qualifiziert,POST
+Berlin,2019,8.87,qualifiziert,POST
+Berlin,2021,10.56,qualifiziert,POST
+Berlin,2023,12.5,qualifiziert,POST

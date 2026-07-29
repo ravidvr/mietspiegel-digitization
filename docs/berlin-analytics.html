@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Berlin Rent Analytics</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg: #0f1117; --surface: #1a1d27; --surface2: #242836;
+  --border: #2a3040; --text: #e4e6f0; --text-dim: #8891a5;
+  --accent: #5b8def; --red: #ef4444; --amber: #f59e0b; --green: #22c55e;
+  --blue-dark: #1e3a5f; --orange-dark: #5c2d0e;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.header{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 20px;display:flex;align-items:center;justify-content:space-between}
+.header h1{font-size:18px;font-weight:700}.header h1 span{color:var(--accent)}
+.header .sub{font-size:12px;color:var(--text-dim)}
+.container{max-width:1200px;margin:0 auto;padding:16px}
+/* KPI cards */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:16px}
+.kpi-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px}
+.kpi-card .label{font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.kpi-card .value{font-size:28px;font-weight:800;margin-bottom:2px}
+.kpi-card .delta{font-size:12px}
+.kpi-card .delta.up{color:var(--red)}.kpi-card .delta.down{color:var(--green)}
+.kpi-card.red{border-left:3px solid var(--red)}
+.kpi-card.amber{border-left:3px solid var(--amber)}
+.kpi-card.green{border-left:3px solid var(--green)}
+.kpi-card.blue{border-left:3px solid var(--accent)}
+/* Chart grid */
+.chart-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(500px,1fr));gap:12px;margin-bottom:16px}
+.chart-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px}
+.chart-card h3{font-size:13px;font-weight:600;margin-bottom:12px;color:var(--text)}
+.chart-card canvas{max-height:300px}
+.chart-full{grid-column:1/-1}
+/* Table */
+.table-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;overflow-x:auto}
+.table-card h3{font-size:13px;font-weight:600;margin-bottom:12px}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{text-align:left;padding:8px 10px;border-bottom:2px solid var(--border);color:var(--text-dim);font-weight:600;text-transform:uppercase;font-size:10px;letter-spacing:.5px}
+td{padding:8px 10px;border-bottom:1px solid var(--border)}
+tr:hover{background:var(--surface2)}
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+.verdict{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600}
+.verdict.bad{background:var(--red);color:#fff}
+.verdict.ok{background:var(--amber);color:#000}
+.verdict.good{background:var(--green);color:#fff}
+.footer-bar{text-align:center;padding:16px;font-size:10px;color:var(--text-dim);border-top:1px solid var(--border);margin-top:16px}
+@media(max-width:768px){
+  .chart-grid{grid-template-columns:1fr}
+  .kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .header{padding:10px 12px}
+  .container{padding:10px}
+  .kpi-card .value{font-size:22px}
+}
+</style>
+</head>
+<body>
+<div class="header">
+  <div><h1>Berlin <span>Rent Analytics</span></h1><div class="sub">All values: Nettokaltmiete (net cold rent) · Source: Official Mietspiegel 2024</div></div>
+  <a href="berlin.html" style="color:var(--accent);text-decoration:none;font-size:12px">← Map Dashboard</a>
+</div>
+<div class="container">
+
+<!-- KPI Row -->
+<div class="kpi-grid">
+  <div class="kpi-card red">
+    <div class="label">Mietpreisbremse Impact</div>
+    <div class="value">+140%</div>
+    <div class="delta up">Growth accelerated after 2015 rent brake</div>
+  </div>
+  <div class="kpi-card amber">
+    <div class="label">2BR Affordability</div>
+    <div class="value">50.6%</div>
+    <div class="delta up">of median income for 90 m² warm</div>
+  </div>
+  <div class="kpi-card red">
+    <div class="label">New vs Existing Tenant Gap</div>
+    <div class="value">+35%</div>
+    <div class="delta up">New tenants pay €2.82/m² more</div>
+  </div>
+  <div class="kpi-card blue">
+    <div class="label">District Spread</div>
+    <div class="value">1.31×</div>
+    <div class="delta">Charlottenburg vs Neukölln</div>
+  </div>
+</div>
+
+<!-- Charts -->
+<div class="chart-grid">
+  <div class="chart-card chart-full">
+    <h3>Berlin Base Rent 2013–2024 — Did the Mietpreisbremse Work?</h3>
+    <canvas id="trendChart"></canvas>
+  </div>
+  <div class="chart-card">
+    <h3>Rent by District (€/m² net cold)</h3>
+    <canvas id="districtChart"></canvas>
+  </div>
+  <div class="chart-card">
+    <h3>Affordability: 30% Income Rule (€2,450/mo median)</h3>
+    <canvas id="affordChart"></canvas>
+  </div>
+  <div class="chart-card">
+    <h3>Wohnlage Distribution by District</h3>
+    <canvas id="lageChart"></canvas>
+  </div>
+  <div class="chart-card">
+    <h3>Rent by Building Age × Lage (€/m²)</h3>
+    <canvas id="heatmapChart"></canvas>
+  </div>
+</div>
+
+<!-- Mietspiegel Table -->
+<div class="table-card">
+  <h3>Official Mietspiegel 2024 — Berlin (€/m² net cold)</h3>
+  <table id="mietspiegelTable"></table>
+</div>
+
+<div class="footer-bar">Data: Official Berlin Mietspiegel 2013–2024 · Zensus 2022 · Immoscout24 · Amt für Statistik Berlin-Brandenburg · All rents: Nettokaltmiete</div>
+</div>
+
+<script>
+// ── Berlin Data ──────────────────────────────────────────
+const historical = [
+  {year:2013, rent:6.16}, {year:2015, rent:6.71}, {year:2017, rent:7.60},
+  {year:2019, rent:8.87}, {year:2021, rent:10.56}, {year:2023, rent:12.50}
+];
+const counterfactual2023 = 8.91;
+
+const districts = [
+  {name:"Neukölln", rent:9.79, einfach:63.7, mittel:36.3, gut:0.0},
+  {name:"Treptow-Köpenick", rent:10.54, einfach:43.0, mittel:51.9, gut:5.1},
+  {name:"Spandau", rent:10.60, einfach:47.5, mittel:38.7, gut:13.7},
+  {name:"Lichtenberg", rent:10.82, einfach:34.5, mittel:59.5, gut:6.0},
+  {name:"Reinickendorf", rent:11.08, einfach:35.7, mittel:45.3, gut:19.0},
+  {name:"Mitte", rent:11.09, einfach:49.6, mittel:13.1, gut:37.3},
+  {name:"Tempelhof-Schöneberg", rent:11.10, einfach:27.8, mittel:62.9, gut:9.3},
+  {name:"Marzahn-Hellersdorf", rent:11.70, einfach:20.1, mittel:54.9, gut:25.0},
+  {name:"Friedrichshain-Kreuzberg", rent:11.71, einfach:27.5, mittel:37.3, gut:35.2},
+  {name:"Pankow", rent:11.76, einfach:10.8, mittel:73.9, gut:15.3},
+  {name:"Steglitz-Zehlendorf", rent:12.78, einfach:1.4, mittel:51.9, gut:46.7},
+  {name:"Charlottenburg-Wilmersdorf", rent:12.80, einfach:9.5, mittel:32.5, gut:58.0}
+];
+
+const mietspiegel = [
+  {lage:"Einfach", rows:[
+    {bj:"bis 1918", s40:8.03, s60:7.68, s90:7.35, s100:7.02},
+    {bj:"1919–1949", s40:7.89, s60:7.55, s90:7.22, s100:6.88},
+    {bj:"1950–1964", s40:8.65, s60:8.28, s90:7.92, s100:7.54},
+    {bj:"1965–1972", s40:8.78, s60:8.40, s90:8.03, s100:7.65},
+    {bj:"1973–1990", s40:9.12, s60:8.73, s90:8.35, s100:7.95},
+    {bj:"1991–2002", s40:10.20, s60:9.76, s90:9.33, s100:8.89},
+    {bj:"2003–2014", s40:11.50, s60:11.01, s90:10.53, s100:10.02},
+    {bj:"2015–2020", s40:13.80, s60:13.21, s90:12.63, s100:12.02},
+  ]},
+  {lage:"Mittel", rows:[
+    {bj:"bis 1918", s40:10.03, s60:9.60, s90:9.18, s100:8.75},
+    {bj:"1919–1949", s40:9.86, s60:9.44, s90:9.03, s100:8.59},
+    {bj:"1950–1964", s40:10.81, s60:10.35, s90:9.91, s100:9.43},
+    {bj:"1965–1972", s40:10.97, s60:10.50, s90:10.05, s100:9.57},
+    {bj:"1973–1990", s40:11.40, s60:10.91, s90:10.44, s100:9.94},
+    {bj:"1991–2002", s40:12.75, s60:12.20, s90:11.67, s100:11.11},
+    {bj:"2003–2014", s40:14.38, s60:13.76, s90:13.16, s100:12.53},
+    {bj:"2015–2020", s40:17.25, s60:16.51, s90:15.79, s100:15.03},
+  ]},
+  {lage:"Gut", rows:[
+    {bj:"bis 1918", s40:12.80, s60:12.24, s90:11.71, s100:11.14},
+    {bj:"1919–1949", s40:12.56, s60:12.02, s90:11.50, s100:10.94},
+    {bj:"1950–1964", s40:13.74, s60:13.15, s90:12.58, s100:11.97},
+    {bj:"1965–1972", s40:13.92, s60:13.32, s90:12.74, s100:12.13},
+    {bj:"1973–1990", s40:14.44, s60:13.82, s90:13.22, s100:12.58},
+    {bj:"1991–2002", s40:16.76, s60:16.04, s90:15.35, s100:14.60},
+    {bj:"2003–2014", s40:18.04, s60:17.26, s90:16.51, s100:15.72},
+    {bj:"2015–2020", s40:22.50, s60:21.53, s90:20.59, s100:19.60},
+  ]}
+];
+
+// Affordability scenarios (€2,450 median income)
+const scenarios = [
+  {label:"Studio 40m²", cold:11.27*40, warm:(11.27+2.5)*40},
+  {label:"1BR 60m²", cold:11.27*60, warm:(11.27+2.5)*60},
+  {label:"2BR 90m²", cold:11.27*90, warm:(11.27+2.5)*90},
+];
+
+// ── Charts ───────────────────────────────────────────────
+Chart.defaults.color = '#8891a5';
+Chart.defaults.borderColor = '#2a3040';
+Chart.defaults.font.family = '-apple-system,BlinkMacSystemFont,sans-serif';
+
+// 1. Trend chart
+new Chart(document.getElementById('trendChart'), {
+  type: 'line',
+  data: {
+    labels: ['2013','2014','2015','2016','2017','2018','2019','2020','2021','2022','2023'],
+    datasets: [{
+      label: 'Actual base rent (€/m²)',
+      data: [6.16,null,6.71,null,7.60,null,8.87,null,10.56,null,12.50],
+      borderColor: '#5b8def', backgroundColor: 'rgba(91,141,239,0.1)',
+      tension: 0.3, fill: true, pointRadius: 5, pointBackgroundColor: '#5b8def'
+    },{
+      label: 'Pre-2015 trend continued (counterfactual)',
+      data: [6.16,6.44,6.71,6.99,7.26,7.54,7.81,8.09,8.36,8.64,8.91],
+      borderColor: '#ef4444', borderDash: [6,3], tension: 0, fill: false,
+      pointRadius: 0
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      title: {display:true, text:'Mietpreisbremse introduced June 2015', color:'#ef4444', font:{size:11},
+        padding:{bottom:16}},
+      annotation: false
+    },
+    scales: {
+      y: {title:{display:true,text:'€/m² net cold'}, min:5, max:14},
+      x: {title:{display:true,text:''}}
+    }
+  }
+});
+
+// 2. District bar chart
+const districtColors = districts.map(d => d.rent > 11.73 ? '#ef4444' : d.rent > 10.79 ? '#f59e0b' : '#22c55e');
+new Chart(document.getElementById('districtChart'), {
+  type: 'bar',
+  data: {
+    labels: districts.map(d=>d.name),
+    datasets: [{
+      label: '€/m²', data: districts.map(d=>d.rent),
+      backgroundColor: districtColors,
+      borderRadius: 4
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    plugins: {
+      annotation: {
+        annotations: {
+          avgLine: {type:'line',xMin:11.73,xMax:11.73,borderColor:'#5b8def',borderWidth:2,borderDash:[4,2],
+            label:{content:'Berlin avg €11.73',enabled:true,position:'end'}}
+        }
+      }
+    },
+    scales: {x:{title:{display:true,text:'€/m²'},min:8}}
+  }
+});
+
+// 3. Affordability gauge
+new Chart(document.getElementById('affordChart'), {
+  type: 'bar',
+  data: {
+    labels: scenarios.map(s=>s.label),
+    datasets: [
+      {label:'Cold rent (€/mo)', data:scenarios.map(s=>s.cold), backgroundColor:'#5b8def',borderRadius:4},
+      {label:'+ Utilities (€/mo)', data:scenarios.map(s=>s.warm), backgroundColor:'#ef4444',borderRadius:4}
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      annotation: {
+        annotations: {
+          line30: {type:'line',yMin:735,yMax:735,borderColor:'#22c55e',borderWidth:2,borderDash:[4,2],
+            label:{content:'30% threshold €735/mo',enabled:true,position:'start', backgroundColor:'rgba(34,197,94,0.15)',font:{size:10}}}
+        }
+      }
+    },
+    scales: {y:{title:{display:true,text:'€/month'},max:1400}}
+  }
+});
+
+// 4. Wohnlage distribution
+new Chart(document.getElementById('lageChart'), {
+  type: 'bar',
+  data: {
+    labels: districts.map(d=>d.name),
+    datasets: [
+      {label:'Einfach', data:districts.map(d=>d.einfach), backgroundColor:'#22c55e',stack:'lage'},
+      {label:'Mittel', data:districts.map(d=>d.mittel), backgroundColor:'#f59e0b',stack:'lage'},
+      {label:'Gut', data:districts.map(d=>d.gut), backgroundColor:'#ef4444',stack:'lage'}
+    ]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    plugins: {title:{display:true,text:'% of address points per Wohnlage category',font:{size:11}}},
+    scales: {x:{stacked:true,title:{display:true,text:'%'},max:100},y:{stacked:true}}
+  }
+});
+
+// 5. Heatmap: average rent by baujahr x lage
+const bjLabels = mietspiegel[0].rows.map(r=>r.bj);
+const lageLabels = mietspiegel.map(l=>l.lage);
+const heatData = [];
+for (const lage of mietspiegel) {
+  for (const row of lage.rows) {
+    heatData.push({x:row.bj, y:lage.lage, v:(row.s40+row.s60+row.s90+row.s100)/4});
+  }
+}
+
+// Build heatmap as grouped bar chart
+new Chart(document.getElementById('heatmapChart'), {
+  type: 'bar',
+  data: {
+    labels: bjLabels,
+    datasets: mietspiegel.map((lage,i) => ({
+      label: lage.lage,
+      data: lage.rows.map(r=>(r.s40+r.s60+r.s90+r.s100)/4),
+      backgroundColor: i===0?'#22c55e':i===1?'#f59e0b':'#ef4444',
+      borderRadius: 3
+    }))
+  },
+  options: {
+    responsive: true,
+    plugins: {title:{display:true,text:'Average across all sizes per Baujahr × Lage',font:{size:11}}},
+    scales: {y:{title:{display:true,text:'€/m²'}}}
+  }
+});
+
+// ── Mietspiegel Table ────────────────────────────────────
+const sizeLabels = ['≤40 m²','40–60 m²','60–90 m²','>90 m²'];
+const keys = ['s40','s60','s90','s100'];
+let html = '<thead><tr><th>Lage</th><th>Baujahr</th>';
+for (const s of sizeLabels) html += `<th class="num">${s}</th>`;
+html += '</tr></thead><tbody>';
+for (const lage of mietspiegel) {
+  let first = true;
+  for (const row of lage.rows) {
+    html += '<tr>';
+    if (first) html += `<td rowspan="${lage.rows.length}" style="font-weight:700;vertical-align:top">${lage.lage}</td>`;
+    html += `<td>${row.bj}</td>`;
+    for (const k of keys) {
+      const v = row[k];
+      const cls = v > 15 ? 'verdict bad' : v > 11 ? 'verdict ok' : 'verdict good';
+      html += `<td class="num">€${v.toFixed(2)}</td>`;
+    }
+    html += '</tr>';
+    first = false;
+  }
+}
+html += '</tbody>';
+document.getElementById('mietspiegelTable').innerHTML = html;
+</script>
+</body>
+</html>

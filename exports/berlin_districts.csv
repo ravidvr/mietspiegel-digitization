@@ -1,0 +1,13 @@
+district,avg_rent_per_sqm,einfach_pct,mittel_pct,gut_pct,total_addresses,gap_vs_avg_pct
+Neukölln,9.79,63.7,36.3,0.0,31092,-9.3
+Treptow-Köpenick,10.54,43.0,51.9,5.1,48991,-2.3
+Spandau,10.6,47.5,38.7,13.7,33994,-1.8
+Lichtenberg,10.82,34.5,59.5,6.0,23030,0.3
+Reinickendorf,11.08,35.7,45.3,19.0,41608,2.7
+Mitte,11.09,49.6,13.1,37.3,17636,2.8
+Tempelhof-Schöneberg,11.1,27.8,62.9,9.3,35308,2.9
+Marzahn-Hellersdorf,11.7,20.1,54.9,25.0,39753,8.4
+Friedrichshain-Kreuzberg,11.71,27.5,37.3,35.2,11485,8.5
+Pankow,11.76,10.8,73.9,15.3,48557,9.0
+Steglitz-Zehlendorf,12.78,1.4,51.9,46.7,46291,18.4
+Charlottenburg-Wilmersdorf,12.8,9.5,32.5,58.0,22760,18.6
