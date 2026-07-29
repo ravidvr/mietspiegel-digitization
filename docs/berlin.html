@@ -23,14 +23,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .header{background:#151821;border-bottom:1px solid var(--border);padding:8px 14px;display:flex;align-items:center;justify-content:space-between;gap:8px}
 .header h1{font-size:16px;font-weight:700;color:#fff}.header h1 span{color:var(--accent)}
 .h-right{display:flex;align-items:center;gap:6px}
-.h-btn{background:transparent;border:1px solid rgba(255,255,255,.15);color:#e4e6f0;padding:4px 8px;border-radius:4px;font-size:11px;cursor:pointer}.h-btn:hover{background:rgba(255,255,255,.1)}
+.h-btn{background:transparent;border:1px solid rgba(255,255,255,.15);color:#e4e6f0;padding:4px 8px;border-radius:6px;font-size:11px;cursor:pointer}.h-btn:hover{background:rgba(255,255,255,.1)}
 .bdg{background:var(--accent);color:#fff;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600}
 
 /* Search bar */
-.searchbar{display:flex;align-items:center;gap:6px;padding:8px 14px;background:var(--surface2);border-bottom:1px solid var(--border)}
+.searchbar{display:flex;align-items:center;gap:6px;padding:4px 14px;background:var(--surface2);border-bottom:1px solid var(--border)}
 .searchbar input[type=text]{flex:1;padding:8px 12px;border:2px solid var(--accent);border-radius:8px;background:var(--bg);color:var(--text);font-size:14px;outline:none}
 .searchbar input[type=text]:focus{box-shadow:0 0 0 3px rgba(91,141,239,.2)}
-.searchbar .s-btn{padding:8px 16px;border:none;border-radius:8px;background:var(--accent);color:#fff;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
+.searchbar .s-btn{padding:8px 16px;border:none;border-radius:6px;background:var(--accent);color:#fff;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
 .searchbar .s-btn:hover{opacity:.85}
 
 /* Tab bar */
@@ -43,7 +43,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .rent-check-panel{position:absolute;top:56px;right:10px;width:280px;max-height:calc(100vh - 140px);overflow-y:auto;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;z-index:1001;box-shadow:0 4px 16px rgba(0,0,0,.3);font-size:12px}
 .rent-check-panel h4{font-size:13px;margin-bottom:8px;font-weight:700}
 .rc-form label{display:block;font-size:10px;color:var(--text-dim);margin:6px 0 2px;font-weight:600;text-transform:uppercase;letter-spacing:.3px}
-.rc-form select,.rc-form input{width:100%;padding:6px 8px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:12px}
+.rc-form select,.rc-form input{width:100%;padding:6px 8px;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);font-size:12px}
 .rc-form input[type=number]{font-size:14px;padding:8px}
 .rc-result{margin-top:10px;padding:10px;background:var(--surface2);border-radius:6px}
 .rc-result .rc-verdict{font-size:18px;font-weight:800;margin-bottom:4px}
@@ -62,7 +62,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .bc-size-group{display:flex;align-items:center;gap:8px}
 .bc-size-group label{font-size:12px;color:var(--text-dim);white-space:nowrap}
 .bc-sizes{display:flex;gap:4px}
-.bc-size{padding:4px 10px;border:1px solid var(--border);border-radius:4px;background:var(--surface);color:var(--text);font-size:11px;cursor:pointer}
+.bc-size{padding:4px 10px;border:1px solid var(--border);border-radius:6px;background:var(--surface);color:var(--text);font-size:11px;cursor:pointer}
 .bc-size.active{background:var(--accent);color:#fff;border-color:var(--accent)}
 .bc-stats{padding:6px 16px;font-size:11px;color:var(--text-dim);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .bc-census-toggle{font-size:11px;color:var(--text-dim);white-space:nowrap}
@@ -87,11 +87,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .scene-unit{font-size:14px;color:var(--text-dim)}
 .story-scene p{font-size:14px;line-height:1.7;color:var(--text-dim)}
 .story-scene strong{color:var(--text)}
-.share-btn{margin-top:14px;padding:8px 16px;background:var(--surface2);border:1px solid var(--accent);border-radius:6px;color:var(--accent);font-size:12px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-weight:600}
+.share-btn{margin-top:14px;padding:8px 16px;background:var(--surface2);border:2px solid var(--accent);border-radius:6px;color:var(--accent);font-size:13px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-weight:600;transition:all .15s}
 .share-btn:hover{background:var(--surface);color:var(--text)}
 
-@media(max-width:768px){
-  .rent-check-panel{position:fixed;bottom:0;left:0;right:0;top:auto;width:100%;border-radius:12px 12px 0 0;max-height:50vh;z-index:2000;padding-top:0;transform:translateY(calc(100% - 42px))}
   .rent-check-panel:not(.collapsed){transform:translateY(0)}
   .rent-check-panel.collapsed .rc-form,.rent-check-panel.collapsed .rc-result,.rent-check-panel.collapsed .rc-disclaimer{display:none}
   .rent-check-panel .rc-toggle-bar{display:none;padding:12px 16px;cursor:pointer;display:flex;align-items:center;justify-content:space-between}
@@ -129,15 +127,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   .scene-unit{font-size:13px}
   .story-scene p{font-size:14px;line-height:1.6}
   .share-btn{padding:10px 18px;font-size:12px;min-height:44px}
-}
 
 /* Bottom sheet drag handle + close button for Rent Check */
 .rc-handle{display:none;width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 8px}
-.rc-min-btn{position:absolute;top:8px;right:44px;background:none;border:none;color:var(--text-dim);font-size:18px;cursor:pointer;width:28px;height:28px;border-radius:4px;line-height:28px;text-align:center;font-weight:700}
+.rc-min-btn{position:absolute;top:8px;right:44px;background:none;border:none;color:var(--text-dim);font-size:18px;cursor:pointer;width:28px;height:28px;border-radius:6px;line-height:28px;text-align:center;font-weight:700}
 .rc-min-btn:hover{background:var(--surface2);color:var(--text)}
-.rc-expand-hint{display:none;font-size:10px;color:var(--text-dim);margin-left:4px}@media(max-width:768px){.rc-expand-hint{display:inline}.rent-check-panel:not(.collapsed) .rc-expand-hint{display:none}}
+.rc-expand-hint{display:none;font-size:10px;color:var(--text-dim);margin-left:4px}
 .rc-close-btn{display:none;position:absolute;top:8px;right:10px;background:none;border:none;color:var(--text-dim);font-size:20px;cursor:pointer;width:36px;height:36px;border-radius:50%;line-height:36px;text-align:center}
-@media(max-width:768px){.rc-handle{display:block}.rc-close-btn{display:block}}
 
 /* -webkit-overflow-scrolling on all scrollable containers */
 .rent-check-panel{-webkit-overflow-scrolling:touch}
@@ -148,16 +144,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .help-box{-webkit-overflow-scrolling:touch}
 
 /* Leaflet tooltip + Help overlay — bigger mobile tap targets */
-@media(max-width:768px){
-  .map-tooltip .close{font-size:22px;padding:4px 8px;min-width:44px;min-height:44px}
+
   .help-box .close-btn{width:44px;height:44px;font-size:24px}
   .help-box .got-it{padding:12px;font-size:14px;min-height:44px}
   .mobile-nav{display:flex}
   .map-controls{left:8px;top:4px}
-  .mc-btn{width:36px;height:36px;font-size:16px;border-radius:50%}
+  .mc-btn{width:40px;height:40px;font-size:16px;border-radius:50%}
   .footer-bar{margin-bottom:52px}
   .map-legend{bottom:60px}
-}
 
 /* Autocomplete dropdown */
 .search-wrap{position:relative;flex:1;min-width:0}
@@ -195,6 +189,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .map-legend{position:absolute;bottom:16px;left:12px;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:8px 12px;font-size:10px;z-index:1000;box-shadow:0 2px 8px rgba(0,0,0,.3)}
 .map-legend .r{display:flex;align-items:center;gap:6px;margin:2px 0}
 .map-legend .d{width:16px;height:3px;border-radius:2px;flex-shrink:0}
+.legend-toggle{cursor:pointer;user-select:none}
+.legend-bands.collapsed{display:none}
+.legend-chevron{transition:transform .2s}
+.legend-chevron.flipped{transform:rotate(180deg)}
 
 .map-tooltip{position:absolute;top:56px;right:10px;max-width:360px;max-height:calc(100% - 80px);overflow-y:auto;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px;z-index:1010;box-shadow:0 4px 16px rgba(0,0,0,.3);font-size:12px;display:none}
 .map-tooltip .close{float:right;background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:16px;padding:0 2px}
@@ -205,9 +203,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .map-tooltip .row{display:flex;justify-content:space-between;font-size:10px;margin:1px 0}
 
 .district-panel{position:absolute;top:56px;left:12px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px;z-index:1000;box-shadow:0 2px 8px rgba(0,0,0,.3);max-height:calc(100% - 100px);overflow-y:auto;font-size:12px;max-width:240px}
-.dp-close{display:none;position:absolute;top:6px;right:6px;background:none;border:none;color:var(--text-dim);font-size:16px;cursor:pointer;width:24px;height:24px;border-radius:4px;line-height:24px;text-align:center}@media(max-width:768px){.dp-close{display:block}}.dp-close:hover{background:var(--surface2);color:var(--text)}
+.dp-close{display:none;position:absolute;top:6px;right:6px;background:none;border:none;color:var(--text-dim);font-size:16px;cursor:pointer;width:24px;height:24px;border-radius:6px;line-height:24px;text-align:center}.dp-close:hover{background:var(--surface2);color:var(--text)}
 .district-panel h4{font-size:12px;font-weight:700;margin-bottom:6px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.5px}
-.district-panel .d-row{display:flex;justify-content:space-between;padding:4px 5px;border-radius:3px;cursor:pointer;margin:1px 0;gap:6px}
+.district-panel .d-row{display:flex;justify-content:space-between;padding:4px 5px;border-radius:6px;cursor:pointer;margin:1px 0;gap:6px}
 .district-panel .d-row:hover{background:var(--surface2)}
 .district-panel .d-row .d-name{font-weight:600;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .district-panel .d-row .d-rent{color:var(--text-dim);font-size:11px;flex-shrink:0}
@@ -228,6 +226,51 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .leaflet-popup-close-button{color:var(--text-dim)!important}
 
 @media(max-width:768px){
+  .rent-check-panel{position:fixed;bottom:0;left:0;right:0;top:auto;width:100%;border-radius:12px 12px 0 0;max-height:50vh;z-index:2000;padding-top:0;transform:translateY(calc(100% - 42px))}
+  .rent-check-panel:not(.collapsed){transform:translateY(0)}
+  .rent-check-panel.collapsed .rc-form,.rent-check-panel.collapsed .rc-result,.rent-check-panel.collapsed .rc-disclaimer{display:none}
+  .rent-check-panel .rc-toggle-bar{display:none;padding:12px 16px;cursor:pointer;display:flex;align-items:center;justify-content:space-between}
+  .rent-check-panel .rc-toggle-bar .rc-toggle-icon{font-size:12px;color:var(--text-dim);transition:transform .2s}
+  /* Tab bar — mobile tap targets */
+  .tab-btn{padding:6px 10px;font-size:13px;min-height:34px}
+  .tab-bar{padding:2px 4px;gap:2px}
+  /* Rent Check panel — bottom sheet improvements */
+  .rc-form select,.rc-form input{font-size:16px;min-height:44px;padding:10px 12px}
+  .rc-form label{font-size:11px}
+  .rent-check-panel h4{font-size:15px}
+  /* Budget panel — mobile: stack controls, smaller map */
+  .budget-panel{top:115px}
+  .bc-back{display:block}
+  .budget-controls{flex-direction:column;align-items:stretch;gap:8px;padding:0 12px 8px}
+  .bc-header h3{font-size:16px}
+  .bc-header p{font-size:11px}
+  .bc-size{padding:8px 14px;font-size:13px;min-height:40px}
+  .bc-slider-group input[type=range]{height:40px}
+  .bc-stats{font-size:12px;padding:8px 12px;flex-direction:column;align-items:flex-start;gap:4px}
+  #budgetMap{height:48vh;min-height:250px}
+  .bc-insight{font-size:11px;padding:10px 12px}
+  .bc-census-toggle{font-size:12px;min-height:40px;display:flex;align-items:center}
+  .bc-census-toggle input[type=checkbox]{width:20px;height:20px}
+  /* Story panel — mobile */
+  .story-panel{top:115px}
+  .story-nav{padding:8px 12px;border-radius:0}
+  .sn-btn{min-height:40px;font-size:13px;padding:8px 14px}
+  .story-scenes{padding:16px 12px 90px}
+  .story-scene{padding:24px 0}
+  .scene-num{width:32px;height:32px;line-height:32px;font-size:14px}
+  .story-scene h2{font-size:20px}
+  .scene-big{font-size:36px}
+  .scene-unit{font-size:13px}
+  .story-scene p{font-size:14px;line-height:1.6}
+  .share-btn{padding:10px 18px;font-size:12px;min-height:44px}
+  .rc-handle{display:block}
+  .rc-close-btn{display:block}
+  .map-tooltip .close{font-size:22px;padding:4px 8px;min-width:44px;min-height:44px}
+  .help-box .close-btn{width:44px;height:44px;font-size:24px}
+  .help-box .got-it{padding:12px;font-size:14px;min-height:44px}
+  .mobile-nav{display:flex}
+  .map-controls{left:8px;top:4px}
+  .mc-btn{width:40px;height:40px;font-size:16px;border-radius:50%}
   .header{padding:6px 10px;gap:4px;flex-wrap:nowrap}
   .header h1{font-size:14px;white-space:nowrap}
   .h-right{gap:3px}
@@ -241,19 +284,34 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   #map{height:calc(100vh - 210px);min-height:300px}
   .map-tooltip{top:auto;bottom:80px;left:8px;right:8px;max-width:calc(100% - 16px);border-radius:10px;max-height:40vh;z-index:3010;position:fixed}
   /* District panel — compact floating overlay */
-  .district-panel{position:fixed;top:185px;right:8px;bottom:auto;width:auto;max-width:200px;min-height:80px;max-height:40vh;border-radius:10px;z-index:2001;overflow-y:auto;font-size:11px;box-shadow:0 4px 16px rgba(0,0,0,.4)}
+  .district-panel{position:fixed;top:185px;right:8px;bottom:auto;width:auto;max-width:200px;min-height:80px;max-height:40vh;border-radius:8px;z-index:2001;overflow-y:auto;font-size:11px;box-shadow:0 4px 16px rgba(0,0,0,.4)}
   .district-panel h4{display:none}
-  .district-panel .d-row{padding:4px 8px;min-height:32px;align-items:center}
+  .district-panel .d-row{padding:4px 8px;min-height:36px;align-items:center}
   .district-panel .d-name{font-size:10px;max-width:100px}
   .district-panel .d-rent{font-size:10px}
   .map-legend{bottom:60px}
-  .footer-bar{font-size:10px;padding:3px 8px;height:auto;min-height:22px;margin-bottom:62px}
+  .footer-bar{font-size:10px;padding:3px 8px;height:auto;min-height:22px;padding-bottom:60px}
+  .dp-close{display:block}
+}
+
+/* Tablet breakpoint (481-1024px) — intermediate layout */
+@media(min-width:481px) and (max-width:1024px){
+  #map{height:70vh;min-height:400px}
+  .rent-check-panel{position:absolute;top:56px;right:10px;width:260px;border-radius:8px;max-height:calc(100vh - 100px);transform:none}
+  .rent-check-panel.collapsed .rc-form,.rent-check-panel.collapsed .rc-result{display:block}
+  .district-panel{position:absolute;top:56px;left:12px;max-width:220px;border-radius:8px}
+  .budget-controls{flex-direction:row;align-items:center;flex-wrap:wrap}
+  #budgetMap{height:55vh;min-height:300px}
+  .bc-back{display:none}
+  .mobile-nav{display:none !important}
+  .rc-handle{display:none}
+  .rc-close-btn{display:none}
 }
 
 /* Explainer overlay */
 .help-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:9999;align-items:center;justify-content:center;padding:16px}
 .help-overlay.open{display:flex}
-.help-box{background:var(--surface);border:1px solid var(--border);border-radius:10px;max-width:440px;width:100%;max-height:85vh;overflow-y:auto;padding:24px;box-shadow:0 6px 24px rgba(0,0,0,.4);position:relative}
+.help-box{background:var(--surface);border:1px solid var(--border);border-radius:8px;max-width:440px;width:100%;max-height:85vh;overflow-y:auto;padding:24px;box-shadow:0 6px 24px rgba(0,0,0,.4);position:relative}
 .help-box h2{font-size:18px;margin-bottom:2px;color:#fff}
 .help-box .sub{font-size:12px;color:var(--text-dim);margin-bottom:16px}
 .help-box .section{margin-bottom:14px}
@@ -340,13 +398,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     <button class="mc-btn active" id="mc-districts" onclick="toggleDistricts()" title="Show/hide districts">📋</button>
   </div>
   <div class="map-legend" id="legend">
-    <div style="font-weight:600;margin-bottom:4px;font-size:11px">€/m² (net cold rent)</div>
+    <div class="legend-toggle" onclick="toggleLegend()" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer">
+      <span style="font-weight:600;font-size:11px">€/m² (net cold rent)</span>
+      <span class="legend-chevron" style="font-size:10px;color:var(--text-dim);margin-left:8px">▼</span>
+    </div>
+    <div class="legend-bands">
     <div class="r"><span class="d" style="background:#08519c"></span> < €9</div>
     <div class="r"><span class="d" style="background:#3182bd"></span> €9 – 11</div>
     <div class="r"><span class="d" style="background:#6baed6"></span> €11 – 13</div>
     <div class="r"><span class="d" style="background:#fd8d3c"></span> €13 – 15</div>
     <div class="r"><span class="d" style="background:#e6550d"></span> €15 – 18</div>
     <div class="r"><span class="d" style="background:#a63603"></span> > €18</div>
+    </div>
   </div>
   <div class="district-panel" id="dpanel"><button class="dp-close" onclick="toggleDistricts()">×</button><h4>Districts</h4><div id="dlist">Loading...</div></div>
   <div class="map-tooltip" id="tooltip"></div>
@@ -1017,6 +1080,16 @@ async function init() {
   // Collapse Rent Check on mobile by default
   if (window.innerWidth <= 768) {
     document.getElementById('rentCheck')?.classList.add('collapsed');
+    // Auto-collapse legend on mobile (unless user previously expanded)
+    if (!localStorage.getItem('berlin-legend-collapsed') || localStorage.getItem('berlin-legend-collapsed') === 'true') {
+      document.querySelector('.legend-bands')?.classList.add('collapsed');
+      document.querySelector('.legend-chevron')?.classList.add('flipped');
+    }
+  }
+  // Restore legend state from localStorage
+  if (localStorage.getItem('berlin-legend-collapsed') === 'true') {
+    document.querySelector('.legend-bands')?.classList.add('collapsed');
+    document.querySelector('.legend-chevron')?.classList.add('flipped');
   }
   applyLang();
 }
@@ -1037,6 +1110,10 @@ async function switchTab(tab) {
   mapEl.style.display = 'none';
   if (budgetPanel) budgetPanel.style.display = 'none';
   if (storyPanel) storyPanel.style.display = 'none';
+
+  // Show/hide searchbar — only relevant on Map tab
+  const searchbar = document.querySelector('.searchbar');
+  if (searchbar) searchbar.style.display = (tab === 'explore') ? 'flex' : 'none';
 
   // Sync mobile nav
   document.querySelectorAll('.mn-btn').forEach(b => b.classList.remove('active'));
@@ -1210,6 +1287,15 @@ function toggleDistricts() {
     panel.style.display = 'none';
     btn.classList.remove('active');
   }
+}
+
+function toggleLegend() {
+  const bands = document.querySelector('.legend-bands');
+  const chevron = document.querySelector('.legend-chevron');
+  if (!bands || !chevron) return;
+  bands.classList.toggle('collapsed');
+  chevron.classList.toggle('flipped');
+  localStorage.setItem('berlin-legend-collapsed', bands.classList.contains('collapsed'));
 }
 
 // ─── Budget Check ────────────────────────────────────────────────
