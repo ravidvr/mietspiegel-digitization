@@ -746,7 +746,17 @@ function showDistrict(p) {
       <div style="font-size:22px;font-weight:700;color:${p.avg_rent<10?'#48bb78':p.avg_rent<11.5?'#ecc94b':p.avg_rent<12.5?'#ed8936':'#f56565'}">ø €${p.avg_rent}/m² ${helpLink('berlin-district-rent-estimates')}</div>
       <div class="sub">Estimated average net cold rent</div>
     </div>`;
-  document.getElementById('tooltip').style.display = 'block';
+  const tt = document.getElementById('tooltip');
+  tt.style.display = 'block';
+  // Position tooltip to avoid overlapping Rent Check panel
+  const rcForm = document.querySelector('#rentCheck .rc-form');
+  if (rcForm && rcForm.style.display !== 'none') {
+    tt.style.right = 'auto';
+    tt.style.left = '14px';
+  } else {
+    tt.style.right = '10px';
+    tt.style.left = 'auto';
+  }
 }
 
 // ─── Point-in-polygon for district lookup ─────────────────────
@@ -841,7 +851,18 @@ function setupClick() {
     }
 
     document.getElementById('tooltip').innerHTML = html;
-    document.getElementById('tooltip').style.display = 'block';
+    const tt = document.getElementById('tooltip');
+    tt.style.display = 'block';
+    // If Rent Check panel is expanded, position tooltip on left to avoid overlap
+    const rcForm = document.querySelector('#rentCheck .rc-form');
+    const rcExpanded = rcForm && rcForm.style.display !== 'none';
+    if (rcExpanded) {
+      tt.style.right = 'auto';
+      tt.style.left = '14px';
+    } else {
+      tt.style.right = '10px';
+      tt.style.left = 'auto';
+    }
   });
 }
 
