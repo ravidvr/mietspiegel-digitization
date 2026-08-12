@@ -845,10 +845,12 @@ function setupClick() {
   });
 }
 
-// Click-away: close tooltip when clicking outside it
+// Click-away: close tooltip when clicking outside it (but not on the map)
 document.addEventListener('click', function(e) {
   const tooltip = document.getElementById('tooltip');
   if (!tooltip || tooltip.style.display === 'none') return;
+  // Map clicks are handled by the Leaflet click handler above — skip
+  if (e.target.closest('#map')) return;
   if (!tooltip.contains(e.target)) {
     tooltip.style.display = 'none';
   }
