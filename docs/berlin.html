@@ -286,7 +286,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   #map{height:calc(100vh - 210px);min-height:300px}
   .map-tooltip{top:auto;bottom:80px;left:8px;right:8px;max-width:calc(100% - 16px);border-radius:10px;max-height:40vh;z-index:3010;position:fixed}
   /* District panel — compact floating overlay */
-  .district-panel{position:fixed;top:185px;right:8px;bottom:auto;width:auto;max-width:200px;min-height:80px;max-height:40vh;border-radius:8px;z-index:2001;overflow-y:auto;font-size:11px;box-shadow:0 4px 16px rgba(0,0,0,.4)}
+  .district-panel{position:fixed;top:185px;right:8px;bottom:auto;width:auto;max-width:200px;min-height:80px;max-height:40vh;border-radius:8px;z-index:1000;overflow-y:auto;font-size:11px;box-shadow:0 4px 16px rgba(0,0,0,.4)}
   .district-panel h4{display:none}
   .district-panel .d-row{padding:4px 8px;min-height:36px;align-items:center}
   .district-panel .d-name{font-size:10px;max-width:100px}
@@ -1096,6 +1096,22 @@ async function init() {
   loadDistricts().then(() => handleHash());
   setupClick();
   initRentCheck();
+  // Mobile Rent Check toggle: hide/show district panel to prevent overlap
+  const rcHeader = document.querySelector('#rentCheck h4');
+  if (rcHeader) {
+    rcHeader.addEventListener('click', function() {
+      if (window.innerWidth > 768) return;
+      const rc = document.getElementById('rentCheck');
+      const dp = document.getElementById('dpanel');
+      if (!rc || !dp) return;
+      // classList.toggle runs before this, so check: if it WAS collapsed (now expanding), hide dp
+      if (rc.classList.contains('collapsed')) {
+        dp.style.display = '';
+      } else {
+        dp.style.display = 'none';
+      }
+    });
+  }
   // Collapse Rent Check on mobile by default
   if (window.innerWidth <= 768) {
     document.getElementById('rentCheck')?.classList.add('collapsed');
@@ -1158,15 +1174,20 @@ function toggleRentCheck() {
   const form = panel?.querySelector('.rc-form');
   const result = document.getElementById('rcResult');
   const minBtn = panel?.querySelector('.rc-min-btn');
+  const dpanel = document.getElementById('dpanel');
   if (!form) return;
   if (form.style.display === 'none') {
+    // Expanding: hide district panel to prevent overlap
     form.style.display = '';
     if (result) result.style.display = 'block';
     if (minBtn) minBtn.textContent = '−';
+    if (dpanel) dpanel.style.display = 'none';
   } else {
+    // Collapsing: restore district panel
     form.style.display = 'none';
     if (result) result.style.display = 'none';
     if (minBtn) minBtn.textContent = '+';
+    if (dpanel) dpanel.style.display = '';
   }
 }
 
@@ -1300,6 +1321,9 @@ function toggleDistricts() {
   const panel = document.getElementById('dpanel');
   const btn = document.getElementById('mc-districts');
   if (panel.style.display === 'none') {
+    // Collapse Rent Check if expanded to prevent overlap
+    const rcForm = document.querySelector('.rc-form');
+    if (rcForm && rcForm.style.display !== 'none') toggleRentCheck();
     panel.style.display = '';
     btn.classList.add('active');
   } else {
