@@ -195,7 +195,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .legend-chevron{transition:transform .2s}
 .legend-chevron.flipped{transform:rotate(180deg)}
 
-.map-tooltip{position:absolute;top:56px;right:10px;max-width:360px;max-height:calc(100% - 80px);overflow-y:auto;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px;z-index:1010;box-shadow:0 4px 16px rgba(0,0,0,.3);font-size:12px;display:none}
+.map-tooltip{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);max-width:420px;max-height:45vh;overflow-y:auto;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px;z-index:1010;box-shadow:0 4px 16px rgba(0,0,0,.3);font-size:12px;display:none}
 .map-tooltip .close{float:right;background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:16px;padding:0 2px}
 .map-tooltip h3{font-size:14px;margin-bottom:4px}
 .map-tooltip .val{font-size:22px;font-weight:700;color:var(--accent)}
@@ -746,17 +746,7 @@ function showDistrict(p) {
       <div style="font-size:22px;font-weight:700;color:${p.avg_rent<10?'#48bb78':p.avg_rent<11.5?'#ecc94b':p.avg_rent<12.5?'#ed8936':'#f56565'}">ø €${p.avg_rent}/m² ${helpLink('berlin-district-rent-estimates')}</div>
       <div class="sub">Estimated average net cold rent</div>
     </div>`;
-  const tt = document.getElementById('tooltip');
-  tt.style.display = 'block';
-  // Position tooltip to avoid overlapping Rent Check panel
-  const rcForm = document.querySelector('#rentCheck .rc-form');
-  if (rcForm && rcForm.style.display !== 'none') {
-    tt.style.right = 'auto';
-    tt.style.left = '14px';
-  } else {
-    tt.style.right = '10px';
-    tt.style.left = 'auto';
-  }
+  document.getElementById('tooltip').style.display = 'block';
 }
 
 // ─── Point-in-polygon for district lookup ─────────────────────
@@ -851,18 +841,7 @@ function setupClick() {
     }
 
     document.getElementById('tooltip').innerHTML = html;
-    const tt = document.getElementById('tooltip');
-    tt.style.display = 'block';
-    // If Rent Check panel is expanded, position tooltip on left to avoid overlap
-    const rcForm = document.querySelector('#rentCheck .rc-form');
-    const rcExpanded = rcForm && rcForm.style.display !== 'none';
-    if (rcExpanded) {
-      tt.style.right = 'auto';
-      tt.style.left = '14px';
-    } else {
-      tt.style.right = '10px';
-      tt.style.left = 'auto';
-    }
+    document.getElementById('tooltip').style.display = 'block';
   });
 }
 
