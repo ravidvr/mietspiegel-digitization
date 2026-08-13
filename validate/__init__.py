@@ -217,9 +217,12 @@ def validate_city(city_data: dict, gdw: dict, tolerance: float = 0.05) -> dict:
         },
     }
 
-    # Compute overall status — GdW cross-ref flags are informational only
-    # (GdW data represents existing contracts; Mietspiegel values are new-lease reference rents.
-    #  A gap of 20-50% is expected and does NOT indicate data error.)
+    # Compute overall status.
+    # GdW cross-ref flags now only fire on GENUINE anomalies (recalibrated 2026-08):
+    #   - city BELOW GdW state range low (new lease < existing contract, implausible)
+    #   - implausible absolute values (< €2 or > €25/m²)
+    # Being ABOVE the GdW state average is expected (new-lease > existing-contract) and
+    # no longer produces any flag. These genuine anomalies surface as warnings, not errors.
     total_errors = sanity["errors"]
     total_warnings = sanity["warnings"] + len(crossref["flags"]) + len(crossref["warnings"])
 

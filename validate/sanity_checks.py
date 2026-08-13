@@ -84,7 +84,15 @@ def check_baujahr_monotonicity(tables: list, lage: str | None = None,
     increase (or at least do not decrease significantly) as Baujahr
     periods progress. A decrease > tolerance (fractional) is flagged.
 
-    Returns list of violation dicts.
+    NOTE ON THE U-SHAPED CURVE (recalibrated 2026-08):
+    German rent-by-construction-year is NOT monotonically increasing.
+    Pre-1918 Altbau (renovated, high ceilings, central locations) commands
+    HIGHER rent than 1919-1948 and 1950s-1970s postwar stock. The curve is
+    U-shaped: old Altbau is expensive → postwar is cheap → modern rises again.
+    Therefore monotonicity is only asserted WITHIN the modern era (both
+    endpoints' Baujahr sort key >= 1990), where the "newer = pricier" rule
+    actually holds. Cross-era decreases (e.g. bis-1918 → 1919-1948) are
+    expected market structure, not data errors.
     """
     violations = []
 
@@ -103,6 +111,17 @@ def check_baujahr_monotonicity(tables: list, lage: str | None = None,
         for i in range(1, len(rows)):
             prev_bj = rows[i - 1]["baujahr"]
             curr_bj = rows[i]["baujahr"]
+
+            # Skip comparison when adjacent rows share the same Baujahr label.
+            if prev_bj == curr_bj:
+                continue
+
+            # Only assert monotonicity within the modern era (both endpoints >= 1990).
+            # The old Altbau → postwar dip is expected market structure (U-shaped curve).
+            prev_key = _baujahr_sort_key(prev_bj)
+            curr_key = _baujahr_sort_key(curr_bj)
+            if prev_key[1] < 1990 or curr_key[1] < 1990:
+                continue
 
             for sk in size_keys:
                 prev_val = _extract_numeric_value(rows[i - 1].get(sk))

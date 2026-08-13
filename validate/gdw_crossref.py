@@ -82,44 +82,25 @@ def cross_reference_city(city_data: dict, gdw: dict) -> dict:
         "warnings": [],
     }
 
-    # Flag 1: City significantly above state average
-    max_pct = thresh.get("pct_above_gdw_state_avg_max", 50.0)
-    if st_avg and results["pct_vs_state"] is not None:
-        if results["pct_vs_state"] > max_pct:
-            results["flags"].append(
-                f"City avg (€{city_avg:.2f}) is {results['pct_vs_state']:+.1f}% above GdW state avg "
-                f"(€{st_avg:.2f}) — exceeds {max_pct}% threshold. Flag for review."
-            )
-        elif results["pct_vs_state"] > max_pct * 0.7:
-            results["warnings"].append(
-                f"City avg (€{city_avg:.2f}) is {results['pct_vs_state']:+.1f}% above GdW state avg "
-                f"(€{st_avg:.2f}) — approaching threshold ({max_pct}%)."
-            )
+    # NOTE ON DIRECTIONALITY (recalibrated 2026-08):
+    # GdW aggregate = EXISTING contracts across social/cooperative stock (€6.63/m² national).
+    # Mietspiegel = NEW-LEASE reference rents (€7–20/m² in major cities).
+    # New leases are structurally 20–100%+ above existing contracts, so a city being
+    # ABOVE the GdW state average is EXPECTED and must NOT be flagged as an error.
+    # We only flag genuine anomalies:
+    #   (a) city below the GdW state range low  → new leases cheaper than existing
+    #       contracts is economically implausible and suggests an extraction error;
+    #   (b) implausible absolute values (outside €2–25/m²).
 
-    # Flag 2: City below state range low
-    if st_rng and city_avg < st_rng[0]:
+    # Anomaly (a): city BELOW GdW state range low (new lease < existing contract).
+    if st_rng and city_avg > 0 and city_avg < st_rng[0]:
         results["flags"].append(
-            f"City avg (€{city_avg:.2f}) is below GdW state range low (€{st_rng[0]:.2f}). "
-            f"Unusually low — verify extraction."
+            f"City avg (€{city_avg:.2f}) is BELOW GdW state range low (€{st_rng[0]:.2f}). "
+            f"New-lease reference rent below existing-contract stock is implausible — "
+            f"verify extraction."
         )
 
-    # Flag 3: City above state range high
-    if st_rng and city_avg > st_rng[1]:
-        results["flags"].append(
-            f"City avg (€{city_avg:.2f}) is above GdW state range high (€{st_rng[1]:.2f}). "
-            f"Unusually high — verify against local market data."
-        )
-
-    # Flag 4: City below national average by significant margin
-    min_pct = thresh.get("pct_below_gdw_state_avg_min", -30.0)
-    if st_avg and results["pct_vs_state"] is not None:
-        if results["pct_vs_state"] < min_pct:
-            results["flags"].append(
-                f"City avg (€{city_avg:.2f}) is {results['pct_vs_state']:+.1f}% below GdW state avg "
-                f"(€{st_avg:.2f}) — below {min_pct}% threshold. Possible extraction issue."
-            )
-
-    # Flag 5: Implausible absolute values
+    # Anomaly (b): implausible absolute values.
     max_plaus = thresh.get("max_rent_per_sqm_plausible", 25)
     min_plaus = thresh.get("min_rent_per_sqm_plausible", 2)
     if city_avg > max_plaus:
@@ -127,7 +108,7 @@ def cross_reference_city(city_data: dict, gdw: dict) -> dict:
             f"City avg (€{city_avg:.2f}) exceeds plausible max (€{max_plaus:.2f}). "
             f"Values likely mis-extracted or in wrong units."
         )
-    if city_avg < min_plaus and city_avg > 0:
+    if 0 < city_avg < min_plaus:
         results["flags"].append(
             f"City avg (€{city_avg:.2f}) is below plausible min (€{min_plaus:.2f}). "
             f"Values may be incomplete or mis-extracted."
