@@ -96,6 +96,14 @@ jobs:
           # Verify district data
           districts = json.load(open('docs/data/processed/berlin_districts_comparison.json'))
           assert len(districts.get('districts',[])) == 12, f'District count: {len(districts.get(\"districts\",[]))}'
+          # Verify insights data exists
+          for f in ['insights_city_rankings.json','insights_district_premium.json','insights_gut_spread.json','insights_berlin_table.json','experiment_results.json']:
+              d = json.load(open(f'docs/data/processed/{f}'))
+              assert d, f'{f} is empty'
+          # Verify key pages exist
+          import os
+          for page in ['index.html','berlin.html','experiments.html','data.html','cross-city-comparison.html','historical_trends.html','about.html']:
+              assert os.path.exists(f'docs/{page}'), f'Missing page: {page}'
           print('✅ Berlin data integrity: PASS')
           "
         working-directory: ${{ github.workspace }}
@@ -116,8 +124,8 @@ jobs:
             FAILURES=$((FAILURES + 1))
           fi
 
-          if [ "${{ steps.spotcheck.outcome }}" != "success" ]; then
-            echo "❌ Ad-hoc spot-check failed"
+          if [ "${{ steps.berlin.outcome }}" != "success" ]; then
+            echo "❌ Berlin data integrity check failed"
             FAILURES=$((FAILURES + 1))
           fi
 
@@ -154,7 +162,7 @@ jobs:
             ### What failed
             - **Pytest suite:** ${process.env.PYTEST_OUTCOME || 'unknown'}
             - **Sanity checks:** ${process.env.SANITY_OUTCOME || 'unknown'}
-            - **Spot-check:** ${process.env.SPOTCHECK_OUTCOME || 'unknown'}
+            - **Berlin integrity:** ${process.env.BERLIN_OUTCOME || 'unknown'}
 
             ### Impact
             Deployment to GitHub Pages was **blocked**. The live site was not updated.
@@ -182,7 +190,7 @@ jobs:
         env:
           PYTEST_OUTCOME: ${{ steps.pytest.outcome }}
           SANITY_OUTCOME: ${{ steps.sanity.outcome }}
-          SPOTCHECK_OUTCOME: ${{ steps.spotcheck.outcome }}
+          BERLIN_OUTCOME: ${{ steps.berlin.outcome }}
 
   # ── Stage 2: Deploy to GitHub Pages (gated on validation) ───────────
   deploy:

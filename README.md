@@ -65,16 +65,26 @@ Place downloaded files under `data/external/`.
 ```
 mietspiegel-digitization/
 ├── docs/                          ← GitHub Pages deployment root
-│   ├── index.html                 ← Main Berlin dashboard (single-file, no framework)
-│   ├── cross-city-comparison.html ← 12 Bezirke comparison + Mietspiegel table
+│   ├── index.html                 ← Analytics overview: key metrics, insights, city rankings
+│   ├── berlin.html                ← Interactive Berlin map (heatmap, Rent Check, Budget Check, Story)
+│   ├── experiments.html           ← A/B policy simulator results with MDE and impact analysis
+│   ├── data.html                  ← Data explorer: downloads, methodology, schema docs
+│   ├── cross-city-comparison.html ← 23-city comparison table + Berlin Mietspiegel table
 │   ├── historical_trends.html     ← Berlin rent history by Wohnlage (Chart.js)
-│   ├── berlin.html                ← Standalone Berlin map (Immoscout vs Zensus)
 │   ├── about.html                 ← Project documentation
 │   └── data/processed/            ← All dashboard data (served statically)
 ├── scripts/                       ← Build pipeline
+├── analytics/                     ← BigQuery schema, SQL queries, LookML model
+├── experiments/                   ← A/B policy simulator (MDE, power analysis)
+├── exports/                       ← CSV data exports
 ├── validate/                      ← Data quality framework
+├── tests/                         ← Pytest validation suite
+├── requirements.txt               ← Python dependencies
+├── requirements-dev.txt           ← Dev dependencies (pytest, etc.)
+├── pyproject.toml                 ← Project metadata
+├── Makefile                       ← Build commands
 ├── data/                          ← Source data (not tracked in git)
-└── .github/workflows/pages.yml    ← Auto-deploy to GitHub Pages
+└── .github/workflows/             ← CI (ci.yml) + validate-and-deploy gate
 ```
 
 ## Tech Stack
@@ -100,6 +110,20 @@ mietspiegel-digitization/
 
 Dashboard code: **CC BY-SA 4.0**
 Data: See individual source licenses above.
+
+## Analytics Engineering
+
+The project includes a full analytics layer beyond the dashboard:
+
+| Artifact | Description |
+|----------|-------------|
+| [BigQuery Schema](analytics/berlin_bigquery_schema.sql) | Star schema for Berlin rent data — fact + dimension tables |
+| [Full 23-City Schema](analytics/bigquery_schema.sql) | Multi-city BigQuery DDL |
+| [SQL Queries](analytics/queries.sql) | 10 production queries: city rankings, Wohnlage premiums, YoY growth, market-vs-official gap |
+| [LookML Model](analytics/looker_mietspiegel.model.lkml) | Looker model with explores for rent cells, cities, Immoscout, historical trends, districts |
+| [Experiment Framework](experiments/) | A/B policy simulator with MDE, power analysis, guardrail metrics, decision rules |
+| [Metric Dictionary](docs/METRICS.md) | Cold vs warm rent definitions, data source documentation, derived metrics |
+| [CSV Exports](exports/) | Districts, historical trends, Mietpreisbremse analysis, Mietspiegel 2024 table |
 
 ## Why This Project
 

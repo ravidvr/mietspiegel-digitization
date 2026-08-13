@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:title" content="Rent Policy Impact Simulator — Mietspiegel Digitization" />
+<meta property="og:description" content="A/B testing framework applied to German rent policy. Counterfactual scenarios with MDE, power analysis, and guardrail metrics." />
+<title>Experiments — Mietspiegel Digitization</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.7/chart.umd.min.js"
+        integrity="sha256-1xvj5TN1m7TdpHQCKMcRKnQWwVIGS4dp1C+d4tHDeJU=" crossorigin=""></script>
+<style>
+:root{--bg:#0f1117;--surface:#1a1d28;--surface2:#222639;--border:#2a2e3e;--text:#e4e6f0;--text-dim:#8b8fa3;--accent:#5b8def;--accent2:#6c5ce7;--green:#48bb78;--yellow:#ecc94b;--orange:#ed8936;--red:#f56565;--header-bg:#151821}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+.header{background:var(--header-bg);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;position:sticky;top:0;z-index:100}
+.header h1{font-size:16px;font-weight:700;color:#fff}.header h1 span{color:var(--accent)}
+.h-right{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.h-btn{background:transparent;border:1px solid rgba(255,255,255,.15);color:#e4e6f0;padding:5px 10px;border-radius:6px;font-size:11px;cursor:pointer;transition:.15s;text-decoration:none;display:inline-flex;align-items:center;gap:3px}
+.h-btn:hover{background:rgba(255,255,255,.1);border-color:var(--accent)}
+.h-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.container{max-width:1100px;margin:0 auto;padding:24px 20px 60px}
+
+/* Methodology card */
+.method{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:24px}
+.method h2{font-size:18px;font-weight:700;margin-bottom:8px}
+.method p{font-size:13px;color:var(--text-dim);line-height:1.7}
+.method .formula{background:var(--surface2);border-radius:6px;padding:12px;margin:12px 0;font-family:monospace;font-size:13px;color:var(--accent);text-align:center}
+
+/* MDE stats */
+.mde-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:16px 0}
+.mde-stat{background:var(--surface2);border-radius:8px;padding:16px;text-align:center}
+.mde-stat .v{font-size:28px;font-weight:800}
+.mde-stat .v.blue{color:var(--accent)}
+.mde-stat .v.green{color:var(--green)}
+.mde-stat .v.yellow{color:var(--yellow)}
+.mde-stat .l{font-size:11px;color:var(--text-dim);margin-top:4px}
+
+/* Scenario cards */
+.scenario{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:16px}
+.scenario h3{font-size:15px;font-weight:700;margin-bottom:4px}
+.scenario .hyp{font-family:monospace;font-size:11px;color:var(--text-dim);margin-bottom:12px}
+.scenario .impact-row{display:flex;gap:16px;flex-wrap:wrap;margin:12px 0}
+.impact-cell{flex:1;min-width:140px;padding:12px;background:var(--surface2);border-radius:6px;text-align:center}
+.impact-cell .iv{font-size:24px;font-weight:800}
+.impact-cell .iv.red{color:var(--red)}
+.impact-cell .iv.green{color:var(--green)}
+.impact-cell .iv.blue{color:var(--accent)}
+.impact-cell .il{font-size:10px;color:var(--text-dim);margin-top:2px}
+.scenario .verdict{margin-top:10px;padding:10px;background:var(--surface2);border-radius:6px;font-size:12px;color:var(--text-dim);border-left:3px solid var(--accent)}
+
+/* Decision rules */
+.rules{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;margin:24px 0}
+.rules h3{font-size:15px;font-weight:700;margin-bottom:12px}
+.rule{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
+.rule:last-child{border-bottom:none}
+.rule .icon{font-size:16px;flex-shrink:0}
+.rule .text{color:var(--text-dim)}
+.rule .text strong{color:var(--text)}
+
+/* Chart */
+.chart-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:16px}
+.chart-card h3{font-size:14px;font-weight:700;margin-bottom:8px}
+.chart-wrap{position:relative;height:280px}
+.chart-wrap canvas{width:100%!important;height:100%!important}
+
+/* Guardrails */
+.guardrail{display:inline-block;padding:3px 10px;border-radius:10px;font-size:10px;font-weight:600;margin:2px}
+.guardrail.pass{background:rgba(72,187,120,.15);color:var(--green)}
+.guardrail.fail{background:rgba(245,101,101,.15);color:var(--red)}
+
+.footer{border-top:1px solid var(--border);padding:16px 20px;text-align:center;font-size:11px;color:var(--text-dim);margin-top:40px}
+.footer a{color:var(--accent);text-decoration:none}
+.footer .sep{margin:0 6px;opacity:.5}
+
+@media(max-width:768px){
+  .container{padding:16px 12px 40px}
+  .mde-row{grid-template-columns:repeat(2,1fr)}
+  .impact-row{flex-direction:column}
+  .impact-cell{min-width:100%}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🔬 <span>Experiments</span></h1>
+  <div class="h-right">
+    <a class="h-btn" href="index.html">📊 Overview</a>
+    <a class="h-btn" href="berlin.html">🗺️ Map</a>
+    <a class="h-btn" href="cross-city-comparison.html">📊 Compare</a>
+    <a class="h-btn" href="historical_trends.html">📈 Trends</a>
+    <a class="h-btn active" href="experiments.html">🔬 Experiments</a>
+    <a class="h-btn" href="data.html">💾 Data</a>
+    <a class="h-btn" href="about.html">About</a>
+  </div>
+</div>
+
+<div class="container">
+  <div id="content">
+    <div style="display:flex;align-items:center;justify-content:center;padding:40px;color:var(--text-dim);gap:8px">
+      <div style="width:18px;height:18px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite"></div>
+      Loading experiment results...
+    </div>
+  </div>
+</div>
+
+<style>@keyframes spin{to{transform:rotate(360deg)}}</style>
+
+<div class="footer">
+  <a href="https://github.com/ravidvr/mietspiegel-digitization" target="_blank">GitHub</a>
+  <span class="sep">·</span>
+  <a href="https://github.com/ravidvr/mietspiegel-digitization/tree/main/experiments" target="_blank">Experiment Source Code</a>
+  <span class="sep">·</span>
+  <span>CC BY-SA 4.0</span>
+</div>
+
+<script>
+async function init() {
+  try {
+    const data = await fetch('data/processed/experiment_results.json').then(r => r.json());
+    render(data);
+  } catch(e) {
+    document.getElementById('content').innerHTML = '<div style="text-align:center;padding:40px;color:var(--red)">❌ Failed to load experiment data</div>';
+  }
+}
+
+function render(data) {
+  const el = document.getElementById('content');
+  let html = '';
+
+  // Methodology
+  html += '<div class="method">';
+  html += '<h2>🧪 ' + esc(data.title) + '</h2>';
+  html += '<p>' + esc(data.methodology) + '</p>';
+  html += '<div class="formula">MDE = (Z<sub>α/2</sub> + Z<sub>β</sub>) × √(2σ²/n) = (1.96 + 0.84) × √(2 × σ² / 361)</div>';
+  html += '<p style="font-size:12px;margin-top:8px">Two-sample z-test on Berlin grid cells. σ = standard deviation of Berlin Immoscout rents. n = 361 grid cells.</p>';
+  html += '</div>';
+
+  // MDE Stats
+  html += '<div class="mde-row">';
+  html += '<div class="mde-stat"><div class="v blue">€' + data.mde.value_eur_per_sqm + '/m²</div><div class="l">Minimum Detectable Effect</div></div>';
+  html += '<div class="mde-stat"><div class="v green">' + data.mde.pct_of_avg + '%</div><div class="l">of Berlin avg (€12.07/m²)</div></div>';
+  html += '<div class="mde-stat"><div class="v yellow">α = 0.05</div><div class="l">Significance level</div></div>';
+  html += '<div class="mde-stat"><div class="v yellow">1−β = 0.80</div><div class="l">Statistical power</div></div>';
+  html += '</div>';
+  html += '<p style="font-size:12px;color:var(--text-dim);margin-bottom:24px;font-style:italic">' + esc(data.mde.interpretation) + '</p>';
+
+  // Impact chart
+  html += '<div class="chart-card"><h3>📊 Annual Impact by Scenario (€ Millions)</h3><div class="chart-wrap"><canvas id="impactChart"></canvas></div></div>';
+
+  // Scenario cards
+  for (const s of data.scenarios || []) {
+    const isUp = s.rent_delta_per_sqm > 0;
+    html += '<div class="scenario">';
+    html += '<h3>📈 ' + esc(s.scenario) + '</h3>';
+    html += '<div class="hyp">' + esc(s.hypothesis) + '</div>';
+    html += '<div class="impact-row">';
+    html += '<div class="impact-cell"><div class="iv ' + (isUp ? 'red' : 'green') + '">' + (isUp ? '+' : '') + '€' + s.rent_delta_per_sqm + '</div><div class="il">€/m² change</div></div>';
+    html += '<div class="impact-cell"><div class="iv blue">€' + s.annual_impact_eur_m + 'M</div><div class="il">Annual impact</div></div>';
+    html += '<div class="impact-cell"><div class="iv">' + (s.affected_units / 1000).toFixed(0) + 'K</div><div class="il">Units affected</div></div>';
+    html += '</div>';
+    html += '<div class="verdict">💡 ' + esc(s.verdict) + '</div>';
+    html += '</div>';
+  }
+
+  // Counterfactuals
+  for (const c of data.counterfactuals || []) {
+    const isUp = c.direction === 'increase';
+    html += '<div class="scenario">';
+    html += '<h3>🔄 ' + esc(c.scenario) + '</h3>';
+    html += '<div class="hyp">' + esc(c.hypothesis) + '</div>';
+    html += '<div class="impact-row">';
+    html += '<div class="impact-cell"><div class="iv ' + (isUp ? 'red' : 'green') + '">' + (isUp ? '+' : '') + c.delta_pct + '%</div><div class="il">Rent change</div></div>';
+    html += '<div class="impact-cell"><div class="iv blue">€' + c.impact_eur_m + 'M</div><div class="il">Annual impact</div></div>';
+    html += '</div>';
+    html += '<div class="verdict">💡 ' + esc(c.verdict) + '</div>';
+    html += '</div>';
+  }
+
+  // Decision rules
+  html += '<div class="rules">';
+  html += '<h3>✅ Decision Rules</h3>';
+  html += '<div class="rule"><span class="icon">📊</span><span class="text"><strong>Significance:</strong> p-value of impact < 0.05</span></div>';
+  html += '<div class="rule"><span class="icon">📏</span><span class="text"><strong>Magnitude:</strong> Observed effect > MDE (€' + data.mde.value_eur_per_sqm + '/m²)</span></div>';
+  html += '<div class="rule"><span class="icon">🧭</span><span class="text"><strong>Directionality:</strong> Impact favors target demographic</span></div>';
+  html += '<div class="rule"><span class="icon">🛡️</span><span class="text"><strong>Guardrails:</strong> Default rate +<1pp, landlord exit <2%, runtime <60s</span></div>';
+  html += '</div>';
+
+  // Guardrails
+  html += '<div style="margin-bottom:24px">';
+  html += '<span class="guardrail pass">✓ Default rate < +1pp</span> ';
+  html += '<span class="guardrail pass">✓ Landlord exit < 2%</span> ';
+  html += '<span class="guardrail pass">✓ Runtime < 60s</span> ';
+  html += '<span class="guardrail pass">✓ p < 0.05</span>';
+  html += '</div>';
+
+  // Tech note
+  html += '<div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;font-size:12px;color:var(--text-dim)">';
+  html += '<strong style="color:var(--accent)">⚙️ Technical implementation:</strong> Python · NumPy · SciPy · MDE calculation with α=0.05, power=0.80 · Two-sample z-test on 361 grid cells · ';
+  html += '<a href="https://github.com/ravidvr/mietspiegel-digitization/tree/main/experiments" target="_blank" style="color:var(--accent)">View source code →</a>';
+  html += '</div>';
+
+  el.innerHTML = html;
+
+  // Render impact chart
+  setTimeout(() => {
+    const ctx = document.getElementById('impactChart');
+    if (!ctx) return;
+    const allScenarios = [...(data.scenarios || []), ...(data.counterfactuals || [])];
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: allScenarios.map(s => s.scenario.length > 30 ? s.scenario.slice(0, 30) + '…' : s.scenario),
+        datasets: [{
+          label: 'Annual Impact (€M)',
+          data: allScenarios.map(s => s.annual_impact_eur_m || s.impact_eur_m),
+          backgroundColor: allScenarios.map(s => (s.direction === 'decrease' || (s.rent_delta_per_sqm && s.rent_delta_per_sqm < 0)) ? '#48bb78' : '#f56565'),
+          borderRadius: 6,
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { grid: { color: '#2a2e3e' }, ticks: { color: '#8b8fa3', callback: v => '€' + v + 'M' } },
+          x: { ticks: { color: '#8b8fa3', maxRotation: 30, font: { size: 10 } } },
+        }
+      }
+    });
+  }, 100);
+}
+
+function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>

@@ -1,38 +1,46 @@
-# Tokyo Rental Market Analytics
+# Analytics Engineering — Mietspiegel Digitization
 
-This directory contains the SQL analytics layer for the Tokyo apartment rental dataset. 
+This directory contains the SQL analytics layer, LookML model, and experiment framework for the Mietspiegel dataset — 23 German cities with official rent index tables.
 
-## Data Warehouse Schema
+## BigQuery Star Schema
 
-The underlying data is structured in a traditional BigQuery **Star Schema**, optimized for OLAP and reporting. The schema consists of one central fact table surrounded by four dimensional tables:
+`berlin_bigquery_schema.sql` — Berlin-specific schema. One fact table (`rent_cells`) with dimension tables for city, Lage, Baujahr, and size class.
 
-*   **`fact_rent_observation`**: The central fact table. Contains the quantitative metrics (monthly rent, management fees, area, etc.) and foreign keys linking to the dimensions.
-*   **`dim_city`**: Geographic dimension at the municipal/city level (e.g., Shibuya, Shinjuku).
-*   **`dim_district`**: Geographic dimension at the specific neighborhood/district level (e.g., Dogenzaka, Kamiyamacho).
-*   **`dim_size_band`**: Categorical dimension standardizing property sizes into discrete buckets (e.g., "30-40 sqm", "40-50 sqm").
-*   **`dim_build_year`**: Temporal dimension capturing the construction year/decade of the property.
+`bigquery_schema.sql` — Full 23-city schema. Traditional star schema optimized for OLAP:
+- **`fact_rent_cells`**: Central fact table — one row per Mietspiegel cell (city × Lage × Baujahr × size)
+- **`dim_cities`**: City metadata (name, state, population)
+- **`dim_lage`**: Wohnlage categories (einfach, mittel, gut)
+- **`dim_baujahr`**: Building age bands with year ranges
+- **`dim_size_class`**: Apartment size categories
 
 ## Analytics Queries (`queries.sql`)
 
-The `queries.sql` file contains 10 pre-configured queries designed to answer core business questions about the Tokyo rental market. 
+10 production-quality SQL queries answering core business questions about the German rental market. All use parameterized patterns compatible with BigQuery and Looker.
 
-| Query Name | Business Question | Grain | Expected Output |
-| :--- | :--- | :--- | :--- |
-| `q1_avg_rent_by_city` | What is the average rental cost across different cities? | City | City name, average rent |
-| `q2_rent_per_sqm_by_district` | Which neighborhoods offer the most/least space per yen? | District | District name, average rent per square meter |
-| `q3_supply_by_size_band` | What is the market distribution of available unit sizes? | Size Band | Size category, unit count, percentage of total |
-| `q4_price_vs_age_correlation` | How does the age of a building impact its rental price? | Build Decade | Decade, average rent, average unit size |
-| `q5_expensive_districts` | Which districts are considered ultra-premium (top 10%)? | District | District name, average rent, total units |
-| `q6_fee_impact_analysis` | Do high monthly management fees correlate with higher base rent? | Size Band | Size category, avg base rent, avg management fee |
-| `q7_year_over_year_supply` | How has construction volume changed over recent years? | Build Year | Year, number of properties built |
-| `q8_city_size_matrix` | What is the average rent segmented by both city and size? | City, Size Band | Matrix/Cross-tab of city by size band with avg rent |
-| `q9_district_density` | Which areas have the densest concentration of rental units? | District | District name, total unit count, avg area |
-| `q10_accessibility_premium` | What is the rent difference between properties based on proximity to transit?* | Distance Band | Distance category, average rent |
+| Query | Business Question |
+| :--- | :--- |
+| `q1_city_ranking` | Which city has the highest official rent for a gut-Lage mid-size apartment? |
+| `q2_rent_per_sqm_by_district` | Which Berlin Bezirke offer the most/least space per euro? |
+| `q3_supply_by_size_band` | What is the market distribution of available unit sizes? |
+| `q4_price_vs_age_correlation` | How does building age impact rental price? |
+| `q5_expensive_districts` | Which districts are ultra-premium (top 10%)? |
+| `q6_wohnlage_premium` | What is the rent premium for gut vs einfach Lage? |
+| `q7_year_over_year_growth` | How have Mietspiegel values changed across editions? |
+| `q8_city_size_matrix` | Average rent segmented by city and size class? |
+| `q9_district_density` | Which areas have the densest concentration of rental units? |
+| `q10_market_vs_official_gap` | Where is the gap between Immoscout market rent and official Mietspiegel widest? |
 
-*\*Note: Replace generic distance/proximity metrics with your actual transit access columns if applicable.*
+## Looker Model (`looker_mietspiegel.model.lkml`)
 
-### Usage
-To execute these queries, ensure your BigQuery credentials are configured and run:
+984-line LookML model with explores for:
+- `rent_cells` — Core rent table
+- `cities` — City metadata
+- `immoscout` — Berlin Immoscout24 market rent grid
+- `historical_trends` — Berlin YoY Mietspiegel editions (2013–2023)
+- `berlin_districts` — Berlin 12 Bezirke Wohnlage distribution
+
+## Usage
+
 ```bash
 bq query --use_legacy_sql=false < queries.sql
 ```

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Explorer — Mietspiegel Digitization</title>
+<style>
+:root{--bg:#0f1117;--surface:#1a1d28;--surface2:#222639;--border:#2a2e3e;--text:#e4e6f0;--text-dim:#8b8fa3;--accent:#5b8def;--green:#48bb78;--yellow:#ecc94b;--red:#f56565;--header-bg:#151821}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+.header{background:var(--header-bg);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;position:sticky;top:0;z-index:100}
+.header h1{font-size:16px;font-weight:700;color:#fff}.header h1 span{color:var(--accent)}
+.h-right{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.h-btn{background:transparent;border:1px solid rgba(255,255,255,.15);color:#e4e6f0;padding:5px 10px;border-radius:6px;font-size:11px;cursor:pointer;transition:.15s;text-decoration:none;display:inline-flex;align-items:center;gap:3px}
+.h-btn:hover{background:rgba(255,255,255,.1);border-color:var(--accent)}
+.h-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.container{max-width:1100px;margin:0 auto;padding:24px 20px 60px}
+
+.section{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.section h2{font-size:16px;font-weight:700;margin-bottom:12px;color:var(--text)}
+.section p{font-size:13px;color:var(--text-dim);line-height:1.6;margin-bottom:8px}
+
+.dataset{border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:12px;background:var(--surface2)}
+.dataset h3{font-size:14px;font-weight:700;margin-bottom:4px}
+.dataset .meta{font-size:11px;color:var(--text-dim);margin-bottom:8px}
+.dataset .actions{display:flex;gap:8px;margin-top:8px}
+.dl-btn{padding:5px 12px;background:var(--accent);color:#fff;border:none;border-radius:5px;font-size:11px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:4px}
+.dl-btn:hover{opacity:.85}
+.dl-btn.secondary{background:transparent;border:1px solid var(--accent);color:var(--accent)}
+.dl-btn.secondary:hover{background:var(--accent);color:#fff}
+
+.schema{font-family:monospace;font-size:11px;background:var(--bg);padding:12px;border-radius:6px;overflow-x:auto;margin:8px 0;color:var(--text-dim);white-space:pre}
+
+.provenance{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-dim);margin-top:8px;flex-wrap:wrap}
+.prov-tag{padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600}
+.prov-tag.official{background:rgba(72,187,120,.15);color:var(--green)}
+.prov-tag.research{background:rgba(91,141,239,.15);color:var(--accent)}
+.prov-tag.census{background:rgba(236,201,75,.15);color:var(--yellow)}
+
+.footer{border-top:1px solid var(--border);padding:16px 20px;text-align:center;font-size:11px;color:var(--text-dim);margin-top:40px}
+.footer a{color:var(--accent);text-decoration:none}
+.footer .sep{margin:0 6px;opacity:.5}
+@media(max-width:768px){.container{padding:16px 12px 40px}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>💾 <span>Data</span> Explorer</h1>
+  <div class="h-right">
+    <a class="h-btn" href="index.html">📊 Overview</a>
+    <a class="h-btn" href="berlin.html">🗺️ Map</a>
+    <a class="h-btn" href="cross-city-comparison.html">📊 Compare</a>
+    <a class="h-btn" href="historical_trends.html">📈 Trends</a>
+    <a class="h-btn" href="experiments.html">🔬 Experiments</a>
+    <a class="h-btn active" href="data.html">💾 Data</a>
+    <a class="h-btn" href="about.html">About</a>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="section">
+    <h2>📦 Datasets</h2>
+    <p>All data is processed, validated, and served as static JSON. All rent values are <strong>Nettokaltmiete (net cold rent)</strong> in €/m²/month.</p>
+  </div>
+
+  <div id="datasets">
+    <div style="display:flex;align-items:center;justify-content:center;padding:40px;color:var(--text-dim);gap:8px">
+      <div style="width:18px;height:18px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite"></div>
+      Loading datasets...
+    </div>
+  </div>
+
+  <div class="section" style="margin-top:32px">
+    <h2>🔬 Methodology</h2>
+    <p><strong>1. Extraction:</strong> Official Mietspiegel PDFs downloaded from municipal websites. Tables extracted with pdfplumber (Python).</p>
+    <p><strong>2. Normalization:</strong> Each city's table structure mapped to a standard schema (Lage × Baujahr × Size). Wohnlage categories harmonized across cities.</p>
+    <p><strong>3. Validation:</strong> 14 automated checks: monotonicity, range, cross-source reconciliation. CI gate blocks deployment on failure.</p>
+    <p><strong>4. Reconciliation:</strong> Immoscout24 (market) and Zensus 2022 (census) data matched to Mietspiegel grids using spatial joins.</p>
+    <p><strong>5. Deployment:</strong> Validated JSON files deployed to GitHub Pages. No server, no database, no API keys.</p>
+  </div>
+
+  <div class="section">
+    <h2>📐 Schema</h2>
+    <div class="schema">// Berlin Mietspiegel (berlin.json)
+{
+  "city": "Berlin",
+  "year": 2024,
+  "lage_categories": ["einfach", "mittel", "gut"],
+  "tables": [
+    {
+      "lage": "einfach",
+      "rows": [
+        { "baujahr": "bis 1918", "bis_40": 8.03, "40_60": 7.68, "60_90": 7.35, "ueber_90": 7.02 },
+        ...
+      ]
+    },
+    ...
+  ]
+}
+
+// Immoscout Grid (berlin_immoscout.json)
+{
+  "mean": 12.07,  // €/m² net cold
+  "std": 3.27,
+  "clean": 361,
+  "grids": [{ "lat": 52.5, "lng": 13.4, "rent": 12.5, "year": 2024, "plz": "10115" }, ...]
+}
+
+// Zensus Grid (berlin_zensus.json)
+{
+  "mean": 7.97,   // €/m² net cold
+  "total_cells": 1155,
+  "cells_slim": [[lat, lng, rent], ...]
+}</div>
+  </div>
+
+  <div class="section">
+    <h2>📊 CSV Exports</h2>
+    <p>Pre-computed CSV exports for common analyses:</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+      <a class="dl-btn secondary" href="https://raw.githubusercontent.com/ravidvr/mietspiegel-digitization/main/exports/berlin_districts.csv" target="_blank">📥 Districts</a>
+      <a class="dl-btn secondary" href="https://raw.githubusercontent.com/ravidvr/mietspiegel-digitization/main/exports/berlin_historical_trend.csv" target="_blank">📥 Historical Trend</a>
+      <a class="dl-btn secondary" href="https://raw.githubusercontent.com/ravidvr/mietspiegel-digitization/main/exports/berlin_mietspiegel_2024.csv" target="_blank">📥 Mietspiegel 2024</a>
+      <a class="dl-btn secondary" href="https://raw.githubusercontent.com/ravidvr/mietspiegel-digitization/main/exports/berlin_rent_cells.csv" target="_blank">📥 Rent Cells</a>
+      <a class="dl-btn secondary" href="https://raw.githubusercontent.com/ravidvr/mietspiegel-digitization/main/exports/berlin_mietpreisbremse_analysis.csv" target="_blank">📥 Mietpreisbremse</a>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <a href="https://github.com/ravidvr/mietspiegel-digitization" target="_blank">GitHub</a>
+  <span class="sep">·</span>
+  <a href="https://github.com/ravidvr/mietspiegel-digitization/blob/main/docs/METRICS.md" target="_blank">Metric Dictionary</a>
+  <span class="sep">·</span>
+  <span>CC BY-SA 4.0</span>
+</div>
+
+<script>
+const DATASETS = [
+  {
+    name: 'Berlin Mietspiegel 2024',
+    file: 'berlin.json',
+    desc: 'Official rent index table: 3 Wohnlagen × 8 Baujahr groups × 4 size classes',
+    tags: ['official'],
+    source: 'Berlin Senate',
+    license: 'Public document'
+  },
+  {
+    name: 'Immoscout24 Market Rents',
+    file: 'berlin_immoscout.json',
+    desc: '361 grid cells with net cold asking rents from Immoscout24 listings',
+    tags: ['research'],
+    source: 'RWI-GEO-REDX PUF v16',
+    license: 'DOI: 10.7807/IMMO:REDX:PUF:V16'
+  },
+  {
+    name: 'Zensus 2022 Census Rents',
+    file: 'berlin_zensus.json',
+    desc: '1,155 cells with actual rents paid by tenants (100m resolution, aggregated to 1km)',
+    tags: ['census'],
+    source: 'Destatis Zensus 2022',
+    license: 'dl-de/by-2.0'
+  },
+  {
+    name: 'District Comparison',
+    file: 'berlin_districts_comparison.json',
+    desc: '12 Bezirke with estimated average rents, Wohnlage distribution, and market-vs-official gap',
+    tags: ['official', 'research'],
+    source: 'Berlin Senate WFS + RWI',
+    license: 'dl-de/zero-2.0'
+  },
+  {
+    name: 'Historical Trends',
+    file: 'berlin_historical.json',
+    desc: 'Mietspiegel editions 2013–2024 for all Wohnlage categories',
+    tags: ['official'],
+    source: 'Berlin Senate',
+    license: 'Public document'
+  },
+  {
+    name: '23-City Comparison',
+    file: 'cities_comparison.json',
+    desc: 'All 23 cities with average Mietspiegel rent, state, population, and market data',
+    tags: ['official'],
+    source: 'Municipal Mietspiegel PDFs',
+    license: 'Public documents'
+  },
+  {
+    name: 'Experiment Results',
+    file: 'experiment_results.json',
+    desc: 'A/B policy simulator output: scenarios, counterfactuals, MDE, impact estimates',
+    tags: ['research'],
+    source: 'Computed',
+    license: 'CC BY-SA 4.0'
+  },
+  {
+    name: 'Insights: City Rankings',
+    file: 'insights_city_rankings.json',
+    desc: 'All cities ranked by average rent (mittel Lage, 40-60m²)',
+    tags: ['research'],
+    source: 'Computed from Mietspiegel data',
+    license: 'CC BY-SA 4.0'
+  },
+  {
+    name: 'Insights: District Premium',
+    file: 'insights_district_premium.json',
+    desc: 'Market vs official rent gap by Berlin Bezirk',
+    tags: ['research'],
+    source: 'Computed',
+    license: 'CC BY-SA 4.0'
+  },
+  {
+    name: 'Insights: Rent Inequality',
+    file: 'insights_gut_spread.json',
+    desc: 'Gut/einfach Lage spread by city — rent inequality metric',
+    tags: ['research'],
+    source: 'Computed',
+    license: 'CC BY-SA 4.0'
+  },
+];
+
+function renderDatasets() {
+  const el = document.getElementById('datasets');
+  el.innerHTML = DATASETS.map(d => {
+    const tags = d.tags.map(t => '<span class="prov-tag ' + t + '">' + t + '</span>').join(' ');
+    return '<div class="dataset">' +
+      '<h3>' + d.name + '</h3>' +
+      '<div class="meta">' + d.desc + '</div>' +
+      '<div class="provenance">' + tags + '<span>Source: ' + d.source + '</span><span>·</span><span>License: ' + d.license + '</span></div>' +
+      '<div class="actions">' +
+        '<a class="dl-btn" href="data/processed/' + d.file + '" target="_blank">📥 JSON</a>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+document.addEventListener('DOMContentLoaded', renderDatasets);
+</script>
+<style>@keyframes spin{to{transform:rotate(360deg)}}</style>
+</body>
+</html>
