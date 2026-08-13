@@ -1,7 +1,7 @@
 {
   "insight": "gut_spread",
   "description": "Gut/einfach rent ratio per city (rent inequality)",
-  "cities": 16,
+  "cities": 19,
   "data": [
     {
       "city": "Essen",
@@ -108,6 +108,14 @@
       "spread_eur": 1.4
     },
     {
+      "city": "Aachen",
+      "slug": "aachen",
+      "gut_rent": 8.8,
+      "einfach_rent": 7.96,
+      "spread_ratio": 1.11,
+      "spread_eur": 0.84
+    },
+    {
       "city": "Bonn",
       "slug": "bonn",
       "gut_rent": 10.48,
@@ -124,12 +132,28 @@
       "spread_eur": 0.91
     },
     {
+      "city": "Halle (Saale)",
+      "slug": "halle",
+      "gut_rent": 7.37,
+      "einfach_rent": 6.77,
+      "spread_ratio": 1.09,
+      "spread_eur": 0.6
+    },
+    {
       "city": "Dresden",
       "slug": "dresden",
       "gut_rent": 7.86,
       "einfach_rent": 7.48,
       "spread_ratio": 1.05,
       "spread_eur": 0.38
+    },
+    {
+      "city": "Braunschweig",
+      "slug": "braunschweig",
+      "gut_rent": 7.66,
+      "einfach_rent": 7.34,
+      "spread_ratio": 1.04,
+      "spread_eur": 0.32
     }
   ]
 }

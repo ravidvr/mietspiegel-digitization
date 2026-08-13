@@ -7,7 +7,7 @@
     {
       "city": "Aachen",
       "mietspiegel_year": 2024,
-      "mietspiegel_avg": 9.38,
+      "mietspiegel_avg": 8.85,
       "lat": 50.7753,
       "lng": 6.0839,
       "state": "Nordrhein-Westfalen",
@@ -16,7 +16,7 @@
       "immoscout_cells": 45,
       "immoscout_avg": 8.85,
       "immoscout_year_range": "2021-2025",
-      "gap_pct": -5.7
+      "gap_pct": 0.0
     },
     {
       "city": "Augsburg",
@@ -63,7 +63,7 @@
     {
       "city": "Braunschweig",
       "mietspiegel_year": 2025,
-      "mietspiegel_avg": 7.7,
+      "mietspiegel_avg": 7.73,
       "lat": 52.2689,
       "lng": 10.5268,
       "state": "Niedersachsen",
@@ -72,7 +72,7 @@
       "immoscout_cells": 42,
       "immoscout_avg": 7.87,
       "immoscout_year_range": "2021-2025",
-      "gap_pct": 2.2
+      "gap_pct": 1.8
     },
     {
       "city": "Bremen",
@@ -103,7 +103,7 @@
       "gap_pct": 6.2
     },
     {
-      "city": "Düsseldorf",
+      "city": "D\u00fcsseldorf",
       "mietspiegel_year": 2024,
       "mietspiegel_avg": 12.02,
       "lat": 51.2277,
@@ -150,7 +150,7 @@
       "mietspiegel_avg": 13.36,
       "lat": 47.999,
       "lng": 7.8421,
-      "state": "Baden-Württemberg",
+      "state": "Baden-W\u00fcrttemberg",
       "population": 236000,
       "immoscout_radius_km": 29.8,
       "immoscout_cells": 32,
@@ -161,7 +161,7 @@
     {
       "city": "Halle (Saale)",
       "mietspiegel_year": 2026,
-      "mietspiegel_avg": 6.54,
+      "mietspiegel_avg": 7.51,
       "lat": 51.4828,
       "lng": 11.97,
       "state": "Sachsen-Anhalt",
@@ -170,7 +170,7 @@
       "immoscout_cells": 47,
       "immoscout_avg": 6.67,
       "immoscout_year_range": "2021-2025",
-      "gap_pct": 2.0
+      "gap_pct": -11.2
     },
     {
       "city": "Hamburg",
@@ -215,7 +215,7 @@
       "gap_pct": 16.8
     },
     {
-      "city": "Köln",
+      "city": "K\u00f6ln",
       "mietspiegel_year": 2024,
       "mietspiegel_avg": 14.16,
       "lat": 50.9375,
@@ -243,7 +243,7 @@
       "gap_pct": -14.9
     },
     {
-      "city": "Lübeck",
+      "city": "L\u00fcbeck",
       "mietspiegel_year": 2025,
       "mietspiegel_avg": 9.56,
       "lat": 53.865467,
@@ -271,7 +271,7 @@
       "gap_pct": -3.2
     },
     {
-      "city": "München",
+      "city": "M\u00fcnchen",
       "mietspiegel_year": 2025,
       "mietspiegel_avg": 19.86,
       "lat": 48.1351,
@@ -285,7 +285,7 @@
       "gap_pct": -15.2
     },
     {
-      "city": "Nürnberg",
+      "city": "N\u00fcrnberg",
       "mietspiegel_year": 2024,
       "mietspiegel_avg": 12.24,
       "lat": 49.4521,
@@ -318,7 +318,7 @@
       "mietspiegel_avg": 14.98,
       "lat": 48.7758,
       "lng": 9.1829,
-      "state": "Baden-Württemberg",
+      "state": "Baden-W\u00fcrttemberg",
       "population": 630000,
       "immoscout_radius_km": 32.2,
       "immoscout_cells": 278,

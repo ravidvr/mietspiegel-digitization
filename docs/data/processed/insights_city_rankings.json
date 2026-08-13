@@ -1,7 +1,7 @@
 {
   "insight": "city_rankings",
   "description": "All cities ranked by average rent (mittel, 40-60m\u00b2)",
-  "cities": 19,
+  "cities": 22,
   "data": [
     {
       "city": "M\u00fcnchen",
@@ -148,12 +148,36 @@
       "year": 2026
     },
     {
+      "city": "Aachen",
+      "slug": "aachen",
+      "state": "Nordrhein-Westfalen",
+      "avg_rent": 8.34,
+      "population": 250000,
+      "year": 2024
+    },
+    {
       "city": "Dresden",
       "slug": "dresden",
       "state": "Sachsen",
       "avg_rent": 7.63,
       "population": 556000,
       "year": 2025
+    },
+    {
+      "city": "Braunschweig",
+      "slug": "braunschweig",
+      "state": "Niedersachsen",
+      "avg_rent": 7.46,
+      "population": 250000,
+      "year": 2025
+    },
+    {
+      "city": "Halle (Saale)",
+      "slug": "halle",
+      "state": "Sachsen-Anhalt",
+      "avg_rent": 7.07,
+      "population": 240000,
+      "year": 2026
     }
   ]
 }
