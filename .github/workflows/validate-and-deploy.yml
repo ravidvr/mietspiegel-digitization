@@ -192,47 +192,22 @@ jobs:
           SANITY_OUTCOME: ${{ steps.sanity.outcome }}
           BERLIN_OUTCOME: ${{ steps.berlin.outcome }}
 
-  # ── Stage 2: Deploy to GitHub Pages (gated on validation) ───────────
-  deploy:
-    name: Deploy to GitHub Pages
-    needs: validate
-    if: needs.validate.outputs.validation_passed == 'true'
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: docs
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-
   # ── Summary: always runs, reports the final outcome ─────────────────
   summary:
     name: Summary
-    needs: [validate, deploy]
+    needs: [validate]
     if: always()
     runs-on: ubuntu-latest
     steps:
       - name: Report outcome
         run: |
           echo "┌──────────────────────────────────────────────┐"
-          echo "│  MIETSPIEGEL VALIDATE & DEPLOY — SUMMARY     │"
+          echo "│  MIETSPIEGEL VALIDATION — SUMMARY            │"
           echo "├──────────────────────────────────────────────┤"
-          echo "│  Validation: ${{ needs.validate.result }}"
-          echo "│  Deploy:     ${{ needs.deploy.result }}"
+          echo "│  Validation: ${{ needs.validate.result }}    │"
           echo "└──────────────────────────────────────────────┘"
           if [ "${{ needs.validate.outputs.validation_passed }}" = "true" ]; then
-            echo "  ✅ Site deployed to GitHub Pages"
+            echo "  ✅ Validation passed — Pages deploys via the native branch deploy"
           else
-            echo "  🚫 Deployment blocked — validation failed"
+            echo "  🚫 Validation failed — see the issue opened above"
           fi
