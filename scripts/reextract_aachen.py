@@ -12,7 +12,8 @@ Table 2 Kategorie 1 (Baujahr): bis1918 +10, 1919-1948 +8, 1949-1960 +8,
          2007-2015 +15, 2016-2023 +24
 Table 2 Kategorie 4 (Lage): einfach -5, mittel 0, gut +6, sehr gut +10
 """
-import json, os
+import json
+import os
 
 BASE_RENT = [
     (15,16,12.85),(47,48,7.69),(79,80,7.28),(111,112,7.53),

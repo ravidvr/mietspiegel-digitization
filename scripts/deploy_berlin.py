@@ -22,7 +22,11 @@ Then open Looker Studio:
     → Select project → dataset: berlin_rent → table: rent_cells
 """
 
-import subprocess, sys, csv, json, argparse
+import argparse
+import csv
+import json
+import subprocess
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent

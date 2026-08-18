@@ -30,7 +30,7 @@ An automated join requires both sources to be simultaneously available and corre
 
 ```python
 # Pseudocode for scripts/build_districts_index.py (pending)
-# 1. Load berlin_immoscout.json (467 grid cells with rent/lat/lng)
+# 1. Load berlin_immoscout.json (361 grid cells with rent/lat/lng after cleanup)
 # 2. Load berlin-districts-choropleth.geojson (district boundaries)
 # 3. For each grid cell, find containing district via point-in-polygon
 # 4. Compute district-level avg_rent = mean of all cell rents in that district

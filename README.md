@@ -9,17 +9,17 @@ Digitizes German municipal rent indices (Mietspiegel) — bilingual DE/EN, 23 ci
 **Live dashboard:** https://ravidvr.github.io/mietspiegel-digitization/
 **📐 Metric dictionary:** [docs/METRICS.md](docs/METRICS.md) — cold vs warm rent, data sources, derived metrics
 
-> Looking for property sale prices? The **Berlin Property Market** dashboard is now a separate project: [ravidvr/berlin-property-market](https://github.com/ravidvr/berlin-property-market) — [Live dashboard](https://ravidvr.github.io/berlin-property-market/)
+> Looking for property sale prices? The **Berlin Property Market** dashboard is now a separate project: [ravidvr/berlin-property-market](https://github.com/ravidvr/berlin-property-market) — [Live dashboard](https://ravidvr.github.io/mietspiegel-digitization/marktbericht.html)
 
 ## What This Is
 
 All calculations are relative to Berlin. Every z-score, average, and comparison uses Berlin-only data — not national averages.
 
 - **12 Bezirke** with estimated average rents (derived from 400,505 address-level points)
-- **467 Immoscout24 market-rent grid cells** (RWI-GEO-REDX PUF v16, Berlin-only)
+- **361 Immoscout24 market-rent grid cells** (RWI-GEO-REDX PUF v16, Berlin-only, after data-quality cleanup)
 - **1,155 Zensus 2022 census rent cells** (100m resolution, aggregated to 1km, Berlin-only)
 - **Berlin Mietspiegel 2024** (full rent table: 3 Wohnlagen x 8 Baujahre x 4 sizes)
-- **6 historical editions** (2013-2023, all three Wohnlagen tracked)
+- **2 historical editions** (2021, 2023 — Mietspiegel editions retained after data-quality cleanup)
 
 ## Dashboard Features
 
@@ -101,7 +101,7 @@ mietspiegel-digitization/
 | Source | Coverage | License |
 |--------|----------|---------|
 | Berlin Mietspiegel 2024 | Full rent table, 3 Wohnlagen | Public official document |
-| RWI-GEO-REDX PUF v16 | 467 Berlin grid cells | Public Use File (DOI: 10.7807/IMMO:REDX:PUF:V16) |
+| RWI-GEO-REDX PUF v16 | 361 Berlin grid cells (467 raw, 361 after cleanup) | Public Use File (DOI: 10.7807/IMMO:REDX:PUF:V16) |
 | Zensus 2022 | 1,155 Berlin cells (100m→1km) | dl-de/by-2.0 |
 | Berlin WFS | 400,505 address points | dl-de/zero-2.0 |
 | OSM tiles | Map base | ODbL |
