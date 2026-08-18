@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 """Scan all PDFs in data/raw/ for district-level (sub-city) rent tables."""
-import pdfplumber
-import os
 import json
+import os
 import re
+
+import pdfplumber
 
 RAW_DIR = "/Users/ruhvee/mietspiegel-digitization/data/raw"
 
 # Keywords that indicate district-level data
 DISTRICT_KEYWORDS = [
-    "bezirk", "stadtteil", "ortsteil", "quartier", "viertel", 
+    "bezirk", "stadtteil", "ortsteil", "quartier", "viertel",
     "stadtbezirk", "stadtkreis", "wohnviertel", "stadtgebiet",
     "bezirke", "stadtteile", "ortsteile"
 ]

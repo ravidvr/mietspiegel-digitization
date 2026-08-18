@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
 """Scan all PDFs in data/raw/ for district-level (sub-city) rent tables — per-file with timeout."""
-import pdfplumber
-import os
 import json
+import os
 import re
 import sys
+
+import pdfplumber
 
 RAW_DIR = "/Users/ruhvee/mietspiegel-digitization/data/raw"
 OUTPUT_DIR = "/Users/ruhvee/mietspiegel-digitization/data/district_scan"
 
 DISTRICT_KEYWORDS = [
-    "bezirk", "stadtteil", "ortsteil", "quartier", "viertel", 
+    "bezirk", "stadtteil", "ortsteil", "quartier", "viertel",
     "stadtbezirk", "stadtkreis", "wohnviertel", "stadtgebiet",
     "bezirke", "stadtteile", "ortsteile"
 ]
@@ -39,7 +40,7 @@ def scan_single(pdf_path):
                 page = pdf.pages[i]
                 try:
                     text = page.extract_text() or ""
-                except:
+                except Exception:
                     text = ""
                 
                 text_lower = text.lower()
@@ -70,7 +71,7 @@ def scan_single(pdf_path):
                 tables = []
                 try:
                     tables = page.extract_tables()
-                except:
+                except Exception:
                     pass
                 
                 if not tables:
@@ -81,7 +82,7 @@ def scan_single(pdf_path):
                             "snap_tolerance": 3,
                             "join_tolerance": 3,
                         })
-                    except:
+                    except Exception:
                         pass
                 
                 if tables:

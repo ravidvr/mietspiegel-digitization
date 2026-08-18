@@ -8,10 +8,12 @@ This analysis examines whether the law changed Berlin's rent trajectory.
 Data: 6 official Berlin Mietspiegel editions (2013–2023)
 Method: Interrupted Time Series (ITS) with pre/post trend comparison
 """
-import json, math, csv
+import csv
+import json
+import math
+from collections import defaultdict
 from pathlib import Path
 from statistics import mean, stdev
-from collections import defaultdict
 
 ROOT = Path("/Users/ruhvee/mietspiegel-digitization")
 
@@ -112,7 +114,7 @@ print(f"RENT BURDEN ANALYSIS — Berlin")
 print(f"{'═' * 70}")
 
 # Berlin median household income (2023 estimate from Amt für Statistik)
-# Source: https://www.statistik-berlin-brandenburg.de/ 
+# Source: https://www.statistik-berlin-brandenburg.de/
 # Median net household income Berlin 2022: ~€2,450/month
 # Using conservative estimate
 median_income_monthly = 2450  # € net household
