@@ -18,7 +18,10 @@ Usage:
   python3 scripts/upload_to_bigquery.py --project=YOUR_PROJECT_ID
 """
 
-import argparse, sys, csv, os
+import argparse
+import csv
+import os
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent

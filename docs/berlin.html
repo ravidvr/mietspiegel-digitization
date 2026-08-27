@@ -6,7 +6,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Berlin Rent Map — Immoscout vs Census vs Mietspiegel" />
 <meta property="og:description" content="Berlin rent data block by block: market rents vs census rents vs official Mietspiegel. 12 Bezirke, 361 grid cells." />
-<meta property="og:image" content="https://ravidvr.github.io/mietspiegel-digitization/og-image.svg" />
+<meta property="og:image" content="https://ravidvr.github.io/mietspiegel-digitization/og-image.png" />
 <meta property="og:url" content="https://ravidvr.github.io/mietspiegel-digitization/docs/berlin.html" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Berlin Rent Map — Immoscout vs Census vs Mietspiegel" />
@@ -495,38 +495,38 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     </div>
     <div class="story-scene" id="scene2">
       <div class="scene-num">2</div>
-      <h2>The Two Berlins</h2>
-      <div class="scene-stat"><span class="scene-big">+51%</span><span class="scene-unit">more for new tenants</span></div>
-      <p>If you signed a lease last month, you pay €4.10/m² more (net cold rent) than your neighbor who's been there 5 years. On a 70 m² flat: <strong>€287/month — €3,444/year</strong>. The city is splitting into two populations: those who got in, and those who didn't.</p>
-      <button class="share-btn" onclick="shareStat('New Berlin tenants pay 51% more than existing ones — €3,444/year for the same flat')">📤 Share this</button>
+      <h2 data-i18n="story2_title">The Two Berlins</h2>
+      <div class="scene-stat"><span class="scene-big">+51%</span><span class="scene-unit" data-i18n="story2_stat">more for new tenants</span></div>
+      <p data-i18n="story2_text">If you signed a lease last month, you pay €4.10/m² more (net cold rent) than your neighbor who's been there 5 years. On a 70 m² flat: <strong>€287/month — €3,444/year</strong>. The city is splitting into two populations: those who got in, and those who didn't.</p>
+      <button class="share-btn" data-i18n="story2_share" onclick="shareStat('New Berlin tenants pay 51% more than existing ones — €3,444/year for the same flat')">📤 Share this</button>
     </div>
     <div class="story-scene" id="scene3">
       <div class="scene-num">3</div>
-      <h2>The Market Runs Ahead of the Official Table</h2>
-      <div class="scene-stat"><span class="scene-big">9/12</span><span class="scene-unit">districts above the city-wide market average</span></div>
-      <p>Nine of 12 Berlin districts have market asking rents above the city-wide Immoscout average (€10.79/m²), covering <strong>286,428 addresses</strong>. Charlottenburg-Wilmersdorf leads at +18.6%. Note: none of these district averages exceeds the Mietpreisbremse cap of 110% of the Mietspiegel — the cap operates per apartment, not per district.</p>
-      <button class="share-btn" onclick="shareStat('9 of 12 Berlin districts: market rents above the city-wide Immoscout average')">📤 Share this</button>
+      <h2 data-i18n="story3_title">The Market Runs Ahead of the Official Table</h2>
+      <div class="scene-stat"><span class="scene-big">9/12</span><span class="scene-unit" data-i18n="story3_stat">districts above the city-wide market average</span></div>
+      <p data-i18n="story3_text">Nine of 12 Berlin districts have market asking rents above the city-wide Immoscout average (€10.79/m²), covering <strong>286,428 addresses</strong>. Charlottenburg-Wilmersdorf leads at +18.6%. Note: none of these district averages exceeds the Mietpreisbremse cap of 110% of the Mietspiegel — the cap operates per apartment, not per district.</p>
+      <button class="share-btn" data-i18n="story3_share" onclick="shareStat('9 of 12 Berlin districts: market rents above the city-wide Immoscout average')">📤 Share this</button>
     </div>
     <div class="story-scene" id="scene4">
       <div class="scene-num">4</div>
-      <h2>Your Neighborhood Is Your Rent</h2>
-      <div class="scene-stat"><span class="scene-big">+22%</span><span class="scene-unit">gut vs einfach Lage, same band</span></div>
-      <p>Same building age, same size band — a 35-40 m² pre-1918 flat rents for €9.08/m² in einfacher Lage but €11.09/m² in guter Lage. That's <strong>€141/month extra on a 70 m² flat</strong>. The neighborhood matters.</p>
-      <button class="share-btn" onclick="shareStat('Your neighborhood IS your rent: +22% for gut Lage, same building age')">📤 Share this</button>
+      <h2 data-i18n="story4_title">Your Neighborhood Is Your Rent</h2>
+      <div class="scene-stat"><span class="scene-big">+22%</span><span class="scene-unit" data-i18n="story4_stat">gut vs einfach Lage, same band</span></div>
+      <p data-i18n="story4_text">Same building age, same size band — a 35-40 m² pre-1918 flat rents for €9.08/m² in einfacher Lage but €11.09/m² in guter Lage. That's <strong>€141/month extra on a 70 m² flat</strong>. The neighborhood matters.</p>
+      <button class="share-btn" data-i18n="story4_share" onclick="shareStat('Your neighborhood IS your rent: +22% for gut Lage, same building age')">📤 Share this</button>
     </div>
     <div class="story-scene" id="scene5">
       <div class="scene-num">5</div>
-      <h2>New Walls, Higher Bills</h2>
-      <div class="scene-stat"><span class="scene-big">+84%</span><span class="scene-unit">new vs Altbau, gut Lage</span></div>
-      <p>A 65-85 m² flat in guter Lage costs €8.45/m² in a pre-1918 Altbau — but €15.58/m² in a 2016-2022 building. <strong>€499/month</strong> for the privilege of new walls.</p>
-      <button class="share-btn" onclick="shareStat('New walls, higher bills: 2016-2022 flats cost 84% more than Altbau in guter Lage')">📤 Share this</button>
+      <h2 data-i18n="story5_title">New Walls, Higher Bills</h2>
+      <div class="scene-stat"><span class="scene-big">+84%</span><span class="scene-unit" data-i18n="story5_stat">new vs Altbau, gut Lage</span></div>
+      <p data-i18n="story5_text">A 65-85 m² flat in guter Lage costs €8.45/m² in a pre-1918 Altbau — but €15.58/m² in a 2016-2022 building. <strong>€499/month</strong> for the privilege of new walls.</p>
+      <button class="share-btn" data-i18n="story5_share" onclick="shareStat('New walls, higher bills: 2016-2022 flats cost 84% more than Altbau in guter Lage')">📤 Share this</button>
     </div>
     <div class="story-scene" id="scene6">
       <div class="scene-num">6</div>
-      <h2>What €1,200 Buys</h2>
-      <div class="scene-stat"><span class="scene-big">99 m²</span><span class="scene-unit">at market rate vs 151 m² for existing tenants</span></div>
-      <p>At €1,200/month cold rent, you can afford 99 m² at market rates. An existing tenant in the same building might be paying that for 151 m². The question isn't "can you afford Berlin?" — it's "<strong>when did you arrive?</strong>"</p>
-      <button class="share-btn" onclick="shareStat('In Berlin, €1,200 buys 99m² as a new tenant — but 151m² if you moved in years ago')">📤 Share this</button>
+      <h2 data-i18n="story6_title">What €1,200 Buys</h2>
+      <div class="scene-stat"><span class="scene-big">99 m²</span><span class="scene-unit" data-i18n="story6_stat">at market rate vs 151 m² for existing tenants</span></div>
+      <p data-i18n="story6_text">At €1,200/month cold rent, you can afford 99 m² at market rates. An existing tenant in the same building might be paying that for 151 m². The question isn't "can you afford Berlin?" — it's "<strong>when did you arrive?</strong>"</p>
+      <button class="share-btn" data-i18n="story6_share" onclick="shareStat('In Berlin, €1,200 buys 99m² as a new tenant — but 151m² if you moved in years ago')">📤 Share this</button>
     </div>
   </div>
 </div>
@@ -574,6 +574,21 @@ const I18N = {
     footer_updated: 'Last updated: 2025-07',
     story1_title: 'Newest Flats Cost 93% More', story1_stat: 'newest vs post-war stock, same size',
     story1_text: "In the official Mietspiegel 2023 table, a 40-60 m² flat in einfacher Lage costs €12.37/m² if built 2003-2017 — but only €6.41/m² in a 1973-1990 East Berlin building. Same size, same Lage: the age of the walls nearly doubles the rent.",
+    story2_title: 'The Two Berlins', story2_stat: 'more for new tenants',
+    story2_text: 'If you signed a lease last month, you pay €4.10/m² more (net cold rent) than your neighbor who\'s been there 5 years. On a 70 m² flat: <strong>€287/month — €3,444/year</strong>. The city is splitting into two populations: those who got in, and those who didn\'t.',
+    story2_share: '📤 Share this',
+    story3_title: 'The Market Runs Ahead of the Official Table', story3_stat: 'districts above the city-wide market average',
+    story3_text: 'Nine of 12 Berlin districts have market asking rents above the city-wide Immoscout average (€10.79/m²), covering <strong>286,428 addresses</strong>. Charlottenburg-Wilmersdorf leads at +18.6%. Note: none of these district averages exceeds the Mietpreisbremse cap of 110% of the Mietspiegel — the cap operates per apartment, not per district.',
+    story3_share: '📤 Share this',
+    story4_title: 'Your Neighborhood Is Your Rent', story4_stat: 'gut vs einfach Lage, same band',
+    story4_text: 'Same building age, same size band — a 35-40 m² pre-1918 flat rents for €9.08/m² in einfacher Lage but €11.09/m² in guter Lage. That\'s <strong>€141/month extra on a 70 m² flat</strong>. The neighborhood matters.',
+    story4_share: '📤 Share this',
+    story5_title: 'New Walls, Higher Bills', story5_stat: 'new vs Altbau, gut Lage',
+    story5_text: 'A 65-85 m² flat in guter Lage costs €8.45/m² in a pre-1918 Altbau — but €15.58/m² in a 2016-2022 building. <strong>€499/month</strong> for the privilege of new walls.',
+    story5_share: '📤 Share this',
+    story6_title: 'What €1,200 Buys', story6_stat: 'at market rate vs 151 m² for existing tenants',
+    story6_text: 'At €1,200/month cold rent, you can afford 99 m² at market rates. An existing tenant in the same building might be paying that for 151 m². The question isn\'t "can you afford Berlin?" — it\'s "<strong>when did you arrive?</strong>"',
+    story6_share: '📤 Share this',
   },
   de: {
     lang: 'EN', census: '📋 Zensus', census_on: '📋 Zensus ✓',
@@ -590,6 +605,21 @@ const I18N = {
     footer_updated: 'Stand: Juli 2025',
     story1_title: 'Neubau kostet 93 % mehr', story1_stat: 'Neubau vs. Nachkriegsbestand, gleiche Größe',
     story1_text: 'In der offiziellen Mietspiegeltabelle 2023 kostet eine 40-60 m²-Wohnung in einfacher Lage 12,37 €/m² bei Baujahr 2003-2017 — aber nur 6,41 €/m² in einem Ost-Berliner Bau von 1973-1990. Gleiche Größe, gleiche Lage: Das Alter der Wände verdoppelt fast die Miete.',
+    story2_title: 'Die zwei Berlins', story2_stat: 'mehr für neue Mieter',
+    story2_text: 'Wer letzten Monat unterschrieben hat, zahlt 4,10 €/m² mehr Nettokaltmiete als die Nachbarin, die seit 5 Jahren dort wohnt. Bei 70 m²: <strong>287 €/Monat — 3.444 €/Jahr</strong>. Die Stadt teilt sich in zwei Gruppen: die, die reingekommen sind, und die anderen.',
+    story2_share: '📤 Teilen',
+    story3_title: 'Der Markt eilt der offiziellen Tabelle voraus', story3_stat: 'Bezirke über dem stadtweiten Marktdurchschnitt',
+    story3_text: 'In 9 von 12 Berliner Bezirken liegen die Markt-Angebotsmieten über dem stadtweiten Immoscout-Durchschnitt (10,79 €/m²) — <strong>286.428 Adressen</strong>. Charlottenburg-Wilmersdorf führt mit +18,6 %. Wichtig: Keiner dieser Bezirksdurchschnitte überschreitet die Mietpreisbremse-Grenze von 110 % des Mietspiegels — die Grenze gilt pro Wohnung, nicht pro Bezirk.',
+    story3_share: '📤 Teilen',
+    story4_title: 'Deine Nachbarschaft ist deine Miete', story4_stat: 'gut vs. einfach, gleiche Größenklasse',
+    story4_text: 'Gleiches Baujahr, gleiche Größenklasse: Eine 35-40 m²-Altbauwohnung (bis 1918) kostet 9,08 €/m² in einfacher Lage, aber 11,09 €/m² in guter Lage. Das sind <strong>141 €/Monat mehr bei 70 m²</strong>. Die Lage zählt.',
+    story4_share: '📤 Teilen',
+    story5_title: 'Neue Wände, höhere Rechnungen', story5_stat: 'Neubau vs. Altbau, gute Lage',
+    story5_text: 'Eine 65-85 m²-Wohnung in guter Lage kostet 8,45 €/m² in einem Altbau bis 1918 — aber 15,58 €/m² in einem Gebäude von 2016-2022. <strong>499 €/Monat</strong> für das Privileg neuer Wände.',
+    story5_share: '📤 Teilen',
+    story6_title: 'Was 1.200 € kaufen', story6_stat: 'zum Marktpreis vs. 151 m² für Bestandsmieter',
+    story6_text: 'Für 1.200 €/Monat Kaltmiete bekommst du 99 m² zum Marktpreis. Ein Bestandsmieter im selben Haus zahlt dafür vielleicht 151 m². Die Frage ist nicht „Kannst du dir Berlin leisten?" — sondern „<strong>Wann bist du angekommen?</strong>"',
+    story6_share: '📤 Teilen',
   }
 };
 let currentLang = 'en';
@@ -973,163 +1003,6 @@ document.addEventListener('click', e => {
 });
 
 // ─── Experiments Tab ───────────────────────────────────────────
-async function loadExperiments() {
-  const grid = document.getElementById('insights-grid');
-  if (!grid) return;
-  grid.innerHTML = '<div class="es">⏳ Loading experiments...</div>';
-
-  try {
-    const data = await fetch('data/processed/experiment_results.json').then(r => r.json());
-    grid.innerHTML = '';
-
-    // MDE card (full width)
-    const mdeCard = document.createElement('div');
-    mdeCard.className = 'insight-card';
-    mdeCard.style.gridColumn = '1 / -1';
-    mdeCard.innerHTML =
-      '<h3>🔬 ' + escapeHtml(data.title) + '</h3>' +
-      '<div class="desc">' + escapeHtml(data.methodology) + '</div>' +
-      '<div style="display:flex;gap:20px;margin-top:12px;flex-wrap:wrap">' +
-        '<div style="flex:1;min-width:180px;padding:12px;background:var(--surface2);border-radius:6px;text-align:center">' +
-          '<div style="font-size:28px;font-weight:800;color:var(--accent)">€' + data.mde.value_eur_per_sqm + '/m²</div>' +
-          '<div style="font-size:11px;color:var(--text-dim);margin-top:4px">Minimum Detectable Effect</div>' +
-        '</div>' +
-        '<div style="flex:1;min-width:180px;padding:12px;background:var(--surface2);border-radius:6px;text-align:center">' +
-          '<div style="font-size:28px;font-weight:800;color:var(--green)">' + data.mde.pct_of_avg + '%</div>' +
-          '<div style="font-size:11px;color:var(--text-dim);margin-top:4px">of Berlin avg rent</div>' +
-        '</div>' +
-        '<div style="flex:1;min-width:180px;padding:12px;background:var(--surface2);border-radius:6px;text-align:center">' +
-          '<div style="font-size:28px;font-weight:800;color:var(--yellow)">α=0.05</div>' +
-          '<div style="font-size:11px;color:var(--text-dim);margin-top:4px">β=0.20 (80% power)</div>' +
-        '</div>' +
-      '</div>' +
-      '<div style="margin-top:10px;font-size:11px;color:var(--text-dim);font-style:italic">' + escapeHtml(data.mde.interpretation) + '</div>';
-    grid.appendChild(mdeCard);
-
-    // Scenario cards
-    (data.scenarios || []).forEach(function(s) {
-      const card = document.createElement('div');
-      card.className = 'insight-card';
-      const isUp = s.rent_delta_per_sqm > 0;
-      card.innerHTML =
-        '<h3>📈 ' + escapeHtml(s.scenario) + '</h3>' +
-        '<div class="desc" style="font-family:monospace;font-size:11px">' + escapeHtml(s.hypothesis) + '</div>' +
-        '<div style="display:flex;gap:12px;margin-top:10px;flex-wrap:wrap">' +
-          '<div style="flex:1;min-width:120px">' +
-            '<div style="font-size:24px;font-weight:800;color:' + (isUp ? 'var(--red)' : 'var(--green)') + '">' + (isUp ? '+' : '') + '€' + s.rent_delta_per_sqm + '/m²</div>' +
-            '<div style="font-size:10px;color:var(--text-dim)">Rent delta</div>' +
-          '</div>' +
-          '<div style="flex:1;min-width:120px">' +
-            '<div style="font-size:24px;font-weight:800;color:var(--accent)">€' + s.annual_impact_eur_m + 'M</div>' +
-            '<div style="font-size:10px;color:var(--text-dim)">Annual impact</div>' +
-          '</div>' +
-          '<div style="flex:1;min-width:120px">' +
-            '<div style="font-size:24px;font-weight:800;color:var(--text)">' + (s.affected_units / 1000).toFixed(0) + 'K</div>' +
-            '<div style="font-size:10px;color:var(--text-dim)">Units affected</div>' +
-          '</div>' +
-        '</div>' +
-        '<div style="margin-top:10px;padding:8px;background:var(--surface2);border-radius:4px;font-size:11px;color:var(--text-dim)">💡 ' + escapeHtml(s.verdict) + '</div>';
-      grid.appendChild(card);
-    });
-
-    // Counterfactual cards
-    (data.counterfactuals || []).forEach(function(c) {
-      const card = document.createElement('div');
-      card.className = 'insight-card';
-      const isUp = c.direction === 'increase';
-      card.innerHTML =
-        '<h3>🔄 ' + escapeHtml(c.scenario) + '</h3>' +
-        '<div class="desc" style="font-family:monospace;font-size:11px">H₀: μ_berlin = μ_target vs H₁: μ_berlin ' + (isUp ? '<' : '>') + ' μ_target</div>' +
-        '<div style="display:flex;gap:12px;margin-top:10px;flex-wrap:wrap">' +
-          '<div style="flex:1;min-width:120px">' +
-            '<div style="font-size:24px;font-weight:800;color:' + (isUp ? 'var(--red)' : 'var(--green)') + '">' + (isUp ? '+' : '') + c.delta_pct + '%</div>' +
-            '<div style="font-size:10px;color:var(--text-dim)">Rent change</div>' +
-          '</div>' +
-          '<div style="flex:1;min-width:120px">' +
-            '<div style="font-size:24px;font-weight:800;color:var(--accent)">€' + c.impact_eur_m + 'M</div>' +
-            '<div style="font-size:10px;color:var(--text-dim)">Annual impact</div>' +
-          '</div>' +
-        '</div>' +
-        '<div style="margin-top:10px;padding:8px;background:var(--surface2);border-radius:4px;font-size:11px;color:var(--text-dim)">💡 ' + escapeHtml(c.verdict) + '</div>';
-      grid.appendChild(card);
-    });
-  } catch(e) {
-    grid.innerHTML = '<div class="es">❌ Failed to load experiments: ' + escapeHtml(e.message) + '</div>';
-  }
-}
-
-// ─── Init ──────────────────────────────────────────────────────
-async function init() {
-  // Berlin bounding box
-  const BERLIN_BOUNDS = [[52.32, 13.05], [52.70, 13.78]];
-  map = L.map('map', {
-    center:[52.52,13.405], zoom:12, scrollWheelZoom:true, zoomControl:false,
-    minZoom: 10, maxZoom: 18,
-    maxBounds: BERLIN_BOUNDS, maxBoundsViscosity: 1.0
-  });
-  // Only scroll-zoom when map has focus (prevents accidental zoom while scrolling page)
-  map.on('focus', () => { map.scrollWheelZoom.enable(); });
-  map.on('blur', () => { map.scrollWheelZoom.disable(); });
-  map.scrollWheelZoom.disable(); // Start disabled on mobile
-  map.on('click', () => { map.scrollWheelZoom.enable(); }); // Enable on interaction
-  L.control.zoom({position:'bottomright'}).addTo(map);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution:'&copy; OSM',maxZoom:18}).addTo(map);
-
-  // Zoom handler — registered after map exists
-  map.on('zoomend', () => { if (heatLayer) buildHeat(); });
-
-  // Load Immoscout Berlin
-  try {
-    const r = await fetch('data/processed/berlin_immoscout.json?v=1');
-    const d = await r.json();
-    immoMean = d.mean; immoStd = d.std; immoGrids = d.grids;
-    document.getElementById('cell-count').textContent = d.clean + ' cells';
-  } catch(e) { console.error(e); }
-
-  // Load Zensus Berlin
-  try {
-    const r = await fetch('data/processed/berlin_zensus.json?v=1');
-    const d = await r.json();
-    zensusMean = d.mean; zensusStd = d.std; zensusCells = d.cells_slim;
-  } catch(e) { console.error(e); }
-
-  buildHeat();
-  loadDistricts().then(() => handleHash());
-  setupClick();
-  initRentCheck();
-  // Mobile Rent Check toggle: hide/show district panel to prevent overlap
-  const rcHeader = document.querySelector('#rentCheck h4');
-  if (rcHeader) {
-    rcHeader.addEventListener('click', function() {
-      if (window.innerWidth > 768) return;
-      const rc = document.getElementById('rentCheck');
-      const dp = document.getElementById('dpanel');
-      if (!rc || !dp) return;
-      // classList.toggle runs before this, so check: if it WAS collapsed (now expanding), hide dp
-      if (rc.classList.contains('collapsed')) {
-        dp.style.display = '';
-      } else {
-        dp.style.display = 'none';
-      }
-    });
-  }
-  // Collapse Rent Check on mobile by default
-  if (window.innerWidth <= 768) {
-    document.getElementById('rentCheck')?.classList.add('collapsed');
-    // Auto-collapse legend on mobile (unless user previously expanded)
-    if (!localStorage.getItem('berlin-legend-collapsed') || localStorage.getItem('berlin-legend-collapsed') === 'true') {
-      document.querySelector('.legend-bands')?.classList.add('collapsed');
-      document.querySelector('.legend-chevron')?.classList.add('flipped');
-    }
-  }
-  // Restore legend state from localStorage
-  if (localStorage.getItem('berlin-legend-collapsed') === 'true') {
-    document.querySelector('.legend-bands')?.classList.add('collapsed');
-    document.querySelector('.legend-chevron')?.classList.add('flipped');
-  }
-  applyLang();
-}
-
 function openHelp() { document.getElementById('helpOverlay').classList.add('open'); }
 function closeHelp() { document.getElementById('helpOverlay').classList.remove('open'); }
 
@@ -1439,102 +1312,6 @@ function shareStat(text) {
 }
 
 // ─── Insights loader ──────────────────────────────────────────
-async function loadInsights() {
-  const grid = document.getElementById('insights-grid');
-  grid.innerHTML = '<div class="es">⏳ Loading insights...</div>';
-
-  try {
-    const [rankings, premium, spread, berlin] = await Promise.all([
-      fetch('data/processed/insights_city_rankings.json').then(r => r.json()),
-      fetch('data/processed/insights_district_premium.json').then(r => r.json()),
-      fetch('data/processed/insights_gut_spread.json').then(r => r.json()),
-      fetch('data/processed/insights_berlin_table.json').then(r => r.json())
-    ]);
-
-    grid.innerHTML = '';
-
-    // Card 1: City rankings (top 10)
-    addInsightCard(grid, 'City Rent Rankings', 'Average rent (mittel Lage, 40-60m²) — top 10 of 19 cities', (ctx) => {
-      new Chart(ctx, {
-        type: 'bar', indexAxis: 'y',
-        data: {
-          labels: rankings.data.slice(0,10).map(d => d.city).reverse(),
-          datasets: [{
-            label: '€/m²', data: rankings.data.slice(0,10).map(d => d.avg_rent).reverse(),
-            backgroundColor: rankings.data.slice(0,10).map((d,i) => i<8?'#5b8def':'#48bb78').reverse()
-          }]
-        },
-        options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{x:{grid:{color:'#2a2e3e'},ticks:{color:'#8b8fa3',callback:v=>'€'+v}},y:{ticks:{color:'#e4e6f0',font:{size:11}}}}}
-      });
-    });
-
-    // Card 2: District premium (market vs official)
-    addInsightCard(grid, 'Market vs Official Rent by District', 'Immoscout24 market rent minus Mietspiegel official rent per Bezirk', (ctx) => {
-      new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: premium.data.map(d => d.district),
-          datasets: [
-            {label:'Market rent',data:premium.data.map(d=>d.market_rent),backgroundColor:'#5b8def'},
-            {label:'Official Mietspiegel',data:premium.data.map(d=>d.official_rent),backgroundColor:'#48bb78'}
-          ]
-        },
-        options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{labels:{color:'#8b8fa3'}}}, scales:{x:{ticks:{color:'#8b8fa3',maxRotation:45,font:{size:9}}},y:{grid:{color:'#2a2e3e'},ticks:{color:'#8b8fa3',callback:v=>'€'+v}}}}
-      });
-    });
-
-    // Card 3: Gut/einfach spread (rent inequality)
-    addInsightCard(grid, 'Rent Inequality: Gut vs Einfach', 'Ratio of gut Lage to einfach Lage rents — higher = more inequality', (ctx) => {
-      new Chart(ctx, {
-        type: 'bar', indexAxis: 'y',
-        data: {
-          labels: spread.data.slice(0,10).map(d => d.city).reverse(),
-          datasets: [
-            {label:'Einfach',data:spread.data.slice(0,10).map(d=>d.einfach_rent).reverse(),backgroundColor:'#48bb78'},
-            {label:'Gut',data:spread.data.slice(0,10).map(d=>d.gut_rent).reverse(),backgroundColor:'#f56565'}
-          ]
-        },
-        options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{labels:{color:'#8b8fa3'}}}, scales:{x:{grid:{color:'#2a2e3e'},ticks:{color:'#8b8fa3',callback:v=>'€'+v}},y:{ticks:{color:'#e4e6f0',font:{size:11}}}}}
-      });
-    });
-
-    // Card 4: Berlin Mietspiegel table
-    addInsightCard(grid, 'Berlin Mietspiegel 2024 — Mittel Lage', 'Official rent table by Baujahr and apartment size (€/m² net cold)', (ctx) => {
-      const datasets = berlin.size_categories.map((size, i) => ({
-        label: size,
-        data: berlin.baujahr_groups.map(bj => {
-          const row = berlin.rows.find(r => r.baujahr === bj);
-          const valKey = Object.keys(row || {}).filter(k => k !== 'baujahr')[i];
-          return row && valKey ? row[valKey] : null;
-        }),
-        borderColor: ['#5b8def','#48bb78','#ecc94b','#f56565'][i],
-        backgroundColor: 'transparent',
-        tension: 0.2
-      }));
-      new Chart(ctx, {
-        type: 'line',
-        data: { labels: berlin.baujahr_groups, datasets },
-        options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{labels:{color:'#8b8fa3'}}}, scales:{x:{ticks:{color:'#8b8fa3',maxRotation:45,font:{size:9}}},y:{grid:{color:'#2a2e3e'},ticks:{color:'#8b8fa3',callback:v=>'€'+v}}}}
-      });
-    });
-  } catch(e) {
-    grid.innerHTML = '<div class="es">❌ Failed to load insights: ' + e.message + '</div>';
-  }
-}
-
-function addInsightCard(grid, title, desc, renderFn) {
-  const card = document.createElement('div');
-  card.className = 'insight-card';
-  card.innerHTML = '<h3>' + title + '</h3><div class="desc">' + desc + '</div><div style="position:relative;height:220px"></div>';
-  grid.appendChild(card);
-  const container = card.querySelector('div:last-child');
-  setTimeout(() => {
-    const ctx = document.createElement('canvas');
-    container.appendChild(ctx);
-    renderFn(ctx);
-  }, 50);
-}
-
 document.addEventListener('DOMContentLoaded', () => {
   // Show help on first visit
   if (!localStorage.getItem('berlin-help-seen')) {

@@ -21,8 +21,8 @@ import sys
 from pathlib import Path
 
 try:
-    import pdfplumber
     import pandas as pd
+    import pdfplumber
 except ImportError as e:
     print(f"ERROR: Missing dependency — {e}", file=sys.stderr)
     print("Run: pip3 install pdfplumber pandas", file=sys.stderr)
@@ -175,8 +175,10 @@ def extract_with_camelot(pdf_path: str, edge_tol: int = 50, row_tol: int = 10) -
     """
     try:
         import camelot
-    except ImportError:
-        raise RuntimeError("camelot-py not installed — run: pip3 install camelot-py[cv]")
+    except ImportError as err:
+        raise RuntimeError(
+            "camelot-py not installed — run: pip3 install camelot-py[cv]"
+        ) from err
 
     tables = camelot.read_pdf(pdf_path, pages='1-5', flavor='stream',
                               edge_tol=edge_tol, row_tol=row_tol)

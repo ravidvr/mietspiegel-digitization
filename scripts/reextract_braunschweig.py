@@ -13,7 +13,8 @@ Kategorie 5 (Lage): street-specific continuous € (Straßenverzeichnis).
   Distribution: median -0.13, q1 -0.25, q3 +0.07. We use representative
   bands: einfach = -0.25, mittel = -0.13, gut = +0.07.
 """
-import json, os
+import json
+import os
 
 # Table 1 base rent by floor area (m² -> €/m²), full 151-pair list
 BASE_RENT = [

@@ -11,7 +11,8 @@ Table 2 Kategorie 1 (Baujahr %):
   1973-1989 -7, 1990-2002 +11, 2003-2015 +25, 2016+ +50
 Kategorie 4 (Wohnlage %): A +15, B +10, C +5, D 0
 """
-import json, os
+import json
+import os
 
 BASE_RENT = [
     (20,21,7.86),(22,23,7.53),(24,25,7.24),(26,27,7.03),(28,29,6.83),
