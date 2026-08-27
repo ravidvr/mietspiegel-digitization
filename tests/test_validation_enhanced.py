@@ -239,11 +239,28 @@ class TestStructureCompleteness:
         # Don't hard-fail — these are data completeness issues to document
 
     def test_each_table_has_size_keys(self, all_cities: dict[str, dict]):
-        """Every row in every table should have at least 3 of 4 expected size keys."""
+        """Every row in every table should have at least 3 of 4 expected size keys.
+
+        Cities with an `official_rows` block (verbatim official extraction, e.g.
+        Berlin 2024) are validated against the official schema instead — the
+        legacy 4-band rollup may be sparse for cohorts the official table
+        doesn't cover in all four bands.
+        """
         violations = []
         for slug, data in all_cities.items():
             city = data.get("city", slug)
-            for table in data.get("tables", []):
+            tables = data.get("tables", [])
+            if data.get("official_rows"):
+                for table in data["official_rows"]:
+                    lage = table.get("lage", "?")
+                    for row in table.get("rows", []):
+                        if not all(k in row for k in ("mittelwert", "untere_spanne", "obere_spanne")):
+                            violations.append(
+                                f"{city} [official/{lage}/{row.get('baujahr', '?')}]: "
+                                f"missing spanne/mittelwert fields"
+                            )
+                continue
+            for table in tables:
                 lage = table.get("lage", "?")
                 for row in table.get("rows", []):
                     found = sum(1 for sk in SIZE_KEYS if sk in row and isinstance(row[sk], (int, float)))

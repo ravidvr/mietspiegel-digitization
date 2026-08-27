@@ -258,13 +258,14 @@ def extract_with_pdfplumber_detailed(pdf_path: str) -> list[dict]:
     for pi, page in enumerate(pdf.pages):
         text = page.extract_text()
 
-        # Detect lage
-        lage = classify_lage(text)
-        if lage:
-            current_lage = lage
-
         for line in text.split('\n'):
             line = line.strip()
+            # Section headers can appear MID-PAGE (e.g. page 2 carries both
+            # "9.1 ... Einfache (Fortsetzung)" and "9.2 ... Mittlere Wohnlage").
+            # Switch lage as soon as the header line appears.
+            header_lage = classify_lage(line)
+            if header_lage:
+                current_lage = header_lage
             m = re.match(r'^(\d+)\s', line)
             if not m or '€' not in line:
                 continue
@@ -311,6 +312,8 @@ def extract_with_pdfplumber_detailed(pdf_path: str) -> list[dict]:
                 else:
                     size_text = middle
 
+                # Footnote markers (* /**) belong to the baujahr, not the size
+                size_text = re.sub(r'^\*+\s*', '', size_text)
                 size_text = re.sub(r'\s+', ' ', size_text).strip()
 
                 row_data = {

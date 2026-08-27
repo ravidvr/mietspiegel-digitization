@@ -27,3 +27,6 @@ data/processed/
 docs/data/germany-kreise.geojson
 .coverage
 .pytest_cache/
+
+# Hermes agent workspace
+.hermes/

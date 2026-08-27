@@ -8,87 +8,459 @@
   "population": 3700000,
   "year": 2024,
   "type": "qualifiziert",
+  "source": "Berliner Mietspiegel 2024, Tabelle 9.1-9.3 (Stichtag 01.09.2023)",
+  "source_url": "https://www.berlin.de/mietspiegel/",
+  "source_file": "data/raw/berlin-mietspiegeltabelle-2024.pdf",
+  "schema_note": "official_rows preserves the official cohorts and size bands verbatim. tables is a derived 4-band rollup (mean of official Mittelwerte per band) kept for legacy consumers; use official_rows for legal comparisons.",
   "lage_categories": [
     "einfach",
     "mittel",
     "gut"
   ],
-  "baujahr_groups": [
-    "bis 1918",
-    "1919-1949",
-    "1950-1964",
-    "1965-1974",
-    "1975-1990",
-    "1991-2000",
-    "2001-2010",
-    "2011-2024"
-  ],
-  "size_categories": [
-    "bis 40 m²",
-    "40-60 m²",
-    "60-90 m²",
-    "über 90 m²"
-  ],
-  "source_url": "https://www.berlin.de/mietspiegel/",
-  "tables": [
+  "official_rows": [
     {
       "lage": "einfach",
       "rows": [
         {
           "baujahr": "bis 1918",
-          "bis_40": 8.03,
-          "40_60": 7.68,
-          "60_90": 7.35,
-          "ueber_90": 7.02
+          "size_min_m2": 0.0,
+          "size_max_m2": 35.0,
+          "size_range": "bis unter 35 m²",
+          "mittelwert": 9.87,
+          "untere_spanne": 7.19,
+          "obere_spanne": 14.19
+        },
+        {
+          "baujahr": "bis 1918",
+          "size_min_m2": 35.0,
+          "size_max_m2": 40.0,
+          "size_range": "35 m² bis unter 40 m²",
+          "mittelwert": 9.08,
+          "untere_spanne": 6.83,
+          "obere_spanne": 13.08
+        },
+        {
+          "baujahr": "bis 1918",
+          "size_min_m2": 40.0,
+          "size_max_m2": 45.0,
+          "size_range": "40 m² bis unter 45 m²",
+          "mittelwert": 8.52,
+          "untere_spanne": 6.15,
+          "obere_spanne": 12.54
+        },
+        {
+          "baujahr": "bis 1918",
+          "size_min_m2": 45.0,
+          "size_max_m2": 55.0,
+          "size_range": "45 m² bis unter 55 m²",
+          "mittelwert": 8.02,
+          "untere_spanne": 6.1,
+          "obere_spanne": 11.19
+        },
+        {
+          "baujahr": "bis 1918",
+          "size_min_m2": 55.0,
+          "size_max_m2": 60.0,
+          "size_range": "55 m² bis unter 60 m²",
+          "mittelwert": 8.42,
+          "untere_spanne": 6.07,
+          "obere_spanne": 11.0
+        },
+        {
+          "baujahr": "bis 1918",
+          "size_min_m2": 60.0,
+          "size_max_m2": 90.0,
+          "size_range": "60 m² bis unter 90 m²",
+          "mittelwert": 6.96,
+          "untere_spanne": 5.29,
+          "obere_spanne": 10.39
+        },
+        {
+          "baujahr": "bis 1918",
+          "size_min_m2": 90.0,
+          "size_max_m2": 105.0,
+          "size_range": "90 m² bis unter 105 m²",
+          "mittelwert": 6.33,
+          "untere_spanne": 4.93,
+          "obere_spanne": 9.97
+        },
+        {
+          "baujahr": "bis 1918",
+          "size_min_m2": 105.0,
+          "size_max_m2": null,
+          "size_range": "ab 105 m²",
+          "mittelwert": 6.61,
+          "untere_spanne": 5.34,
+          "obere_spanne": 9.02
         },
         {
           "baujahr": "1919-1949",
-          "bis_40": 8.21,
-          "40_60": 7.85,
-          "60_90": 7.52,
-          "ueber_90": 7.18
+          "size_min_m2": 0.0,
+          "size_max_m2": 40.0,
+          "size_range": "bis unter 40 m²",
+          "mittelwert": 7.96,
+          "untere_spanne": 6.5,
+          "obere_spanne": 10.74
+        },
+        {
+          "baujahr": "1919-1949",
+          "size_min_m2": 40.0,
+          "size_max_m2": 60.0,
+          "size_range": "40 m² bis unter 60 m²",
+          "mittelwert": 7.03,
+          "untere_spanne": 5.99,
+          "obere_spanne": 9.35
+        },
+        {
+          "baujahr": "1919-1949",
+          "size_min_m2": 60.0,
+          "size_max_m2": 90.0,
+          "size_range": "60 m² bis unter 90 m²",
+          "mittelwert": 6.54,
+          "untere_spanne": 5.55,
+          "obere_spanne": 8.82
+        },
+        {
+          "baujahr": "1919-1949",
+          "size_min_m2": 90.0,
+          "size_max_m2": 105.0,
+          "size_range": "90 m² bis unter 105 m²",
+          "mittelwert": 6.33,
+          "untere_spanne": 4.93,
+          "obere_spanne": 9.97
+        },
+        {
+          "baujahr": "1919-1949",
+          "size_min_m2": 105.0,
+          "size_max_m2": null,
+          "size_range": "ab 105 m²",
+          "mittelwert": 6.61,
+          "untere_spanne": 5.34,
+          "obere_spanne": 9.02
         },
         {
           "baujahr": "1950-1964",
-          "bis_40": 8.55,
-          "40_60": 8.18,
-          "60_90": 7.84,
-          "ueber_90": 7.49
+          "size_min_m2": 0.0,
+          "size_max_m2": 40.0,
+          "size_range": "bis unter 40 m²",
+          "mittelwert": 7.96,
+          "untere_spanne": 6.5,
+          "obere_spanne": 10.74
         },
         {
-          "baujahr": "1965-1974",
-          "bis_40": 8.82,
-          "40_60": 8.44,
-          "60_90": 8.09,
-          "ueber_90": 7.73
+          "baujahr": "1950-1964",
+          "size_min_m2": 40.0,
+          "size_max_m2": 60.0,
+          "size_range": "40 m² bis unter 60 m²",
+          "mittelwert": 7.03,
+          "untere_spanne": 5.99,
+          "obere_spanne": 9.35
         },
         {
-          "baujahr": "1975-1990",
-          "bis_40": 9.12,
-          "40_60": 8.73,
-          "60_90": 8.37,
-          "ueber_90": 8.0
+          "baujahr": "1950-1964",
+          "size_min_m2": 60.0,
+          "size_max_m2": null,
+          "size_range": "ab 60 m²",
+          "mittelwert": 6.2,
+          "untere_spanne": 5.23,
+          "obere_spanne": 8.0
         },
         {
-          "baujahr": "1991-2000",
-          "bis_40": 9.48,
-          "40_60": 9.07,
-          "60_90": 8.7,
-          "ueber_90": 8.32
+          "baujahr": "1965-1972",
+          "size_min_m2": 0.0,
+          "size_max_m2": 55.0,
+          "size_range": "bis unter 55 m²",
+          "mittelwert": 6.76,
+          "untere_spanne": 5.68,
+          "obere_spanne": 8.58
         },
         {
-          "baujahr": "2001-2010",
-          "bis_40": 9.88,
-          "40_60": 9.46,
-          "60_90": 9.07,
-          "ueber_90": 8.67
+          "baujahr": "1965-1972",
+          "size_min_m2": 55.0,
+          "size_max_m2": 60.0,
+          "size_range": "55 m² bis unter 60 m²",
+          "mittelwert": 6.1,
+          "untere_spanne": 5.37,
+          "obere_spanne": 7.72
         },
         {
-          "baujahr": "2011-2024",
-          "bis_40": 10.52,
-          "40_60": 10.07,
-          "60_90": 9.66,
-          "ueber_90": 9.24
+          "baujahr": "1965-1972",
+          "size_min_m2": 60.0,
+          "size_max_m2": null,
+          "size_range": "ab 60 m²",
+          "mittelwert": 5.87,
+          "untere_spanne": 5.22,
+          "obere_spanne": 7.18
+        },
+        {
+          "baujahr": "1973-1985 West",
+          "size_min_m2": 0.0,
+          "size_max_m2": 55.0,
+          "size_range": "bis unter 55 m²",
+          "mittelwert": 6.76,
+          "untere_spanne": 5.68,
+          "obere_spanne": 8.58
+        },
+        {
+          "baujahr": "1973-1985 West",
+          "size_min_m2": 55.0,
+          "size_max_m2": 60.0,
+          "size_range": "55 m² bis unter 60 m²",
+          "mittelwert": 6.1,
+          "untere_spanne": 5.37,
+          "obere_spanne": 7.72
+        },
+        {
+          "baujahr": "1973-1985 West",
+          "size_min_m2": 60.0,
+          "size_max_m2": 90.0,
+          "size_range": "60 m² bis unter 90 m²",
+          "mittelwert": 6.54,
+          "untere_spanne": 5.77,
+          "obere_spanne": 8.51
+        },
+        {
+          "baujahr": "1973-1985 West",
+          "size_min_m2": 90.0,
+          "size_max_m2": null,
+          "size_range": "ab 90 m²",
+          "mittelwert": 7.35,
+          "untere_spanne": 5.24,
+          "obere_spanne": 9.08
+        },
+        {
+          "baujahr": "1986-1990 West",
+          "size_min_m2": 0.0,
+          "size_max_m2": 55.0,
+          "size_range": "bis unter 55 m²",
+          "mittelwert": 8.19,
+          "untere_spanne": 6.47,
+          "obere_spanne": 10.49
+        },
+        {
+          "baujahr": "1986-1990 West",
+          "size_min_m2": 55.0,
+          "size_max_m2": 60.0,
+          "size_range": "55 m² bis unter 60 m²",
+          "mittelwert": 8.56,
+          "untere_spanne": 6.48,
+          "obere_spanne": 11.14
+        },
+        {
+          "baujahr": "1986-1990 West",
+          "size_min_m2": 60.0,
+          "size_max_m2": 75.0,
+          "size_range": "60 m² bis unter 75 m²",
+          "mittelwert": 7.92,
+          "untere_spanne": 6.27,
+          "obere_spanne": 9.59
+        },
+        {
+          "baujahr": "1986-1990 West",
+          "size_min_m2": 75.0,
+          "size_max_m2": 80.0,
+          "size_range": "75 m² bis unter 80 m²",
+          "mittelwert": 8.13,
+          "untere_spanne": 6.89,
+          "obere_spanne": 9.28
+        },
+        {
+          "baujahr": "1986-1990 West",
+          "size_min_m2": 80.0,
+          "size_max_m2": 95.0,
+          "size_range": "80 m² bis unter 95 m²",
+          "mittelwert": 8.06,
+          "untere_spanne": 6.67,
+          "obere_spanne": 9.99
+        },
+        {
+          "baujahr": "1986-1990 West",
+          "size_min_m2": 95.0,
+          "size_max_m2": null,
+          "size_range": "ab 95 m²",
+          "mittelwert": 8.38,
+          "untere_spanne": 6.59,
+          "obere_spanne": 9.96
+        },
+        {
+          "baujahr": "1973-1990 Ost",
+          "size_min_m2": 0.0,
+          "size_max_m2": 40.0,
+          "size_range": "bis unter 40 m²",
+          "mittelwert": 7.16,
+          "untere_spanne": 6.66,
+          "obere_spanne": 8.89
+        },
+        {
+          "baujahr": "1973-1990 Ost",
+          "size_min_m2": 40.0,
+          "size_max_m2": 60.0,
+          "size_range": "40 m² bis unter 60 m²",
+          "mittelwert": 6.25,
+          "untere_spanne": 5.74,
+          "obere_spanne": 7.28
+        },
+        {
+          "baujahr": "1973-1990 Ost",
+          "size_min_m2": 60.0,
+          "size_max_m2": 70.0,
+          "size_range": "60 m² bis unter 70 m²",
+          "mittelwert": 5.37,
+          "untere_spanne": 5.07,
+          "obere_spanne": 6.06
+        },
+        {
+          "baujahr": "1973-1990 Ost",
+          "size_min_m2": 70.0,
+          "size_max_m2": null,
+          "size_range": "ab 70 m²",
+          "mittelwert": 5.44,
+          "untere_spanne": 5.03,
+          "obere_spanne": 6.11
+        },
+        {
+          "baujahr": "1991-2001",
+          "size_min_m2": 0.0,
+          "size_max_m2": 55.0,
+          "size_range": "bis unter 55 m²",
+          "mittelwert": 8.19,
+          "untere_spanne": 6.47,
+          "obere_spanne": 10.49
+        },
+        {
+          "baujahr": "1991-2001",
+          "size_min_m2": 55.0,
+          "size_max_m2": 60.0,
+          "size_range": "55 m² bis unter 60 m²",
+          "mittelwert": 8.56,
+          "untere_spanne": 6.48,
+          "obere_spanne": 11.14
+        },
+        {
+          "baujahr": "1991-2001",
+          "size_min_m2": 60.0,
+          "size_max_m2": 75.0,
+          "size_range": "60 m² bis unter 75 m²",
+          "mittelwert": 7.92,
+          "untere_spanne": 6.27,
+          "obere_spanne": 9.59
+        },
+        {
+          "baujahr": "1991-2001",
+          "size_min_m2": 75.0,
+          "size_max_m2": 80.0,
+          "size_range": "75 m² bis unter 80 m²",
+          "mittelwert": 8.13,
+          "untere_spanne": 6.89,
+          "obere_spanne": 9.28
+        },
+        {
+          "baujahr": "1991-2001",
+          "size_min_m2": 80.0,
+          "size_max_m2": 95.0,
+          "size_range": "80 m² bis unter 95 m²",
+          "mittelwert": 8.06,
+          "untere_spanne": 6.67,
+          "obere_spanne": 9.99
+        },
+        {
+          "baujahr": "1991-2001",
+          "size_min_m2": 95.0,
+          "size_max_m2": null,
+          "size_range": "ab 95 m²",
+          "mittelwert": 8.38,
+          "untere_spanne": 6.59,
+          "obere_spanne": 9.96
+        },
+        {
+          "baujahr": "2002-2009",
+          "size_min_m2": 0.0,
+          "size_max_m2": 55.0,
+          "size_range": "bis unter 55 m²",
+          "mittelwert": 8.19,
+          "untere_spanne": 6.47,
+          "obere_spanne": 10.49
+        },
+        {
+          "baujahr": "2002-2009",
+          "size_min_m2": 55.0,
+          "size_max_m2": 60.0,
+          "size_range": "55 m² bis unter 60 m²",
+          "mittelwert": 8.56,
+          "untere_spanne": 6.48,
+          "obere_spanne": 11.14
+        },
+        {
+          "baujahr": "2002-2009",
+          "size_min_m2": 60.0,
+          "size_max_m2": 75.0,
+          "size_range": "60 m² bis unter 75 m²",
+          "mittelwert": 7.92,
+          "untere_spanne": 6.27,
+          "obere_spanne": 9.59
+        },
+        {
+          "baujahr": "2002-2009",
+          "size_min_m2": 75.0,
+          "size_max_m2": 80.0,
+          "size_range": "75 m² bis unter 80 m²",
+          "mittelwert": 8.13,
+          "untere_spanne": 6.89,
+          "obere_spanne": 9.28
+        },
+        {
+          "baujahr": "2002-2009",
+          "size_min_m2": 80.0,
+          "size_max_m2": 95.0,
+          "size_range": "80 m² bis unter 95 m²",
+          "mittelwert": 8.06,
+          "untere_spanne": 6.67,
+          "obere_spanne": 9.99
+        },
+        {
+          "baujahr": "2002-2009",
+          "size_min_m2": 95.0,
+          "size_max_m2": null,
+          "size_range": "ab 95 m²",
+          "mittelwert": 8.38,
+          "untere_spanne": 6.59,
+          "obere_spanne": 9.96
+        },
+        {
+          "baujahr": "2010-2015",
+          "size_min_m2": 0.0,
+          "size_max_m2": null,
+          "size_range": "alle Wohnflächen",
+          "mittelwert": 9.98,
+          "untere_spanne": 7.24,
+          "obere_spanne": 14.48
+        },
+        {
+          "baujahr": "2016-2022",
+          "size_min_m2": 0.0,
+          "size_max_m2": 60.0,
+          "size_range": "bis unter 60 m²",
+          "mittelwert": 12.41,
+          "untere_spanne": 7.62,
+          "obere_spanne": 16.66
+        },
+        {
+          "baujahr": "2016-2022",
+          "size_min_m2": 60.0,
+          "size_max_m2": 80.0,
+          "size_range": "60 m² bis unter 80 m²",
+          "mittelwert": 11.12,
+          "untere_spanne": 9.0,
+          "obere_spanne": 17.43
+        },
+        {
+          "baujahr": "2016-2022",
+          "size_min_m2": 80.0,
+          "size_max_m2": null,
+          "size_range": "ab 80 m²",
+          "mittelwert": 12.48,
+          "untere_spanne": 9.99,
+          "obere_spanne": 16.55
         }
       ]
     },
@@ -97,59 +469,615 @@
       "rows": [
         {
           "baujahr": "bis 1918",
-          "bis_40": 10.85,
-          "40_60": 10.38,
-          "60_90": 9.95,
-          "ueber_90": 9.51
+          "size_min_m2": 0.0,
+          "size_max_m2": 35.0,
+          "size_range": "bis unter 35 m²",
+          "mittelwert": 10.12,
+          "untere_spanne": 7.68,
+          "obere_spanne": 12.76
+        },
+        {
+          "baujahr": "bis 1918",
+          "size_min_m2": 35.0,
+          "size_max_m2": 40.0,
+          "size_range": "35 m² bis unter 40 m²",
+          "mittelwert": 8.98,
+          "untere_spanne": 7.05,
+          "obere_spanne": 13.75
+        },
+        {
+          "baujahr": "bis 1918",
+          "size_min_m2": 40.0,
+          "size_max_m2": 45.0,
+          "size_range": "40 m² bis unter 45 m²",
+          "mittelwert": 9.37,
+          "untere_spanne": 6.81,
+          "obere_spanne": 12.64
+        },
+        {
+          "baujahr": "bis 1918",
+          "size_min_m2": 45.0,
+          "size_max_m2": 50.0,
+          "size_range": "45 m² bis unter 50 m²",
+          "mittelwert": 7.48,
+          "untere_spanne": 6.33,
+          "obere_spanne": 12.63
+        },
+        {
+          "baujahr": "bis 1918",
+          "size_min_m2": 50.0,
+          "size_max_m2": 55.0,
+          "size_range": "50 m² bis unter 55 m²",
+          "mittelwert": 7.45,
+          "untere_spanne": 5.85,
+          "obere_spanne": 10.26
+        },
+        {
+          "baujahr": "bis 1918",
+          "size_min_m2": 55.0,
+          "size_max_m2": 80.0,
+          "size_range": "55 m² bis unter 80 m²",
+          "mittelwert": 7.91,
+          "untere_spanne": 5.79,
+          "obere_spanne": 11.5
+        },
+        {
+          "baujahr": "bis 1918",
+          "size_min_m2": 80.0,
+          "size_max_m2": 120.0,
+          "size_range": "80 m² bis unter 120 m²",
+          "mittelwert": 7.57,
+          "untere_spanne": 5.74,
+          "obere_spanne": 11.05
+        },
+        {
+          "baujahr": "bis 1918",
+          "size_min_m2": 120.0,
+          "size_max_m2": 130.0,
+          "size_range": "120 m² bis unter 130 m²",
+          "mittelwert": 7.25,
+          "untere_spanne": 5.44,
+          "obere_spanne": 11.09
+        },
+        {
+          "baujahr": "bis 1918",
+          "size_min_m2": 130.0,
+          "size_max_m2": null,
+          "size_range": "ab 130 m²",
+          "mittelwert": 6.98,
+          "untere_spanne": 5.03,
+          "obere_spanne": 10.57
         },
         {
           "baujahr": "1919-1949",
-          "bis_40": 11.09,
-          "40_60": 10.6,
-          "60_90": 10.16,
-          "ueber_90": 9.71
+          "size_min_m2": 0.0,
+          "size_max_m2": 35.0,
+          "size_range": "bis unter 35 m²",
+          "mittelwert": 7.94,
+          "untere_spanne": 6.11,
+          "obere_spanne": 11.49
+        },
+        {
+          "baujahr": "1919-1949",
+          "size_min_m2": 35.0,
+          "size_max_m2": 40.0,
+          "size_range": "35 m² bis unter 40 m²",
+          "mittelwert": 7.53,
+          "untere_spanne": 6.25,
+          "obere_spanne": 9.56
+        },
+        {
+          "baujahr": "1919-1949",
+          "size_min_m2": 40.0,
+          "size_max_m2": 45.0,
+          "size_range": "40 m² bis unter 45 m²",
+          "mittelwert": 7.4,
+          "untere_spanne": 6.44,
+          "obere_spanne": 8.8
+        },
+        {
+          "baujahr": "1919-1949",
+          "size_min_m2": 45.0,
+          "size_max_m2": 50.0,
+          "size_range": "45 m² bis unter 50 m²",
+          "mittelwert": 7.42,
+          "untere_spanne": 6.26,
+          "obere_spanne": 9.28
+        },
+        {
+          "baujahr": "1919-1949",
+          "size_min_m2": 50.0,
+          "size_max_m2": 65.0,
+          "size_range": "50 m² bis unter 65 m²",
+          "mittelwert": 7.12,
+          "untere_spanne": 6.02,
+          "obere_spanne": 9.19
+        },
+        {
+          "baujahr": "1919-1949",
+          "size_min_m2": 65.0,
+          "size_max_m2": 75.0,
+          "size_range": "65 m² bis unter 75 m²",
+          "mittelwert": 6.65,
+          "untere_spanne": 5.69,
+          "obere_spanne": 8.41
+        },
+        {
+          "baujahr": "1919-1949",
+          "size_min_m2": 75.0,
+          "size_max_m2": null,
+          "size_range": "ab 75 m²",
+          "mittelwert": 6.96,
+          "untere_spanne": 5.79,
+          "obere_spanne": 10.0
         },
         {
           "baujahr": "1950-1964",
-          "bis_40": 11.55,
-          "40_60": 11.05,
-          "60_90": 10.59,
-          "ueber_90": 10.12
+          "size_min_m2": 0.0,
+          "size_max_m2": 35.0,
+          "size_range": "bis unter 35 m²",
+          "mittelwert": 7.94,
+          "untere_spanne": 6.11,
+          "obere_spanne": 11.49
         },
         {
-          "baujahr": "1965-1974",
-          "bis_40": 11.92,
-          "40_60": 11.4,
-          "60_90": 10.93,
-          "ueber_90": 10.45
+          "baujahr": "1950-1964",
+          "size_min_m2": 35.0,
+          "size_max_m2": 40.0,
+          "size_range": "35 m² bis unter 40 m²",
+          "mittelwert": 7.53,
+          "untere_spanne": 6.25,
+          "obere_spanne": 9.56
         },
         {
-          "baujahr": "1975-1990",
-          "bis_40": 12.32,
-          "40_60": 11.79,
-          "60_90": 11.3,
-          "ueber_90": 10.8
+          "baujahr": "1950-1964",
+          "size_min_m2": 40.0,
+          "size_max_m2": 45.0,
+          "size_range": "40 m² bis unter 45 m²",
+          "mittelwert": 7.07,
+          "untere_spanne": 5.88,
+          "obere_spanne": 9.06
         },
         {
-          "baujahr": "1991-2000",
-          "bis_40": 12.81,
-          "40_60": 12.25,
-          "60_90": 11.75,
-          "ueber_90": 11.23
+          "baujahr": "1950-1964",
+          "size_min_m2": 45.0,
+          "size_max_m2": null,
+          "size_range": "ab 45 m²",
+          "mittelwert": 6.6,
+          "untere_spanne": 5.73,
+          "obere_spanne": 8.86
         },
         {
-          "baujahr": "2001-2010",
-          "bis_40": 13.35,
-          "40_60": 12.78,
-          "60_90": 12.25,
-          "ueber_90": 11.71
+          "baujahr": "1965-1972",
+          "size_min_m2": 0.0,
+          "size_max_m2": 35.0,
+          "size_range": "bis unter 35 m²",
+          "mittelwert": 7.36,
+          "untere_spanne": 6.57,
+          "obere_spanne": 14.03
         },
         {
-          "baujahr": "2011-2024",
-          "bis_40": 14.2,
-          "40_60": 13.6,
-          "60_90": 13.04,
-          "ueber_90": 12.47
+          "baujahr": "1965-1972",
+          "size_min_m2": 35.0,
+          "size_max_m2": 40.0,
+          "size_range": "35 m² bis unter 40 m²",
+          "mittelwert": 7.21,
+          "untere_spanne": 6.45,
+          "obere_spanne": 9.73
+        },
+        {
+          "baujahr": "1965-1972",
+          "size_min_m2": 40.0,
+          "size_max_m2": 45.0,
+          "size_range": "40 m² bis unter 45 m²",
+          "mittelwert": 7.07,
+          "untere_spanne": 5.88,
+          "obere_spanne": 9.06
+        },
+        {
+          "baujahr": "1965-1972",
+          "size_min_m2": 45.0,
+          "size_max_m2": null,
+          "size_range": "ab 45 m²",
+          "mittelwert": 6.13,
+          "untere_spanne": 5.36,
+          "obere_spanne": 8.41
+        },
+        {
+          "baujahr": "1973-1985 West",
+          "size_min_m2": 0.0,
+          "size_max_m2": 35.0,
+          "size_range": "bis unter 35 m²",
+          "mittelwert": 7.36,
+          "untere_spanne": 6.57,
+          "obere_spanne": 14.03
+        },
+        {
+          "baujahr": "1973-1985 West",
+          "size_min_m2": 35.0,
+          "size_max_m2": 40.0,
+          "size_range": "35 m² bis unter 40 m²",
+          "mittelwert": 7.21,
+          "untere_spanne": 6.45,
+          "obere_spanne": 9.73
+        },
+        {
+          "baujahr": "1973-1985 West",
+          "size_min_m2": 40.0,
+          "size_max_m2": 45.0,
+          "size_range": "40 m² bis unter 45 m²",
+          "mittelwert": 7.07,
+          "untere_spanne": 5.88,
+          "obere_spanne": 9.06
+        },
+        {
+          "baujahr": "1973-1985 West",
+          "size_min_m2": 45.0,
+          "size_max_m2": 75.0,
+          "size_range": "45 m² bis unter 75 m²",
+          "mittelwert": 8.18,
+          "untere_spanne": 6.32,
+          "obere_spanne": 10.64
+        },
+        {
+          "baujahr": "1973-1985 West",
+          "size_min_m2": 75.0,
+          "size_max_m2": null,
+          "size_range": "ab 75 m²",
+          "mittelwert": 7.85,
+          "untere_spanne": 6.44,
+          "obere_spanne": 10.1
+        },
+        {
+          "baujahr": "1986-1990 West",
+          "size_min_m2": 0.0,
+          "size_max_m2": 50.0,
+          "size_range": "bis unter 50 m²",
+          "mittelwert": 9.26,
+          "untere_spanne": 8.0,
+          "obere_spanne": 12.34
+        },
+        {
+          "baujahr": "1986-1990 West",
+          "size_min_m2": 50.0,
+          "size_max_m2": 55.0,
+          "size_range": "50 m² bis unter 55 m²",
+          "mittelwert": 8.87,
+          "untere_spanne": 7.17,
+          "obere_spanne": 10.69
+        },
+        {
+          "baujahr": "1986-1990 West",
+          "size_min_m2": 55.0,
+          "size_max_m2": 60.0,
+          "size_range": "55 m² bis unter 60 m²",
+          "mittelwert": 9.27,
+          "untere_spanne": 8.0,
+          "obere_spanne": 11.05
+        },
+        {
+          "baujahr": "1986-1990 West",
+          "size_min_m2": 60.0,
+          "size_max_m2": 70.0,
+          "size_range": "60 m² bis unter 70 m²",
+          "mittelwert": 9.11,
+          "untere_spanne": 7.87,
+          "obere_spanne": 11.46
+        },
+        {
+          "baujahr": "1986-1990 West",
+          "size_min_m2": 70.0,
+          "size_max_m2": 75.0,
+          "size_range": "70 m² bis unter 75 m²",
+          "mittelwert": 8.57,
+          "untere_spanne": 6.89,
+          "obere_spanne": 9.98
+        },
+        {
+          "baujahr": "1986-1990 West",
+          "size_min_m2": 75.0,
+          "size_max_m2": 85.0,
+          "size_range": "75 m² bis unter 85 m²",
+          "mittelwert": 8.86,
+          "untere_spanne": 7.52,
+          "obere_spanne": 10.04
+        },
+        {
+          "baujahr": "1986-1990 West",
+          "size_min_m2": 85.0,
+          "size_max_m2": 90.0,
+          "size_range": "85 m² bis unter 90 m²",
+          "mittelwert": 8.68,
+          "untere_spanne": 6.55,
+          "obere_spanne": 10.43
+        },
+        {
+          "baujahr": "1986-1990 West",
+          "size_min_m2": 90.0,
+          "size_max_m2": 100.0,
+          "size_range": "90 m² bis unter 100 m²",
+          "mittelwert": 8.99,
+          "untere_spanne": 6.24,
+          "obere_spanne": 9.94
+        },
+        {
+          "baujahr": "1986-1990 West",
+          "size_min_m2": 100.0,
+          "size_max_m2": null,
+          "size_range": "ab 100 m²",
+          "mittelwert": 9.12,
+          "untere_spanne": 7.21,
+          "obere_spanne": 11.28
+        },
+        {
+          "baujahr": "1973-1990 Ost",
+          "size_min_m2": 0.0,
+          "size_max_m2": 40.0,
+          "size_range": "bis unter 40 m²",
+          "mittelwert": 7.13,
+          "untere_spanne": 6.41,
+          "obere_spanne": 8.6
+        },
+        {
+          "baujahr": "1973-1990 Ost",
+          "size_min_m2": 40.0,
+          "size_max_m2": 60.0,
+          "size_range": "40 m² bis unter 60 m²",
+          "mittelwert": 6.09,
+          "untere_spanne": 5.59,
+          "obere_spanne": 6.82
+        },
+        {
+          "baujahr": "1973-1990 Ost",
+          "size_min_m2": 60.0,
+          "size_max_m2": 65.0,
+          "size_range": "60 m² bis unter 65 m²",
+          "mittelwert": 5.37,
+          "untere_spanne": 4.99,
+          "obere_spanne": 6.44
+        },
+        {
+          "baujahr": "1973-1990 Ost",
+          "size_min_m2": 65.0,
+          "size_max_m2": null,
+          "size_range": "ab 65 m²",
+          "mittelwert": 5.43,
+          "untere_spanne": 4.95,
+          "obere_spanne": 6.35
+        },
+        {
+          "baujahr": "1991-2001",
+          "size_min_m2": 0.0,
+          "size_max_m2": 50.0,
+          "size_range": "bis unter 50 m²",
+          "mittelwert": 9.26,
+          "untere_spanne": 8.0,
+          "obere_spanne": 12.34
+        },
+        {
+          "baujahr": "1991-2001",
+          "size_min_m2": 50.0,
+          "size_max_m2": 55.0,
+          "size_range": "50 m² bis unter 55 m²",
+          "mittelwert": 8.87,
+          "untere_spanne": 7.17,
+          "obere_spanne": 10.69
+        },
+        {
+          "baujahr": "1991-2001",
+          "size_min_m2": 55.0,
+          "size_max_m2": 60.0,
+          "size_range": "55 m² bis unter 60 m²",
+          "mittelwert": 9.27,
+          "untere_spanne": 8.0,
+          "obere_spanne": 11.05
+        },
+        {
+          "baujahr": "1991-2001",
+          "size_min_m2": 60.0,
+          "size_max_m2": 70.0,
+          "size_range": "60 m² bis unter 70 m²",
+          "mittelwert": 9.11,
+          "untere_spanne": 7.87,
+          "obere_spanne": 11.46
+        },
+        {
+          "baujahr": "1991-2001",
+          "size_min_m2": 70.0,
+          "size_max_m2": 75.0,
+          "size_range": "70 m² bis unter 75 m²",
+          "mittelwert": 8.57,
+          "untere_spanne": 6.89,
+          "obere_spanne": 9.98
+        },
+        {
+          "baujahr": "1991-2001",
+          "size_min_m2": 75.0,
+          "size_max_m2": 85.0,
+          "size_range": "75 m² bis unter 85 m²",
+          "mittelwert": 8.86,
+          "untere_spanne": 7.52,
+          "obere_spanne": 10.04
+        },
+        {
+          "baujahr": "1991-2001",
+          "size_min_m2": 85.0,
+          "size_max_m2": 90.0,
+          "size_range": "85 m² bis unter 90 m²",
+          "mittelwert": 8.68,
+          "untere_spanne": 6.55,
+          "obere_spanne": 10.43
+        },
+        {
+          "baujahr": "1991-2001",
+          "size_min_m2": 90.0,
+          "size_max_m2": 100.0,
+          "size_range": "90 m² bis unter 100 m²",
+          "mittelwert": 8.99,
+          "untere_spanne": 6.24,
+          "obere_spanne": 9.94
+        },
+        {
+          "baujahr": "1991-2001",
+          "size_min_m2": 100.0,
+          "size_max_m2": null,
+          "size_range": "ab 100 m²",
+          "mittelwert": 9.12,
+          "untere_spanne": 7.21,
+          "obere_spanne": 11.28
+        },
+        {
+          "baujahr": "2002-2009",
+          "size_min_m2": 0.0,
+          "size_max_m2": 50.0,
+          "size_range": "bis unter 50 m²",
+          "mittelwert": 9.26,
+          "untere_spanne": 8.0,
+          "obere_spanne": 12.34
+        },
+        {
+          "baujahr": "2002-2009",
+          "size_min_m2": 50.0,
+          "size_max_m2": 55.0,
+          "size_range": "50 m² bis unter 55 m²",
+          "mittelwert": 8.87,
+          "untere_spanne": 7.17,
+          "obere_spanne": 10.69
+        },
+        {
+          "baujahr": "2002-2009",
+          "size_min_m2": 55.0,
+          "size_max_m2": 60.0,
+          "size_range": "55 m² bis unter 60 m²",
+          "mittelwert": 9.27,
+          "untere_spanne": 8.0,
+          "obere_spanne": 11.05
+        },
+        {
+          "baujahr": "2002-2009",
+          "size_min_m2": 60.0,
+          "size_max_m2": 70.0,
+          "size_range": "60 m² bis unter 70 m²",
+          "mittelwert": 9.11,
+          "untere_spanne": 7.87,
+          "obere_spanne": 11.46
+        },
+        {
+          "baujahr": "2002-2009",
+          "size_min_m2": 70.0,
+          "size_max_m2": 75.0,
+          "size_range": "70 m² bis unter 75 m²",
+          "mittelwert": 8.57,
+          "untere_spanne": 6.89,
+          "obere_spanne": 9.98
+        },
+        {
+          "baujahr": "2002-2009",
+          "size_min_m2": 75.0,
+          "size_max_m2": 85.0,
+          "size_range": "75 m² bis unter 85 m²",
+          "mittelwert": 8.86,
+          "untere_spanne": 7.52,
+          "obere_spanne": 10.04
+        },
+        {
+          "baujahr": "2002-2009",
+          "size_min_m2": 85.0,
+          "size_max_m2": 90.0,
+          "size_range": "85 m² bis unter 90 m²",
+          "mittelwert": 8.68,
+          "untere_spanne": 6.55,
+          "obere_spanne": 10.43
+        },
+        {
+          "baujahr": "2002-2009",
+          "size_min_m2": 90.0,
+          "size_max_m2": 100.0,
+          "size_range": "90 m² bis unter 100 m²",
+          "mittelwert": 8.99,
+          "untere_spanne": 6.24,
+          "obere_spanne": 9.94
+        },
+        {
+          "baujahr": "2002-2009",
+          "size_min_m2": 100.0,
+          "size_max_m2": null,
+          "size_range": "ab 100 m²",
+          "mittelwert": 9.12,
+          "untere_spanne": 7.21,
+          "obere_spanne": 11.28
+        },
+        {
+          "baujahr": "2010-2015",
+          "size_min_m2": 0.0,
+          "size_max_m2": 70.0,
+          "size_range": "bis unter 70 m²",
+          "mittelwert": 10.76,
+          "untere_spanne": 8.18,
+          "obere_spanne": 16.75
+        },
+        {
+          "baujahr": "2010-2015",
+          "size_min_m2": 70.0,
+          "size_max_m2": 95.0,
+          "size_range": "70 m² bis unter 95 m²",
+          "mittelwert": 12.05,
+          "untere_spanne": 8.92,
+          "obere_spanne": 16.11
+        },
+        {
+          "baujahr": "2010-2015",
+          "size_min_m2": 95.0,
+          "size_max_m2": null,
+          "size_range": "ab 95 m²",
+          "mittelwert": 12.77,
+          "untere_spanne": 9.2,
+          "obere_spanne": 15.19
+        },
+        {
+          "baujahr": "2016-2022",
+          "size_min_m2": 0.0,
+          "size_max_m2": 55.0,
+          "size_range": "bis unter 55 m²",
+          "mittelwert": 14.44,
+          "untere_spanne": 10.22,
+          "obere_spanne": 21.93
+        },
+        {
+          "baujahr": "2016-2022",
+          "size_min_m2": 55.0,
+          "size_max_m2": 65.0,
+          "size_range": "55 m² bis unter 65 m²",
+          "mittelwert": 12.97,
+          "untere_spanne": 10.07,
+          "obere_spanne": 19.24
+        },
+        {
+          "baujahr": "2016-2022",
+          "size_min_m2": 65.0,
+          "size_max_m2": 75.0,
+          "size_range": "65 m² bis unter 75 m²",
+          "mittelwert": 12.1,
+          "untere_spanne": 9.77,
+          "obere_spanne": 17.75
+        },
+        {
+          "baujahr": "2016-2022",
+          "size_min_m2": 75.0,
+          "size_max_m2": 90.0,
+          "size_range": "75 m² bis unter 90 m²",
+          "mittelwert": 13.82,
+          "untere_spanne": 10.06,
+          "obere_spanne": 18.55
+        },
+        {
+          "baujahr": "2016-2022",
+          "size_min_m2": 90.0,
+          "size_max_m2": null,
+          "size_range": "ab 90 m²",
+          "mittelwert": 14.41,
+          "untere_spanne": 10.07,
+          "obere_spanne": 18.04
         }
       ]
     },
@@ -158,61 +1086,641 @@
       "rows": [
         {
           "baujahr": "bis 1918",
-          "bis_40": 13.01,
-          "40_60": 12.45,
-          "60_90": 11.94,
-          "ueber_90": 11.41
+          "size_min_m2": 0.0,
+          "size_max_m2": 35.0,
+          "size_range": "bis unter 35 m²",
+          "mittelwert": 10.65,
+          "untere_spanne": 7.39,
+          "obere_spanne": 15.32
+        },
+        {
+          "baujahr": "bis 1918",
+          "size_min_m2": 35.0,
+          "size_max_m2": 40.0,
+          "size_range": "35 m² bis unter 40 m²",
+          "mittelwert": 11.09,
+          "untere_spanne": 6.85,
+          "obere_spanne": 15.31
+        },
+        {
+          "baujahr": "bis 1918",
+          "size_min_m2": 40.0,
+          "size_max_m2": 45.0,
+          "size_range": "40 m² bis unter 45 m²",
+          "mittelwert": 9.2,
+          "untere_spanne": 6.26,
+          "obere_spanne": 13.46
+        },
+        {
+          "baujahr": "bis 1918",
+          "size_min_m2": 45.0,
+          "size_max_m2": 65.0,
+          "size_range": "45 m² bis unter 65 m²",
+          "mittelwert": 8.8,
+          "untere_spanne": 6.52,
+          "obere_spanne": 12.78
+        },
+        {
+          "baujahr": "bis 1918",
+          "size_min_m2": 65.0,
+          "size_max_m2": 115.0,
+          "size_range": "65 m² bis unter 115 m²",
+          "mittelwert": 8.45,
+          "untere_spanne": 6.09,
+          "obere_spanne": 12.55
+        },
+        {
+          "baujahr": "bis 1918",
+          "size_min_m2": 115.0,
+          "size_max_m2": null,
+          "size_range": "ab 115 m²",
+          "mittelwert": 8.13,
+          "untere_spanne": 6.14,
+          "obere_spanne": 11.97
         },
         {
           "baujahr": "1919-1949",
-          "bis_40": 13.3,
-          "40_60": 12.72,
-          "60_90": 12.19,
-          "ueber_90": 11.65
+          "size_min_m2": 0.0,
+          "size_max_m2": 35.0,
+          "size_range": "bis unter 35 m²",
+          "mittelwert": 9.45,
+          "untere_spanne": 7.03,
+          "obere_spanne": 14.21
+        },
+        {
+          "baujahr": "1919-1949",
+          "size_min_m2": 35.0,
+          "size_max_m2": 40.0,
+          "size_range": "35 m² bis unter 40 m²",
+          "mittelwert": 8.5,
+          "untere_spanne": 6.84,
+          "obere_spanne": 11.45
+        },
+        {
+          "baujahr": "1919-1949",
+          "size_min_m2": 40.0,
+          "size_max_m2": 65.0,
+          "size_range": "40 m² bis unter 65 m²",
+          "mittelwert": 8.24,
+          "untere_spanne": 6.47,
+          "obere_spanne": 11.16
+        },
+        {
+          "baujahr": "1919-1949",
+          "size_min_m2": 65.0,
+          "size_max_m2": null,
+          "size_range": "ab 65 m²",
+          "mittelwert": 7.46,
+          "untere_spanne": 6.05,
+          "obere_spanne": 10.36
         },
         {
           "baujahr": "1950-1964",
-          "bis_40": 13.85,
-          "40_60": 13.26,
-          "60_90": 12.71,
-          "ueber_90": 12.15
+          "size_min_m2": 0.0,
+          "size_max_m2": 35.0,
+          "size_range": "bis unter 35 m²",
+          "mittelwert": 9.45,
+          "untere_spanne": 7.03,
+          "obere_spanne": 14.21
         },
         {
-          "baujahr": "1965-1974",
-          "bis_40": 14.29,
-          "40_60": 13.68,
-          "60_90": 13.12,
-          "ueber_90": 12.54
+          "baujahr": "1950-1964",
+          "size_min_m2": 35.0,
+          "size_max_m2": 40.0,
+          "size_range": "35 m² bis unter 40 m²",
+          "mittelwert": 8.5,
+          "untere_spanne": 6.84,
+          "obere_spanne": 11.45
         },
         {
-          "baujahr": "1975-1990",
-          "bis_40": 14.77,
-          "40_60": 14.14,
-          "60_90": 13.56,
-          "ueber_90": 12.96
+          "baujahr": "1950-1964",
+          "size_min_m2": 40.0,
+          "size_max_m2": 90.0,
+          "size_range": "40 m² bis unter 90 m²",
+          "mittelwert": 7.14,
+          "untere_spanne": 5.82,
+          "obere_spanne": 10.13
         },
         {
-          "baujahr": "1991-2000",
-          "bis_40": 15.36,
-          "40_60": 14.7,
-          "60_90": 14.1,
-          "ueber_90": 13.48
+          "baujahr": "1950-1964",
+          "size_min_m2": 90.0,
+          "size_max_m2": null,
+          "size_range": "ab 90 m²",
+          "mittelwert": 8.99,
+          "untere_spanne": 6.32,
+          "obere_spanne": 11.58
         },
         {
-          "baujahr": "2001-2010",
-          "bis_40": 16.01,
-          "40_60": 15.33,
-          "60_90": 14.7,
-          "ueber_90": 14.05
+          "baujahr": "1965-1972",
+          "size_min_m2": 0.0,
+          "size_max_m2": 35.0,
+          "size_range": "bis unter 35 m²",
+          "mittelwert": 9.45,
+          "untere_spanne": 7.03,
+          "obere_spanne": 14.21
         },
         {
-          "baujahr": "2011-2024",
-          "bis_40": 17.03,
-          "40_60": 16.31,
-          "60_90": 15.64,
-          "ueber_90": 14.96
+          "baujahr": "1965-1972",
+          "size_min_m2": 35.0,
+          "size_max_m2": 40.0,
+          "size_range": "35 m² bis unter 40 m²",
+          "mittelwert": 8.5,
+          "untere_spanne": 6.84,
+          "obere_spanne": 11.45
+        },
+        {
+          "baujahr": "1965-1972",
+          "size_min_m2": 40.0,
+          "size_max_m2": 90.0,
+          "size_range": "40 m² bis unter 90 m²",
+          "mittelwert": 7.14,
+          "untere_spanne": 5.82,
+          "obere_spanne": 10.13
+        },
+        {
+          "baujahr": "1965-1972",
+          "size_min_m2": 90.0,
+          "size_max_m2": null,
+          "size_range": "ab 90 m²",
+          "mittelwert": 8.99,
+          "untere_spanne": 6.32,
+          "obere_spanne": 11.58
+        },
+        {
+          "baujahr": "1973-1985 West",
+          "size_min_m2": 0.0,
+          "size_max_m2": 75.0,
+          "size_range": "bis unter 75 m²",
+          "mittelwert": 9.42,
+          "untere_spanne": 7.27,
+          "obere_spanne": 11.98
+        },
+        {
+          "baujahr": "1973-1985 West",
+          "size_min_m2": 75.0,
+          "size_max_m2": 85.0,
+          "size_range": "75 m² bis unter 85 m²",
+          "mittelwert": 9.25,
+          "untere_spanne": 7.51,
+          "obere_spanne": 11.79
+        },
+        {
+          "baujahr": "1973-1985 West",
+          "size_min_m2": 85.0,
+          "size_max_m2": 105.0,
+          "size_range": "85 m² bis unter 105 m²",
+          "mittelwert": 9.79,
+          "untere_spanne": 7.94,
+          "obere_spanne": 13.32
+        },
+        {
+          "baujahr": "1973-1985 West",
+          "size_min_m2": 105.0,
+          "size_max_m2": 120.0,
+          "size_range": "105 m² bis unter 120 m²",
+          "mittelwert": 10.65,
+          "untere_spanne": 8.55,
+          "obere_spanne": 13.41
+        },
+        {
+          "baujahr": "1973-1985 West",
+          "size_min_m2": 120.0,
+          "size_max_m2": null,
+          "size_range": "ab 120 m²",
+          "mittelwert": 10.08,
+          "untere_spanne": 6.95,
+          "obere_spanne": 13.02
+        },
+        {
+          "baujahr": "1986-1990 West",
+          "size_min_m2": 0.0,
+          "size_max_m2": 75.0,
+          "size_range": "bis unter 75 m²",
+          "mittelwert": 10.15,
+          "untere_spanne": 8.35,
+          "obere_spanne": 12.91
+        },
+        {
+          "baujahr": "1986-1990 West",
+          "size_min_m2": 75.0,
+          "size_max_m2": 85.0,
+          "size_range": "75 m² bis unter 85 m²",
+          "mittelwert": 9.25,
+          "untere_spanne": 7.51,
+          "obere_spanne": 11.79
+        },
+        {
+          "baujahr": "1986-1990 West",
+          "size_min_m2": 85.0,
+          "size_max_m2": 105.0,
+          "size_range": "85 m² bis unter 105 m²",
+          "mittelwert": 9.79,
+          "untere_spanne": 7.94,
+          "obere_spanne": 13.32
+        },
+        {
+          "baujahr": "1986-1990 West",
+          "size_min_m2": 105.0,
+          "size_max_m2": 120.0,
+          "size_range": "105 m² bis unter 120 m²",
+          "mittelwert": 10.65,
+          "untere_spanne": 8.55,
+          "obere_spanne": 13.41
+        },
+        {
+          "baujahr": "1986-1990 West",
+          "size_min_m2": 120.0,
+          "size_max_m2": null,
+          "size_range": "ab 120 m²",
+          "mittelwert": 10.08,
+          "untere_spanne": 6.95,
+          "obere_spanne": 13.02
+        },
+        {
+          "baujahr": "1973-1990 Ost",
+          "size_min_m2": 0.0,
+          "size_max_m2": 45.0,
+          "size_range": "bis unter 45 m²",
+          "mittelwert": 6.97,
+          "untere_spanne": 6.11,
+          "obere_spanne": 8.48
+        },
+        {
+          "baujahr": "1973-1990 Ost",
+          "size_min_m2": 45.0,
+          "size_max_m2": 60.0,
+          "size_range": "45 m² bis unter 60 m²",
+          "mittelwert": 6.46,
+          "untere_spanne": 5.83,
+          "obere_spanne": 8.54
+        },
+        {
+          "baujahr": "1973-1990 Ost",
+          "size_min_m2": 60.0,
+          "size_max_m2": 75.0,
+          "size_range": "60 m² bis unter 75 m²",
+          "mittelwert": 5.68,
+          "untere_spanne": 5.16,
+          "obere_spanne": 8.51
+        },
+        {
+          "baujahr": "1973-1990 Ost",
+          "size_min_m2": 75.0,
+          "size_max_m2": null,
+          "size_range": "ab 75 m²",
+          "mittelwert": 5.72,
+          "untere_spanne": 5.08,
+          "obere_spanne": 6.47
+        },
+        {
+          "baujahr": "1991-2001",
+          "size_min_m2": 0.0,
+          "size_max_m2": 75.0,
+          "size_range": "bis unter 75 m²",
+          "mittelwert": 10.15,
+          "untere_spanne": 8.35,
+          "obere_spanne": 12.91
+        },
+        {
+          "baujahr": "1991-2001",
+          "size_min_m2": 75.0,
+          "size_max_m2": 85.0,
+          "size_range": "75 m² bis unter 85 m²",
+          "mittelwert": 9.25,
+          "untere_spanne": 7.51,
+          "obere_spanne": 11.79
+        },
+        {
+          "baujahr": "1991-2001",
+          "size_min_m2": 85.0,
+          "size_max_m2": 105.0,
+          "size_range": "85 m² bis unter 105 m²",
+          "mittelwert": 9.79,
+          "untere_spanne": 7.94,
+          "obere_spanne": 13.32
+        },
+        {
+          "baujahr": "1991-2001",
+          "size_min_m2": 105.0,
+          "size_max_m2": 120.0,
+          "size_range": "105 m² bis unter 120 m²",
+          "mittelwert": 10.65,
+          "untere_spanne": 8.55,
+          "obere_spanne": 13.41
+        },
+        {
+          "baujahr": "1991-2001",
+          "size_min_m2": 120.0,
+          "size_max_m2": null,
+          "size_range": "ab 120 m²",
+          "mittelwert": 10.08,
+          "untere_spanne": 6.95,
+          "obere_spanne": 13.02
+        },
+        {
+          "baujahr": "2002-2009",
+          "size_min_m2": 0.0,
+          "size_max_m2": 105.0,
+          "size_range": "bis unter 105 m²",
+          "mittelwert": 11.04,
+          "untere_spanne": 7.97,
+          "obere_spanne": 15.5
+        },
+        {
+          "baujahr": "2002-2009",
+          "size_min_m2": 105.0,
+          "size_max_m2": null,
+          "size_range": "ab 105 m²",
+          "mittelwert": 12.12,
+          "untere_spanne": 9.58,
+          "obere_spanne": 15.34
+        },
+        {
+          "baujahr": "2010-2015",
+          "size_min_m2": 0.0,
+          "size_max_m2": 85.0,
+          "size_range": "bis unter 85 m²",
+          "mittelwert": 13.79,
+          "untere_spanne": 10.24,
+          "obere_spanne": 17.56
+        },
+        {
+          "baujahr": "2010-2015",
+          "size_min_m2": 85.0,
+          "size_max_m2": null,
+          "size_range": "ab 85 m²",
+          "mittelwert": 14.4,
+          "untere_spanne": 11.89,
+          "obere_spanne": 17.34
+        },
+        {
+          "baujahr": "2016-2022",
+          "size_min_m2": 0.0,
+          "size_max_m2": 50.0,
+          "size_range": "bis unter 50 m²",
+          "mittelwert": 17.72,
+          "untere_spanne": 11.41,
+          "obere_spanne": 24.74
+        },
+        {
+          "baujahr": "2016-2022",
+          "size_min_m2": 50.0,
+          "size_max_m2": 65.0,
+          "size_range": "50 m² bis unter 65 m²",
+          "mittelwert": 16.8,
+          "untere_spanne": 10.5,
+          "obere_spanne": 23.84
+        },
+        {
+          "baujahr": "2016-2022",
+          "size_min_m2": 65.0,
+          "size_max_m2": 85.0,
+          "size_range": "65 m² bis unter 85 m²",
+          "mittelwert": 15.58,
+          "untere_spanne": 11.21,
+          "obere_spanne": 19.93
+        },
+        {
+          "baujahr": "2016-2022",
+          "size_min_m2": 85.0,
+          "size_max_m2": 100.0,
+          "size_range": "85 m² bis unter 100 m²",
+          "mittelwert": 17.51,
+          "untere_spanne": 13.69,
+          "obere_spanne": 20.74
+        },
+        {
+          "baujahr": "2016-2022",
+          "size_min_m2": 100.0,
+          "size_max_m2": null,
+          "size_range": "ab 100 m²",
+          "mittelwert": 16.07,
+          "untere_spanne": 12.22,
+          "obere_spanne": 18.47
         }
       ]
     }
-  ]
+  ],
+  "tables": [
+    {
+      "lage": "einfach",
+      "rows": [
+        {
+          "baujahr": "1919-1949",
+          "bis_40": 7.96,
+          "40_60": 7.03,
+          "60_90": 6.54,
+          "ueber_90": 6.47
+        },
+        {
+          "baujahr": "1950-1964",
+          "bis_40": 7.96,
+          "40_60": 7.03,
+          "60_90": 6.2
+        },
+        {
+          "baujahr": "1965-1972",
+          "bis_40": 6.76,
+          "40_60": 6.1,
+          "60_90": 5.87
+        },
+        {
+          "baujahr": "1973-1985 West",
+          "bis_40": 6.76,
+          "40_60": 6.1,
+          "60_90": 6.54,
+          "ueber_90": 7.35
+        },
+        {
+          "baujahr": "1973-1990 Ost",
+          "bis_40": 7.16,
+          "40_60": 6.25,
+          "60_90": 5.41
+        },
+        {
+          "baujahr": "1986-1990 West",
+          "bis_40": 8.19,
+          "40_60": 8.56,
+          "60_90": 8.04,
+          "ueber_90": 8.38
+        },
+        {
+          "baujahr": "1991-2001",
+          "bis_40": 8.19,
+          "40_60": 8.56,
+          "60_90": 8.04,
+          "ueber_90": 8.38
+        },
+        {
+          "baujahr": "2002-2009",
+          "bis_40": 8.19,
+          "40_60": 8.56,
+          "60_90": 8.04,
+          "ueber_90": 8.38
+        },
+        {
+          "baujahr": "2010-2015",
+          "bis_40": 9.98
+        },
+        {
+          "baujahr": "2016-2022",
+          "bis_40": 12.41,
+          "60_90": 11.8
+        },
+        {
+          "baujahr": "bis 1918",
+          "bis_40": 9.47,
+          "40_60": 8.32,
+          "60_90": 6.96,
+          "ueber_90": 6.47
+        }
+      ]
+    },
+    {
+      "lage": "mittel",
+      "rows": [
+        {
+          "baujahr": "1919-1949",
+          "bis_40": 7.74,
+          "40_60": 7.31,
+          "60_90": 6.8
+        },
+        {
+          "baujahr": "1950-1964",
+          "bis_40": 7.74,
+          "40_60": 6.83
+        },
+        {
+          "baujahr": "1965-1972",
+          "bis_40": 7.29,
+          "40_60": 6.6
+        },
+        {
+          "baujahr": "1973-1985 West",
+          "bis_40": 7.29,
+          "40_60": 7.62,
+          "60_90": 7.85
+        },
+        {
+          "baujahr": "1973-1990 Ost",
+          "bis_40": 7.13,
+          "40_60": 6.09,
+          "60_90": 5.4
+        },
+        {
+          "baujahr": "1986-1990 West",
+          "bis_40": 9.26,
+          "40_60": 9.07,
+          "60_90": 8.8,
+          "ueber_90": 9.05
+        },
+        {
+          "baujahr": "1991-2001",
+          "bis_40": 9.26,
+          "40_60": 9.07,
+          "60_90": 8.8,
+          "ueber_90": 9.05
+        },
+        {
+          "baujahr": "2002-2009",
+          "bis_40": 9.26,
+          "40_60": 9.07,
+          "60_90": 8.8,
+          "ueber_90": 9.05
+        },
+        {
+          "baujahr": "2010-2015",
+          "bis_40": 10.76,
+          "60_90": 12.05,
+          "ueber_90": 12.77
+        },
+        {
+          "baujahr": "2016-2022",
+          "bis_40": 14.44,
+          "40_60": 12.97,
+          "60_90": 12.96,
+          "ueber_90": 14.41
+        },
+        {
+          "baujahr": "bis 1918",
+          "bis_40": 9.55,
+          "40_60": 8.05,
+          "60_90": 7.57,
+          "ueber_90": 7.12
+        }
+      ]
+    },
+    {
+      "lage": "gut",
+      "rows": [
+        {
+          "baujahr": "1919-1949",
+          "bis_40": 8.97,
+          "40_60": 8.24,
+          "60_90": 7.46
+        },
+        {
+          "baujahr": "1950-1964",
+          "bis_40": 8.97,
+          "40_60": 7.14,
+          "ueber_90": 8.99
+        },
+        {
+          "baujahr": "1965-1972",
+          "bis_40": 8.97,
+          "40_60": 7.14,
+          "ueber_90": 8.99
+        },
+        {
+          "baujahr": "1973-1985 West",
+          "bis_40": 9.42,
+          "60_90": 9.52,
+          "ueber_90": 10.37
+        },
+        {
+          "baujahr": "1973-1990 Ost",
+          "bis_40": 6.97,
+          "40_60": 6.46,
+          "60_90": 5.7
+        },
+        {
+          "baujahr": "1986-1990 West",
+          "bis_40": 10.15,
+          "60_90": 9.52,
+          "ueber_90": 10.37
+        },
+        {
+          "baujahr": "1991-2001",
+          "bis_40": 10.15,
+          "60_90": 9.52,
+          "ueber_90": 10.37
+        },
+        {
+          "baujahr": "2002-2009",
+          "bis_40": 11.04,
+          "ueber_90": 12.12
+        },
+        {
+          "baujahr": "2010-2015",
+          "bis_40": 13.79,
+          "60_90": 14.4
+        },
+        {
+          "baujahr": "2016-2022",
+          "bis_40": 17.72,
+          "40_60": 16.8,
+          "60_90": 16.55,
+          "ueber_90": 16.07
+        },
+        {
+          "baujahr": "bis 1918",
+          "bis_40": 10.87,
+          "40_60": 9.0,
+          "60_90": 8.45,
+          "ueber_90": 8.13
+        }
+      ]
+    }
+  ],
+  "generated_at": null
 }

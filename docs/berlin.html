@@ -429,17 +429,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
       <select id="rc-district">
         <option value="">Select district...</option>
       </select>
+      <label data-i18n="rc_lage">Wohnlage</label>
+      <select id="rc-lage">
+        <option value="">Select...</option>
+        <option value="einfach">Einfach (simple)</option>
+        <option value="mittel">Mittel (medium)</option>
+        <option value="gut">Gut (good)</option>
+      </select>
       <label data-i18n="rc_baujahr">Building age</label>
       <select id="rc-baujahr">
-        <option value="">Select...</option>
-        <option value="bis 1918">Pre-1918 (Altbau)</option>
-        <option value="1919-1949">1919–1949</option>
-        <option value="1950-1964">1950–1964</option>
-        <option value="1965-1974">1965–1974</option>
-        <option value="1975-1990">1975–1990</option>
-        <option value="1991-2000">1991–2000</option>
-        <option value="2001-2010">2001–2010</option>
-        <option value="2011-2024">2011–2024 (Neubau)</option>
+        <option value="">Loading official table...</option>
       </select>
       <label data-i18n="rc_size">Apartment size (m²)</label>
       <input type="number" id="rc-size" placeholder="e.g. 65" min="20" max="200">
@@ -447,7 +446,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
       <input type="number" id="rc-rent" placeholder="e.g. 950 (cold rent, excl. heating)">
     </div>
     <div class="rc-result" id="rcResult" style="display:none"></div>
-    <div class="rc-disclaimer" style="font-size:9px;color:var(--text-dim);margin-top:8px">Based on Berlin Mietspiegel 2024. Not legal advice.</div>
+    <div class="rc-disclaimer" style="font-size:9px;color:var(--text-dim);margin-top:8px">Official Mietspiegel 2024 ranges (Stichtag 01.09.2023). The Mietpreisbremse reference is 110% of the upper range. Not legal advice.</div>
   </div>
 </div>
 
@@ -565,7 +564,7 @@ const I18N = {
     tab_map: '🗺️ Map', tab_budget: '💶 Budget Check', tab_story: '📖 The Story',
     search_placeholder: '🔍 Search by address, building name, or PLZ...',
     legend_title: '€/m² (net cold rent)',
-    rc_title: '🔍 Rent Check', rc_district: 'District', rc_baujahr: 'Building age',
+    rc_title: '🔍 Rent Check', rc_district: 'District', rc_lage: 'Wohnlage', rc_baujahr: 'Building age',
     rc_size: 'Apartment size (m²)', rc_rent: 'Monthly cold rent / Nettokaltmiete (€)',
     bc_title: 'Can I afford Berlin?', bc_subtitle: 'Set your budget and see exactly where you can live.',
     bc_budget_label: 'Monthly cold rent budget:', bc_size_label: 'Apartment size:',
@@ -581,7 +580,7 @@ const I18N = {
     tab_map: '🗺️ Karte', tab_budget: '💶 Budget', tab_story: '📖 Story',
     search_placeholder: '🔍 Adresse, Gebäude oder PLZ suchen...',
     legend_title: '€/m² (Nettokaltmiete)',
-    rc_title: '🔍 Mietpreis-Prüfung', rc_district: 'Bezirk', rc_baujahr: 'Baujahr',
+    rc_title: '🔍 Mietpreis-Prüfung', rc_district: 'Bezirk', rc_lage: 'Wohnlage', rc_baujahr: 'Baujahr',
     rc_size: 'Wohnfläche (m²)', rc_rent: 'Monatliche Kaltmiete / Nettokaltmiete (€)',
     bc_title: 'Kann ich mir Berlin leisten?', bc_subtitle: 'Legen Sie Ihr Budget fest und sehen Sie, wo Sie wohnen können.',
     bc_budget_label: 'Monatliche Kaltmiete:', bc_size_label: 'Wohnungsgröße:',
@@ -1193,104 +1192,109 @@ function toggleRentCheck() {
   }
 }
 
+let berlinTable = null; // official Mietspiegel 2024 table from berlin.json
+
+async function loadBerlinTable() {
+  try {
+    const r = await fetch('data/processed/berlin.json?v=2');
+    berlinTable = await r.json();
+    populateBaujahrSelect();
+  } catch (e) {
+    const sel = document.getElementById('rc-baujahr');
+    if (sel) sel.innerHTML = '<option value="">Table unavailable — refresh page</option>';
+  }
+}
+
+function populateBaujahrSelect() {
+  const sel = document.getElementById('rc-baujahr');
+  if (!sel || !berlinTable) return;
+  const source = berlinTable.official_rows || berlinTable.tables;
+  const cohorts = [];
+  source.forEach(t => {
+    t.rows.forEach(row => {
+      if (!cohorts.includes(row.baujahr)) cohorts.push(row.baujahr);
+    });
+  });
+  sel.innerHTML = '<option value="">Select...</option>';
+  cohorts.forEach(c => {
+    const o = document.createElement('option');
+    o.value = c;
+    o.textContent = c;
+    sel.appendChild(o);
+  });
+}
+
 function initRentCheck() {
   const sel = document.getElementById('rc-district');
   if (!sel || sel.options.length > 1) return; // already populated
   const districts = ['Charlottenburg-Wilmersdorf','Friedrichshain-Kreuzberg','Lichtenberg','Marzahn-Hellersdorf','Mitte','Neukölln','Pankow','Reinickendorf','Spandau','Steglitz-Zehlendorf','Tempelhof-Schöneberg','Treptow-Köpenick'];
   districts.forEach(d => { const o = document.createElement('option'); o.value = d; o.textContent = d; sel.appendChild(o); });
 
-  // Recalculate on any input change
-  ['rc-district','rc-baujahr','rc-size','rc-rent'].forEach(id => {
+  ['rc-district','rc-lage','rc-baujahr','rc-size','rc-rent'].forEach(id => {
     document.getElementById(id)?.addEventListener('input', updateRentCheck);
   });
+  loadBerlinTable();
 }
 
 function updateRentCheck() {
   const district = document.getElementById('rc-district')?.value;
+  const lage = document.getElementById('rc-lage')?.value;
   const baujahr = document.getElementById('rc-baujahr')?.value;
   const size = parseFloat(document.getElementById('rc-size')?.value);
   const askingRent = parseFloat(document.getElementById('rc-rent')?.value);
   const result = document.getElementById('rcResult');
-  if (!district || !baujahr || !size || !askingRent) { if (result) result.style.display = 'none'; return; }
+  if (!district || !lage || !baujahr || !size || !askingRent || !berlinTable) { if (result) result.style.display = 'none'; return; }
 
-  // Find Mietspiegel value: lookup from berlin.json tables
-  const lage = inferLage(district);
-  const mietspiegel = lookupMietspiegel(lage, baujahr, size);
-  const mietspiegelTotal = mietspiegel ? Math.round(mietspiegel * size) : null;
+  const row = lookupMietspiegel(lage, baujahr, size);
+  if (!row) {
+    result.style.display = 'block';
+    result.innerHTML = '<div style="color:var(--text-dim);font-size:12px">No official row for this Baujahr + size combination. The Mietspiegel does not publish a value for every combination.</div>';
+    return;
+  }
+  const mietspiegelLow = Math.round(row.untere_spanne * size);
+  const mietspiegelHigh = Math.round(row.obere_spanne * size);
 
   // Market average for this district
   const marketAvg = getDistrictMarketAvg(district);
   const marketTotal = marketAvg ? Math.round(marketAvg * size) : null;
 
-  // Mietpreisbremse cap: 110% of Mietspiegel
-  const cap = mietspiegelTotal ? Math.round(mietspiegelTotal * 1.1) : null;
-  const overpay = cap ? askingRent - cap : null;
-  const isIllegal = overpay !== null && overpay > 0;
+  // Mietpreisbremse cap: 110% of the UPPER range value (the legal reference)
+  const cap = Math.round(row.obere_spanne * size * 1.1);
+  const overpay = askingRent - cap;
+  const isAboveCap = overpay > 0;
 
   if (!result) return;
   result.style.display = 'block';
   result.innerHTML = `
-    <div style="background:${isIllegal?'rgba(245,101,101,.1)':'rgba(72,187,120,.1)'};padding:8px 10px;border-radius:4px;margin-bottom:10px;text-align:center">
-      <div class="rc-verdict" style="color:${isIllegal?'var(--red)':'var(--green)'};margin-bottom:0">${isIllegal ? '⛔ Likely Overpriced' : '✅ Within Legal Range'}</div>
-      ${isIllegal ? '<div style="font-size:10px;color:var(--text-dim);margin-top:3px">Mietpreisbremse: cold rent cannot exceed 110% of Mietspiegel</div>' : ''}
+    <div style="background:${isAboveCap?'rgba(245,101,101,.1)':'rgba(72,187,120,.1)'};padding:8px 10px;border-radius:4px;margin-bottom:10px;text-align:center">
+      <div class="rc-verdict" style="color:${isAboveCap?'var(--red)':'var(--green)'};margin-bottom:0">${isAboveCap ? '⛔ Above the Mietpreisbremse cap' : '✅ At or below the cap'}</div>
+      <div style="font-size:10px;color:var(--text-dim);margin-top:3px">Cap = 110% of the upper Mietspiegel range for this Baujahr + size + Lage</div>
     </div>
-    <div class="rc-row"><span>Official Mietspiegel (net cold)</span><strong>€${mietspiegelTotal?.toLocaleString() || '—'}/month</strong></div>
-    <div class="rc-row"><span>Market avg ${district.slice(0,12)} (net cold)</span><strong>€${marketTotal?.toLocaleString() || '—'}/month</strong></div>
-    <div class="rc-row" style="border-top:1px solid var(--accent);margin-top:4px;padding-top:4px"><span>This listing (cold rent)</span><strong style="color:${isIllegal?'var(--red)':'var(--green)'}">€${askingRent.toLocaleString()}/month</strong></div>
-    ${isIllegal ? `<div class="rc-row"><span>Mietpreisbremse cap (110%)</span><strong>€${cap.toLocaleString()}/month</strong></div><div class="rc-row"><span>Overpaying by</span><strong style="color:var(--red)">€${overpay.toLocaleString()}/month = €${(overpay*12).toLocaleString()}/year</strong></div>` : ''}
+    <div class="rc-row"><span>Official Mietspiegel range (net cold)</span><strong>€${mietspiegelLow.toLocaleString()} – €${mietspiegelHigh.toLocaleString()}/month</strong></div>
+    ${marketTotal !== null ? `<div class="rc-row"><span>Market avg ${district.slice(0,12)} (net cold)</span><strong>€${marketTotal.toLocaleString()}/month</strong></div>` : ''}
+    <div class="rc-row" style="border-top:1px solid var(--accent);margin-top:4px;padding-top:4px"><span>This listing (cold rent)</span><strong style="color:${isAboveCap?'var(--red)':'var(--green)'}">€${askingRent.toLocaleString()}/month</strong></div>
+    <div class="rc-row"><span>Mietpreisbremse cap (110% upper)</span><strong>€${cap.toLocaleString()}/month</strong></div>
+    ${isAboveCap ? `<div class="rc-row"><span>Above cap by</span><strong style="color:var(--red)">€${overpay.toLocaleString()}/month = €${(overpay*12).toLocaleString()}/year</strong></div>` : ''}
   `;
 }
 
-function inferLage(district) {
-  // Use Wohnlage composition to pick the dominant Lage for the district
-  const map = {'Mitte':'gut','Charlottenburg-Wilmersdorf':'gut','Steglitz-Zehlendorf':'gut','Friedrichshain-Kreuzberg':'mittel','Pankow':'mittel','Tempelhof-Schöneberg':'mittel','Neukölln':'einfach','Lichtenberg':'einfach','Marzahn-Hellersdorf':'einfach','Reinickendorf':'einfach','Spandau':'einfach','Treptow-Köpenick':'einfach'};
-  return map[district] || 'mittel';
-}
-
 function lookupMietspiegel(lage, baujahr, size) {
-  // Returns €/m² from the Mietspiegel 2024 table
-  // Data from berlin.json — hardcoded 96-cell lookup
-  const MIETSPIEGEL_TABLE = {
-    'einfach': {
-      'bis 1918': {40:8.03, 60:7.68, 90:7.35, 120:7.02},
-      '1919-1949': {40:8.21, 60:7.85, 90:7.52, 120:7.18},
-      '1950-1964': {40:8.55, 60:8.18, 90:7.84, 120:7.49},
-      '1965-1974': {40:8.82, 60:8.44, 90:8.09, 120:7.73},
-      '1975-1990': {40:9.12, 60:8.73, 90:8.37, 120:8.0},
-      '1991-2000': {40:9.48, 60:9.07, 90:8.7, 120:8.32},
-      '2001-2010': {40:9.88, 60:9.46, 90:9.07, 120:8.67},
-      '2011-2024': {40:10.52, 60:10.07, 90:9.66, 120:9.24},
-    },
-    'mittel': {
-      'bis 1918': {40:10.85, 60:10.38, 90:9.95, 120:9.51},
-      '1919-1949': {40:11.09, 60:10.6, 90:10.16, 120:9.71},
-      '1950-1964': {40:11.55, 60:11.05, 90:10.59, 120:10.12},
-      '1965-1974': {40:11.92, 60:11.4, 90:10.93, 120:10.45},
-      '1975-1990': {40:12.32, 60:11.79, 90:11.3, 120:10.8},
-      '1991-2000': {40:12.81, 60:12.25, 90:11.75, 120:11.23},
-      '2001-2010': {40:13.35, 60:12.78, 90:12.25, 120:11.71},
-      '2011-2024': {40:14.2, 60:13.6, 90:13.04, 120:12.47},
-    },
-    'gut': {
-      'bis 1918': {40:13.01, 60:12.45, 90:11.94, 120:11.41},
-      '1919-1949': {40:13.3, 60:12.72, 90:12.19, 120:11.65},
-      '1950-1964': {40:13.85, 60:13.26, 90:12.71, 120:12.15},
-      '1965-1974': {40:14.29, 60:13.68, 90:13.12, 120:12.54},
-      '1975-1990': {40:14.77, 60:14.14, 90:13.56, 120:12.96},
-      '1991-2000': {40:15.36, 60:14.7, 90:14.1, 120:13.48},
-      '2001-2010': {40:16.01, 60:15.33, 90:14.7, 120:14.05},
-      '2011-2024': {40:17.03, 60:16.31, 90:15.64, 120:14.96},
-    },
-  };
-  const lageData = MIETSPIEGEL_TABLE[lage];
-  if (!lageData) return null;
-  const bj = lageData[baujahr];
-  if (!bj) return null;
-  // Find closest size bracket
-  const sizes = Object.keys(bj).map(Number).sort((a,b)=>a-b);
-  let closest = sizes[0];
-  for (const s of sizes) { if (size <= s) { closest = s; break; } else { closest = s; } }
-  return bj[closest];
+  // Real lookup in the official 163-row table (fetched from berlin.json)
+  if (!berlinTable) return null;
+  const table = (berlinTable.official_rows || berlinTable.tables).find(t => t.lage === lage);
+  if (!table) return null;
+  let best = null, bestDist = Infinity;
+  for (const row of table.rows) {
+    if (row.baujahr !== baujahr) continue;
+    const lo = row.size_min_m2 ?? 0;
+    const hi = row.size_max_m2 ?? Infinity;
+    if (size >= lo && size < hi) return row; // exact band
+    // track closest band for sizes outside published bands
+    const mid = hi === Infinity ? lo : (lo + hi) / 2;
+    const dist = Math.abs(size - mid);
+    if (dist < bestDist) { bestDist = dist; best = row; }
+  }
+  return best;
 }
 
 function getDistrictMarketAvg(district) {
