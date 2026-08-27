@@ -55,6 +55,32 @@ Cross-check against `berlin_districts_comparison.json`:
 | `berlin_zensus.json` | Zensus 2022 (Destatis) | Static (census every 10 years) | Yes — `scripts/build_berlin_data.py` |
 | `berlin_districts_comparison.json` | Derived from districts_index | Same as districts_index | Partially (manual input) |
 | `berlin-districts-choropleth.geojson` | Berlin Senate WFS | Per WFS update | Yes — WFS download |
-| City JSONs (`berlin.json`, `hamburg.json`, …) | Official Mietspiegel PDFs | Per Mietspiegel cycle (2 years) | Yes — PDF extraction pipeline |
+| `berlin_raw_2024.json` | Official Mietspiegel PDF 2024 | Per Mietspiegel cycle (2 years) | Yes — `sources/extract_mietspiegel.py`, gated by `scripts/verify_berlin_extraction.py` (PDF-diff, 0 diffs required) |
+| `berlin.json` | Derived from `berlin_raw_2024.json` | Same | Yes — `scripts/build_city_tables.py` |
+| `berlin_historical_editions.json` | Official edition PDFs 2017/2019/2021/2023 | Per edition | Yes — `scripts/extract_wide_editions.py` + `scripts/build_historical.py` |
+| `data/historical_mietspiegel.json` | Derived from editions file | Same | Yes — `scripts/build_historical.py` |
+| Other city JSONs | Official Mietspiegel PDFs | Per Mietspiegel cycle (2 years) | Yes — PDF extraction pipeline |
 
-*Last updated: 2026-07-26*
+*Last updated: 2026-08-27*
+
+### Verified-extraction architecture (Berlin 2024, since 2026-08)
+
+The Berlin 2024 table is no longer a hand-normalized grid. The pipeline is:
+
+1. `sources/extract_mietspiegel.py` extracts 163 rows verbatim from
+   `data/raw/berlin-mietspiegeltabelle-2024.pdf` (official cohorts incl.
+   West/Ost, per-cohort size bands, untere/obere Spanne).
+2. `scripts/verify_berlin_extraction.py` re-extracts and diffs every row
+   against the committed raw JSON — CI-gated, 0 diffs required.
+3. `scripts/build_city_tables.py` derives `berlin.json`: `official_rows`
+   (verbatim, for the Rent Check and legal comparisons) plus a clearly
+   labeled 4-band legacy rollup for old consumers.
+4. Historical editions 2017-2023 are extracted by
+   `scripts/extract_wide_editions.py` (coordinate-based; 359/359 Mittelwerte
+   verified present in the PDF text layer) and reduced by
+   `scripts/build_historical.py` into two documented series:
+   `by_lage` (newest cohort) and `by_lage_same_cohort` (1991-2002,
+   apples-to-apples). 2013/2015 are not in the official archive.
+
+The previous uniform 96-cell grid and interpolated 2013-2023 series were
+removed — their values could not be reproduced from the official documents.
