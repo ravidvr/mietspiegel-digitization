@@ -111,6 +111,10 @@ function byLage(year) {
   return (HISTORICAL_DATA.by_lage || {})[String(year)] || null;
 }
 
+function byLage1991(year) {
+  return (HISTORICAL_DATA.by_lage_same_cohort || {})[String(year)] || null;
+}
+
 function buildChartData() {
   const years = editions().map(e => e.year);
   const datasets = ['einfach', 'mittel', 'gut'].map(lage => {
@@ -159,17 +163,16 @@ function renderGrowthTable() {
   const eds = editions();
   if (eds.length < 2) {
     document.getElementById('growthBody').innerHTML =
-      '<tr><td colspan="6" style="padding:16px;color:#b0b0c0">Growth comparison requires at least two verified editions. ' +
-      'The 2023 edition is transcribed and verified; 2017/2019/2021 PDFs are in data/raw/ awaiting transcription. ' +
-      'The old 2013-2023 series was removed because its values could not be reproduced from the official tables.</td></tr>';
+      '<tr><td colspan="6" style="padding:16px;color:#b0b0c0">Growth comparison requires at least two verified editions.</td></tr>';
     return;
   }
   const earliest = eds[0], latest = eds[eds.length - 1];
   const years = latest.year - earliest.year;
 
+  // apples-to-apples: the 1991-2002 cohort exists in every edition
   const rows = ['einfach', 'mittel', 'gut'].map(lage => {
-    const ld1 = byLage(earliest.year);
-    const ld2 = byLage(latest.year);
+    const ld1 = byLage1991(earliest.year);
+    const ld2 = byLage1991(latest.year);
     const v1 = ld1 ? ld1[lage] : null;
     const v2 = ld2 ? ld2[lage] : null;
     if (v1 == null || v2 == null) return null;
@@ -197,17 +200,17 @@ function renderGrowthTable() {
 
 function renderSummary() {
   const eds = editions();
-  const byLage2023 = byLage(2023);
-  const newest = eds[eds.length - 1];
+  const first = eds[0], last = eds[eds.length - 1];
+  const g1991 = byLage1991(2023);
 
   document.getElementById('summaryCards').innerHTML = `
     <div class="summary-card"><div class="label">Verified Editions</div><div class="value blue">${eds.length}</div></div>
-    <div class="summary-card"><div class="label">Latest Edition</div><div class="value amber">${newest ? newest.year : '—'}</div></div>
-    <div class="summary-card"><div class="label">Method</div><div class="value" style="font-size:12px;padding:4px">newest cohort mean (2003-2017), all size bands</div></div>
-    ${byLage2023 ? `
-    <div class="summary-card"><div class="label">2023 Einfach</div><div class="value green">€${byLage2023.einfach.toFixed(2)}</div></div>
-    <div class="summary-card"><div class="label">2023 Mittel</div><div class="value green">€${byLage2023.mittel.toFixed(2)}</div></div>
-    <div class="summary-card"><div class="label">2023 Gut</div><div class="value green">€${byLage2023.gut.toFixed(2)}</div></div>
+    <div class="summary-card"><div class="label">Period</div><div class="value amber">${first ? first.year : '—'}–${last ? last.year : '—'}</div></div>
+    <div class="summary-card"><div class="label">Series basis</div><div class="value" style="font-size:12px;padding:4px">same 1991-2002 cohort, all size bands</div></div>
+    ${g1991 ? `
+    <div class="summary-card"><div class="label">2023 Einfach (1991-2002)</div><div class="value green">€${g1991.einfach.toFixed(2)}</div></div>
+    <div class="summary-card"><div class="label">2023 Mittel (1991-2002)</div><div class="value green">€${g1991.mittel.toFixed(2)}</div></div>
+    <div class="summary-card"><div class="label">2023 Gut (1991-2002)</div><div class="value green">€${g1991.gut.toFixed(2)}</div></div>
     ` : ''}
   `;
 }
@@ -243,29 +246,29 @@ async function init() {
     <div class="summary-grid" id="summaryCards"></div>
     <div class="section">
       <h2>Berlin Rent Development by Wohnlage</h2>
-      <p style="font-size:12px;color:#b0b0c0;margin-bottom:10px">Official Mietspiegel values (€/m² net cold). by_lage = mean of Mittelwerte in the newest cohort across its size bands — see Methodology.</p>
+      <p style="font-size:12px;color:#b0b0c0;margin-bottom:10px">Official Mietspiegel values (€/m² net cold) — mean of Mittelwerte in the NEWEST cohort across its size bands (see Methodology).</p>
       <div class="chart-container"><canvas id="mainChart"></canvas></div>
     </div>
     <div class="section">
-      <h2>Growth by Wohnlage</h2>
-      <p style="font-size:12px;color:#b0b0c0;margin-bottom:10px">Requires at least two verified editions. Status below.</p>
+      <h2>Growth by Wohnlage (2017 → 2023)</h2>
+      <p style="font-size:12px;color:#b0b0c0;margin-bottom:10px">Apples-to-apples: the 1991-2002 cohort, which appears in every edition with full data.</p>
       <table class="growth-table">
-        <thead><tr><th>Wohnlage</th><th style="text-align:right">From</th><th style="text-align:right">To</th><th style="text-align:right">Increase</th><th style="text-align:right">Growth %</th><th style="text-align:right">Annualized</th></tr></thead>
+        <thead><tr><th>Wohnlage</th><th style="text-align:right">2017</th><th style="text-align:right">2023</th><th style="text-align:right">Increase</th><th style="text-align:right">Growth %</th><th style="text-align:right">Annualized</th></tr></thead>
         <tbody id="growthBody"></tbody>
       </table>
     </div>
     <div class="section">
       <h2>Edition History</h2>
-      <p style="font-size:12px;color:#b0b0c0;margin-bottom:10px">Verified transcribed editions with rent values by Wohnlage.</p>
+      <p style="font-size:12px;color:#b0b0c0;margin-bottom:10px">All four archived editions, extracted from the official PDFs.</p>
       <div class="edition-grid" id="editionGrid"></div>
     </div>
     <div class="section">
       <h2>Methodology & Sources</h2>
       <div class="methodology">
-        <p><strong>What this tracks:</strong> The official Berliner Mietspiegel table for each Wohnlage tier (einfach, mittel, gut). Values are net cold rent per m², transcribed from the official PDFs.</p>
-        <p style="margin-top:6px;"><strong>by_lage derivation:</strong> mean of Mittelwerte (medians) in the NEWEST Bezugsfertigkeit cohort across all of its size bands. This is a documented, reproducible choice — not a hand-picked cell. The newest cohort is 2003-2017 for the 2023 edition.</p>
-        <p style="margin-top:6px;"><strong>Data sources:</strong> Official PDFs from mietspiegel.berlin.de (Berlin Senate archive).</p>
-        <p style="margin-top:6px;"><strong>Status:</strong> The 2023 edition is transcribed and verified. 2017/2019/2021 PDFs are downloaded (data/raw/) and awaiting transcription. 2013/2015 are not in the official archive. The previous 2013-2023 series was removed because its values could not be reproduced from the official tables.</p>
+        <p><strong>What this tracks:</strong> The official Berliner Mietspiegel table for each Wohnlage tier (einfach, mittel, gut). Values are net cold rent per m², extracted from the official PDFs with a coordinate-based parser (scripts/extract_wide_editions.py).</p>
+        <p style="margin-top:6px;"><strong>Chart series (by_lage):</strong> mean of Mittelwerte (medians) in the NEWEST Bezugsfertigkeit cohort across all of its non-empty size bands, excluding cells the official table flags as low-sample (* / **, under 30 Mietwerte). The newest cohort is 2003-2015 for 2017 and 2003-2017 for 2019-2023, so this series mixes two cohort definitions.</p>
+        <p style="margin-top:6px;"><strong>Growth series (by_lage_same_cohort):</strong> same derivation for the 1991-2002 cohort — present in ALL editions with full data, making it the apples-to-apples time series.</p>
+        <p style="margin-top:6px;"><strong>Data sources:</strong> Official PDFs from mietspiegel.berlin.de (Berlin Senate archive). 2013/2015 are not in the official archive. The previous 2013-2023 series was removed because its values could not be reproduced from the official tables.</p>
       </div>
     </div>
   `;

@@ -1,11 +1,1916 @@
 {
-  "schema": "official-edition-transcription-v1",
-  "note": "Manual transcription from the official PDF. by_lage = mean of Mittelwerte in the newest cohort across size bands. 2017/2019/2021 PDFs in data/raw/ pending transcription; 2013/2015 not in the official archive.",
+  "schema": "official-edition-extraction-v1",
+  "note": "Extracted deterministically from the official PDFs with scripts/extract_wide_editions.py (coordinate-based). low_sample marks cells the official table flags with * or ** (< 30 Mietwerte). 2013/2015 are not in the official archive.",
   "editions": [
+    {
+      "year": 2017,
+      "stichtag": "01.09.2016",
+      "source": "data/raw/mietspiegeltabelle2017.pdf (official, mietspiegel.berlin.de archive)",
+      "cohorts": [
+        "bis 1918",
+        "1919-1949",
+        "1950-1964",
+        "1965-1972",
+        "1973-1990 West",
+        "1973-1990 Ost",
+        "1991-2002",
+        "2003-2015"
+      ],
+      "rows": [
+        {
+          "lage": "einfach",
+          "size": "<40",
+          "values": [
+            {
+              "mittelwert": 7.45,
+              "untere": 5.44,
+              "obere": 10.0,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.45,
+              "untere": 5.6,
+              "obere": 7.17,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.17,
+              "untere": 5.18,
+              "obere": 8.8,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.58,
+              "untere": 5.78,
+              "obere": 7.74,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.68,
+              "untere": 5.33,
+              "obere": 8.15,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.81,
+              "untere": 6.13,
+              "obere": 7.63,
+              "low_sample": false
+            },
+            null,
+            {
+              "mittelwert": 7.5,
+              "untere": 7.5,
+              "obere": 9.51,
+              "low_sample": true
+            }
+          ]
+        },
+        {
+          "lage": "mittel",
+          "size": "<40",
+          "values": [
+            {
+              "mittelwert": 8.01,
+              "untere": 5.25,
+              "obere": 10.11,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.37,
+              "untere": 6.82,
+              "obere": 8.4,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.64,
+              "untere": 5.89,
+              "obere": 8.0,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.57,
+              "untere": 5.71,
+              "obere": 8.36,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 8.08,
+              "untere": 7.18,
+              "obere": 12.0,
+              "low_sample": true
+            },
+            {
+              "mittelwert": 6.77,
+              "untere": 6.4,
+              "obere": 7.94,
+              "low_sample": false
+            },
+            null,
+            {
+              "mittelwert": 14.19,
+              "untere": 13.85,
+              "obere": 15.72,
+              "low_sample": true
+            }
+          ]
+        },
+        {
+          "lage": "gut",
+          "size": "<40",
+          "values": [
+            {
+              "mittelwert": 8.31,
+              "untere": 6.91,
+              "obere": 12.52,
+              "low_sample": true
+            },
+            {
+              "mittelwert": 7.04,
+              "untere": 6.04,
+              "obere": 10.0,
+              "low_sample": true
+            },
+            {
+              "mittelwert": 7.48,
+              "untere": 5.87,
+              "obere": 10.2,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 8.83,
+              "untere": 7.7,
+              "obere": 9.84,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 8.59,
+              "untere": 6.93,
+              "obere": 10.11,
+              "low_sample": true
+            },
+            {
+              "mittelwert": 8.04,
+              "untere": 7.09,
+              "obere": 9.14,
+              "low_sample": false
+            },
+            null,
+            null
+          ]
+        },
+        {
+          "lage": "einfach",
+          "size": "40-60",
+          "values": [
+            {
+              "mittelwert": 6.51,
+              "untere": 4.81,
+              "obere": 9.22,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.93,
+              "untere": 5.3,
+              "obere": 8.09,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.71,
+              "untere": 5.16,
+              "obere": 7.29,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.75,
+              "untere": 5.13,
+              "obere": 7.01,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.77,
+              "untere": 5.8,
+              "obere": 8.43,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.61,
+              "untere": 5.3,
+              "obere": 6.67,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.43,
+              "untere": 6.21,
+              "obere": 9.17,
+              "low_sample": true
+            },
+            {
+              "mittelwert": 8.5,
+              "untere": 6.9,
+              "obere": 12.5,
+              "low_sample": false
+            }
+          ]
+        },
+        {
+          "lage": "mittel",
+          "size": "40-60",
+          "values": [
+            {
+              "mittelwert": 6.61,
+              "untere": 5.11,
+              "obere": 10.06,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.34,
+              "untere": 5.52,
+              "obere": 7.65,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.11,
+              "untere": 5.43,
+              "obere": 7.48,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.72,
+              "untere": 5.39,
+              "obere": 7.2,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.39,
+              "untere": 6.65,
+              "obere": 7.97,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.83,
+              "untere": 5.37,
+              "obere": 6.75,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 8.18,
+              "untere": 6.84,
+              "obere": 9.37,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 10.1,
+              "untere": 8.4,
+              "obere": 13.94,
+              "low_sample": false
+            }
+          ]
+        },
+        {
+          "lage": "gut",
+          "size": "40-60",
+          "values": [
+            {
+              "mittelwert": 7.03,
+              "untere": 5.81,
+              "obere": 8.75,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.88,
+              "untere": 5.71,
+              "obere": 8.88,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.66,
+              "untere": 5.18,
+              "obere": 8.98,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.39,
+              "untere": 6.17,
+              "obere": 9.0,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 8.0,
+              "untere": 7.3,
+              "obere": 9.12,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.84,
+              "untere": 6.11,
+              "obere": 8.29,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 9.0,
+              "untere": 7.48,
+              "obere": 10.34,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 9.44,
+              "untere": 8.0,
+              "obere": 11.3,
+              "low_sample": false
+            }
+          ]
+        },
+        {
+          "lage": "einfach",
+          "size": "60-90",
+          "values": [
+            {
+              "mittelwert": 6.0,
+              "untere": 4.4,
+              "obere": 8.62,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.65,
+              "untere": 4.9,
+              "obere": 7.56,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.48,
+              "untere": 4.74,
+              "obere": 6.68,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.22,
+              "untere": 4.76,
+              "obere": 6.3,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.12,
+              "untere": 5.08,
+              "obere": 7.59,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.07,
+              "untere": 4.72,
+              "obere": 5.71,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.1,
+              "untere": 5.76,
+              "obere": 8.23,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 10.13,
+              "untere": 6.9,
+              "obere": 12.99,
+              "low_sample": false
+            }
+          ]
+        },
+        {
+          "lage": "mittel",
+          "size": "60-90",
+          "values": [
+            {
+              "mittelwert": 6.78,
+              "untere": 4.75,
+              "obere": 10.27,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.09,
+              "untere": 5.18,
+              "obere": 7.62,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.0,
+              "untere": 5.18,
+              "obere": 7.28,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.49,
+              "untere": 5.05,
+              "obere": 6.59,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.5,
+              "untere": 6.16,
+              "obere": 8.76,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.11,
+              "untere": 4.68,
+              "obere": 5.78,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.59,
+              "untere": 6.52,
+              "obere": 8.96,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 10.31,
+              "untere": 8.61,
+              "obere": 13.93,
+              "low_sample": false
+            }
+          ]
+        },
+        {
+          "lage": "gut",
+          "size": "60-90",
+          "values": [
+            {
+              "mittelwert": 7.32,
+              "untere": 5.81,
+              "obere": 10.0,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.1,
+              "untere": 5.52,
+              "obere": 9.2,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.81,
+              "untere": 5.58,
+              "obere": 8.82,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.9,
+              "untere": 6.09,
+              "obere": 8.59,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 8.24,
+              "untere": 7.07,
+              "obere": 9.69,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.0,
+              "untere": 5.37,
+              "obere": 7.0,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 8.77,
+              "untere": 7.31,
+              "obere": 10.54,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 9.01,
+              "untere": 8.44,
+              "obere": 11.07,
+              "low_sample": false
+            }
+          ]
+        },
+        {
+          "lage": "einfach",
+          "size": "90+",
+          "values": [
+            {
+              "mittelwert": 5.72,
+              "untere": 4.22,
+              "obere": 8.41,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.8,
+              "untere": 4.29,
+              "obere": 7.51,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 4.87,
+              "untere": 4.29,
+              "obere": 6.6,
+              "low_sample": true
+            },
+            {
+              "mittelwert": 5.29,
+              "untere": 4.8,
+              "obere": 6.14,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.49,
+              "untere": 5.39,
+              "obere": 8.05,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 4.7,
+              "untere": 4.24,
+              "obere": 5.6,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.18,
+              "untere": 5.95,
+              "obere": 8.47,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 10.7,
+              "untere": 8.6,
+              "obere": 13.56,
+              "low_sample": false
+            }
+          ]
+        },
+        {
+          "lage": "mittel",
+          "size": "90+",
+          "values": [
+            {
+              "mittelwert": 6.39,
+              "untere": 4.38,
+              "obere": 10.18,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.63,
+              "untere": 4.97,
+              "obere": 7.1,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.46,
+              "untere": 5.77,
+              "obere": 8.03,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.53,
+              "untere": 4.91,
+              "obere": 7.5,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.48,
+              "untere": 5.17,
+              "obere": 8.8,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.11,
+              "untere": 4.76,
+              "obere": 5.6,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 8.0,
+              "untere": 6.3,
+              "obere": 9.27,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 10.19,
+              "untere": 8.69,
+              "obere": 13.1,
+              "low_sample": false
+            }
+          ]
+        },
+        {
+          "lage": "gut",
+          "size": "90+",
+          "values": [
+            {
+              "mittelwert": 7.25,
+              "untere": 5.44,
+              "obere": 10.0,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.65,
+              "untere": 5.35,
+              "obere": 9.5,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 8.26,
+              "untere": 6.77,
+              "obere": 9.61,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 8.05,
+              "untere": 6.99,
+              "obere": 8.54,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 8.83,
+              "untere": 7.6,
+              "obere": 10.49,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.63,
+              "untere": 5.24,
+              "obere": 6.92,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 9.24,
+              "untere": 7.18,
+              "obere": 11.13,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 10.0,
+              "untere": 8.4,
+              "obere": 12.5,
+              "low_sample": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2019,
+      "stichtag": "01.09.2018",
+      "source": "data/raw/mietspiegeltabelle2019.pdf (official, mietspiegel.berlin.de archive)",
+      "cohorts": [
+        "bis 1918",
+        "1919-1949",
+        "1950-1964",
+        "1965-1972",
+        "1973-1990 West",
+        "1973-1990 Ost",
+        "1991-2002",
+        "2003-2017"
+      ],
+      "rows": [
+        {
+          "lage": "einfach",
+          "size": "<40",
+          "values": [
+            {
+              "mittelwert": 7.9,
+              "untere": 5.5,
+              "obere": 12.97,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.8,
+              "untere": 6.0,
+              "obere": 8.68,
+              "low_sample": true
+            },
+            {
+              "mittelwert": 6.43,
+              "untere": 5.54,
+              "obere": 9.03,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.8,
+              "untere": 5.99,
+              "obere": 8.83,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.57,
+              "untere": 7.43,
+              "obere": 8.85,
+              "low_sample": true
+            },
+            {
+              "mittelwert": 7.14,
+              "untere": 6.85,
+              "obere": 7.97,
+              "low_sample": false
+            },
+            null,
+            null
+          ]
+        },
+        {
+          "lage": "mittel",
+          "size": "<40",
+          "values": [
+            {
+              "mittelwert": 8.43,
+              "untere": 6.72,
+              "obere": 12.24,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.66,
+              "untere": 6.44,
+              "obere": 8.55,
+              "low_sample": true
+            },
+            {
+              "mittelwert": 6.85,
+              "untere": 5.65,
+              "obere": 9.05,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.57,
+              "untere": 5.89,
+              "obere": 8.24,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.73,
+              "untere": 5.33,
+              "obere": 8.16,
+              "low_sample": true
+            },
+            {
+              "mittelwert": 6.93,
+              "untere": 6.45,
+              "obere": 7.23,
+              "low_sample": false
+            },
+            null,
+            null
+          ]
+        },
+        {
+          "lage": "gut",
+          "size": "<40",
+          "values": [
+            {
+              "mittelwert": 11.44,
+              "untere": 6.54,
+              "obere": 14.23,
+              "low_sample": true
+            },
+            {
+              "mittelwert": 7.5,
+              "untere": 6.44,
+              "obere": 9.48,
+              "low_sample": true
+            },
+            {
+              "mittelwert": 7.47,
+              "untere": 6.36,
+              "obere": 9.31,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 8.9,
+              "untere": 8.15,
+              "obere": 9.75,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 8.31,
+              "untere": 7.47,
+              "obere": 10.09,
+              "low_sample": true
+            },
+            {
+              "mittelwert": 7.13,
+              "untere": 6.7,
+              "obere": 8.73,
+              "low_sample": false
+            },
+            null,
+            null
+          ]
+        },
+        {
+          "lage": "einfach",
+          "size": "40-60",
+          "values": [
+            {
+              "mittelwert": 6.75,
+              "untere": 5.26,
+              "obere": 9.94,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.4,
+              "untere": 5.42,
+              "obere": 8.19,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.0,
+              "untere": 5.38,
+              "obere": 8.0,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.88,
+              "untere": 5.05,
+              "obere": 7.01,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.46,
+              "untere": 6.2,
+              "obere": 8.65,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.01,
+              "untere": 5.72,
+              "obere": 6.55,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 8.36,
+              "untere": 7.71,
+              "obere": 10.2,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 11.61,
+              "untere": 9.7,
+              "obere": 15.11,
+              "low_sample": true
+            }
+          ]
+        },
+        {
+          "lage": "mittel",
+          "size": "40-60",
+          "values": [
+            {
+              "mittelwert": 7.43,
+              "untere": 5.41,
+              "obere": 10.25,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.74,
+              "untere": 5.63,
+              "obere": 7.76,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.11,
+              "untere": 5.39,
+              "obere": 7.64,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.98,
+              "untere": 5.43,
+              "obere": 6.94,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.73,
+              "untere": 6.36,
+              "obere": 8.77,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.95,
+              "untere": 5.4,
+              "obere": 6.7,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 8.18,
+              "untere": 7.43,
+              "obere": 9.17,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 9.85,
+              "untere": 7.28,
+              "obere": 12.5,
+              "low_sample": false
+            }
+          ]
+        },
+        {
+          "lage": "gut",
+          "size": "40-60",
+          "values": [
+            {
+              "mittelwert": 8.04,
+              "untere": 5.99,
+              "obere": 10.97,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.9,
+              "untere": 6.01,
+              "obere": 9.14,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.52,
+              "untere": 5.65,
+              "obere": 7.85,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.13,
+              "untere": 5.29,
+              "obere": 10.0,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 8.42,
+              "untere": 7.38,
+              "obere": 9.22,
+              "low_sample": true
+            },
+            {
+              "mittelwert": 6.01,
+              "untere": 5.83,
+              "obere": 6.96,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 9.75,
+              "untere": 8.14,
+              "obere": 11.12,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 9.88,
+              "untere": 7.75,
+              "obere": 11.98,
+              "low_sample": false
+            }
+          ]
+        },
+        {
+          "lage": "einfach",
+          "size": "60-90",
+          "values": [
+            {
+              "mittelwert": 6.33,
+              "untere": 4.83,
+              "obere": 10.0,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.87,
+              "untere": 5.06,
+              "obere": 7.27,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.58,
+              "untere": 4.83,
+              "obere": 6.81,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.45,
+              "untere": 4.89,
+              "obere": 6.08,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.27,
+              "untere": 6.08,
+              "obere": 9.0,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.27,
+              "untere": 4.99,
+              "obere": 5.73,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.72,
+              "untere": 6.23,
+              "obere": 8.59,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 12.89,
+              "untere": 8.49,
+              "obere": 14.83,
+              "low_sample": false
+            }
+          ]
+        },
+        {
+          "lage": "mittel",
+          "size": "60-90",
+          "values": [
+            {
+              "mittelwert": 6.77,
+              "untere": 4.84,
+              "obere": 10.0,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.24,
+              "untere": 5.09,
+              "obere": 7.32,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.0,
+              "untere": 5.28,
+              "obere": 7.08,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.71,
+              "untere": 5.08,
+              "obere": 6.4,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 8.0,
+              "untere": 5.7,
+              "obere": 9.11,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.27,
+              "untere": 4.6,
+              "obere": 5.76,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.9,
+              "untere": 6.73,
+              "obere": 9.03,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 10.09,
+              "untere": 8.91,
+              "obere": 12.2,
+              "low_sample": false
+            }
+          ]
+        },
+        {
+          "lage": "gut",
+          "size": "60-90",
+          "values": [
+            {
+              "mittelwert": 7.49,
+              "untere": 5.62,
+              "obere": 10.92,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.1,
+              "untere": 5.91,
+              "obere": 9.15,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.54,
+              "untere": 5.5,
+              "obere": 8.37,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.65,
+              "untere": 5.2,
+              "obere": 8.31,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 8.32,
+              "untere": 6.61,
+              "obere": 9.84,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.57,
+              "untere": 5.11,
+              "obere": 6.29,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 9.09,
+              "untere": 7.45,
+              "obere": 11.02,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 10.22,
+              "untere": 8.84,
+              "obere": 12.75,
+              "low_sample": false
+            }
+          ]
+        },
+        {
+          "lage": "einfach",
+          "size": "90+",
+          "values": [
+            {
+              "mittelwert": 6.23,
+              "untere": 4.79,
+              "obere": 9.14,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.13,
+              "untere": 5.14,
+              "obere": 7.16,
+              "low_sample": true
+            },
+            null,
+            {
+              "mittelwert": 5.47,
+              "untere": 4.89,
+              "obere": 6.05,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.19,
+              "untere": 5.83,
+              "obere": 8.28,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.23,
+              "untere": 4.78,
+              "obere": 5.48,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.96,
+              "untere": 6.64,
+              "obere": 9.32,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 11.95,
+              "untere": 8.52,
+              "obere": 13.77,
+              "low_sample": false
+            }
+          ]
+        },
+        {
+          "lage": "mittel",
+          "size": "90+",
+          "values": [
+            {
+              "mittelwert": 6.77,
+              "untere": 4.88,
+              "obere": 9.8,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.01,
+              "untere": 5.1,
+              "obere": 8.51,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.77,
+              "untere": 5.62,
+              "obere": 11.41,
+              "low_sample": true
+            },
+            {
+              "mittelwert": 5.4,
+              "untere": 5.06,
+              "obere": 6.14,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.64,
+              "untere": 5.97,
+              "obere": 8.66,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.25,
+              "untere": 4.61,
+              "obere": 5.56,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 8.19,
+              "untere": 7.21,
+              "obere": 9.54,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 10.08,
+              "untere": 8.8,
+              "obere": 12.73,
+              "low_sample": false
+            }
+          ]
+        },
+        {
+          "lage": "gut",
+          "size": "90+",
+          "values": [
+            {
+              "mittelwert": 7.33,
+              "untere": 5.48,
+              "obere": 10.48,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.69,
+              "untere": 5.69,
+              "obere": 8.93,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 8.23,
+              "untere": 6.69,
+              "obere": 9.3,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 8.3,
+              "untere": 7.54,
+              "obere": 8.89,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 9.0,
+              "untere": 7.06,
+              "obere": 11.94,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.32,
+              "untere": 5.08,
+              "obere": 5.93,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 9.8,
+              "untere": 8.17,
+              "obere": 11.7,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 11.5,
+              "untere": 9.34,
+              "obere": 13.69,
+              "low_sample": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2021,
+      "stichtag": "01.09.2020",
+      "source": "data/raw/mietspiegeltabelle2021.pdf (official, mietspiegel.berlin.de archive)",
+      "cohorts": [
+        "bis 1918",
+        "1919-1949",
+        "1950-1964",
+        "1965-1972",
+        "1973-1990 West",
+        "1973-1990 Ost",
+        "1991-2002",
+        "2003-2017"
+      ],
+      "rows": [
+        {
+          "lage": "einfach",
+          "size": "<40",
+          "values": [
+            {
+              "mittelwert": 7.99,
+              "untere": 5.56,
+              "obere": 13.11,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.89,
+              "untere": 6.07,
+              "obere": 8.78,
+              "low_sample": true
+            },
+            {
+              "mittelwert": 6.5,
+              "untere": 5.6,
+              "obere": 9.13,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.87,
+              "untere": 6.06,
+              "obere": 8.93,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.65,
+              "untere": 7.51,
+              "obere": 8.95,
+              "low_sample": true
+            },
+            {
+              "mittelwert": 7.22,
+              "untere": 6.93,
+              "obere": 8.06,
+              "low_sample": false
+            },
+            null,
+            null
+          ]
+        },
+        {
+          "lage": "mittel",
+          "size": "<40",
+          "values": [
+            {
+              "mittelwert": 8.52,
+              "untere": 6.79,
+              "obere": 12.37,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.74,
+              "untere": 6.51,
+              "obere": 8.64,
+              "low_sample": true
+            },
+            {
+              "mittelwert": 6.93,
+              "untere": 5.71,
+              "obere": 9.15,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.64,
+              "untere": 5.95,
+              "obere": 8.33,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.82,
+              "untere": 5.39,
+              "obere": 8.25,
+              "low_sample": true
+            },
+            {
+              "mittelwert": 7.01,
+              "untere": 6.52,
+              "obere": 7.31,
+              "low_sample": false
+            },
+            null,
+            null
+          ]
+        },
+        {
+          "lage": "gut",
+          "size": "<40",
+          "values": [
+            {
+              "mittelwert": 11.57,
+              "untere": 6.61,
+              "obere": 14.39,
+              "low_sample": true
+            },
+            {
+              "mittelwert": 7.58,
+              "untere": 6.51,
+              "obere": 9.58,
+              "low_sample": true
+            },
+            {
+              "mittelwert": 7.55,
+              "untere": 6.43,
+              "obere": 9.41,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 9.0,
+              "untere": 8.24,
+              "obere": 9.86,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 8.4,
+              "untere": 7.55,
+              "obere": 10.2,
+              "low_sample": true
+            },
+            {
+              "mittelwert": 7.21,
+              "untere": 6.77,
+              "obere": 8.83,
+              "low_sample": false
+            },
+            null,
+            null
+          ]
+        },
+        {
+          "lage": "einfach",
+          "size": "40-60",
+          "values": [
+            {
+              "mittelwert": 6.82,
+              "untere": 5.32,
+              "obere": 10.05,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.47,
+              "untere": 5.48,
+              "obere": 8.28,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.07,
+              "untere": 5.44,
+              "obere": 8.09,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.94,
+              "untere": 5.11,
+              "obere": 7.09,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.54,
+              "untere": 6.27,
+              "obere": 8.75,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.08,
+              "untere": 5.78,
+              "obere": 6.62,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 8.45,
+              "untere": 7.79,
+              "obere": 10.31,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 11.74,
+              "untere": 9.81,
+              "obere": 15.28,
+              "low_sample": true
+            }
+          ]
+        },
+        {
+          "lage": "mittel",
+          "size": "40-60",
+          "values": [
+            {
+              "mittelwert": 7.51,
+              "untere": 5.47,
+              "obere": 10.36,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.81,
+              "untere": 5.69,
+              "obere": 7.85,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.18,
+              "untere": 5.45,
+              "obere": 7.72,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.05,
+              "untere": 5.49,
+              "obere": 7.02,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.82,
+              "untere": 6.43,
+              "obere": 8.87,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.02,
+              "untere": 5.46,
+              "obere": 6.77,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 8.27,
+              "untere": 7.51,
+              "obere": 9.27,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 9.96,
+              "untere": 7.36,
+              "obere": 12.64,
+              "low_sample": false
+            }
+          ]
+        },
+        {
+          "lage": "gut",
+          "size": "40-60",
+          "values": [
+            {
+              "mittelwert": 8.13,
+              "untere": 6.06,
+              "obere": 11.09,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.98,
+              "untere": 6.08,
+              "obere": 9.24,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.59,
+              "untere": 5.71,
+              "obere": 7.94,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.21,
+              "untere": 5.35,
+              "obere": 10.11,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 8.51,
+              "untere": 7.46,
+              "obere": 9.32,
+              "low_sample": true
+            },
+            {
+              "mittelwert": 6.08,
+              "untere": 5.89,
+              "obere": 7.04,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 9.86,
+              "untere": 8.23,
+              "obere": 11.24,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 9.99,
+              "untere": 7.84,
+              "obere": 12.11,
+              "low_sample": false
+            }
+          ]
+        },
+        {
+          "lage": "einfach",
+          "size": "60-90",
+          "values": [
+            {
+              "mittelwert": 6.4,
+              "untere": 4.88,
+              "obere": 10.11,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.93,
+              "untere": 5.12,
+              "obere": 7.35,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.64,
+              "untere": 4.88,
+              "obere": 6.88,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.51,
+              "untere": 4.94,
+              "obere": 6.15,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.35,
+              "untere": 6.15,
+              "obere": 9.1,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.33,
+              "untere": 5.04,
+              "obere": 5.79,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.8,
+              "untere": 6.3,
+              "obere": 8.68,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 13.03,
+              "untere": 8.58,
+              "obere": 14.99,
+              "low_sample": false
+            }
+          ]
+        },
+        {
+          "lage": "mittel",
+          "size": "60-90",
+          "values": [
+            {
+              "mittelwert": 6.84,
+              "untere": 4.89,
+              "obere": 10.11,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.31,
+              "untere": 5.15,
+              "obere": 7.4,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.07,
+              "untere": 5.34,
+              "obere": 7.16,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.77,
+              "untere": 5.14,
+              "obere": 6.47,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 8.09,
+              "untere": 5.76,
+              "obere": 9.21,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.33,
+              "untere": 4.65,
+              "obere": 5.82,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.99,
+              "untere": 6.8,
+              "obere": 9.13,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 10.2,
+              "untere": 9.01,
+              "obere": 12.33,
+              "low_sample": false
+            }
+          ]
+        },
+        {
+          "lage": "gut",
+          "size": "60-90",
+          "values": [
+            {
+              "mittelwert": 7.57,
+              "untere": 5.68,
+              "obere": 11.04,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.18,
+              "untere": 5.98,
+              "obere": 9.25,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.61,
+              "untere": 5.56,
+              "obere": 8.46,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.72,
+              "untere": 5.26,
+              "obere": 8.4,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 8.41,
+              "untere": 6.68,
+              "obere": 9.95,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.63,
+              "untere": 5.17,
+              "obere": 6.36,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 9.19,
+              "untere": 7.53,
+              "obere": 11.14,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 10.33,
+              "untere": 8.94,
+              "obere": 12.89,
+              "low_sample": false
+            }
+          ]
+        },
+        {
+          "lage": "einfach",
+          "size": "90+",
+          "values": [
+            {
+              "mittelwert": 6.3,
+              "untere": 4.84,
+              "obere": 9.24,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.2,
+              "untere": 5.2,
+              "obere": 7.24,
+              "low_sample": true
+            },
+            null,
+            {
+              "mittelwert": 5.53,
+              "untere": 4.94,
+              "obere": 6.12,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.27,
+              "untere": 5.89,
+              "obere": 8.37,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.29,
+              "untere": 4.83,
+              "obere": 5.54,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 8.05,
+              "untere": 6.71,
+              "obere": 9.42,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 12.08,
+              "untere": 8.61,
+              "obere": 13.92,
+              "low_sample": false
+            }
+          ]
+        },
+        {
+          "lage": "mittel",
+          "size": "90+",
+          "values": [
+            {
+              "mittelwert": 6.84,
+              "untere": 4.93,
+              "obere": 9.91,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.08,
+              "untere": 5.16,
+              "obere": 8.6,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.84,
+              "untere": 5.68,
+              "obere": 11.54,
+              "low_sample": true
+            },
+            {
+              "mittelwert": 5.46,
+              "untere": 5.12,
+              "obere": 6.21,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 7.72,
+              "untere": 6.04,
+              "obere": 8.76,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.31,
+              "untere": 4.66,
+              "obere": 5.62,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 8.28,
+              "untere": 7.29,
+              "obere": 9.64,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 10.19,
+              "untere": 8.9,
+              "obere": 12.87,
+              "low_sample": false
+            }
+          ]
+        },
+        {
+          "lage": "gut",
+          "size": "90+",
+          "values": [
+            {
+              "mittelwert": 7.41,
+              "untere": 5.54,
+              "obere": 10.6,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 6.76,
+              "untere": 5.75,
+              "obere": 9.03,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 8.32,
+              "untere": 6.76,
+              "obere": 9.4,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 8.39,
+              "untere": 7.62,
+              "obere": 8.99,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 9.1,
+              "untere": 7.14,
+              "obere": 12.07,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 5.38,
+              "untere": 5.14,
+              "obere": 6.0,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 9.91,
+              "untere": 8.26,
+              "obere": 11.83,
+              "low_sample": false
+            },
+            {
+              "mittelwert": 11.63,
+              "untere": 9.44,
+              "obere": 13.84,
+              "low_sample": false
+            }
+          ]
+        }
+      ]
+    },
     {
       "year": 2023,
       "stichtag": "01.09.2022",
-      "source": "data/raw/mietspiegeltabelle2023.pdf (official, mietspiegel.berlin.de)",
+      "source": "data/raw/mietspiegeltabelle2023.pdf (official, mietspiegel.berlin.de archive)",
       "cohorts": [
         "bis 1918",
         "1919-1949",
@@ -24,32 +1929,38 @@
             {
               "mittelwert": 8.42,
               "untere": 5.86,
-              "obere": 13.82
+              "obere": 13.82,
+              "low_sample": false
             },
             {
               "mittelwert": 8.32,
               "untere": 6.4,
-              "obere": 9.25
+              "obere": 9.25,
+              "low_sample": false
             },
             {
               "mittelwert": 6.85,
               "untere": 5.9,
-              "obere": 9.62
+              "obere": 9.62,
+              "low_sample": false
             },
             {
               "mittelwert": 7.24,
               "untere": 6.39,
-              "obere": 9.41
+              "obere": 9.41,
+              "low_sample": false
             },
             {
               "mittelwert": 8.06,
               "untere": 7.92,
-              "obere": 9.43
+              "obere": 9.43,
+              "low_sample": false
             },
             {
               "mittelwert": 7.61,
               "untere": 7.3,
-              "obere": 8.5
+              "obere": 8.5,
+              "low_sample": false
             },
             null,
             null
@@ -62,32 +1973,38 @@
             {
               "mittelwert": 8.98,
               "untere": 7.16,
-              "obere": 13.04
+              "obere": 13.04,
+              "low_sample": false
             },
             {
               "mittelwert": 8.16,
               "untere": 6.86,
-              "obere": 9.11
+              "obere": 9.11,
+              "low_sample": false
             },
             {
               "mittelwert": 7.3,
               "untere": 6.02,
-              "obere": 9.64
+              "obere": 9.64,
+              "low_sample": false
             },
             {
               "mittelwert": 7.0,
               "untere": 6.27,
-              "obere": 8.78
+              "obere": 8.78,
+              "low_sample": false
             },
             {
               "mittelwert": 8.24,
               "untere": 5.68,
-              "obere": 8.7
+              "obere": 8.7,
+              "low_sample": false
             },
             {
               "mittelwert": 7.39,
               "untere": 6.87,
-              "obere": 7.7
+              "obere": 7.7,
+              "low_sample": false
             },
             null,
             null
@@ -100,32 +2017,38 @@
             {
               "mittelwert": 12.19,
               "untere": 6.97,
-              "obere": 15.17
+              "obere": 15.17,
+              "low_sample": false
             },
             {
               "mittelwert": 7.99,
               "untere": 6.86,
-              "obere": 10.1
+              "obere": 10.1,
+              "low_sample": false
             },
             {
               "mittelwert": 7.96,
               "untere": 6.78,
-              "obere": 9.92
+              "obere": 9.92,
+              "low_sample": false
             },
             {
               "mittelwert": 9.49,
               "untere": 8.68,
-              "obere": 10.39
+              "obere": 10.39,
+              "low_sample": false
             },
             {
               "mittelwert": 8.85,
               "untere": 7.96,
-              "obere": 10.75
+              "obere": 10.75,
+              "low_sample": false
             },
             {
               "mittelwert": 7.6,
               "untere": 7.14,
-              "obere": 9.31
+              "obere": 9.31,
+              "low_sample": false
             },
             null,
             null
@@ -138,42 +2061,50 @@
             {
               "mittelwert": 7.19,
               "untere": 5.61,
-              "obere": 10.59
+              "obere": 10.59,
+              "low_sample": false
             },
             {
               "mittelwert": 6.82,
               "untere": 5.78,
-              "obere": 8.73
+              "obere": 8.73,
+              "low_sample": false
             },
             {
               "mittelwert": 6.4,
               "untere": 5.73,
-              "obere": 8.53
+              "obere": 8.53,
+              "low_sample": false
             },
             {
               "mittelwert": 6.26,
               "untere": 5.39,
-              "obere": 7.47
+              "obere": 7.47,
+              "low_sample": false
             },
             {
               "mittelwert": 7.95,
               "untere": 6.61,
-              "obere": 9.22
+              "obere": 9.22,
+              "low_sample": false
             },
             {
               "mittelwert": 6.41,
               "untere": 6.09,
-              "obere": 6.98
+              "obere": 6.98,
+              "low_sample": false
             },
             {
               "mittelwert": 8.91,
               "untere": 8.21,
-              "obere": 10.87
+              "obere": 10.87,
+              "low_sample": false
             },
             {
               "mittelwert": 12.37,
               "untere": 10.34,
-              "obere": 16.11
+              "obere": 16.11,
+              "low_sample": false
             }
           ]
         },
@@ -184,42 +2115,50 @@
             {
               "mittelwert": 7.92,
               "untere": 5.77,
-              "obere": 10.92
+              "obere": 10.92,
+              "low_sample": false
             },
             {
               "mittelwert": 7.18,
               "untere": 6.0,
-              "obere": 8.27
+              "obere": 8.27,
+              "low_sample": false
             },
             {
               "mittelwert": 6.51,
               "untere": 5.74,
-              "obere": 8.14
+              "obere": 8.14,
+              "low_sample": false
             },
             {
               "mittelwert": 6.38,
               "untere": 5.79,
-              "obere": 7.4
+              "obere": 7.4,
+              "low_sample": false
             },
             {
               "mittelwert": 8.24,
               "untere": 6.78,
-              "obere": 9.35
+              "obere": 9.35,
+              "low_sample": false
             },
             {
               "mittelwert": 6.35,
               "untere": 5.75,
-              "obere": 7.14
+              "obere": 7.14,
+              "low_sample": false
             },
             {
               "mittelwert": 8.72,
               "untere": 7.92,
-              "obere": 9.77
+              "obere": 9.77,
+              "low_sample": false
             },
             {
               "mittelwert": 10.5,
               "untere": 7.76,
-              "obere": 13.32
+              "obere": 13.32,
+              "low_sample": false
             }
           ]
         },
@@ -230,42 +2169,50 @@
             {
               "mittelwert": 8.57,
               "untere": 6.39,
-              "obere": 11.69
+              "obere": 11.69,
+              "low_sample": false
             },
             {
               "mittelwert": 7.36,
               "untere": 6.41,
-              "obere": 9.74
+              "obere": 9.74,
+              "low_sample": false
             },
             {
               "mittelwert": 6.95,
               "untere": 6.02,
-              "obere": 8.37
+              "obere": 8.37,
+              "low_sample": false
             },
             {
               "mittelwert": 7.6,
               "untere": 5.64,
-              "obere": 10.66
+              "obere": 10.66,
+              "low_sample": false
             },
             {
               "mittelwert": 8.97,
               "untere": 7.86,
-              "obere": 9.82
+              "obere": 9.82,
+              "low_sample": false
             },
             {
               "mittelwert": 6.41,
               "untere": 6.21,
-              "obere": 7.42
+              "obere": 7.42,
+              "low_sample": false
             },
             {
               "mittelwert": 10.39,
               "untere": 8.67,
-              "obere": 11.85
+              "obere": 11.85,
+              "low_sample": false
             },
             {
               "mittelwert": 10.53,
               "untere": 8.26,
-              "obere": 12.76
+              "obere": 12.76,
+              "low_sample": false
             }
           ]
         },
@@ -276,42 +2223,50 @@
             {
               "mittelwert": 6.75,
               "untere": 5.14,
-              "obere": 10.66
+              "obere": 10.66,
+              "low_sample": false
             },
             {
               "mittelwert": 6.25,
               "untere": 5.4,
-              "obere": 7.75
+              "obere": 7.75,
+              "low_sample": false
             },
             {
               "mittelwert": 5.94,
               "untere": 5.14,
-              "obere": 7.25
+              "obere": 7.25,
+              "low_sample": false
             },
             {
               "mittelwert": 5.81,
               "untere": 5.21,
-              "obere": 6.48
+              "obere": 6.48,
+              "low_sample": false
             },
             {
               "mittelwert": 7.75,
               "untere": 6.48,
-              "obere": 9.59
+              "obere": 9.59,
+              "low_sample": false
             },
             {
               "mittelwert": 5.62,
               "untere": 5.31,
-              "obere": 6.1
+              "obere": 6.1,
+              "low_sample": false
             },
             {
               "mittelwert": 8.22,
               "untere": 6.64,
-              "obere": 9.15
+              "obere": 9.15,
+              "low_sample": false
             },
             {
               "mittelwert": 13.73,
               "untere": 9.04,
-              "obere": 15.8
+              "obere": 15.8,
+              "low_sample": false
             }
           ]
         },
@@ -322,42 +2277,50 @@
             {
               "mittelwert": 7.21,
               "untere": 5.15,
-              "obere": 10.66
+              "obere": 10.66,
+              "low_sample": false
             },
             {
               "mittelwert": 6.65,
               "untere": 5.43,
-              "obere": 7.8
+              "obere": 7.8,
+              "low_sample": false
             },
             {
               "mittelwert": 6.4,
               "untere": 5.63,
-              "obere": 7.55
+              "obere": 7.55,
+              "low_sample": false
             },
             {
               "mittelwert": 6.08,
               "untere": 5.42,
-              "obere": 6.82
+              "obere": 6.82,
+              "low_sample": false
             },
             {
               "mittelwert": 8.53,
               "untere": 6.07,
-              "obere": 9.71
+              "obere": 9.71,
+              "low_sample": false
             },
             {
               "mittelwert": 5.62,
               "untere": 4.9,
-              "obere": 6.13
+              "obere": 6.13,
+              "low_sample": false
             },
             {
               "mittelwert": 8.42,
               "untere": 7.17,
-              "obere": 9.62
+              "obere": 9.62,
+              "low_sample": false
             },
             {
               "mittelwert": 10.75,
               "untere": 9.5,
-              "obere": 13.0
+              "obere": 13.0,
+              "low_sample": false
             }
           ]
         },
@@ -368,42 +2331,50 @@
             {
               "mittelwert": 7.98,
               "untere": 5.99,
-              "obere": 11.64
+              "obere": 11.64,
+              "low_sample": false
             },
             {
               "mittelwert": 7.57,
               "untere": 6.3,
-              "obere": 9.75
+              "obere": 9.75,
+              "low_sample": false
             },
             {
               "mittelwert": 6.97,
               "untere": 5.86,
-              "obere": 8.92
+              "obere": 8.92,
+              "low_sample": false
             },
             {
               "mittelwert": 7.08,
               "untere": 5.54,
-              "obere": 8.85
+              "obere": 8.85,
+              "low_sample": false
             },
             {
               "mittelwert": 8.86,
               "untere": 7.04,
-              "obere": 10.49
+              "obere": 10.49,
+              "low_sample": false
             },
             {
               "mittelwert": 5.93,
               "untere": 5.45,
-              "obere": 6.7
+              "obere": 6.7,
+              "low_sample": false
             },
             {
               "mittelwert": 9.69,
               "untere": 7.94,
-              "obere": 11.74
+              "obere": 11.74,
+              "low_sample": false
             },
             {
               "mittelwert": 10.89,
               "untere": 9.42,
-              "obere": 13.59
+              "obere": 13.59,
+              "low_sample": false
             }
           ]
         },
@@ -414,38 +2385,45 @@
             {
               "mittelwert": 6.64,
               "untere": 5.1,
-              "obere": 9.74
+              "obere": 9.74,
+              "low_sample": false
             },
             {
               "mittelwert": 6.53,
               "untere": 5.48,
-              "obere": 7.63
+              "obere": 7.63,
+              "low_sample": false
             },
             null,
             {
               "mittelwert": 5.83,
               "untere": 5.21,
-              "obere": 6.45
+              "obere": 6.45,
+              "low_sample": false
             },
             {
               "mittelwert": 7.66,
               "untere": 6.21,
-              "obere": 8.82
+              "obere": 8.82,
+              "low_sample": false
             },
             {
               "mittelwert": 5.58,
               "untere": 5.09,
-              "obere": 5.84
+              "obere": 5.84,
+              "low_sample": false
             },
             {
               "mittelwert": 8.48,
               "untere": 7.07,
-              "obere": 9.93
+              "obere": 9.93,
+              "low_sample": false
             },
             {
               "mittelwert": 12.73,
               "untere": 9.07,
-              "obere": 14.67
+              "obere": 14.67,
+              "low_sample": false
             }
           ]
         },
@@ -456,42 +2434,50 @@
             {
               "mittelwert": 7.21,
               "untere": 5.2,
-              "obere": 10.45
+              "obere": 10.45,
+              "low_sample": false
             },
             {
               "mittelwert": 6.41,
               "untere": 5.44,
-              "obere": 9.06
+              "obere": 9.06,
+              "low_sample": false
             },
             {
               "mittelwert": 7.21,
               "untere": 5.99,
-              "obere": 12.16
+              "obere": 12.16,
+              "low_sample": false
             },
             {
               "mittelwert": 5.75,
               "untere": 5.4,
-              "obere": 6.55
+              "obere": 6.55,
+              "low_sample": false
             },
             {
               "mittelwert": 8.14,
               "untere": 6.37,
-              "obere": 9.23
+              "obere": 9.23,
+              "low_sample": false
             },
             {
               "mittelwert": 5.6,
               "untere": 4.91,
-              "obere": 5.92
+              "obere": 5.92,
+              "low_sample": false
             },
             {
               "mittelwert": 8.73,
               "untere": 7.68,
-              "obere": 10.16
+              "obere": 10.16,
+              "low_sample": false
             },
             {
               "mittelwert": 10.74,
               "untere": 9.38,
-              "obere": 13.56
+              "obere": 13.56,
+              "low_sample": false
             }
           ]
         },
@@ -502,42 +2488,50 @@
             {
               "mittelwert": 7.81,
               "untere": 5.84,
-              "obere": 11.17
+              "obere": 11.17,
+              "low_sample": false
             },
             {
               "mittelwert": 7.13,
               "untere": 6.06,
-              "obere": 9.52
+              "obere": 9.52,
+              "low_sample": false
             },
             {
               "mittelwert": 8.77,
               "untere": 7.13,
-              "obere": 9.91
+              "obere": 9.91,
+              "low_sample": false
             },
             {
               "mittelwert": 8.84,
               "untere": 8.03,
-              "obere": 9.48
+              "obere": 9.48,
+              "low_sample": false
             },
             {
               "mittelwert": 9.59,
               "untere": 7.53,
-              "obere": 12.72
+              "obere": 12.72,
+              "low_sample": false
             },
             {
               "mittelwert": 5.67,
               "untere": 5.42,
-              "obere": 6.32
+              "obere": 6.32,
+              "low_sample": false
             },
             {
               "mittelwert": 10.45,
               "untere": 8.71,
-              "obere": 12.47
+              "obere": 12.47,
+              "low_sample": false
             },
             {
               "mittelwert": 12.26,
               "untere": 9.95,
-              "obere": 14.59
+              "obere": 14.59,
+              "low_sample": false
             }
           ]
         }
@@ -545,10 +2539,47 @@
     }
   ],
   "by_lage_series": {
+    "2017": {
+      "einfach": 9.78,
+      "mittel": 10.2,
+      "gut": 9.48
+    },
+    "2019": {
+      "einfach": 12.42,
+      "mittel": 10.01,
+      "gut": 10.53
+    },
+    "2021": {
+      "einfach": 12.55,
+      "mittel": 10.12,
+      "gut": 10.65
+    },
     "2023": {
       "einfach": 12.94,
       "mittel": 10.66,
       "gut": 11.23
+    }
+  },
+  "by_lage_same_cohort_series": {
+    "2017": {
+      "einfach": 7.14,
+      "mittel": 7.92,
+      "gut": 9.0
+    },
+    "2019": {
+      "einfach": 8.01,
+      "mittel": 8.09,
+      "gut": 9.55
+    },
+    "2021": {
+      "einfach": 8.1,
+      "mittel": 8.18,
+      "gut": 9.65
+    },
+    "2023": {
+      "einfach": 8.54,
+      "mittel": 8.62,
+      "gut": 10.18
     }
   }
 }
