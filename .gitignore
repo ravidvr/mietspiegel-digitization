@@ -7,6 +7,9 @@ venv/
 .ruff_cache/
 
 # Raw PDFs (downloaded separately)
+# Historical editions ARE tracked as provenance:
+!data/raw/mietspiegeltabelle*.pdf
+!data/raw/PROVENANCE.md
 data/raw/*
 !data/raw/.gitkeep
 !data/raw/extract_all_cities.py
