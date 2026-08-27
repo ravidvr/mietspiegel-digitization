@@ -103,14 +103,19 @@ async function loadData() {
   HISTORICAL_DATA = await resp.json();
 }
 
-function buildChartData() {
-  const berlin = HISTORICAL_DATA.cities.find(c => c.city === 'Berlin');
-  if (!berlin) return { labels: [], datasets: [] };
+function editions() {
+  return (HISTORICAL_DATA.editions || []).slice().sort((a, b) => a.year - b.year);
+}
 
-  const years = [...new Set(berlin.editions.map(e => e.year))].sort((a,b) => a-b);
+function byLage(year) {
+  return (HISTORICAL_DATA.by_lage || {})[String(year)] || null;
+}
+
+function buildChartData() {
+  const years = editions().map(e => e.year);
   const datasets = ['einfach', 'mittel', 'gut'].map(lage => {
     const vals = years.map(y => {
-      const ld = berlin.by_lage[String(y)];
+      const ld = byLage(y);
       return ld ? ld[lage] : null;
     });
     return {
@@ -151,16 +156,20 @@ function initChart() {
 }
 
 function renderGrowthTable() {
-  const berlin = HISTORICAL_DATA.cities.find(c => c.city === 'Berlin');
-  if (!berlin) return;
-  const sorted = [...berlin.editions].sort((a,b) => a.year - b.year);
-  const earliest = sorted[0], latest = sorted[sorted.length-1];
+  const eds = editions();
+  if (eds.length < 2) {
+    document.getElementById('growthBody').innerHTML =
+      '<tr><td colspan="6" style="padding:16px;color:#b0b0c0">Growth comparison requires at least two verified editions. ' +
+      'The 2023 edition is transcribed and verified; 2017/2019/2021 PDFs are in data/raw/ awaiting transcription. ' +
+      'The old 2013-2023 series was removed because its values could not be reproduced from the official tables.</td></tr>';
+    return;
+  }
+  const earliest = eds[0], latest = eds[eds.length - 1];
   const years = latest.year - earliest.year;
 
   const rows = ['einfach', 'mittel', 'gut'].map(lage => {
-    const ed1 = earliest.base_rent_per_sqm; // This is 'mittel' base
-    const ld1 = berlin.by_lage[String(earliest.year)];
-    const ld2 = berlin.by_lage[String(latest.year)];
+    const ld1 = byLage(earliest.year);
+    const ld2 = byLage(latest.year);
     const v1 = ld1 ? ld1[lage] : null;
     const v2 = ld2 ? ld2[lage] : null;
     if (v1 == null || v2 == null) return null;
@@ -187,58 +196,38 @@ function renderGrowthTable() {
 }
 
 function renderSummary() {
-  const berlin = HISTORICAL_DATA.cities.find(c => c.city === 'Berlin');
-  if (!berlin) return;
-  const sorted = [...berlin.editions].sort((a,b) => a.year - b.year);
-  const earliest = sorted[0], latest = sorted[sorted.length-1];
-  const years = latest.year - earliest.year;
-
-  // Growth for each Wohnlage
-  const growth = {};
-  ['einfach','mittel','gut'].forEach(lage => {
-    const v1 = berlin.by_lage[String(earliest.year)][lage];
-    const v2 = berlin.by_lage[String(latest.year)][lage];
-    growth[lage] = ((v2 - v1) / v1 * 100);
-  });
-
-  // Overall growth
-  const totalGrowth = growth.mittel;
-  const annualized = years > 0 ? (Math.pow(latest.base_rent_per_sqm/earliest.base_rent_per_sqm, 1/years) - 1) * 100 : 0;
+  const eds = editions();
+  const byLage2023 = byLage(2023);
+  const newest = eds[eds.length - 1];
 
   document.getElementById('summaryCards').innerHTML = `
-    <div class="summary-card"><div class="label">Editions Tracked</div><div class="value blue">${berlin.editions.length}</div></div>
-    <div class="summary-card"><div class="label">Period</div><div class="value amber">${earliest.year}–${latest.year}</div></div>
-    <div class="summary-card"><div class="label">Total Growth</div><div class="value green">+${totalGrowth.toFixed(1)}%</div></div>
-    <div class="summary-card"><div class="label">Annualized</div><div class="value green">+${annualized.toFixed(1)}%</div></div>
-    <div class="summary-card"><div class="label">2013 (Mittel)</div><div class="value">€${earliest.base_rent_per_sqm.toFixed(2)}</div></div>
-    <div class="summary-card"><div class="label">2023 (Mittel)</div><div class="value red">€${latest.base_rent_per_sqm.toFixed(2)}</div></div>
-    <div class="summary-card"><div class="label">Einfach Growth</div><div class="value green">+${growth.einfach.toFixed(0)}%</div></div>
-    <div class="summary-card"><div class="label">Gut Growth</div><div class="value green">+${growth.gut.toFixed(0)}%</div></div>
+    <div class="summary-card"><div class="label">Verified Editions</div><div class="value blue">${eds.length}</div></div>
+    <div class="summary-card"><div class="label">Latest Edition</div><div class="value amber">${newest ? newest.year : '—'}</div></div>
+    <div class="summary-card"><div class="label">Method</div><div class="value" style="font-size:12px;padding:4px">newest cohort mean (2003-2017), all size bands</div></div>
+    ${byLage2023 ? `
+    <div class="summary-card"><div class="label">2023 Einfach</div><div class="value green">€${byLage2023.einfach.toFixed(2)}</div></div>
+    <div class="summary-card"><div class="label">2023 Mittel</div><div class="value green">€${byLage2023.mittel.toFixed(2)}</div></div>
+    <div class="summary-card"><div class="label">2023 Gut</div><div class="value green">€${byLage2023.gut.toFixed(2)}</div></div>
+    ` : ''}
   `;
 }
 
 function renderEditionHistory() {
-  const berlin = HISTORICAL_DATA.cities.find(c => c.city === 'Berlin');
-  if (!berlin) return;
-  const sorted = [...berlin.editions].sort((a,b) => b.year - a.year);
+  const eds = editions().sort((a,b) => b.year - a.year);
 
-  document.getElementById('editionGrid').innerHTML = sorted.map(e => {
-    const lage = berlin.by_lage[String(e.year)];
-    const prevIdx = sorted.indexOf(e) + 1;
-    const prev = sorted[prevIdx];
-    const chg = prev ? ((e.base_rent_per_sqm - prev.base_rent_per_sqm) / prev.base_rent_per_sqm * 100) : 0;
-    const arrow = chg > 0 ? '<span style="color:#48bb78">▲</span>' : (chg < 0 ? '<span style="color:#f56565">▼</span>' : '');
+  document.getElementById('editionGrid').innerHTML = eds.map(e => {
+    const lage = byLage(e.year);
     return `<div class="edition-card">
       <h3>Berlin Mietspiegel ${e.year}</h3>
-      <div class="year-label">${e.year}${prev ? ` → ${prev.year}` : ''}</div>
-      ${chg !== 0 ? `<div class="growth-badge ${chg>0?'pos':'neg'}">${arrow} ${chg>0?'+':''}${chg.toFixed(1)}% vs ${prev.year}</div>` : '<div class="growth-badge pos">First tracked edition</div>'}
+      <div class="year-label">Stichtag ${e.stichtag || '—'}</div>
       <div style="margin-top:6px">
         ${lage ? `
           <div class="lage-row"><span class="lage-label" style="color:#48bb78">● Einfach</span><span>€${lage.einfach.toFixed(2)}/m²</span></div>
           <div class="lage-row"><span class="lage-label" style="color:#5b8def">● Mittel</span><span>€${lage.mittel.toFixed(2)}/m²</span></div>
           <div class="lage-row"><span class="lage-label" style="color:#ecc94b">● Gut</span><span>€${lage.gut.toFixed(2)}/m²</span></div>
-        ` : `<div class="lage-row"><span class="lage-label">Base rent</span><span>€${e.base_rent_per_sqm.toFixed(2)}/m²</span></div>`}
+        ` : '<div class="lage-row"><span class="lage-label">Transcription pending</span></div>'}
       </div>
+      <div style="margin-top:6px;font-size:10px;color:#666680">${e.source || ''}</div>
     </div>`;
   }).join('');
 }
@@ -254,30 +243,29 @@ async function init() {
     <div class="summary-grid" id="summaryCards"></div>
     <div class="section">
       <h2>Berlin Rent Development by Wohnlage</h2>
-      <p style="font-size:12px;color:#b0b0c0;margin-bottom:10px">Official Mietspiegel base rent values (€/m² net cold) for each Wohnlage tier, 60-90 sqm apartments, 1965-1974 building age.</p>
+      <p style="font-size:12px;color:#b0b0c0;margin-bottom:10px">Official Mietspiegel values (€/m² net cold). by_lage = mean of Mittelwerte in the newest cohort across its size bands — see Methodology.</p>
       <div class="chart-container"><canvas id="mainChart"></canvas></div>
-      <p style="font-size:11px;color:#666680;margin-top:6px;">Click Wohnlage names in the legend to toggle visibility.</p>
     </div>
     <div class="section">
-      <h2>Growth by Wohnlage (2013 → 2023)</h2>
-      <p style="font-size:12px;color:#b0b0c0;margin-bottom:10px">Total rent increase from earliest to latest Mietspiegel edition.</p>
+      <h2>Growth by Wohnlage</h2>
+      <p style="font-size:12px;color:#b0b0c0;margin-bottom:10px">Requires at least two verified editions. Status below.</p>
       <table class="growth-table">
-        <thead><tr><th>Wohnlage</th><th style="text-align:right">2013</th><th style="text-align:right">2023</th><th style="text-align:right">Increase</th><th style="text-align:right">Growth %</th><th style="text-align:right">Annualized</th></tr></thead>
+        <thead><tr><th>Wohnlage</th><th style="text-align:right">From</th><th style="text-align:right">To</th><th style="text-align:right">Increase</th><th style="text-align:right">Growth %</th><th style="text-align:right">Annualized</th></tr></thead>
         <tbody id="growthBody"></tbody>
       </table>
     </div>
     <div class="section">
       <h2>Edition History</h2>
-      <p style="font-size:12px;color:#b0b0c0;margin-bottom:10px">All tracked Berlin Mietspiegel editions with rent values by Wohnlage.</p>
+      <p style="font-size:12px;color:#b0b0c0;margin-bottom:10px">Verified transcribed editions with rent values by Wohnlage.</p>
       <div class="edition-grid" id="editionGrid"></div>
     </div>
     <div class="section">
       <h2>Methodology & Sources</h2>
       <div class="methodology">
-        <p><strong>What this tracks:</strong> The official Berlin Mietspiegel base rent table values for each Wohnlage tier (einfach, mittel, gut), 60-80 sqm apartments, 1965-1974 building age cohort. Values are net cold rent per square meter.</p>
-        <p style="margin-top:6px;"><strong>Data sources:</strong> Values from official Berlin Mietspiegel PDFs published by the Berlin Senate (senatsverwaltung für Stadtentwicklung).</p>
-        <p style="margin-top:6px;"><strong>Editions tracked:</strong> 2013, 2015, 2017, 2019, 2021, 2023. The Berlin Mietspiegel is a "qualifizierter Mietspiegel" — legally binding rent index.</p>
-        <p style="margin-top:6px;"><strong>Key insight:</strong> Berlin rents nearly doubled in 10 years (+103% for mittel Wohnlage). The 2021-2023 period saw the steepest increase (+18.4%) despite Berlin's Mietendeckel (rent freeze) being struck down in 2021.</p>
+        <p><strong>What this tracks:</strong> The official Berliner Mietspiegel table for each Wohnlage tier (einfach, mittel, gut). Values are net cold rent per m², transcribed from the official PDFs.</p>
+        <p style="margin-top:6px;"><strong>by_lage derivation:</strong> mean of Mittelwerte (medians) in the NEWEST Bezugsfertigkeit cohort across all of its size bands. This is a documented, reproducible choice — not a hand-picked cell. The newest cohort is 2003-2017 for the 2023 edition.</p>
+        <p style="margin-top:6px;"><strong>Data sources:</strong> Official PDFs from mietspiegel.berlin.de (Berlin Senate archive).</p>
+        <p style="margin-top:6px;"><strong>Status:</strong> The 2023 edition is transcribed and verified. 2017/2019/2021 PDFs are downloaded (data/raw/) and awaiting transcription. 2013/2015 are not in the official archive. The previous 2013-2023 series was removed because its values could not be reproduced from the official tables.</p>
       </div>
     </div>
   `;

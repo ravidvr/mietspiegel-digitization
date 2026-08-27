@@ -1,44 +1,562 @@
 {
-  "schema_version": "1.0",
-  "description": "Historical Berlin Mietspiegel editions and base rent values by Wohnlage",
-  "last_updated": "2026-07-06",
+  "schema_version": "2.0",
   "city": "Berlin",
-  "cities": [
-    {
-      "city": "Berlin",
-      "state": "Berlin",
-      "population": 3777000,
-      "mietspiegel_type": "qualifiziert",
-      "publication_cycle_years": 2,
-      "editions": [
-        {
-          "year": 2021,
-          "type": "qualifiziert",
-          "base_rent_per_sqm": 10.56,
-          "baujahr_cohort": "1965-1974",
-          "source": "Berliner Mietspiegel 2021"
-        },
-        {
-          "year": 2023,
-          "type": "qualifiziert",
-          "base_rent_per_sqm": 12.5,
-          "baujahr_cohort": "1965-1974",
-          "source": "Berliner Mietspiegel 2023"
-        }
-      ],
-      "by_lage": {
-        "2021": {
-          "einfach": 8.48,
-          "mittel": 10.56,
-          "gut": 12.94
-        },
-        "2023": {
-          "einfach": 9.98,
-          "mittel": 12.5,
-          "gut": 15.4
-        }
-      },
-      "source_url_2023": "https://www.berlin.de/mietspiegel/"
+  "description": "Berlin Mietspiegel editions — verified transcription from official PDFs",
+  "last_updated": "2026-08-27",
+  "provenance": {
+    "2023": "transcribed from data/raw/mietspiegeltabelle2023.pdf, verified",
+    "2017/2019/2021": "PDFs in data/raw/, transcription pending",
+    "2013/2015": "not available in official archive"
+  },
+  "by_lage": {
+    "2023": {
+      "einfach": 12.94,
+      "mittel": 10.66,
+      "gut": 11.23
     }
-  ]
+  },
+  "editions": [
+    {
+      "year": 2023,
+      "stichtag": "01.09.2022",
+      "source": "data/raw/mietspiegeltabelle2023.pdf (official, mietspiegel.berlin.de)",
+      "cohorts": [
+        "bis 1918",
+        "1919-1949",
+        "1950-1964",
+        "1965-1972",
+        "1973-1990 West",
+        "1973-1990 Ost",
+        "1991-2002",
+        "2003-2017"
+      ],
+      "rows": [
+        {
+          "lage": "einfach",
+          "size": "<40",
+          "values": [
+            {
+              "mittelwert": 8.42,
+              "untere": 5.86,
+              "obere": 13.82
+            },
+            {
+              "mittelwert": 8.32,
+              "untere": 6.4,
+              "obere": 9.25
+            },
+            {
+              "mittelwert": 6.85,
+              "untere": 5.9,
+              "obere": 9.62
+            },
+            {
+              "mittelwert": 7.24,
+              "untere": 6.39,
+              "obere": 9.41
+            },
+            {
+              "mittelwert": 8.06,
+              "untere": 7.92,
+              "obere": 9.43
+            },
+            {
+              "mittelwert": 7.61,
+              "untere": 7.3,
+              "obere": 8.5
+            },
+            null,
+            null
+          ]
+        },
+        {
+          "lage": "mittel",
+          "size": "<40",
+          "values": [
+            {
+              "mittelwert": 8.98,
+              "untere": 7.16,
+              "obere": 13.04
+            },
+            {
+              "mittelwert": 8.16,
+              "untere": 6.86,
+              "obere": 9.11
+            },
+            {
+              "mittelwert": 7.3,
+              "untere": 6.02,
+              "obere": 9.64
+            },
+            {
+              "mittelwert": 7.0,
+              "untere": 6.27,
+              "obere": 8.78
+            },
+            {
+              "mittelwert": 8.24,
+              "untere": 5.68,
+              "obere": 8.7
+            },
+            {
+              "mittelwert": 7.39,
+              "untere": 6.87,
+              "obere": 7.7
+            },
+            null,
+            null
+          ]
+        },
+        {
+          "lage": "gut",
+          "size": "<40",
+          "values": [
+            {
+              "mittelwert": 12.19,
+              "untere": 6.97,
+              "obere": 15.17
+            },
+            {
+              "mittelwert": 7.99,
+              "untere": 6.86,
+              "obere": 10.1
+            },
+            {
+              "mittelwert": 7.96,
+              "untere": 6.78,
+              "obere": 9.92
+            },
+            {
+              "mittelwert": 9.49,
+              "untere": 8.68,
+              "obere": 10.39
+            },
+            {
+              "mittelwert": 8.85,
+              "untere": 7.96,
+              "obere": 10.75
+            },
+            {
+              "mittelwert": 7.6,
+              "untere": 7.14,
+              "obere": 9.31
+            },
+            null,
+            null
+          ]
+        },
+        {
+          "lage": "einfach",
+          "size": "40-60",
+          "values": [
+            {
+              "mittelwert": 7.19,
+              "untere": 5.61,
+              "obere": 10.59
+            },
+            {
+              "mittelwert": 6.82,
+              "untere": 5.78,
+              "obere": 8.73
+            },
+            {
+              "mittelwert": 6.4,
+              "untere": 5.73,
+              "obere": 8.53
+            },
+            {
+              "mittelwert": 6.26,
+              "untere": 5.39,
+              "obere": 7.47
+            },
+            {
+              "mittelwert": 7.95,
+              "untere": 6.61,
+              "obere": 9.22
+            },
+            {
+              "mittelwert": 6.41,
+              "untere": 6.09,
+              "obere": 6.98
+            },
+            {
+              "mittelwert": 8.91,
+              "untere": 8.21,
+              "obere": 10.87
+            },
+            {
+              "mittelwert": 12.37,
+              "untere": 10.34,
+              "obere": 16.11
+            }
+          ]
+        },
+        {
+          "lage": "mittel",
+          "size": "40-60",
+          "values": [
+            {
+              "mittelwert": 7.92,
+              "untere": 5.77,
+              "obere": 10.92
+            },
+            {
+              "mittelwert": 7.18,
+              "untere": 6.0,
+              "obere": 8.27
+            },
+            {
+              "mittelwert": 6.51,
+              "untere": 5.74,
+              "obere": 8.14
+            },
+            {
+              "mittelwert": 6.38,
+              "untere": 5.79,
+              "obere": 7.4
+            },
+            {
+              "mittelwert": 8.24,
+              "untere": 6.78,
+              "obere": 9.35
+            },
+            {
+              "mittelwert": 6.35,
+              "untere": 5.75,
+              "obere": 7.14
+            },
+            {
+              "mittelwert": 8.72,
+              "untere": 7.92,
+              "obere": 9.77
+            },
+            {
+              "mittelwert": 10.5,
+              "untere": 7.76,
+              "obere": 13.32
+            }
+          ]
+        },
+        {
+          "lage": "gut",
+          "size": "40-60",
+          "values": [
+            {
+              "mittelwert": 8.57,
+              "untere": 6.39,
+              "obere": 11.69
+            },
+            {
+              "mittelwert": 7.36,
+              "untere": 6.41,
+              "obere": 9.74
+            },
+            {
+              "mittelwert": 6.95,
+              "untere": 6.02,
+              "obere": 8.37
+            },
+            {
+              "mittelwert": 7.6,
+              "untere": 5.64,
+              "obere": 10.66
+            },
+            {
+              "mittelwert": 8.97,
+              "untere": 7.86,
+              "obere": 9.82
+            },
+            {
+              "mittelwert": 6.41,
+              "untere": 6.21,
+              "obere": 7.42
+            },
+            {
+              "mittelwert": 10.39,
+              "untere": 8.67,
+              "obere": 11.85
+            },
+            {
+              "mittelwert": 10.53,
+              "untere": 8.26,
+              "obere": 12.76
+            }
+          ]
+        },
+        {
+          "lage": "einfach",
+          "size": "60-90",
+          "values": [
+            {
+              "mittelwert": 6.75,
+              "untere": 5.14,
+              "obere": 10.66
+            },
+            {
+              "mittelwert": 6.25,
+              "untere": 5.4,
+              "obere": 7.75
+            },
+            {
+              "mittelwert": 5.94,
+              "untere": 5.14,
+              "obere": 7.25
+            },
+            {
+              "mittelwert": 5.81,
+              "untere": 5.21,
+              "obere": 6.48
+            },
+            {
+              "mittelwert": 7.75,
+              "untere": 6.48,
+              "obere": 9.59
+            },
+            {
+              "mittelwert": 5.62,
+              "untere": 5.31,
+              "obere": 6.1
+            },
+            {
+              "mittelwert": 8.22,
+              "untere": 6.64,
+              "obere": 9.15
+            },
+            {
+              "mittelwert": 13.73,
+              "untere": 9.04,
+              "obere": 15.8
+            }
+          ]
+        },
+        {
+          "lage": "mittel",
+          "size": "60-90",
+          "values": [
+            {
+              "mittelwert": 7.21,
+              "untere": 5.15,
+              "obere": 10.66
+            },
+            {
+              "mittelwert": 6.65,
+              "untere": 5.43,
+              "obere": 7.8
+            },
+            {
+              "mittelwert": 6.4,
+              "untere": 5.63,
+              "obere": 7.55
+            },
+            {
+              "mittelwert": 6.08,
+              "untere": 5.42,
+              "obere": 6.82
+            },
+            {
+              "mittelwert": 8.53,
+              "untere": 6.07,
+              "obere": 9.71
+            },
+            {
+              "mittelwert": 5.62,
+              "untere": 4.9,
+              "obere": 6.13
+            },
+            {
+              "mittelwert": 8.42,
+              "untere": 7.17,
+              "obere": 9.62
+            },
+            {
+              "mittelwert": 10.75,
+              "untere": 9.5,
+              "obere": 13.0
+            }
+          ]
+        },
+        {
+          "lage": "gut",
+          "size": "60-90",
+          "values": [
+            {
+              "mittelwert": 7.98,
+              "untere": 5.99,
+              "obere": 11.64
+            },
+            {
+              "mittelwert": 7.57,
+              "untere": 6.3,
+              "obere": 9.75
+            },
+            {
+              "mittelwert": 6.97,
+              "untere": 5.86,
+              "obere": 8.92
+            },
+            {
+              "mittelwert": 7.08,
+              "untere": 5.54,
+              "obere": 8.85
+            },
+            {
+              "mittelwert": 8.86,
+              "untere": 7.04,
+              "obere": 10.49
+            },
+            {
+              "mittelwert": 5.93,
+              "untere": 5.45,
+              "obere": 6.7
+            },
+            {
+              "mittelwert": 9.69,
+              "untere": 7.94,
+              "obere": 11.74
+            },
+            {
+              "mittelwert": 10.89,
+              "untere": 9.42,
+              "obere": 13.59
+            }
+          ]
+        },
+        {
+          "lage": "einfach",
+          "size": "90+",
+          "values": [
+            {
+              "mittelwert": 6.64,
+              "untere": 5.1,
+              "obere": 9.74
+            },
+            {
+              "mittelwert": 6.53,
+              "untere": 5.48,
+              "obere": 7.63
+            },
+            null,
+            {
+              "mittelwert": 5.83,
+              "untere": 5.21,
+              "obere": 6.45
+            },
+            {
+              "mittelwert": 7.66,
+              "untere": 6.21,
+              "obere": 8.82
+            },
+            {
+              "mittelwert": 5.58,
+              "untere": 5.09,
+              "obere": 5.84
+            },
+            {
+              "mittelwert": 8.48,
+              "untere": 7.07,
+              "obere": 9.93
+            },
+            {
+              "mittelwert": 12.73,
+              "untere": 9.07,
+              "obere": 14.67
+            }
+          ]
+        },
+        {
+          "lage": "mittel",
+          "size": "90+",
+          "values": [
+            {
+              "mittelwert": 7.21,
+              "untere": 5.2,
+              "obere": 10.45
+            },
+            {
+              "mittelwert": 6.41,
+              "untere": 5.44,
+              "obere": 9.06
+            },
+            {
+              "mittelwert": 7.21,
+              "untere": 5.99,
+              "obere": 12.16
+            },
+            {
+              "mittelwert": 5.75,
+              "untere": 5.4,
+              "obere": 6.55
+            },
+            {
+              "mittelwert": 8.14,
+              "untere": 6.37,
+              "obere": 9.23
+            },
+            {
+              "mittelwert": 5.6,
+              "untere": 4.91,
+              "obere": 5.92
+            },
+            {
+              "mittelwert": 8.73,
+              "untere": 7.68,
+              "obere": 10.16
+            },
+            {
+              "mittelwert": 10.74,
+              "untere": 9.38,
+              "obere": 13.56
+            }
+          ]
+        },
+        {
+          "lage": "gut",
+          "size": "90+",
+          "values": [
+            {
+              "mittelwert": 7.81,
+              "untere": 5.84,
+              "obere": 11.17
+            },
+            {
+              "mittelwert": 7.13,
+              "untere": 6.06,
+              "obere": 9.52
+            },
+            {
+              "mittelwert": 8.77,
+              "untere": 7.13,
+              "obere": 9.91
+            },
+            {
+              "mittelwert": 8.84,
+              "untere": 8.03,
+              "obere": 9.48
+            },
+            {
+              "mittelwert": 9.59,
+              "untere": 7.53,
+              "obere": 12.72
+            },
+            {
+              "mittelwert": 5.67,
+              "untere": 5.42,
+              "obere": 6.32
+            },
+            {
+              "mittelwert": 10.45,
+              "untere": 8.71,
+              "obere": 12.47
+            },
+            {
+              "mittelwert": 12.26,
+              "untere": 9.95,
+              "obere": 14.59
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "note": "Old interpolated series removed — replaced with verified values only."
 }

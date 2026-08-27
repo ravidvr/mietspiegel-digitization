@@ -18,8 +18,8 @@ All calculations are relative to Berlin. Every z-score, average, and comparison 
 - **12 Bezirke** with estimated average rents (derived from 400,505 address-level points)
 - **467 Immoscout24 market-rent grid cells** (RWI-GEO-REDX PUF v16, Berlin-only)
 - **1,155 Zensus 2022 census rent cells** (100m resolution, aggregated to 1km, Berlin-only)
-- **Berlin Mietspiegel 2024** (full rent table: 3 Wohnlagen x 8 Baujahre x 4 sizes)
-- **6 historical editions** (2013-2023, all three Wohnlagen tracked)
+- **Berlin Mietspiegel 2024** (official table: 163 rows, 11 Baujahr groups incl. West/Ost, per-cohort size bands, with untere/obere Spanne)
+- **Official historical editions** — 2023 table transcribed & verified (PDFs for 2017/2019/2021 in data/raw/ awaiting transcription; 2013/2015 not in the official archive)
 
 ## Dashboard Features
 

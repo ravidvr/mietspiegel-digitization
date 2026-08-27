@@ -1,20 +1,6 @@
 {
-  "schema_version": "2.0",
-  "city": "Berlin",
-  "description": "Berlin Mietspiegel editions — verified transcription from official PDFs",
-  "last_updated": "2026-08-27",
-  "provenance": {
-    "2023": "transcribed from data/raw/mietspiegeltabelle2023.pdf, verified",
-    "2017/2019/2021": "PDFs in data/raw/, transcription pending",
-    "2013/2015": "not available in official archive"
-  },
-  "by_lage": {
-    "2023": {
-      "einfach": 12.94,
-      "mittel": 10.66,
-      "gut": 11.23
-    }
-  },
+  "schema": "official-edition-transcription-v1",
+  "note": "Manual transcription from the official PDF. by_lage = mean of Mittelwerte in the newest cohort across size bands. 2017/2019/2021 PDFs in data/raw/ pending transcription; 2013/2015 not in the official archive.",
   "editions": [
     {
       "year": 2023,
@@ -558,5 +544,11 @@
       ]
     }
   ],
-  "note": "Old interpolated series removed — replaced with verified values only."
+  "by_lage_series": {
+    "2023": {
+      "einfach": 12.94,
+      "mittel": 10.66,
+      "gut": 11.23
+    }
+  }
 }
