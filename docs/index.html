@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Mietspiegel Digitization — German Rent Data, Made Accessible" />
-<meta property="og:description" content="23 cities digitized from official PDFs. 3 reconciled sources. Validated pipelines. Bilingual dashboards. All values are Nettokaltmiete (net cold rent)." />
+<meta property="og:description" content="Berlin Mietspiegel digitized from the official PDF (163 rows, verified) + 4 historical editions. Cross-city dataset with documented verification status. All values are Nettokaltmiete (net cold rent)." />
 <meta property="og:image" content="https://ravidvr.github.io/mietspiegel-digitization/og-image.png" />
 <meta property="og:url" content="https://ravidvr.github.io/mietspiegel-digitization/" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -280,7 +280,7 @@ body{
     <span class="sub">German rent data, made accessible</span>
   </div>
   <div class="h-right">
-    <span class="bdg">23 cities</span>
+    <span class="bdg">Berlin verified · 23 city datasets</span>
     <span class="bdg g">3 sources</span>
     <a class="h-btn" href="berlin.html">🗺️ Map</a>
     <a class="h-btn" href="cross-city-comparison.html">📊 Compare</a>
@@ -296,12 +296,12 @@ body{
 
   <!-- ── Hero ──────────────────────────────────────────────── -->
   <div class="hero">
-    <div class="hero-kicker">Open Data · 23 Cities · Validated</div>
+    <div class="hero-kicker">Open Data · Berlin Verified · Cross-City in Progress</div>
     <h2>German rent indices,<br><em>freed from PDFs</em></h2>
     <p>Every Mietspiegel in Germany digitized into validated, searchable, interactive data. Three independent sources reconciled. All values are <strong>Nettokaltmiete (net cold rent)</strong>.</p>
     <div class="hero-actions">
       <a href="berlin.html" class="btn-primary">🗺️ Explore Berlin Map →</a>
-      <a href="cross-city-comparison.html" class="btn-ghost">Compare 23 Cities</a>
+      <a href="cross-city-comparison.html" class="btn-ghost">Compare Cities</a>
     </div>
   </div>
 
@@ -434,7 +434,7 @@ body{
   <!-- ── City Rankings ───────────────────────────────────────── -->
   <div class="narrative" id="s8">
     <div class="narrative-num">8</div>
-    <h3>23 cities, ranked</h3>
+    <h3>Cities, ranked (verification status documented)</h3>
     <p class="lede">Munich is <strong>4.5×</strong> more expensive than Chemnitz. But the gut/einfach spread tells a different story — Essen has the highest inequality (2.2×), Dresden the most equitable (1.05×).</p>
     <div class="data-table" id="city-table">
       <div class="loading"><div class="spinner"></div> Loading cities...</div>
@@ -451,7 +451,7 @@ body{
     <div class="eng-grid">
       <div class="eng-item">
         <div class="ei-title">🗄️ BigQuery Star Schema</div>
-        <div class="ei-desc">Fact + dimension tables for 23 cities. One row per Mietspiegel cell.</div>
+        <div class="ei-desc">Fact + dimension tables for 23 city datasets. One row per Mietspiegel cell. Each city JSON carries verification_status — Berlin is fully verified.</div>
         <a href="https://github.com/ravidvr/mietspiegel-digitization/blob/main/analytics/berlin_bigquery_schema.sql" target="_blank">View SQL →</a>
       </div>
       <div class="eng-item">

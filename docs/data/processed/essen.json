@@ -102,5 +102,7 @@
         }
       ]
     }
-  ]
+  ],
+  "verification_status": "no_source_document",
+  "verification_note": "No source PDF in the repository; the committed table cannot be traced to a document. Pending re-extraction."
 }

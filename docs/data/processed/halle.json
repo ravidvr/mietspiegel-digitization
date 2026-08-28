@@ -215,5 +215,7 @@
       ]
     }
   ],
-  "notes": "Formula: Basiswert(floor area) × (1 + (Baujahr% + Lage%)/100). Baujahr: bis1918+5 ... 2016++50. Wohnlage A-D mapped to gut=+10(B)/mittel=+5(C)/einfach=0(D). Source: Mietspiegel Halle (Saale) 2026-2027 PDF."
+  "notes": "Formula: Basiswert(floor area) × (1 + (Baujahr% + Lage%)/100). Baujahr: bis1918+5 ... 2016++50. Wohnlage A-D mapped to gut=+10(B)/mittel=+5(C)/einfach=0(D). Source: Mietspiegel Halle (Saale) 2026-2027 PDF.",
+  "verification_status": "no_source_document",
+  "verification_note": "No source PDF in the repository; the committed table cannot be traced to a document. Pending re-extraction."
 }

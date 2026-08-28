@@ -90,5 +90,7 @@
       ]
     }
   ],
-  "notes": "Single lage category (mittel). No Wohnlage differentiation in Mainz. Mainz sizes: bis 40, 40-60, 60-80, 80+. 60-80 mapped to 60-90, 80+ mapped to über 90. Some cells have no data (too few samples)."
+  "notes": "Single lage category (mittel). No Wohnlage differentiation in Mainz. Mainz sizes: bis 40, 40-60, 60-80, 80+. 60-80 mapped to 60-90, 80+ mapped to über 90. Some cells have no data (too few samples).",
+  "verification_status": "partial",
+  "verification_note": "Values trace to mainz-2025.pdf (~90%) but the committed Baujahr groups do not match the PDF's cohorts."
 }

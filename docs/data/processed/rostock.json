@@ -214,5 +214,7 @@
       ]
     }
   ],
-  "notes": "Formula: Ø Basismiete(per size range) + Baujahr-Zuschlag + Wohnlage-Zuschlag. Wohnlage values computed as average of street directory categories. Rostock has W1/W2 water proximity modifiers. Einfach ~-0.89, Mittel ~0.0, Gut ~+0.88."
+  "notes": "Formula: Ø Basismiete(per size range) + Baujahr-Zuschlag + Wohnlage-Zuschlag. Wohnlage values computed as average of street directory categories. Rostock has W1/W2 water proximity modifiers. Einfach ~-0.89, Mittel ~0.0, Gut ~+0.88.",
+  "verification_status": "unverified",
+  "verification_note": "Raw PDF rostock-2026.pdf exists in data/raw/ but the committed table does not reproduce from it (scripts/audit_city_sources.py). Pending re-extraction."
 }

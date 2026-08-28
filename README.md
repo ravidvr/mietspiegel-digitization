@@ -4,7 +4,16 @@
 [![Data Validation](https://github.com/ravidvr/mietspiegel-digitization/actions/workflows/validate-and-deploy.yml/badge.svg)](https://github.com/ravidvr/mietspiegel-digitization/actions/workflows/validate-and-deploy.yml)
 [![GitHub Pages](https://img.shields.io/badge/demo-live-brightgreen)](https://ravidvr.github.io/mietspiegel-digitization/)
 
-Digitizes German municipal rent indices (Mietspiegel) — bilingual DE/EN, 23 cities, 3 reconciled data sources. All values are **Nettokaltmiete (net cold rent)** in €/m²/month.
+Digitizes German municipal rent indices (Mietspiegel) — bilingual DE/EN, 23 city datasets, 3 reconciled data sources. All values are **Nettokaltmiete (net cold rent)** in €/m²/month.
+
+**Verification status (2026-08-27):** the Berlin 2024 table is fully verified
+(163 rows extracted from the official PDF, PDF-diff gated) and the four
+archived historical editions (2017-2023) are verified. Mainz values partially
+trace to its source PDF. The remaining city tables are stamped
+`unverified` / `no_source_document` in their JSON files and are queued for
+re-extraction — see `scripts/audit_city_sources.py` and
+`scripts/stamp_verification_status.py`. Five city files are metadata-only
+stubs with no tables.
 
 **Live dashboard:** https://ravidvr.github.io/mietspiegel-digitization/
 **📐 Metric dictionary:** [docs/METRICS.md](docs/METRICS.md) — cold vs warm rent, data sources, derived metrics
@@ -69,7 +78,7 @@ mietspiegel-digitization/
 │   ├── berlin.html                ← Interactive Berlin map (heatmap, Rent Check, Budget Check, Story)
 │   ├── experiments.html           ← A/B policy simulator results with MDE and impact analysis
 │   ├── data.html                  ← Data explorer: downloads, methodology, schema docs
-│   ├── cross-city-comparison.html ← 23-city comparison table + Berlin Mietspiegel table
+│   ├── cross-city-comparison.html ← cross-city comparison table + Berlin Mietspiegel table
 │   ├── historical_trends.html     ← Berlin rent history by Wohnlage (Chart.js)
 │   ├── about.html                 ← Project documentation
 │   └── data/processed/            ← All dashboard data (served statically)

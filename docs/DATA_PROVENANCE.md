@@ -84,3 +84,28 @@ The Berlin 2024 table is no longer a hand-normalized grid. The pipeline is:
 
 The previous uniform 96-cell grid and interpolated 2013-2023 series were
 removed — their values could not be reproduced from the official documents.
+
+### Cross-city audit (2026-08-27)
+
+`scripts/audit_city_sources.py` checks every non-Berlin city table against
+the raw PDFs in `data/raw/` (value-level string match + cohort match).
+Result: of 22 non-Berlin cities, only **Mainz** partially traces
+(~90% of values appear in mainz-2025.pdf; its Baujahr groups don't).
+Rostock/Stuttgart and all others either have no source PDF in the repo or
+their committed values/cohorts do not reproduce from the PDF that exists.
+
+Every city JSON now carries `verification_status` + `verification_note`
+(stamped by `scripts/stamp_verification_status.py`):
+
+| status | cities |
+|---|---|
+| verified | Berlin (PDF-diff gated) |
+| partial | Mainz |
+| unverified | Augsburg, Bonn, Dresden, Düsseldorf, Frankfurt, Hamburg, Hannover, Kiel, Lübeck, Rostock, Stuttgart (PDF present, values don't reproduce) |
+| no_source_document | Aachen, Braunschweig, Bremen, Essen, Freiburg, Halle, Köln, Leipzig, München, Nürnberg (no PDF in repo) |
+| empty_stub | Bielefeld, Chemnitz, Duisburg, Mannheim, Mönchengladbach (no table) |
+
+The cross-city claims on the landing page/README were corrected to match.
+Re-extracting the remaining cities (each with a city-specific format) is the
+outstanding data work — Berlin's pipeline (extract → PDF-diff verify →
+derive) is the template.

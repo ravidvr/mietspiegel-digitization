@@ -247,5 +247,7 @@
       ]
     }
   ],
-  "notes": "Formula: Ø Basismiete(per size range) + Baujahr-Zuschlag + Wohnlage-Zuschlag(point-based). Wohnlage: einfach=≤7.0Pkt, mittel=7.5-11.0Pkt, gut=11.5-14.0Pkt, sehr gut=≥14.5Pkt. Zuschlag slope=0.1143€/Pkt."
+  "notes": "Formula: Ø Basismiete(per size range) + Baujahr-Zuschlag + Wohnlage-Zuschlag(point-based). Wohnlage: einfach=≤7.0Pkt, mittel=7.5-11.0Pkt, gut=11.5-14.0Pkt, sehr gut=≥14.5Pkt. Zuschlag slope=0.1143€/Pkt.",
+  "verification_status": "unverified",
+  "verification_note": "Raw PDF bonn.pdf exists in data/raw/ but the committed table does not reproduce from it (scripts/audit_city_sources.py). Pending re-extraction."
 }

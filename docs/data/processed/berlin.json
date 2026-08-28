@@ -1722,5 +1722,7 @@
       ]
     }
   ],
-  "generated_at": null
+  "generated_at": null,
+  "verification_status": "verified",
+  "verification_note": "Extracted 163/163 rows from the official 2024 PDF; PDF-diff gated (scripts/verify_berlin_extraction.py)."
 }

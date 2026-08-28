@@ -148,5 +148,7 @@
         }
       ]
     }
-  ]
+  ],
+  "verification_status": "unverified",
+  "verification_note": "Raw PDF dresden-2025.pdf exists in data/raw/ but the committed table does not reproduce from it (scripts/audit_city_sources.py). Pending re-extraction."
 }

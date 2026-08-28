@@ -258,5 +258,7 @@
       ]
     }
   ],
-  "notes": "Direct Mittelwert table for mittlere Wohnlage. Gute Lage +0.44, Einfache Lage -0.47. Note: Lübeck size categories are 25-45, 45-65, 65-85, 85+. Values for 2002-2013/85+ missing (too few data points)."
+  "notes": "Direct Mittelwert table for mittlere Wohnlage. Gute Lage +0.44, Einfache Lage -0.47. Note: Lübeck size categories are 25-45, 45-65, 65-85, 85+. Values for 2002-2013/85+ missing (too few data points).",
+  "verification_status": "unverified",
+  "verification_note": "Raw PDF luebeck-2025.pdf exists in data/raw/ but the committed table does not reproduce from it (scripts/audit_city_sources.py). Pending re-extraction."
 }

@@ -305,5 +305,7 @@
       ]
     }
   ],
-  "notes": "Formula: Ø Basismiete(per size range) × (1 + (Baujahr% + Lage%)/100). Kiel uses percentage-based Zu-/Abschläge. Wohnlage from street directory."
+  "notes": "Formula: Ø Basismiete(per size range) × (1 + (Baujahr% + Lage%)/100). Kiel uses percentage-based Zu-/Abschläge. Wohnlage from street directory.",
+  "verification_status": "unverified",
+  "verification_note": "Raw PDF kiel.pdf exists in data/raw/ but the committed table does not reproduce from it (scripts/audit_city_sources.py). Pending re-extraction."
 }
