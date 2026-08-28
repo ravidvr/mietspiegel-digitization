@@ -1,220 +1,666 @@
 {
   "city": "Rostock",
   "city_slug": "rostock",
+  "slug": "rostock",
   "state": "Mecklenburg-Vorpommern",
   "lat": 54.0924,
   "lng": 12.0991,
-  "population": 209000,
+  "population": 210000,
   "year": 2026,
   "type": "qualifiziert",
-  "lage_categories": [
-    "einfach",
-    "mittel",
-    "gut"
-  ],
-  "baujahr_groups": [
-    "bis 1918",
-    "1919-1945",
-    "1946-1959",
-    "1960-1990",
-    "1991-2009",
-    "2010-2015",
-    "2016-2020",
-    "2021-2022"
-  ],
-  "size_categories": [
-    "bis 40 m²",
-    "40-60 m²",
-    "60-90 m²",
-    "über 90 m²"
-  ],
-  "source_url": "https://www.rostock.de/",
-  "tables": [
+  "source": "Qualifizierter Mietspiegel 2026 der Hanse- und Universitätsstadt Rostock. C = A + B (Tabelle 3); Spanne: C - 0,90 bis C + 0,83 €/m².",
+  "source_url": "https://www.rostock.de/mietspiegel",
+  "source_file": "data/raw/rostock-2026.pdf",
+  "schema_note": "official_rows = Tabelle 1 (Basis-Nettokaltmiete per Wohnfläche). Baujahr/feature Zu-/Abschläge in baujahr_factors + adjustments. tables = derived legacy 4-band rollup (mean base per band + Baujahr factor).",
+  "baujahr_factors_eur_per_sqm": [
     {
-      "lage": "einfach",
-      "rows": [
-        {
-          "baujahr": "bis 1918",
-          "bis_40": 7.66,
-          "40_60": 7.04,
-          "60_90": 6.69,
-          "ueber_90": 6.56
-        },
-        {
-          "baujahr": "1919-1945",
-          "bis_40": 7.55,
-          "40_60": 6.93,
-          "60_90": 6.58,
-          "ueber_90": 6.45
-        },
-        {
-          "baujahr": "1946-1959",
-          "bis_40": 7.32,
-          "40_60": 6.7,
-          "60_90": 6.35,
-          "ueber_90": 6.22
-        },
-        {
-          "baujahr": "1960-1990",
-          "bis_40": 6.98,
-          "40_60": 6.36,
-          "60_90": 6.01,
-          "ueber_90": 5.88
-        },
-        {
-          "baujahr": "1991-2009",
-          "bis_40": 8.02,
-          "40_60": 7.4,
-          "60_90": 7.05,
-          "ueber_90": 6.92
-        },
-        {
-          "baujahr": "2010-2015",
-          "bis_40": 8.81,
-          "40_60": 8.19,
-          "60_90": 7.84,
-          "ueber_90": 7.71
-        },
-        {
-          "baujahr": "2016-2020",
-          "bis_40": 9.84,
-          "40_60": 9.22,
-          "60_90": 8.87,
-          "ueber_90": 8.74
-        },
-        {
-          "baujahr": "2021-2022",
-          "bis_40": 11.12,
-          "40_60": 10.5,
-          "60_90": 10.15,
-          "ueber_90": 10.02
-        }
-      ]
+      "baujahr": "bis 1918",
+      "faktor": 0.68
     },
+    {
+      "baujahr": "1919-1945",
+      "faktor": 0.57
+    },
+    {
+      "baujahr": "1946-1959",
+      "faktor": 0.34
+    },
+    {
+      "baujahr": "1960-1990",
+      "faktor": 0.0
+    },
+    {
+      "baujahr": "1991-2009",
+      "faktor": 1.04
+    },
+    {
+      "baujahr": "2010-2015",
+      "faktor": 1.83
+    },
+    {
+      "baujahr": "2016-2020",
+      "faktor": 2.86
+    },
+    {
+      "baujahr": "2021-2022",
+      "faktor": 4.14
+    }
+  ],
+  "adjustments_eur_per_sqm": [
+    {
+      "merkmal": "Garten (alleinige oder gemeinschaftliche Nutzung)",
+      "zuschlag": 0.34
+    },
+    {
+      "merkmal": "Kein Balkon/(Dach-)Terrasse/Loggia",
+      "abschlag": -0.19
+    },
+    {
+      "merkmal": "1 Modernisierung (ab 2010)",
+      "zuschlag": 0.08
+    },
+    {
+      "merkmal": "2 Modernisierungen (ab 2010)",
+      "zuschlag": 0.15
+    },
+    {
+      "merkmal": "3 Modernisierungen (ab 2010)",
+      "zuschlag": 0.23
+    }
+  ],
+  "spanne": {
+    "untere": -0.9,
+    "obere": 0.83
+  },
+  "official_rows": [
+    {
+      "wohnflaeche_m2": 20,
+      "basis_nettokaltmiete": 8.32
+    },
+    {
+      "wohnflaeche_m2": 53,
+      "basis_nettokaltmiete": 7.17
+    },
+    {
+      "wohnflaeche_m2": 86,
+      "basis_nettokaltmiete": 6.82
+    },
+    {
+      "wohnflaeche_m2": 119,
+      "basis_nettokaltmiete": 6.8
+    },
+    {
+      "wohnflaeche_m2": 21,
+      "basis_nettokaltmiete": 8.26
+    },
+    {
+      "wohnflaeche_m2": 54,
+      "basis_nettokaltmiete": 7.15
+    },
+    {
+      "wohnflaeche_m2": 87,
+      "basis_nettokaltmiete": 6.82
+    },
+    {
+      "wohnflaeche_m2": 120,
+      "basis_nettokaltmiete": 6.8
+    },
+    {
+      "wohnflaeche_m2": 22,
+      "basis_nettokaltmiete": 8.22
+    },
+    {
+      "wohnflaeche_m2": 55,
+      "basis_nettokaltmiete": 7.13
+    },
+    {
+      "wohnflaeche_m2": 88,
+      "basis_nettokaltmiete": 6.82
+    },
+    {
+      "wohnflaeche_m2": 121,
+      "basis_nettokaltmiete": 6.8
+    },
+    {
+      "wohnflaeche_m2": 23,
+      "basis_nettokaltmiete": 8.16
+    },
+    {
+      "wohnflaeche_m2": 56,
+      "basis_nettokaltmiete": 7.11
+    },
+    {
+      "wohnflaeche_m2": 89,
+      "basis_nettokaltmiete": 6.81
+    },
+    {
+      "wohnflaeche_m2": 122,
+      "basis_nettokaltmiete": 6.8
+    },
+    {
+      "wohnflaeche_m2": 24,
+      "basis_nettokaltmiete": 8.12
+    },
+    {
+      "wohnflaeche_m2": 57,
+      "basis_nettokaltmiete": 7.09
+    },
+    {
+      "wohnflaeche_m2": 90,
+      "basis_nettokaltmiete": 6.81
+    },
+    {
+      "wohnflaeche_m2": 123,
+      "basis_nettokaltmiete": 6.79
+    },
+    {
+      "wohnflaeche_m2": 25,
+      "basis_nettokaltmiete": 8.07
+    },
+    {
+      "wohnflaeche_m2": 58,
+      "basis_nettokaltmiete": 7.08
+    },
+    {
+      "wohnflaeche_m2": 91,
+      "basis_nettokaltmiete": 6.81
+    },
+    {
+      "wohnflaeche_m2": 124,
+      "basis_nettokaltmiete": 6.79
+    },
+    {
+      "wohnflaeche_m2": 26,
+      "basis_nettokaltmiete": 8.02
+    },
+    {
+      "wohnflaeche_m2": 59,
+      "basis_nettokaltmiete": 7.06
+    },
+    {
+      "wohnflaeche_m2": 92,
+      "basis_nettokaltmiete": 6.81
+    },
+    {
+      "wohnflaeche_m2": 125,
+      "basis_nettokaltmiete": 6.79
+    },
+    {
+      "wohnflaeche_m2": 27,
+      "basis_nettokaltmiete": 7.98
+    },
+    {
+      "wohnflaeche_m2": 60,
+      "basis_nettokaltmiete": 7.05
+    },
+    {
+      "wohnflaeche_m2": 93,
+      "basis_nettokaltmiete": 6.81
+    },
+    {
+      "wohnflaeche_m2": 126,
+      "basis_nettokaltmiete": 6.79
+    },
+    {
+      "wohnflaeche_m2": 28,
+      "basis_nettokaltmiete": 7.94
+    },
+    {
+      "wohnflaeche_m2": 61,
+      "basis_nettokaltmiete": 7.03
+    },
+    {
+      "wohnflaeche_m2": 94,
+      "basis_nettokaltmiete": 6.8
+    },
+    {
+      "wohnflaeche_m2": 127,
+      "basis_nettokaltmiete": 6.79
+    },
+    {
+      "wohnflaeche_m2": 29,
+      "basis_nettokaltmiete": 7.89
+    },
+    {
+      "wohnflaeche_m2": 62,
+      "basis_nettokaltmiete": 7.02
+    },
+    {
+      "wohnflaeche_m2": 95,
+      "basis_nettokaltmiete": 6.8
+    },
+    {
+      "wohnflaeche_m2": 128,
+      "basis_nettokaltmiete": 6.78
+    },
+    {
+      "wohnflaeche_m2": 30,
+      "basis_nettokaltmiete": 7.85
+    },
+    {
+      "wohnflaeche_m2": 63,
+      "basis_nettokaltmiete": 7.01
+    },
+    {
+      "wohnflaeche_m2": 96,
+      "basis_nettokaltmiete": 6.8
+    },
+    {
+      "wohnflaeche_m2": 129,
+      "basis_nettokaltmiete": 6.78
+    },
+    {
+      "wohnflaeche_m2": 31,
+      "basis_nettokaltmiete": 7.82
+    },
+    {
+      "wohnflaeche_m2": 64,
+      "basis_nettokaltmiete": 6.98
+    },
+    {
+      "wohnflaeche_m2": 97,
+      "basis_nettokaltmiete": 6.8
+    },
+    {
+      "wohnflaeche_m2": 130,
+      "basis_nettokaltmiete": 6.78
+    },
+    {
+      "wohnflaeche_m2": 32,
+      "basis_nettokaltmiete": 7.77
+    },
+    {
+      "wohnflaeche_m2": 65,
+      "basis_nettokaltmiete": 6.97
+    },
+    {
+      "wohnflaeche_m2": 98,
+      "basis_nettokaltmiete": 6.8
+    },
+    {
+      "wohnflaeche_m2": 131,
+      "basis_nettokaltmiete": 6.78
+    },
+    {
+      "wohnflaeche_m2": 33,
+      "basis_nettokaltmiete": 7.74
+    },
+    {
+      "wohnflaeche_m2": 66,
+      "basis_nettokaltmiete": 6.96
+    },
+    {
+      "wohnflaeche_m2": 99,
+      "basis_nettokaltmiete": 6.8
+    },
+    {
+      "wohnflaeche_m2": 132,
+      "basis_nettokaltmiete": 6.77
+    },
+    {
+      "wohnflaeche_m2": 34,
+      "basis_nettokaltmiete": 7.7
+    },
+    {
+      "wohnflaeche_m2": 67,
+      "basis_nettokaltmiete": 6.95
+    },
+    {
+      "wohnflaeche_m2": 100,
+      "basis_nettokaltmiete": 6.8
+    },
+    {
+      "wohnflaeche_m2": 133,
+      "basis_nettokaltmiete": 6.77
+    },
+    {
+      "wohnflaeche_m2": 35,
+      "basis_nettokaltmiete": 7.67
+    },
+    {
+      "wohnflaeche_m2": 68,
+      "basis_nettokaltmiete": 6.94
+    },
+    {
+      "wohnflaeche_m2": 101,
+      "basis_nettokaltmiete": 6.8
+    },
+    {
+      "wohnflaeche_m2": 134,
+      "basis_nettokaltmiete": 6.77
+    },
+    {
+      "wohnflaeche_m2": 36,
+      "basis_nettokaltmiete": 7.63
+    },
+    {
+      "wohnflaeche_m2": 69,
+      "basis_nettokaltmiete": 6.93
+    },
+    {
+      "wohnflaeche_m2": 102,
+      "basis_nettokaltmiete": 6.8
+    },
+    {
+      "wohnflaeche_m2": 135,
+      "basis_nettokaltmiete": 6.76
+    },
+    {
+      "wohnflaeche_m2": 37,
+      "basis_nettokaltmiete": 7.59
+    },
+    {
+      "wohnflaeche_m2": 70,
+      "basis_nettokaltmiete": 6.92
+    },
+    {
+      "wohnflaeche_m2": 103,
+      "basis_nettokaltmiete": 6.8
+    },
+    {
+      "wohnflaeche_m2": 136,
+      "basis_nettokaltmiete": 6.76
+    },
+    {
+      "wohnflaeche_m2": 38,
+      "basis_nettokaltmiete": 7.56
+    },
+    {
+      "wohnflaeche_m2": 71,
+      "basis_nettokaltmiete": 6.91
+    },
+    {
+      "wohnflaeche_m2": 104,
+      "basis_nettokaltmiete": 6.8
+    },
+    {
+      "wohnflaeche_m2": 137,
+      "basis_nettokaltmiete": 6.75
+    },
+    {
+      "wohnflaeche_m2": 39,
+      "basis_nettokaltmiete": 7.52
+    },
+    {
+      "wohnflaeche_m2": 72,
+      "basis_nettokaltmiete": 6.91
+    },
+    {
+      "wohnflaeche_m2": 105,
+      "basis_nettokaltmiete": 6.8
+    },
+    {
+      "wohnflaeche_m2": 138,
+      "basis_nettokaltmiete": 6.75
+    },
+    {
+      "wohnflaeche_m2": 40,
+      "basis_nettokaltmiete": 7.5
+    },
+    {
+      "wohnflaeche_m2": 73,
+      "basis_nettokaltmiete": 6.9
+    },
+    {
+      "wohnflaeche_m2": 106,
+      "basis_nettokaltmiete": 6.8
+    },
+    {
+      "wohnflaeche_m2": 139,
+      "basis_nettokaltmiete": 6.73
+    },
+    {
+      "wohnflaeche_m2": 41,
+      "basis_nettokaltmiete": 7.47
+    },
+    {
+      "wohnflaeche_m2": 74,
+      "basis_nettokaltmiete": 6.89
+    },
+    {
+      "wohnflaeche_m2": 107,
+      "basis_nettokaltmiete": 6.8
+    },
+    {
+      "wohnflaeche_m2": 140,
+      "basis_nettokaltmiete": 6.73
+    },
+    {
+      "wohnflaeche_m2": 42,
+      "basis_nettokaltmiete": 7.44
+    },
+    {
+      "wohnflaeche_m2": 75,
+      "basis_nettokaltmiete": 6.88
+    },
+    {
+      "wohnflaeche_m2": 108,
+      "basis_nettokaltmiete": 6.8
+    },
+    {
+      "wohnflaeche_m2": 141,
+      "basis_nettokaltmiete": 6.72
+    },
+    {
+      "wohnflaeche_m2": 43,
+      "basis_nettokaltmiete": 7.41
+    },
+    {
+      "wohnflaeche_m2": 76,
+      "basis_nettokaltmiete": 6.88
+    },
+    {
+      "wohnflaeche_m2": 109,
+      "basis_nettokaltmiete": 6.8
+    },
+    {
+      "wohnflaeche_m2": 142,
+      "basis_nettokaltmiete": 6.71
+    },
+    {
+      "wohnflaeche_m2": 44,
+      "basis_nettokaltmiete": 7.38
+    },
+    {
+      "wohnflaeche_m2": 77,
+      "basis_nettokaltmiete": 6.86
+    },
+    {
+      "wohnflaeche_m2": 110,
+      "basis_nettokaltmiete": 6.8
+    },
+    {
+      "wohnflaeche_m2": 143,
+      "basis_nettokaltmiete": 6.71
+    },
+    {
+      "wohnflaeche_m2": 45,
+      "basis_nettokaltmiete": 7.35
+    },
+    {
+      "wohnflaeche_m2": 78,
+      "basis_nettokaltmiete": 6.85
+    },
+    {
+      "wohnflaeche_m2": 111,
+      "basis_nettokaltmiete": 6.8
+    },
+    {
+      "wohnflaeche_m2": 144,
+      "basis_nettokaltmiete": 6.7
+    },
+    {
+      "wohnflaeche_m2": 46,
+      "basis_nettokaltmiete": 7.33
+    },
+    {
+      "wohnflaeche_m2": 79,
+      "basis_nettokaltmiete": 6.85
+    },
+    {
+      "wohnflaeche_m2": 112,
+      "basis_nettokaltmiete": 6.8
+    },
+    {
+      "wohnflaeche_m2": 145,
+      "basis_nettokaltmiete": 6.69
+    },
+    {
+      "wohnflaeche_m2": 47,
+      "basis_nettokaltmiete": 7.31
+    },
+    {
+      "wohnflaeche_m2": 80,
+      "basis_nettokaltmiete": 6.84
+    },
+    {
+      "wohnflaeche_m2": 113,
+      "basis_nettokaltmiete": 6.8
+    },
+    {
+      "wohnflaeche_m2": 146,
+      "basis_nettokaltmiete": 6.68
+    },
+    {
+      "wohnflaeche_m2": 48,
+      "basis_nettokaltmiete": 7.28
+    },
+    {
+      "wohnflaeche_m2": 81,
+      "basis_nettokaltmiete": 6.84
+    },
+    {
+      "wohnflaeche_m2": 114,
+      "basis_nettokaltmiete": 6.8
+    },
+    {
+      "wohnflaeche_m2": 147,
+      "basis_nettokaltmiete": 6.67
+    },
+    {
+      "wohnflaeche_m2": 49,
+      "basis_nettokaltmiete": 7.25
+    },
+    {
+      "wohnflaeche_m2": 82,
+      "basis_nettokaltmiete": 6.84
+    },
+    {
+      "wohnflaeche_m2": 115,
+      "basis_nettokaltmiete": 6.8
+    },
+    {
+      "wohnflaeche_m2": 148,
+      "basis_nettokaltmiete": 6.66
+    },
+    {
+      "wohnflaeche_m2": 50,
+      "basis_nettokaltmiete": 7.23
+    },
+    {
+      "wohnflaeche_m2": 83,
+      "basis_nettokaltmiete": 6.83
+    },
+    {
+      "wohnflaeche_m2": 116,
+      "basis_nettokaltmiete": 6.8
+    },
+    {
+      "wohnflaeche_m2": 149,
+      "basis_nettokaltmiete": 6.65
+    },
+    {
+      "wohnflaeche_m2": 51,
+      "basis_nettokaltmiete": 7.21
+    },
+    {
+      "wohnflaeche_m2": 84,
+      "basis_nettokaltmiete": 6.83
+    },
+    {
+      "wohnflaeche_m2": 117,
+      "basis_nettokaltmiete": 6.8
+    },
+    {
+      "wohnflaeche_m2": 150,
+      "basis_nettokaltmiete": 6.64
+    },
+    {
+      "wohnflaeche_m2": 52,
+      "basis_nettokaltmiete": 7.19
+    },
+    {
+      "wohnflaeche_m2": 85,
+      "basis_nettokaltmiete": 6.82
+    },
+    {
+      "wohnflaeche_m2": 118,
+      "basis_nettokaltmiete": 6.8
+    }
+  ],
+  "tables": [
     {
       "lage": "mittel",
       "rows": [
         {
           "baujahr": "bis 1918",
-          "bis_40": 8.55,
-          "40_60": 7.93,
+          "bis_40": 8.57,
+          "40_60": 7.94,
           "60_90": 7.58,
           "ueber_90": 7.45
         },
         {
           "baujahr": "1919-1945",
-          "bis_40": 8.44,
-          "40_60": 7.82,
+          "bis_40": 8.46,
+          "40_60": 7.83,
           "60_90": 7.47,
           "ueber_90": 7.34
         },
         {
           "baujahr": "1946-1959",
-          "bis_40": 8.21,
-          "40_60": 7.59,
+          "bis_40": 8.23,
+          "40_60": 7.6,
           "60_90": 7.24,
           "ueber_90": 7.11
         },
         {
           "baujahr": "1960-1990",
-          "bis_40": 7.87,
-          "40_60": 7.25,
+          "bis_40": 7.89,
+          "40_60": 7.26,
           "60_90": 6.9,
           "ueber_90": 6.77
         },
         {
           "baujahr": "1991-2009",
-          "bis_40": 8.91,
-          "40_60": 8.29,
+          "bis_40": 8.93,
+          "40_60": 8.3,
           "60_90": 7.94,
           "ueber_90": 7.81
         },
         {
           "baujahr": "2010-2015",
-          "bis_40": 9.7,
-          "40_60": 9.08,
+          "bis_40": 9.72,
+          "40_60": 9.09,
           "60_90": 8.73,
           "ueber_90": 8.6
         },
         {
           "baujahr": "2016-2020",
-          "bis_40": 10.73,
-          "40_60": 10.11,
+          "bis_40": 10.75,
+          "40_60": 10.12,
           "60_90": 9.76,
           "ueber_90": 9.63
         },
         {
           "baujahr": "2021-2022",
-          "bis_40": 12.01,
-          "40_60": 11.39,
+          "bis_40": 12.03,
+          "40_60": 11.4,
           "60_90": 11.04,
           "ueber_90": 10.91
         }
       ]
-    },
-    {
-      "lage": "gut",
-      "rows": [
-        {
-          "baujahr": "bis 1918",
-          "bis_40": 9.43,
-          "40_60": 8.81,
-          "60_90": 8.46,
-          "ueber_90": 8.33
-        },
-        {
-          "baujahr": "1919-1945",
-          "bis_40": 9.32,
-          "40_60": 8.7,
-          "60_90": 8.35,
-          "ueber_90": 8.22
-        },
-        {
-          "baujahr": "1946-1959",
-          "bis_40": 9.09,
-          "40_60": 8.47,
-          "60_90": 8.12,
-          "ueber_90": 7.99
-        },
-        {
-          "baujahr": "1960-1990",
-          "bis_40": 8.75,
-          "40_60": 8.13,
-          "60_90": 7.78,
-          "ueber_90": 7.65
-        },
-        {
-          "baujahr": "1991-2009",
-          "bis_40": 9.79,
-          "40_60": 9.17,
-          "60_90": 8.82,
-          "ueber_90": 8.69
-        },
-        {
-          "baujahr": "2010-2015",
-          "bis_40": 10.58,
-          "40_60": 9.96,
-          "60_90": 9.61,
-          "ueber_90": 9.48
-        },
-        {
-          "baujahr": "2016-2020",
-          "bis_40": 11.61,
-          "40_60": 10.99,
-          "60_90": 10.64,
-          "ueber_90": 10.51
-        },
-        {
-          "baujahr": "2021-2022",
-          "bis_40": 12.89,
-          "40_60": 12.27,
-          "60_90": 11.92,
-          "ueber_90": 11.79
-        }
-      ]
     }
   ],
-  "notes": "Formula: Ø Basismiete(per size range) + Baujahr-Zuschlag + Wohnlage-Zuschlag. Wohnlage values computed as average of street directory categories. Rostock has W1/W2 water proximity modifiers. Einfach ~-0.89, Mittel ~0.0, Gut ~+0.88.",
-  "verification_status": "unverified",
-  "verification_note": "Raw PDF rostock-2026.pdf exists in data/raw/ but the committed table does not reproduce from it (scripts/audit_city_sources.py). Pending re-extraction."
+  "verification_status": "verified",
+  "verification_note": "Tabelle 1 extracted from rostock-2026.pdf (131 per-m² pairs all match the PDF text); worked example reproduces exactly (A=6,88, B=-0,29, C=6,59). Baujahr factors embedded."
 }
