@@ -98,7 +98,7 @@ def main():
     legacy_rows = []
     for ci, cohort in enumerate(COHORTS):
         cells = rows[ci]["values"]
-        def m(i):
+        def m(i, cells=cells):
             return cells[i]["mittelwert"] if i < len(cells) and cells[i] else None
         # legacy buckets: bis_40 (25-<45), 40_60 (45-<65), 60_90 (65-<85), ueber_90 (85+)
         legacy_rows.append({"baujahr": cohort, "bis_40": m(0), "40_60": m(1),
