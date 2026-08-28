@@ -1003,6 +1003,77 @@ document.addEventListener('click', e => {
 });
 
 // ─── Experiments Tab ───────────────────────────────────────────
+async function init() {
+  // Berlin bounding box
+  const BERLIN_BOUNDS = [[52.32, 13.05], [52.70, 13.78]];
+  map = L.map('map', {
+    center:[52.52,13.405], zoom:12, scrollWheelZoom:true, zoomControl:false,
+    minZoom: 10, maxZoom: 18,
+    maxBounds: BERLIN_BOUNDS, maxBoundsViscosity: 1.0
+  });
+  // Only scroll-zoom when map has focus (prevents accidental zoom while scrolling page)
+  map.on('focus', () => { map.scrollWheelZoom.enable(); });
+  map.on('blur', () => { map.scrollWheelZoom.disable(); });
+  map.scrollWheelZoom.disable(); // Start disabled on mobile
+  map.on('click', () => { map.scrollWheelZoom.enable(); }); // Enable on interaction
+  L.control.zoom({position:'bottomright'}).addTo(map);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution:'&copy; OSM',maxZoom:18}).addTo(map);
+
+  // Zoom handler — registered after map exists
+  map.on('zoomend', () => { if (heatLayer) buildHeat(); });
+
+  // Load Immoscout Berlin
+  try {
+    const r = await fetch('data/processed/berlin_immoscout.json?v=1');
+    const d = await r.json();
+    immoMean = d.mean; immoStd = d.std; immoGrids = d.grids;
+    document.getElementById('cell-count').textContent = d.clean + ' cells';
+  } catch(e) { console.error(e); }
+
+  // Load Zensus Berlin
+  try {
+    const r = await fetch('data/processed/berlin_zensus.json?v=1');
+    const d = await r.json();
+    zensusMean = d.mean; zensusStd = d.std; zensusCells = d.cells_slim;
+  } catch(e) { console.error(e); }
+
+  buildHeat();
+  loadDistricts().then(() => handleHash());
+  setupClick();
+  initRentCheck();
+  // Mobile Rent Check toggle: hide/show district panel to prevent overlap
+  const rcHeader = document.querySelector('#rentCheck h4');
+  if (rcHeader) {
+    rcHeader.addEventListener('click', function() {
+      if (window.innerWidth > 768) return;
+      const rc = document.getElementById('rentCheck');
+      const dp = document.getElementById('dpanel');
+      if (!rc || !dp) return;
+      // classList.toggle runs before this, so check: if it WAS collapsed (now expanding), hide dp
+      if (rc.classList.contains('collapsed')) {
+        dp.style.display = '';
+      } else {
+        dp.style.display = 'none';
+      }
+    });
+  }
+  // Collapse Rent Check on mobile by default
+  if (window.innerWidth <= 768) {
+    document.getElementById('rentCheck')?.classList.add('collapsed');
+    // Auto-collapse legend on mobile (unless user previously expanded)
+    if (!localStorage.getItem('berlin-legend-collapsed') || localStorage.getItem('berlin-legend-collapsed') === 'true') {
+      document.querySelector('.legend-bands')?.classList.add('collapsed');
+      document.querySelector('.legend-chevron')?.classList.add('flipped');
+    }
+  }
+  // Restore legend state from localStorage
+  if (localStorage.getItem('berlin-legend-collapsed') === 'true') {
+    document.querySelector('.legend-bands')?.classList.add('collapsed');
+    document.querySelector('.legend-chevron')?.classList.add('flipped');
+  }
+  applyLang();
+}
+
 function openHelp() { document.getElementById('helpOverlay').classList.add('open'); }
 function closeHelp() { document.getElementById('helpOverlay').classList.remove('open'); }
 
