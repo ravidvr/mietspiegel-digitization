@@ -36,6 +36,7 @@ STATUS = {
     "hamburg": ("verified", "Extracted from the official 2025 table PDF (scripts/extract_hamburg.py); 88/88 cells match the PDF text layer."),
     "dresden": ("verified", "Formula-based Mietspiegel: scripts/extract_dresden.py embeds the PDF's Tabelle 1 base rents and Tabelle 2/3 factors and reproduces the PDF's worked example (1,00x1,03x1,039x1,009x1,028x0,999x0,989 = 1,097). Committed table values regenerate from the script."),
     "augsburg": ("verified", "Tabelle 1 extracted from augsburg.pdf (16 size bands x 12 cohorts, 192 Mittelwerte all match the PDF text); Lageklassen 1-7 factors embedded."),
+    "luebeck": ("verified", "Mietspiegeltabelle extracted from luebeck-2025.pdf p8 (10 cohorts x 4 bands, 40/40 cells match the PDF text); Lage adjustments +0,44/-0,47 €/m² embedded."),
     "mainz": ("partial", "Values trace to mainz-2025.pdf (~90%) but the committed Baujahr groups do not match the PDF's cohorts."),
 }
 

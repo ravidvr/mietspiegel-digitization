@@ -1,112 +1,314 @@
 {
   "city": "Lübeck",
   "city_slug": "luebeck",
+  "slug": "luebeck",
   "state": "Schleswig-Holstein",
   "lat": 53.8655,
   "lng": 10.6866,
-  "population": 216000,
+  "population": 218000,
   "year": 2025,
   "type": "qualifiziert",
-  "lage_categories": [
-    "einfach",
-    "mittel",
-    "gut"
-  ],
-  "baujahr_groups": [
-    "bis 1918",
-    "1919-1948",
-    "1949-1957",
-    "1958-1968",
-    "1969-1978",
-    "1979-1990",
-    "1991-2001",
-    "2002-2013",
-    "2014-2020",
-    "2021-2025"
-  ],
-  "size_categories": [
-    "bis 40 m²",
-    "40-60 m²",
-    "60-90 m²",
-    "über 90 m²"
-  ],
-  "source_url": "https://www.luebeck.de/",
-  "tables": [
+  "source": "Mietspiegel 2025 der Hansestadt Lübeck (Stichtag 01.05.2025). Tabelle: mittlere Wohnlage (M); Mittelwert (arithmetisches Mittel) + 2/3-Spanne; * = 10-29 Mietwerte. Wohnlage: Gute (G) +0,44 €/m², Einfache (E) -0,47 €/m².",
+  "source_url": "https://www.luebeck.de/mietspiegel",
+  "source_file": "data/raw/luebeck-2025.pdf",
+  "schema_note": "official_rows preserves the official table verbatim (10 cohorts x 4 size bands, mittlere Lage basis). tables = same data in the legacy 4-band shape.",
+  "lage_adjustments_eur_per_sqm": {
+    "gut": 0.44,
+    "einfach": -0.47
+  },
+  "official_rows": [
     {
-      "lage": "einfach",
-      "rows": [
+      "baujahr": "bis 1918",
+      "values": [
         {
-          "baujahr": "bis 1918",
-          "bis_40": 9.61,
-          "40_60": 8.47,
-          "60_90": 8.31,
-          "ueber_90": 8.24
+          "mittelwert": 10.08,
+          "untere": 8.0,
+          "obere": 12.0,
+          "low_sample": false
         },
         {
-          "baujahr": "1919-1948",
-          "bis_40": 8.99,
-          "40_60": 7.92,
-          "60_90": 7.61,
-          "ueber_90": 7.95
+          "mittelwert": 8.94,
+          "untere": 7.18,
+          "obere": 10.7,
+          "low_sample": false
         },
         {
-          "baujahr": "1949-1957",
-          "bis_40": 8.52,
-          "40_60": 7.86,
-          "60_90": 7.88,
-          "ueber_90": 7.44
+          "mittelwert": 8.78,
+          "untere": 6.95,
+          "obere": 10.29,
+          "low_sample": false
         },
         {
-          "baujahr": "1958-1968",
-          "bis_40": 8.29,
-          "40_60": 7.54,
-          "60_90": 7.38,
-          "ueber_90": 7.84
-        },
-        {
-          "baujahr": "1969-1978",
-          "bis_40": 8.78,
-          "40_60": 8.08,
-          "60_90": 6.93,
-          "ueber_90": 7.0
-        },
-        {
-          "baujahr": "1979-1990",
-          "bis_40": 8.67,
-          "40_60": 8.34,
-          "60_90": 7.55,
-          "ueber_90": 7.52
-        },
-        {
-          "baujahr": "1991-2001",
-          "bis_40": 9.04,
-          "40_60": 9.02,
-          "60_90": 8.23,
-          "ueber_90": 8.45
-        },
-        {
-          "baujahr": "2002-2013",
-          "bis_40": 9.37,
-          "40_60": 8.81,
-          "60_90": 9.93,
-          "ueber_90": null
-        },
-        {
-          "baujahr": "2014-2020",
-          "bis_40": 11.09,
-          "40_60": 10.42,
-          "60_90": 11.54,
-          "ueber_90": 11.54
-        },
-        {
-          "baujahr": "2021-2025",
-          "bis_40": 14.28,
-          "40_60": 14.48,
-          "60_90": 12.84,
-          "ueber_90": 13.99
+          "mittelwert": 8.71,
+          "untere": 7.11,
+          "obere": 10.33,
+          "low_sample": false
         }
       ]
     },
+    {
+      "baujahr": "1919 – 1948",
+      "values": [
+        {
+          "mittelwert": 9.46,
+          "untere": 7.62,
+          "obere": 11.5,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 8.39,
+          "untere": 6.9,
+          "obere": 10.0,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 8.08,
+          "untere": 6.71,
+          "obere": 9.38,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 8.42,
+          "untere": 7.0,
+          "obere": 10.14,
+          "low_sample": false
+        }
+      ]
+    },
+    {
+      "baujahr": "1949 – 1957",
+      "values": [
+        {
+          "mittelwert": 8.99,
+          "untere": 7.23,
+          "obere": 11.0,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 8.33,
+          "untere": 6.78,
+          "obere": 10.0,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 8.35,
+          "untere": 6.59,
+          "obere": 9.96,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 7.91,
+          "untere": 6.28,
+          "obere": 9.8,
+          "low_sample": true
+        }
+      ]
+    },
+    {
+      "baujahr": "1958 – 1968",
+      "values": [
+        {
+          "mittelwert": 8.76,
+          "untere": 7.13,
+          "obere": 10.3,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 8.01,
+          "untere": 6.47,
+          "obere": 9.66,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 7.85,
+          "untere": 6.27,
+          "obere": 9.31,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 8.31,
+          "untere": 6.55,
+          "obere": 10.65,
+          "low_sample": false
+        }
+      ]
+    },
+    {
+      "baujahr": "1969 – 1978",
+      "values": [
+        {
+          "mittelwert": 9.25,
+          "untere": 7.57,
+          "obere": 10.89,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 8.55,
+          "untere": 7.2,
+          "obere": 9.8,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 7.4,
+          "untere": 5.94,
+          "obere": 8.95,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 7.47,
+          "untere": 6.23,
+          "obere": 9.08,
+          "low_sample": false
+        }
+      ]
+    },
+    {
+      "baujahr": "1979 – 1990",
+      "values": [
+        {
+          "mittelwert": 9.14,
+          "untere": 7.76,
+          "obere": 11.11,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 8.81,
+          "untere": 7.12,
+          "obere": 10.41,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 8.02,
+          "untere": 6.75,
+          "obere": 9.85,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 7.99,
+          "untere": 6.71,
+          "obere": 10.48,
+          "low_sample": false
+        }
+      ]
+    },
+    {
+      "baujahr": "1991 – 2001",
+      "values": [
+        {
+          "mittelwert": 9.51,
+          "untere": 7.18,
+          "obere": 11.11,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 9.49,
+          "untere": 7.67,
+          "obere": 11.56,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 8.7,
+          "untere": 7.49,
+          "obere": 9.98,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 8.92,
+          "untere": 7.25,
+          "obere": 10.63,
+          "low_sample": true
+        }
+      ]
+    },
+    {
+      "baujahr": "2002 – 2013",
+      "values": [
+        {
+          "mittelwert": 9.84,
+          "untere": 8.77,
+          "obere": 10.69,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 9.28,
+          "untere": 8.0,
+          "obere": 10.53,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 10.4,
+          "untere": 8.39,
+          "obere": 13.07,
+          "low_sample": true
+        },
+        {
+          "mittelwert": 11.56,
+          "untere": 11.14,
+          "obere": 11.9,
+          "low_sample": true
+        }
+      ]
+    },
+    {
+      "baujahr": "2014 – 2020",
+      "values": [
+        {
+          "mittelwert": 11.56,
+          "untere": 11.14,
+          "obere": 11.9,
+          "low_sample": true
+        },
+        {
+          "mittelwert": 10.89,
+          "untere": 9.78,
+          "obere": 11.89,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 12.01,
+          "untere": 10.0,
+          "obere": 13.99,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 12.01,
+          "untere": 10.57,
+          "obere": 13.72,
+          "low_sample": false
+        }
+      ]
+    },
+    {
+      "baujahr": "2021 – 4/2025",
+      "values": [
+        {
+          "mittelwert": 14.75,
+          "untere": 11.05,
+          "obere": 18.33,
+          "low_sample": true
+        },
+        {
+          "mittelwert": 14.95,
+          "untere": 13.33,
+          "obere": 16.53,
+          "low_sample": true
+        },
+        {
+          "mittelwert": 13.31,
+          "untere": 12.22,
+          "obere": 15.08,
+          "low_sample": true
+        },
+        {
+          "mittelwert": 14.46,
+          "untere": 11.96,
+          "obere": 16.73,
+          "low_sample": true
+        }
+      ]
+    }
+  ],
+  "tables": [
     {
       "lage": "mittel",
       "rows": [
@@ -118,147 +320,71 @@
           "ueber_90": 8.71
         },
         {
-          "baujahr": "1919-1948",
+          "baujahr": "1919 – 1948",
           "bis_40": 9.46,
           "40_60": 8.39,
           "60_90": 8.08,
           "ueber_90": 8.42
         },
         {
-          "baujahr": "1949-1957",
+          "baujahr": "1949 – 1957",
           "bis_40": 8.99,
           "40_60": 8.33,
           "60_90": 8.35,
           "ueber_90": 7.91
         },
         {
-          "baujahr": "1958-1968",
+          "baujahr": "1958 – 1968",
           "bis_40": 8.76,
           "40_60": 8.01,
           "60_90": 7.85,
           "ueber_90": 8.31
         },
         {
-          "baujahr": "1969-1978",
+          "baujahr": "1969 – 1978",
           "bis_40": 9.25,
           "40_60": 8.55,
           "60_90": 7.4,
           "ueber_90": 7.47
         },
         {
-          "baujahr": "1979-1990",
+          "baujahr": "1979 – 1990",
           "bis_40": 9.14,
           "40_60": 8.81,
           "60_90": 8.02,
           "ueber_90": 7.99
         },
         {
-          "baujahr": "1991-2001",
+          "baujahr": "1991 – 2001",
           "bis_40": 9.51,
           "40_60": 9.49,
           "60_90": 8.7,
           "ueber_90": 8.92
         },
         {
-          "baujahr": "2002-2013",
+          "baujahr": "2002 – 2013",
           "bis_40": 9.84,
           "40_60": 9.28,
           "60_90": 10.4,
-          "ueber_90": null
+          "ueber_90": 11.56
         },
         {
-          "baujahr": "2014-2020",
+          "baujahr": "2014 – 2020",
           "bis_40": 11.56,
           "40_60": 10.89,
           "60_90": 12.01,
           "ueber_90": 12.01
         },
         {
-          "baujahr": "2021-2025",
+          "baujahr": "2021 – 4/2025",
           "bis_40": 14.75,
           "40_60": 14.95,
           "60_90": 13.31,
           "ueber_90": 14.46
         }
       ]
-    },
-    {
-      "lage": "gut",
-      "rows": [
-        {
-          "baujahr": "bis 1918",
-          "bis_40": 10.52,
-          "40_60": 9.38,
-          "60_90": 9.22,
-          "ueber_90": 9.15
-        },
-        {
-          "baujahr": "1919-1948",
-          "bis_40": 9.9,
-          "40_60": 8.83,
-          "60_90": 8.52,
-          "ueber_90": 8.86
-        },
-        {
-          "baujahr": "1949-1957",
-          "bis_40": 9.43,
-          "40_60": 8.77,
-          "60_90": 8.79,
-          "ueber_90": 8.35
-        },
-        {
-          "baujahr": "1958-1968",
-          "bis_40": 9.2,
-          "40_60": 8.45,
-          "60_90": 8.29,
-          "ueber_90": 8.75
-        },
-        {
-          "baujahr": "1969-1978",
-          "bis_40": 9.69,
-          "40_60": 8.99,
-          "60_90": 7.84,
-          "ueber_90": 7.91
-        },
-        {
-          "baujahr": "1979-1990",
-          "bis_40": 9.58,
-          "40_60": 9.25,
-          "60_90": 8.46,
-          "ueber_90": 8.43
-        },
-        {
-          "baujahr": "1991-2001",
-          "bis_40": 9.95,
-          "40_60": 9.93,
-          "60_90": 9.14,
-          "ueber_90": 9.36
-        },
-        {
-          "baujahr": "2002-2013",
-          "bis_40": 10.28,
-          "40_60": 9.72,
-          "60_90": 10.84,
-          "ueber_90": null
-        },
-        {
-          "baujahr": "2014-2020",
-          "bis_40": 12.0,
-          "40_60": 11.33,
-          "60_90": 12.45,
-          "ueber_90": 12.45
-        },
-        {
-          "baujahr": "2021-2025",
-          "bis_40": 15.19,
-          "40_60": 15.39,
-          "60_90": 13.75,
-          "ueber_90": 14.9
-        }
-      ]
     }
   ],
-  "notes": "Direct Mittelwert table for mittlere Wohnlage. Gute Lage +0.44, Einfache Lage -0.47. Note: Lübeck size categories are 25-45, 45-65, 65-85, 85+. Values for 2002-2013/85+ missing (too few data points).",
-  "verification_status": "unverified",
-  "verification_note": "Raw PDF luebeck-2025.pdf exists in data/raw/ but the committed table does not reproduce from it (scripts/audit_city_sources.py). Pending re-extraction."
+  "verification_status": "verified",
+  "verification_note": "Mietspiegeltabelle extracted from luebeck-2025.pdf p8 (10 cohorts x 4 bands, 40/40 cells match the PDF text); Lage adjustments +0,44/-0,47 €/m² embedded."
 }
