@@ -6,108 +6,684 @@
   "lat": 53.5511,
   "lng": 9.9937,
   "population": 1900000,
-  "year": 2024,
+  "year": 2025,
   "type": "qualifiziert",
+  "source": "Hamburger Mietenspiegel 2025, Behörde für Stadtentwicklung und Wohnen (Erhebungsstichtag 01.04.2025), Nettokaltmiete ohne Heizung und ohne Betriebskosten. Median (Mittelwert) mit Spanne; * = weniger als 30 Datensätze (eingeschränkte Aussage).",
+  "source_url": "https://www.hamburg.de/mietenspiegel/",
+  "source_file": "data/raw/hamburg-mietenspiegel-tabelle-2025.pdf",
+  "schema_note": "official_rows preserves the official 10 Baualtersklassen and the official size bands verbatim (Normal has 4 bands, Gute has 5). No interpolation — empty cells are Leerfelder in the official table.",
   "lage_categories": [
-    "einfach",
-    "mittel",
+    "normal",
     "gut"
   ],
-  "baujahr_groups": [
-    "bis 1918",
-    "1919-1949",
-    "1950-1964",
-    "1965-1974",
-    "1975-1990",
-    "1991-2002",
-    "2003-2013",
-    "2014+"
-  ],
-  "size_categories": [
-    "bis 40 m²",
-    "40-60 m²",
-    "60-90 m²",
-    "über 90 m²"
-  ],
-  "source_url": "https://www.hamburg.de/mietspiegel/",
-  "tables": [
+  "official_rows": [
     {
-      "lage": "einfach",
-      "rows": [
+      "lage": "normal",
+      "size": "<41",
+      "size_label": "bis unter 41 m²",
+      "values": [
         {
-          "baujahr": "bis 1918",
-          "bis_40": 10.0,
-          "40_60": 9.5,
-          "60_90": 9.0,
-          "ueber_90": 8.6
+          "mittelwert": 13.77,
+          "untere": 10.81,
+          "obere": 17.17,
+          "low_sample": false
         },
         {
-          "baujahr": "1950-1964",
-          "bis_40": 11.3,
-          "40_60": 10.8,
-          "60_90": 10.3,
-          "ueber_90": 9.9
+          "mittelwert": 10.49,
+          "untere": 9.57,
+          "obere": 12.88,
+          "low_sample": false
         },
         {
-          "baujahr": "1975-1990",
-          "bis_40": 12.3,
-          "40_60": 11.8,
-          "60_90": 11.3,
-          "ueber_90": 10.9
+          "mittelwert": 9.46,
+          "untere": 8.52,
+          "obere": 12.42,
+          "low_sample": false
         },
         {
-          "baujahr": "2003-2013",
-          "bis_40": 14.0,
-          "40_60": 13.5,
-          "60_90": 13.0,
-          "ueber_90": 12.6
+          "mittelwert": 9.01,
+          "untere": 8.01,
+          "obere": 14.05,
+          "low_sample": false
         },
         {
-          "baujahr": "2014+",
-          "bis_40": 15.2,
-          "40_60": 14.7,
-          "60_90": 14.2,
-          "ueber_90": 13.8
+          "mittelwert": 10.26,
+          "untere": 8.28,
+          "obere": 14.16,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 11.55,
+          "untere": 8.57,
+          "obere": 14.93,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 12.23,
+          "untere": 10.17,
+          "obere": 16.37,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 18.5,
+          "untere": 16.19,
+          "obere": 19.66,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 16.64,
+          "untere": 13.72,
+          "obere": 18.86,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 19.78,
+          "untere": 13.05,
+          "obere": 25.01,
+          "low_sample": false
         }
       ]
     },
     {
-      "lage": "mittel",
+      "lage": "normal",
+      "size": "41-66",
+      "size_label": "41 m² bis unter 66 m²",
+      "values": [
+        {
+          "mittelwert": 11.5,
+          "untere": 9.65,
+          "obere": 15.0,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 9.34,
+          "untere": 7.95,
+          "obere": 12.41,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 8.59,
+          "untere": 7.7,
+          "obere": 11.31,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 7.56,
+          "untere": 7.25,
+          "obere": 10.82,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 9.73,
+          "untere": 7.33,
+          "obere": 13.66,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 9.33,
+          "untere": 7.69,
+          "obere": 12.91,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 11.35,
+          "untere": 9.12,
+          "obere": 13.72,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 15.26,
+          "untere": 12.18,
+          "obere": 18.03,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 14.77,
+          "untere": 12.18,
+          "obere": 18.83,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 17.41,
+          "untere": 12.0,
+          "obere": 21.15,
+          "low_sample": false
+        }
+      ]
+    },
+    {
+      "lage": "normal",
+      "size": "66-91",
+      "size_label": "66 m² bis unter 91 m²",
+      "values": [
+        {
+          "mittelwert": 11.57,
+          "untere": 9.16,
+          "obere": 15.61,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 9.29,
+          "untere": 7.81,
+          "obere": 11.94,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 8.5,
+          "untere": 7.8,
+          "obere": 11.13,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 6.93,
+          "untere": 6.44,
+          "obere": 10.0,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 6.76,
+          "untere": 6.25,
+          "obere": 9.48,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 8.59,
+          "untere": 7.17,
+          "obere": 12.32,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 10.69,
+          "untere": 8.93,
+          "obere": 13.5,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 14.86,
+          "untere": 11.95,
+          "obere": 17.32,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 15.28,
+          "untere": 12.18,
+          "obere": 18.44,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 17.61,
+          "untere": 14.26,
+          "obere": 21.42,
+          "low_sample": false
+        }
+      ]
+    },
+    {
+      "lage": "normal",
+      "size": "91+",
+      "size_label": "ab 91 m²",
+      "values": [
+        {
+          "mittelwert": 10.89,
+          "untere": 9.49,
+          "obere": 14.72,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 11.94,
+          "untere": 8.46,
+          "obere": 13.37,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 11.1,
+          "untere": 6.87,
+          "obere": 14.52,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 8.0,
+          "untere": 6.92,
+          "obere": 12.49,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 7.73,
+          "untere": 6.4,
+          "obere": 11.18,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 8.95,
+          "untere": 6.57,
+          "obere": 11.59,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 11.92,
+          "untere": 9.62,
+          "obere": 14.51,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 15.17,
+          "untere": 12.22,
+          "obere": 18.32,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 14.31,
+          "untere": 12.76,
+          "obere": 18.33,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 17.18,
+          "untere": 13.5,
+          "obere": 20.93,
+          "low_sample": false
+        }
+      ]
+    },
+    {
+      "lage": "gut",
+      "size": "<41",
+      "size_label": "bis unter 41 m²",
+      "values": [
+        {
+          "mittelwert": 13.02,
+          "untere": 6.6,
+          "obere": 15.3,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 12.01,
+          "untere": 9.44,
+          "obere": 14.4,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 13.5,
+          "untere": 9.48,
+          "obere": 16.06,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 12.89,
+          "untere": 11.06,
+          "obere": 15.66,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 13.46,
+          "untere": 11.48,
+          "obere": 17.67,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 13.74,
+          "untere": 9.24,
+          "obere": 16.1,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 14.19,
+          "untere": 12.02,
+          "obere": 17.11,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 15.91,
+          "untere": 14.05,
+          "obere": 19.91,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 19.37,
+          "untere": 16.77,
+          "obere": 25.04,
+          "low_sample": false
+        },
+        null
+      ]
+    },
+    {
+      "lage": "gut",
+      "size": "41-66",
+      "size_label": "41 m² bis unter 66 m²",
+      "values": [
+        {
+          "mittelwert": 12.93,
+          "untere": 10.8,
+          "obere": 16.56,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 11.41,
+          "untere": 9.3,
+          "obere": 14.73,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 11.04,
+          "untere": 8.34,
+          "obere": 14.83,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 10.48,
+          "untere": 7.97,
+          "obere": 14.02,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 12.43,
+          "untere": 9.05,
+          "obere": 16.47,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 11.95,
+          "untere": 9.06,
+          "obere": 15.45,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 13.78,
+          "untere": 10.72,
+          "obere": 15.76,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 16.12,
+          "untere": 13.2,
+          "obere": 18.69,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 16.08,
+          "untere": 13.17,
+          "obere": 20.3,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 20.24,
+          "untere": 15.65,
+          "obere": 31.65,
+          "low_sample": false
+        }
+      ]
+    },
+    {
+      "lage": "gut",
+      "size": "66-91",
+      "size_label": "66 m² bis unter 91 m²",
+      "values": [
+        {
+          "mittelwert": 13.62,
+          "untere": 10.97,
+          "obere": 17.04,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 11.74,
+          "untere": 8.53,
+          "obere": 16.0,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 11.42,
+          "untere": 8.44,
+          "obere": 14.96,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 9.48,
+          "untere": 7.4,
+          "obere": 13.5,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 11.39,
+          "untere": 7.83,
+          "obere": 15.28,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 12.04,
+          "untere": 8.62,
+          "obere": 15.92,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 13.18,
+          "untere": 10.03,
+          "obere": 16.29,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 16.07,
+          "untere": 13.63,
+          "obere": 18.44,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 16.43,
+          "untere": 13.89,
+          "obere": 20.25,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 18.38,
+          "untere": 13.96,
+          "obere": 24.7,
+          "low_sample": false
+        }
+      ]
+    },
+    {
+      "lage": "gut",
+      "size": "91-131",
+      "size_label": "91 m² bis unter 131 m²",
+      "values": [
+        {
+          "mittelwert": 12.54,
+          "untere": 10.47,
+          "obere": 16.95,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 11.5,
+          "untere": 8.59,
+          "obere": 14.8,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 13.36,
+          "untere": 9.34,
+          "obere": 15.8,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 11.73,
+          "untere": 9.62,
+          "obere": 14.35,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 12.51,
+          "untere": 9.68,
+          "obere": 15.68,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 12.39,
+          "untere": 9.94,
+          "obere": 14.84,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 14.63,
+          "untere": 11.59,
+          "obere": 19.0,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 15.58,
+          "untere": 12.74,
+          "obere": 19.09,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 16.55,
+          "untere": 14.67,
+          "obere": 20.0,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 19.6,
+          "untere": 15.66,
+          "obere": 23.25,
+          "low_sample": false
+        }
+      ]
+    },
+    {
+      "lage": "gut",
+      "size": "131+",
+      "size_label": "ab 131 m²",
+      "values": [
+        {
+          "mittelwert": 12.92,
+          "untere": 10.8,
+          "obere": 16.25,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 14.23,
+          "untere": 11.52,
+          "obere": 16.82,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 13.02,
+          "untere": 12.24,
+          "obere": 17.49,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 13.04,
+          "untere": 11.55,
+          "obere": 16.24,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 14.31,
+          "untere": 11.04,
+          "obere": 17.84,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 16.0,
+          "untere": 12.06,
+          "obere": 19.31,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 18.19,
+          "untere": 15.12,
+          "obere": 21.45,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 19.14,
+          "untere": 15.96,
+          "obere": 24.59,
+          "low_sample": false
+        },
+        {
+          "mittelwert": 22.34,
+          "untere": 17.43,
+          "obere": 25.46,
+          "low_sample": false
+        },
+        null
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "lage": "normal",
       "rows": [
         {
-          "baujahr": "bis 1918",
-          "bis_40": 12.1,
-          "40_60": 11.6,
-          "60_90": 11.1,
-          "ueber_90": 10.7
+          "baujahr": "bis 31.12.1918",
+          "bis_40": 13.77,
+          "40_60": 11.5,
+          "60_90": 11.57,
+          "ueber_90": 10.89
         },
         {
-          "baujahr": "1950-1964",
-          "bis_40": 13.5,
-          "40_60": 13.0,
-          "60_90": 12.5,
-          "ueber_90": 12.1
+          "baujahr": "1.1.1919-20.6.1948",
+          "bis_40": 10.49,
+          "40_60": 9.34,
+          "60_90": 9.29,
+          "ueber_90": 11.94
         },
         {
-          "baujahr": "1975-1990",
-          "bis_40": 14.5,
-          "40_60": 14.0,
-          "60_90": 13.5,
-          "ueber_90": 13.1
+          "baujahr": "21.6.1948-1960",
+          "bis_40": 9.46,
+          "40_60": 8.59,
+          "60_90": 8.5,
+          "ueber_90": 11.1
         },
         {
-          "baujahr": "2003-2013",
-          "bis_40": 16.6,
-          "40_60": 16.1,
-          "60_90": 15.6,
-          "ueber_90": 15.2
+          "baujahr": "1961-1967",
+          "bis_40": 9.01,
+          "40_60": 7.56,
+          "60_90": 6.93,
+          "ueber_90": 8.0
         },
         {
-          "baujahr": "2014+",
-          "bis_40": 18.4,
-          "40_60": 17.9,
-          "60_90": 17.4,
-          "ueber_90": 17.0
+          "baujahr": "1968-1977",
+          "bis_40": 10.26,
+          "40_60": 9.73,
+          "60_90": 6.76,
+          "ueber_90": 7.73
+        },
+        {
+          "baujahr": "1978-1993",
+          "bis_40": 11.55,
+          "40_60": 9.33,
+          "60_90": 8.59,
+          "ueber_90": 8.95
+        },
+        {
+          "baujahr": "1994-2010",
+          "bis_40": 12.23,
+          "40_60": 11.35,
+          "60_90": 10.69,
+          "ueber_90": 11.92
+        },
+        {
+          "baujahr": "2011-2015",
+          "bis_40": 18.5,
+          "40_60": 15.26,
+          "60_90": 14.86,
+          "ueber_90": 15.17
+        },
+        {
+          "baujahr": "2016-2020",
+          "bis_40": 16.64,
+          "40_60": 14.77,
+          "60_90": 15.28,
+          "ueber_90": 14.31
+        },
+        {
+          "baujahr": "2021-2024",
+          "bis_40": 19.78,
+          "40_60": 17.41,
+          "60_90": 17.61,
+          "ueber_90": 17.18
         }
       ]
     },
@@ -115,43 +691,78 @@
       "lage": "gut",
       "rows": [
         {
-          "baujahr": "bis 1918",
-          "bis_40": 14.5,
-          "40_60": 14.0,
-          "60_90": 13.5,
-          "ueber_90": 13.1
+          "baujahr": "bis 31.12.1918",
+          "bis_40": 13.02,
+          "40_60": 12.93,
+          "60_90": 13.62,
+          "ueber_90": 12.73
         },
         {
-          "baujahr": "1950-1964",
-          "bis_40": 16.2,
-          "40_60": 15.7,
-          "60_90": 15.2,
-          "ueber_90": 14.8
+          "baujahr": "1.1.1919-20.6.1948",
+          "bis_40": 12.01,
+          "40_60": 11.41,
+          "60_90": 11.74,
+          "ueber_90": 12.87
         },
         {
-          "baujahr": "1975-1990",
-          "bis_40": 17.6,
-          "40_60": 17.1,
-          "60_90": 16.6,
-          "ueber_90": 16.2
+          "baujahr": "21.6.1948-1960",
+          "bis_40": 13.5,
+          "40_60": 11.04,
+          "60_90": 11.42,
+          "ueber_90": 13.19
         },
         {
-          "baujahr": "2003-2013",
-          "bis_40": 20.3,
-          "40_60": 19.8,
-          "60_90": 19.3,
-          "ueber_90": 18.9
+          "baujahr": "1961-1967",
+          "bis_40": 12.89,
+          "40_60": 10.48,
+          "60_90": 9.48,
+          "ueber_90": 12.38
         },
         {
-          "baujahr": "2014+",
-          "bis_40": 22.2,
-          "40_60": 21.7,
-          "60_90": 21.2,
-          "ueber_90": 20.8
+          "baujahr": "1968-1977",
+          "bis_40": 13.46,
+          "40_60": 12.43,
+          "60_90": 11.39,
+          "ueber_90": 13.41
+        },
+        {
+          "baujahr": "1978-1993",
+          "bis_40": 13.74,
+          "40_60": 11.95,
+          "60_90": 12.04,
+          "ueber_90": 14.2
+        },
+        {
+          "baujahr": "1994-2010",
+          "bis_40": 14.19,
+          "40_60": 13.78,
+          "60_90": 13.18,
+          "ueber_90": 16.41
+        },
+        {
+          "baujahr": "2011-2015",
+          "bis_40": 15.91,
+          "40_60": 16.12,
+          "60_90": 16.07,
+          "ueber_90": 17.36
+        },
+        {
+          "baujahr": "2016-2020",
+          "bis_40": 19.37,
+          "40_60": 16.08,
+          "60_90": 16.43,
+          "ueber_90": 19.45
+        },
+        {
+          "baujahr": "2021-2024",
+          "bis_40": null,
+          "40_60": 20.24,
+          "60_90": 18.38,
+          "ueber_90": 19.6
         }
       ]
     }
   ],
-  "verification_status": "unverified",
-  "verification_note": "Raw PDF hamburg-mietenspiegel-tabelle-2025.pdf exists in data/raw/ but the committed table does not reproduce from it (scripts/audit_city_sources.py). Pending re-extraction."
+  "verification_status": "verified",
+  "verification_note": "Extracted from the official 2025 table PDF (scripts/extract_hamburg.py); 88/88 cells match the PDF text layer."
 }

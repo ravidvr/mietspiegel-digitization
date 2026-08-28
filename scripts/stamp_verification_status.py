@@ -33,6 +33,7 @@ PDF_BY_SLUG = {
 
 STATUS = {
     "berlin": ("verified", "Extracted 163/163 rows from the official 2024 PDF; PDF-diff gated (scripts/verify_berlin_extraction.py)."),
+    "hamburg": ("verified", "Extracted from the official 2025 table PDF (scripts/extract_hamburg.py); 88/88 cells match the PDF text layer."),
     "mainz": ("partial", "Values trace to mainz-2025.pdf (~90%) but the committed Baujahr groups do not match the PDF's cohorts."),
 }
 
@@ -49,8 +50,12 @@ def main():
         if not isinstance(j, dict) or ("tables" not in j and "official_rows" not in j):
             continue
         slug = j.get("slug") or j.get("city_slug") or f.stem
-        nrows = sum(len(t["rows"]) for t in j.get("tables", [])) \
-            + sum(len(t["rows"]) for t in j.get("official_rows", []))
+        nrows = sum(len(t["rows"]) for t in j.get("tables", []))
+        orows = j.get("official_rows", [])
+        if orows and isinstance(orows[0], dict) and "rows" in orows[0]:
+            nrows += sum(len(t["rows"]) for t in orows)
+        else:
+            nrows += len(orows)
         if nrows == 0:
             status, note = "empty_stub", "Metadata-only file; no rent table published."
         elif slug in STATUS:
