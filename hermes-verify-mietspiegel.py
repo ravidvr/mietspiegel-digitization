@@ -4,6 +4,7 @@ Ad-hoc verification: Spot-check extracted Mietspiegel values against source PDFs
 """
 import json
 
+
 def load_json(city):
     with open(f"/Users/ruhvee/mietspiegel-digitization/data/processed/{city}.json") as f:
         return json.load(f)

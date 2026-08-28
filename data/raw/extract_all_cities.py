@@ -4,7 +4,11 @@ Extract Mietspiegel tables from 5 city PDFs (Bonn, Kiel, Lübeck, Mainz, Rostock
 and save to schema-compliant JSON.
 """
 
-import json, os, re, statistics
+import json
+import os
+import re
+import statistics
+
 
 # ===========================
 # HELPER
@@ -563,10 +567,10 @@ def extract_rostock():
     # We compute average Wohnlage adjustment from the street directory
     # From the text we can see values ranging from about -1.02 to +1.67
     # Let's categorize into meaningful groups
-    # Based on the values: 
+    # Based on the values:
     # Very negative (< -0.8): "einfach"
     # Slightly negative to neutral (-0.8 to 0.0): no clear category
-    # Neutral (~0.0): "mittel"  
+    # Neutral (~0.0): "mittel"
     # Positive (0.0 to 0.8): "gut"
     # Very positive (> 0.8): "sehr gut"
 

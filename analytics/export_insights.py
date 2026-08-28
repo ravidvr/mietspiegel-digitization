@@ -13,7 +13,9 @@ Outputs:
   docs/data/insights_district_premium.json — Immoscout vs Mietspiegel gap per Bezirk
   docs/data/insights_berlin_table.json    — Berlin Mietspiegel table (mittel, 40-60m²)
 """
-import json, os, sys
+import json
+import os
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent

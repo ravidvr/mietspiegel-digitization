@@ -175,10 +175,8 @@ def extract_with_camelot(pdf_path: str, edge_tol: int = 50, row_tol: int = 10) -
     """
     try:
         import camelot
-    except ImportError as err:
-        raise RuntimeError(
-            "camelot-py not installed — run: pip3 install camelot-py[cv]"
-        ) from err
+    except ImportError as exc:
+        raise RuntimeError("camelot-py not installed — run: pip3 install camelot-py[cv]") from exc
 
     tables = camelot.read_pdf(pdf_path, pages='1-5', flavor='stream',
                               edge_tol=edge_tol, row_tol=row_tol)
