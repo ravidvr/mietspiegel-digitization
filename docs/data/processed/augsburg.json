@@ -8,30 +8,730 @@
   "population": 300000,
   "year": 2025,
   "type": "qualifiziert",
-  "lage_categories": [
-    "mittel"
+  "source": "Mietspiegel 2025, Wohnen in Augsburg. Tabelle 1: Basis-Nettomiete (mittlere Wohnlage, mittlerer Standard) nach Wohnfläche x Baujahr. Wohnlage/Standard via Tabelle 2 Punktwerte (Lageklasse 1-7: +11/+7/+4/0/-4/-7/-11), Berechnung: A + A x B/100 (Tabelle 3).",
+  "source_url": "https://www.augsburg.de/mietspiegel",
+  "source_file": "data/raw/augsburg.pdf",
+  "schema_note": "official_rows preserves Tabelle 1 verbatim (16 size bands x 12 cohorts). tables is a derived 4-band rollup (mean per legacy bucket, mittlere Lage basis).",
+  "lage_klassen": [
+    {
+      "klasse": 1,
+      "punktwert": 11
+    },
+    {
+      "klasse": 2,
+      "punktwert": 7
+    },
+    {
+      "klasse": 3,
+      "punktwert": 4
+    },
+    {
+      "klasse": 4,
+      "punktwert": 0
+    },
+    {
+      "klasse": 5,
+      "punktwert": -4
+    },
+    {
+      "klasse": 6,
+      "punktwert": -7
+    },
+    {
+      "klasse": 7,
+      "punktwert": -11
+    }
   ],
-  "baujahr_groups": [
-    "bis 1918",
-    "1919-1948",
-    "1949-1960",
-    "1961-1969",
-    "1970-1979",
-    "1980-1989",
-    "1990-1995",
-    "1996-2001",
-    "2002-2007",
-    "2008-2013",
-    "2014-2019",
-    "2020-2025"
+  "official_rows": [
+    {
+      "size_range": "20-<25",
+      "size_min_m2": 20,
+      "size_max_m2": 25,
+      "values": [
+        {
+          "mittelwert": 12.92
+        },
+        {
+          "mittelwert": 11.91
+        },
+        {
+          "mittelwert": 12.25
+        },
+        {
+          "mittelwert": 13.16
+        },
+        {
+          "mittelwert": 14.41
+        },
+        {
+          "mittelwert": 15.69
+        },
+        {
+          "mittelwert": 17.44
+        },
+        {
+          "mittelwert": 20.06
+        },
+        {
+          "mittelwert": 22.7
+        },
+        {
+          "mittelwert": 24.67
+        },
+        {
+          "mittelwert": 26.07
+        },
+        {
+          "mittelwert": 27.35
+        }
+      ]
+    },
+    {
+      "size_range": "25-<30",
+      "size_min_m2": 25,
+      "size_max_m2": 30,
+      "values": [
+        {
+          "mittelwert": 11.26
+        },
+        {
+          "mittelwert": 10.44
+        },
+        {
+          "mittelwert": 10.71
+        },
+        {
+          "mittelwert": 11.45
+        },
+        {
+          "mittelwert": 12.47
+        },
+        {
+          "mittelwert": 13.51
+        },
+        {
+          "mittelwert": 14.94
+        },
+        {
+          "mittelwert": 17.08
+        },
+        {
+          "mittelwert": 19.23
+        },
+        {
+          "mittelwert": 20.83
+        },
+        {
+          "mittelwert": 21.98
+        },
+        {
+          "mittelwert": 23.02
+        }
+      ]
+    },
+    {
+      "size_range": "30-<35",
+      "size_min_m2": 30,
+      "size_max_m2": 35,
+      "values": [
+        {
+          "mittelwert": 10.21
+        },
+        {
+          "mittelwert": 9.52
+        },
+        {
+          "mittelwert": 9.75
+        },
+        {
+          "mittelwert": 10.38
+        },
+        {
+          "mittelwert": 11.24
+        },
+        {
+          "mittelwert": 12.12
+        },
+        {
+          "mittelwert": 13.32
+        },
+        {
+          "mittelwert": 15.12
+        },
+        {
+          "mittelwert": 16.94
+        },
+        {
+          "mittelwert": 18.29
+        },
+        {
+          "mittelwert": 19.25
+        },
+        {
+          "mittelwert": 20.14
+        }
+      ]
+    },
+    {
+      "size_range": "35-<40",
+      "size_min_m2": 35,
+      "size_max_m2": 40,
+      "values": [
+        {
+          "mittelwert": 9.53
+        },
+        {
+          "mittelwert": 8.93
+        },
+        {
+          "mittelwert": 9.13
+        },
+        {
+          "mittelwert": 9.67
+        },
+        {
+          "mittelwert": 10.41
+        },
+        {
+          "mittelwert": 11.17
+        },
+        {
+          "mittelwert": 12.22
+        },
+        {
+          "mittelwert": 13.77
+        },
+        {
+          "mittelwert": 15.35
+        },
+        {
+          "mittelwert": 16.51
+        },
+        {
+          "mittelwert": 17.35
+        },
+        {
+          "mittelwert": 18.11
+        }
+      ]
+    },
+    {
+      "size_range": "40-<45",
+      "size_min_m2": 40,
+      "size_max_m2": 45,
+      "values": [
+        {
+          "mittelwert": 9.07
+        },
+        {
+          "mittelwert": 8.54
+        },
+        {
+          "mittelwert": 8.72
+        },
+        {
+          "mittelwert": 9.19
+        },
+        {
+          "mittelwert": 9.85
+        },
+        {
+          "mittelwert": 10.52
+        },
+        {
+          "mittelwert": 11.44
+        },
+        {
+          "mittelwert": 12.81
+        },
+        {
+          "mittelwert": 14.2
+        },
+        {
+          "mittelwert": 15.23
+        },
+        {
+          "mittelwert": 15.96
+        },
+        {
+          "mittelwert": 16.63
+        }
+      ]
+    },
+    {
+      "size_range": "45-<50",
+      "size_min_m2": 45,
+      "size_max_m2": 50,
+      "values": [
+        {
+          "mittelwert": 8.76
+        },
+        {
+          "mittelwert": 8.29
+        },
+        {
+          "mittelwert": 8.45
+        },
+        {
+          "mittelwert": 8.88
+        },
+        {
+          "mittelwert": 9.46
+        },
+        {
+          "mittelwert": 10.06
+        },
+        {
+          "mittelwert": 10.88
+        },
+        {
+          "mittelwert": 12.11
+        },
+        {
+          "mittelwert": 13.35
+        },
+        {
+          "mittelwert": 14.27
+        },
+        {
+          "mittelwert": 14.92
+        },
+        {
+          "mittelwert": 15.52
+        }
+      ]
+    },
+    {
+      "size_range": "50-<60",
+      "size_min_m2": 50,
+      "size_max_m2": 60,
+      "values": [
+        {
+          "mittelwert": 8.5
+        },
+        {
+          "mittelwert": 8.09
+        },
+        {
+          "mittelwert": 8.23
+        },
+        {
+          "mittelwert": 8.59
+        },
+        {
+          "mittelwert": 9.1
+        },
+        {
+          "mittelwert": 9.62
+        },
+        {
+          "mittelwert": 10.32
+        },
+        {
+          "mittelwert": 11.38
+        },
+        {
+          "mittelwert": 12.45
+        },
+        {
+          "mittelwert": 13.24
+        },
+        {
+          "mittelwert": 13.81
+        },
+        {
+          "mittelwert": 14.33
+        }
+      ]
+    },
+    {
+      "size_range": "60-<70",
+      "size_min_m2": 60,
+      "size_max_m2": 70,
+      "values": [
+        {
+          "mittelwert": 8.36
+        },
+        {
+          "mittelwert": 8.02
+        },
+        {
+          "mittelwert": 8.13
+        },
+        {
+          "mittelwert": 8.44
+        },
+        {
+          "mittelwert": 8.87
+        },
+        {
+          "mittelwert": 9.3
+        },
+        {
+          "mittelwert": 9.9
+        },
+        {
+          "mittelwert": 10.8
+        },
+        {
+          "mittelwert": 11.7
+        },
+        {
+          "mittelwert": 12.37
+        },
+        {
+          "mittelwert": 12.85
+        },
+        {
+          "mittelwert": 13.28
+        }
+      ]
+    },
+    {
+      "size_range": "70-<80",
+      "size_min_m2": 70,
+      "size_max_m2": 80,
+      "values": [
+        {
+          "mittelwert": 8.37
+        },
+        {
+          "mittelwert": 8.07
+        },
+        {
+          "mittelwert": 8.17
+        },
+        {
+          "mittelwert": 8.44
+        },
+        {
+          "mittelwert": 8.81
+        },
+        {
+          "mittelwert": 9.18
+        },
+        {
+          "mittelwert": 9.7
+        },
+        {
+          "mittelwert": 10.48
+        },
+        {
+          "mittelwert": 11.26
+        },
+        {
+          "mittelwert": 11.84
+        },
+        {
+          "mittelwert": 12.25
+        },
+        {
+          "mittelwert": 12.63
+        }
+      ]
+    },
+    {
+      "size_range": "80-<90",
+      "size_min_m2": 80,
+      "size_max_m2": 90,
+      "values": [
+        {
+          "mittelwert": 8.45
+        },
+        {
+          "mittelwert": 8.19
+        },
+        {
+          "mittelwert": 8.28
+        },
+        {
+          "mittelwert": 8.52
+        },
+        {
+          "mittelwert": 8.84
+        },
+        {
+          "mittelwert": 9.17
+        },
+        {
+          "mittelwert": 9.63
+        },
+        {
+          "mittelwert": 10.31
+        },
+        {
+          "mittelwert": 11.0
+        },
+        {
+          "mittelwert": 11.51
+        },
+        {
+          "mittelwert": 11.88
+        },
+        {
+          "mittelwert": 12.21
+        }
+      ]
+    },
+    {
+      "size_range": "90-<100",
+      "size_min_m2": 90,
+      "size_max_m2": 100,
+      "values": [
+        {
+          "mittelwert": 8.58
+        },
+        {
+          "mittelwert": 8.35
+        },
+        {
+          "mittelwert": 8.43
+        },
+        {
+          "mittelwert": 8.64
+        },
+        {
+          "mittelwert": 8.93
+        },
+        {
+          "mittelwert": 9.23
+        },
+        {
+          "mittelwert": 9.64
+        },
+        {
+          "mittelwert": 10.25
+        },
+        {
+          "mittelwert": 10.86
+        },
+        {
+          "mittelwert": 11.32
+        },
+        {
+          "mittelwert": 11.65
+        },
+        {
+          "mittelwert": 11.94
+        }
+      ]
+    },
+    {
+      "size_range": "100-<110",
+      "size_min_m2": 100,
+      "size_max_m2": 110,
+      "values": [
+        {
+          "mittelwert": 8.73
+        },
+        {
+          "mittelwert": 8.52
+        },
+        {
+          "mittelwert": 8.59
+        },
+        {
+          "mittelwert": 8.78
+        },
+        {
+          "mittelwert": 9.05
+        },
+        {
+          "mittelwert": 9.32
+        },
+        {
+          "mittelwert": 9.69
+        },
+        {
+          "mittelwert": 10.24
+        },
+        {
+          "mittelwert": 10.79
+        },
+        {
+          "mittelwert": 11.21
+        },
+        {
+          "mittelwert": 11.5
+        },
+        {
+          "mittelwert": 11.77
+        }
+      ]
+    },
+    {
+      "size_range": "110-<120",
+      "size_min_m2": 110,
+      "size_max_m2": 120,
+      "values": [
+        {
+          "mittelwert": 8.89
+        },
+        {
+          "mittelwert": 8.7
+        },
+        {
+          "mittelwert": 8.76
+        },
+        {
+          "mittelwert": 8.94
+        },
+        {
+          "mittelwert": 9.18
+        },
+        {
+          "mittelwert": 9.42
+        },
+        {
+          "mittelwert": 9.76
+        },
+        {
+          "mittelwert": 10.26
+        },
+        {
+          "mittelwert": 10.77
+        },
+        {
+          "mittelwert": 11.15
+        },
+        {
+          "mittelwert": 11.42
+        },
+        {
+          "mittelwert": 11.66
+        }
+      ]
+    },
+    {
+      "size_range": "120-<130",
+      "size_min_m2": 120,
+      "size_max_m2": 130,
+      "values": [
+        {
+          "mittelwert": 9.04
+        },
+        {
+          "mittelwert": 8.86
+        },
+        {
+          "mittelwert": 8.92
+        },
+        {
+          "mittelwert": 9.08
+        },
+        {
+          "mittelwert": 9.31
+        },
+        {
+          "mittelwert": 9.53
+        },
+        {
+          "mittelwert": 9.84
+        },
+        {
+          "mittelwert": 10.3
+        },
+        {
+          "mittelwert": 10.77
+        },
+        {
+          "mittelwert": 11.12
+        },
+        {
+          "mittelwert": 11.37
+        },
+        {
+          "mittelwert": 11.59
+        }
+      ]
+    },
+    {
+      "size_range": "130-<140",
+      "size_min_m2": 130,
+      "size_max_m2": 140,
+      "values": [
+        {
+          "mittelwert": 9.18
+        },
+        {
+          "mittelwert": 9.02
+        },
+        {
+          "mittelwert": 9.07
+        },
+        {
+          "mittelwert": 9.22
+        },
+        {
+          "mittelwert": 9.43
+        },
+        {
+          "mittelwert": 9.64
+        },
+        {
+          "mittelwert": 9.92
+        },
+        {
+          "mittelwert": 10.35
+        },
+        {
+          "mittelwert": 10.78
+        },
+        {
+          "mittelwert": 11.1
+        },
+        {
+          "mittelwert": 11.33
+        },
+        {
+          "mittelwert": 11.54
+        }
+      ]
+    },
+    {
+      "size_range": "140-<=150",
+      "size_min_m2": 140,
+      "size_max_m2": 151,
+      "values": [
+        {
+          "mittelwert": 9.31
+        },
+        {
+          "mittelwert": 9.16
+        },
+        {
+          "mittelwert": 9.21
+        },
+        {
+          "mittelwert": 9.35
+        },
+        {
+          "mittelwert": 9.54
+        },
+        {
+          "mittelwert": 9.73
+        },
+        {
+          "mittelwert": 10.0
+        },
+        {
+          "mittelwert": 10.4
+        },
+        {
+          "mittelwert": 10.8
+        },
+        {
+          "mittelwert": 11.1
+        },
+        {
+          "mittelwert": 11.31
+        },
+        {
+          "mittelwert": 11.5
+        }
+      ]
+    }
   ],
-  "size_categories": [
-    "bis 40 m²",
-    "40-60 m²",
-    "60-90 m²",
-    "über 90 m²"
-  ],
-  "source_url": "https://www.augsburg.de/buergerservice-rathaus/wohnen-und-bauen/mietspiegel",
   "tables": [
     {
       "lage": "mittel",
@@ -123,6 +823,6 @@
       ]
     }
   ],
-  "verification_status": "unverified",
-  "verification_note": "Raw PDF augsburg.pdf exists in data/raw/ but the committed table does not reproduce from it (scripts/audit_city_sources.py). Pending re-extraction."
+  "verification_status": "verified",
+  "verification_note": "Tabelle 1 extracted from augsburg.pdf (16 size bands x 12 cohorts, 192 Mittelwerte all match the PDF text); Lageklassen 1-7 factors embedded."
 }
