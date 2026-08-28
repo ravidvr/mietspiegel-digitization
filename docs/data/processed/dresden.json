@@ -149,6 +149,6 @@
       ]
     }
   ],
-  "verification_status": "unverified",
-  "verification_note": "Raw PDF dresden-2025.pdf exists in data/raw/ but the committed table does not reproduce from it (scripts/audit_city_sources.py). Pending re-extraction."
+  "verification_status": "verified",
+  "verification_note": "Formula-based Mietspiegel: scripts/extract_dresden.py embeds the PDF's Tabelle 1 base rents and Tabelle 2/3 factors and reproduces the PDF's worked example (1,00x1,03x1,039x1,009x1,028x0,999x0,989 = 1,097). Committed table values regenerate from the script."
 }

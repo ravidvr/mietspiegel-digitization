@@ -34,6 +34,7 @@ PDF_BY_SLUG = {
 STATUS = {
     "berlin": ("verified", "Extracted 163/163 rows from the official 2024 PDF; PDF-diff gated (scripts/verify_berlin_extraction.py)."),
     "hamburg": ("verified", "Extracted from the official 2025 table PDF (scripts/extract_hamburg.py); 88/88 cells match the PDF text layer."),
+    "dresden": ("verified", "Formula-based Mietspiegel: scripts/extract_dresden.py embeds the PDF's Tabelle 1 base rents and Tabelle 2/3 factors and reproduces the PDF's worked example (1,00x1,03x1,039x1,009x1,028x0,999x0,989 = 1,097). Committed table values regenerate from the script."),
     "mainz": ("partial", "Values trace to mainz-2025.pdf (~90%) but the committed Baujahr groups do not match the PDF's cohorts."),
 }
 

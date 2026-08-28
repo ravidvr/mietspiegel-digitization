@@ -99,9 +99,9 @@ Every city JSON now carries `verification_status` + `verification_note`
 
 | status | cities |
 |---|---|
-| verified | Berlin (PDF-diff gated) |
+| verified | Berlin (PDF-diff gated), Hamburg 2025 (88/88 cells match PDF text), Dresden (formula-based, PDF example reproduces) |
 | partial | Mainz |
-| unverified | Augsburg, Bonn, Dresden, Düsseldorf, Frankfurt, Hamburg, Hannover, Kiel, Lübeck, Rostock, Stuttgart (PDF present, values don't reproduce) |
+| unverified | Augsburg, Bonn, Düsseldorf, Frankfurt, Hannover, Kiel, Lübeck, Rostock, Stuttgart (PDF present, values don't reproduce) |
 | no_source_document | Aachen, Braunschweig, Bremen, Essen, Freiburg, Halle, Köln, Leipzig, München, Nürnberg (no PDF in repo) |
 | empty_stub | Bielefeld, Chemnitz, Duisburg, Mannheim, Mönchengladbach (no table) |
 
