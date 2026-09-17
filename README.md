@@ -18,7 +18,7 @@ stubs with no tables.
 **Live dashboard:** https://ravidvr.github.io/mietspiegel-digitization/
 **📐 Metric dictionary:** [docs/METRICS.md](docs/METRICS.md) — cold vs warm rent, data sources, derived metrics
 
-> Looking for property sale prices? The **Berlin Property Market** dashboard is now a separate project: [ravidvr/berlin-property-market](https://github.com/ravidvr/berlin-property-market) — [Live dashboard](https://ravidvr.github.io/mietspiegel-digitization/marktbericht.html)
+> Looking for property sale prices? The **Berlin Property Market** dashboard is now a separate project — [Live dashboard](https://ravidvr.github.io/mietspiegel-digitization/marktbericht.html)
 
 ## What This Is
 
