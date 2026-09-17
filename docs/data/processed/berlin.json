@@ -1724,5 +1724,24 @@
   ],
   "generated_at": null,
   "verification_status": "verified",
-  "verification_note": "Extracted 163/163 rows from the official 2024 PDF; PDF-diff gated (scripts/verify_berlin_extraction.py)."
+  "verification_note": "Extracted 163/163 rows from the official 2024 PDF; PDF-diff gated (scripts/verify_berlin_extraction.py).",
+  "baujahr_groups": [
+    "1919-1949",
+    "1950-1964",
+    "1965-1972",
+    "1973-1985 West",
+    "1973-1990 Ost",
+    "1986-1990 West",
+    "1991-2001",
+    "2002-2009",
+    "2010-2015",
+    "2016-2022",
+    "bis 1918"
+  ],
+  "size_categories": [
+    "40_60",
+    "60_90",
+    "bis_40",
+    "ueber_90"
+  ]
 }

@@ -824,5 +824,28 @@
     }
   ],
   "verification_status": "verified",
-  "verification_note": "Tabelle 1 extracted from augsburg.pdf (16 size bands x 12 cohorts, 192 Mittelwerte all match the PDF text); Lageklassen 1-7 factors embedded."
+  "verification_note": "Tabelle 1 extracted from augsburg.pdf (16 size bands x 12 cohorts, 192 Mittelwerte all match the PDF text); Lageklassen 1-7 factors embedded.",
+  "lage_categories": [
+    "mittel"
+  ],
+  "baujahr_groups": [
+    "1919-1948",
+    "1949-1960",
+    "1961-1969",
+    "1970-1979",
+    "1980-1989",
+    "1990-1995",
+    "1996-2001",
+    "2002-2007",
+    "2008-2013",
+    "2014-2019",
+    "2020-2025",
+    "bis 1918"
+  ],
+  "size_categories": [
+    "40_60",
+    "60_90",
+    "bis_40",
+    "ueber_90"
+  ]
 }

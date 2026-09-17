@@ -764,5 +764,23 @@
     }
   ],
   "verification_status": "verified",
-  "verification_note": "Extracted from the official 2025 table PDF (scripts/extract_hamburg.py); 88/88 cells match the PDF text layer."
+  "verification_note": "Extracted from the official 2025 table PDF (scripts/extract_hamburg.py); 88/88 cells match the PDF text layer.",
+  "baujahr_groups": [
+    "1.1.1919-20.6.1948",
+    "1961-1967",
+    "1968-1977",
+    "1978-1993",
+    "1994-2010",
+    "2011-2015",
+    "2016-2020",
+    "2021-2024",
+    "21.6.1948-1960",
+    "bis 31.12.1918"
+  ],
+  "size_categories": [
+    "40_60",
+    "60_90",
+    "bis_40",
+    "ueber_90"
+  ]
 }

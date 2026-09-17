@@ -386,5 +386,26 @@
     }
   ],
   "verification_status": "verified",
-  "verification_note": "Mietspiegeltabelle extracted from luebeck-2025.pdf p8 (10 cohorts x 4 bands, 40/40 cells match the PDF text); Lage adjustments +0,44/-0,47 €/m² embedded."
+  "verification_note": "Mietspiegeltabelle extracted from luebeck-2025.pdf p8 (10 cohorts x 4 bands, 40/40 cells match the PDF text); Lage adjustments +0,44/-0,47 €/m² embedded.",
+  "lage_categories": [
+    "mittel"
+  ],
+  "baujahr_groups": [
+    "1919 – 1948",
+    "1949 – 1957",
+    "1958 – 1968",
+    "1969 – 1978",
+    "1979 – 1990",
+    "1991 – 2001",
+    "2002 – 2013",
+    "2014 – 2020",
+    "2021 – 4/2025",
+    "bis 1918"
+  ],
+  "size_categories": [
+    "40_60",
+    "60_90",
+    "bis_40",
+    "ueber_90"
+  ]
 }

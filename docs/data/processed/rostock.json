@@ -662,5 +662,24 @@
     }
   ],
   "verification_status": "verified",
-  "verification_note": "Tabelle 1 extracted from rostock-2026.pdf (131 per-m² pairs all match the PDF text); worked example reproduces exactly (A=6,88, B=-0,29, C=6,59). Baujahr factors embedded."
+  "verification_note": "Tabelle 1 extracted from rostock-2026.pdf (131 per-m² pairs all match the PDF text); worked example reproduces exactly (A=6,88, B=-0,29, C=6,59). Baujahr factors embedded.",
+  "lage_categories": [
+    "mittel"
+  ],
+  "baujahr_groups": [
+    "1919-1945",
+    "1946-1959",
+    "1960-1990",
+    "1991-2009",
+    "2010-2015",
+    "2016-2020",
+    "2021-2022",
+    "bis 1918"
+  ],
+  "size_categories": [
+    "40_60",
+    "60_90",
+    "bis_40",
+    "ueber_90"
+  ]
 }
