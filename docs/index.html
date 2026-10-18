@@ -197,7 +197,7 @@ body{
   display:inline-block;width:60px;height:4px;border-radius:2px;
   background:var(--border);overflow:hidden;vertical-align:middle;margin-left:8px;
 }
-.bar-fill{height:100%;border-radius:2px}
+.bar-fill{display:block;height:100%;border-radius:2px}
 
 /* Tag */
 .tag{
@@ -576,10 +576,15 @@ function renderSourcesChart() {
         barThickness: 48,
       }]
     },
-    options: chartOpts({
-      y: { ticks: { callback: v => '€' + v }, min: 0 },
-      x: { grid: { display: false } },
-    })
+    options: {
+      ...chartOpts({
+        y: { ticks: { callback: v => '€' + v }, min: 0 },
+        x: { grid: { display: false } },
+      }),
+      // One unnamed dataset (the x-axis names each bar), so no legend:
+      // it would only read "undefined".
+      plugins: { legend: { display: false } },
+    }
   });
 }
 
