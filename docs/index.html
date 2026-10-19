@@ -11,8 +11,8 @@
 <meta name="twitter:card" content="summary_large_image" />
 <title>Mietspiegel Digitization — German Rent Data, Made Accessible</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.7/chart.umd.min.js"
-        integrity="sha256-1xvj5TN1m7TdpHQCKMcRKnQWwVIGS4dp1C+d4tHDeJU=" crossorigin=""></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.js"
+        integrity="sha256-KBLLiCX9xXRp6y97sFXpQpJE5ZmSBRHuR36ChJm2Mss=" crossorigin=""></script>
 <style>
 /* ── Design System (Linear-inspired) ────────────────────────── */
 :root {
@@ -197,7 +197,7 @@ body{
   display:inline-block;width:60px;height:4px;border-radius:2px;
   background:var(--border);overflow:hidden;vertical-align:middle;margin-left:8px;
 }
-.bar-fill{height:100%;border-radius:2px}
+.bar-fill{display:block;height:100%;border-radius:2px}
 
 /* Tag */
 .tag{
@@ -549,11 +549,13 @@ async function init() {
       fetch('data/processed/insights_berlin_table.json').then(r => r.json()),
     ]);
 
-    renderSourcesChart();
-    renderPremiumChart(premium);
-    renderSpreadChart(spread);
-    renderTableChart(berlinTable);
-    renderCityTable(cities);
+    // Each render is guarded on its own so one failing chart can't stop the
+    // others, or the city table, from drawing.
+    try { renderSourcesChart(); } catch(e) { console.error('Sources chart error:', e); }
+    try { renderPremiumChart(premium); } catch(e) { console.error('Premium chart error:', e); }
+    try { renderSpreadChart(spread); } catch(e) { console.error('Spread chart error:', e); }
+    try { renderTableChart(berlinTable); } catch(e) { console.error('Table chart error:', e); }
+    try { renderCityTable(cities); } catch(e) { console.error('City table error:', e); }
   } catch(e) {
     console.error('Init error:', e);
   }
@@ -574,10 +576,15 @@ function renderSourcesChart() {
         barThickness: 48,
       }]
     },
-    options: chartOpts({
-      y: { ticks: { callback: v => '€' + v }, min: 0 },
-      x: { grid: { display: false } },
-    })
+    options: {
+      ...chartOpts({
+        y: { ticks: { callback: v => '€' + v }, min: 0 },
+        x: { grid: { display: false } },
+      }),
+      // One unnamed dataset (the x-axis names each bar), so no legend:
+      // it would only read "undefined".
+      plugins: { legend: { display: false } },
+    }
   });
 }
 
