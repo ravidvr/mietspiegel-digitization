@@ -172,11 +172,11 @@ LIMIT 5;
 | Resource | URL |
 |----------|-----|
 | **Live Dashboard** | [ravidvr.github.io/mietspiegel-digitization](https://ravidvr.github.io/mietspiegel-digitization/) |
-| **BigQuery Schema** | `analytics/schema.sql` |
-| **SQL Query Library** | `analytics/queries/` |
-| **Looker Model** | `analytics/lookml/mietspiegel.model.lkml` |
-| **Experiments** | `experiments/` (MDE calculation, what-if rent scenarios, city comparison tests) |
-| **Data Quality Reports** | `validate/` (CI-gated, runs weekly) |
+| **BigQuery Schema** | [`analytics/bigquery_schema.sql`](analytics/bigquery_schema.sql) (23 cities, star schema), [`analytics/berlin_bigquery_schema.sql`](analytics/berlin_bigquery_schema.sql) (Berlin only) |
+| **SQL Query Library** | [`analytics/queries.sql`](analytics/queries.sql) (10 queries) |
+| **Looker Model** | [`analytics/looker_mietspiegel.model.lkml`](analytics/looker_mietspiegel.model.lkml) |
+| **Experiments** | [`experiments/`](experiments/) (MDE calculation, what-if rent scenarios, city comparison tests) |
+| **Data Quality Checks** | [`validate/`](validate/) (schema, sanity and GdW checks, run weekly in GitHub Actions) |
 | **Validation Methodology** | [`docs/validation_methodology.md`](docs/validation_methodology.md) |
 
 ---
