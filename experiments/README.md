@@ -1,98 +1,102 @@
-# Experiments: Rent Impact Simulator
+# Experiments
 
-This directory contains the experimental framework and policy counterfactuals for `rent_impact_simulator.py` (490 lines). 
+Four standalone Python scripts. Only the first one feeds the website.
 
-The simulator models the financial and behavioral impact of various rent adjustment policies (e.g., rent caps, subsidizations, percentage increases) on a synthetic or historical population of households.
+| Script | Question | Output | On the site |
+|---|---|---|---|
+| [`generate_experiment_results.py`](generate_experiment_results.py) | How big must a city-wide rent rise be before Berlin's data can reliably detect it? | Writes `docs/data/processed/experiment_results.json` | Yes: the Experiments page |
+| [`rent_impact_simulator.py`](rent_impact_simulator.py) | What-if rent scenarios over the 23 city Mietspiegel tables | Prints a report | No |
+| [`city_comparison_tests.py`](city_comparison_tests.py) | How much do the 23 cities' rent tables differ? | Prints a report | No |
+| [`berlin_mietpreisbremse_did.py`](berlin_mietpreisbremse_did.py) | Did Berlin's rent trend change after the June 2015 Mietpreisbremse? | Writes 5 CSVs to `exports/` | Its CSVs are linked from the Data page. It no longer runs ([§4](#4-mietpreisbremse-before-and-after-berlin_mietpreisbremse_didpy)) |
 
----
+Some code and output still say "A/B testing framework". Nothing here runs an A/B test: there are no randomised groups, no household-level data, and no guardrail metrics or decision rules.
 
-## 1. Hypotheses per Scenario
-The simulator evaluates counterfactual policy interventions against a status-quo baseline. 
+## 1. Minimum detectable effect: `generate_experiment_results.py`
 
-*   **Scenario A: Strict Rent Cap (e.g., max +2% YoY)**
-    *   *Hypothesis:* Implementing a strict rent cap will significantly reduce aggregate tenant housing costs without pushing landlord churn outside of acceptable operational bounds.
-*   **Scenario B: Targeted Subsidy (e.g., -10% for low-income brackets)**
-    *   *Hypothesis:* Direct rent reductions for the bottom income quartile will result in a proportional decrease in housing cost burden without triggering gentrification displacement.
-*   **Scenario C: Aggressive Market Correction (e.g., +8% YoY catch-up)**
-    *   *Hypothesis:* Accelerating rent to market rate will increase overall portfolio revenue, but will result in a marginal, statistically insignificant increase in default/eviction rates.
+Works out the minimum detectable effect (MDE): the smallest city-wide change in mean asking rent that a two-sided, two-sample z-test comparing Berlin's grid cells before and after a change would detect with 80% power at α = 0.05.
 
-## 2. Unit of Analysis
-*   **Primary Unit:** The Household (encoded by `household_id`).
-*   **Aggregation Level:** Impacts are calculated at the household level and aggregated to the census-tract or portfolio level for policy-wide evaluation.
-
-## 3. Primary and Secondary Metrics
-*   **Primary Metric:** `total_impact_eur`
-    *   *Definition:* The absolute financial difference (in Euros) between the counterfactual rent policy and the baseline rent for a given household over the simulated period. 
-*   **Secondary Metric:** `affected_households_delta_pct`
-    *   *Definition:* The percentage change in the number of households crossing a predefined distress threshold (e.g., rent > 40% of monthly income) compared to the baseline.
-
-## 4. Guardrail Metrics
-To ensure policies do not cause unintended catastrophic side effects, the simulator tracks the following guardrails. If these are breached, the policy is rejected regardless of the primary metric's success.
-*   `simulated_default_rate`: Must not increase by > 1.0 percentage point.
-*   `landlord_exit_rate`: Proportion of landlords opting to sell/remove units from the market; must not exceed 2.0%.
-*   `simulation_runtime_sec`: System guardrail to ensure the simulation complexity remains computationally tractable (< 60 seconds).
-
-## 5. Minimum Detectable Effect (MDE) Calculation
-Before running counterfactuals, we establish the MDE to understand what magnitude of change the experiment can reliably detect. 
-
-Using the standard formula for a two-sample t-test MDE:
-`MDE = (μ_baseline * δ)`
-
-Where the standardized effect size (`δ`) is determined by:
-`δ = (Z_α/2 + Z_β) * √(2 * σ² / n)`
-
-*   `Z_α/2` = 1.96 (for 95% confidence)
-*   `Z_β` = 0.84 (for 80% power)
-*   `σ²` = Variance of historical rent impacts
-*   `n` = Sample size of households
-
-*Note: In `rent_impact_simulator.py`, MDE is calculated dynamically based on the input dataset's variance to prevent drawing conclusions from noise.*
-
-## 6. Power Analysis
-To avoid Type II errors (false negatives—failing to detect a real policy impact), a power analysis is conducted prior to execution.
-
-*   **Alpha (α):** 0.05
-*   **Power (1 - β):** 0.80
-*   **Assumed Baseline Variance:** Derived from historical rent distribution logs.
-*   **Actionable Output:** If the input dataset's `n` is too small to achieve 80% power for a realistic policy effect (e.g., €15/month impact), the simulator will issue a `PowerWarning` and advise the user to bootstrap the sample or pool regional data.
-
-## 7. Decision Rules
-A counterfactual policy is considered viable for real-world A/B rollout *only* if it meets all the following logical gates:
-
-1.  **Significance:** `p-value` of `total_impact_eur` < 0.05.
-2.  **Magnitude:** Observed effect size > MDE.
-3.  **Directionality:** `total_impact_eur` favors the target demographic (e.g., negative cost for tenants in Scenario B).
-4.  **Guardrail Integrity:** No guardrail metrics are breached.
-
-## 8. Limitations (Honest Assessment)
-The `rent_impact_simulator.py` is a simplified mathematical model and suffers from the following constraints:
-*   **Rational Actor Assumption:** The simulator assumes tenants and landlords react to price changes instantly. It does not model complex behavioral economics (e.g., inertia, emotional attachment to homes).
-*   **Macroeconomic Blindness:** It does not natively model inflation rates, sudden unemployment shocks, or interest rate changes on landlord mortgages unless explicitly passed as exogenous time-series variables.
-*   **Codebase Scope:** At 490 lines, the simulator is highly optimized for speed and interpretability rather than hyper-local spatial accuracy. It uses normal/log-normal distributions for price generation, which may smooth over localized housing shortages.
-
----
-
-## 9. Run Command
-
-To execute a specific counterfactual simulation, use the following CLI command:
+- **Input:** `docs/data/processed/berlin_immoscout.json`, Immoscout24 asking rents from RWI-GEO-REDX PUF v16: n = 361 one-kilometre grid cells after cleaning (467 raw), mean €12.07/m², standard deviation σ = €3.27/m².
+- **Formula:** MDE = (z<sub>α/2</sub> + z<sub>β</sub>) · √(2σ²/n) = (1.96 + 0.84) · √(2 · 3.27² / 361) = **€0.68/m²**, 5.6% of the mean.
+- **Scenarios:** a uniform +5% rise (€0.60/m²) falls below the MDE (`"detectable": false`); +10% (€1.21/m²) clears it (`true`). `mde_vs_effect` is the rise divided by the MDE (0.9 and 1.8).
+- **Output:** `experiment_results.json` with `methodology`, `mde`, `scenarios` and `counterfactuals`. The one counterfactual ("If Berlin rents reached Munich levels") is a name and a pointer to §2; it has no numbers.
+- Python standard library only. Re-running it reproduces the committed file byte for byte.
 
 ```bash
-python rent_impact_simulator.py \
-    --input-data data/historical_tenants.csv \
-    --scenario rent_cap_2pct \
-    --output-dir experiments/results/ \
-    --mde-alpha 0.05 \
-    --power 0.80
+python3 experiments/generate_experiment_results.py
 ```
 
----
+The Experiments page (`docs/experiments.html`) reads this file. Section 7 of the overview (`docs/index.html`) repeats its numbers as typed text, so update that by hand if the output changes.
 
-## Resume Snippet: A/B Testing Competency
+**Limits.** σ is the spread across grid cells, and the formula treats "before" and "after" as two independent samples of 361 cells. A paired comparison of the same cells over time would usually detect much smaller changes, because each cell is compared with itself.
 
-*(To be included on a Senior Data Analyst resume under "Skills" or "Core Competencies")*
+## 2. What-if rent scenarios: `rent_impact_simulator.py`
 
-**Experimental Design & Causal Inference:** 
-*   Designed and evaluated counterfactual A/B testing frameworks, translating ambiguous business policies into testable hypotheses. 
-*   Proficient in end-to-end experiment lifecycle: establishing Units of Analysis, defining Primary/Secondary Metrics, and setting strict Guardrail Metrics. 
-*   Deep understanding of statistical rigor, regularly performing Power Analysis (80% power, 95% significance) and Minimum Detectable Effect (MDE) calculations to ensure experiment validity and prevent Type I/II errors. 
-*   Experienced in applying rigid Decision Rules to experimental readouts and clearly communicating statistical limitations to non-technical stakeholders.
+A calculator, not a statistical test. It loads every city table, builds one row per city × Wohnlage × building-age band (23 cities and 417 rows on the published tables), and prints up to three scenarios:
+
+- **`percentage`:** raises every table value by `--pct` percent (default 5). For the top 15 cities it prints the change in average €/m² and a euro total per month and per year: the change × 70 m² × estimated rental flats (population × 0.55 ÷ 2).
+- **`counterfactual`:** gives every other city the rents of the `--target` city (default `muenchen`), matching rows by identical Wohnlage and building-age labels and skipping rows without a match. Per city it prints the monthly rent of a 70 m² flat before and after, the yearly euro total, and whether the new rent would cross 30% of an assumed €3,500 monthly income where the old one didn't.
+- **`distributional`:** the average euro increase from `--pct` by size band, by building age (pre-1950 vs post-2010, picked out by their labels) and by Wohnlage.
+
+**Assumptions typed into the code, not sourced:** 55% of residents rent, 2 people per household, every flat is 70 m², €3,500 monthly income, a 30% rent-burden line. Populations come from each city's JSON.
+
+**Limits.**
+
+- The euro totals multiply table averages by those assumptions, so they are rough orders of magnitude. The website doesn't show them.
+- Munich's table is marked `"verification_status": "no_source_document"`, so the default counterfactual compares against a table without a source PDF.
+- A uniform percentage rise gives each group a euro increase proportional to its starting rent, so the distributional view restates which groups already pay more.
+- It works on the official Mietspiegel tables, while §1 uses Immoscout24 asking rents, so their +5% figures differ (Berlin: €0.45/m² here, €0.60/m² in §1).
+
+```bash
+pip install pandas numpy        # both are in requirements.txt
+# first time only: copy the city tables (see "Data for §2 and §3" below)
+MIETSPIEGEL_ROOT=. python3 experiments/rent_impact_simulator.py               # all three scenarios, +5%
+MIETSPIEGEL_ROOT=. python3 experiments/rent_impact_simulator.py --scenario percentage --pct 10
+MIETSPIEGEL_ROOT=. python3 experiments/rent_impact_simulator.py --scenario counterfactual --target hamburg
+```
+
+### Data for §2 and §3
+
+Both scripts read the city tables from `$MIETSPIEGEL_ROOT/data/processed/`. The default root is `/Users/ruhvee/mietspiegel-digitization` (the author's machine), and `data/processed/` is the build's staging folder, which isn't in git. The published copies are in `docs/data/processed/`, but pointing `MIETSPIEGEL_ROOT` at `docs` fails: that folder also holds `brw_2025_slim.json`, a JSON list the loader can't read (`AttributeError: 'list' object has no attribute 'get'`). From a fresh clone, run this once from the repo root (`data/processed/` is git-ignored):
+
+```bash
+mkdir -p data/processed
+cp docs/data/processed/*.json data/processed/
+rm data/processed/brw_2025_slim.json
+```
+
+## 3. City comparison tests: `city_comparison_tests.py`
+
+Treats each filled cell of a city's table (one size band × building age × Wohnlage) as one observation: 1,638 cells across 23 cities on the published tables. It prints:
+
+1. A summary per city: mean and standard deviation of its cells, the gut and einfach means, and their ratio (the "spread").
+2. Welch t-tests for all 253 city pairs, Bonferroni-corrected, with Cohen's d.
+3. A one-way ANOVA of rent by Bundesland (13 states), with η², Levene's test and Shapiro–Wilk normality warnings.
+4. Tukey HSD between states (needs statsmodels).
+5. Correlations across cities: population vs mean rent (Pearson and Spearman), population vs gut/einfach spread, and number of building-age bands vs mean rent (Pearson).
+6. How the 253 effect sizes are distributed.
+
+**Limits.**
+
+- The cells are published band averages, not individual rents, and the tests treat them as independent samples. Read the p-values as a description of how far apart the tables are, not as evidence about individual flats.
+- Only 6 of the 23 tables are marked verified, and 10 have no source document (see `verification_status` in each city JSON).
+- statsmodels isn't in `requirements.txt`. Without it the Bonferroni step falls back to multiplying the p-values (same result) and Tukey HSD is skipped.
+
+```bash
+pip install pandas numpy scipy statsmodels
+# first time only: the same data copy as for §2
+MIETSPIEGEL_ROOT=. python3 experiments/city_comparison_tests.py
+```
+
+## 4. Mietpreisbremse before and after: `berlin_mietpreisbremse_did.py`
+
+**It no longer runs.** Written in July 2026, it reads a 2013–2023 Berlin series in the old format of `data/historical_mietspiegel.json`. On 27 Aug 2026 (commit `dd99d3e`) that interpolated series was removed because its values couldn't be reproduced from the official tables. The file now holds the 2017–2023 editions extracted from the official PDFs, in a new format, and the script stops with `KeyError: 'cities'`. Its project root is also hard-coded on line 18 (`/Users/ruhvee/mietspiegel-digitization`, with no `MIETSPIEGEL_ROOT` override).
+
+What it did, for reference:
+
+- **Trend comparison:** despite "DiD" in the name, there's no comparison group, so it isn't a difference-in-differences analysis. It compares Berlin's own trend before and after the law (June 2015), using straight lines between the end editions of each period (2013→2015 and 2015→2023), and extends the 2013–2015 line to 2023 as the counterfactual. There's no significance test.
+- **Rent burden:** the average Mietspiegel 2024 rent for 40, 60 and 90 m² flats against 30% of an assumed €2,450 net monthly household income, cold and with €2.50/m² added for utilities.
+- **Districts:** the cheapest and the priciest Bezirk, from `docs/data/processed/berlin_districts_comparison.json`.
+- **Market vs official:** Immoscout24 asking rents vs the Mietspiegel average vs Zensus 2022 rents.
+- **Exports:** five CSVs in `exports/`: `berlin_mietspiegel_2024.csv`, `berlin_rent_cells.csv`, `berlin_districts.csv`, `berlin_historical_trend.csv` and `berlin_mietpreisbremse_analysis.csv`.
+
+The CSVs in `exports/` are from its last run (29 Jul 2026), so `berlin_historical_trend.csv` and `berlin_mietpreisbremse_analysis.csv` still hold the removed series. The Data page links all five. It uses only the Python standard library.

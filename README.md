@@ -76,7 +76,7 @@ mietspiegel-digitization/
 ├── docs/                          ← GitHub Pages deployment root
 │   ├── index.html                 ← Analytics overview: key metrics, insights, city rankings
 │   ├── berlin.html                ← Interactive Berlin map (heatmap, Rent Check, Budget Check, Story)
-│   ├── experiments.html           ← A/B policy simulator results with MDE and impact analysis
+│   ├── experiments.html           ← Smallest rent rise the data can reliably spot (MDE)
 │   ├── data.html                  ← Data explorer: downloads, methodology, schema docs
 │   ├── cross-city-comparison.html ← cross-city comparison table + Berlin Mietspiegel table
 │   ├── historical_trends.html     ← Berlin rent history by Wohnlage (Chart.js)
@@ -84,7 +84,7 @@ mietspiegel-digitization/
 │   └── data/processed/            ← All dashboard data (served statically)
 ├── scripts/                       ← Build pipeline
 ├── analytics/                     ← BigQuery schema, SQL queries, LookML model
-├── experiments/                   ← A/B policy simulator (MDE, power analysis)
+├── experiments/                   ← MDE calculation, what-if rent scenarios, city comparison tests
 ├── exports/                       ← CSV data exports
 ├── validate/                      ← Data quality framework
 ├── tests/                         ← Pytest validation suite
@@ -130,7 +130,7 @@ The project includes a full analytics layer beyond the dashboard:
 | [Full 23-City Schema](analytics/bigquery_schema.sql) | Multi-city BigQuery DDL |
 | [SQL Queries](analytics/queries.sql) | 10 production queries: city rankings, Wohnlage premiums, YoY growth, market-vs-official gap |
 | [LookML Model](analytics/looker_mietspiegel.model.lkml) | Looker model with explores for rent cells, cities, Immoscout, historical trends, districts |
-| [Experiment Framework](experiments/) | A/B policy simulator with MDE, power analysis, guardrail metrics, decision rules |
+| [Experiments](experiments/) | Minimum detectable effect (MDE) for a city-wide rent rise, a what-if rent scenario calculator, and statistical tests comparing 23 cities |
 | [Metric Dictionary](docs/METRICS.md) | Cold vs warm rent definitions, data source documentation, derived metrics |
 | [CSV Exports](exports/) | Districts, historical trends, Mietpreisbremse analysis, Mietspiegel 2024 table |
 
@@ -141,6 +141,6 @@ This project demonstrates the same analytical patterns used in supply chain and 
 - **Multi-source reconciliation** — Three independent data sources (market, census, official) that disagree. Finding and explaining the gaps is the same skill as reconciling supplier-reported costs with internal ERP data.
 - **Monotonicity and plausibility checks** — 14 automated tests that catch impossible values before they reach a dashboard. Same pattern as KPI validation gates in production analytics pipelines.
 - **Index construction** — Building a rent index from raw grid cells is structurally identical to building price indices, demand forecasting inputs, or supplier performance scores.
-- **Experimentation mindset** — The A/B simulator models counterfactual policy scenarios with MDE calculations. Same framework used at Zalando and Delivery Hero for product experiments.
+- **Experimentation mindset** — Before claiming a rent change, check whether the data could detect it at all: the minimum detectable effect (MDE) shows that a city-wide 5% rise would fall just below what Berlin's data can reliably spot. Same power check that comes before a product A/B test.
 
 Built by [Ravi Dronamraju](https://ravidvr.github.io) — Senior Data Analyst, Berlin.

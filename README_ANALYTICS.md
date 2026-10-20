@@ -27,7 +27,7 @@ This is not just a map. It's a **data product** for rent analysis: query it, joi
 | **Query** | SQL | Ad-hoc analysis, aggregation, tenant fairness checks |
 | **ETL** | Python (pdfplumber, pandas) | PDF extraction, normalization, validation |
 | **BI** | Looker / Tableau Public | Dashboards, stakeholder reporting |
-| **Statistical Testing** | Python (scipy, statsmodels) | A/B tests, rent forecasting, inequality metrics |
+| **Statistical Testing** | Python (scipy, statsmodels) | City and state comparisons (t-tests, ANOVA, Tukey HSD), correlations |
 | **Data Quality** | pytest + custom validators | Monotonicity, schema, GdW cross-ref |
 | **Geospatial** | Leaflet.js + GeoJSON | Interactive heatmaps, district boundaries |
 | **Deployment** | GitHub Pages | Static hosting, zero-cost CDN |
@@ -175,7 +175,7 @@ LIMIT 5;
 | **BigQuery Schema** | `analytics/schema.sql` |
 | **SQL Query Library** | `analytics/queries/` |
 | **Looker Model** | `analytics/lookml/mietspiegel.model.lkml` |
-| **Experiments** | `experiments/` (A/B tests, statistical analyses) |
+| **Experiments** | `experiments/` (MDE calculation, what-if rent scenarios, city comparison tests) |
 | **Data Quality Reports** | `validate/` (CI-gated, runs weekly) |
 | **Validation Methodology** | [`docs/validation_methodology.md`](docs/validation_methodology.md) |
 
@@ -233,7 +233,7 @@ mietspiegel-digitization/
 │   ├── historical_trends.html     ← Rent history by Wohnlage (Chart.js)
 │   └── data/processed/            ← All city JSONs served statically
 ├── analytics/                     ← BigQuery schema, SQL queries, LookML
-├── experiments/                   ← A/B testing, statistical tests
+├── experiments/                   ← MDE calculation, what-if rent scenarios, city comparison tests
 ├── scripts/                       ← Python ETL pipeline
 ├── validate/                      ← Data quality framework (sanity checks, GdW cross-ref)
 ├── tests/                         ← pytest validation suite
