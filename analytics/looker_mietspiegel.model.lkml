@@ -8,7 +8,7 @@
 #   rent_cells         — Core rent table (city × Lage × Baujahr × Size)
 #   cities             — City metadata
 #   immoscout          — Berlin Immoscout24 market rent grid
-#   historical_trends  — Berlin YoY Mietspiegel editions (2013–2023)
+#   historical_trends  — Berlin Mietspiegel editions (2017–2023)
 #   berlin_districts   — Berlin 12 Bezirke Wohnlage distribution
 #
 # Project: https://github.com/ravidvr/mietspiegel-digitization
@@ -111,7 +111,7 @@ explore: immoscout {
 # =============================================================================
 explore: historical_trends {
   label: "Historical Rent Trends"
-  description: "Berlin Mietspiegel editions 2013–2023: base rent per Wohnlage, year-over-year growth, and long-term trajectories."
+  description: "Berlin Mietspiegel editions 2017–2023 (the official archive): base rent per Wohnlage and change between editions. 2021 and 2023 were flat updates (+1.1%, +5.4%), not new surveys."
   group_label: "Berlin"
 
   view_name: fact_historical_trends
@@ -807,7 +807,7 @@ view: fact_historical_trends {
     value_format_name: decimal_2
     sql: ${TABLE}.base_rent_per_sqm ;;
     label: "Base Rent (€/m²)"
-    description: "Reference rent for mittlere Lage, 60-90m², 1965-1974 Baujahr"
+    description: "Mean of the official Mittelwerte for buildings from 1991-2002, the one cohort in every edition"
   }
 
   dimension: baujahr_cohort {
@@ -833,23 +833,24 @@ view: fact_historical_trends {
   measure: earliest_rent {
     type: number
     sql: ${base_rent_per_sqm} ;;
-    filters: [year: "2013"]
-    label: "2013 Base Rent (€/m²)"
+    filters: [year: "2017"]
+    label: "2017 Base Rent (€/m²)"
     value_format_name: decimal_2
   }
 
   measure: total_growth_pct {
     type: number
     sql: SAFE_DIVIDE(${latest_rent} - ${earliest_rent}, ${earliest_rent}) * 100 ;;
-    label: "10-Year Growth (2013→2023, %)"
+    label: "Growth 2017→2023 (%)"
     value_format_name: decimal_1
-    description: "Total percentage growth in base rent from 2013 to 2023"
+    description: "Total percentage growth in base rent from 2017 to 2023"
   }
 
   measure: avg_yoy_growth_pct {
     type: number
-    sql: (POWER(SAFE_DIVIDE(${latest_rent}, NULLIF(${earliest_rent}, 0)), 0.1) - 1) * 100 ;;
+    sql: (POWER(SAFE_DIVIDE(${latest_rent}, NULLIF(${earliest_rent}, 0)), 1.0 / 6) - 1) * 100 ;;
     label: "Avg Annual Growth (CAGR, %)"
+    description: "Compound annual rate over the 6 years from the 2017 to the 2023 edition"
     value_format_name: decimal_1
   }
 }

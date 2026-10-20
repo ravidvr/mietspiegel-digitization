@@ -6,14 +6,15 @@
 
 Digitizes German municipal rent indices (Mietspiegel) — bilingual DE/EN, 23 city datasets, 3 reconciled data sources. All values are **Nettokaltmiete (net cold rent)** in €/m²/month.
 
-**Verification status (2026-08-27):** the Berlin 2024 table is fully verified
+**Verification status (2026-08-28):** the Berlin 2024 table is fully verified
 (163 rows extracted from the official PDF, PDF-diff gated) and the four
-archived historical editions (2017-2023) are verified. Mainz values partially
-trace to its source PDF. The remaining city tables are stamped
-`unverified` / `no_source_document` in their JSON files and are queued for
-re-extraction — see `scripts/audit_city_sources.py` and
-`scripts/stamp_verification_status.py`. Five city files are metadata-only
-stubs with no tables.
+archived historical editions (2017-2023) are verified. Five more city tables
+are verified against their official PDFs: Augsburg, Dresden, Hamburg, Lübeck
+and Rostock. Mainz values partially trace to its source PDF. The remaining
+city tables are stamped `unverified` / `no_source_document` in their JSON
+files and are queued for re-extraction — see `scripts/audit_city_sources.py`,
+`scripts/stamp_verification_status.py` and `docs/DATA_PROVENANCE.md`. Five
+city files are metadata-only stubs with no tables.
 
 **Live dashboard:** https://ravidvr.github.io/mietspiegel-digitization/
 **📐 Metric dictionary:** [docs/METRICS.md](docs/METRICS.md) — cold vs warm rent, data sources, derived metrics
@@ -132,7 +133,7 @@ The project includes a full analytics layer beyond the dashboard:
 | [LookML Model](analytics/looker_mietspiegel.model.lkml) | Looker model with explores for rent cells, cities, Immoscout, historical trends, districts |
 | [Experiments](experiments/) | Minimum detectable effect (MDE) for a city-wide rent rise, a what-if rent scenario calculator, and statistical tests comparing 23 cities |
 | [Metric Dictionary](docs/METRICS.md) | Cold vs warm rent definitions, data source documentation, derived metrics |
-| [CSV Exports](exports/) | Districts, historical trends, Mietpreisbremse analysis, Mietspiegel 2024 table |
+| [CSV Exports](exports/) | Berlin districts and the Mietspiegel 2024 table averaged into 4 size bands (as a table, and one row per cell). One-off copies of `berlin_districts_comparison.json` and `berlin.json` in `docs/data/processed/`, last checked 20 Oct 2026; no script rebuilds them |
 
 ## Why This Project
 

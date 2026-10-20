@@ -88,11 +88,22 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   "city": "Berlin",
   "year": 2024,
   "lage_categories": ["einfach", "mittel", "gut"],
-  "tables": [
+  "official_rows": [  // the official table, row by row
     {
       "lage": "einfach",
       "rows": [
-        { "baujahr": "bis 1918", "bis_40": 8.03, "40_60": 7.68, "60_90": 7.35, "ueber_90": 7.02 },
+        { "baujahr": "bis 1918", "size_min_m2": 0.0, "size_max_m2": 35.0, "size_range": "bis unter 35 m²",
+          "mittelwert": 9.87, "untere_spanne": 7.19, "obere_spanne": 14.19 },
+        ...
+      ]
+    },
+    ...
+  ],
+  "tables": [  // 4-band summary: average of the official values in each band
+    {
+      "lage": "einfach",
+      "rows": [
+        { "baujahr": "bis 1918", "bis_40": 9.47, "40_60": 8.32, "60_90": 6.96, "ueber_90": 6.47 },
         ...
       ]
     },
@@ -118,13 +129,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 
   <div class="section">
     <h2>📊 CSV Exports</h2>
-    <p>Pre-computed CSV exports for common analyses:</p>
+    <p>CSV copies of the Berlin data. Mietspiegel 2024 and Rent Cells simplify the official 2024 table to four flat sizes: each value is the average of the official values in that size band. For the full official table, download the Berlin Mietspiegel 2024 JSON above.</p>
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
       <a class="dl-btn secondary" href="https://raw.githubusercontent.com/ravidvr/mietspiegel-digitization/main/exports/berlin_districts.csv" target="_blank">📥 Districts</a>
-      <a class="dl-btn secondary" href="https://raw.githubusercontent.com/ravidvr/mietspiegel-digitization/main/exports/berlin_historical_trend.csv" target="_blank">📥 Historical Trend</a>
       <a class="dl-btn secondary" href="https://raw.githubusercontent.com/ravidvr/mietspiegel-digitization/main/exports/berlin_mietspiegel_2024.csv" target="_blank">📥 Mietspiegel 2024</a>
       <a class="dl-btn secondary" href="https://raw.githubusercontent.com/ravidvr/mietspiegel-digitization/main/exports/berlin_rent_cells.csv" target="_blank">📥 Rent Cells</a>
-      <a class="dl-btn secondary" href="https://raw.githubusercontent.com/ravidvr/mietspiegel-digitization/main/exports/berlin_mietpreisbremse_analysis.csv" target="_blank">📥 Mietpreisbremse</a>
     </div>
   </div>
 
@@ -143,7 +152,7 @@ const DATASETS = [
   {
     name: 'Berlin Mietspiegel 2024',
     file: 'berlin.json',
-    desc: 'Official rent index table: 3 Wohnlagen × 8 Baujahr groups × 4 size classes',
+    desc: 'The official 2024 rent table: all 163 rows as printed (3 Wohnlagen × 11 building-age groups, each with its own size bands and range), plus a summary in 4 size bands',
     tags: ['official'],
     source: 'Berlin Senate',
     license: 'Public document'
@@ -175,7 +184,7 @@ const DATASETS = [
   {
     name: 'Historical Trends',
     file: 'berlin_historical.json',
-    desc: 'Mietspiegel editions 2013–2024 for all Wohnlage categories',
+    desc: 'The four archived Berlin editions, 2017 to 2023, from the official PDFs, with an average per Wohnlage. 2021 and 2023 raised every value by a flat 1.1% and 5.4%.',
     tags: ['official'],
     source: 'Berlin Senate',
     license: 'Public document'
@@ -183,7 +192,7 @@ const DATASETS = [
   {
     name: '23-City Comparison',
     file: 'cities_comparison.json',
-    desc: 'All 23 city datasets with average Mietspiegel rent, state, population, and market data. Per-city verification_status is stamped in each city JSON — Berlin is fully verified, the rest are queued for re-extraction.',
+    desc: 'All 23 cities with average Mietspiegel rent, state, population and market rents. Six city tables are checked against their official PDF: Augsburg, Berlin, Dresden, Hamburg, Lübeck and Rostock. Each city JSON says how far it is checked (verification_status).',
     tags: ['official'],
     source: 'Municipal Mietspiegel PDFs',
     license: 'Public documents'

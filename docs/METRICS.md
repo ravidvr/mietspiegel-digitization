@@ -102,11 +102,14 @@ All Mietspiegel values are **reference rents for new leases** (Neuvertragsmiete)
 
 | Field | Type | Unit | Description |
 |-------|------|------|-------------|
-| `rent_per_sqm` | float | €/m² | Net cold rent per m² for a given edition year |
+| `by_lage_same_cohort` | float | €/m² | Per edition and Wohnlage: average of the official Mittelwerte for buildings from 1991–2002, the one age group in every edition (the like-for-like series) |
+| `by_lage` | float | €/m² | The same average for each edition's newest age group (2003–2015 in 2017, 2003–2017 from 2019), so it mixes two definitions |
 
-**Editions tracked:** 2013, 2015, 2017, 2019, 2021, 2023, 2024.
+Both averages leave out cells the official table marks as based on too few rents.
 
-**Source:** Historical Mietspiegel PDFs published by Berlin Senate.
+**Editions tracked:** 2017, 2019, 2021, 2023 (`berlin_historical.json`). 2013 and 2015 aren't in the official archive. 2021 and 2023 weren't new surveys: they raised every value of the previous table by a flat 1.1% and 5.4%. The current table (2024) is in `berlin.json`.
+
+**Source:** Official Mietspiegeltabelle PDFs from the Berlin Senate archive (`data/raw/`).
 
 ---
 

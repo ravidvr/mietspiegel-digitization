@@ -376,8 +376,9 @@ LIMIT 1;
 -- QUERY 9: Year-over-year growth from historical trends (Berlin)
 -- -----------------------------------------------------------------------------
 -- Business question: How fast have Berlin rents grown across all three
--- Wohnlagen since 2013? Measure compound annual growth rate (CAGR)
--- and identify acceleration/deceleration periods.
+-- Wohnlagen since 2017, the first archived edition? Measure compound
+-- annual growth rate (CAGR). Note: 2021 and 2023 were not new surveys;
+-- they raised every value by a flat 1.1% and 5.4%.
 -- -----------------------------------------------------------------------------
 
 WITH berlin_timeline AS (
@@ -395,15 +396,15 @@ SELECT
   ROUND(base_rent_per_sqm, 2) AS rent_eur_per_sqm,
   ROUND(base_rent_per_sqm - prev_year_rent, 2) AS absolute_change_eur,
   ROUND(SAFE_DIVIDE(base_rent_per_sqm - prev_year_rent, prev_year_rent) * 100, 1) AS yoy_growth_pct,
-  -- Running total growth since 2013
+  -- Running total growth since 2017
   ROUND(
     SAFE_DIVIDE(
       base_rent_per_sqm,
       FIRST_VALUE(base_rent_per_sqm) OVER (PARTITION BY lage ORDER BY year)
     ) - 1,
     3
-  ) AS cumulative_growth_since_2013,
-  -- CAGR from 2013 to this year
+  ) AS cumulative_growth_since_2017,
+  -- CAGR from 2017 to this year
   ROUND(
     POWER(
       SAFE_DIVIDE(

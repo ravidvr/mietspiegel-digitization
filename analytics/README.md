@@ -36,7 +36,7 @@ This directory contains the SQL analytics layer, LookML model, and experiment fr
 - `rent_cells` — Core rent table
 - `cities` — City metadata
 - `immoscout` — Berlin Immoscout24 market rent grid
-- `historical_trends` — Berlin YoY Mietspiegel editions (2013–2023)
+- `historical_trends` — Berlin Mietspiegel editions (2017–2023)
 - `berlin_districts` — Berlin 12 Bezirke Wohnlage distribution
 
 ## Usage

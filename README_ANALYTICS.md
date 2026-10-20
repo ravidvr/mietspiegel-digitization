@@ -49,8 +49,8 @@ WHERE baujahr_group LIKE '%2014%'
 GROUP BY city ORDER BY avg_rent DESC;
 ```
 
-### Rent Forecasting
-Track historical Mietspiegel editions (Berlin: 2013–2024, 6 editions) to model rent growth trajectories. Which cities are accelerating fastest?
+### Rent History
+Follow Berlin's rent table by Wohnlage across the four archived editions (2017, 2019, 2021, 2023). 2021 and 2023 weren't new surveys: they raised every value by a flat 1.1% and 5.4%. Editions before 2017 aren't in the official archive.
 
 ### Inequality Metrics
 Compute rent-to-income ratios by city. Compare the spread between *einfach* and *gut* Wohnlage tiers — which cities have the widest housing inequality gap? Cross-reference with GdW state-level averages to identify outliers.
@@ -187,7 +187,7 @@ The interactive dashboard layers three independent data sources on a single map:
 
 - **Immoscout24 market rents** — 467 Berlin grid cells (RWI-GEO-REDX PUF v16)
 - **Zensus 2022 census rents** — 1,155 Berlin cells at 100m resolution, aggregated to 1km
-- **Berlin Mietspiegel 2024** — full official rent table (3 Wohnlagen × 8 Baujahre × 4 sizes), plus 6 historical editions (2013–2024)
+- **Berlin Mietspiegel 2024** — full official rent table (163 rows: 3 Wohnlagen × 11 Baujahr groups, each with its own size bands), plus the four archived editions (2017–2023)
 
 ### Features
 
