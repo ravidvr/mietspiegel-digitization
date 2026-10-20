@@ -5,7 +5,7 @@
 -- Sources: per-city JSON extracts at data/processed/<city>.json
 --           23+ cities with official Mietspiegel tables
 --           Berlin: Immoscout24 REDX grid, Zensus 2022, district aggregates,
---           historical editions (2013–2023)
+--           historical editions (2017–2023)
 --
 -- Design: star schema with a central fact_rent_cells table, city/state
 -- dimensions, and supplementary fact tables for Berlin-specific layers.
@@ -127,11 +127,11 @@ OPTIONS (
 -- =============================================================================
 CREATE OR REPLACE TABLE `mietspiegel.fact_historical_trends` (
   city_slug          STRING    NOT NULL,  -- FK → dim_cities
-  year               INT64     NOT NULL,  -- Edition year (2013, 2015, 2017, ...)
+  year               INT64     NOT NULL,  -- Edition year (2017, 2019, 2021, 2023)
   lage               STRING    NOT NULL,  -- einfach | mittel | gut
-  base_rent_per_sqm  FLOAT64   NOT NULL,  -- Base rent for reference cohort (1965-1974, 60-90m²)
-  baujahr_cohort     STRING,              -- Reference Baujahr used (typically "1965-1974")
-  source             STRING,              -- e.g. "Berliner Mietspiegel 2013"
+  base_rent_per_sqm  FLOAT64   NOT NULL,  -- Mean of the official Mittelwerte for the reference cohort
+  baujahr_cohort     STRING,              -- Reference cohort ("1991-2002", the one cohort in every edition)
+  source             STRING,              -- e.g. "Berliner Mietspiegeltabelle 2017"
   created_at         TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
   updated_at         TIMESTAMP DEFAULT CURRENT_TIMESTAMP()
 )

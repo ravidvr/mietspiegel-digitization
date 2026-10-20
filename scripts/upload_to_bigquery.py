@@ -66,25 +66,6 @@ TABLES = {
             ("gap_vs_avg_pct", "FLOAT"),
         ]
     },
-    "berlin_rent.historical_trend": {
-        "file": "berlin_historical_trend.csv",
-        "schema": [
-            ("city", "STRING"),
-            ("year", "INTEGER"),
-            ("base_rent_per_sqm", "FLOAT"),
-            ("mietspiegel_type", "STRING"),
-            ("period", "STRING"),
-        ],
-        "partition": "year",
-    },
-    "berlin_rent.mietpreisbremse_analysis": {
-        "file": "berlin_mietpreisbremse_analysis.csv",
-        "schema": [
-            ("metric", "STRING"),
-            ("value", "FLOAT"),
-            ("unit", "STRING"),
-        ]
-    },
 }
 
 

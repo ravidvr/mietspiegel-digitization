@@ -5,7 +5,7 @@
 -- Then: bq load --source_format=CSV berlin_rent.<table> gs://...
 
 -- ═══════════════════════════════════════════════════════════
--- DIMENSION: Mietspiegel table (official 2024 rent index)
+-- DIMENSION: Mietspiegel table (official 2024 rent index, averaged into 4 size bands)
 -- ═══════════════════════════════════════════════════════════
 CREATE OR REPLACE TABLE berlin_rent.mietspiegel_2024 (
     lage         STRING  NOT NULL,   -- einfach | mittel | gut
@@ -46,27 +46,6 @@ CREATE OR REPLACE TABLE berlin_rent.districts (
 );
 
 -- ═══════════════════════════════════════════════════════════
--- FACT: Historical Mietspiegel trend (2013–2023)
--- ═══════════════════════════════════════════════════════════
-CREATE OR REPLACE TABLE berlin_rent.historical_trend (
-    city                 STRING  NOT NULL,   -- Berlin
-    year                 INT64   NOT NULL,   -- edition year
-    base_rent_per_sqm    FLOAT64 NOT NULL,   -- mittlere Wohnlage base rent
-    mietspiegel_type     STRING,             -- qualifiziert | einfach
-    period               STRING              -- PRE | POST (Mietpreisbremse June 2015)
-)
-PARTITION BY year;
-
--- ═══════════════════════════════════════════════════════════
--- FACT: Mietpreisbremse impact analysis
--- ═══════════════════════════════════════════════════════════
-CREATE OR REPLACE TABLE berlin_rent.mietpreisbremse_analysis (
-    metric STRING  NOT NULL,
-    value  FLOAT64 NOT NULL,
-    unit   STRING  NOT NULL
-);
-
--- ═══════════════════════════════════════════════════════════
 -- VIEW: Affordable apartments (30% income rule)
 -- ═══════════════════════════════════════════════════════════
 CREATE OR REPLACE VIEW berlin_rent.vw_affordable AS
@@ -100,21 +79,6 @@ FROM berlin_rent.districts
 ORDER BY avg_rent_per_sqm;
 
 -- ═══════════════════════════════════════════════════════════
--- VIEW: Historical growth rates
--- ═══════════════════════════════════════════════════════════
-CREATE OR REPLACE VIEW berlin_rent.vw_historical_growth AS
-SELECT
-    year,
-    base_rent_per_sqm,
-    period,
-    LAG(base_rent_per_sqm) OVER (ORDER BY year) AS prev_rent,
-    ROUND((base_rent_per_sqm / LAG(base_rent_per_sqm) OVER (ORDER BY year) - 1) * 100, 1) AS yoy_growth_pct,
-    ROUND(base_rent_per_sqm - FIRST_VALUE(base_rent_per_sqm) OVER (ORDER BY year), 2) AS cumulative_increase,
-    ROUND((base_rent_per_sqm / FIRST_VALUE(base_rent_per_sqm) OVER (ORDER BY year) - 1) * 100, 1) AS total_growth_pct
-FROM berlin_rent.historical_trend
-ORDER BY year;
-
--- ═══════════════════════════════════════════════════════════
 -- ANALYTICAL QUERIES
 -- ═══════════════════════════════════════════════════════════
 
@@ -126,14 +90,3 @@ ORDER BY year;
 -- Q2: Which districts are affordable on median income?
 -- SELECT * FROM berlin_rent.vw_district_affordability
 -- WHERE burden_60m2_pct <= 30;
-
--- Q3: How much has rent grown since the Mietpreisbremse?
--- SELECT * FROM berlin_rent.vw_historical_growth;
-
--- Q4: Pre vs Post Mietpreisbremse average growth
--- SELECT 
---   period,
---   AVG(yoy_growth_pct) as avg_annual_growth_pct
--- FROM berlin_rent.vw_historical_growth
--- WHERE yoy_growth_pct IS NOT NULL
--- GROUP BY period;

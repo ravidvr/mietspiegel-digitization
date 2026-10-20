@@ -42,18 +42,9 @@ TABLES = {
         "file": "berlin_districts.csv",
         "schema": "district:STRING,avg_rent_per_sqm:FLOAT,einfach_pct:FLOAT,mittel_pct:FLOAT,gut_pct:FLOAT,total_addresses:INTEGER,gap_vs_avg_pct:FLOAT",
     },
-    "historical_trend": {
-        "file": "berlin_historical_trend.csv",
-        "schema": "city:STRING,year:INTEGER,base_rent_per_sqm:FLOAT,mietspiegel_type:STRING,period:STRING",
-        "partition": "year",
-    },
     "mietspiegel_2024": {
         "file": "berlin_mietspiegel_2024.csv",
         "schema": "lage:STRING,baujahr:STRING,bis_40:FLOAT,_40_60:FLOAT,_60_90:FLOAT,ueber_90:FLOAT",
-    },
-    "mietpreisbremse_analysis": {
-        "file": "berlin_mietpreisbremse_analysis.csv",
-        "schema": "metric:STRING,value:FLOAT,unit:STRING",
     },
 }
 
@@ -67,12 +58,6 @@ CREATE OR REPLACE VIEW berlin_rent.vw_district_affordability AS
 SELECT *, avg_rent_per_sqm * 60 AS rent_60m2,
   (avg_rent_per_sqm * 60) / 2450.0 * 100 AS burden_60m2_pct
 FROM berlin_rent.districts ORDER BY avg_rent_per_sqm;
-
-CREATE OR REPLACE VIEW berlin_rent.vw_historical_growth AS
-SELECT year, base_rent_per_sqm, period,
-  ROUND((base_rent_per_sqm / LAG(base_rent_per_sqm) OVER (ORDER BY year) - 1) * 100, 1) AS yoy_growth_pct,
-  ROUND((base_rent_per_sqm / FIRST_VALUE(base_rent_per_sqm) OVER (ORDER BY year) - 1) * 100, 1) AS total_growth_pct
-FROM berlin_rent.historical_trend ORDER BY year;
 """
 
 
@@ -139,7 +124,7 @@ def deploy(project_id: str):
 ╠══════════════════════════════════════════════════════════════╣
 ║  Dataset: {dataset:<45s} ║
 ║  Tables:  {str(len(TABLES)):<49s} ║
-║  Views:   3 (vw_affordable, vw_district_*, vw_historical_*) ║
+║  Views:   2 (vw_affordable, vw_district_affordability)      ║
 ╠══════════════════════════════════════════════════════════════╣
 ║                                                              ║
 ║  LOOKER STUDIO:                                              ║
@@ -153,9 +138,7 @@ def deploy(project_id: str):
 ║    connectorId=bigQuery                                      ║
 ║                                                              ║
 ║  KEY CHARTS TO BUILD:                                        ║
-║  • Time series: year vs rent_per_sqm (colored by lage)      ║
 ║  • Bar chart: district vs avg_rent_per_sqm                  ║
-║  • Scorecard: counterfactual vs actual 2023                 ║
 ║  • Stacked bar: Wohnlage % by district                      ║
 ║  • Table: Mietspiegel 2024 with conditional formatting      ║
 ║                                                              ║

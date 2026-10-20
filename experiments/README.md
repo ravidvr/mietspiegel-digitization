@@ -1,13 +1,12 @@
 # Experiments
 
-Four standalone Python scripts. Only the first one feeds the website.
+Three standalone Python scripts. Only the first one feeds the website.
 
 | Script | Question | Output | On the site |
 |---|---|---|---|
 | [`generate_experiment_results.py`](generate_experiment_results.py) | How big must a city-wide rent rise be before Berlin's data can reliably detect it? | Writes `docs/data/processed/experiment_results.json` | Yes: the Experiments page |
 | [`rent_impact_simulator.py`](rent_impact_simulator.py) | What-if rent scenarios over the 23 city Mietspiegel tables | Prints a report | No |
 | [`city_comparison_tests.py`](city_comparison_tests.py) | How much do the 23 cities' rent tables differ? | Prints a report | No |
-| [`berlin_mietpreisbremse_did.py`](berlin_mietpreisbremse_did.py) | Did Berlin's rent trend change after the June 2015 Mietpreisbremse? | Writes 5 CSVs to `exports/` | Its CSVs are linked from the Data page. It no longer runs ([§4](#4-mietpreisbremse-before-and-after-berlin_mietpreisbremse_didpy)) |
 
 Some code and output still say "A/B testing framework". Nothing here runs an A/B test: there are no randomised groups, no household-level data, and no guardrail metrics or decision rules.
 
@@ -86,17 +85,3 @@ pip install pandas numpy scipy statsmodels
 # first time only: the same data copy as for §2
 MIETSPIEGEL_ROOT=. python3 experiments/city_comparison_tests.py
 ```
-
-## 4. Mietpreisbremse before and after: `berlin_mietpreisbremse_did.py`
-
-**It no longer runs.** Written in July 2026, it reads a 2013–2023 Berlin series in the old format of `data/historical_mietspiegel.json`. On 27 Aug 2026 (commit `dd99d3e`) that interpolated series was removed because its values couldn't be reproduced from the official tables. The file now holds the 2017–2023 editions extracted from the official PDFs, in a new format, and the script stops with `KeyError: 'cities'`. Its project root is also hard-coded on line 18 (`/Users/ruhvee/mietspiegel-digitization`, with no `MIETSPIEGEL_ROOT` override).
-
-What it did, for reference:
-
-- **Trend comparison:** despite "DiD" in the name, there's no comparison group, so it isn't a difference-in-differences analysis. It compares Berlin's own trend before and after the law (June 2015), using straight lines between the end editions of each period (2013→2015 and 2015→2023), and extends the 2013–2015 line to 2023 as the counterfactual. There's no significance test.
-- **Rent burden:** the average Mietspiegel 2024 rent for 40, 60 and 90 m² flats against 30% of an assumed €2,450 net monthly household income, cold and with €2.50/m² added for utilities.
-- **Districts:** the cheapest and the priciest Bezirk, from `docs/data/processed/berlin_districts_comparison.json`.
-- **Market vs official:** Immoscout24 asking rents vs the Mietspiegel average vs Zensus 2022 rents.
-- **Exports:** five CSVs in `exports/`: `berlin_mietspiegel_2024.csv`, `berlin_rent_cells.csv`, `berlin_districts.csv`, `berlin_historical_trend.csv` and `berlin_mietpreisbremse_analysis.csv`.
-
-The CSVs in `exports/` are from its last run (29 Jul 2026), so `berlin_historical_trend.csv` and `berlin_mietpreisbremse_analysis.csv` still hold the removed series. The Data page links all five. It uses only the Python standard library.
