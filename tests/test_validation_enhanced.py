@@ -592,57 +592,87 @@ class TestGdwCrossref:
 
 class TestHistoricalConsistency:
     """
-    For cities with multiple editions, newer editions should have higher rents.
-    Uses data from data/historical_mietspiegel.json.
+    Berlin's archived Mietspiegel editions (2017–2023), from
+    data/historical_mietspiegel.json (written by scripts/build_historical.py).
+
+    The rent checks use by_lage_same_cohort, the 1991–2002 building cohort that every
+    edition has. by_lage follows each edition's newest cohort (2003–2015 in 2017,
+    2003–2017 after), so it is not like-for-like, and its einfach average is above gut.
     """
 
-    def test_historical_rent_increases(self, historical_data: dict):
-        """Verify that base rents increase monotonically across editions."""
+    LAGEN: tuple[str, ...] = ("einfach", "mittel", "gut")
+    SAME_COHORT = "1991-2002"
+
+    @staticmethod
+    def _cohort_mittelwerte(edition: dict, cohort: str, lage: str) -> list[float]:
+        """Mittelwerte of one cohort and Lage across the size bands, without low-sample cells."""
+        col = edition["cohorts"].index(cohort)
+        cells = [row["values"][col] for row in edition["rows"] if row["lage"] == lage]
+        return [
+            c["mittelwert"] for c in cells
+            if c and c["mittelwert"] is not None and not c.get("low_sample")
+        ]
+
+    def test_same_cohort_rents_do_not_fall(self, historical_data: dict):
+        """No Lage's 1991–2002 average falls more than 2% from one edition to the next."""
+        series = historical_data["by_lage_same_cohort"]
+        years = sorted(series, key=int)
+        assert len(years) >= 2, f"Need at least two editions, found {years}"
+
         violations = []
-        for city_entry in historical_data.get("cities", []):
-            city = city_entry["city"]
-            editions = sorted(city_entry.get("editions", []), key=lambda e: e["year"])
-
-            for i in range(1, len(editions)):
-                prev_year = editions[i - 1]["year"]
-                prev_rent = editions[i - 1]["base_rent_per_sqm"]
-                curr_year = editions[i]["year"]
-                curr_rent = editions[i]["base_rent_per_sqm"]
-
+        for lage in self.LAGEN:
+            for prev_year, curr_year in zip(years, years[1:]):
+                prev_rent = series[prev_year][lage]
+                curr_rent = series[curr_year][lage]
                 if curr_rent < prev_rent * 0.98:  # Allow 2% noise
                     violations.append(
-                        f"{city}: rent decreased from {prev_year} (€{prev_rent:.2f}) "
+                        f"{lage}: rent decreased from {prev_year} (€{prev_rent:.2f}) "
                         f"to {curr_year} (€{curr_rent:.2f}), change: "
                         f"{(curr_rent - prev_rent) / prev_rent * 100:+.1f}%"
                     )
 
-        print(f"\nHistorical consistency check ({len(historical_data.get('cities', []))} cities):")
-        for city_entry in historical_data.get("cities", []):
-            city = city_entry["city"]
-            editions = sorted(city_entry.get("editions", []), key=lambda e: e["year"])
-            years = [f"{e['year']}: €{e['base_rent_per_sqm']:.2f}" for e in editions]
-            print(f"  {city}: {' → '.join(years)}")
-
-        if violations:
-            print("\n  ⚠ Violations found:")
-            for v in violations:
-                print(f"    ✗ {v}")
+        print(f"\nBerlin 1991–2002 cohort, {len(years)} editions:")
+        for lage in self.LAGEN:
+            print(f"  {lage}: {' → '.join(f'{y}: €{series[y][lage]:.2f}' for y in years)}")
 
         assert not violations, (
             f"Found {len(violations)} historical rent decreases:\n" + "\n".join(violations)
         )
 
-    def test_historical_lage_spread(self, historical_data: dict):
-        """Verify that Lage spread (gut/einfach ratio) stays reasonable across editions."""
-        for city_entry in historical_data.get("cities", []):
-            city = city_entry["city"]
-            by_lage = city_entry.get("by_lage", {})
-            for year_str, lage_vals in by_lage.items():
-                if "gut" in lage_vals and "einfach" in lage_vals:
-                    ratio = lage_vals["gut"] / lage_vals["einfach"]
-                    assert 1.0 <= ratio <= 3.0, (
-                        f"{city} {year_str}: gut/einfach ratio = {ratio:.2f} — outside [1.0, 3.0]"
-                    )
+    def test_same_cohort_lage_spread(self, historical_data: dict):
+        """In every edition the 1991–2002 gut/einfach ratio stays within [1.0, 3.0]."""
+        series = historical_data["by_lage_same_cohort"]
+        assert series, "by_lage_same_cohort is empty"
+        for year, lage_vals in sorted(series.items()):
+            ratio = lage_vals["gut"] / lage_vals["einfach"]
+            assert 1.0 <= ratio <= 3.0, (
+                f"{year}: gut/einfach ratio = {ratio:.2f} — outside [1.0, 3.0]"
+            )
+
+    def test_series_match_edition_tables(self, historical_data: dict):
+        """by_lage and by_lage_same_cohort are the edition tables' cohort averages, to the cent."""
+        editions = historical_data["editions"]
+        years = sorted(str(e["year"]) for e in editions)
+        assert years, "No editions in the file"
+        for field in ("by_lage", "by_lage_same_cohort"):
+            assert sorted(historical_data[field]) == years, f"{field} years differ from {years}"
+
+        mismatches = []
+        for edition in editions:
+            year = str(edition["year"])
+            for field, cohort in (("by_lage", edition["cohorts"][-1]),
+                                  ("by_lage_same_cohort", self.SAME_COHORT)):
+                for lage in self.LAGEN:
+                    vals = self._cohort_mittelwerte(edition, cohort, lage)
+                    derived = round(sum(vals) / len(vals), 2) if vals else None
+                    stored = historical_data[field][year][lage]
+                    if stored != derived:
+                        mismatches.append(f"{field} {year} {lage}: file {stored}, tables {derived}")
+
+        assert not mismatches, (
+            f"Found {len(mismatches)} averages that don't match the edition tables:\n"
+            + "\n".join(mismatches)
+        )
 
 
 # ---------------------------------------------------------------------------

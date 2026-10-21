@@ -743,7 +743,8 @@ function zoomToDistrict(name) {
 }
 
 // ─── Metric help links ─────────────────────────────────────────
-const helpLink = (anchor) => `<a href="https://ravidvr.github.io/mietspiegel-digitization/docs/METRICS.md#${anchor}" target="_blank" title="What does this mean?" style="font-size:10px;color:var(--text-dim);text-decoration:none;margin-left:3px;cursor:help">?</a>`;
+// METRICS.html is GitHub Pages' rendering of docs/METRICS.md; anchors are its heading IDs.
+const helpLink = (anchor) => `<a href="https://ravidvr.github.io/mietspiegel-digitization/METRICS.html#${anchor}" target="_blank" title="What does this mean?" style="font-size:10px;color:var(--text-dim);text-decoration:none;margin-left:3px;cursor:help">?</a>`;
 
 // ─── Hash routing (P2.5) ───────────────────────────────────────
 function handleHash() {
@@ -772,7 +773,7 @@ function showDistrict(p) {
       <div class="row"><span>🔴 Good areas</span><b>${p.gut_pct}%</b></div>
     </div>
     <div style="margin-top:10px;padding:8px;background:var(--surface2);border-radius:4px;text-align:center">
-      <div style="font-size:22px;font-weight:700;color:${p.avg_rent<10?'#48bb78':p.avg_rent<11.5?'#ecc94b':p.avg_rent<12.5?'#ed8936':'#f56565'}">ø €${p.avg_rent}/m² ${helpLink('berlin-district-rent-estimates')}</div>
+      <div style="font-size:22px;font-weight:700;color:${p.avg_rent<10?'#48bb78':p.avg_rent<11.5?'#ecc94b':p.avg_rent<12.5?'#ed8936':'#f56565'}">ø €${p.avg_rent}/m² ${helpLink('4-berlin-bezirke-district-aggregates')}</div>
       <div class="sub">Estimated average net cold rent</div>
     </div>`;
   document.getElementById('tooltip').style.display = 'block';
@@ -838,7 +839,7 @@ function setupClick() {
 
     let html = `<button class="close" onclick="this.parentElement.style.display='none'">×</button>
       <h3>📍 ${loc}</h3>
-      <div class="val">€${ibest.rent}/m² <span class="sub">(${ibest.year})</span> ${helpLink('immoscout-market-rents')}</div>
+      <div class="val">€${ibest.rent}/m² <span class="sub">(${ibest.year})</span> ${helpLink('2-immoscout24-market-rents-berlin-only')}</div>
       <div class="insight" style="color:${above?'var(--red)':'var(--green)'};margin-top:4px">
         ${above?'Above':'Below'} Berlin average (€${immoMean}/m²)
       </div>`;
@@ -862,7 +863,7 @@ function setupClick() {
       const pctColor = diff/zsRent > 0.2 ? 'var(--red)' : diff/zsRent > 0.05 ? 'var(--orange)' : 'var(--green)';
       html += `<div style="margin-top:10px;padding:8px;background:var(--surface2);border-radius:4px">
         <div style="font-weight:600;font-size:11px;margin-bottom:4px">📊 What residents actually pay</div>
-        <div class="row"><span>Official census (2022)</span><span style="font-weight:700;font-size:14px">€${zsRent}/m² ${helpLink('zensus-2022-census-rents')}</span></div>
+        <div class="row"><span>Official census (2022)</span><span style="font-weight:700;font-size:14px">€${zsRent}/m² ${helpLink('3-zensus-2022-census-rents-berlin-only')}</span></div>
         <div style="margin-top:3px;font-size:10px;color:${pctColor};font-weight:600">
           New listings cost <b>${pct}</b> than current rents
         </div>
